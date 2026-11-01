@@ -84,5 +84,6 @@ __pycache__/
 .vscode
 temp/
 *.diff
+include/**/*.c
 
 !disc/.gitkeep

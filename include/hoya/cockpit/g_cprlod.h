@@ -1,0 +1,9 @@
+// STATUS: NOT STARTED
+
+#ifndef HOYA_COCKPIT_G_CPRLOD_H
+#define HOYA_COCKPIT_G_CPRLOD_H
+
+gsCOCKPIT_InitReload();
+gsCOCKPIT_PutReload();
+
+#endif // HOYA_COCKPIT_G_CPRLOD_H

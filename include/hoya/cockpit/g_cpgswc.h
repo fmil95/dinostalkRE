@@ -1,0 +1,9 @@
+// STATUS: NOT STARTED
+
+#ifndef HOYA_COCKPIT_G_CPGSWC_H
+#define HOYA_COCKPIT_G_CPGSWC_H
+
+gsCOCKPIT_InitArms();
+gsCOCKPIT_PutArms();
+
+#endif // HOYA_COCKPIT_G_CPGSWC_H

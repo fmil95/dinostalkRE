@@ -1,0 +1,9 @@
+// STATUS: NOT STARTED
+
+#ifndef HOYA_COCKPIT_G_CPCMB_H
+#define HOYA_COCKPIT_G_CPCMB_H
+
+gsCOCKPIT_InitCombo();
+gsCOCKPIT_PutCombo();
+
+#endif // HOYA_COCKPIT_G_CPCMB_H
