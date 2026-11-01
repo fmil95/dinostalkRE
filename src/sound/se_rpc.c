@@ -1,6 +1,9 @@
 #include "common.h"
 
-INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", get_SE_MAX);
+int get_SE_MAX() 
+{
+    return 1000;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", get_BGM_MAX);
 
