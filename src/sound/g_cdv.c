@@ -18,8 +18,15 @@ int gsCdvFlushWait()
     }
 
     sceGsSyncV(0);
-    
+
     return 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/g_cdv", gsCdvDiscReady);
+int gsCdvDiscReady() 
+{
+    cdvDiscReadySet();
+    
+    gsCdvFlushWait();
+    
+    return 0;
+}
