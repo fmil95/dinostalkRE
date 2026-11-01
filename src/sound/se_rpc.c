@@ -10,7 +10,10 @@ int get_BGM_MAX()
     return 16;
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", get_STRM_MAX);
+int get_STRM_MAX() 
+{
+    return 8;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", get_BGM_VAB_MAX);
 
