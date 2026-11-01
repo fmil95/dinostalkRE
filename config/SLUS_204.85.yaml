@@ -55,7 +55,9 @@ segments:
     vram: 0x00100000
     bss_size: 0x2042b0
     subsegments:
-      - [0x001000, asm, start]
+      - [0x001000, asm, start]     
+      - [0x0010c8, c, main]       
+      - [0x001c48, asm, end]        
       - [0x19ace0, databin, vutext]
 
   - name: mfifo

@@ -1,0 +1,12 @@
+main                                             = 0x001000c8; // size:0x2f8
+SelectTest                                       = 0x001003c0; // size:0x1b8
+InitSystem                                       = 0x00100578; // size:0x130
+InitSif                                          = 0x001006a8; // size:0xec
+SetDefaultGsEnv                                  = 0x00100798; // size:0x114
+EndSystem                                        = 0x001008b0; // size:0x28
+_gsMuteki_INIT                                   = 0x001008d8; // size:0x8
+_gsMuteki_EXEC                                   = 0x001008e0; // size:0xe0
+_gsMuteki_END                                    = 0x001009c0; // size:0x8
+_gsOmakePower_INIT                               = 0x001009c8; // size:0x3c
+_gsOmakePower_EXEC                               = 0x00100a08; // size:0x238
+_gsOmakePower_END                                = 0x00100c40; // size:0x8

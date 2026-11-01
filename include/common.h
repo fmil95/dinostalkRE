@@ -8,7 +8,7 @@
 
 #include "include_asm.h"
 #include "types.h"
-#include "vtables.h"
+//#include "vtables.h"
 #include "spaprops.h"
 
 // Helper macros for decompilation
@@ -69,8 +69,8 @@ extern int _gpReg; // Global pointer register
 
 /**
  * @brief RGBA color value.
- */
-struct RGBA
+ *//*
+/*struct RGBA
 {
     uchar bRed;
     uchar bGreen;
@@ -84,6 +84,6 @@ struct RGBA
         bBlue = (rgba >> 8) & 0xFF;
         bAlpha = rgba & 0xFF;
     }
-};
+};*/
 
 #endif // COMMON_H

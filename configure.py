@@ -231,10 +231,27 @@ def build_stuff(linker_entries: List[LinkerEntry], skip_checksum=False, objects_
         command=f"cpp {COMMON_INCLUDES} $in -o  - | {cross}as -no-pad-sections -EL -march=5900 -mabi=eabi -Iinclude -o $out",
     )
 
+    # this is the original cc rule, but the larger one below is used due to problems with WINE
+    #ninja.rule(
+        #"cc",
+        #description="cc $in",
+        #command=f"{COMPILE_CMD} $cflags -o $out && {cross}strip $out -N dummy-symbol-name",
+    #)
+
+    AS_EE = f"{TOOLS_DIR}/cc/ee/bin/as"
+    WINE_RUN = f"{WINE_ENV} {WINE}" if sys.platform.startswith("linux") else ""
+
     ninja.rule(
         "cc",
         description="cc $in",
-        command=f"{COMPILE_CMD} $cflags -o $out && {cross}strip $out -N dummy-symbol-name",
+        command=(
+            f"rm -f $out $out.s; "
+            f"{WINE_RUN} {CC_DIR}/ee-gcc -S {COMMON_INCLUDES} {COMMON_COMPILE_FLAGS} $in $cflags -o $out.s; "
+            f"wineserver -w; "
+            f"{WINE_RUN} {AS_EE} -G4 -O2 -mabi=eabi -o $out $out.s; "
+            f"wineserver -w; "
+            f"test -s $out && {cross}strip $out -N dummy-symbol-name"
+        ),
     )
 
     ninja.rule(
