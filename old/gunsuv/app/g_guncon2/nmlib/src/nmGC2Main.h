@@ -3,8 +3,15 @@
 #ifndef GUNSUV_APP_G_GUNCON2_NMLIB_SRC_NMGC2MAIN_H
 #define GUNSUV_APP_G_GUNCON2_NMLIB_SRC_NMGC2MAIN_H
 
-typedef unsigned char u_char;
-typedef unsigned int u_int;
+#include "common.h"
+
+typedef struct nm_TimerRegAdr_tag 
+{
+	u_int* count;
+	u_int* mode;
+	u_int* comp;
+	u_int* hold;
+} nm_TimerRegAdr_t;
 
 int nmUsbGunInit();
 int nmUsbGunGetInfo(u_char *info);
