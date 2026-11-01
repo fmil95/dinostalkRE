@@ -1,12 +1,52 @@
-#include "common.h"
+#include "air/insect/a_goki.h"
+#include "air/insect/a_insect.h"
 
-INCLUDE_ASM("asm/nonmatchings/air/insect/a_goki", gsSetInsect_GOKI);
+void gsSetInsect_GOKI(int prm0) 
+{
+    ISC_INFO* isc;
+    int i;
+    int idx;
+
+    i = 0;
+
+    do
+    {
+        idx = gsFreeIscInfosSearch(0);
+
+        if (idx < 0)
+         {
+            break;
+        }
+
+        isc = &gsIscInfos[idx];
+
+        isc->flags |= 0x1;
+
+        isc->unk4 = 0;
+        isc->unk6 = 0;
+
+        if (i == 1) 
+        {
+            isc->flags |= 0x10000;
+        }
+
+        gsSetInsectPos_GOKI(isc, prm0);
+        gsInsectGndCheck_GOKI(isc);
+        gsObjSet_Insect(isc);
+
+        gsMakeIscLocalMatrix(isc);
+
+        i++;
+    } while (i < 4);
+}
 
 INCLUDE_ASM("asm/nonmatchings/air/insect/a_goki", gsSetInsectPos_GOKI);
 
 INCLUDE_ASM("asm/nonmatchings/air/insect/a_goki", gsInsectSetPurPosVeY);
 
-void gsInsect00_DummyAct(void) {
+void gsInsect00_DummyAct() 
+{
+
 }
 
 INCLUDE_ASM("asm/nonmatchings/air/insect/a_goki", gsInsectCtrl_GOKI);

@@ -3,6 +3,16 @@
 #ifndef AIR_INSECT_A_INSECT_H
 #define AIR_INSECT_A_INSECT_H
 
+typedef struct ISC_INFO
+{
+    unsigned int flags;      
+    short        unk4;
+    short        unk6;
+    char         _pad[952]; 
+} ISC_INFO;
+
+extern ISC_INFO gsIscInfos[];
+
 gsIscInfosAllClear();
 gsIscInfosClear();
 gsFreeIscInfosSearch();

@@ -3,10 +3,12 @@
 #ifndef AIR_INSECT_A_GOKI_H
 #define AIR_INSECT_A_GOKI_H
 
-gsSetInsect_GOKI();
+#include "common.h"
+
+void gsSetInsect_GOKI(int prm0);
 gsSetInsectPos_GOKI();
 gsInsectSetPurPosVeY();
-gsInsect00_DummyAct();
+void gsInsect00_DummyAct();
 gsInsectCtrl_GOKI();
 gsInsect00_Act00();
 gsInsect00_Act01();
