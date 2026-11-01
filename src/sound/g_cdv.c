@@ -1,6 +1,16 @@
-#include "common.h"
+#include "sound/g_cdv.h"
 
-INCLUDE_ASM("asm/nonmatchings/sound/g_cdv", gsCdvInit);
+int gsCdvQue;
+
+int gsCdvInit()
+{
+    cdvInit(256, &gsCdvQue, 2);
+    cdvDiscReadySet();
+
+    gsCdvFlushWait();
+
+    return 0;
+}
 
 void gsCdvMain() 
 {

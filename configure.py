@@ -29,10 +29,14 @@ ELF_PATH = f"{OUTDIR}/{BASENAME}"
 MAP_PATH = f"{OUTDIR}/{BASENAME}.map"
 PRE_ELF_PATH = f"{OUTDIR}/{BASENAME}.elf"
 
+G_OVERRIDES = {
+    "g_cdv.c": "-G2"
+}
+
 COMMON_INCLUDES = "-Iinclude -isystem include/sdk/ee -isystem include/gcc"
 
 CC_DIR = f"{TOOLS_DIR}/cc/bin"
-COMMON_COMPILE_FLAGS = f"-B{TOOLS_DIR}/cc/lib/gcc-lib/ee/2.96-ee-001003-1/ -O2 -G4"
+COMMON_COMPILE_FLAGS = f"-B{TOOLS_DIR}/cc/lib/gcc-lib/ee/2.96-ee-001003-1/ -O2"
 
 # WINE = "wine"
 # WINE_ENV = "WINEPREFIX=~/.wine_ps2 WINEDEBUG=-all"
@@ -246,10 +250,10 @@ def build_stuff(linker_entries: List[LinkerEntry], skip_checksum=False, objects_
         description="cc $in",
         command=(
             f"rm -f $out $out.s; "
-            f"{CC_DIR}/ee-gcc -S {COMMON_INCLUDES} {COMMON_COMPILE_FLAGS} $in $cflags -o $out.s; "
+            f"{CC_DIR}/ee-gcc -S {COMMON_INCLUDES} {COMMON_COMPILE_FLAGS} $gflag $in $cflags -o $out.s; "
             #f"{WINE_RUN} {CC_DIR}/ee-gcc -S {COMMON_INCLUDES} {COMMON_COMPILE_FLAGS} $in $cflags -o $out.s; "
             # f"wineserver -w; "
-            f"{AS_EE} -G4 -O2 -mabi=eabi -o $out $out.s; "
+            f"{AS_EE} -O2 -mabi=eabi $gflag -o $out $out.s; "
             # f"{WINE_RUN} {AS_EE} -G4 -O2 -mabi=eabi -o $out $out.s; "
             # f"wineserver -w; "
             f"test -s $out && {cross}strip $out -N dummy-symbol-name"
@@ -294,11 +298,24 @@ def build_stuff(linker_entries: List[LinkerEntry], skip_checksum=False, objects_
             else:
                 build(entry.object_path, entry.src_paths, "as")
         elif isinstance(seg, splat.segtypes.common.c.CommonSegC):
+            # Find the appropriate -G flag for this source file, defaulting to -G4
+            gflag = "-G4"
+            for src in entry.src_paths:
+                path_obj = Path(src)
+                if path_obj.name in G_OVERRIDES:
+                    gflag = G_OVERRIDES[path_obj.name]
+                    break
+                elif str(src) in G_OVERRIDES:
+                    gflag = G_OVERRIDES[str(src)]
+                    break
+
+            variables = {"gflag": gflag}
+
             if dual_objects:
-                build(entry.object_path, entry.src_paths, "cc", out_dir="obj/target", collect_objdiff=True, orig_entry=entry)
-                build(entry.object_path, entry.src_paths, "cc", out_dir="obj/current", extra_flags="-DSKIP_ASM")
+                build(entry.object_path, entry.src_paths, "cc", out_dir="obj/target", variables=variables, collect_objdiff=True, orig_entry=entry)
+                build(entry.object_path, entry.src_paths, "cc", out_dir="obj/current", variables=variables, extra_flags="-DSKIP_ASM")
             else:
-                build(entry.object_path, entry.src_paths, "cc")
+                build(entry.object_path, entry.src_paths, "cc", variables=variables)
         elif isinstance(seg, splat.segtypes.common.databin.CommonSegDatabin):
             if dual_objects:
                 build(entry.object_path, entry.src_paths, "as", out_dir="obj/target", collect_objdiff=True, orig_entry=entry)

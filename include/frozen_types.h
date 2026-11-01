@@ -25,7 +25,8 @@ typedef struct Unknown3 {
     int unk118;
 } Unknown3;
 
-typedef struct Camera {
+typedef struct Camera 
+{
     char pad[244];
     float unkF4;
     char pad2[170];
