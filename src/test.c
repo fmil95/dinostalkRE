@@ -16,4 +16,7 @@ INCLUDE_ASM("asm/nonmatchings/test", TEST_MoveCamera);
 
 INCLUDE_ASM("asm/nonmatchings/test", TEST_create_instance);
 
-INCLUDE_ASM("asm/nonmatchings/test", TEST_destroy_instshape);
+void TEST_destroy_instshape() 
+{
+    MEM_Free();
+}
