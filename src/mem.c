@@ -2,7 +2,10 @@
 
 INCLUDE_ASM("asm/nonmatchings/mem", MEM_InitAllocation);
 
-INCLUDE_ASM("asm/nonmatchings/mem", MEM_EndAllocation);
+void MEM_EndAllocation() 
+{
+    MEM_FreeAll();
+}
 
 INCLUDE_ASM("asm/nonmatchings/mem", MEM_Malloc);
 
