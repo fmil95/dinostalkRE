@@ -1,0 +1,91 @@
+#include "common.h"
+
+INCLUDE_ASM("asm/nonmatchings/air/a_item", gsItemInit);
+
+INCLUDE_ASM("asm/nonmatchings/air/a_item", gsEventObjItemDataLoad);
+
+INCLUDE_ASM("asm/nonmatchings/air/a_item", gsMake_AllItemObjPacket);
+
+INCLUDE_ASM("asm/nonmatchings/air/a_item", gsMake_ItemObjPacket);
+
+INCLUDE_ASM("asm/nonmatchings/air/a_item", gsObjSet_FixItem);
+
+INCLUDE_ASM("asm/nonmatchings/air/a_item", gsObjSet_AnotherItem);
+
+INCLUDE_ASM("asm/nonmatchings/air/a_item", gsMakeSet_AllFixItem);
+
+INCLUDE_ASM("asm/nonmatchings/air/a_item", gsEventObjSetItemMain);
+
+INCLUDE_ASM("asm/nonmatchings/air/a_item", gsSt1_ItemManagement);
+
+INCLUDE_ASM("asm/nonmatchings/air/a_item", gsDistCheckItemSet);
+
+INCLUDE_ASM("asm/nonmatchings/air/a_item", gsBomb2AreaCheck);
+
+INCLUDE_ASM("asm/nonmatchings/air/a_item", gsItem_FixBombFunc);
+
+INCLUDE_ASM("asm/nonmatchings/air/a_item", gsSetItemFromBreakObject);
+
+INCLUDE_ASM("asm/nonmatchings/air/a_item", gsDeleteEnemySetItemObj);
+
+INCLUDE_ASM("asm/nonmatchings/air/a_item", gsItem_BombFunc);
+
+INCLUDE_ASM("asm/nonmatchings/air/a_item", gsAppearAnotherItem);
+
+INCLUDE_ASM("asm/nonmatchings/air/a_item", gsRotateAnotherItem);
+
+INCLUDE_ASM("asm/nonmatchings/air/a_item", gsFlashAnotherItem);
+
+INCLUDE_ASM("asm/nonmatchings/air/a_item", gsDeleteAnotherItem);
+
+INCLUDE_ASM("asm/nonmatchings/air/a_item", gsHagAnotherItem);
+
+INCLUDE_ASM("asm/nonmatchings/air/a_item", gsObjectSetFixItem);
+
+INCLUDE_ASM("asm/nonmatchings/air/a_item", gsObjectSetAnotherItem);
+
+INCLUDE_ASM("asm/nonmatchings/air/a_item", gsAllItemInfosClear);
+
+INCLUDE_ASM("asm/nonmatchings/air/a_item", gsFieldItemInfosClear);
+
+INCLUDE_ASM("asm/nonmatchings/air/a_item", gsEnemyItemInfosClear);
+
+INCLUDE_ASM("asm/nonmatchings/air/a_item", gsAllItemReset);
+
+INCLUDE_ASM("asm/nonmatchings/air/a_item", gsFixItemFreeInfosSearch);
+
+INCLUDE_ASM("asm/nonmatchings/air/a_item", gsAnotherItemFreeInfosSearch);
+
+INCLUDE_ASM("asm/nonmatchings/air/a_item", gsAnotherItemFreeInfosSearch2);
+
+INCLUDE_ASM("asm/nonmatchings/air/a_item", gfShape_AttachObject2_item);
+
+INCLUDE_ASM("asm/nonmatchings/air/a_item", GFShape_AttachObject_item);
+
+INCLUDE_ASM("asm/nonmatchings/air/a_item", gsItem_SizeRot_Change);
+
+INCLUDE_ASM("asm/nonmatchings/air/a_item", gsItem_SizeRot_Return);
+
+INCLUDE_ASM("asm/nonmatchings/air/a_item", gsClearFixItem);
+
+INCLUDE_ASM("asm/nonmatchings/air/a_item", gsMakeAddFixItem);
+
+INCLUDE_ASM("asm/nonmatchings/air/a_item", gsAddFixItem);
+
+INCLUDE_ASM("asm/nonmatchings/air/a_item", gsItemReset_ForMovie);
+
+INCLUDE_ASM("asm/nonmatchings/air/a_item", gsInit_ThrowWeapon);
+
+INCLUDE_ASM("asm/nonmatchings/air/a_item", gsClear_ThrowWeapon_Infos);
+
+INCLUDE_ASM("asm/nonmatchings/air/a_item", gsSearch_ThrowWeapon_FreeInfos);
+
+INCLUDE_ASM("asm/nonmatchings/air/a_item", gsMake_ThrowWeapon);
+
+INCLUDE_ASM("asm/nonmatchings/air/a_item", gsManagement_ThrowWeapon);
+
+INCLUDE_ASM("asm/nonmatchings/air/a_item", gsThrowWeapon);
+
+INCLUDE_ASM("asm/nonmatchings/air/a_item", gsSetMatrix_ThrowWeapon);
+
+INCLUDE_ASM("asm/nonmatchings/air/a_item", gsThrowWeaponReset);

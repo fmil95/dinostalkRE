@@ -34,14 +34,14 @@ COMMON_INCLUDES = "-Iinclude -isystem include/sdk/ee -isystem include/gcc"
 CC_DIR = f"{TOOLS_DIR}/cc/bin"
 COMMON_COMPILE_FLAGS = f"-B{TOOLS_DIR}/cc/lib/gcc-lib/ee/2.96-ee-001003-1/ -O2 -G4"
 
-WINE = "wine"
-WINE_ENV = "WINEPREFIX=~/.wine_ps2 WINEDEBUG=-all"
+# WINE = "wine"
+# WINE_ENV = "WINEPREFIX=~/.wine_ps2 WINEDEBUG=-all"
 
 GAME_GCC_CMD = f"{CC_DIR}/ee-gcc.exe -c {COMMON_INCLUDES} {COMMON_COMPILE_FLAGS} $in"
 COMPILE_CMD = f"{GAME_GCC_CMD}"
 
-if sys.platform == "linux" or sys.platform == "linux2":
-    COMPILE_CMD = f"{WINE_ENV} {WINE} {GAME_GCC_CMD}"
+# if sys.platform == "linux" or sys.platform == "linux2":
+#     COMPILE_CMD = f"{WINE_ENV} {WINE} {GAME_GCC_CMD}"
 
 CATEGORY_MAP = {
     "ps2": "Game",
@@ -239,17 +239,19 @@ def build_stuff(linker_entries: List[LinkerEntry], skip_checksum=False, objects_
     #)
 
     AS_EE = f"{TOOLS_DIR}/cc/ee/bin/as"
-    WINE_RUN = f"{WINE_ENV} {WINE}" if sys.platform.startswith("linux") else ""
+    # WINE_RUN = f"{WINE_ENV} {WINE}" if sys.platform.startswith("linux") else ""
 
     ninja.rule(
         "cc",
         description="cc $in",
         command=(
             f"rm -f $out $out.s; "
-            f"{WINE_RUN} {CC_DIR}/ee-gcc -S {COMMON_INCLUDES} {COMMON_COMPILE_FLAGS} $in $cflags -o $out.s; "
-            f"wineserver -w; "
-            f"{WINE_RUN} {AS_EE} -G4 -O2 -mabi=eabi -o $out $out.s; "
-            f"wineserver -w; "
+            f"{CC_DIR}/ee-gcc -S {COMMON_INCLUDES} {COMMON_COMPILE_FLAGS} $in $cflags -o $out.s; "
+            #f"{WINE_RUN} {CC_DIR}/ee-gcc -S {COMMON_INCLUDES} {COMMON_COMPILE_FLAGS} $in $cflags -o $out.s; "
+            # f"wineserver -w; "
+            f"{AS_EE} -G4 -O2 -mabi=eabi -o $out $out.s; "
+            # f"{WINE_RUN} {AS_EE} -G4 -O2 -mabi=eabi -o $out $out.s; "
+            # f"wineserver -w; "
             f"test -s $out && {cross}strip $out -N dummy-symbol-name"
         ),
     )

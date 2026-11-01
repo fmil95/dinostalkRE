@@ -1,0 +1,203 @@
+#include "common.h"
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_Main);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_PauseProc);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_AnmStpOrStt);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_AllWorkInit);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_AllWkIntReLd);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_WorkInit);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", enemy_everydtset);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_MkObjDt);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_ObjDtSet);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_SeSet00);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_Prt);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_SarchEmptyWk);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_RequestSet);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_AllReqest);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_AllReqest_LvSet);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_HowManySet);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_DelCheck);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_plbkchk);
+
+void ene_mvdummy(void) {
+}
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", enemy_movemain);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", enemy_positionset);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_AnmChg00);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_AnmChg01);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_ActChg00);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", enemy_rotadd);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", enemy_veadd);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_BltHitPosChk);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_DmgHitCheck);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", enemy_blowoffcnt);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", enemy_hitbloodset);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", enemy_obrptitemdrop);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", enemy_godmgact);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_GoDmgInit);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", enemy_hitbkset00);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", enemy_hitbkset01);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", enemy_hitbkset02);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_ObjNeedCheck);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_ObjSort);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_RgetByInpd);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_MakeV);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_MkUnitV00);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_Op2Plen00);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_OpVInPd00);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_Op3PInPd00);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_OpVLRChk00);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_OpVLRChk01);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_OpVChlMkR);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_AttackHitChk);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_OpMkEyeLine);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_HighToGnd);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_GetClsGnd00);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_GetNearGdT00);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_ObstacleCheck00);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_ObstacleCheck01);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_CheckWall);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", enemy_dinohitchk);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", enemy_gndtouchch);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", enemy_objtouchch);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", enemy_v0grdchk);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", gsEnemyDelete);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_ShadowChk);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_AllDataLoad);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_DataLoadExceptPmt);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_PmtDtLoad);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_PmtDataSet);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_PmtDataCopy);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_EveryStgDtLd);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_BossDtLd);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_NeedPrtInfSet);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_ShdFtpSet);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_PoisonMain);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_AllPsInfInt);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_PsInfInt);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_SarchEmptyPsInf);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", enemy_poisonmv);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_PoisonShoot);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_PsGunHit);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", enemy_psgrdhitchk);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", enemy_psobjhitchk);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_GrdSeEffSet);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_SeWkInit);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_SeReq);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_SetSeMain);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", ST9TREX_DmgHitCheck);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_SchOkNgSetDel);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", enemy_deadshotmain);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_MaxEneNoChg);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", enemy_blthitseset);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_DelDethPrcInit);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_DelDethPrcMain);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_SetSmokeTrkr);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_ColAlphaInit);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_FlashingInit);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_Flashing);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_TrntyDethMoveInit);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", VolcanoInit);
+
+void VolcanoMain(void) {
+}
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", enemy_plhitch);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_PrtDetails);
+
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", enemy_joke);
