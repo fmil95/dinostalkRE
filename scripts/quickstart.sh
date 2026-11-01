@@ -28,7 +28,7 @@ sudo apt-get install wine32
 sudo apt-get install binutils-mips-linux-gnu
 
 # Setup compiler
-sudo ./setup_progd_linux.sh
+sudo ./setup_prodg_linux.sh
 
 # Check if disc/SLUS_204.85 exists
 echo "Setup complete!"
