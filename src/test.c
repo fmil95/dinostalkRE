@@ -2,7 +2,19 @@
 
 INCLUDE_ASM("asm/nonmatchings/test", TEST_LoadTexture);
 
-INCLUDE_ASM("asm/nonmatchings/test", TEST_EntryTexture);
+int TEST_EntryTexture(unsigned int* pig, int prm1) 
+{
+    int idx;
+
+    idx = GFTex_Add(pig);
+    
+    if (prm1 != 0)
+    {
+        GFTex_LoadImage(idx);
+    }
+    
+    return idx;
+}
 
 INCLUDE_ASM("asm/nonmatchings/test", TEST_Sync);
 
