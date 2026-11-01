@@ -20,7 +20,10 @@ int get_BGM_VAB_MAX()
     return 20;
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", get_SE_VAB_MAX);
+int get_SE_VAB_MAX() 
+{
+    return 12;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeSpu2AllocInit);
 
