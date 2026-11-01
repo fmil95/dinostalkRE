@@ -6,6 +6,20 @@ INCLUDE_ASM("asm/nonmatchings/sound/g_cdv", gsCdvMain);
 
 INCLUDE_ASM("asm/nonmatchings/sound/g_cdv", gsCdvSync);
 
-INCLUDE_ASM("asm/nonmatchings/sound/g_cdv", gsCdvFlushWait);
+int gsCdvFlushWait() 
+{
+    cdvSyncSet();
+
+    while (cdvGetWorkingQue() != -1) 
+    {
+        sceGsSyncV(0);
+
+        cdvMain();
+    }
+
+    sceGsSyncV(0);
+    
+    return 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/g_cdv", gsCdvDiscReady);
