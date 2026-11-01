@@ -4,7 +4,12 @@ INCLUDE_ASM("asm/nonmatchings/sound/g_cdv", gsCdvInit);
 
 INCLUDE_ASM("asm/nonmatchings/sound/g_cdv", gsCdvMain);
 
-INCLUDE_ASM("asm/nonmatchings/sound/g_cdv", gsCdvSync);
+int gsCdvSync() 
+{
+    cdvSyncSet();
+    
+    return 0;
+}
 
 int gsCdvFlushWait() 
 {
