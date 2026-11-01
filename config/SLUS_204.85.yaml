@@ -56,8 +56,10 @@ segments:
     bss_size: 0x2042b0
     subsegments:
       - [0x001000, asm, start]     
-      - [0x0010c8, c, main]       
-      - [0x001c48, asm, end]        
+      - [0x0010c8, c, main]      
+      - [0x001c48, asm, code_1c48]       
+      - [0x0ea340, c, air/a_evtflg]       
+      - [0x0ea4f8, asm, end]        
       - [0x19ace0, databin, vutext]
 
   - name: mfifo
