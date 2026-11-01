@@ -2,7 +2,10 @@
 
 INCLUDE_ASM("asm/nonmatchings/sound/g_cdv", gsCdvInit);
 
-INCLUDE_ASM("asm/nonmatchings/sound/g_cdv", gsCdvMain);
+void gsCdvMain() 
+{
+    cdvMain();
+}
 
 int gsCdvSync() 
 {
