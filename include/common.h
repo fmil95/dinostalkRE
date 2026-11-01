@@ -8,8 +8,6 @@
 
 #include "include_asm.h"
 #include "types.h"
-//#include "vtables.h"
-#include "spaprops.h"
 
 // Helper macros for decompilation
 
