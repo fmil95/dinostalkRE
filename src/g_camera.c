@@ -1,5 +1,32 @@
 #include "common.h"
 
+typedef struct Camera 
+{
+    char pad[244];
+    float unkF4;
+    char pad2[170];
+    int unk1A4;
+    char pad3[136];
+    int unk230;
+    int unk234;
+    int unk238;
+    int unk23C;
+    int unk240;
+    int unk244;
+    int unk248;
+    int unk24C;
+    int unk250;
+    int unk254;
+    int unk258;
+    int unk25C;
+    int unk260;
+    int unk264;
+    int unk268;
+    int unk26C;
+} Camera;
+
+Camera gsCamera;
+
 INCLUDE_ASM("asm/nonmatchings/g_camera", gsSetCameraMatrix);
 
 INCLUDE_ASM("asm/nonmatchings/g_camera", gsCameraCalcRotMatrix);
@@ -14,7 +41,10 @@ INCLUDE_ASM("asm/nonmatchings/g_camera", gsCameraSetParam_START_GAME);
 
 INCLUDE_ASM("asm/nonmatchings/g_camera", gsCameraSetParam_AFTER_STAGE);
 
-INCLUDE_ASM("asm/nonmatchings/g_camera", gsCameraSetParam_FROM_CONTINUE);
+void gsCameraSetParam_FROM_CONTINUE() 
+{
+    gsCamera.unkF4 = 5.0f;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_camera", gsManagementCamera);
 
