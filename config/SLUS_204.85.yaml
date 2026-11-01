@@ -1,0 +1,66 @@
+# Splat config for Dino Stalker NTSC-U (PS2)
+name: Dino Stalker (USA)
+sha1: 25378a32f1d5eee530901831e0d41506b8237fc1
+
+options:
+  basename: SLUS_204.85
+  target_path: disc/SLUS_204.85
+  elf_path: SLUS_204.85
+  base_path: ../
+  platform: ps2
+  compiler: EEGCC
+
+  # Output paths
+  asm_path: asm
+  src_path: src
+  build_path: obj
+
+  # Assembly options
+  generate_asm_macros_files: False
+  named_regs_for_c_funcs: False
+  find_file_boundaries: False
+  disasm_unknown: True
+
+  # Rodata options
+  rodata_string_guesser_level: 0 # improve string detection
+  suggestion_rodata_section_start: True
+  pair_rodata_to_text: False
+  migrate_rodata_to_functions: True
+
+  # Auto-generate undefined functions and symbols
+  create_undefined_funcs_auto: True
+  undefined_funcs_auto_path: config/undefined_funcs_auto.txt
+  create_undefined_syms_auto: True
+  undefined_syms_auto_path: config/undefined_syms_auto.txt
+
+  # Manually defined symbols
+  symbol_addrs_path: config/symbol_addrs.txt
+
+  # Splat extensions
+  extensions_path: tools/splat_ext
+
+  # ELF sections
+  section_order: [".text", ".vutext", ".rodata", ".data", ".bss"]
+  auto_link_sections: [".rodata", ".data", ".bss"]
+
+  # Linker script options
+  subalign: 8
+
+segments:
+  - [0x0, databin, elf_header]
+
+  - name: main
+    type: code
+    start: 0x001000
+    vram: 0x00100000
+    bss_size: 0x2042b0
+    subsegments:
+      - [0x001000, asm, start]
+      - [0x19ace0, databin, vutext]
+
+  - name: mfifo
+    type: databin
+    start: 0x393000
+    vram: 0x004c0000
+
+  - [0x733043]
