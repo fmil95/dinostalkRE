@@ -4,7 +4,15 @@ INCLUDE_ASM("asm/nonmatchings/air/test/i_test", I_SHOW_Init);
 
 INCLUDE_ASM("asm/nonmatchings/air/test/i_test", I_SHOW_Exec);
 
-INCLUDE_ASM("asm/nonmatchings/air/test/i_test", I_SHOW_End);
+void I_SHOW_End() 
+{ 
+    sceGsSyncPath(0, 0);
+    
+    pfm_end();
+    GF_EndGraphicsFramework();
+    
+    MEM_FreeAll();
+}
 
 INCLUDE_ASM("asm/nonmatchings/air/test/i_test", ISHOW_PictureLoad);
 
