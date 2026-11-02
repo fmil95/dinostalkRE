@@ -1,6 +1,36 @@
 #include "common.h"
 
-INCLUDE_ASM("asm/nonmatchings/mem", MEM_InitAllocation);
+typedef struct AllocInfoWork 
+{
+    int unk0;
+    char pad[44];
+} AllocInfoWork;
+
+extern AllocInfoWork gAllocInfo[2048];
+extern int gAllocNum;
+extern signed long gAllocSize;
+extern int gsHeapBak;
+extern int gsHeapCur;
+extern int gsHeapTop;
+
+void FullAllocAndFree();   
+void MEM_InitAllocation() 
+{
+    unsigned int i;
+
+    FullAllocAndFree();
+    
+    gsHeapCur = gsHeapTop;
+    gsHeapBak = gsHeapTop;
+    
+    for (i = 0; i < 2048; i++) 
+    {
+        gAllocInfo[i].unk0 = 0;
+    } 
+    
+    gAllocNum  = 0;
+    gAllocSize = 0;
+}
 
 void MEM_EndAllocation() 
 {
