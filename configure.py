@@ -30,6 +30,7 @@ MAP_PATH = f"{OUTDIR}/{BASENAME}.map"
 PRE_ELF_PATH = f"{OUTDIR}/{BASENAME}.elf"
 
 G_OVERRIDES = {
+    "inststr.c": "-G2",
     "g_cdv.c": "-G2",
     "mem.c": "-G8"
 }
