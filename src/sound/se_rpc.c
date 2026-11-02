@@ -150,7 +150,23 @@ int ezSeL(int prm0, void* prm1, int prm2)
     return sbuff_0084be40[0];
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", ezSe);
+int ezSe(int prm0, int prm1)
+{
+    int rsize;
+ 
+    rsize = 64;
+ 
+    if (prm0 == 33760)
+    {
+        rsize = 128;
+    }
+ 
+    sbuff_0084be40[0] = prm1;
+ 
+    SeRpcCom(prm0, 16, rsize);
+ 
+    return sbuff_0084be40[0];
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeTest);
 
