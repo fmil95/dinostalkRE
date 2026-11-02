@@ -1,6 +1,0 @@
-// STATUS: NOT STARTED
-
-#ifndef BENJAMIN_IK_RAPB_H
-#define BENJAMIN_IK_RAPB_H
-
-#endif // BENJAMIN_IK_RAPB_H

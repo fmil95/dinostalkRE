@@ -1,9 +1,0 @@
-// STATUS: NOT STARTED
-
-#ifndef HOYA_COCKPIT_G_CPRDR_H
-#define HOYA_COCKPIT_G_CPRDR_H
-
-gsCOCKPIT_InitRadar();
-gsCOCKPIT_PutRader();
-
-#endif // HOYA_COCKPIT_G_CPRDR_H

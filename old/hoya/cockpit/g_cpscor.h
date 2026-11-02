@@ -1,9 +1,0 @@
-// STATUS: NOT STARTED
-
-#ifndef HOYA_COCKPIT_G_CPSCOR_H
-#define HOYA_COCKPIT_G_CPSCOR_H
-
-gsCOCKPIT_InitScore();
-gsCOCKPIT_PutScore();
-
-#endif // HOYA_COCKPIT_G_CPSCOR_H
