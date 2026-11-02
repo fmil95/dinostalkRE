@@ -4,6 +4,7 @@
 #define GUNSUV_USA_LIBGF_GFINSTANCE_H
 
 #include "common.h"
+#include <libvu0.h>
 
 //typedef void (*gf_inst_evalfunc)(/* parameters unknown */);
 //typedef qword* (*gf_inst_drawfunc)(/* parameters unknown */);
@@ -77,7 +78,7 @@ void GFInstance_Start();
 void GFInstance_End();
 qword* GFInstance_Draw(qword *packet);
 void GFInstance_InitHead(GF_INSTANCE *inst);
-void GFInstance_SetLocalMatrix(GF_INSTANCE *inst, sceVu0FMATRIX m);
+void GFInstance_SetLocalMatrix(GF_INSTANCE* inst, sceVu0FMATRIX m);
 void GFInstance_AddChild(GF_INSTANCE *parent, GF_INSTANCE *child);
 void GFInstance_Remove(GF_INSTANCE *inst);
 void GFInstance_ChangeParent(GF_INSTANCE *inst, GF_INSTANCE *parent);
