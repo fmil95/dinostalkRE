@@ -3,15 +3,52 @@
 #ifndef SOUND_SE_RPC_H
 #define SOUND_SE_RPC_H
 
-get_SE_MAX();
-get_BGM_MAX();
-get_STRM_MAX();
-get_BGM_VAB_MAX();
-get_SE_VAB_MAX();
+#include "common.h"
+
+typedef struct VAB_ALC
+{
+    int unk0;
+    int unk4;
+    int unk8;
+    int unkC;
+} VAB_ALC;
+
+typedef struct BGM_ALC
+{
+    int unk0;
+    int unk4;
+    int unk8;
+    int unkC;
+    int unk10;
+    int unk14;
+    int unk18;
+} BGM_ALC;
+
+typedef struct ME_ALC
+{
+    int unk0;
+    int unk4;
+    int unk8;
+    int unkC;
+    int unk10;
+} ME_ALC;
+
+extern int spu2_alloc_dat[][8];
+extern VAB_ALC VabAlc[];
+extern ME_ALC MeAlc[];
+extern BGM_ALC BgmAlc[];
+extern int CurSpu2Alloc;
+
+int get_SE_MAX();
+int get_BGM_MAX();
+int get_STRM_MAX();
+int get_BGM_VAB_MAX();
+int get_SE_VAB_MAX();
 SeSpu2AllocInit();
+static void SeAllocInit();
 SeComNow();
 SeIopLoadStatus();
-SeSetDiscMode();
+void SeSetDiscMode();
 ezSeInit();
 SeRpcCom();
 ezSeL();

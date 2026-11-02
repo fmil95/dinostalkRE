@@ -1,4 +1,4 @@
-#include "common.h"
+#include "sound/se_rpc.h"
 
 int get_SE_MAX() 
 {
@@ -27,13 +27,36 @@ int get_SE_VAB_MAX()
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeSpu2AllocInit);
 
-INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeAllocInit);
+static void SeAllocInit()
+{
+    int i;
+
+    for (i = 0; i < 2; i++)
+    {
+        BgmAlc[i].unk0  = 0;
+        BgmAlc[i].unk8  = -1;
+        BgmAlc[i].unk14 = -1;
+        BgmAlc[i].unk18 = -1;
+        BgmAlc[i].unk4  = -1;
+        BgmAlc[i].unkC  = 0;
+        BgmAlc[i].unk10 = 0xFFFFFF;
+    }
+
+    for (i = 0; i < 16; i++)
+    {
+        MeAlc[i].unk0  = 0;
+        MeAlc[i].unk4  = -1;
+        MeAlc[i].unk10 = 0xFFFF;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeComNow);
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeIopLoadStatus);
 
-void SeSetDiscMode(void) {
+void SeSetDiscMode() 
+{
+    
 }
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", ezSeInit);
