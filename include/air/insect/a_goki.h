@@ -6,11 +6,11 @@
 #include "common.h"
 
 void gsSetInsect_GOKI(int prm0);
-gsSetInsectPos_GOKI();
+void gsSetInsectPos_GOKI(ISC_INFO* isc, float* prm1);
 gsInsectSetPurPosVeY();
 void gsInsect00_DummyAct();
-gsInsectCtrl_GOKI();
-gsInsect00_Act00();
+void gsInsectCtrl_GOKI(ISC_INFO* isc);
+void gsInsect00_Act00(ISC_INFO* isc);
 gsInsect00_Act01();
 gsInsect00_Act02();
 gsInsect00_Act08();
@@ -26,5 +26,7 @@ gsInsectCling_GOKI();
 gsInsectClingCheck_GOKI();
 gsInsectPlEyesRolCheck_GOKI();
 gsInsectDropGndCheck_GOKI();
+
+extern void (*g_actfunc_0[])(ISC_INFO*);
 
 #endif // AIR_INSECT_A_GOKI_H

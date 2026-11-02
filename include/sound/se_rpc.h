@@ -33,12 +33,6 @@ typedef struct ME_ALC
     int unk10;
 } ME_ALC;
 
-extern int spu2_alloc_dat[][8];
-extern VAB_ALC VabAlc[];
-extern ME_ALC MeAlc[];
-extern BGM_ALC BgmAlc[];
-extern int CurSpu2Alloc;
-
 int get_SE_MAX();
 int get_BGM_MAX();
 int get_STRM_MAX();
@@ -166,5 +160,11 @@ SeMeOpen();
 SeMeOpenEE();
 SeMeClose();
 SeMeCloseB();
+
+extern int spu2_alloc_dat[][8];
+extern VAB_ALC VabAlc[];
+extern ME_ALC MeAlc[];
+extern BGM_ALC BgmAlc[];
+extern int CurSpu2Alloc;
 
 #endif // SOUND_SE_RPC_H

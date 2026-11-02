@@ -5,10 +5,19 @@
 
 typedef struct ISC_INFO
 {
-    unsigned int flags;      
-    short        unk4;
-    short        unk6;
-    char         _pad[952]; 
+    unsigned int   flags;
+    short          unk4;
+    unsigned short unk6; 
+    char           _pad8[8];
+    float          unk10[4];
+    char           _pad20[4];
+    float          unk24;
+    char           _pad28[24];
+    float          unk40[4];
+    char           _pad50[80];
+    int            unkA0;
+    int            unkA4;
+    char           _padA8[792];
 } ISC_INFO;
 
 extern ISC_INFO gsIscInfos[];

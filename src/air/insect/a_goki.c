@@ -1,5 +1,5 @@
-#include "air/insect/a_goki.h"
 #include "air/insect/a_insect.h"
+#include "air/insect/a_goki.h"
 
 void gsSetInsect_GOKI(int prm0) 
 {
@@ -49,7 +49,12 @@ void gsInsect00_DummyAct()
 
 }
 
-INCLUDE_ASM("asm/nonmatchings/air/insect/a_goki", gsInsectCtrl_GOKI);
+void gsInsectCtrl_GOKI(ISC_INFO* isc)
+{
+    g_actfunc_0[isc->unk6](isc);
+
+    gsEyesAreaCheck_GOKI(isc);
+}
 
 INCLUDE_ASM("asm/nonmatchings/air/insect/a_goki", gsInsect00_Act00);
 
