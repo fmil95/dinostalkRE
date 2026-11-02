@@ -73,7 +73,12 @@ void GFInstance_Remove(GF_INSTANCE* inst)
     inst->parent = NULL;
 }
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfinstance", GFInstance_ChangeParent);
+void GFInstance_ChangeParent(GF_INSTANCE* inst, GF_INSTANCE* parent)
+{
+    GFInstance_Remove(inst);
+    
+    GFInstance_AddChild(parent, inst);
+}
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfinstance", GFInstance_SetEvalFunc);
 
