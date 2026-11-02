@@ -92,7 +92,38 @@ void SeSetDiscMode()
     
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", ezSeInit);
+int ezSeInit()
+{
+    int i, j;
+ 
+retry:
+    if (sceSifBindRpc(&SegCd, 74565, 0) < 0)
+    {
+        while (TRUE)
+        {
+            asm("nop; nop; nop");
+        }
+    }
+ 
+    j = -1;
+    i = 99999999;
+ 
+    do
+    {
+        i -= 4;
+        
+        asm("nop");
+    } while (i != j);
+ 
+    if (SegCd.serve == NULL)
+    {
+        goto retry;
+    }
+ 
+    TJobSt.unk8 = 0;
+ 
+    return 1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeRpcCom);
 

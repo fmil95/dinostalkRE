@@ -1,7 +1,7 @@
 #include "air/insect/a_insect.h"
 #include "air/insect/a_goki.h"
 
-void gsSetInsect_GOKI(int prm0) 
+void gsSetInsect_GOKI(float* prm0) 
 {
     ISC_INFO* isc;
     int i;

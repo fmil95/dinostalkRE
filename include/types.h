@@ -33,6 +33,9 @@ typedef ulong   undefined8;
 
 // Misc
 typedef uchar byte;
-typedef union QW;
+//typedef union QW;
+
+#define FALSE 0
+#define TRUE 1
 
 #endif // TYPES_H

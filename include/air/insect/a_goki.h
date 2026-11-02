@@ -5,7 +5,7 @@
 
 #include "common.h"
 
-void gsSetInsect_GOKI(int prm0);
+void gsSetInsect_GOKI(float* prm0);
 void gsSetInsectPos_GOKI(ISC_INFO* isc, float* prm1);
 gsInsectSetPurPosVeY();
 void gsInsect00_DummyAct();

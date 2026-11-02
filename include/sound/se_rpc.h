@@ -68,7 +68,7 @@ static void SeAllocInit();
 SeComNow();
 int SeIopLoadStatus();
 void SeSetDiscMode();
-ezSeInit();
+int ezSeInit();
 SeRpcCom();
 ezSeL();
 ezSe();
