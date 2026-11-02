@@ -1,10 +1,10 @@
-#include "common.h"
+#include "gunsuv_usa/libgf/gfinstance.h"
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfinstance", gfInstance_MakeRotMatrix);
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfinstance", gfInstance_Eval2);
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfinstance", GFInstance_Eval);
+INCLUDE_ASM("asm/nonmatchings/libgf/gfinstance", GFInstance_Eval);   
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfinstance", GFInstance_Start);
 
@@ -14,7 +14,10 @@ INCLUDE_ASM("asm/nonmatchings/libgf/gfinstance", GFInstance_Draw);
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfinstance", GFInstance_InitHead);
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfinstance", GFInstance_SetLocalMatrix);
+void GFInstance_SetLocalMatrix(GF_INSTANCE *inst, sceVu0FMATRIX m)
+{
+    sceVu0CopyMatrix(inst->localMatrix, m);
+}
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfinstance", GFInstance_AddChild);
 

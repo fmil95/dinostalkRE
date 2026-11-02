@@ -39,4 +39,20 @@ typedef uchar byte;
 #define FALSE 0
 #define TRUE 1
 
+typedef int qword[4];
+typedef int sceVu0IVECTOR[4];
+typedef float sceVu0FVECTOR[4];
+typedef float sceVu0FMATRIX[4][4];
+typedef char Sint8;
+typedef short int Sint16;
+typedef int Sint32;
+typedef long int Sint64;
+typedef long128 Sint128;
+typedef u_char Uint8;
+typedef u_short Uint16;
+typedef u_int Uint32;
+typedef u_long Uint64;
+typedef u_long128 Uint128;
+typedef float Float32;
+
 #endif // TYPES_H
