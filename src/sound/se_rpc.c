@@ -170,7 +170,15 @@ int ezSe(int prm0, int prm1)
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeTest);
 
-INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeReadNow);
+int SeReadNow()
+{
+    if ((TJobSt.unk8 != 0) || (TJobSt.unk0 != TJobSt.unk4))
+    {
+        return 1;
+    }
+ 
+    return 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", IOPDevReadNow);
 

@@ -53,9 +53,10 @@ typedef struct SE_STATUS
  
 typedef struct TJOB_ST
 {
-    char _pad0[0x8];
+    int  unk0;
+    int  unk4;
     int  unk8;
-    char _padC[0xC];
+    char _padC[12];
 } TJOB_ST;
 
 int get_SE_MAX();
