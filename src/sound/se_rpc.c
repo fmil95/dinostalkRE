@@ -25,7 +25,29 @@ int get_SE_VAB_MAX()
     return 12;
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeSpu2AllocInit);
+void SeSpu2AllocInit(int prm0)
+{
+    int i;
+    int* dat;
+    VAB_ALC* p;
+
+    VabAlc[0].unk4 = 65536;
+
+    p = &VabAlc[1];
+
+    dat = spu2_alloc_dat[prm0];
+
+    for (i = 0; i < 7; i++, p++)
+    {
+        p->unk8 = 0;
+        
+        p->unk0 = 0;
+        p->unk4 = p[-1].unk4 + dat[i];
+        p->unkC = -1;
+    }
+
+    CurSpu2Alloc = prm0;
+}
 
 static void SeAllocInit()
 {

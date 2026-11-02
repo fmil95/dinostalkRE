@@ -44,7 +44,7 @@ int get_BGM_MAX();
 int get_STRM_MAX();
 int get_BGM_VAB_MAX();
 int get_SE_VAB_MAX();
-SeSpu2AllocInit();
+void SeSpu2AllocInit(int prm0);
 static void SeAllocInit();
 SeComNow();
 SeIopLoadStatus();

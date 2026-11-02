@@ -1,0 +1,1 @@
+CurSpu2Alloc = 0x00673d44;
