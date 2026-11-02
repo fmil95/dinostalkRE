@@ -69,7 +69,7 @@ SeComNow();
 int SeIopLoadStatus();
 void SeSetDiscMode();
 int ezSeInit();
-SeRpcCom();
+int SeRpcCom(int prm0, int prm1, int prm2);
 ezSeL();
 ezSe();
 SeTest();
@@ -194,7 +194,10 @@ extern int CurSpu2Alloc;
 extern sceSifClientData SegCd;
 extern SE_STATUS SeStatus;
 extern TJOB_ST TJobSt;
+extern volatile int sbuff_0084be40[];
 
 int sceSifBindRpc(); // TODO: remove this when linking SDK libs
+int sceSifCallRpc();
+void* memcpy(void*, const void*, unsigned int);
 
 #endif // SOUND_SE_RPC_H

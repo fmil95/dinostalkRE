@@ -125,7 +125,10 @@ retry:
     return 1;
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeRpcCom);
+int SeRpcCom(int prm0, int prm1, int prm2) 
+{
+    return sceSifCallRpc(&SegCd, prm0, 0, sbuff_0084be40, prm1, sbuff_0084be40, prm2, 0, 0);
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", ezSeL);
 
