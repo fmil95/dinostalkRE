@@ -1,6 +1,4 @@
-#include "common.h"
-
-int* gTimerCountRegs[4];
+#include "timer.h"
 
 INCLUDE_ASM("asm/nonmatchings/timer", TIMER_InitTimer);
 
@@ -8,7 +6,17 @@ INCLUDE_ASM("asm/nonmatchings/timer", TIMER_SetTimer);
 
 INCLUDE_ASM("asm/nonmatchings/timer", TIMER_StartTimer);
 
-INCLUDE_ASM("asm/nonmatchings/timer", TIMER_StopTimer);
+unsigned short TIMER_StopTimer(int prm0) 
+{
+    int* ret;
+    
+    ret = gTimerCountRegs[prm0];
+    
+    gTimerMode[prm0]      &= ~0x80;
+    *gTimerModeRegs[prm0] &=  0x7F;
+    
+    return *ret;
+}
 
 unsigned short TIMER_GetTimer(int prm0) 
 {

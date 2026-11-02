@@ -3,3 +3,4 @@ frame        = 0x00673218;
 gsFrame      = 0x006732c4;
 gsPause      = 0x006732c8;
 CurSpu2Alloc = 0x00673d44;
+gTimerMode   = 0x00673f18;
