@@ -1,1 +1,2 @@
+gConsole     = 0x00673214;
 CurSpu2Alloc = 0x00673d44;

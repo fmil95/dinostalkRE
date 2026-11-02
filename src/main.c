@@ -1,4 +1,4 @@
-#include "common.h"
+#include "main.h"
 
 INCLUDE_ASM("asm/nonmatchings/main", main);
 
@@ -10,7 +10,14 @@ INCLUDE_ASM("asm/nonmatchings/main", InitSif);
 
 INCLUDE_ASM("asm/nonmatchings/main", SetDefaultGsEnv);
 
-INCLUDE_ASM("asm/nonmatchings/main", EndSystem);
+static void EndSystem() 
+{
+    sceDevConsClose(gConsole);
+    
+    gsPad_End();
+    
+    MEM_EndAllocation();
+}
 
 void _gsMuteki_INIT() 
 {
