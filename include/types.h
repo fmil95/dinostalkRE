@@ -7,6 +7,7 @@
 #define TYPES_H
 
 #include <stddef.h>
+#include <eetypes.h>
 
 // Exact-width integers (don't use these in most cases)
 typedef signed char      int8_t;

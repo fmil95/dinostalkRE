@@ -33,7 +33,15 @@ G_OVERRIDES = {
     "g_cdv.c": "-G2"
 }
 
-COMMON_INCLUDES = "-Iinclude -isystem include/sdk/ee -isystem include/gcc"
+SDK_ROOT = "include/sce/usr/local/sce"
+
+COMMON_INCLUDES = (
+    "-Iinclude "
+    f"-isystem {SDK_ROOT}/ee/include "
+    f"-isystem {SDK_ROOT}/common/include "
+    f"-isystem {SDK_ROOT}/ee/gcc/ee/include "
+    "-isystem include/sdk/ee -isystem include/gcc"
+)
 
 CC_DIR = f"{TOOLS_DIR}/cc/bin"
 COMMON_COMPILE_FLAGS = f"-B{TOOLS_DIR}/cc/lib/gcc-lib/ee/2.96-ee-001003-1/ -O2"
@@ -82,7 +90,7 @@ def write_permuter_settings():
     """
     with open("permuter_settings.toml", "w", encoding="utf-8") as f:
         f.write(f"""compiler_command = "{COMPILE_CMD} -D__GNUC__"
-assembler_command = "mips-linux-gnu-as -march=r5900 -mabi=eabi -Iinclude"
+assembler_command = "mips-linux-gnu-as -march=r5900 -mabi=eabi -Iinclude -I{SDK_ROOT}/ee/include -I{SDK_ROOT}/common/include"
 compiler_type = "gcc"
 
 [preserve_macros]
