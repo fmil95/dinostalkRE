@@ -130,7 +130,25 @@ int SeRpcCom(int prm0, int prm1, int prm2)
     return sceSifCallRpc(&SegCd, prm0, 0, sbuff_0084be40, prm1, sbuff_0084be40, prm2, 0, 0);
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", ezSeL);
+int ezSeL(int prm0, void* prm1, int prm2)
+{
+    int rsize;
+ 
+    rsize = 64;
+
+    prm2 = ((prm2 - 1) / 16) * 16 + 16;
+ 
+    if (prm0 == 33760)
+    {
+        rsize = 128;
+    }
+ 
+    memcpy((void*)sbuff_0084be40, prm1, prm2);
+
+    SeRpcCom(prm0, prm2, rsize);
+ 
+    return sbuff_0084be40[0];
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", ezSe);
 
