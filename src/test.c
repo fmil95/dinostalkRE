@@ -1,6 +1,18 @@
 #include "common.h"
 
-INCLUDE_ASM("asm/nonmatchings/test", TEST_LoadTexture);
+int TEST_LoadTexture(int prm0, int prm1)
+{
+    int idx;
+
+    idx = GFTex_Add(FIO_ReadFile_Align(prm0, 64));
+    
+    if (prm1 != 0) 
+    {
+        GFTex_LoadImage(idx);
+    }
+    
+    return idx;
+}
 
 int TEST_EntryTexture(unsigned int* pig, int prm1) 
 {
