@@ -180,7 +180,10 @@ int SeReadNow()
     return 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", IOPDevReadNow);
+int IOPDevReadNow()
+{
+    return SeStatus.unk4C == 1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", IOPReadNow);
 

@@ -46,9 +46,13 @@ typedef struct sceSifClientData
  
 typedef struct SE_STATUS
 {
-    char _pad0[0x40];
+    char unk0[48];
+    int  unk30[2];
+    int  unk38[2];
     int  unk40;
-    char _pad44[0x24];
+    char _pad44[8];
+    int  unk4C;
+    char _pad50[24];
 } SE_STATUS;
  
 typedef struct TJOB_ST
