@@ -13,7 +13,6 @@ extern int gsHeapBak;
 extern int gsHeapCur;
 extern int gsHeapTop;
 
-void FullAllocAndFree();   
 void MEM_InitAllocation() 
 {
     unsigned int i;

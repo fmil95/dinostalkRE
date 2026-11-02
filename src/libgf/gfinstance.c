@@ -49,7 +49,29 @@ void GFInstance_AddChild(GF_INSTANCE* parent, GF_INSTANCE* child)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfinstance", GFInstance_Remove);
+void GFInstance_Remove(GF_INSTANCE* inst)
+{
+    GF_INSTANCE* inst2;
+
+    if (inst->parent->child == inst)
+    {
+        inst->parent->child = inst->bros;
+    }
+    else
+    {
+        inst2 = inst->parent->child;
+
+        while (inst2->bros != inst)
+        {
+            inst2 = inst2->bros;
+        }
+
+        inst2->bros = inst->bros;
+    }
+
+    inst->bros   = NULL;
+    inst->parent = NULL;
+}
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfinstance", GFInstance_ChangeParent);
 
