@@ -72,7 +72,15 @@ static void SeAllocInit()
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeComNow);
+int SeComNow()
+{
+    if ((SeStatus.unk40 & 1) > 0)
+    {
+        return 1;
+    }
+ 
+    return 0;
+}
 
 int SeIopLoadStatus()
 {
