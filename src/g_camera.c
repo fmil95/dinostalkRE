@@ -35,7 +35,28 @@ void gsCameraSetParam_START_GAME()
     gsCamera.unk26C = 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_camera", gsCameraSetParam_AFTER_STAGE);
+void gsCameraSetParam_AFTER_STAGE() 
+{
+    if (gsCurProg != 3) 
+    {
+        gsCamera.unk1A4 = 0;
+    }
+    
+    if (gsCurProg == 3) 
+    {
+        hyReflectResultData();
+    }
+    
+    if (gsGunGetReloadBullet(2) <= 0) 
+    {
+        gsArmsTypeTbl.unk8 = 21;
+    }
+    
+    if (gsGunGetReloadBullet(3) <= 0) 
+    {
+        gsArmsTypeTbl.unkC = 21;
+    }
+}
 
 void gsCameraSetParam_FROM_CONTINUE() 
 {

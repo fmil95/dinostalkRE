@@ -66,5 +66,6 @@ gsManagementCamera2();
 
 extern Camera gsCamera;
 extern Unknown1 gsArmsTypeTbl;
+extern int gsCurProg;
 
 #endif // G_CAMERA_H
