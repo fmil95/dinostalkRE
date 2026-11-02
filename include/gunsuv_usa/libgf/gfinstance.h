@@ -88,4 +88,6 @@ void GFInstance_SetFunc(GF_INSTANCE *inst, gf_inst_evalfunc *eval, gf_inst_drawf
 void GFInstance_SetSortKeyMax(Float32 max);
 void GFInstance_SetSortKeyMin(Float32 min);
 
+extern gf_inst_evalfunc* gf_default_evalfunc[];
+
 #endif // GUNSUV_USA_LIBGF_GFINSTANCE_H

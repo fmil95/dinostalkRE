@@ -76,11 +76,28 @@ void GFInstance_Remove(GF_INSTANCE* inst)
 void GFInstance_ChangeParent(GF_INSTANCE* inst, GF_INSTANCE* parent)
 {
     GFInstance_Remove(inst);
-    
+
     GFInstance_AddChild(parent, inst);
 }
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfinstance", GFInstance_SetEvalFunc);
+void GFInstance_SetEvalFunc(GF_INSTANCE* inst, gf_inst_evalfunc* func)
+{
+    if (func != NULL)
+    {
+        inst->evalFunc = func;
+    }
+    else
+    {
+        if (inst->type < 5)
+        {
+            inst->evalFunc = gf_default_evalfunc[inst->type];
+        }
+        else
+        {
+            inst->evalFunc = gf_default_evalfunc[0];
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfinstance", GFInstance_SetDrawFunc);
 
