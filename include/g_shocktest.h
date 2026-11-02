@@ -7,7 +7,7 @@
 
 void G_SHOCKTEST_Init();
 G_SHOCKTEST_Exec();
-G_SHOCKTEST_End();
+void G_SHOCKTEST_End();
 
 extern int frame;
 extern int gsFrame;
