@@ -1,6 +1,17 @@
-#include "common.h"
+#include "g_shocktest.h"
 
-INCLUDE_ASM("asm/nonmatchings/g_shocktest", G_SHOCKTEST_Init);
+void G_SHOCKTEST_Init() 
+{
+    gsFrame = frame;
+    
+    GF_InitGraphicsFramework();
+    
+    gsShockInit();
+    
+    gsPause = 0;
+    
+    MEM_CheckViolation();
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_shocktest", G_SHOCKTEST_Exec);
 
