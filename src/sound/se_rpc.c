@@ -74,7 +74,10 @@ static void SeAllocInit()
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeComNow);
 
-INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeIopLoadStatus);
+int SeIopLoadStatus()
+{
+    return SeReadNow();
+}
 
 void SeSetDiscMode() 
 {

@@ -33,6 +33,31 @@ typedef struct ME_ALC
     int unk10;
 } ME_ALC;
 
+typedef struct sceSifClientData
+{
+    /* 0x00 */ unsigned int rpcd[4];
+    /* 0x10 */ unsigned int command;
+    /* 0x14 */ void*        buff;
+    /* 0x18 */ void*        cbuff;
+    /* 0x1C */ void*        func;
+    /* 0x20 */ void*        para;
+    /* 0x24 */ void*        serve;
+} sceSifClientData;
+ 
+typedef struct SE_STATUS
+{
+    char _pad0[0x40];
+    int  unk40;
+    char _pad44[0x24];
+} SE_STATUS;
+ 
+typedef struct TJOB_ST
+{
+    char _pad0[0x8];
+    int  unk8;
+    char _padC[0xC];
+} TJOB_ST;
+
 int get_SE_MAX();
 int get_BGM_MAX();
 int get_STRM_MAX();
@@ -41,7 +66,7 @@ int get_SE_VAB_MAX();
 void SeSpu2AllocInit(int prm0);
 static void SeAllocInit();
 SeComNow();
-SeIopLoadStatus();
+int SeIopLoadStatus();
 void SeSetDiscMode();
 ezSeInit();
 SeRpcCom();
@@ -166,5 +191,10 @@ extern VAB_ALC VabAlc[];
 extern ME_ALC MeAlc[];
 extern BGM_ALC BgmAlc[];
 extern int CurSpu2Alloc;
+extern sceSifClientData SegCd;
+extern SE_STATUS SeStatus;
+extern TJOB_ST TJobSt;
+
+int sceSifBindRpc(); // TODO: remove this when linking SDK libs
 
 #endif // SOUND_SE_RPC_H

@@ -8,8 +8,8 @@
 TIMER_InitTimer();
 TIMER_SetTimer();
 TIMER_StartTimer();
-unsigned short TIMER_StopTimer(int arg0);
-unsigned short TIMER_GetTimer(int arg0);
+unsigned short TIMER_StopTimer(int prm0);
+unsigned short TIMER_GetTimer(int prm0);
 
 extern int* gTimerCountRegs[4];
 extern int gTimerMode[1];
