@@ -3,6 +3,9 @@
 #ifndef G_CAMERA_H
 #define G_CAMERA_H
 
+#include "common.h"
+#include "frozen_types.h"
+
 gsSetCameraMatrix();
 gsCameraCalcRotMatrix();
 gsCameraCalcRotMatrix_COMPEL();
@@ -60,5 +63,8 @@ gsCameraTraceTilt();
 gsCameraGetRaderDir_INIT();
 gsCameraGetRaderDir_EXEC();
 gsManagementCamera2();
+
+extern Camera gsCamera;
+extern Unknown1 gsArmsTypeTbl;
 
 #endif // G_CAMERA_H
