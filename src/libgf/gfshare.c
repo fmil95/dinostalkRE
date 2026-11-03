@@ -62,7 +62,19 @@ qword* gf_CopyQWs(qword* pw, qword* pr, Uint32 size)
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfshare", gf_MakeShareShape);
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfshare", gf_GetParentObj);
+static GF_INST_OBJECT* gf_GetParentObj(GF_INST_SHAPE* inst)
+{
+    GF_INST_HEAD* pInst;
+
+    pInst = &inst->head;
+
+    while (pInst->type != GF_INST_TYPE_OBJECT)
+    {
+        pInst = pInst->parent;
+    }
+
+    return (GF_INST_OBJECT*)pInst;
+}
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfshare", GFShare_Eval);
 
