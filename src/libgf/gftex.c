@@ -40,7 +40,15 @@ INCLUDE_ASM("asm/nonmatchings/libgf/gftex", GFTex_GetDb);
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gftex", GFTex_Validate);
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gftex", GFTex_SetScore);
+void GFTex_SetScore(Sint32 index, Sint32 score)
+{
+    GF_TEXDB* db;
+
+    db = (GF_TEXDB*)(index * sizeof(GF_TEXDB) + (int)gfDatabase);
+    db->score = score;
+
+    GFCache_ChangeScore((Uint32*)db, db->score);
+}
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gftex", GFTex_AddScore);
 
