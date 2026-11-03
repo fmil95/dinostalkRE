@@ -2,6 +2,8 @@
 #include "frozen_types.h"
 
 extern Unknown2 gsResult;
+extern int D_002F1FC4[];
+extern void gsResultAllInit();
 
 INCLUDE_ASM("asm/nonmatchings/hoya/hyopen", hyWepRankGetWeaponRank);
 
@@ -31,7 +33,11 @@ void hyReflectResultData_FROM_CONTINUE()
 
 INCLUDE_ASM("asm/nonmatchings/hoya/hyopen", gsOptionInit);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/hyopen", gsPauseResetProc);
+void gsPauseResetProc()
+{
+    D_002F1FC4[0] = 0;
+    gsResultAllInit();
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/hyopen", SetOptionScreenAdjust);
 
