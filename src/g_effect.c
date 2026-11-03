@@ -2,6 +2,8 @@
 
 extern int gsEffect_FadeCnt;
 extern void gsEffectAddWithPri();
+extern char gsEffect_WindVec[];
+extern void sceVu0CopyVector();
 
 INCLUDE_ASM("asm/nonmatchings/g_effect", gs_effectResetEffectSrc);
 
@@ -100,4 +102,7 @@ int gsEffectGetFadeCnt()
 
 INCLUDE_ASM("asm/nonmatchings/g_effect", gsEffectChangeBloodColor);
 
-INCLUDE_ASM("asm/nonmatchings/g_effect", gsEffectSetWind);
+void gsEffectSetWind(int a)
+{
+    sceVu0CopyVector(gsEffect_WindVec, a);
+}
