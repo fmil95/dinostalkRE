@@ -3,6 +3,7 @@
 extern int _VlcnCnt;
 extern void sceVu0SubVector();
 extern void gsSoundPlaySE_WORLD();
+extern void sceVu0AddVector();
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_Main);
 
@@ -58,7 +59,10 @@ INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_ActChg00);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", enemy_rotadd);
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", enemy_veadd);
+void enemy_veadd(int a)
+{
+    sceVu0AddVector((char*)a + 0x1C0, (char*)a + 0x1C0, (char*)a + 0x1D0);
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_BltHitPosChk);
 
