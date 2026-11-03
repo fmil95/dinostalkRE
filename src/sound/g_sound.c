@@ -12,7 +12,10 @@ INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundReadWait);
 
 INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundComWait);
 
-INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundReset);
+int gsSoundReset()
+{
+    return 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundSeMePlay);
 
