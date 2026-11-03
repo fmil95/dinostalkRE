@@ -1,5 +1,7 @@
 #include "common.h"
 
+extern int _st2_rapt_flag;
+
 INCLUDE_ASM("asm/nonmatchings/g_world/st2", gsWorldInitSt2);
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st2", gsWorldSt2EntryTex_GND);
@@ -24,7 +26,10 @@ INCLUDE_ASM("asm/nonmatchings/g_world/st2", gsWorldSt2_dokubana);
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st2", gsWorldBulletEffectGnd_ST2);
 
-INCLUDE_ASM("asm/nonmatchings/g_world/st2", gsWorldSt2_InitRapt);
+void gsWorldSt2_InitRapt()
+{
+    _st2_rapt_flag = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st2", gsWorldSt2_MotiveRapt);
 
