@@ -1,6 +1,7 @@
 #include "common.h"
 
 extern int _VlcnCnt;
+extern void sceVu0SubVector();
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_Main);
 
@@ -81,7 +82,10 @@ INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_ObjSort);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_RgetByInpd);
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_MakeV);
+void Enemy_MakeV()
+{
+    sceVu0SubVector();
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_MkUnitV00);
 
