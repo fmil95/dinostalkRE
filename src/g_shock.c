@@ -1,8 +1,12 @@
 #include "common.h"
 
 extern int gsShockIsOn;
+extern void gsShockReset();
 
-INCLUDE_ASM("asm/nonmatchings/g_shock", gsShockInit);
+void gsShockInit()
+{
+    gsShockReset();
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_shock", gsShockManagement);
 
