@@ -77,7 +77,16 @@ int voBufIsFull(VoBuf* f)
     return f->count == f->size;
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/buf", voBufIncCount);
+void voBufIncCount(VoBuf* f)
+{
+    DIntr();
+
+    f->tag[f->write].status = VOBUF_STATUS_FULL;
+    f->count++;
+    f->write = (f->write + 1) % f->size;
+
+    EIntr();
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/buf", voBufGetData);
 
