@@ -1,10 +1,16 @@
 #include "common.h"
 
+extern int logo;
+extern void hyCheckFadeFinishFlag();
+
 INCLUDE_ASM("asm/nonmatchings/hoya/title/ttlsub03", SetFadePara_ttlsub03);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/title/ttlsub03", SwitchFadeTimer_ttlsub03);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/title/ttlsub03", CheckFadeFinishFlag_ttlsub03);
+void CheckFadeFinishFlag_ttlsub03()
+{
+    hyCheckFadeFinishFlag((logo + 64));
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/title/ttlsub03", Draw2dSprite_ttlsub03);
 
