@@ -1,8 +1,19 @@
+#include "gunsuv_usa/libgf/libgf.h"
 #include "gunsuv_usa/libgf/gffog.h"
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gffog", GFFog_Init);
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gffog", GFFog_MakePacket);
+qword* GFFog_MakePacket(GF_FOG* fog, qword* packbuf)
+{
+    fog->packet = packbuf;
+
+    fog->fogB[3] = -(fog->max - fog->min) / (fog->far - fog->near);
+    fog->fogA[3] = -fog->fogB[3] * fog->far;
+
+    _GFPKT_DV_REF_STCYCL_UNPACK(packbuf, (Uint32)fog->fogA, 0x14, 2, 1, 1);
+
+    return packbuf + 1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gffog", GFFog_Draw);
 
