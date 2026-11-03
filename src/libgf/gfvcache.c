@@ -14,7 +14,15 @@ Uint16 GFCache_GetPresetTransPos()
     return gfInfoHead_00674cd8->preset_pos;
 }
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfvcache", gfCache_ClearAllCell);
+static void gfCache_ClearAllCell()
+{
+    int i;
+
+    for (i = 0; i < gfInfoHead_00674cd8->cellMax; i++)
+    {
+        gfInfo_00674cdc[i].stat = 0;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfvcache", gfCache_GetUnusedCell);
 
