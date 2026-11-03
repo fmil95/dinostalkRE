@@ -1,6 +1,7 @@
 #include "sound/se_rpc.h"
 
 extern int D_0065176C[];
+extern int SeTransNow();
 
 int get_SE_MAX() 
 {
@@ -201,7 +202,10 @@ INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeTjobStart);
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeTjobTrans);
 
-INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeTjobTransStatus);
+int SeTjobTransStatus()
+{
+    return SeTransNow();
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeTjobRead);
 
