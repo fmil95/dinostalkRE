@@ -104,7 +104,17 @@ void readBufDelete(ReadBuf* b)
     b->size = 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", readBufBeginPut);
+int readBufBeginPut(ReadBuf* b, u_char** ptr)
+{
+    int size = b->size - b->count;
+
+    if (size)
+    {
+        *ptr = b->data + b->put;
+    }
+
+    return size;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", readBufEndPut);
 
