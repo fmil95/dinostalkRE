@@ -20,7 +20,10 @@ INCLUDE_ASM("asm/nonmatchings/particle", gf_ParticleInitAnimData);
 
 INCLUDE_ASM("asm/nonmatchings/particle", GFParticle_MallocMemory);
 
-INCLUDE_ASM("asm/nonmatchings/particle", GFParticle_SetAnimTbl);
+void GFParticle_SetAnimTbl(void* p, int v)
+{
+    STRUCT_OFFSET(p, 0xFC, int) = v;
+}
 
 INCLUDE_ASM("asm/nonmatchings/particle", GFParticle_SetAnimTexInfoTbl);
 
