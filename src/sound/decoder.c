@@ -1,6 +1,7 @@
 #include "common.h"
 
 extern int s_volume;
+extern void audioDecResume();
 
 INCLUDE_ASM("asm/nonmatchings/sound/decoder", videoDecCreate);
 
@@ -68,7 +69,10 @@ INCLUDE_ASM("asm/nonmatchings/sound/decoder", audioDecPause);
 
 INCLUDE_ASM("asm/nonmatchings/sound/decoder", audioDecResume);
 
-INCLUDE_ASM("asm/nonmatchings/sound/decoder", audioDecStart);
+void audioDecStart()
+{
+    audioDecResume();
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/decoder", audioDecReset);
 
