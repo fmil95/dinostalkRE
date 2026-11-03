@@ -3,6 +3,7 @@
 extern int err_num_cause;
 extern int err_num_func;
 extern int stepque;
+extern int writeque;
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/mcduse", mcdFlushQue);
 
@@ -17,7 +18,10 @@ int mcdGetStepQue()
     return stepque;
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/mcduse", mcdGetWriteQue);
+int mcdGetWriteQue()
+{
+    return writeque;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/mcduse", mcdGetQueCondition);
 
