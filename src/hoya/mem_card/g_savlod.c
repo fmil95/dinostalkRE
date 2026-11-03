@@ -8,6 +8,7 @@ extern char saveDataBox[];
 extern void mcdReadSet();
 extern char icon[];
 extern void mcdWriteSet();
+extern void mcdFormatSet();
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", CreateIconSys);
 
@@ -67,7 +68,10 @@ INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", CheckMemcStatus);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", FormatMemc);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", FormatMemc2);
+void FormatMemc2(int a, int b, int c)
+{
+    mcdFormatSet(c, a, b);
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", GetMemcFIleList);
 
