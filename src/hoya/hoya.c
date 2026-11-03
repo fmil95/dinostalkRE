@@ -132,7 +132,14 @@ void hyDrawSMSprite(void* a, int b)
 
 INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyEntrySMSprite);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyDestroySMSpriteInfoSub);
+void hyDestroySMSpriteInfoSub(void* a)
+{
+    if (a != 0)
+    {
+        hyDestroySMSpriteInfoSub(STRUCT_OFFSET(a, 0x28, int));
+        STRUCT_OFFSET(a, 0x28, int) = 0;
+    }
+}
 
 void hyDestroySMSpriteInfo(void* a)
 {
