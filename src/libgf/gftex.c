@@ -60,7 +60,15 @@ void GFTex_AddScore(Sint32 index)
     GFCache_ChangeScore((Uint32*)db, db->score);
 }
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gftex", GFTex_ClearScore);
+void GFTex_ClearScore(Sint32 index)
+{
+    GF_TEXDB* db;
+
+    db = (GF_TEXDB*)(index * sizeof(GF_TEXDB) + (int)gfDatabase);
+    db->score = 1;
+
+    GFCache_ChangeScore((Uint32*)db, 1);
+}
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gftex", GFTex_ClearScoreAll);
 
