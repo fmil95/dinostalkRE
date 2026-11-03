@@ -1,6 +1,7 @@
 #include "common.h"
 
 extern int mpeg_err;
+extern unsigned short ErrorNum;
 
 INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvCallBack);
 
@@ -20,7 +21,10 @@ INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvGetWriteQue);
 
 INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvGetWorkingQue);
 
-INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvGetError);
+unsigned short cdvGetError()
+{
+    return ErrorNum;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvGetReadPos);
 
