@@ -1,12 +1,22 @@
 #include "common.h"
 
 extern int AdjustGunMode;
+extern void sceGsSyncPath();
+extern void pfm_end();
+extern void GF_EndGraphicsFramework();
+extern void MEM_FreeAll();
 
 INCLUDE_ASM("asm/nonmatchings/g_guncon2/g_adjustgun", GUN_ADJUST_Init);
 
 INCLUDE_ASM("asm/nonmatchings/g_guncon2/g_adjustgun", GUN_ADJUST_Exec);
 
-INCLUDE_ASM("asm/nonmatchings/g_guncon2/g_adjustgun", GUN_ADJUST_End);
+void GUN_ADJUST_End()
+{
+    sceGsSyncPath(0, 0);
+    pfm_end();
+    GF_EndGraphicsFramework();
+    MEM_FreeAll();
+}
 
 void gsAdjustGun_Init()
 {
