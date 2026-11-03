@@ -1,10 +1,18 @@
 #include "common.h"
 
 extern int _st9_se_port_lava;
+extern int _st9_lavaanim_texidx;
+extern int _st9_situation;
+extern short _st9_lava_pointid;
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st9", gsWorldInitSt9);
 
-INCLUDE_ASM("asm/nonmatchings/g_world/st9", gsWorldSt9_WorkInit);
+void gsWorldSt9_WorkInit()
+{
+    _st9_lavaanim_texidx = 0;
+    _st9_situation = 0;
+    _st9_lava_pointid = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st9", gsWorldSt9_SpecialEffect);
 

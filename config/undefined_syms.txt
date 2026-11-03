@@ -78,3 +78,6 @@ _st3_demo0_timer = 0x006740ec;
 _st3_demo0_step = 0x006740e8;
 _st3_boss_died_flag = 0x006740d8;
 _st3_boss_died_wait = 0x006740dc;
+_st9_lavaanim_texidx = 0x0067368c;
+_st9_situation = 0x00673698;
+_st9_lava_pointid = 0x006736a2;
