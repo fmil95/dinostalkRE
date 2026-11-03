@@ -13,6 +13,9 @@ extern char _gsIK_TrexInterpolateArm[];
 extern int IK_JoinNullShape();
 extern int _gsIK_ArmHitSub();
 extern int IK_CutNullShape();
+extern char rArmHitSubProcFlag[];
+extern char D_003EAA10[];
+extern char _gsIK_TrexRArmHitPos[];
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/ik_trex", _gsIK_TrexInit);
 
@@ -48,7 +51,13 @@ int _gsIK_TrexArmHitL(int a)
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/ik_trex", _gsIK_TrexRArmHitPos);
 
-INCLUDE_ASM("asm/nonmatchings/benjamin/ik_trex", _gsIK_TrexArmHitR);
+int _gsIK_TrexArmHitR(int a)
+{
+    IK_JoinNullShape((char*)a + 0xBA0, fvTrexArmNullTrans, 0x15);
+    _gsIK_ArmHitSub(rArmHitSubProcFlag, (char*)a + 0xD4C, a, 0x15, 0x15, D_003EAA10, _gsIK_TrexRArmHitPos, _gsIK_TrexInterpolateArm);
+    IK_CutNullShape((char*)a + 0xBA0, 0x15);
+    return 4;
+}
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/ik_trex", _gsIK_TrexTailHitPos);
 
