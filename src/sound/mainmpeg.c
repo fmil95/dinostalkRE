@@ -83,7 +83,10 @@ INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", readBufBeginGet);
 
 INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", readBufEndGet);
 
-INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", cdvMpegUserProgSet);
+void cdvMpegUserProgSet(int v)
+{
+    UserProg = v;
+}
 
 void cdvMpegUserProgDelete()
 {
