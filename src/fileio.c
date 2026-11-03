@@ -1,5 +1,7 @@
 #include "common.h"
 
+extern void fio_ReadFile();
+
 INCLUDE_ASM("asm/nonmatchings/fileio", SCELSEEK2);
 
 INCLUDE_ASM("asm/nonmatchings/fileio", SCECLOSE2);
@@ -16,7 +18,10 @@ INCLUDE_ASM("asm/nonmatchings/fileio", FIO_ReadFile_Align);
 
 INCLUDE_ASM("asm/nonmatchings/fileio", FIO_ReadFile_Align2);
 
-INCLUDE_ASM("asm/nonmatchings/fileio", FIO_ReadFilePartly);
+void FIO_ReadFilePartly(int a, int b, int c)
+{
+    fio_ReadFile(a, b, c, 0, 4, 1);
+}
 
 INCLUDE_ASM("asm/nonmatchings/fileio", FIO_ReadFilePartly_Align);
 
