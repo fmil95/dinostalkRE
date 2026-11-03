@@ -99,7 +99,24 @@ void GFInstance_SetEvalFunc(GF_INSTANCE* inst, gf_inst_evalfunc* func)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfinstance", GFInstance_SetDrawFunc);
+void GFInstance_SetDrawFunc(GF_INSTANCE* inst, gf_inst_drawfunc* func)
+{
+    if (func != NULL)
+    {
+        inst->drawFunc = func;
+    }
+    else
+    {
+        if (inst->type < 5)
+        {
+            inst->drawFunc = gf_default_drawfunc[inst->type];
+        }
+        else
+        {
+            inst->drawFunc = gf_default_drawfunc[0];
+        }
+    }
+}
 
 void GFInstance_SetFunc(GF_INSTANCE* inst, gf_inst_evalfunc* eval, gf_inst_drawfunc* draw)
 {

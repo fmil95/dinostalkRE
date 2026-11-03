@@ -89,6 +89,7 @@ void GFInstance_SetSortKeyMax(Float32 max);
 void GFInstance_SetSortKeyMin(Float32 min);
 
 extern gf_inst_evalfunc* gf_default_evalfunc[];
+extern gf_inst_drawfunc* gf_default_drawfunc[];
 extern gf_inst_drawfunc gf_string_drawfunc;
 extern gf_inst_evalfunc gf_string_evalfunc;
 
