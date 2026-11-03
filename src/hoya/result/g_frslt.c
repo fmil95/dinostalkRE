@@ -23,7 +23,10 @@ INCLUDE_ASM("asm/nonmatchings/hoya/result/g_frslt", FRsltItemSetItems);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/result/g_frslt", gsFRESULT_Draw1);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/result/g_frslt", gsFRESULT_Draw2);
+int gsFRESULT_Draw2(int a)
+{
+    return a;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/result/g_frslt", gsStageInit_FRESULT);
 
