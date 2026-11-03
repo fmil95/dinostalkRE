@@ -85,7 +85,18 @@ void GFTex_ClearScoreAll()
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gftex", GFTex_SubScore);
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gftex", GFTex_SubScoreAll);
+void GFTex_SubScoreAll()
+{
+    int i;
+
+    for (i = 0; i < gfDatabaseHead->textureMax; i++)
+    {
+        if (gfDatabase[i].flag & 1)
+        {
+            GFTex_SubScore(i);
+        }
+    }
+}
 
 void GFTex_FlushVramCache()
 {
