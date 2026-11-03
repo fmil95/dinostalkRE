@@ -1,6 +1,11 @@
 #include "common.h"
 
-INCLUDE_ASM("asm/nonmatchings/hoya/g_string", LoadLetterPig);
+extern void hyLoadPigFont();
+
+void LoadLetterPig()
+{
+    hyLoadPigFont();
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/g_string", InitLetter);
 
