@@ -63,7 +63,12 @@ void GFParticle_EraseStatus(void* a, int b)
     STRUCT_OFFSET(a, 0xE8, int) = (STRUCT_OFFSET(a, 0xE8, int) & ~b);
 }
 
-INCLUDE_ASM("asm/nonmatchings/particle", GFParticle_InitPosition);
+void GFParticle_InitPosition(void* a, int b)
+{
+    sceVu0CopyVector(a, b);
+    sceVu0CopyVector((char*)a + 0x10, b);
+    STRUCT_OFFSET(a, 0xE8, int) = (STRUCT_OFFSET(a, 0xE8, int) & -9);
+}
 
 void GFParticle_SetPosition()
 {
