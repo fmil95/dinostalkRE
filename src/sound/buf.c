@@ -55,7 +55,14 @@ int voBufCreate(VoBuf* f, VoData* data, VoTag* tag, int size)
     return 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/buf", voBufDelete);
+void voBufDelete(VoBuf* f)
+{
+    f->count = 0;
+    f->data = NULL;
+    f->tag = NULL;
+    f->size = 0;
+    f->write = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/buf", voBufReset);
 
