@@ -1,6 +1,7 @@
 #include "common.h"
 
 extern int err_num_cause;
+extern int err_num_func;
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/mcduse", mcdFlushQue);
 
@@ -16,7 +17,10 @@ INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/mcduse", mcdGetWriteQue);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/mcduse", mcdGetQueCondition);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/mcduse", mcdGetErrorFunc);
+int mcdGetErrorFunc()
+{
+    return err_num_func;
+}
 
 int mcdGetErrorCause()
 {
