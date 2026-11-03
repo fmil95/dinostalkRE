@@ -156,3 +156,4 @@ search_num = 0x00674a20;
 search_que = 0x00674a28;
 search_prg = 0x00674a2c;
 gsCptBossGaugeViewFlag = 0x00673ba8;
+gsFONT_IdtexNo1 = 0x00673b64;
