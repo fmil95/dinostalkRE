@@ -76,7 +76,12 @@ void GFParticle_SetLife(void* a, float x, float y)
     STRUCT_OFFSET(a, 0xD4, float) = y;
 }
 
-INCLUDE_ASM("asm/nonmatchings/particle", GFParticle_SetCreateSpeed);
+void GFParticle_SetCreateSpeed(void* a, float x, float y)
+{
+    STRUCT_OFFSET(a, 0xA4, float) = x;
+    STRUCT_OFFSET(a, 0xA8, float) = y;
+    STRUCT_OFFSET(a, 0xAC, int) = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/particle", GFParticle_SetTextureID);
 
