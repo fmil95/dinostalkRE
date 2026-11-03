@@ -1,6 +1,7 @@
 #include "common.h"
 
 extern int tex2dSendFlag_00674478;
+extern void gsCOCKPIT_InitSightGrenade();
 
 INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_cpsight", hyEntryObj4Sight);
 
@@ -43,7 +44,10 @@ INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_cpsight", gsCOCKPIT_InitSightShotgu
 
 INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_cpsight", gsCOCKPIT_InitSightSpark);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_cpsight", gsCOCKPIT_InitSightFGrenade);
+void gsCOCKPIT_InitSightFGrenade()
+{
+    gsCOCKPIT_InitSightGrenade();
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_cpsight", gsCOCKPIT_InitSightLaser);
 
