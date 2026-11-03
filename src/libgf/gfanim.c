@@ -11,7 +11,10 @@ void GFAnim_Attach(GF_INST_OBJECT* obj, PmtHEADER* anim)
     gfAnim_Attach(obj, anim, 0);
 }
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfanim", GFAnim_HotAttach);
+void GFAnim_HotAttach(GF_INST_OBJECT* obj, PmtHEADER* anim)
+{
+    gfAnim_Attach(obj, anim, 4);
+}
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfanim", gfAnim_Attach);
 
