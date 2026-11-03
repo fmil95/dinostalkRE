@@ -1,5 +1,7 @@
 #include "common.h"
 
+extern void gun_teaching_gun_adjust();
+
 INCLUDE_ASM("asm/nonmatchings/g_guncon2/src/gun_adjust", gun_adjust_init);
 
 INCLUDE_ASM("asm/nonmatchings/g_guncon2/src/gun_adjust", init_gun_adjust_para);
@@ -18,7 +20,10 @@ INCLUDE_ASM("asm/nonmatchings/g_guncon2/src/gun_adjust", change_normal_mode_gun_
 
 INCLUDE_ASM("asm/nonmatchings/g_guncon2/src/gun_adjust", change_monitor_gun_adjust);
 
-INCLUDE_ASM("asm/nonmatchings/g_guncon2/src/gun_adjust", gun_adjust0_gun_adjust);
+void gun_adjust0_gun_adjust()
+{
+    gun_teaching_gun_adjust();
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_guncon2/src/gun_adjust", gun_adjust1_gun_adjust);
 
