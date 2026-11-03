@@ -57,7 +57,12 @@ void gsGuncon2_Flash_INIT()
 
 INCLUDE_ASM("asm/nonmatchings/g_guncon2/g_guncon2", gsGuncon2_Flash_CALL);
 
-INCLUDE_ASM("asm/nonmatchings/g_guncon2/g_guncon2", gsGuncon2_Flash_RECALL);
+void gsGuncon2_Flash_RECALL()
+{
+    _flash_trg = 0;
+    _flash_cycle_cnt = 0;
+    _flash_bright = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_guncon2/g_guncon2", gsGuncon2_Flash_EXEC);
 
