@@ -2,6 +2,7 @@
 
 extern int _VlcnCnt;
 extern void sceVu0SubVector();
+extern void gsSoundPlaySE_WORLD();
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_Main);
 
@@ -21,7 +22,10 @@ INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_MkObjDt);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_ObjDtSet);
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_SeSet00);
+void Enemy_SeSet00(int a, int b)
+{
+    gsSoundPlaySE_WORLD(b, (char*)a + 0x270);
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_Prt);
 
