@@ -128,7 +128,12 @@ INCLUDE_ASM("asm/nonmatchings/hoya/g_test2", gsHoyaPause_Exec);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/g_test2", gsHoyaPause_Init2);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/g_test2", gsHoyaPause_End);
+void gsHoyaPause_End()
+{
+    sceGsSyncPath(0, 0);
+    GF_EndGraphicsFramework();
+    MEM_FreeAll();
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/g_test2", gsHoyaObjItemDataLoad);
 
