@@ -3,6 +3,7 @@
 extern int texMng[];
 extern void hySetFadePara();
 extern void hyDrawSMSpriteSub();
+extern int gsGuncon2_CheckConnect();
 
 INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyGun1CheckScreenOut);
 
@@ -97,7 +98,11 @@ INCLUDE_ASM("asm/nonmatchings/hoya/hoya", getGunPush);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/hoya", getGunPress);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/hoya", getGunRelease);
+int getGunRelease()
+{
+    gsGuncon2_CheckConnect();
+    return 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/hoya", getGunState);
 
