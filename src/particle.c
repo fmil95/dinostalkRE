@@ -25,7 +25,10 @@ void GFParticle_SetAnimTbl(void* p, int v)
     STRUCT_OFFSET(p, 0xFC, int) = v;
 }
 
-INCLUDE_ASM("asm/nonmatchings/particle", GFParticle_SetAnimTexInfoTbl);
+void GFParticle_SetAnimTexInfoTbl(void* p, int v)
+{
+    STRUCT_OFFSET(p, 0xF8, int) = v;
+}
 
 int GFParticle_GetSize(void* p)
 {
