@@ -7,6 +7,10 @@ extern int gsExtProgNo;
 extern int gsExtProgNext;
 extern int _time_over_cnt;
 extern int _time_over_step;
+extern void sceGsSyncPath();
+extern void sceGsSyncV();
+extern void gsEffectSetFadeNowColor();
+extern void gsEffectSetFade();
 
 INCLUDE_ASM("asm/nonmatchings/g_test", G_TEST_Init);
 
@@ -53,6 +57,12 @@ INCLUDE_ASM("asm/nonmatchings/g_test", gsLoading_Init);
 
 INCLUDE_ASM("asm/nonmatchings/g_test", gsLoading_Exec);
 
-INCLUDE_ASM("asm/nonmatchings/g_test", gsClearHiddenFrame);
+void gsClearHiddenFrame(int a)
+{
+    sceGsSyncPath(0, 0);
+    sceGsSyncV(0);
+    gsEffectSetFadeNowColor(a);
+    gsEffectSetFade(a, 1);
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_test", _dbgCS_OverWrite);
