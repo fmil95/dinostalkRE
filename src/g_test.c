@@ -3,6 +3,10 @@
 extern int gsExtProgWorkP;
 extern int gsExtProgRpFile;
 extern int gsExtProgRpFunc;
+extern int gsExtProgNo;
+extern int gsExtProgNext;
+extern int _time_over_cnt;
+extern int _time_over_step;
 
 INCLUDE_ASM("asm/nonmatchings/g_test", G_TEST_Init);
 
@@ -10,7 +14,16 @@ INCLUDE_ASM("asm/nonmatchings/g_test", G_TEST_Exec);
 
 INCLUDE_ASM("asm/nonmatchings/g_test", G_TEST_End);
 
-INCLUDE_ASM("asm/nonmatchings/g_test", gsExtProg_INIT);
+void gsExtProg_INIT()
+{
+    gsExtProgNo = 0;
+    gsExtProgNext = 0;
+    gsExtProgWorkP = 0;
+    gsExtProgRpFile = 0;
+    gsExtProgRpFunc = 0;
+    _time_over_cnt = 0;
+    _time_over_step = 0;
+}
 
 void gsExtProg_ENTRY_WORK(int a, int b, int c)
 {

@@ -101,3 +101,7 @@ check_wait_timer_0067485c = 0x0067485c;
 teach_time_00674874 = 0x00674874;
 chk_mon_timer_00674878 = 0x00674878;
 check_delay_timer_00674880 = 0x00674880;
+gsExtProgNo = 0x006732f8;
+gsExtProgNext = 0x006732fc;
+_time_over_cnt = 0x00673f38;
+_time_over_step = 0x00673f3c;
