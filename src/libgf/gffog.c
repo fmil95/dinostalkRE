@@ -16,6 +16,10 @@ float GFFog_SetFar(void* a, float x)
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gffog", GFFog_SetMin);
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gffog", GFFog_SetMax);
+float GFFog_SetMax(void* a, float x)
+{
+    STRUCT_OFFSET(a, 0x4, float) = x;
+    return x;
+}
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gffog", GFFog_SetParam);
