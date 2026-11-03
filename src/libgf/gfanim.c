@@ -58,7 +58,22 @@ static void gfAnim_Vu0CopyQuat(Float32* v0, Float32* v1)
         : : "r"(v0), "r"(v1) : "$6", "memory");
 }
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfanim", gfAnim_Vu0InnerProduct);
+static Float32 gfAnim_Vu0InnerProduct(Float32* v0, Float32* v1)
+{
+    Float32 ret;
+
+    asm volatile(
+        "lqc2 $vf4, 0x0(%1)\n"
+        "lqc2 $vf5, 0x0(%2)\n"
+        "vmul.xyzw $vf5, $vf4, $vf5\n"
+        "vaddy.x $vf5, $vf5, $vf5y\n"
+        "vaddz.x $vf5, $vf5, $vf5z\n"
+        "vaddw.x $vf5, $vf5, $vf5w\n"
+        "qmfc2.ni %0, $vf5\n"
+        : "=r"(ret) : "r"(v0), "r"(v1));
+
+    return ret;
+}
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfanim", gfAnim_InterpolateQuat);
 
