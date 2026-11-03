@@ -5,7 +5,10 @@ INCLUDE_ASM("asm/nonmatchings/hoya/option/g_option", LetsGotoOptionScene);
 void ReleaseOptionScene(void) {
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/option/g_option", gsOPTION_Draw1);
+int gsOPTION_Draw1(int a)
+{
+    return a;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/option/g_option", gsOPTION_Draw2);
 
