@@ -24,7 +24,20 @@ static void gfCache_ClearAllCell()
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfvcache", gfCache_GetUnusedCell);
+static GF_CACHE_CELL* gfCache_GetUnusedCell()
+{
+    int i;
+
+    for (i = 0; i < gfInfoHead_00674cd8->cellMax; i++)
+    {
+        if (gfInfo_00674cdc[i].stat == 0)
+        {
+            return &gfInfo_00674cdc[i];
+        }
+    }
+
+    return NULL;
+}
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfvcache", GFCache_Alloc);
 
