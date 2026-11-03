@@ -1,5 +1,8 @@
 #include "common.h"
 
+extern int pFR;
+extern void hyCheckFadeFinishFlag();
+
 INCLUDE_ASM("asm/nonmatchings/hoya/result/frsltsb1", MakeAllNumberTex_frsltsb1);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/result/frsltsb1", RsltInitSprOther_frsltsb1);
@@ -42,7 +45,10 @@ INCLUDE_ASM("asm/nonmatchings/hoya/result/frsltsb1", SetFadePara_frsltsb1);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/result/frsltsb1", SwitchFadeTimer_frsltsb1);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/result/frsltsb1", CheckFadeFinishFlag_frsltsb1);
+void CheckFadeFinishFlag_frsltsb1()
+{
+    hyCheckFadeFinishFlag((pFR + 8128));
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/result/frsltsb1", Draw2dObjectFResult);
 
