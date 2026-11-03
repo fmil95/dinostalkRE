@@ -1,9 +1,15 @@
 #include "common.h"
 
+extern int gsNextProg;
+extern void LetsGotoMemcScene();
+
 void InitStgsStart(void) {
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/startgs3/stgssub1", MainStgsStart);
+void MainStgsStart()
+{
+    LetsGotoMemcScene(gsNextProg);
+}
 
 void EndStgsStart(void) {
 }
