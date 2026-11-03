@@ -8,7 +8,10 @@ INCLUDE_ASM("asm/nonmatchings/hoya/result/g_rslt", Send2RsltTex);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/result/g_rslt", gsRESULT_Draw1);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/result/g_rslt", gsRESULT_Draw2);
+int gsRESULT_Draw2(int a)
+{
+    return a;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/result/g_rslt", gsStageInit_RESULT);
 
