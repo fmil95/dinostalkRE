@@ -2,8 +2,12 @@
 
 extern int ttl;
 extern void hyCheckFadeFinishFlag();
+extern void hySetFadePara2();
 
-INCLUDE_ASM("asm/nonmatchings/hoya/title/ttlsub01", SetFadePara_ttlsub01);
+void SetFadePara_ttlsub01(int a, int b, int c)
+{
+    hySetFadePara2(a, b, c, (ttl + 2304));
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/title/ttlsub01", SwitchFadeTimer_ttlsub01);
 
