@@ -31,4 +31,7 @@ void GFShare_SetVu1WorkSize(Uint32 size)
     gf_Vu1WorkSize = size;
 }
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfshare", GFShare_GetVu1WorkSize);
+Uint32 GFShare_GetVu1WorkSize()
+{
+    return gf_Vu1WorkSize;
+}
