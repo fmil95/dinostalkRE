@@ -11,7 +11,12 @@ void eneptn_dummy(void) {
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptnmn", eneptn_onlygetdt);
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptnmn", eneptn_loop00);
+void eneptn_loop00(void* a)
+{
+    STRUCT_OFFSET(a, 0x5E, short) = 0;
+    STRUCT_OFFSET(a, 0x62, short) = 0;
+    STRUCT_OFFSET(a, 0x5C, short) = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptnmn", eneptn_goleset00);
 
