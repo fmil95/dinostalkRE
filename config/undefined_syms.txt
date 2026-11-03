@@ -97,3 +97,7 @@ gpCShadowFarZ = 0x00673fd4;
 gpCShadowAlpha = 0x00673fd8;
 gpCShadowBegin = 0x00673538;
 gpCShadowBefore = 0x0067353c;
+check_wait_timer_0067485c = 0x0067485c;
+teach_time_00674874 = 0x00674874;
+chk_mon_timer_00674878 = 0x00674878;
+check_delay_timer_00674880 = 0x00674880;
