@@ -3,6 +3,7 @@
 extern int finish;
 extern int adjust_mode_00674810;
 extern int trans;
+extern void hyGun1CheckScreenOut();
 
 int Gun1AjstGetViewScene()
 {
@@ -14,7 +15,10 @@ int Gun1AjstGetProgNo()
     return adjust_mode_00674810;
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/option/gun1_ajst", Gun1AjstCheckGun1ScreenOut);
+void Gun1AjstCheckGun1ScreenOut()
+{
+    hyGun1CheckScreenOut();
+}
 
 int Gun1AjstCheckFinish()
 {
