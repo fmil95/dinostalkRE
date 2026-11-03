@@ -6,6 +6,8 @@ extern void mcdGetQueCondition();
 extern int mcdResult;
 extern char saveDataBox[];
 extern void mcdReadSet();
+extern char icon[];
+extern void mcdWriteSet();
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", CreateIconSys);
 
@@ -103,7 +105,10 @@ void CloseSaveData()
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", OpenIconSys);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", WriteIconSys);
+void WriteIconSys(int a, int b)
+{
+    mcdWriteSet(a, b, icon, 0x3c4);
+}
 
 void CloseIconSys()
 {
