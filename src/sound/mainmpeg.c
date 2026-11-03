@@ -3,6 +3,7 @@
 extern int frame_cnt;
 extern char err_sts;
 extern int GS_Send_Flg;
+extern int mono_flg;
 
 INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", cdvMpegInit);
 
@@ -25,7 +26,10 @@ void cdvMpegRestoreSet(char v)
 
 INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", cdvMpegSoundSet);
 
-INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", cdvMpegSoundSMSet);
+void cdvMpegSoundSMSet(int v)
+{
+    mono_flg = v;
+}
 
 int cdvMpegGetFrameCount()
 {
