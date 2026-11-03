@@ -4,7 +4,10 @@ INCLUDE_ASM("asm/nonmatchings/perfmon", pfm_barx);
 
 INCLUDE_ASM("asm/nonmatchings/perfmon", pfm_draw_num);
 
-INCLUDE_ASM("asm/nonmatchings/perfmon", pfm_draw);
+int pfm_draw(int a)
+{
+    return a;
+}
 
 INCLUDE_ASM("asm/nonmatchings/perfmon", pfm_gettimer);
 
