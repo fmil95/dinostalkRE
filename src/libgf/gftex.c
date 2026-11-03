@@ -70,7 +70,18 @@ void GFTex_ClearScore(Sint32 index)
     GFCache_ChangeScore((Uint32*)db, 1);
 }
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gftex", GFTex_ClearScoreAll);
+void GFTex_ClearScoreAll()
+{
+    int i;
+
+    for (i = 0; i < gfDatabaseHead->textureMax; i++)
+    {
+        if (gfDatabase[i].flag & 1)
+        {
+            GFTex_ClearScore(i);
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gftex", GFTex_SubScore);
 
