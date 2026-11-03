@@ -7,7 +7,10 @@ INCLUDE_ASM("asm/nonmatchings/hoya/hyopen", hyWepRankGetWeaponRank);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/hyopen", hyWepRankGetWeaponNo);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/hyopen", hyGetStageNumber);
+int hyGetStageNumber(int arg0)
+{
+    return ((int*)0x535A48)[arg0];
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/hyopen", gsResultInit);
 
