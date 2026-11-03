@@ -16,7 +16,10 @@ INCLUDE_ASM("asm/nonmatchings/sound/decoder", videoDecDelete);
 
 INCLUDE_ASM("asm/nonmatchings/sound/decoder", videoDecAbort);
 
-INCLUDE_ASM("asm/nonmatchings/sound/decoder", videoDecGetState);
+int videoDecGetState(void* p)
+{
+    return STRUCT_OFFSET(p, 0xA8, int);
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/decoder", videoDecSetState);
 
