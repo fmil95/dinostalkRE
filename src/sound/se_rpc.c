@@ -1,5 +1,7 @@
 #include "sound/se_rpc.h"
 
+extern int D_0065176C[];
+
 int get_SE_MAX() 
 {
     return 1000;
@@ -303,7 +305,10 @@ INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeKeyonDir2);
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeKeyon);
 
-INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeCSLMidiPlaySt);
+int SeCSLMidiPlaySt()
+{
+    return D_0065176C[0];
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeCSLMidiPortSt);
 
