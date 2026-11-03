@@ -1,6 +1,11 @@
 #include "common.h"
 
-INCLUDE_ASM("asm/nonmatchings/benjamin/ik_crn", _gsIK_CrnInit);
+extern void _gsIK_InitDataHead();
+
+void _gsIK_CrnInit(void* a)
+{
+    _gsIK_InitDataHead((char*)a + 0xD40);
+}
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/ik_crn", _gsIK_CrnResetInfo);
 
