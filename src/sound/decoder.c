@@ -3,6 +3,7 @@
 extern int s_volume;
 extern void audioDecResume();
 extern void sceMpegSetDecodeMode();
+extern void viBufBeginPut();
 
 INCLUDE_ASM("asm/nonmatchings/sound/decoder", videoDecCreate);
 
@@ -11,7 +12,10 @@ void videoDecSetDecodeMode()
     sceMpegSetDecodeMode();
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/decoder", videoDecBeginPut);
+void videoDecBeginPut(void* a)
+{
+    viBufBeginPut((char*)a + 0x48);
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/decoder", videoDecEndPut);
 
