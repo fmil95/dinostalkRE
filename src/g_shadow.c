@@ -34,7 +34,10 @@ void gpShadow_SetObject(void* p, int v)
 
 INCLUDE_ASM("asm/nonmatchings/g_shadow", gpShadow_Visible);
 
-INCLUDE_ASM("asm/nonmatchings/g_shadow", gpShadow_SetVolumeLength);
+void gpShadow_SetVolumeLength(void* p, float v)
+{
+    STRUCT_OFFSET(p, 0x8, float) = v;
+}
 
 void gpShadow_ReSetScreenFarZ(float v)
 {
