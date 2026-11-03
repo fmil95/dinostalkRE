@@ -46,3 +46,4 @@ _st2_rapt_flag = 0x00674080;
 gsWorldSt3_KoiwaCnt = 0x006740ac;
 gsWorldSt3_SplashCnt = 0x006740b0;
 _st7_dino_light_num = 0x006741d0;
+_st7_glow_num = 0x006741b0;

@@ -1,6 +1,7 @@
 #include "common.h"
 
 extern int _st7_dino_light_num;
+extern int _st7_glow_num;
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldInitSt7);
 
@@ -36,7 +37,10 @@ INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldSt7_GaitoLight);
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldSt7_JeepCrash);
 
-INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldSt7_InitGlow);
+void gsWorldSt7_InitGlow()
+{
+    _st7_glow_num = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldSt7_EntryGlow);
 
