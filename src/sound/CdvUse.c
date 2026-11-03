@@ -8,6 +8,7 @@ extern void FileQueClear();
 extern int search_num;
 extern int search_que;
 extern int search_prg;
+extern int search_ptr;
 
 INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvCallBack);
 
@@ -76,7 +77,16 @@ INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvSearchFileSet);
 
 INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvFReadSet);
 
-INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", FileQueClear);
+void FileQueClear(int a)
+{
+    search_num = 0;
+    search_ptr = 0;
+    if (a == 0)
+    {
+        search_que = 0;
+        search_prg = 0;
+    }
+}
 
 int cdvGetSearchNum()
 {
