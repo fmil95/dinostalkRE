@@ -3,13 +3,17 @@
 extern int pOptOption;
 extern void hyCheckFadeFinishFlag();
 extern void hySetFadePara2();
+extern void hySwitchFadeTimer();
 
 void SetFadeParaOpt(int a, int b, int c)
 {
     hySetFadePara2(a, b, c, (pOptOption + 13200));
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/option/optsub01", SwitchFadeTimerOpt);
+void SwitchFadeTimerOpt(int a)
+{
+    hySwitchFadeTimer(a, (pOptOption + 13200));
+}
 
 void CheckFadeFinishFlagOpt()
 {
