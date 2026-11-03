@@ -66,7 +66,11 @@ INCLUDE_ASM("asm/nonmatchings/particle", GFParticle_SetSpeed);
 
 INCLUDE_ASM("asm/nonmatchings/particle", GFParticle_SetSeparateAngle);
 
-INCLUDE_ASM("asm/nonmatchings/particle", GFParticle_SetLife);
+void GFParticle_SetLife(void* a, float x, float y)
+{
+    STRUCT_OFFSET(a, 0xD0, float) = x;
+    STRUCT_OFFSET(a, 0xD4, float) = y;
+}
 
 INCLUDE_ASM("asm/nonmatchings/particle", GFParticle_SetCreateSpeed);
 
