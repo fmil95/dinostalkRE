@@ -39,7 +39,17 @@ int nmUsbGunRead(u_int no, char* data)
     return sceSifCallRpc(&cdUsbGun, 2, 1, sdata_00873980, 0x20, data, 0x20, NULL, NULL);
 }
 
-INCLUDE_ASM("asm/nonmatchings/nmlib/nmGC2Main", nmUsbGunGetLocation);
+int nmUsbGunGetLocation(int no, u_char* location)
+{
+    sdata_00873980[0] = no;
+
+    if (sceSifCheckStatRpc(&cdUsbGun) != 0)
+    {
+        printf(D_0066F618);
+    }
+
+    return sceSifCallRpc(&cdUsbGun, 3, 1, sdata_00873980, 0x20, location, 0x20, NULL, NULL);
+}
 
 int nmUsbGunGetConfig(u_char* config)
 {
