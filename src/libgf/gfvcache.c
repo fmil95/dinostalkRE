@@ -67,7 +67,21 @@ static GF_CACHE_CELL* gfCache_GetCellByGuid(Uint32* guid)
     return NULL;
 }
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfvcache", GFCache_ChangeScore);
+Sint32 GFCache_ChangeScore(Uint32* guid, Sint32 bscore)
+{
+    GF_CACHE_CELL* p;
+
+    p = gfCache_GetCellByGuid(guid);
+
+    if (p == NULL)
+    {
+        return 0;
+    }
+
+    p->score = bscore;
+
+    return 1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfvcache", GFCache_Invalidate);
 
