@@ -23,6 +23,16 @@ void GFPack_ResetBuf(GF_PACKET* pm)
     _GFPKT_DMA_SET_TAG_0(pm->top, 7, 0);
 }
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfpack", GFPacket_Add);
+qword* GFPacket_Add(qword* cur, qword* packet)
+{
+    qword* p;
+
+    p = cur;
+    _GFPKT_DMA_SET_TAG_1(p, 5, 0, (Uint32)packet & 0x7FFFFFFF);
+    p++;
+    _GFPKT_DMA_SET_TAG_0(p, 7, 0);
+
+    return p;
+}
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfpack", GFPacket_KickDma);
