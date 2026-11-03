@@ -1,5 +1,7 @@
 #include "common.h"
 
+extern int s_volume;
+
 INCLUDE_ASM("asm/nonmatchings/sound/decoder", videoDecCreate);
 
 INCLUDE_ASM("asm/nonmatchings/sound/decoder", videoDecSetDecodeMode);
@@ -44,7 +46,10 @@ INCLUDE_ASM("asm/nonmatchings/sound/decoder", mpegTS);
 
 INCLUDE_ASM("asm/nonmatchings/sound/decoder", cpy2area);
 
-INCLUDE_ASM("asm/nonmatchings/sound/decoder", cdvMpegChgVolume);
+void cdvMpegChgVolume(int v)
+{
+    s_volume = v;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/decoder", audioDecCreate);
 
