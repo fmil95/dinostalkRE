@@ -65,7 +65,17 @@ static GF_VRAM_CELL* gfVram_SearchCellByPos(Uint16 pos)
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfvalloc", gfVram_DefragCell);
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfvalloc", GFVram_FreeAll);
+void GFVram_FreeAll()
+{
+    GF_VRAM_CELL* p;
+
+    for (p = gfInfoHead_00674cd0->top_cell; p != NULL; p = p->next)
+    {
+        p->used_flag = 0;
+    }
+
+    gfVram_DefragCell();
+}
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfvalloc", GFVram_PrintAllocationStatus);
 
