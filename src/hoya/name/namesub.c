@@ -4,8 +4,12 @@ extern int pGnn;
 extern void hyCheckFadeFinishFlag();
 extern void GFTex_ResetDatabase();
 extern void GF_EndGraphicsFramework();
+extern void hySetFadePara2();
 
-INCLUDE_ASM("asm/nonmatchings/hoya/name/namesub", SetFadeParaPause_namesub);
+void SetFadeParaPause_namesub(int a, int b, int c)
+{
+    hySetFadePara2(a, b, c, (pGnn + 192));
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/name/namesub", SwitchFadeTimerPause_namesub);
 
