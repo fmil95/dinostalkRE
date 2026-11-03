@@ -1,8 +1,13 @@
 #include "common.h"
 
+extern void gsWorldSt5_CheckBossDied();
+
 INCLUDE_ASM("asm/nonmatchings/g_world/st5", gsWorldInitSt5);
 
-INCLUDE_ASM("asm/nonmatchings/g_world/st5", gsWorldSt5_SpecialEffect);
+void gsWorldSt5_SpecialEffect()
+{
+    gsWorldSt5_CheckBossDied();
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st5", gsWorldSt5_SpecialEffect2);
 
