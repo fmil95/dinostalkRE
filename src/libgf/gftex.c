@@ -2,6 +2,7 @@
 
 extern GF_TEXDB_HEAD* gfDatabaseHead;
 extern Uint32 gfTexFrameCnt;
+extern void GFCache_Flush();
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gftex", GFTex_InitDatabase);
 
@@ -37,7 +38,10 @@ INCLUDE_ASM("asm/nonmatchings/libgf/gftex", GFTex_SubScore);
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gftex", GFTex_SubScoreAll);
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gftex", GFTex_FlushVramCache);
+void GFTex_FlushVramCache()
+{
+    GFCache_Flush();
+}
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gftex", GFTex_FlushVramCache_Preset);
 
