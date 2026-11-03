@@ -194,3 +194,7 @@ gsEffect_BlurTimeBak = 0x00673f8c;
 gsEffect_BlurTime = 0x00673f80;
 gsEffect_BlurCntBak = 0x00673f88;
 gsEffect_BlurCnt = 0x00673f7c;
+s_vol_l0 = 0x00674a88;
+s_vol_r0 = 0x00674a8c;
+s_vol_l1 = 0x00674a90;
+s_vol_r1 = 0x00674a94;

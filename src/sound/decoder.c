@@ -17,6 +17,10 @@ extern void WaitSema();
 extern void sceSdRemote();
 extern void sceSdRemote();
 extern void SignalSema();
+extern int s_vol_l0;
+extern int s_vol_r0;
+extern int s_vol_l1;
+extern int s_vol_r1;
 
 INCLUDE_ASM("asm/nonmatchings/sound/decoder", videoDecCreate);
 
@@ -137,7 +141,15 @@ INCLUDE_ASM("asm/nonmatchings/sound/decoder", sendToIOP);
 
 INCLUDE_ASM("asm/nonmatchings/sound/decoder", pushMasterVolume);
 
-INCLUDE_ASM("asm/nonmatchings/sound/decoder", popMasterVolume);
+void popMasterVolume()
+{
+    WaitSema(remoteSema);
+    sceSdRemote(1, (0 | 0x8020), 0x980, s_vol_l0);
+    sceSdRemote(1, (0 | 0x8020), 0xa80, s_vol_r0);
+    sceSdRemote(1, (0 | 0x8020), 0x981, s_vol_l1);
+    sceSdRemote(1, (0 | 0x8020), 0xa81, s_vol_r1);
+    SignalSema(remoteSema);
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/decoder", changeMasterVolume);
 
