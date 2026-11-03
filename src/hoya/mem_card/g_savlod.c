@@ -82,7 +82,10 @@ INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", WriteSaveData);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", ReadSaveData);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", CloseSaveData);
+void CloseSaveData()
+{
+    mcdCloseSet();
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", OpenIconSys);
 
