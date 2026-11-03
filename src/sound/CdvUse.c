@@ -98,7 +98,10 @@ INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvFileReadIOPSet);
 
 INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvMpegPlaySet);
 
-INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvMpegGetError);
+int cdvMpegGetError()
+{
+    return mpeg_err;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvMain);
 
