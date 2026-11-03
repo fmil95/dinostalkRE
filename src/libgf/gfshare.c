@@ -21,7 +21,19 @@ static sceVu0FMATRIX* gf_GetShapeWorldMatrix(GF_INST_OBJECT* pObj, Uint32 n)
     return (sceVu0FMATRIX*)pShape;
 }
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfshare", gf_GetShapeLightMatrix);
+static sceVu0FMATRIX* gf_GetShapeLightMatrix(GF_INST_OBJECT* pObj, Uint32 n)
+{
+    GF_INST_SHAPE* pShape;
+
+    pShape = gf_GetShape(pObj, n);
+
+    if (pShape != NULL)
+    {
+        return &pShape->head.lightMatrix;
+    }
+
+    return (sceVu0FMATRIX*)pShape;
+}
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfshare", gf_CopyQWs);
 
