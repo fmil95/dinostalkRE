@@ -1,5 +1,7 @@
 #include "common.h"
 
+extern void _gpClearWorldRecov();
+
 INCLUDE_ASM("asm/nonmatchings/g_parts", _gpGetBoundBox);
 
 INCLUDE_ASM("asm/nonmatchings/g_parts", gpGetBoundBox);
@@ -140,7 +142,10 @@ INCLUDE_ASM("asm/nonmatchings/g_parts", gpClipWorldShape);
 
 INCLUDE_ASM("asm/nonmatchings/g_parts", _gpClearWorldRecov);
 
-INCLUDE_ASM("asm/nonmatchings/g_parts", gpClearWorldRecov);
+void gpClearWorldRecov()
+{
+    _gpClearWorldRecov();
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_parts", gpInstance_MakeRotMatrix);
 
