@@ -6,6 +6,11 @@ extern int _st7_hasi_light_num;
 extern int _st7_jeep_light_obj_num;
 extern int _st7_neon_00_num;
 extern int _st7_neon_01_num;
+extern int _st7_se_port_jeep_eng;
+extern int _st7_se_port_jeep_run;
+extern int _st7_se_port_fire_a;
+extern int _st7_se_port_fire_b;
+extern int _st7_shock_jeep_cnt;
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldInitSt7);
 
@@ -143,7 +148,14 @@ INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldSt7_CheckBossDied_CALNO);
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldSt7_CheckBossDied_TREX);
 
-INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldSt7_InitBackSE);
+void gsWorldSt7_InitBackSE()
+{
+    _st7_se_port_jeep_eng = 0x17;
+    _st7_se_port_jeep_run = 0x16;
+    _st7_se_port_fire_a = 0x15;
+    _st7_se_port_fire_b = 0x14;
+    _st7_shock_jeep_cnt = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldSt7_PlayBackSE);
 
