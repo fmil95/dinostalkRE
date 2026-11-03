@@ -1,5 +1,7 @@
 #include "common.h"
 
+extern int _st7_dino_light_num;
+
 INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldInitSt7);
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldSt7EntryTex_GND);
@@ -98,7 +100,10 @@ INCLUDE_ASM("asm/nonmatchings/g_world/st7", _gsWorldSt7_TrexHeadColl);
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldSt7_TrexHeadColl);
 
-INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldSt7_InitDinoLight);
+void gsWorldSt7_InitDinoLight()
+{
+    _st7_dino_light_num = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldSt7_EntryDinoLight);
 
