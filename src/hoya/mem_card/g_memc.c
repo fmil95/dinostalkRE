@@ -1,8 +1,19 @@
 #include "common.h"
 
+extern int memcManager;
+extern int gsNextProg;
+
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_memc", LetsGotoMemcScene);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_memc", LetsGotoMemcScene4Continue);
+void LetsGotoMemcScene4Continue(int a)
+{
+    if (a != -1)
+    {
+        memcManager = 0x63;
+    }
+
+    gsNextProg = 0xe;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_memc", PermittoSendMcTex);
 
