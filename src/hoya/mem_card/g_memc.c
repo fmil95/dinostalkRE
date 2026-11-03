@@ -10,7 +10,10 @@ INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_memc", Send2McTex);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_memc", gsMEMC_Draw1);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_memc", gsMEMC_Draw2);
+int gsMEMC_Draw2(int a)
+{
+    return a;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_memc", gsStageInit_MEMC);
 
