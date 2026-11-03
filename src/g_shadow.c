@@ -27,7 +27,10 @@ INCLUDE_ASM("asm/nonmatchings/g_shadow", gpShadow_AddPacket);
 
 INCLUDE_ASM("asm/nonmatchings/g_shadow", gpShadow_Draw);
 
-INCLUDE_ASM("asm/nonmatchings/g_shadow", gpShadow_SetObject);
+void gpShadow_SetObject(void* p, int v)
+{
+    STRUCT_OFFSET(p, 0x18, int) = v;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_shadow", gpShadow_Visible);
 
