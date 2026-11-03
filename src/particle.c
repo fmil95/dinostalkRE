@@ -51,7 +51,10 @@ void GFParticle_SetStatus(void* p, int v)
     STRUCT_OFFSET(p, 0xE8, int) = v;
 }
 
-INCLUDE_ASM("asm/nonmatchings/particle", GFParticle_AddStatus);
+void GFParticle_AddStatus(void* a, int b)
+{
+    STRUCT_OFFSET(a, 0xE8, int) = (STRUCT_OFFSET(a, 0xE8, int) | b);
+}
 
 INCLUDE_ASM("asm/nonmatchings/particle", GFParticle_EraseStatus);
 
