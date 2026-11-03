@@ -4,6 +4,9 @@ extern int pPpp;
 extern void hyCheckFadeFinishFlag();
 extern void hySetFadePara2();
 extern void hySwitchFadeTimer();
+extern void gsPAUSE_PutVitalityLife();
+extern void gsPAUSE_PutVitalityHead();
+extern void gsPAUSE_PutVitalityUnder();
 
 INCLUDE_ASM("asm/nonmatchings/hoya/pause/pausesub", gsPAUSE_InitVitality);
 
@@ -13,7 +16,12 @@ INCLUDE_ASM("asm/nonmatchings/hoya/pause/pausesub", gsPAUSE_PutVitalityHead);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/pause/pausesub", gsPAUSE_PutVitalityLife);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/pause/pausesub", gsPAUSE_PutVitality);
+void gsPAUSE_PutVitality(int a)
+{
+    gsPAUSE_PutVitalityLife(a);
+    gsPAUSE_PutVitalityHead(a);
+    gsPAUSE_PutVitalityUnder(a);
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/pause/pausesub", GetExplain);
 
