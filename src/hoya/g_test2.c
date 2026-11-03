@@ -31,7 +31,10 @@ INCLUDE_ASM("asm/nonmatchings/hoya/g_test2", G_FRESULT_End);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/g_test2", G_OPTION_Init);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/g_test2", G_OPTION_Exec);
+void G_OPTION_Exec()
+{
+    G_TTL_Exec();
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/g_test2", G_OPTION_End);
 
