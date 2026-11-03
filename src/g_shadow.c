@@ -2,12 +2,16 @@
 
 extern float gpShadowFarZ;
 extern float gpShadowMaxAlpha;
+extern float D_0068D8E4[];
 
 INCLUDE_ASM("asm/nonmatchings/g_shadow", gpShadow_Init);
 
 INCLUDE_ASM("asm/nonmatchings/g_shadow", gpShadow_InitShadow);
 
-INCLUDE_ASM("asm/nonmatchings/g_shadow", gpShadow_SetSortKey);
+void gpShadow_SetSortKey(float x)
+{
+    D_0068D8E4[0] = x;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_shadow", gpShadow_MakePreset);
 
