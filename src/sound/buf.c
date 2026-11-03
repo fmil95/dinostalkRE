@@ -103,6 +103,9 @@ VoTag* voBufGetTag(VoBuf* f)
     return voBufIsEmpty(f) ? (VoTag*)NULL : f->tag + ((f->write - f->count + f->size) % f->size);
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/buf", voBufGetAddr);
+VoData* voBufGetAddr(VoBuf* f)
+{
+    return voBufIsEmpty(f) ? (VoData*)NULL : f->data + ((f->write - f->count + f->size) % f->size);
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/buf", voBufDecCount);
