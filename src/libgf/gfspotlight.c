@@ -1,6 +1,9 @@
 #include "common.h"
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfspotlight", GFSpotLight_Init);
+int GFSpotLight_Init(int a)
+{
+    return a;
+}
 
 void GFSpotLight_SetPos(void) {
 }
