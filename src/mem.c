@@ -13,6 +13,7 @@ extern int gsHeapBak;
 extern int gsHeapCur;
 extern int gsHeapTop;
 extern void mem_SearchAllocInfo();
+extern void MEM_MallocAlign();
 
 void MEM_InitAllocation() 
 {
@@ -37,7 +38,10 @@ void MEM_EndAllocation()
     MEM_FreeAll();
 }
 
-INCLUDE_ASM("asm/nonmatchings/mem", MEM_Malloc);
+void MEM_Malloc(int a, int b, int c)
+{
+    MEM_MallocAlign(a, 0x10, b, c);
+}
 
 INCLUDE_ASM("asm/nonmatchings/mem", _memalign_GS);
 
