@@ -101,7 +101,11 @@ void GFInstance_SetEvalFunc(GF_INSTANCE* inst, gf_inst_evalfunc* func)
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfinstance", GFInstance_SetDrawFunc);
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfinstance", GFInstance_SetFunc);
+void GFInstance_SetFunc(GF_INSTANCE* inst, gf_inst_evalfunc* eval, gf_inst_drawfunc* draw)
+{
+    GFInstance_SetEvalFunc(inst, eval);
+    GFInstance_SetDrawFunc(inst, draw);
+}
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfinstance", GFInstance_SetSortKeyMax);
 
