@@ -1,4 +1,5 @@
-#include "common.h"
+#include "sound/buf.h"
+#include "diei.h"
 
 INCLUDE_ASM("asm/nonmatchings/sound/buf", getFIFOindex);
 
@@ -42,18 +43,18 @@ INCLUDE_ASM("asm/nonmatchings/sound/buf", voBufDelete);
 
 INCLUDE_ASM("asm/nonmatchings/sound/buf", voBufReset);
 
-int voBufIsFull(void* a)
+int voBufIsFull(VoBuf* f)
 {
-    return ((STRUCT_OFFSET(a, 0xC, int) ^ STRUCT_OFFSET(a, 0x10, int)) == 0);
+    return f->count == f->size;
 }
 
 INCLUDE_ASM("asm/nonmatchings/sound/buf", voBufIncCount);
 
 INCLUDE_ASM("asm/nonmatchings/sound/buf", voBufGetData);
 
-int voBufIsEmpty(void* a)
+int voBufIsEmpty(VoBuf* f)
 {
-    return (STRUCT_OFFSET(a, 0xC, int) == 0);
+    return f->count == 0;
 }
 
 INCLUDE_ASM("asm/nonmatchings/sound/buf", voBufGetTag);
