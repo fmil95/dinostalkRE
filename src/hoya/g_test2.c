@@ -53,7 +53,10 @@ void G_CONTINUE_Exec()
 
 INCLUDE_ASM("asm/nonmatchings/hoya/g_test2", G_CONTINUE_End);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/g_test2", G_PAUSE_Init);
+void G_PAUSE_Init()
+{
+    G_TTL_Init();
+}
 
 void G_PAUSE_Exec()
 {
