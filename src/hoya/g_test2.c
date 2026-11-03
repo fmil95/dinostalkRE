@@ -50,7 +50,14 @@ void G_OPTION_Exec()
     G_TTL_Exec();
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/g_test2", G_OPTION_End);
+void G_OPTION_End()
+{
+    gsSoundClose();
+    sceGsSyncPath(0, 0);
+    pfm_end();
+    GF_EndGraphicsFramework();
+    MEM_FreeAll();
+}
 
 void G_CONTINUE_Init()
 {
