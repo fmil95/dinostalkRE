@@ -10,6 +10,8 @@ extern int check_wait_timer_0067485c;
 extern int teach_time_00674874;
 extern int chk_mon_timer_00674878;
 extern int check_delay_timer_00674880;
+extern int adj_point[];
+extern int gun_point[];
 
 INCLUDE_ASM("asm/nonmatchings/hoya/option/gun_ajst", CheckGunScreenOut);
 
@@ -53,7 +55,14 @@ INCLUDE_ASM("asm/nonmatchings/hoya/option/gun_ajst", GunAdjust_gun_ajst);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/option/gun_ajst", change_wide_gun_ajst);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/option/gun_ajst", change_wide_mode_gun_ajst);
+void change_wide_mode_gun_ajst()
+{
+    wide_mode_flag_0067488c = 1;
+    adj_point[0] = 0;
+    gun_point[0] = 0;
+    adjust_mode_0067486c = 0;
+    teach_time_00674874 = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/option/gun_ajst", change_normal_mode_gun_ajst);
 
