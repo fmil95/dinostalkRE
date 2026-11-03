@@ -1,5 +1,7 @@
 #include "common.h"
 
+extern int D_00653B08[];
+
 INCLUDE_ASM("asm/nonmatchings/g_guncon1/g_guncon1", gsGuncon1_InitAll);
 
 INCLUDE_ASM("asm/nonmatchings/g_guncon1/g_guncon1", gsGuncon1_Init);
@@ -14,7 +16,10 @@ INCLUDE_ASM("asm/nonmatchings/g_guncon1/g_guncon1", gsGuncon1_CheckPort);
 
 INCLUDE_ASM("asm/nonmatchings/g_guncon1/g_guncon1", gsGuncon1_GetDelay);
 
-INCLUDE_ASM("asm/nonmatchings/g_guncon1/g_guncon1", gsGuncon1_Get);
+int gsGuncon1_Get()
+{
+    return D_00653B08[0];
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_guncon1/g_guncon1", gsGuncon1_GetTrg);
 
