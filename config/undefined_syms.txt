@@ -59,3 +59,5 @@ wait = 0x00674974;
 init_flg = 0x00674a70;
 isCountVblank = 0x00673de8;
 frd = 0x00673d98;
+waveScrollX = 0x006740f0;
+waveScrollZ = 0x006740f4;

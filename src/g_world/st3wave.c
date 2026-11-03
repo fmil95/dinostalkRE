@@ -1,6 +1,8 @@
 #include "common.h"
 
 extern float waveRndVec;
+extern float waveScrollX;
+extern float waveScrollZ;
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st3wave", gsWaveScrollX);
 
@@ -8,7 +10,11 @@ INCLUDE_ASM("asm/nonmatchings/g_world/st3wave", gsWaveScrollZ);
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st3wave", gsWaveMovePos);
 
-INCLUDE_ASM("asm/nonmatchings/g_world/st3wave", gsWaveSetScroll);
+void gsWaveSetScroll(float x, float y)
+{
+    waveScrollX = x;
+    waveScrollZ = y;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st3wave", gsWaveInit);
 
