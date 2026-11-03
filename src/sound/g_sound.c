@@ -38,7 +38,10 @@ INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundClose);
 
 INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundSetEffect);
 
-INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundGetEffect);
+int gsSoundGetEffect()
+{
+    return 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundSeMain);
 
