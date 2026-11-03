@@ -27,7 +27,10 @@ int hyGetEntryNo()
     return texMng[0];
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hySetEntryNo);
+void hySetEntryNo(int a)
+{
+    texMng[0] = a;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyGetTexUv);
 
