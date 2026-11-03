@@ -1,6 +1,7 @@
 #include "common.h"
 
 extern int gsWorldSt3_KoiwaCnt;
+extern int gsWorldSt3_SplashCnt;
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st3", gsWorldInitSt3);
 
@@ -36,7 +37,10 @@ INCLUDE_ASM("asm/nonmatchings/g_world/st3", gsWorldSt3_IwaGunHit_RANGE);
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st3", gsWorldSt3_IwaBreak);
 
-INCLUDE_ASM("asm/nonmatchings/g_world/st3", gsWorldSt3_InitSplash);
+void gsWorldSt3_InitSplash()
+{
+    gsWorldSt3_SplashCnt = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st3", gsWorldSt3_EntrySplash);
 
