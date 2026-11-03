@@ -17,7 +17,15 @@ extern int printf();
 
 INCLUDE_ASM("asm/nonmatchings/nmlib/nmGC2Main", nmUsbGunInit);
 
-INCLUDE_ASM("asm/nonmatchings/nmlib/nmGC2Main", nmUsbGunGetInfo);
+int nmUsbGunGetInfo(u_char* info)
+{
+    if (sceSifCheckStatRpc(&cdUsbGun) != 0)
+    {
+        printf(D_0066F5D8);
+    }
+
+    return sceSifCallRpc(&cdUsbGun, 1, 1, sdata_00873980, 0x20, info, 0x20, NULL, NULL);
+}
 
 INCLUDE_ASM("asm/nonmatchings/nmlib/nmGC2Main", nmUsbGunRead);
 
