@@ -160,7 +160,10 @@ INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyCheckFadeFinishFlag);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/hoya", ClipLine2D);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyWait);
+int hyWait(int a)
+{
+    return (a - (0 < a));
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyGetTimeSync);
 
