@@ -1,5 +1,7 @@
 #include "common.h"
 
+extern int gsEffect_FadeCnt;
+
 INCLUDE_ASM("asm/nonmatchings/g_effect", gs_effectResetEffectSrc);
 
 INCLUDE_ASM("asm/nonmatchings/g_effect", gsEffectRemove);
@@ -84,7 +86,10 @@ INCLUDE_ASM("asm/nonmatchings/g_effect", gsEffectSetFadeNowColor);
 
 INCLUDE_ASM("asm/nonmatchings/g_effect", gsEffectFadeManagement);
 
-INCLUDE_ASM("asm/nonmatchings/g_effect", gsEffectGetFadeCnt);
+int gsEffectGetFadeCnt()
+{
+    return gsEffect_FadeCnt;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_effect", gsEffectChangeBloodColor);
 
