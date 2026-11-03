@@ -43,7 +43,10 @@ void gpSetCollisionSkipGV(void* a, int b)
     STRUCT_OFFSET(a, 0xC8758, int) = b;
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_parts", gpSetCollisionSkipODV);
+void gpSetCollisionSkipODV(void* a, int b)
+{
+    STRUCT_OFFSET(a, 0xC875C, int) = b;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_parts", gpJudgeCollisionSphere);
 
