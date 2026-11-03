@@ -178,3 +178,4 @@ gsFootPointBefore = 0x006737a4;
 _g_sound_vab_tbl = 0x00674300;
 gsMovie_skipGunKey = 0x00674070;
 remoteSema = 0x00673de4;
+tex2dSendFlag_00674778 = 0x00674778;

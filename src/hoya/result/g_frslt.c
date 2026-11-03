@@ -1,8 +1,18 @@
 #include "common.h"
 
+extern int tex2dSendFlag_00674778;
+extern int tex2dSendFlag_00674778;
+extern int tex2dSendFlag_00674778;
+
 INCLUDE_ASM("asm/nonmatchings/hoya/result/g_frslt", LetsGotoFinalResultScene);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/result/g_frslt", PermittoSendFrsltTex);
+void PermittoSendFrsltTex(int a)
+{
+    if (a == 0)
+    {
+        tex2dSendFlag_00674778 = (tex2dSendFlag_00674778 | 0x1);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/result/g_frslt", Send2FrsltTex);
 
