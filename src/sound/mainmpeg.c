@@ -4,6 +4,7 @@ extern int frame_cnt;
 extern char err_sts;
 extern int GS_Send_Flg;
 extern int mono_flg;
+extern int isWithAudio;
 
 INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", cdvMpegInit);
 
@@ -24,7 +25,10 @@ void cdvMpegRestoreSet(char v)
     err_sts = v;
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", cdvMpegSoundSet);
+void cdvMpegSoundSet(int v)
+{
+    isWithAudio = v;
+}
 
 void cdvMpegSoundSMSet(int v)
 {
