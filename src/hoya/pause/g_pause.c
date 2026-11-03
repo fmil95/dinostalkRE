@@ -19,7 +19,10 @@ int gsPAUSE_Draw1(int a)
     return a;
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/pause/g_pause", gsPAUSE_Draw2);
+int gsPAUSE_Draw2(int a)
+{
+    return a;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/pause/g_pause", gsStageInit_PAUSE);
 
