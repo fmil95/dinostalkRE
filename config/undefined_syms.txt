@@ -141,3 +141,7 @@ gfInfoHead_00674cd8 = 0x00674cd8;
 gfInfoAddr_00673e88 = 0x00673e88;
 gfInfoHead_00674cd0 = 0x00674cd0;
 gfInfo_00674cd4 = 0x00674cd4;
+gf_trans_micro = 0x00673e68;
+gf_trans_light = 0x00673e6c;
+gf_trans_point_light = 0x00673e70;
+gf_trans_spot_light = 0x00673e74;
