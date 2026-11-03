@@ -4,6 +4,8 @@ extern int texMng[];
 extern void hySetFadePara();
 extern void hyDrawSMSpriteSub();
 extern int gsGuncon2_CheckConnect();
+extern char D_0066A4E8[];
+extern void FIO_ReadFile_Align();
 
 INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyGun1CheckScreenOut);
 
@@ -77,7 +79,10 @@ INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyLoadPigMemory);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyLoadPigStartgs3);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyLoadIcon);
+void hyLoadIcon()
+{
+    FIO_ReadFile_Align(D_0066A4E8, 0x40);
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/hoya", KeyStateUpdate);
 
