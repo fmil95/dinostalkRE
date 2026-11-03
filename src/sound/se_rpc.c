@@ -4,6 +4,8 @@ extern int D_0065176C[];
 extern int SeTransNow();
 extern int D_0065175C[];
 extern int D_00651760[];
+extern char PortGroup[];
+extern int ezSeL();
 
 int get_SE_MAX() 
 {
@@ -257,7 +259,10 @@ INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeSetStrmVol);
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeSetOutType);
 
-INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SePortInit);
+int SePortInit()
+{
+    return ezSeL((0 | 0x8530), PortGroup, 0x30);
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeSoundAllClose);
 
