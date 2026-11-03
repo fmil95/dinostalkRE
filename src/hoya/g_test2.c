@@ -8,6 +8,7 @@ extern void MEM_FreeAll();
 extern void gsSoundClose();
 extern void pfm_end();
 extern int stgsOldProcNo;
+extern void gsStageEnd_TITLE();
 
 INCLUDE_ASM("asm/nonmatchings/hoya/g_test2", hySetVram);
 
@@ -15,7 +16,15 @@ INCLUDE_ASM("asm/nonmatchings/hoya/g_test2", G_TTL_Init);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/g_test2", G_TTL_Exec);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/g_test2", G_TTL_End);
+void G_TTL_End()
+{
+    gsStageEnd_TITLE();
+    gsSoundClose();
+    sceGsSyncPath(0, 0);
+    pfm_end();
+    GF_EndGraphicsFramework();
+    MEM_FreeAll();
+}
 
 void G_RESULT_Init()
 {
