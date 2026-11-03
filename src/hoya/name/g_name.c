@@ -9,7 +9,10 @@ int gsNAME_Draw1(int a)
     return a;
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/name/g_name", gsNAME_Draw2);
+int gsNAME_Draw2(int a)
+{
+    return a;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/name/g_name", gsStageInit_NAME);
 
