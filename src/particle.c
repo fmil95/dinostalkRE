@@ -132,7 +132,10 @@ void GFParticle_Eval(void) {
 
 INCLUDE_ASM("asm/nonmatchings/particle", GFParticle_MakeInstance);
 
-INCLUDE_ASM("asm/nonmatchings/particle", GFParticle_OffInstance);
+void GFParticle_OffInstance(void* a)
+{
+    STRUCT_OFFSET(a, 0xD0, int) = (STRUCT_OFFSET(a, 0xD0, int) & -17);
+}
 
 INCLUDE_ASM("asm/nonmatchings/particle", GFParticle_Vu0RandomInit);
 
