@@ -1,5 +1,11 @@
 #include "common.h"
 
+extern char D_003E9570[];
+extern char fvRaptTailNullTrans[];
+extern char _gsIK_RaptTailHitPos[];
+extern char _gsIK_RaptInterpolateTail[];
+extern int _gsIK_TailHitSub();
+
 INCLUDE_ASM("asm/nonmatchings/benjamin/ik_rapb", _gsIK_RaptInit);
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/ik_rapb", _gsIK_RaptUpdateData);
@@ -32,6 +38,10 @@ INCLUDE_ASM("asm/nonmatchings/benjamin/ik_rapb", _gsIK_RaptArmHitR);
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/ik_rapb", _gsIK_RaptTailHitPos);
 
-INCLUDE_ASM("asm/nonmatchings/benjamin/ik_rapb", _gsIK_RaptTailHit);
+int _gsIK_RaptTailHit(int a)
+{
+    _gsIK_TailHitSub(a, 2, 5, D_003E9570, fvRaptTailNullTrans, _gsIK_RaptTailHitPos, _gsIK_RaptInterpolateTail);
+    return 0x100;
+}
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/ik_rapb", _gsIK_RaptDeadPose);
