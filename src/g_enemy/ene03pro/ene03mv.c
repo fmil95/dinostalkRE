@@ -1,6 +1,7 @@
 #include "common.h"
 
 extern void Enemy_AnmChg00();
+extern void Enemy_AnmChg01();
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/ene03pro/ene03mv", ene03move_main);
 
@@ -46,7 +47,11 @@ void ene03moveElem0e2(void* a)
     STRUCT_OFFSET(a, 0x8C, int) = 1;
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/ene03pro/ene03mv", ene03moveElem0e3);
+void ene03moveElem0e3(void* a)
+{
+    Enemy_AnmChg01(a, (((STRUCT_OFFSET(a, 0x84, int) << 1) + STRUCT_OFFSET(a, 0x84, int)) + 219), 8, 0, 6);
+    STRUCT_OFFSET(a, 0x8C, int) = (STRUCT_OFFSET(a, 0x8C, int) + 1);
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/ene03pro/ene03mv", ene03moveElem0e4);
 
