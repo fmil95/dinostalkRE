@@ -1,6 +1,7 @@
 #include "common.h"
 
 extern int D_005DE6A8[];
+extern int D_005DE6A4[];
 
 INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_other", gsCOCKPIT_InitLockOn);
 
@@ -23,7 +24,10 @@ int gsTimerGetFrame()
     return D_005DE6A8[0];
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_other", gsTimerGetPathTime);
+int gsTimerGetPathTime()
+{
+    return D_005DE6A4[0];
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_other", gsTimerCntTime);
 
