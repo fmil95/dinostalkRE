@@ -1,10 +1,16 @@
 #include "common.h"
 
+extern int ttl;
+extern void hyCheckFadeFinishFlag();
+
 INCLUDE_ASM("asm/nonmatchings/hoya/title/ttlsub01", SetFadePara_ttlsub01);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/title/ttlsub01", SwitchFadeTimer_ttlsub01);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/title/ttlsub01", CheckFadeFinishFlag_ttlsub01);
+void CheckFadeFinishFlag_ttlsub01()
+{
+    hyCheckFadeFinishFlag((ttl + 2304));
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/title/ttlsub01", Calculation_ttlsub01);
 
