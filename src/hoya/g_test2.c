@@ -109,7 +109,10 @@ INCLUDE_ASM("asm/nonmatchings/hoya/g_test2", G_MODESEL_End);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/g_test2", G_STARTGS3_Init);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/g_test2", G_STARTGS3_Exec);
+void G_STARTGS3_Exec()
+{
+    G_TTL_Exec();
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/g_test2", G_STARTGS3_End);
 
