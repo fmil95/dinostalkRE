@@ -1,12 +1,17 @@
 #include "common.h"
 
+extern int AdjustGunMode;
+
 INCLUDE_ASM("asm/nonmatchings/g_guncon2/g_adjustgun", GUN_ADJUST_Init);
 
 INCLUDE_ASM("asm/nonmatchings/g_guncon2/g_adjustgun", GUN_ADJUST_Exec);
 
 INCLUDE_ASM("asm/nonmatchings/g_guncon2/g_adjustgun", GUN_ADJUST_End);
 
-INCLUDE_ASM("asm/nonmatchings/g_guncon2/g_adjustgun", gsAdjustGun_Init);
+void gsAdjustGun_Init()
+{
+    AdjustGunMode = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_guncon2/g_adjustgun", gsAdjustGun_Main);
 
