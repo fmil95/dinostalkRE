@@ -2,6 +2,9 @@
 
 extern void G_TTL_Exec();
 extern void G_TTL_Init();
+extern void sceGsSyncPath();
+extern void GF_EndGraphicsFramework();
+extern void MEM_FreeAll();
 
 INCLUDE_ASM("asm/nonmatchings/hoya/g_test2", hySetVram);
 
@@ -135,4 +138,9 @@ INCLUDE_ASM("asm/nonmatchings/hoya/g_test2", gsHoyaOption_Exec);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/g_test2", gsHoyaOption_Init2);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/g_test2", gsHoyaOption_End);
+void gsHoyaOption_End()
+{
+    sceGsSyncPath(0, 0);
+    GF_EndGraphicsFramework();
+    MEM_FreeAll();
+}
