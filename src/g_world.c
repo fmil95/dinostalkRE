@@ -1,6 +1,7 @@
 #include "common.h"
 
 extern int _bullet_effect_gnd_list;
+extern int _sw_dino_num;
 
 INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldRestoreMipmap);
 
@@ -54,7 +55,10 @@ INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldInitLineSwitch);
 
 INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldTriggerLineSwitch);
 
-INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldLineSwitchDINO_INIT);
+void gsWorldLineSwitchDINO_INIT()
+{
+    _sw_dino_num = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldLineSwitchDINO_ENTRY);
 

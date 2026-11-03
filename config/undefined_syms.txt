@@ -41,3 +41,4 @@ gsEffect_FadeCnt = 0x00673f90;
 gsShockIsOn = 0x006735a0;
 waveRndVec = 0x00673610;
 _bullet_effect_gnd_list = 0x00674028;
+_sw_dino_num = 0x00674020;
