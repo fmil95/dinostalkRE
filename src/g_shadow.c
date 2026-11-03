@@ -4,6 +4,8 @@ extern float gpShadowFarZ;
 extern float gpShadowMaxAlpha;
 extern float D_0068D8E4[];
 extern float D_002AF960[];
+extern char gpShadowLightVector[];
+extern void sceVu0Normalize();
 
 INCLUDE_ASM("asm/nonmatchings/g_shadow", gpShadow_Init);
 
@@ -60,7 +62,10 @@ void gpShadow_SetMaxAlpha(float v)
     gpShadowMaxAlpha = v;
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_shadow", gpShadow_SetLightVector);
+void gpShadow_SetLightVector(int a)
+{
+    sceVu0Normalize(gpShadowLightVector, a);
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_shadow", gpShadow_InitPacket);
 
