@@ -43,3 +43,4 @@ waveRndVec = 0x00673610;
 _bullet_effect_gnd_list = 0x00674028;
 _sw_dino_num = 0x00674020;
 _st2_rapt_flag = 0x00674080;
+gsWorldSt3_KoiwaCnt = 0x006740ac;

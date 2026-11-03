@@ -1,5 +1,7 @@
 #include "common.h"
 
+extern int gsWorldSt3_KoiwaCnt;
+
 INCLUDE_ASM("asm/nonmatchings/g_world/st3", gsWorldInitSt3);
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st3", gsWorldSt3EntryTex_GND);
@@ -40,7 +42,10 @@ INCLUDE_ASM("asm/nonmatchings/g_world/st3", gsWorldSt3_EntrySplash);
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st3", gsWorldSt3_IwaWater);
 
-INCLUDE_ASM("asm/nonmatchings/g_world/st3", gsWorldSt3_InitKoiwa);
+void gsWorldSt3_InitKoiwa()
+{
+    gsWorldSt3_KoiwaCnt = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st3", gsWorldSt3_EntryKoiwa);
 
