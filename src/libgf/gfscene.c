@@ -8,7 +8,12 @@ INCLUDE_ASM("asm/nonmatchings/libgf/gfscene", GFScene_SetViewClip);
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfscene", GFScene_SetClipScreen);
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfscene", GFScene_SetScreen);
+void GFScene_SetScreen(GF_INST_SCENE* scene, GF_SCREEN* screen)
+{
+    GFScene_SetViewScreen(scene->viewScreen, screen);
+    GFScene_SetViewClip(scene->viewClip, screen);
+    GFScene_SetClipScreen(scene->clipScreen, screen);
+}
 
 qword* GFScene_MakePacket(GF_INST_SCENE* scene, qword* packbuf)
 {
