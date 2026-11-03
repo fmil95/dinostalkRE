@@ -4,7 +4,10 @@ extern void sceVu0CopyVector();
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/flare", GFFlare_Update);
 
-INCLUDE_ASM("asm/nonmatchings/benjamin/flare", GFFlare_SetStartPos);
+void GFFlare_SetStartPos(void* a)
+{
+    sceVu0CopyVector((char*)a + 0x110);
+}
 
 void GFFlare_SetEndPos(void* a)
 {
