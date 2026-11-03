@@ -1,5 +1,7 @@
 #include "common.h"
 
+extern int gsGunExtraId;
+
 INCLUDE_ASM("asm/nonmatchings/g_gun", gsInitGunManager);
 
 INCLUDE_ASM("asm/nonmatchings/g_gun", gsInitGunManager_START_GAME);
@@ -96,7 +98,10 @@ INCLUDE_ASM("asm/nonmatchings/g_gun", gsGunEntryGun_STRONG);
 
 INCLUDE_ASM("asm/nonmatchings/g_gun", gsGunSpecial_STRONG);
 
-INCLUDE_ASM("asm/nonmatchings/g_gun", gsGunGetExtArmsTypeNo);
+int gsGunGetExtArmsTypeNo()
+{
+    return ((gsGunExtraId & 0x1) + 2);
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_gun", gsGunPutTreasure);
 

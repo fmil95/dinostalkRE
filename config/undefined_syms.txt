@@ -146,3 +146,4 @@ gf_trans_light = 0x00673e6c;
 gf_trans_point_light = 0x00673e70;
 gf_trans_spot_light = 0x00673e74;
 mcdResult = 0x00673c40;
+gsGunExtraId = 0x00673590;
