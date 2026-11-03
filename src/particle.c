@@ -2,6 +2,8 @@
 
 extern void sceVu0CopyVector();
 extern void sceVu0CopyVectorXYZ();
+extern void sceVu0UnitMatrix();
+extern void sceVu0RotMatrix();
 
 INCLUDE_ASM("asm/nonmatchings/particle", gf_MyRand);
 
@@ -123,7 +125,11 @@ void GFParticle_SetAlphaType(void* p, int v)
     STRUCT_OFFSET(p, 0x140, int) = v;
 }
 
-INCLUDE_ASM("asm/nonmatchings/particle", GFParticle_SetDirection);
+void GFParticle_SetDirection(int a, int b)
+{
+    sceVu0UnitMatrix((char*)a + 0x100, b);
+    sceVu0RotMatrix((char*)a + 0x100, (char*)a + 0x100, b);
+}
 
 INCLUDE_ASM("asm/nonmatchings/particle", GFParticle_Draw);
 
