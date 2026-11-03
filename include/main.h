@@ -5,7 +5,7 @@
 
 #include "common.h"
 
-main();
+int main();
 void _gsMuteki_INIT();
 _gsMuteki_EXEC();
 static void EndSystem();
