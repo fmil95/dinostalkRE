@@ -166,7 +166,19 @@ INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyHex2Bcd);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/hoya", sceVu0RotCameraMatrix);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyInitFadeMng);
+void hyInitFadeMng(void* a)
+{
+    STRUCT_OFFSET(a, 0x0, int) = 0;
+    STRUCT_OFFSET(a, 0x10, int) = 0;
+    STRUCT_OFFSET(a, 0x14, int) = 0;
+    STRUCT_OFFSET(a, 0x18, int) = 0;
+    STRUCT_OFFSET(a, 0x1C, int) = 0;
+    STRUCT_OFFSET(a, 0x20, int) = 0;
+    STRUCT_OFFSET(a, 0x24, int) = 0;
+    STRUCT_OFFSET(a, 0x28, int) = 0;
+    STRUCT_OFFSET(a, 0x2C, int) = 0;
+    STRUCT_OFFSET(a, 0x30, int) = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hySetFadePara);
 
