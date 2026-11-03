@@ -9,6 +9,7 @@ extern int work0;
 extern int work1;
 extern int work2;
 extern int work3;
+extern int delay_time;
 
 int Gun1AjstGetViewScene()
 {
@@ -53,7 +54,12 @@ INCLUDE_ASM("asm/nonmatchings/hoya/option/gun1_ajst", Gun1AdjustProcGunAdjustFir
 
 INCLUDE_ASM("asm/nonmatchings/hoya/option/gun1_ajst", Gun1AdjustProcGunDelayTime);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/option/gun1_ajst", Gun1AdjustProcGunSetDeleyTime);
+int Gun1AdjustProcGunSetDeleyTime()
+{
+    delay_time = work0;
+    trans = (trans + 1);
+    return 1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/option/gun1_ajst", Gun1AdjustProcGunAdjustSecond);
 

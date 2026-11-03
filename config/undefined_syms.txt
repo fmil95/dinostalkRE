@@ -151,3 +151,4 @@ _clear_bit = 0x00674b0c;
 gPad = 0x00673f28;
 gPadTrg = 0x00673f30;
 N_Read_Unit = 0x00674a80;
+delay_time = 0x00674844;
