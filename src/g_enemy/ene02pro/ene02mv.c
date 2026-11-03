@@ -1,5 +1,7 @@
 #include "common.h"
 
+extern void Enemy_AnmChg00();
+
 INCLUDE_ASM("asm/nonmatchings/g_enemy/ene02pro/ene02mv", ene02move_main);
 
 void enedummymv_ene02mv(void) {
@@ -29,7 +31,15 @@ INCLUDE_ASM("asm/nonmatchings/g_enemy/ene02pro/ene02mv", ene02move2c);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/ene02pro/ene02mv", ene02B_move_main);
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/ene02pro/ene02mv", ene02B_move00);
+void ene02B_move00(void* a)
+{
+    STRUCT_OFFSET(a, 0x200, int) = 0;
+    if (!(STRUCT_OFFSET(a, 0x8C, int) != 0))
+    {
+        Enemy_AnmChg00(a, 0, 8, 1);
+        STRUCT_OFFSET(a, 0x8C, int) = (STRUCT_OFFSET(a, 0x8C, int) + 1);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/ene02pro/ene02mv", ene02B_move02);
 
