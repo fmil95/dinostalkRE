@@ -4,6 +4,8 @@ extern void hyLoadPigFont();
 extern void EndLetterAll();
 extern int gsFONT_IdtexNo1;
 extern void GFTex_Remove();
+extern void InitLetter();
+extern void LoadLetterPig();
 
 void LoadLetterPig()
 {
@@ -12,7 +14,11 @@ void LoadLetterPig()
 
 INCLUDE_ASM("asm/nonmatchings/hoya/g_string", InitLetter);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/g_string", InitLetterAll);
+void InitLetterAll()
+{
+    InitLetter();
+    LoadLetterPig();
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/g_string", DeleteEntryNumSprite);
 
