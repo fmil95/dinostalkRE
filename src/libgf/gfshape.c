@@ -1,3 +1,5 @@
+#include "gunsuv_usa/libgf/libgf.h"
+#include "gunsuv_usa/libgf/gftex.h"
 #include "gunsuv_usa/libgf/gfanim.h"
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfshape", gfShape_AttachObject2);
@@ -28,4 +30,28 @@ INCLUDE_ASM("asm/nonmatchings/libgf/gfshape", GFShape_MakeMatrixTransferPacket);
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfshape", GFShape_MakeAllMatrixTransferPacket);
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfshape", gfTexturedraw);
+qword* gfTexturedraw(qword* packet, Sint32 texidx)
+{
+    qword* cur;
+    Sint32 valid;
+
+    cur = packet;
+
+    if (texidx < 0)
+    {
+        _GFPKT_DV_CNT_FLUSH(cur, 0);
+        cur++;
+
+        return GFTex_MakeTexturePacket(cur, GFTex_GetDb(texidx), 0);
+    }
+
+    valid = GFTex_Validate(texidx);
+    cur = GFTex_MakeTexturePacket(packet, GFTex_GetDb(texidx), valid);
+
+    if (valid)
+    {
+        gf_transTextureNum++;
+    }
+
+    return cur;
+}

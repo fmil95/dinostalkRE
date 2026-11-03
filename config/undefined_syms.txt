@@ -198,3 +198,6 @@ s_vol_l0 = 0x00674a88;
 s_vol_r0 = 0x00674a8c;
 s_vol_l1 = 0x00674a90;
 s_vol_r1 = 0x00674a94;
+gf_transTextureNum = 0x00673e58;
+gf_trans_fog = 0x00673e7c;
+gf_trans_scene = 0x00673e60;
