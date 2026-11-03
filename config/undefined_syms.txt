@@ -181,3 +181,5 @@ remoteSema = 0x00673de4;
 tex2dSendFlag_00674778 = 0x00674778;
 tex2dSendFlag_00674788 = 0x00674788;
 search_ptr = 0x00674a24;
+_st7_ext_compel_no = 0x00673f70;
+_st7_ext_compel_step = 0x00673f74;
