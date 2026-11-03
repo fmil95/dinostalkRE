@@ -160,3 +160,4 @@ gsFONT_IdtexNo1 = 0x00673b64;
 pOptOption = 0x00673cc0;
 pmss_00674568 = 0x00674568;
 pmss_006745c4 = 0x006745c4;
+pGnn = 0x00673ce8;

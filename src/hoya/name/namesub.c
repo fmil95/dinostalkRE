@@ -1,10 +1,16 @@
 #include "common.h"
 
+extern int pGnn;
+extern void hyCheckFadeFinishFlag();
+
 INCLUDE_ASM("asm/nonmatchings/hoya/name/namesub", SetFadeParaPause_namesub);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/name/namesub", SwitchFadeTimerPause_namesub);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/name/namesub", CheckFadeFinishFlagPause_namesub);
+void CheckFadeFinishFlagPause_namesub()
+{
+    hyCheckFadeFinishFlag((pGnn + 192));
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/name/namesub", Draw2dObjectName);
 
