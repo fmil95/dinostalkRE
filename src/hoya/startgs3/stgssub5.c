@@ -2,12 +2,16 @@
 
 extern int pStgs_006749a0;
 extern void hyCheckFadeFinishFlag();
+extern void hySetFadePara2();
 
 INCLUDE_ASM("asm/nonmatchings/hoya/startgs3/stgssub5", SetFadeParaFadeIn_stgssub5);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/startgs3/stgssub5", SetFadeParaFadeOut_stgssub5);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/startgs3/stgssub5", SetFadePara_stgssub5);
+void SetFadePara_stgssub5(int a, int b, int c)
+{
+    hySetFadePara2(a, b, c, (pStgs_006749a0 + 64));
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/startgs3/stgssub5", SwitchFadeTimer_stgssub5);
 
