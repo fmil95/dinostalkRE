@@ -1,6 +1,8 @@
 #include "common.h"
 
 extern int gsGunExtraId;
+extern void gsSoundEeSE_STOP();
+extern void gsSoundEeSE_STOP();
 
 INCLUDE_ASM("asm/nonmatchings/g_gun", gsInitGunManager);
 
@@ -147,6 +149,10 @@ INCLUDE_ASM("asm/nonmatchings/g_gun", gsGunPlaySE_FLY);
 
 INCLUDE_ASM("asm/nonmatchings/g_gun", gsGunTuneVOLUME_FLY);
 
-INCLUDE_ASM("asm/nonmatchings/g_gun", gsGunStopSE_FLY);
+void gsGunStopSE_FLY(int a)
+{
+    gsSoundEeSE_STOP((char*)a + 0xF4);
+    gsSoundEeSE_STOP((char*)a + 0xF8);
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_gun", gsGunPlaySE_BOMB);
