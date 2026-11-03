@@ -1,6 +1,24 @@
+#include "gunsuv_usa/libgf/gffog.h"
 #include "gunsuv_usa/libgf/gfscene.h"
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfscene", GFScene_MakeInstance);
+GF_INST_SCENE* GFScene_MakeInstance(GF_INST_SCENE* scene, GF_INSTANCE* parent)
+{
+    sceVu0FMATRIX unit;
+
+    scene->head.type = GF_INST_TYPE_SCENE;
+
+    GFInstance_InitHead(&scene->head);
+    sceVu0UnitMatrix(unit);
+    GFScene_SetWorldView(scene, unit);
+
+    scene->head.parent = parent;
+
+    GFFog_Init(&scene->fog);
+
+    scene->packet = NULL;
+
+    return scene;
+}
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfscene", GFScene_SetViewScreen);
 
