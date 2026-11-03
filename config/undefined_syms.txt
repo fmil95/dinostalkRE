@@ -186,3 +186,4 @@ _st7_ext_compel_step = 0x00673f74;
 memcManager = 0x00673c08;
 oldProcNo = 0x006746cc;
 gsVRMode = 0x00673184;
+_step_2 = 0x00673d14;

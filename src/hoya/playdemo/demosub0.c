@@ -1,5 +1,12 @@
 #include "common.h"
 
+extern int _step_2;
+extern int _step_2;
+extern int _step_2;
+extern int gsPlayDemoFlag;
+extern int gsPlayDemoFlag;
+extern int gsPlayDemoFlag;
+
 INCLUDE_ASM("asm/nonmatchings/hoya/playdemo/demosub0", gsInitDemo);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/playdemo/demosub0", gsDemoLoadPig);
@@ -8,7 +15,13 @@ INCLUDE_ASM("asm/nonmatchings/hoya/playdemo/demosub0", gsDemoInitSprite);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/playdemo/demosub0", gsPutDemoObjects);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/playdemo/demosub0", gsDemoRecPlayPad);
+void gsDemoRecPlayPad()
+{
+    if (_step_2 == 0)
+    {
+        _step_2 = (((((gsPlayDemoFlag << 1) + gsPlayDemoFlag) << 3) + gsPlayDemoFlag) << 2);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/playdemo/demosub0", gsManagementDemoCamera);
 
