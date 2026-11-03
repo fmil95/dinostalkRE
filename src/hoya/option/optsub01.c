@@ -4,6 +4,9 @@ extern int pOptOption;
 extern void hyCheckFadeFinishFlag();
 extern void hySetFadePara2();
 extern void hySwitchFadeTimer();
+extern void OptDrawSprMenuLight();
+extern void OptDrawSprMenu();
+extern void OptDrawSprOther();
 
 void SetFadeParaOpt(int a, int b, int c)
 {
@@ -69,7 +72,12 @@ INCLUDE_ASM("asm/nonmatchings/hoya/option/optsub01", Draw2dObjectOptAjstGun);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/option/optsub01", Draw2dObjectOptKeyConfig);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/option/optsub01", Draw2dObjectOptMenu);
+void Draw2dObjectOptMenu(int a)
+{
+    OptDrawSprMenuLight(a);
+    OptDrawSprMenu(a);
+    OptDrawSprOther(a);
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/option/optsub01", InitSpriteKeyConfig);
 
