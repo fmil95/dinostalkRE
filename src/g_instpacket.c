@@ -20,6 +20,9 @@ INCLUDE_ASM("asm/nonmatchings/g_instpacket", GFDrawenv_SetDb);
 
 INCLUDE_ASM("asm/nonmatchings/g_instpacket", GFDrawenv_SetClearZ);
 
-INCLUDE_ASM("asm/nonmatchings/g_instpacket", GFDrawenv_SetClearRGB);
+void GFDrawenv_SetClearRGB(void* p, short v)
+{
+    STRUCT_OFFSET(p, 0x106, short) = v;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_instpacket", GFDrawenv_Draw);
