@@ -1,5 +1,8 @@
 #include "common.h"
 
+extern int oldProcNo;
+extern int gsNextProg;
+
 INCLUDE_ASM("asm/nonmatchings/hoya/title/g_title", LetsGotoTitle);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/title/g_title", LetsGotoStart);
@@ -7,7 +10,15 @@ INCLUDE_ASM("asm/nonmatchings/hoya/title/g_title", LetsGotoStart);
 void LetsGotoDaisakusen(void) {
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/title/g_title", LetsGotoOpening);
+void LetsGotoOpening(int a)
+{
+    if (a != -1)
+    {
+        oldProcNo = 0x63;
+    }
+
+    gsNextProg = 8;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/title/g_title", gsStageInit_TITLE);
 
