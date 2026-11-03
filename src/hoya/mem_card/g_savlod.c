@@ -3,6 +3,7 @@
 extern void mcdCloseSet();
 extern void mcdQuit();
 extern void mcdGetQueCondition();
+extern int mcdResult;
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", CreateIconSys);
 
@@ -41,7 +42,10 @@ void GetQueCondition()
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", GetResultValue);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", GetErr);
+int GetErr()
+{
+    return ((unsigned int)0 < (unsigned int)mcdResult);
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", CheckSystemDataVersion);
 
