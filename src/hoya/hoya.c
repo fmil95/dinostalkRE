@@ -1,6 +1,7 @@
 #include "common.h"
 
 extern int texMng[];
+extern void hySetFadePara();
 
 INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyGun1CheckScreenOut);
 
@@ -146,7 +147,10 @@ INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyCalcFade);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyInitFadeMng2);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hySetFadePara2);
+void hySetFadePara2()
+{
+    hySetFadePara();
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyCalcFade2);
 
