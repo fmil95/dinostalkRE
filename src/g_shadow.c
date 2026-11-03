@@ -1,5 +1,7 @@
 #include "common.h"
 
+extern float gpShadowFarZ;
+
 INCLUDE_ASM("asm/nonmatchings/g_shadow", gpShadow_Init);
 
 INCLUDE_ASM("asm/nonmatchings/g_shadow", gpShadow_InitShadow);
@@ -30,7 +32,10 @@ INCLUDE_ASM("asm/nonmatchings/g_shadow", gpShadow_Visible);
 
 INCLUDE_ASM("asm/nonmatchings/g_shadow", gpShadow_SetVolumeLength);
 
-INCLUDE_ASM("asm/nonmatchings/g_shadow", gpShadow_ReSetScreenFarZ);
+void gpShadow_ReSetScreenFarZ(float v)
+{
+    gpShadowFarZ = v;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_shadow", gpShadow_SetMaxAlpha);
 

@@ -32,3 +32,4 @@ GS_Send_Flg = 0x00673da4;
 mono_flg = 0x00673d64;
 isWithAudio = 0x00673d60;
 UserProg = 0x00673da0;
+gpShadowFarZ = 0x00673fcc;
