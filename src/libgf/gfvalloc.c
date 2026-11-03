@@ -28,7 +28,12 @@ INCLUDE_ASM("asm/nonmatchings/libgf/gfvalloc", GFVram_FreeAll);
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfvalloc", GFVram_PrintAllocationStatus);
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfvalloc", GFVram_SetFrameBufferSize);
+void GFVram_SetFrameBufferSize(Uint32 w, Uint32 h, Uint32 psm)
+{
+    gf_vramScreenInfo.frameBuffer.w = w;
+    gf_vramScreenInfo.frameBuffer.h = h;
+    gf_vramScreenInfo.frameBuffer.psm = psm;
+}
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfvalloc", GFVram_SetZBufferSize);
 
