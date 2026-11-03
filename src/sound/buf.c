@@ -64,7 +64,13 @@ void voBufDelete(VoBuf* f)
     f->write = 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/buf", voBufReset);
+int voBufReset(VoBuf* f)
+{
+    f->count = 0;
+    f->write = 0;
+
+    return 0;
+}
 
 int voBufIsFull(VoBuf* f)
 {
