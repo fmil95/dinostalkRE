@@ -1,6 +1,8 @@
 #include "common.h"
 
 extern void EndMemcManager();
+extern int pmss_006745c4;
+extern void hyCheckFadeFinishFlag();
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub2", LoadInitSprFileNum);
 
@@ -22,7 +24,10 @@ INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub2", SetFadeParaPause_memcsub2
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub2", SwitchFadeTimerPause_memcsub2);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub2", CheckFadeFinishFlagPause_memcsub2);
+void CheckFadeFinishFlagPause_memcsub2()
+{
+    hyCheckFadeFinishFlag((pmss_006745c4 + 64));
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub2", Draw2dObject_memcsub2);
 
