@@ -1,5 +1,7 @@
 #include "common.h"
 
+extern int frame_cnt;
+
 INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", cdvMpegInit);
 
 INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", PortSlotCheck);
@@ -20,7 +22,10 @@ INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", cdvMpegSoundSet);
 
 INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", cdvMpegSoundSMSet);
 
-INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", cdvMpegGetFrameCount);
+int cdvMpegGetFrameCount()
+{
+    return frame_cnt;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", cdvMpegPlayEnd);
 
