@@ -61,3 +61,5 @@ isCountVblank = 0x00673de8;
 frd = 0x00673d98;
 waveScrollX = 0x006740f0;
 waveScrollZ = 0x006740f4;
+gsWorldSt3_IwaCnt = 0x006740a0;
+gsWorldSt3_IwaObjCnt = 0x006740a4;

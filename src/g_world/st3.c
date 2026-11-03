@@ -2,6 +2,8 @@
 
 extern int gsWorldSt3_KoiwaCnt;
 extern int gsWorldSt3_SplashCnt;
+extern int gsWorldSt3_IwaCnt;
+extern int gsWorldSt3_IwaObjCnt;
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st3", gsWorldInitSt3);
 
@@ -21,7 +23,11 @@ INCLUDE_ASM("asm/nonmatchings/g_world/st3", gsWorldSt3_InitLight);
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st3", gsWorldSt3_Light);
 
-INCLUDE_ASM("asm/nonmatchings/g_world/st3", gsWorldSt3_InitIwa);
+void gsWorldSt3_InitIwa()
+{
+    gsWorldSt3_IwaCnt = 0;
+    gsWorldSt3_IwaObjCnt = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st3", gsWorldSt3_EntryIwa);
 
