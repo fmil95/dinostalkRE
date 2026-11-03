@@ -118,7 +118,10 @@ INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldEntryODV_AREA);
 
 INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldEntryOBJ_ALPHA);
 
-INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldEntryGND_ALPHA);
+void gsWorldEntryGND_ALPHA(void* a, int b, long c)
+{
+    ((long*)((char*)a + 0x100))[b] = c;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldEntryGND_COL);
 
