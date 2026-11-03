@@ -1,6 +1,7 @@
 #include "common.h"
 
 extern int gPad[1];
+extern int gPadTrg[1];
 
 INCLUDE_ASM("asm/nonmatchings/pad", PAD_InitPad);
 
@@ -13,4 +14,7 @@ int PAD_GetPad(int a)
     return gPad[a];
 }
 
-INCLUDE_ASM("asm/nonmatchings/pad", PAD_GetPadTrg);
+int PAD_GetPadTrg(int a)
+{
+    return gPadTrg[a];
+}
