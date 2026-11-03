@@ -91,7 +91,10 @@ INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", DeleteMemcSaveFile);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", OpenSaveData);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", WriteSaveData);
+void WriteSaveData(int a, int b)
+{
+    mcdWriteSet(a, b, saveDataBox, 0x2e14);
+}
 
 void ReadSaveData(int a, int b)
 {
