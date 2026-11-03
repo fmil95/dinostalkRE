@@ -8,6 +8,8 @@ extern int SeMain();
 extern int SeStopVoice();
 extern int _g_sound_vab_tbl;
 extern int SeVabOpen();
+extern int gsVRMode;
+extern void SeCSLMidiXFade();
 
 INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundInitModule);
 
@@ -53,7 +55,15 @@ INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundBgmReplay);
 
 INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundBgmStop);
 
-INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundBgmCrossFade);
+int gsSoundBgmCrossFade()
+{
+    if (gsVRMode == 0)
+    {
+        SeCSLMidiXFade();
+    }
+
+    return 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundClose);
 
