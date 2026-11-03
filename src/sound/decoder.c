@@ -96,7 +96,10 @@ INCLUDE_ASM("asm/nonmatchings/sound/decoder", audioDecBeginPut);
 
 INCLUDE_ASM("asm/nonmatchings/sound/decoder", audioDecEndPut);
 
-INCLUDE_ASM("asm/nonmatchings/sound/decoder", audioDecIsPreset);
+int audioDecIsPreset(void* a)
+{
+    return ((STRUCT_OFFSET(a, 0x54, int) < STRUCT_OFFSET(a, 0x48, int)) ^ 0x1);
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/decoder", audioDecSendToIOP);
 
