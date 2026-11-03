@@ -1,6 +1,7 @@
 #include "common.h"
 
 extern void G_TTL_Exec();
+extern void G_TTL_Init();
 
 INCLUDE_ASM("asm/nonmatchings/hoya/g_test2", hySetVram);
 
@@ -28,7 +29,10 @@ INCLUDE_ASM("asm/nonmatchings/hoya/g_test2", G_OPTION_Exec);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/g_test2", G_OPTION_End);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/g_test2", G_CONTINUE_Init);
+void G_CONTINUE_Init()
+{
+    G_TTL_Init();
+}
 
 void G_CONTINUE_Exec()
 {
