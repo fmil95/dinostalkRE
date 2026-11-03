@@ -1,6 +1,19 @@
 #include "common.h"
 
-INCLUDE_ASM("asm/nonmatchings/g_cshadow", gpCShadow_Init);
+extern int gpCShadowMicro;
+extern float gpCShadowFarZ;
+extern float gpCShadowAlpha;
+extern int gpCShadowBegin;
+extern int gpCShadowBefore;
+
+void gpCShadow_Init(int a, float x, float y)
+{
+    gpCShadowMicro = a;
+    gpCShadowFarZ = x;
+    gpCShadowAlpha = y;
+    gpCShadowBegin = 0;
+    gpCShadowBefore = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_cshadow", gpCShadow_InitCShadow);
 
