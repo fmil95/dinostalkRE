@@ -1,5 +1,7 @@
 #include "common.h"
 
+extern void EndLetterAll();
+
 INCLUDE_ASM("asm/nonmatchings/hoya/continue/cntsub1", SetFadePara_cntsub1);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/continue/cntsub1", SwitchFadeTimer_cntsub1);
@@ -54,4 +56,7 @@ INCLUDE_ASM("asm/nonmatchings/hoya/continue/cntsub1", ProcContinueGameOverWait);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/continue/cntsub1", MainContinue);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/continue/cntsub1", EndContinue);
+void EndContinue()
+{
+    EndLetterAll();
+}
