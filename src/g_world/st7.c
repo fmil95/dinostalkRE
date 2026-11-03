@@ -3,6 +3,7 @@
 extern int _st7_dino_light_num;
 extern int _st7_glow_num;
 extern int _st7_hasi_light_num;
+extern int _st7_jeep_light_obj_num;
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldInitSt7);
 
@@ -16,7 +17,10 @@ INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldSt7_ClearPointLight);
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldSt7_FlushPointLight);
 
-INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldSt7_InitJeepLight);
+void gsWorldSt7_InitJeepLight()
+{
+    _st7_jeep_light_obj_num = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldSt7_EntryJeepLight);
 
