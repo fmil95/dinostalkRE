@@ -1,6 +1,7 @@
 #include "common.h"
 
 extern void aeInit();
+extern void saeDrawPrim();
 
 void gplInitPlane()
 {
@@ -37,4 +38,7 @@ INCLUDE_ASM("asm/nonmatchings/g_plane", gplInitPolyGt4);
 
 INCLUDE_ASM("asm/nonmatchings/g_plane", gplSetPolyGt4);
 
-INCLUDE_ASM("asm/nonmatchings/g_plane", gplDrawPlane);
+void gplDrawPlane(int a)
+{
+    saeDrawPrim((a & 0x1));
+}
