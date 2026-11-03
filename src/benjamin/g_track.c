@@ -1,6 +1,15 @@
 #include "common.h"
 
-INCLUDE_ASM("asm/nonmatchings/benjamin/g_track", gsTrackMicroInit);
+extern char gMicroTrack[];
+extern char gTrackMS[];
+extern void gsTrackInit();
+extern void GFMicro_MakePacket();
+
+void gsTrackMicroInit(int a, int b, int c)
+{
+    gsTrackInit(a, b, c);
+    GFMicro_MakePacket(gMicroTrack, b, gTrackMS, c);
+}
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/g_track", gsTrackInit);
 
