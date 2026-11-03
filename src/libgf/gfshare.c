@@ -41,7 +41,24 @@ static sceVu0FMATRIX* gf_GetShapeLightMatrix(GF_INST_OBJECT* pObj, Uint32 n)
     return (sceVu0FMATRIX*)pShape;
 }
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfshare", gf_CopyQWs);
+qword* gf_CopyQWs(qword* pw, qword* pr, Uint32 size)
+{
+    Uint128* w = (Uint128*)pw;
+    Uint128* r = (Uint128*)pr;
+    Uint32 i;
+
+    for (i = 0; i < size; i++)
+    {
+        asm volatile(
+            "lq $6, 0(%1)\n"
+            "sq $6, 0(%0)\n"
+            : : "r"(w), "r"(r) : "$6", "memory");
+        w++;
+        r++;
+    }
+
+    return (qword*)w;
+}
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfshare", gf_MakeShareShape);
 
