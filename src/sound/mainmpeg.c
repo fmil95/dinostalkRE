@@ -1,6 +1,7 @@
 #include "common.h"
 
 extern int frame_cnt;
+extern char err_sts;
 
 INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", cdvMpegInit);
 
@@ -16,7 +17,10 @@ INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", cdvMpegSkipResetAll);
 
 INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", cdvMpegPadUseSet);
 
-INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", cdvMpegRestoreSet);
+void cdvMpegRestoreSet(char v)
+{
+    err_sts = v;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", cdvMpegSoundSet);
 

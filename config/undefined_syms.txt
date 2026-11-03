@@ -27,3 +27,4 @@ Read_Pos = 0x00674a08;
 WriteQue = 0x006749ea;
 s_volume = 0x00673dc0;
 frame_cnt = 0x00673db0;
+err_sts = 0x00674a78;
