@@ -1,5 +1,7 @@
 #include "common.h"
 
+extern char gf_vramScreenInfo[];
+
 INCLUDE_ASM("asm/nonmatchings/libgf/gfvalloc", GFVram_SetInfoAddr);
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfvalloc", gfVram_ClearAllCell);
@@ -34,4 +36,7 @@ INCLUDE_ASM("asm/nonmatchings/libgf/gfvalloc", GFVram_SetZBufferSize);
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfvalloc", GFVram_SetScreenBufferSize);
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfvalloc", GFVram_GetScreenInfo);
+void* GFVram_GetScreenInfo()
+{
+    return gf_vramScreenInfo;
+}
