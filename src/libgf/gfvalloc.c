@@ -42,7 +42,12 @@ void GFVram_SetZBufferSize(Uint32 w, Uint32 h, Uint32 psm)
     gf_vramScreenInfo.zBuffer.psm = psm;
 }
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfvalloc", GFVram_SetScreenBufferSize);
+void GFVram_SetScreenBufferSize(Uint32 w, Uint32 h, Uint32 psm)
+{
+    gf_vramScreenInfo.screen.w = w;
+    gf_vramScreenInfo.screen.h = h;
+    gf_vramScreenInfo.screen.psm = psm;
+}
 
 GF_VRAM_SCREEN_INFO* GFVram_GetScreenInfo()
 {
