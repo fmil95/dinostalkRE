@@ -91,3 +91,4 @@ teach_time_00674c8c = 0x00674c8c;
 chk_mon_timer_00674c90 = 0x00674c90;
 screen_off_sw_00674c94 = 0x00674c94;
 check_delay_timer_00674c98 = 0x00674c98;
+wide_mode_flag_00674ca4 = 0x00674ca4;

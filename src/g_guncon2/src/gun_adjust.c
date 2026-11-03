@@ -6,6 +6,7 @@ extern int teach_time_00674c8c;
 extern int chk_mon_timer_00674c90;
 extern int screen_off_sw_00674c94;
 extern int check_delay_timer_00674c98;
+extern int wide_mode_flag_00674ca4;
 
 INCLUDE_ASM("asm/nonmatchings/g_guncon2/src/gun_adjust", gun_adjust_init);
 
@@ -26,7 +27,12 @@ INCLUDE_ASM("asm/nonmatchings/g_guncon2/src/gun_adjust", GunAdjust_gun_adjust);
 
 INCLUDE_ASM("asm/nonmatchings/g_guncon2/src/gun_adjust", change_wide_gun_adjust);
 
-INCLUDE_ASM("asm/nonmatchings/g_guncon2/src/gun_adjust", change_wide_mode_gun_adjust);
+void change_wide_mode_gun_adjust()
+{
+    adjust_mode_00674c84 = 0x14;
+    wide_mode_flag_00674ca4 = 1;
+    teach_time_00674c8c = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_guncon2/src/gun_adjust", change_normal_mode_gun_adjust);
 
