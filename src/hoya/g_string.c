@@ -1,6 +1,7 @@
 #include "common.h"
 
 extern void hyLoadPigFont();
+extern void EndLetterAll();
 
 void LoadLetterPig()
 {
@@ -69,7 +70,10 @@ INCLUDE_ASM("asm/nonmatchings/hoya/g_string", strGetOneFontData);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/g_string", strManagementFunc);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/g_string", strEndStringManager);
+void strEndStringManager()
+{
+    EndLetterAll();
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/g_string", AddMessageData);
 
