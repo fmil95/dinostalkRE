@@ -6,6 +6,7 @@ extern void hyDrawSMSpriteSub();
 extern int gsGuncon2_CheckConnect();
 extern char D_0066A4E8[];
 extern void FIO_ReadFile_Align();
+extern void hyDestroySMSpriteInfoSub();
 
 INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyGun1CheckScreenOut);
 
@@ -132,7 +133,11 @@ INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyEntrySMSprite);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyDestroySMSpriteInfoSub);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyDestroySMSpriteInfo);
+void hyDestroySMSpriteInfo(void* a)
+{
+    hyDestroySMSpriteInfoSub(STRUCT_OFFSET(a, 0x14, int));
+    STRUCT_OFFSET(a, 0x14, int) = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyEntryObj);
 
