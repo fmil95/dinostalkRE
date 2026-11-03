@@ -4,6 +4,8 @@ extern int gsWorldSt3_KoiwaCnt;
 extern int gsWorldSt3_SplashCnt;
 extern int gsWorldSt3_IwaCnt;
 extern int gsWorldSt3_IwaObjCnt;
+extern int _st3_demo0_timer;
+extern int _st3_demo0_step;
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st3", gsWorldInitSt3);
 
@@ -91,7 +93,11 @@ INCLUDE_ASM("asm/nonmatchings/g_world/st3", gsWorldSt3_PlayBackSE);
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st3", gsWorldSt3_TexScroll);
 
-INCLUDE_ASM("asm/nonmatchings/g_world/st3", gsWorldSt3_Demo0_Init);
+void gsWorldSt3_Demo0_Init()
+{
+    _st3_demo0_timer = 0;
+    _st3_demo0_step = -1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st3", gsWorldSt3_Demo0_Request);
 
