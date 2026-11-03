@@ -1,5 +1,9 @@
 #include "common.h"
 
+extern int _st8_demo0_req;
+extern int _st8_demo0_step;
+extern int _st8_demo0_timer;
+
 INCLUDE_ASM("asm/nonmatchings/g_world/st8", gsWorldInitSt8);
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st8", gsWorldSt8_SpecialEffect);
@@ -24,7 +28,12 @@ INCLUDE_ASM("asm/nonmatchings/g_world/st8", gsWorldSt8_KakiTrans);
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st8", gsWorldSt8_CheckBossDied);
 
-INCLUDE_ASM("asm/nonmatchings/g_world/st8", gsWorldSt8_Demo0_Init);
+void gsWorldSt8_Demo0_Init()
+{
+    _st8_demo0_req = 0;
+    _st8_demo0_step = -1;
+    _st8_demo0_timer = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st8", gsWorldSt8_Demo0_Request);
 

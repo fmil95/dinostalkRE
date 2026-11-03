@@ -83,3 +83,6 @@ _st9_situation = 0x00673698;
 _st9_lava_pointid = 0x006736a2;
 _st3_se_port_boat_eng = 0x006740e0;
 _st3_se_port_boat_spl = 0x006740e4;
+_st8_demo0_req = 0x0067421c;
+_st8_demo0_step = 0x00674210;
+_st8_demo0_timer = 0x00674214;
