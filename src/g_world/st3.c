@@ -8,6 +8,8 @@ extern int _st3_demo0_timer;
 extern int _st3_demo0_step;
 extern int _st3_boss_died_flag;
 extern int _st3_boss_died_wait;
+extern int _st3_se_port_boat_eng;
+extern int _st3_se_port_boat_spl;
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st3", gsWorldInitSt3);
 
@@ -93,7 +95,11 @@ INCLUDE_ASM("asm/nonmatchings/g_world/st3", gsWorldSt3_EntryBossDied);
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st3", gsWorldSt3_CheckBossDied);
 
-INCLUDE_ASM("asm/nonmatchings/g_world/st3", gsWorldSt3_InitBackSE);
+void gsWorldSt3_InitBackSE()
+{
+    _st3_se_port_boat_eng = 0x17;
+    _st3_se_port_boat_spl = 0x16;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st3", gsWorldSt3_PlayBackSE);
 

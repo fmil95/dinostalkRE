@@ -81,3 +81,5 @@ _st3_boss_died_wait = 0x006740dc;
 _st9_lavaanim_texidx = 0x0067368c;
 _st9_situation = 0x00673698;
 _st9_lava_pointid = 0x006736a2;
+_st3_se_port_boat_eng = 0x006740e0;
+_st3_se_port_boat_spl = 0x006740e4;
