@@ -3,6 +3,8 @@
 extern void EndLetterAll();
 extern int gsNextProg;
 extern void LetsGotoMemcScene();
+extern int pRsltRslt;
+extern void hyCheckFadeFinishFlag();
 
 INCLUDE_ASM("asm/nonmatchings/hoya/result/rsltsub1", MakeAllNumberTex_rsltsub1);
 
@@ -46,7 +48,10 @@ INCLUDE_ASM("asm/nonmatchings/hoya/result/rsltsub1", SetFadeParaRslt);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/result/rsltsub1", SwitchFadeTimerRslt);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/result/rsltsub1", CheckFadeFinishFlagRslt);
+void CheckFadeFinishFlagRslt()
+{
+    hyCheckFadeFinishFlag((pRsltRslt + 2096));
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/result/rsltsub1", ProcFadeIn_rsltsub1);
 

@@ -162,3 +162,4 @@ pmss_00674568 = 0x00674568;
 pmss_006745c4 = 0x006745c4;
 pGnn = 0x00673ce8;
 pPpp = 0x00673cd4;
+pRsltRslt = 0x006747b0;
