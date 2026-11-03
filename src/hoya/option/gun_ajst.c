@@ -3,6 +3,7 @@
 extern int adjust_mode_0067486c;
 extern int screen_off_sw_0067487c;
 extern int wide_mode_flag_0067488c;
+extern int D_00653B70[];
 
 INCLUDE_ASM("asm/nonmatchings/hoya/option/gun_ajst", CheckGunScreenOut);
 
@@ -21,7 +22,10 @@ int GetWideModeFlag()
     return wide_mode_flag_0067488c;
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/option/gun_ajst", GetTvType);
+int GetTvType()
+{
+    return D_00653B70[0];
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/option/gun_ajst", GunAdjustInit);
 
