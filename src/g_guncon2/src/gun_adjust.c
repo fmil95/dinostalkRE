@@ -29,7 +29,10 @@ INCLUDE_ASM("asm/nonmatchings/g_guncon2/src/gun_adjust", gun_adjust1_gun_adjust)
 
 INCLUDE_ASM("asm/nonmatchings/g_guncon2/src/gun_adjust", gun_adjust2_gun_adjust);
 
-INCLUDE_ASM("asm/nonmatchings/g_guncon2/src/gun_adjust", gun_adjust_W0_gun_adjust);
+void gun_adjust_W0_gun_adjust()
+{
+    gun_teaching_gun_adjust();
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_guncon2/src/gun_adjust", gun_adjust_W1_gun_adjust);
 
