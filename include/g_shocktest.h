@@ -6,7 +6,7 @@
 #include "common.h"
 
 void G_SHOCKTEST_Init();
-G_SHOCKTEST_Exec();
+void G_SHOCKTEST_Exec();
 void G_SHOCKTEST_End();
 
 extern int frame;
