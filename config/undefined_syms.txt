@@ -21,3 +21,4 @@ finish = 0x0067484c;
 adjust_mode_00674810 = 0x00674810;
 trans = 0x00674848;
 _VlcnCnt = 0x00673858;
+mpeg_err = 0x00674a18;

@@ -1,5 +1,7 @@
 #include "common.h"
 
+extern int mpeg_err;
+
 INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvCallBack);
 
 INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvInit);
@@ -94,4 +96,7 @@ INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", ReadDataCreate);
 
 INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvTrapError);
 
-INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvErrInit);
+void cdvErrInit()
+{
+    mpeg_err = 0;
+}
