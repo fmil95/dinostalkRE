@@ -1,4 +1,19 @@
 #include "common.h"
+#include "sifrpc.h"
+
+typedef struct {
+    /* 0x00 */ int pad[9];
+    /* 0x24 */ void* serve;
+} sceSifClientData;
+
+extern sceSifClientData cdUsbGun;
+extern char sdata_00873980[];
+extern char D_0066F5C8[];
+extern char D_0066F5D8[];
+extern char D_0066F5F8[];
+extern char D_0066F618[];
+
+extern int printf();
 
 INCLUDE_ASM("asm/nonmatchings/nmlib/nmGC2Main", nmUsbGunInit);
 
@@ -8,7 +23,10 @@ INCLUDE_ASM("asm/nonmatchings/nmlib/nmGC2Main", nmUsbGunRead);
 
 INCLUDE_ASM("asm/nonmatchings/nmlib/nmGC2Main", nmUsbGunGetLocation);
 
-INCLUDE_ASM("asm/nonmatchings/nmlib/nmGC2Main", nmUsbGunGetConfig);
+int nmUsbGunGetConfig(u_char* config)
+{
+    return sceSifCallRpc(&cdUsbGun, 4, 1, sdata_00873980, 0x20, config, 0x20, NULL, NULL);
+}
 
 INCLUDE_ASM("asm/nonmatchings/nmlib/nmGC2Main", nmUsbTransCtrl);
 
