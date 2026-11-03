@@ -10,7 +10,10 @@ void GFLight_SetVector(GF_LIGHT* light, float* v0, float* v1, float* v2)
     light->paraVect[3][3] = 1.0f;
 }
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gflight", GFLight_SetColor);
+void GFLight_SetColor(GF_LIGHT* light, float* c0, float* c1, float* c2, float* amb)
+{
+    sceVu0LightColorMatrix(light->paraCol, c0, c1, c2, amb);
+}
 
 qword* GFLight_MakePacket(GF_LIGHT* light, qword* packbuf)
 {
