@@ -16,7 +16,10 @@ INCLUDE_ASM("asm/nonmatchings/g_instpacket", GFSetpkt_Draw);
 
 INCLUDE_ASM("asm/nonmatchings/g_instpacket", GFDrawenv_MakeInstance);
 
-INCLUDE_ASM("asm/nonmatchings/g_instpacket", GFDrawenv_SetDb);
+void GFDrawenv_SetDb(void* p, int v)
+{
+    STRUCT_OFFSET(p, 0x100, int) = v;
+}
 
 void GFDrawenv_SetClearZ(void* p, short v)
 {
