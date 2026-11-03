@@ -1,7 +1,18 @@
 #include "gunsuv_usa/libgf/libgf.h"
 #include "gunsuv_usa/libgf/gfspecular.h"
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfspecular", GFSpecular_Init);
+extern sceVu0FVECTOR D_00655CF0;
+
+GF_SPECULAR* GFSpecular_Init(GF_SPECULAR* specular)
+{
+    sceVu0CopyVector(specular->vect, D_00655CF0);
+    sceVu0CopyVector(specular->col, D_00655CF0);
+    sceVu0CopyVector(specular->other, D_00655CF0);
+
+    specular->packet = NULL;
+
+    return specular;
+}
 
 qword* GFSpecular_MakePacket(GF_SPECULAR* specular, qword* packbuf)
 {
