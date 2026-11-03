@@ -40,7 +40,10 @@ void gsGuncon2_SetState(int a)
     D_00653B64[0] = a;
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_guncon2/g_guncon2", gsGuncon2_CanChangeArms);
+int gsGuncon2_CanChangeArms()
+{
+    return ((D_00653B64[0] ^ 0x10) == 0);
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_guncon2/g_guncon2", gsGuncon2_InitManager);
 
