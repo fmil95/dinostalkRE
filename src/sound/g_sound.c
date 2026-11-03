@@ -1,5 +1,7 @@
 #include "common.h"
 
+extern void gsSoundEeSE_PLAY2();
+
 INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundInitModule);
 
 INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundInitAll);
@@ -75,7 +77,10 @@ INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundEeSE_ALL_SLEEP);
 
 INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundEeSE_ALL_WAKE);
 
-INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundEeSE_PLAY);
+void gsSoundEeSE_PLAY(int a, int b)
+{
+    gsSoundEeSE_PLAY2(a, b, -128);
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundEeSE_PLAY2);
 
