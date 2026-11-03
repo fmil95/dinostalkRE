@@ -4,6 +4,8 @@ extern int _VlcnCnt;
 extern void sceVu0SubVector();
 extern void gsSoundPlaySE_WORLD();
 extern void sceVu0AddVector();
+extern void gsEffectAddWithPri();
+extern void Enemy_PsInfInt();
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_Main);
 
@@ -167,7 +169,11 @@ INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", enemy_poisonmv);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_PoisonShoot);
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_PsGunHit);
+void Enemy_PsGunHit(int a)
+{
+    gsEffectAddWithPri((char*)a + 0x10, 0, 0x87, 0);
+    Enemy_PsInfInt(a);
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", enemy_psgrdhitchk);
 
