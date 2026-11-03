@@ -1,6 +1,7 @@
 #include "common.h"
 
 extern void gsSoundEeSE_PLAY2();
+extern int SeSetBgmVol();
 
 INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundInitModule);
 
@@ -55,7 +56,11 @@ INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundSeMain);
 
 INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundMasterVol);
 
-INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundBgmVol);
+int gsSoundBgmVol()
+{
+    SeSetBgmVol();
+    return 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundReboot);
 
