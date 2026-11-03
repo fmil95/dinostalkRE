@@ -1,21 +1,26 @@
-#include "common.h"
+#include "gunsuv_usa/libgf/gfpointlight.h"
 
-void GFPointLight_Init(void) {
-}
-
-void GFPointLight_SetPos(void) {
-}
-
-void GFPointLight_SetColor(void) {
-}
-
-void GFPointLight_MakePacket(void) {
-}
-
-int GFPointLight_Draw(int a)
+GF_POINT_LIGHT* GFPointLight_Init(GF_POINT_LIGHT* light)
 {
-    return a;
 }
 
-void GFPointLight_SetShape(void) {
+void GFPointLight_SetPos(GF_POINT_LIGHT* light, Uint32 no, float* v0)
+{
+}
+
+void GFPointLight_SetColor(GF_POINT_LIGHT* light, Uint32 no, float* c0)
+{
+}
+
+qword* GFPointLight_MakePacket(GF_POINT_LIGHT* light, qword* packbuf)
+{
+}
+
+qword* GFPointLight_Draw(qword* packet, GF_POINT_LIGHT* light)
+{
+    return packet;
+}
+
+void GFPointLight_SetShape(struct gf_inst* shape, GF_POINT_LIGHT* light)
+{
 }

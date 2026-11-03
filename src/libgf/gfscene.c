@@ -1,8 +1,4 @@
-#include "common.h"
-
-extern void GFFog_MakePacket();
-extern void sceVu0CopyVector();
-extern void sceVu0CopyMatrix();
+#include "gunsuv_usa/libgf/gfscene.h"
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfscene", GFScene_MakeInstance);
 
@@ -14,19 +10,19 @@ INCLUDE_ASM("asm/nonmatchings/libgf/gfscene", GFScene_SetClipScreen);
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfscene", GFScene_SetScreen);
 
-void GFScene_MakePacket(void* a)
+qword* GFScene_MakePacket(GF_INST_SCENE* scene, qword* packbuf)
 {
-    GFFog_MakePacket((char*)a + 0x290);
+    return GFFog_MakePacket(&scene->fog, packbuf);
 }
 
-void GFScene_SetWorldView(void* a)
+void GFScene_SetWorldView(GF_INST_SCENE* scene, float* m[4])
 {
-    sceVu0CopyMatrix((char*)a + 0x100);
+    sceVu0CopyMatrix(scene->worldView, m);
 }
 
-void GFScene_SetCameraPos(void* a)
+void GFScene_SetCameraPos(GF_INST_SCENE* scene, float* pos)
 {
-    sceVu0CopyVector((char*)a + 0x280);
+    sceVu0CopyVector(scene->cameraPos, pos);
 }
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfscene", GFScene_Eval);

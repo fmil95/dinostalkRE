@@ -1,10 +1,11 @@
-#include "common.h"
+#include "gunsuv_usa/libgf/gfmicro.h"
 
-int GFMicro_Init(void* a)
+GF_MICRO* GFMicro_Init(GF_MICRO* micro)
 {
-    STRUCT_OFFSET(a, 0x0, int) = 0;
-    STRUCT_OFFSET(a, 0x4, int) = 0;
-    return a;
+    micro->micro  = NULL;
+    micro->packet = NULL;
+
+    return micro;
 }
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfmicro", GFMicro_MakePacket);

@@ -1,25 +1,32 @@
-#include "common.h"
+#include "gunsuv_usa/libgf/gfspotlight.h"
 
-int GFSpotLight_Init(int a)
+GF_SPOT_LIGHT* GFSpotLight_Init(GF_SPOT_LIGHT* light)
 {
-    return a;
+    return light;
 }
 
-void GFSpotLight_SetPos(void) {
-}
-
-void GFSpotLight_SetColor(void) {
-}
-
-void GFSpotLight_SetVector(void) {
-}
-
-INCLUDE_ASM("asm/nonmatchings/libgf/gfspotlight", GFSpotLight_MakePacket);
-
-int GFSpotLight_Draw(int a)
+void GFSpotLight_SetPos(GF_SPOT_LIGHT* light, Uint32 no, float* v0)
 {
-    return a;
 }
 
-void GFSpotLight_SetShape(void) {
+void GFSpotLight_SetColor(GF_SPOT_LIGHT* light, Uint32 no, float* c0)
+{
+}
+
+void GFSpotLight_SetVector(GF_SPOT_LIGHT* light, Uint32 no, float* v0)
+{
+}
+
+qword* GFSpotLight_MakePacket(GF_SPOT_LIGHT* light, qword* packbuf)
+{
+    return packbuf;
+}
+
+qword* GFSpotLight_Draw(qword* packet, GF_SPOT_LIGHT* light)
+{
+    return packet;
+}
+
+void GFSpotLight_SetShape(struct gf_inst* shape, GF_SPOT_LIGHT* light)
+{
 }

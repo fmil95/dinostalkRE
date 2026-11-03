@@ -1,4 +1,4 @@
-#include "common.h"
+#include "gunsuv_usa/libgf/gffog.h"
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gffog", GFFog_Init);
 
@@ -6,28 +6,32 @@ INCLUDE_ASM("asm/nonmatchings/libgf/gffog", GFFog_MakePacket);
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gffog", GFFog_Draw);
 
-float GFFog_SetNear(void* a, float x)
+Float32 GFFog_SetNear(GF_FOG* fog, Float32 near)
 {
-    STRUCT_OFFSET(a, 0x8, float) = x;
-    return x;
+    fog->near = near;
+
+    return near;
 }
 
-float GFFog_SetFar(void* a, float x)
+Float32 GFFog_SetFar(GF_FOG* fog, Float32 far)
 {
-    STRUCT_OFFSET(a, 0xC, float) = x;
-    return x;
+    fog->far = far;
+
+    return far;
 }
 
-float GFFog_SetMin(void* a, float x)
+Float32 GFFog_SetMin(GF_FOG* fog, Float32 min)
 {
-    STRUCT_OFFSET(a, 0x0, float) = x;
-    return x;
+    fog->min = min;
+
+    return min;
 }
 
-float GFFog_SetMax(void* a, float x)
+Float32 GFFog_SetMax(GF_FOG* fog, Float32 max)
 {
-    STRUCT_OFFSET(a, 0x4, float) = x;
-    return x;
+    fog->max = max;
+
+    return max;
 }
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gffog", GFFog_SetParam);

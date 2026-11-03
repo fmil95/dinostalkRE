@@ -3,13 +3,15 @@
 #ifndef GUNSUV_USA_LIBGF_GFPACK_H
 #define GUNSUV_USA_LIBGF_GFPACK_H
 
-struct gf_packet {
-	qword *top;
-	qword *cur;
-	Sint32 size;
+#include "common.h"
+
+struct gf_packet { // 0xc
+	/* 0x0 */ qword *top;
+	/* 0x4 */ qword *cur;
+	/* 0x8 */ Sint32 size;
 };
 
-typedef gf_packet GF_PACKET;
+typedef struct gf_packet GF_PACKET;
 void GFPack_InitBuf(GF_PACKET *pm, qword *p, Sint32 size);
 void GFPack_ResetBuf(GF_PACKET *pm);
 qword* GFPacket_Add(qword *cur, qword *packet);

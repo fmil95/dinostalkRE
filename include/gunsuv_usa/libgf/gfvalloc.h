@@ -3,19 +3,18 @@
 #ifndef GUNSUV_USA_LIBGF_GFVALLOC_H
 #define GUNSUV_USA_LIBGF_GFVALLOC_H
 
-typedef short unsigned int u_short;
-typedef u_short Uint16;
+#include "common.h"
 
-typedef struct {
-	Uint32 w;
-	Uint32 h;
-	Uint32 psm;
+typedef struct { // 0xc
+	/* 0x0 */ Uint32 w;
+	/* 0x4 */ Uint32 h;
+	/* 0x8 */ Uint32 psm;
 } GF_VRAM_RECT;
 
-typedef struct {
-	GF_VRAM_RECT screen;
-	GF_VRAM_RECT frameBuffer;
-	GF_VRAM_RECT zBuffer;
+typedef struct { // 0x24
+	/* 0x00 */ GF_VRAM_RECT screen;
+	/* 0x0c */ GF_VRAM_RECT frameBuffer;
+	/* 0x18 */ GF_VRAM_RECT zBuffer;
 } GF_VRAM_SCREEN_INFO;
 
 extern GF_VRAM_SCREEN_INFO gf_vramScreenInfo;

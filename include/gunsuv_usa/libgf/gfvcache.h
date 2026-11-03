@@ -3,19 +3,21 @@
 #ifndef GUNSUV_USA_LIBGF_GFVCACHE_H
 #define GUNSUV_USA_LIBGF_GFVCACHE_H
 
-struct gf_cache_cell {
-	gf_cache_cell *next;
-	Uint8 stat;
-	Uint8 used_flag;
-	Uint16 pad;
-	Sint32 score;
-	Uint32 guid;
-	Uint32 pad2[3];
-	Uint16 pos;
-	Uint16 size;
+#include "common.h"
+
+struct gf_cache_cell { // 0x20
+	/* 0x00 */ struct gf_cache_cell *next;
+	/* 0x04 */ Uint8 stat;
+	/* 0x05 */ Uint8 used_flag;
+	/* 0x06 */ Uint16 pad;
+	/* 0x08 */ Sint32 score;
+	/* 0x0c */ Uint32 guid;
+	/* 0x10 */ Uint32 pad2[3];
+	/* 0x1c */ Uint16 pos;
+	/* 0x1e */ Uint16 size;
 };
 
-typedef gf_cache_cell GF_CACHE_CELL;
+typedef struct gf_cache_cell GF_CACHE_CELL;
 
 void GFCache_SetInfoAddr(Uint32 *buf, Uint32 buf_size, Uint16 cache_pos, Uint16 cache_size, Uint16 preset_size);
 void GFCache_Flush();

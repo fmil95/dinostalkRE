@@ -3,20 +3,20 @@
 #ifndef GUNSUV_USA_LIBGF_GFFOG_H
 #define GUNSUV_USA_LIBGF_GFFOG_H
 
-typedef float Float32;
+#include "common.h"
 
-struct gf_fog {
-	Float32 min;
-	Float32 max;
-	Float32 near;
-	Float32 far;
-	Uint8 col[4];
-	sceVu0FVECTOR fogA;
-	sceVu0FVECTOR fogB;
-	qword *packet;
+struct gf_fog { // 0x50
+	/* 0x00 */ Float32 min;
+	/* 0x04 */ Float32 max;
+	/* 0x08 */ Float32 near;
+	/* 0x0c */ Float32 far;
+	/* 0x10 */ Uint8 col[4];
+	/* 0x20 */ sceVu0FVECTOR fogA;
+	/* 0x30 */ sceVu0FVECTOR fogB;
+	/* 0x40 */ qword *packet;
 };
 
-typedef gf_fog GF_FOG;
+typedef struct gf_fog GF_FOG;
 extern GF_FOG *gf_trans_fog;
 
 GF_FOG* GFFog_Init(GF_FOG *fog);

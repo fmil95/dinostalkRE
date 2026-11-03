@@ -1,6 +1,4 @@
-#include "common.h"
-
-extern char gf_vramScreenInfo[];
+#include "gunsuv_usa/libgf/gfvalloc.h"
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfvalloc", GFVram_SetInfoAddr);
 
@@ -36,7 +34,7 @@ INCLUDE_ASM("asm/nonmatchings/libgf/gfvalloc", GFVram_SetZBufferSize);
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfvalloc", GFVram_SetScreenBufferSize);
 
-void* GFVram_GetScreenInfo()
+GF_VRAM_SCREEN_INFO* GFVram_GetScreenInfo()
 {
-    return gf_vramScreenInfo;
+    return &gf_vramScreenInfo;
 }

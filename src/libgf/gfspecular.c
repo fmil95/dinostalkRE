@@ -1,6 +1,4 @@
-#include "common.h"
-
-extern void sceVu0CopyVector();
+#include "gunsuv_usa/libgf/gfspecular.h"
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfspecular", GFSpecular_Init);
 
@@ -8,19 +6,19 @@ INCLUDE_ASM("asm/nonmatchings/libgf/gfspecular", GFSpecular_MakePacket);
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfspecular", GFSpecular_Draw);
 
-void GFSpecular_SetVector()
+void GFSpecular_SetVector(GF_SPECULAR* specular, float* vec)
 {
-    sceVu0CopyVector();
+    sceVu0CopyVector(specular->vect, vec);
 }
 
-void GFSpecular_SetColor(void* a)
+void GFSpecular_SetColor(GF_SPECULAR* specular, float* color)
 {
-    sceVu0CopyVector((char*)a + 0x10);
+    sceVu0CopyVector(specular->col, color);
 }
 
-void GFSpecular_SetParam(void* a, float x, float y, float z)
+void GFSpecular_SetParam(GF_SPECULAR* specular, Float32 spec, Float32 diff, Float32 bright)
 {
-    STRUCT_OFFSET(a, 0x20, float) = x;
-    STRUCT_OFFSET(a, 0x24, float) = y;
-    STRUCT_OFFSET(a, 0x28, float) = z;
+    specular->other[0] = spec;
+    specular->other[1] = diff;
+    specular->other[2] = bright;
 }

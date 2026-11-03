@@ -3,14 +3,16 @@
 #ifndef GUNSUV_USA_LIBGF_GFSPECULAR_H
 #define GUNSUV_USA_LIBGF_GFSPECULAR_H
 
-struct gf_specular {
-	sceVu0FVECTOR vect;
-	sceVu0FVECTOR col;
-	sceVu0FVECTOR other;
-	qword *packet;
+#include "common.h"
+
+struct gf_specular { // 0x40
+	/* 0x00 */ sceVu0FVECTOR vect;
+	/* 0x10 */ sceVu0FVECTOR col;
+	/* 0x20 */ sceVu0FVECTOR other;
+	/* 0x30 */ qword *packet;
 };
 
-typedef gf_specular GF_SPECULAR;
+typedef struct gf_specular GF_SPECULAR;
 extern GF_SPECULAR *gf_trans_specular;
 
 GF_SPECULAR* GFSpecular_Init(GF_SPECULAR *specular);

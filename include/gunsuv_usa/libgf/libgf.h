@@ -3,9 +3,9 @@
 #ifndef GUNSUV_USA_LIBGF_LIBGF_H
 #define GUNSUV_USA_LIBGF_LIBGF_H
 
-typedef int qword[4];
-typedef float sceVu0FMATRIX[4][4];
-typedef u_int Uint32;
+#include "common.h"
+#include "gunsuv_usa/libgf/gfinstance.h"
+
 extern sceVu0FMATRIX gUnitMatrix;
 
 void GF_InitGraphicsFramework();

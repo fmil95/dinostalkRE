@@ -1,10 +1,10 @@
-#include "common.h"
+#include "gunsuv_usa/libgf/gfpack.h"
 
-void GFPack_InitBuf(void* a, int b, int c)
+void GFPack_InitBuf(GF_PACKET* pm, qword* p, Sint32 size)
 {
-    STRUCT_OFFSET(a, 0x0, int) = b;
-    STRUCT_OFFSET(a, 0x4, int) = b;
-    STRUCT_OFFSET(a, 0x8, int) = c;
+    pm->top  = p;
+    pm->cur  = p;
+    pm->size = size;
 }
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfpack", GFPack_ResetBuf);

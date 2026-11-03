@@ -3,21 +3,59 @@
 #ifndef GUNSUV_USA_LIBGF_POD_H
 #define GUNSUV_USA_LIBGF_POD_H
 
-struct pod_material {
-	Sint32 geomNum;
-	Uint32 flag;
-	Sint32 texIdx;
-	Sint32 pad0;
-	Float32 shininess;
-	Float32 transparency;
-	Sint32 pad1[2];
-	sceVu0FVECTOR ambient;
-	sceVu0FVECTOR diffuse;
-	sceVu0FVECTOR specular;
-	sceVu0FVECTOR emission;
+#include "common.h"
+
+struct pod_shapetbl { // 0x50
+	/* 0x00 */ Uint16 parent;
+	/* 0x02 */ Uint16 child;
+	/* 0x04 */ Uint16 sibling;
+	/* 0x08 */ Uint32 shape;
+	/* 0x0c */ Uint32 flag;
+	/* 0x10 */ union { // 0x40
+		/* 0x10 */ sceVu0FMATRIX matrix;
+		/* 0x10 */ struct { // 0x30
+			/* 0x10 */ sceVu0FVECTOR rotate;
+			/* 0x20 */ sceVu0FVECTOR scale;
+			/* 0x30 */ sceVu0FVECTOR translate;
+		} vector;
+	} rel;
 };
 
-typedef pod_material PodMATERIAL;
+typedef struct pod_shapetbl PodSHAPETBL;
+
+struct pod_extendtbl { // 0x10
+	/* 0x0 */ Uint32 extId;
+	/* 0x4 */ Uint32 free[3];
+};
+
+typedef struct pod_extendtbl PodEXTENDTBL;
+
+struct pod_shape { // 0x30
+	/* 0x00 */ Sint32 matNum;
+	/* 0x04 */ Uint32 flag;
+	/* 0x08 */ Sint32 pad;
+	/* 0x0c */ Sint32 free;
+	/* 0x10 */ sceVu0FVECTOR min;
+	/* 0x20 */ sceVu0FVECTOR max;
+};
+
+typedef struct pod_shape PodSHAPE;
+
+struct pod_material { // 0x60
+	/* 0x00 */ Sint32 geomNum;
+	/* 0x04 */ Uint32 flag;
+	/* 0x08 */ Sint32 texIdx;
+	/* 0x0c */ Sint32 pad0;
+	/* 0x10 */ Float32 shininess;
+	/* 0x14 */ Float32 transparency;
+	/* 0x18 */ Sint32 pad1[2];
+	/* 0x20 */ sceVu0FVECTOR ambient;
+	/* 0x30 */ sceVu0FVECTOR diffuse;
+	/* 0x40 */ sceVu0FVECTOR specular;
+	/* 0x50 */ sceVu0FVECTOR emission;
+};
+
+typedef struct pod_material PodMATERIAL;
 Sint32 GFPod_IsPodData(Uint32 *pod);
 Uint32* GFPod_MapTextureIndex(Uint32 *pod, Sint32 index_ofs);
 PodMATERIAL* GFPod_GetNextMaterialBlock(PodMATERIAL *material);
