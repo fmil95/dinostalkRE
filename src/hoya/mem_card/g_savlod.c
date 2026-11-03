@@ -88,7 +88,10 @@ INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", OpenIconSys);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", WriteIconSys);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", CloseIconSys);
+void CloseIconSys()
+{
+    mcdCloseSet();
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", OpenIconIco);
 
