@@ -1,5 +1,7 @@
 #include "common.h"
 
+extern void EndMemcManager();
+
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub4", McConnectCheck_memcsub4);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub4", McDisconnectCheck_memcsub4);
@@ -47,4 +49,7 @@ INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub4", InitMemcSysLoad);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub4", MainMemcSysLoad);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub4", EndMemcSysLoad);
+void EndMemcSysLoad()
+{
+    EndMemcManager();
+}
