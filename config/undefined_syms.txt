@@ -55,3 +55,4 @@ err_num_cause = 0x006744a4;
 err_num_func = 0x006744a0;
 stepque = 0x0067449c;
 writeque = 0x00674498;
+wait = 0x00674974;
