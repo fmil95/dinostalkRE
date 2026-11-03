@@ -2,6 +2,7 @@
 
 extern void gsSoundEeSE_PLAY2();
 extern int SeSetBgmVol();
+extern int SeSetMasterVol();
 
 INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundInitModule);
 
@@ -54,7 +55,11 @@ int gsSoundGetEffect()
 
 INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundSeMain);
 
-INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundMasterVol);
+int gsSoundMasterVol()
+{
+    SeSetMasterVol();
+    return 0;
+}
 
 int gsSoundBgmVol()
 {
