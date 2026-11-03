@@ -2,6 +2,7 @@
 
 extern int texMng[];
 extern void hySetFadePara();
+extern void hyDrawSMSpriteSub();
 
 INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyGun1CheckScreenOut);
 
@@ -112,7 +113,10 @@ INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hySearchSMSpriteInfo);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyDrawSMSpriteSub);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyDrawSMSprite);
+void hyDrawSMSprite(void* a, int b)
+{
+    hyDrawSMSpriteSub(a, STRUCT_OFFSET(a, 0x14, int), b);
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyEntrySMSprite);
 
