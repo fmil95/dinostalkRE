@@ -91,7 +91,10 @@ void gsWorldSt3_initBossDied()
     _st3_boss_died_wait = 0x96;
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_world/st3", gsWorldSt3_EntryBossDied);
+void gsWorldSt3_EntryBossDied()
+{
+    _st3_boss_died_flag = (_st3_boss_died_flag | 0x1);
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st3", gsWorldSt3_CheckBossDied);
 
