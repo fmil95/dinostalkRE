@@ -78,7 +78,10 @@ INCLUDE_ASM("asm/nonmatchings/particle", GFParticle_SetCreateRange);
 
 INCLUDE_ASM("asm/nonmatchings/particle", GFParticle_SetAttractPos);
 
-INCLUDE_ASM("asm/nonmatchings/particle", GFParticle_SetAlphaType);
+void GFParticle_SetAlphaType(void* p, int v)
+{
+    STRUCT_OFFSET(p, 0x140, int) = v;
+}
 
 INCLUDE_ASM("asm/nonmatchings/particle", GFParticle_SetDirection);
 
