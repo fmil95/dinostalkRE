@@ -2,6 +2,11 @@
 
 extern void sceVu0CopyVector();
 extern void sceVu0CopyVector();
+extern char D_003EA360[];
+extern char fvTrkrTailNullTrans[];
+extern char _gsIK_TrkrTailHitPos[];
+extern char _gsIK_TrkrInterpolateTail[];
+extern int _gsIK_TailHitSub();
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/ik_trkr", _gsIK_TrkrInit);
 
@@ -31,4 +36,8 @@ INCLUDE_ASM("asm/nonmatchings/benjamin/ik_trkr", _gsIK_TrkrHeadHit);
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/ik_trkr", _gsIK_TrkrTailHitPos);
 
-INCLUDE_ASM("asm/nonmatchings/benjamin/ik_trkr", _gsIK_TrkrTailHit);
+int _gsIK_TrkrTailHit(int a)
+{
+    _gsIK_TailHitSub(a, 2, 5, D_003EA360, fvTrkrTailNullTrans, _gsIK_TrkrTailHitPos, _gsIK_TrkrInterpolateTail);
+    return 0x100;
+}
