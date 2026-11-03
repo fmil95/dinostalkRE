@@ -16,6 +16,9 @@ INCLUDE_ASM("asm/nonmatchings/hoya/title/g_title", gsStageExec_TITLE);
 void gsStageEnd_TITLE(void) {
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/title/g_title", gsTITLE_Draw1);
+int gsTITLE_Draw1(int a)
+{
+    return a;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/title/g_title", gsTITLE_Draw2);
