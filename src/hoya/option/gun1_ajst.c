@@ -2,8 +2,12 @@
 
 extern int finish;
 extern int adjust_mode_00674810;
+extern int trans;
 
-INCLUDE_ASM("asm/nonmatchings/hoya/option/gun1_ajst", Gun1AjstGetViewScene);
+int Gun1AjstGetViewScene()
+{
+    return trans;
+}
 
 int Gun1AjstGetProgNo()
 {
