@@ -1,8 +1,13 @@
 #include "common.h"
 
+extern int tex2dSendFlag_00674478;
+
 INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_cpsight", hyEntryObj4Sight);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_cpsight", gsCOCKPIT_InitSightSendTex);
+void gsCOCKPIT_InitSightSendTex()
+{
+    tex2dSendFlag_00674478 = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_cpsight", PermittoSend2dSightTex);
 

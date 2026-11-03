@@ -36,3 +36,4 @@ gpShadowFarZ = 0x00673fcc;
 gpShadowMaxAlpha = 0x00673fd0;
 AdjustGunMode = 0x00674c54;
 tex2dSendFlag_00674320 = 0x00674320;
+tex2dSendFlag_00674478 = 0x00674478;
