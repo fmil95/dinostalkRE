@@ -14,7 +14,10 @@ INCLUDE_ASM("asm/nonmatchings/g_pad", gsPad_Update2);
 
 INCLUDE_ASM("asm/nonmatchings/g_pad", _us_key_exchange);
 
-INCLUDE_ASM("asm/nonmatchings/g_pad", _us_get_port_g_pad);
+int _us_get_port_g_pad(int a)
+{
+    return a;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_pad", _us_key_exchange2);
 
