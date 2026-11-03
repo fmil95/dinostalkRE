@@ -8,6 +8,8 @@ extern int isWithAudio;
 extern int UserProg;
 extern char init_flg;
 extern int N_Read_Unit;
+extern char audioDec[];
+extern void audioDecSendToIOP();
 
 INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", cdvMpegInit);
 
@@ -69,7 +71,10 @@ INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", strFileClose);
 
 INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", strFileRead);
 
-INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", proceedAudio);
+void proceedAudio()
+{
+    audioDecSendToIOP(audioDec);
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", videoCallback);
 
