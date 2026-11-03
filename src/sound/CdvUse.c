@@ -4,6 +4,7 @@ extern int mpeg_err;
 extern unsigned short ErrorNum;
 extern int Read_Pos;
 extern unsigned short WriteQue;
+extern void FileQueClear();
 
 INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvCallBack);
 
@@ -80,7 +81,10 @@ INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvDelSearchData);
 
 INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvDelSearchDataSet);
 
-INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvDelSearchDataAll);
+void cdvDelSearchDataAll()
+{
+    FileQueClear(1);
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvDelSearchDataAllSet);
 
