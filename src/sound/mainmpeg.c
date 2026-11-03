@@ -5,6 +5,7 @@ extern char err_sts;
 extern int GS_Send_Flg;
 extern int mono_flg;
 extern int isWithAudio;
+extern int UserProg;
 
 INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", cdvMpegInit);
 
@@ -84,7 +85,10 @@ INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", readBufEndGet);
 
 INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", cdvMpegUserProgSet);
 
-INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", cdvMpegUserProgDelete);
+void cdvMpegUserProgDelete()
+{
+    UserProg = 0;
+}
 
 void cdvMpegSendModeSet(int v)
 {
