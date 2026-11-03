@@ -30,6 +30,10 @@ void GFScene_SetCameraPos(GF_INST_SCENE* scene, float* pos)
     sceVu0CopyVector(scene->cameraPos, pos);
 }
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfscene", GFScene_Eval);
+void GFScene_Eval(GF_INST_SCENE* scene)
+{
+    sceVu0MulMatrix(scene->worldScreen, scene->viewScreen, scene->worldView);
+    sceVu0MulMatrix(scene->worldClip, scene->viewClip, scene->worldView);
+}
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfscene", GFScene_Draw);
