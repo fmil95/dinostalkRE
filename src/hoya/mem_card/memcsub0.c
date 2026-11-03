@@ -1,6 +1,7 @@
 #include "common.h"
 
 extern void EndMemcManager();
+extern int prgMan[];
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub0", McConnectCheck_memcsub0);
 
@@ -25,7 +26,11 @@ INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub0", ProcMemcConnectCheck);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub0", ProcMemcFsizeCheck);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub0", ProcEnd_memcsub0);
+int ProcEnd_memcsub0(int a)
+{
+    prgMan[0] = 5;
+    return a;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub0", ProcEnd2_memcsub0);
 
