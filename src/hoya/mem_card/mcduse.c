@@ -1,5 +1,7 @@
 #include "common.h"
 
+extern int err_num_cause;
+
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/mcduse", mcdFlushQue);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/mcduse", mcdInit);
@@ -16,7 +18,10 @@ INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/mcduse", mcdGetQueCondition);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/mcduse", mcdGetErrorFunc);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/mcduse", mcdGetErrorCause);
+int mcdGetErrorCause()
+{
+    return err_num_cause;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/mcduse", mcdSetPause);
 

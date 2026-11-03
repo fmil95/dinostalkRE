@@ -51,3 +51,4 @@ _st7_hasi_light_num = 0x006741bc;
 _st7_jeep_light_obj_num = 0x006741a8;
 _st7_neon_00_num = 0x006741b4;
 _st7_neon_01_num = 0x006741b8;
+err_num_cause = 0x006744a4;
