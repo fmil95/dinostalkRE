@@ -3,6 +3,7 @@
 extern float gpShadowFarZ;
 extern float gpShadowMaxAlpha;
 extern float D_0068D8E4[];
+extern float D_002AF960[];
 
 INCLUDE_ASM("asm/nonmatchings/g_shadow", gpShadow_Init);
 
@@ -25,7 +26,10 @@ INCLUDE_ASM("asm/nonmatchings/g_shadow", gpShadow_GifPacketShadow);
 
 INCLUDE_ASM("asm/nonmatchings/g_shadow", gpShadow_GifPacketCover);
 
-INCLUDE_ASM("asm/nonmatchings/g_shadow", gpShadow_Eval);
+void gpShadow_Eval()
+{
+    gpShadowFarZ = D_002AF960[0];
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_shadow", gpShadow_AddPacket);
 
