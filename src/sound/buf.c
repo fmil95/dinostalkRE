@@ -88,7 +88,10 @@ void voBufIncCount(VoBuf* f)
     EIntr();
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/buf", voBufGetData);
+VoData* voBufGetData(VoBuf* f)
+{
+    return voBufIsFull(f) ? (VoData*)NULL : f->data + f->write;
+}
 
 int voBufIsEmpty(VoBuf* f)
 {
