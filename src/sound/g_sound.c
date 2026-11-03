@@ -3,6 +3,7 @@
 extern void gsSoundEeSE_PLAY2();
 extern int SeSetBgmVol();
 extern int SeSetMasterVol();
+extern int SeSoundOff();
 
 INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundInitModule);
 
@@ -69,7 +70,11 @@ int gsSoundBgmVol()
 
 INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundReboot);
 
-INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundOff);
+int gsSoundOff()
+{
+    SeSoundOff();
+    return 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/g_sound", _gsSoundEE_LoadFreePort);
 
