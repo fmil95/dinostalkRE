@@ -5,6 +5,9 @@ extern float waveScrollX;
 extern float waveScrollZ;
 extern int gsWave_chgColTime;
 extern char gsWave_chgColFlag;
+extern char D_003E43A0[];
+extern char waveColList[];
+extern void sceVu0CopyVector();
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st3wave", gsWaveScrollX);
 
@@ -68,4 +71,8 @@ void gsWave_ChgColStart()
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st3wave", gsWave_ChgColExec);
 
-INCLUDE_ASM("asm/nonmatchings/g_world/st3wave", gsWave_ChgColInit);
+void gsWave_ChgColInit()
+{
+    gsWave_chgColFlag = 0;
+    sceVu0CopyVector(D_003E43A0, waveColList);
+}
