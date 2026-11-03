@@ -6,6 +6,8 @@ extern void sceMpegSetDecodeMode();
 extern void viBufBeginPut();
 extern void viBufEndPut();
 extern void viBufCount();
+extern char D_00652728[];
+extern int viBufRestartDMA();
 
 INCLUDE_ASM("asm/nonmatchings/sound/decoder", videoDecCreate);
 
@@ -66,7 +68,11 @@ INCLUDE_ASM("asm/nonmatchings/sound/decoder", mpegNodata);
 
 INCLUDE_ASM("asm/nonmatchings/sound/decoder", mpegStopDMA);
 
-INCLUDE_ASM("asm/nonmatchings/sound/decoder", mpegRestartDMA);
+int mpegRestartDMA()
+{
+    viBufRestartDMA(D_00652728);
+    return 1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/decoder", mpegTS);
 
