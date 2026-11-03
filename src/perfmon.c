@@ -26,4 +26,7 @@ void pfm_end(void) {
 void pfm_start(void) {
 }
 
-INCLUDE_ASM("asm/nonmatchings/perfmon", pfm_set);
+int pfm_set()
+{
+    return 0;
+}
