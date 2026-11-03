@@ -103,7 +103,10 @@ void GFTex_FlushVramCache()
     GFCache_Flush();
 }
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gftex", GFTex_FlushVramCache_Preset);
+void GFTex_FlushVramCache_Preset()
+{
+    GFCache_Invalidate(GFCache_GetPresetTransPos(), 0);
+}
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gftex", gfTex_SetMipmapRegs);
 
