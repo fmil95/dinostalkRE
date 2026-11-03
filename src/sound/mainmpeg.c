@@ -136,7 +136,14 @@ int readBufBeginGet(ReadBuf* b, u_char** ptr)
     return b->count;
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", readBufEndGet);
+int readBufEndGet(ReadBuf* b, int size)
+{
+    int size_ok = min(b->count, size);
+
+    b->count -= size_ok;
+
+    return size_ok;
+}
 
 void cdvMpegUserProgSet(int v)
 {
