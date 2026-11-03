@@ -7,6 +7,7 @@ extern int gsGuncon2_CheckConnect();
 extern char D_0066A4E8[];
 extern void FIO_ReadFile_Align();
 extern void hyDestroySMSpriteInfoSub();
+extern void gplInitSprite2();
 
 INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyGun1CheckScreenOut);
 
@@ -164,7 +165,20 @@ INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hySetFadePara);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyCalcFade);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyInitFadeMng2);
+void hyInitFadeMng2(void* a)
+{
+    STRUCT_OFFSET(a, 0x0, int) = 0;
+    STRUCT_OFFSET(a, 0x10, int) = 0;
+    STRUCT_OFFSET(a, 0x14, int) = 0;
+    STRUCT_OFFSET(a, 0x18, int) = 0;
+    STRUCT_OFFSET(a, 0x1C, int) = 0;
+    STRUCT_OFFSET(a, 0x20, int) = 0;
+    STRUCT_OFFSET(a, 0x24, int) = 0;
+    STRUCT_OFFSET(a, 0x28, int) = 0;
+    STRUCT_OFFSET(a, 0x2C, int) = 0;
+    STRUCT_OFFSET(a, 0x30, int) = 0;
+    gplInitSprite2((char*)a + 0x38, 0);
+}
 
 void hySetFadePara2()
 {
