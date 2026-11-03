@@ -1,14 +1,28 @@
 #include "gunsuv_usa/libgf/gftex.h"
+#include "gunsuv_usa/libgf/gfvcache.h"
 
 extern GF_TEXDB_HEAD* gfDatabaseHead;
+extern GF_TEXDB* gfDatabase;
+extern Uint32* gfDatabaseAddr;
 extern Uint32 gfTexFrameCnt;
-extern void GFCache_Flush();
+extern GF_TEXDB gfTexFrame[];
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gftex", GFTex_InitDatabase);
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gftex", GFTex_ResetDatabase);
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gftex", GFTex_EntryDatabase);
+void GFTex_EntryDatabase(Uint32* buf)
+{
+    if (buf == NULL)
+    {
+        gfDatabaseAddr = NULL;
+        return;
+    }
+
+    gfDatabase     = (GF_TEXDB*)((Uint8*)buf + 0x10);
+    gfDatabaseHead = (GF_TEXDB_HEAD*)buf;
+    gfDatabaseAddr = buf;
+}
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gftex", gfTex_ClearDb);
 
