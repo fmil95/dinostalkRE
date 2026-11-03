@@ -33,7 +33,25 @@ void GFAnim_SetSpeed(GF_INST_OBJECT* obj, Float32 speed)
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfanim", GFAnim_Forward);
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfanim", GFAnim_ShapeFlagCheck);
+Uint32 GFAnim_ShapeFlagCheck(GF_INST_OBJECT* obj, Uint32 flag2)
+{
+    Uint32 flag;
+    Sint32 i;
+    GF_INST_SHAPE* shape;
+
+    flag = 0xFFFFFFFF;
+    shape = obj->shape;
+
+    for (i = 0; i < obj->nShape; i++, shape++)
+    {
+        if (shape->keyHead != NULL)
+        {
+            flag &= shape->flagAnim;
+        }
+    }
+
+    return flag;
+}
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfanim", GFAnim_ShapeFlagSet);
 
