@@ -85,5 +85,6 @@ __pycache__/
 temp/
 *.diff
 include/**/*.c
+debug/
 
 !disc/.gitkeep
