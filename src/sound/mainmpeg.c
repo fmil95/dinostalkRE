@@ -78,7 +78,12 @@ INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", copy2area);
 
 INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", readBufCreate);
 
-INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", readBufDelete);
+void readBufDelete(void* a)
+{
+    STRUCT_OFFSET(a, 0x4, int) = 0;
+    STRUCT_OFFSET(a, 0x8, int) = 0;
+    STRUCT_OFFSET(a, 0xC, int) = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", readBufBeginPut);
 
