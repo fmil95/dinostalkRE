@@ -107,4 +107,7 @@ void GFParticle_SetExecFunction(void* p, int v)
     STRUCT_OFFSET(p, 0x148, int) = v;
 }
 
-INCLUDE_ASM("asm/nonmatchings/particle", GFParticle_SetMulVelocity);
+void GFParticle_SetMulVelocity(void* p, float v)
+{
+    STRUCT_OFFSET(p, 0x144, float) = v;
+}
