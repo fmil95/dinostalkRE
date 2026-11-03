@@ -15,3 +15,4 @@ gfDatabaseHead = 0x00674cb8;
 gfTexFrameCnt = 0x00674cc0;
 gsHeapSize = 0x0067332c;
 adjust_mode_0067486c = 0x0067486c;
+screen_off_sw_0067487c = 0x0067487c;

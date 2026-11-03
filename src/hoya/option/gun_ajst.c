@@ -1,10 +1,14 @@
 #include "common.h"
 
 extern int adjust_mode_0067486c;
+extern int screen_off_sw_0067487c;
 
 INCLUDE_ASM("asm/nonmatchings/hoya/option/gun_ajst", CheckGunScreenOut);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/option/gun_ajst", GetScreenOffSw);
+int GetScreenOffSw()
+{
+    return screen_off_sw_0067487c;
+}
 
 int GetAdjustMode()
 {
