@@ -6,7 +6,10 @@ INCLUDE_ASM("asm/nonmatchings/g_enemy/eneatc00", enemy_afteratchit);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneatc00", enemy_hiteffset);
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/eneatc00", eneatc00_dummy);
+int eneatc00_dummy()
+{
+    return -1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneatc00", eneatc00_atcbscchk00);
 
