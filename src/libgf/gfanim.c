@@ -1,10 +1,15 @@
 #include "gunsuv_usa/libgf/gfanim.h"
 
+extern void gfAnim_Attach(GF_INST_OBJECT* obj, PmtHEADER* anim, Uint32 flag);
+
 INCLUDE_ASM("asm/nonmatchings/libgf/gfanim", gfAnim_InterpolateQuaternion);
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfanim", gfAnim_VectorToMatrix);
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfanim", GFAnim_Attach);
+void GFAnim_Attach(GF_INST_OBJECT* obj, PmtHEADER* anim)
+{
+    gfAnim_Attach(obj, anim, 0);
+}
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfanim", GFAnim_HotAttach);
 
