@@ -1,7 +1,21 @@
 #include "gunsuv_usa/libgf/gflight.h"
 #include "gunsuv_usa/libgf/gfshape.h"
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gflight", GFLight_Init);
+extern sceVu0FVECTOR D_00655CE0;
+
+GF_LIGHT* GFLight_Init(GF_LIGHT* light)
+{
+    sceVu0FMATRIX unit;
+
+    sceVu0UnitMatrix(unit);
+
+    GFLight_SetVector(light, unit[0], unit[1], unit[2]);
+    GFLight_SetColor(light, D_00655CE0, D_00655CE0, D_00655CE0, D_00655CE0);
+
+    light->packet = NULL;
+
+    return light;
+}
 
 void GFLight_SetVector(GF_LIGHT* light, float* v0, float* v1, float* v2)
 {
