@@ -2,6 +2,8 @@
 
 extern int pGnn;
 extern void hyCheckFadeFinishFlag();
+extern void GFTex_ResetDatabase();
+extern void GF_EndGraphicsFramework();
 
 INCLUDE_ASM("asm/nonmatchings/hoya/name/namesub", SetFadeParaPause_namesub);
 
@@ -54,4 +56,8 @@ INCLUDE_ASM("asm/nonmatchings/hoya/name/namesub", InitName);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/name/namesub", MainName);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/name/namesub", EndName);
+void EndName()
+{
+    GFTex_ResetDatabase();
+    GF_EndGraphicsFramework();
+}
