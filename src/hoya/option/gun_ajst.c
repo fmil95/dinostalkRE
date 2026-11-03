@@ -70,7 +70,10 @@ INCLUDE_ASM("asm/nonmatchings/hoya/option/gun_ajst", gun_adjust_W1_gun_ajst);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/option/gun_ajst", gun_adjust_W2_gun_ajst);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/option/gun_ajst", gun_adjust_W3_gun_ajst);
+void gun_adjust_W3_gun_ajst()
+{
+    adjust_check_gun_ajst();
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/option/gun_ajst", gun_teaching_gun_ajst);
 
