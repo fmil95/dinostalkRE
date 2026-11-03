@@ -6,6 +6,7 @@ extern int _st2_se_port_fall;
 extern int _st2_se_port_sawa;
 extern int _st2_se_sawa_vol;
 extern int _st2_shock_fall_flg;
+extern void gsSt2_BattleInit_RAPT();
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st2", gsWorldInitSt2);
 
@@ -36,7 +37,11 @@ void gsWorldSt2_InitRapt()
     _st2_rapt_flag = 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_world/st2", gsWorldSt2_MotiveRapt);
+void gsWorldSt2_MotiveRapt()
+{
+    _st2_rapt_flag = (_st2_rapt_flag | 0x1);
+    gsSt2_BattleInit_RAPT();
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st2", gsWorldSt2_CheckRaptEnd);
 
