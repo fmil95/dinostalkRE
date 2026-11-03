@@ -5,6 +5,7 @@ extern void audioDecResume();
 extern void sceMpegSetDecodeMode();
 extern void viBufBeginPut();
 extern void viBufEndPut();
+extern void viBufCount();
 
 INCLUDE_ASM("asm/nonmatchings/sound/decoder", videoDecCreate);
 
@@ -44,7 +45,10 @@ INCLUDE_ASM("asm/nonmatchings/sound/decoder", videoDecSetState);
 
 INCLUDE_ASM("asm/nonmatchings/sound/decoder", videoDecPutTs);
 
-INCLUDE_ASM("asm/nonmatchings/sound/decoder", videoDecInputCount);
+void videoDecInputCount(void* a)
+{
+    viBufCount((char*)a + 0x48);
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/decoder", videoDecInputSpaceCount);
 
