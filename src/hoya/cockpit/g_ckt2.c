@@ -1,5 +1,10 @@
 #include "common.h"
 
+extern char gDammyScene[];
+extern char gDammyScene[];
+extern void GFScene_MakeInstance();
+extern void GFScene_SetScreen();
+
 INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_ckt2", gsCOCKPIT_InitCocpit2);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_ckt2", gsCOCKPIT_takiEffOptInit);
@@ -40,7 +45,11 @@ INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_ckt2", gsCOCKPIT_PutStockItemText);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_ckt2", gsCOCKPIT_PutItemDropText);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_ckt2", gsCOCKPIT_MakeDammyScene);
+void gsCOCKPIT_MakeDammyScene(int a)
+{
+    GFScene_MakeInstance(gDammyScene, 0);
+    GFScene_SetScreen(gDammyScene, a);
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_ckt2", gsCOCKPIT_LoadItem);
 
