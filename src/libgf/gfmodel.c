@@ -1,6 +1,13 @@
-#include "common.h"
+#include "gunsuv_usa/libgf/gfmodel.h"
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfmodel", GFModel_GetVu1TransSize);
+Uint32 GFModel_GetVu1TransSize(Uint32 work_size)
+{
+    Uint32 single;
+
+    single = (0x220 - work_size) >> 1;
+
+    return ((single - 3) / 7) * 4 + 2;
+}
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfmodel", GFModel_MakePreset);
 
