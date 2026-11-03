@@ -1,4 +1,4 @@
-#include "common.h"
+#include "gunsuv_usa/libgf/gfinstance.h"
 
 void GF_InitGraphicsFramework(void) {
 }
@@ -6,7 +6,12 @@ void GF_InitGraphicsFramework(void) {
 void GF_EndGraphicsFramework(void) {
 }
 
-INCLUDE_ASM("asm/nonmatchings/libgf/libgf", gf_setsorykey);
+void gf_setsorykey(sceVu0FMATRIX p, GF_INSTANCE* inst)
+{
+    sceVu0FVECTOR out;
+
+    inst->sortKey = p[0][2] * inst->worldMatrix[3][0] + p[1][2] * inst->worldMatrix[3][1] + p[2][2] * inst->worldMatrix[3][2] + p[3][2];
+}
 
 void GF_sort_shape(void) {
 }
