@@ -1,8 +1,15 @@
 #include "common.h"
 
+extern void sceVu0CopyVector();
+extern void sceVu0CopyVector();
+
 INCLUDE_ASM("asm/nonmatchings/benjamin/ik_trkr", _gsIK_TrkrInit);
 
-INCLUDE_ASM("asm/nonmatchings/benjamin/ik_trkr", _gsIK_TrkrUpdateData);
+void _gsIK_TrkrUpdateData(int a, int b)
+{
+    sceVu0CopyVector((char*)a + 0xDC0, (char*)b + 0x30);
+    sceVu0CopyVector((char*)a + 0xD90, b);
+}
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/ik_trkr", _gsIK_TrkrResetInfo);
 
