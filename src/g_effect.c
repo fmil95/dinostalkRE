@@ -1,6 +1,7 @@
 #include "common.h"
 
 extern int gsEffect_FadeCnt;
+extern void gsEffectAddWithPri();
 
 INCLUDE_ASM("asm/nonmatchings/g_effect", gs_effectResetEffectSrc);
 
@@ -18,7 +19,10 @@ INCLUDE_ASM("asm/nonmatchings/g_effect", gsEffectAddWithRot);
 
 INCLUDE_ASM("asm/nonmatchings/g_effect", gsEffectAddWithPri);
 
-INCLUDE_ASM("asm/nonmatchings/g_effect", gsEffectAdd);
+void gsEffectAdd(int a, int b, int c)
+{
+    gsEffectAddWithPri(a, b, c, 1);
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_effect", gsEffectAddThunder);
 
