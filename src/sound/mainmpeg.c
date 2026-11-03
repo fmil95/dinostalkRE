@@ -2,6 +2,7 @@
 
 extern int frame_cnt;
 extern char err_sts;
+extern int GS_Send_Flg;
 
 INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", cdvMpegInit);
 
@@ -77,6 +78,9 @@ INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", cdvMpegUserProgSet);
 
 INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", cdvMpegUserProgDelete);
 
-INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", cdvMpegSendModeSet);
+void cdvMpegSendModeSet(int v)
+{
+    GS_Send_Flg = v;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", UserThread);
