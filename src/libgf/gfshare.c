@@ -1,4 +1,6 @@
-#include "common.h"
+#include "gunsuv_usa/libgf/gfshare.h"
+
+extern Uint32 gf_Vu1WorkSize;
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfshare", gf_GetShape);
 
@@ -24,6 +26,9 @@ INCLUDE_ASM("asm/nonmatchings/libgf/gfshare", gf_CopyShareBlock);
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfshare", GFShare_GetUsedBufSize);
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfshare", GFShare_SetVu1WorkSize);
+void GFShare_SetVu1WorkSize(Uint32 size)
+{
+    gf_Vu1WorkSize = size;
+}
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfshare", GFShare_GetVu1WorkSize);

@@ -3,6 +3,8 @@
 #ifndef GUNSUV_USA_LIBGF_GFSHARE_H
 #define GUNSUV_USA_LIBGF_GFSHARE_H
 
+#include "common.h"
+#include "gunsuv_usa/libgf/gfshape.h"
 
 qword* gf_CopyQWs(qword *pw, qword *pr, Uint32 size);
 void GFShare_Eval(GF_INST_SHAPE *inst);

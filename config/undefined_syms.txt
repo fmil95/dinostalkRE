@@ -10,3 +10,4 @@ gsHeapBak    = 0x00673250;
 gAllocNum    = 0x00673f08;
 gAllocSize   = 0x00673f10;
 gsHeapTop    = 0x00673328;
+gf_Vu1WorkSize = 0x00673e78;
