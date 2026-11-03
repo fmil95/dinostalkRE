@@ -13,3 +13,4 @@ gsHeapTop    = 0x00673328;
 gf_Vu1WorkSize = 0x00673e78;
 gfDatabaseHead = 0x00674cb8;
 gfTexFrameCnt = 0x00674cc0;
+gsHeapSize = 0x0067332c;
