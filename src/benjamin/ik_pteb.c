@@ -6,6 +6,9 @@ extern char D_003EAF20[];
 extern char _gsIK_PtebLArmHitPos[];
 extern char _gsIK_PtebInterpolateArm[];
 extern int _gsIK_ArmHitSub();
+extern char rArmHitSubProcFlag[];
+extern char D_003EAEA0[];
+extern char _gsIK_PtebRArmHitPos[];
 
 void _gsIK_PtebInit(void* a)
 {
@@ -34,4 +37,8 @@ int _gsIK_PtebArmHitL(int a)
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/ik_pteb", _gsIK_PtebRArmHitPos);
 
-INCLUDE_ASM("asm/nonmatchings/benjamin/ik_pteb", _gsIK_PtebArmHitR);
+int _gsIK_PtebArmHitR(int a)
+{
+    _gsIK_ArmHitSub(rArmHitSubProcFlag, (char*)a + 0xD4C, a, 0xb, 0xe, D_003EAEA0, _gsIK_PtebRArmHitPos, _gsIK_PtebInterpolateArm);
+    return 4;
+}
