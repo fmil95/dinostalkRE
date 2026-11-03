@@ -4,6 +4,11 @@ extern int finish;
 extern int adjust_mode_00674810;
 extern int trans;
 extern void hyGun1CheckScreenOut();
+extern int check_wait_timer_0067480c;
+extern int work0;
+extern int work1;
+extern int work2;
+extern int work3;
 
 int Gun1AjstGetViewScene()
 {
@@ -27,7 +32,16 @@ int Gun1AjstCheckFinish()
 
 INCLUDE_ASM("asm/nonmatchings/hoya/option/gun1_ajst", Gun1AdjustInit);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/option/gun1_ajst", AdjustInit_gun1_ajst);
+void AdjustInit_gun1_ajst()
+{
+    adjust_mode_00674810 = 0;
+    check_wait_timer_0067480c = 0x10;
+    trans = 0;
+    work0 = 0;
+    work1 = 0;
+    work2 = 0;
+    work3 = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/option/gun1_ajst", Gun1AdjustMain);
 
