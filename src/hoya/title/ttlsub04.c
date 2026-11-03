@@ -3,13 +3,17 @@
 extern char D_005F28F0[];
 extern void hyCheckFadeFinishFlag();
 extern void hySetFadePara2();
+extern void hySwitchFadeTimer();
 
 void SetFadePara_ttlsub04(int a, int b, int c)
 {
     hySetFadePara2(a, b, c, D_005F28F0);
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/title/ttlsub04", SwitchFadeTimer_ttlsub04);
+void SwitchFadeTimer_ttlsub04(int a)
+{
+    hySwitchFadeTimer(a, D_005F28F0);
+}
 
 void CheckFadeFinishFlag_ttlsub04()
 {
