@@ -4,13 +4,17 @@ extern void EndLetterAll();
 extern int pCntCnt;
 extern void hyCheckFadeFinishFlag();
 extern void hySetFadePara2();
+extern void hySwitchFadeTimer();
 
 void SetFadePara_cntsub1(int a, int b, int c)
 {
     hySetFadePara2(a, b, c, (pCntCnt + 1024));
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/continue/cntsub1", SwitchFadeTimer_cntsub1);
+void SwitchFadeTimer_cntsub1(int a)
+{
+    hySwitchFadeTimer(a, (pCntCnt + 1024));
+}
 
 void CheckFadeFinishFlag_cntsub1()
 {
