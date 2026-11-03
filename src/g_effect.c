@@ -106,7 +106,15 @@ void gsEffectSetBlurNowColor(int a)
     sceVu0CopyVector(gsEffect_BlurDisCol, a);
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_effect", gsEffectBlurStatPush);
+void gsEffectBlurStatPush()
+{
+    sceVu0CopyVector(gsEffect_BlurColBak, gsEffect_BlurCol);
+    sceVu0CopyVector(gsEffect_BlurAddColBak, gsEffect_BlurAddCol);
+    sceVu0CopyVector(gsEffect_BlurDisColBak, gsEffect_BlurDisCol);
+    gsEffect_BlurRBak = gsEffect_BlurR;
+    gsEffect_BlurTimeBak = gsEffect_BlurTime;
+    gsEffect_BlurCntBak = gsEffect_BlurCnt;
+}
 
 void gsEffectBlurStatPop()
 {
