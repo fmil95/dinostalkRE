@@ -2,6 +2,7 @@
 
 extern int isCountVblank;
 extern int frd;
+extern void setGIFad();
 
 INCLUDE_ASM("asm/nonmatchings/sound/disp", initDisplay);
 
@@ -35,7 +36,10 @@ INCLUDE_ASM("asm/nonmatchings/sound/disp", setGIFtag);
 
 INCLUDE_ASM("asm/nonmatchings/sound/disp", setGIFad);
 
-INCLUDE_ASM("asm/nonmatchings/sound/disp", setTEXFLUSH);
+void setTEXFLUSH(int a)
+{
+    setGIFad(a, 63, 0);
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/disp", setTEX1_1);
 
