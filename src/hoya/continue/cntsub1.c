@@ -1,12 +1,17 @@
 #include "common.h"
 
 extern void EndLetterAll();
+extern int pCntCnt;
+extern void hyCheckFadeFinishFlag();
 
 INCLUDE_ASM("asm/nonmatchings/hoya/continue/cntsub1", SetFadePara_cntsub1);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/continue/cntsub1", SwitchFadeTimer_cntsub1);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/continue/cntsub1", CheckFadeFinishFlag_cntsub1);
+void CheckFadeFinishFlag_cntsub1()
+{
+    hyCheckFadeFinishFlag((pCntCnt + 1024));
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/continue/cntsub1", continueGameOver);
 
