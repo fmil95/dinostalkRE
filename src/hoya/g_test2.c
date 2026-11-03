@@ -59,7 +59,10 @@ INCLUDE_ASM("asm/nonmatchings/hoya/g_test2", G_NAME_Exec);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/g_test2", G_NAME_End);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/g_test2", G_MEMC_Init);
+void G_MEMC_Init()
+{
+    G_TTL_Init();
+}
 
 void G_MEMC_Exec()
 {
