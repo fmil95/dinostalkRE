@@ -33,7 +33,10 @@ INCLUDE_ASM("asm/nonmatchings/libgf/gfanim", GFAnim_ShapeFlagClear);
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfanim", GFAnim_SetNextAnimation);
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfanim", GFAnim_SetCallbackFunction);
+void GFAnim_SetCallbackFunction(GF_INST_OBJECT* object, GF_CallBackFunction function)
+{
+    object->func = function;
+}
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfanim", gfAnim_CalcPosition);
 
