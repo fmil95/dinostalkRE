@@ -13,7 +13,10 @@ void GFSpotLight_SetVector(void) {
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfspotlight", GFSpotLight_MakePacket);
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfspotlight", GFSpotLight_Draw);
+int GFSpotLight_Draw(int a)
+{
+    return a;
+}
 
 void GFSpotLight_SetShape(void) {
 }
