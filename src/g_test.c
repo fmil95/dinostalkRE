@@ -1,5 +1,9 @@
 #include "common.h"
 
+extern int gsExtProgWorkP;
+extern int gsExtProgRpFile;
+extern int gsExtProgRpFunc;
+
 INCLUDE_ASM("asm/nonmatchings/g_test", G_TEST_Init);
 
 INCLUDE_ASM("asm/nonmatchings/g_test", G_TEST_Exec);
@@ -8,7 +12,12 @@ INCLUDE_ASM("asm/nonmatchings/g_test", G_TEST_End);
 
 INCLUDE_ASM("asm/nonmatchings/g_test", gsExtProg_INIT);
 
-INCLUDE_ASM("asm/nonmatchings/g_test", gsExtProg_ENTRY_WORK);
+void gsExtProg_ENTRY_WORK(int a, int b, int c)
+{
+    gsExtProgWorkP = a;
+    gsExtProgRpFile = b;
+    gsExtProgRpFunc = c;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_test", gsExtProg_RECOV_WORK);
 

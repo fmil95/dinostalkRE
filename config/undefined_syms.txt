@@ -66,3 +66,6 @@ gsWorldSt3_IwaObjCnt = 0x006740a4;
 _st9_se_port_lava = 0x006736bc;
 stgsOldProcNo = 0x00673d00;
 gsNextProg = 0x00673230;
+gsExtProgWorkP = 0x00673300;
+gsExtProgRpFile = 0x00673304;
+gsExtProgRpFunc = 0x00673324;
