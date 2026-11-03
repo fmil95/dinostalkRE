@@ -25,7 +25,10 @@ void FIO_ReadFile_Align(int a, int b)
     fio_ReadFile(a, 0, 0, 0, b, 1);
 }
 
-INCLUDE_ASM("asm/nonmatchings/fileio", FIO_ReadFile_Align2);
+void FIO_ReadFile_Align2(int a, int b, int c)
+{
+    fio_ReadFile(a, 0, b, 0, c, 1);
+}
 
 void FIO_ReadFilePartly(int a, int b, int c)
 {
