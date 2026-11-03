@@ -11,6 +11,12 @@ extern int viBufRestartDMA();
 extern int viBufStopDMA();
 extern int RotateThreadReadyQueue();
 extern int viBufAddDMA();
+extern int remoteSema;
+extern int remoteSema;
+extern void WaitSema();
+extern void sceSdRemote();
+extern void sceSdRemote();
+extern void SignalSema();
 
 INCLUDE_ASM("asm/nonmatchings/sound/decoder", videoDecCreate);
 
@@ -135,4 +141,10 @@ INCLUDE_ASM("asm/nonmatchings/sound/decoder", popMasterVolume);
 
 INCLUDE_ASM("asm/nonmatchings/sound/decoder", changeMasterVolume);
 
-INCLUDE_ASM("asm/nonmatchings/sound/decoder", changeInputVolume);
+void changeInputVolume(int a)
+{
+    WaitSema(remoteSema);
+    sceSdRemote(1, (0 | 0x8010), 0xf80, a);
+    sceSdRemote(1, (0 | 0x8010), 0x1080, a);
+    SignalSema(remoteSema);
+}
