@@ -64,7 +64,10 @@ void GFParticle_SetPosition()
 
 INCLUDE_ASM("asm/nonmatchings/particle", GFParticle_SetPositionFunction);
 
-INCLUDE_ASM("asm/nonmatchings/particle", GFParticle_SetGravity);
+void GFParticle_SetGravity(void* a)
+{
+    sceVu0CopyVectorXYZ((char*)a + 0x50);
+}
 
 INCLUDE_ASM("asm/nonmatchings/particle", GFParticle_SetSize);
 
