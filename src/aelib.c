@@ -1,5 +1,7 @@
 #include "common.h"
 
+extern int aeSetAD();
+
 INCLUDE_ASM("asm/nonmatchings/aelib", aeInit);
 
 INCLUDE_ASM("asm/nonmatchings/aelib", aeStartMfifo);
@@ -76,7 +78,11 @@ INCLUDE_ASM("asm/nonmatchings/aelib", _saeDrawPrim_SPRT);
 
 INCLUDE_ASM("asm/nonmatchings/aelib", _saeDrawPrim_TILE);
 
-INCLUDE_ASM("asm/nonmatchings/aelib", _saeDrawPrim_AD);
+int _saeDrawPrim_AD(void* a)
+{
+    aeSetAD(STRUCT_OFFSET(a, 0x2, unsigned short), STRUCT_OFFSET(a, 0x8, long));
+    return STRUCT_OFFSET(a, 0x4, int);
+}
 
 INCLUDE_ASM("asm/nonmatchings/aelib", _saeDrawPrim_LDIMG);
 
