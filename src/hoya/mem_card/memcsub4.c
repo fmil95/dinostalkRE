@@ -3,12 +3,16 @@
 extern void EndMemcManager();
 extern int pmss_006746a4;
 extern void hyCheckFadeFinishFlag();
+extern void hySetFadePara2();
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub4", McConnectCheck_memcsub4);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub4", McDisconnectCheck_memcsub4);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub4", SetFadePara_memcsub4);
+void SetFadePara_memcsub4(int a, int b, int c)
+{
+    hySetFadePara2(a, b, c, (pmss_006746a4 + 64));
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub4", SwitchFadeTimer_memcsub4);
 
