@@ -1,6 +1,11 @@
 #include "common.h"
 
-INCLUDE_ASM("asm/nonmatchings/g_plane", gplInitPlane);
+extern void aeInit();
+
+void gplInitPlane()
+{
+    aeInit();
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_plane", gplInitSprite);
 
