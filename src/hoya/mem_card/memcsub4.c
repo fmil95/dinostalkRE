@@ -5,6 +5,8 @@ extern int pmss_006746a4;
 extern void hyCheckFadeFinishFlag();
 extern void hySetFadePara2();
 extern void hySwitchFadeTimer();
+extern int gsNextProg;
+extern void LetsGotoStartgs3();
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub4", McConnectCheck_memcsub4);
 
@@ -30,7 +32,11 @@ INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub4", Draw2dObject_memcsub4);
 void Calculation_memcsub4(void) {
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub4", GotoNextStage_memcsub4);
+void GotoNextStage_memcsub4()
+{
+    LetsGotoStartgs3(gsNextProg);
+    EndMemcManager();
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub4", ProcFadeIn_memcsub4);
 
