@@ -43,7 +43,10 @@ INCLUDE_ASM("asm/nonmatchings/particle", GFParticle_SetEndRGBA);
 
 INCLUDE_ASM("asm/nonmatchings/particle", GFParticle_SetRGBAVar);
 
-INCLUDE_ASM("asm/nonmatchings/particle", GFParticle_SetStatus);
+void GFParticle_SetStatus(void* p, int v)
+{
+    STRUCT_OFFSET(p, 0xE8, int) = v;
+}
 
 INCLUDE_ASM("asm/nonmatchings/particle", GFParticle_AddStatus);
 
