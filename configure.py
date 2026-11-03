@@ -35,6 +35,10 @@ G_OVERRIDES = {
     "mem.c": "-G8"
 }
 
+O_OVERRIDES = {
+    "nmGC2Main.c": "-O1"
+}
+
 SDK_ROOT = "include/sce/usr/local/sce"
 
 COMMON_INCLUDES = (
@@ -260,7 +264,7 @@ def build_stuff(linker_entries: List[LinkerEntry], skip_checksum=False, objects_
         description="cc $in",
         command=(
             f"rm -f $out $out.s; "
-            f"{CC_DIR}/ee-gcc -S {COMMON_INCLUDES} {COMMON_COMPILE_FLAGS} $gflag $in $cflags -o $out.s; "
+            f"{CC_DIR}/ee-gcc -S {COMMON_INCLUDES} {COMMON_COMPILE_FLAGS} $gflag $oflag $in $cflags -o $out.s; "
             #f"{WINE_RUN} {CC_DIR}/ee-gcc -S {COMMON_INCLUDES} {COMMON_COMPILE_FLAGS} $in $cflags -o $out.s; "
             # f"wineserver -w; "
             f"{AS_EE} -O2 -mabi=eabi $gflag -o $out $out.s; "
@@ -319,7 +323,14 @@ def build_stuff(linker_entries: List[LinkerEntry], skip_checksum=False, objects_
                     gflag = G_OVERRIDES[str(src)]
                     break
 
-            variables = {"gflag": gflag}
+            # Find the optimization level override for this source file, if any
+            oflag = ""
+            for src in entry.src_paths:
+                if Path(src).name in O_OVERRIDES:
+                    oflag = O_OVERRIDES[Path(src).name]
+                    break
+
+            variables = {"gflag": gflag, "oflag": oflag}
 
             if dual_objects:
                 build(entry.object_path, entry.src_paths, "cc", out_dir="obj/target", variables=variables, collect_objdiff=True, orig_entry=entry)
