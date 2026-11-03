@@ -6,12 +6,19 @@ extern int SeSetMasterVol();
 extern int SeSoundOff();
 extern int SeMain();
 extern int SeStopVoice();
+extern int _g_sound_vab_tbl;
+extern int SeVabOpen();
 
 INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundInitModule);
 
 INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundInitAll);
 
-INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundReadSe);
+int gsSoundReadSe(int a)
+{
+    _g_sound_vab_tbl = a;
+    SeVabOpen(a);
+    return 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundReadBgm);
 
