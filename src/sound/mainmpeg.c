@@ -10,6 +10,10 @@ extern char init_flg;
 extern int N_Read_Unit;
 extern char audioDec[];
 extern void audioDecSendToIOP();
+extern char videoDec[];
+extern char readBuf[];
+extern char infile[];
+extern void readMpeg();
 
 INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", cdvMpegInit);
 
@@ -57,7 +61,10 @@ INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", initAll);
 
 INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", termAll);
 
-INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", defMain);
+void defMain()
+{
+    readMpeg(videoDec, readBuf, infile);
+}
 
 int ResetMpeg()
 {
