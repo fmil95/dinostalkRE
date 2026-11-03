@@ -38,7 +38,10 @@ INCLUDE_ASM("asm/nonmatchings/g_parts", gpEntryWorldObjAnim);
 
 INCLUDE_ASM("asm/nonmatchings/g_parts", gpEntryWorldManagerGND_LOOP);
 
-INCLUDE_ASM("asm/nonmatchings/g_parts", gpSetCollisionSkipGV);
+void gpSetCollisionSkipGV(void* a, int b)
+{
+    STRUCT_OFFSET(a, 0xC8758, int) = b;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_parts", gpSetCollisionSkipODV);
 
