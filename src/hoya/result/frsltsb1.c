@@ -3,6 +3,7 @@
 extern int pFR;
 extern void hyCheckFadeFinishFlag();
 extern void hySetFadePara2();
+extern void hySwitchFadeTimer();
 
 INCLUDE_ASM("asm/nonmatchings/hoya/result/frsltsb1", MakeAllNumberTex_frsltsb1);
 
@@ -47,7 +48,10 @@ void SetFadePara_frsltsb1(int a, int b, int c)
     hySetFadePara2(a, b, c, (pFR + 8128));
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/result/frsltsb1", SwitchFadeTimer_frsltsb1);
+void SwitchFadeTimer_frsltsb1(int a)
+{
+    hySwitchFadeTimer(a, (pFR + 8128));
+}
 
 void CheckFadeFinishFlag_frsltsb1()
 {
