@@ -48,7 +48,20 @@ INCLUDE_ASM("asm/nonmatchings/libgf/gfvalloc", gfVram_PsmToFlag);
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfvalloc", gfVram_ChangeArea);
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfvalloc", gfVram_SearchCellByPos);
+static GF_VRAM_CELL* gfVram_SearchCellByPos(Uint16 pos)
+{
+    GF_VRAM_CELL* p;
+
+    for (p = gfInfoHead_00674cd0->top_cell; p != NULL; p = p->next)
+    {
+        if (pos >= p->pos && pos < p->pos + p->size)
+        {
+            break;
+        }
+    }
+
+    return p;
+}
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfvalloc", gfVram_DefragCell);
 
