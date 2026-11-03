@@ -35,7 +35,12 @@ void GFVram_SetFrameBufferSize(Uint32 w, Uint32 h, Uint32 psm)
     gf_vramScreenInfo.frameBuffer.psm = psm;
 }
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfvalloc", GFVram_SetZBufferSize);
+void GFVram_SetZBufferSize(Uint32 w, Uint32 h, Uint32 psm)
+{
+    gf_vramScreenInfo.zBuffer.w = w;
+    gf_vramScreenInfo.zBuffer.h = h;
+    gf_vramScreenInfo.zBuffer.psm = psm;
+}
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfvalloc", GFVram_SetScreenBufferSize);
 
