@@ -34,4 +34,10 @@ Float32 GFFog_SetMax(GF_FOG* fog, Float32 max)
     return max;
 }
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gffog", GFFog_SetParam);
+void GFFog_SetParam(GF_FOG* fog, Float32 min, Float32 max, Float32 near, Float32 far)
+{
+    GFFog_SetMin(fog, min);
+    GFFog_SetMax(fog, max);
+    GFFog_SetNear(fog, near);
+    GFFog_SetFar(fog, far);
+}
