@@ -39,4 +39,7 @@ void GFTrack_Eval(void) {
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/track", GFTrack_MakeInstance);
 
-INCLUDE_ASM("asm/nonmatchings/benjamin/track", GFTrack_OffInstance);
+void GFTrack_OffInstance(void* a)
+{
+    STRUCT_OFFSET(a, 0xD0, int) = (STRUCT_OFFSET(a, 0xD0, int) | 0x10);
+}
