@@ -1,6 +1,7 @@
 #include "common.h"
 
 extern void sceVu0CopyVector();
+extern void sceVu0CopyVectorXYZ();
 
 INCLUDE_ASM("asm/nonmatchings/particle", gf_MyRand);
 
@@ -103,7 +104,10 @@ INCLUDE_ASM("asm/nonmatchings/particle", GFParticle_SetTail);
 
 INCLUDE_ASM("asm/nonmatchings/particle", GFParticle_SetCreateRange);
 
-INCLUDE_ASM("asm/nonmatchings/particle", GFParticle_SetAttractPos);
+void GFParticle_SetAttractPos(void* a)
+{
+    sceVu0CopyVectorXYZ((char*)a + 0x90);
+}
 
 void GFParticle_SetAlphaType(void* p, int v)
 {
