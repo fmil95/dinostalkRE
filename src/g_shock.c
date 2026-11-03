@@ -4,7 +4,10 @@ INCLUDE_ASM("asm/nonmatchings/g_shock", gsShockInit);
 
 INCLUDE_ASM("asm/nonmatchings/g_shock", gsShockManagement);
 
-INCLUDE_ASM("asm/nonmatchings/g_shock", _us_get_port_g_shock);
+int _us_get_port_g_shock(int a)
+{
+    return a;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_shock", gsShockSetSeqVel);
 
