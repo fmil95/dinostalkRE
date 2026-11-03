@@ -176,3 +176,4 @@ gsPlayDemoFlag = 0x00673d08;
 gsFootPointBegin = 0x006737a0;
 gsFootPointBefore = 0x006737a4;
 _g_sound_vab_tbl = 0x00674300;
+gsMovie_skipGunKey = 0x00674070;

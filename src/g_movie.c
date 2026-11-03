@@ -1,10 +1,18 @@
 #include "common.h"
 
 extern void sceGsResetGraph();
+extern int gsMovie_skipGunKey;
+extern void cdvMpegSkipReset();
+extern void cdvMpegSkipSet();
 
 INCLUDE_ASM("asm/nonmatchings/g_movie", gsMovie_Init);
 
-INCLUDE_ASM("asm/nonmatchings/g_movie", gsMovie_SetSkipKey);
+void gsMovie_SetSkipKey(int a, int b)
+{
+    cdvMpegSkipReset(0, 0);
+    cdvMpegSkipSet(0, 0, (a & 0xFFFF), 1);
+    gsMovie_skipGunKey = b;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_movie", gsMovie_Play);
 
