@@ -14,6 +14,16 @@ extern char gsEffectL[];
 extern void gs_effectResetEffectSrc();
 extern void gs_effectResetEffectSrc();
 extern void gs_effectResetEffectSrc();
+extern int gsEffect_BlurRBak;
+extern int gsEffect_BlurR;
+extern int gsEffect_BlurTimeBak;
+extern int gsEffect_BlurTime;
+extern int gsEffect_BlurCntBak;
+extern int gsEffect_BlurCnt;
+extern char gsEffect_BlurColBak[];
+extern char gsEffect_BlurAddCol[];
+extern char gsEffect_BlurAddColBak[];
+extern char gsEffect_BlurDisColBak[];
 
 INCLUDE_ASM("asm/nonmatchings/g_effect", gs_effectResetEffectSrc);
 
@@ -98,7 +108,15 @@ void gsEffectSetBlurNowColor(int a)
 
 INCLUDE_ASM("asm/nonmatchings/g_effect", gsEffectBlurStatPush);
 
-INCLUDE_ASM("asm/nonmatchings/g_effect", gsEffectBlurStatPop);
+void gsEffectBlurStatPop()
+{
+    sceVu0CopyVector(gsEffect_BlurCol, gsEffect_BlurColBak);
+    sceVu0CopyVector(gsEffect_BlurAddCol, gsEffect_BlurAddColBak);
+    sceVu0CopyVector(gsEffect_BlurDisCol, gsEffect_BlurDisColBak);
+    gsEffect_BlurR = gsEffect_BlurRBak;
+    gsEffect_BlurTime = gsEffect_BlurTimeBak;
+    gsEffect_BlurCnt = gsEffect_BlurCntBak;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_effect", gsEffectBlurManagement);
 
