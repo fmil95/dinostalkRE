@@ -1,5 +1,7 @@
 #include "common.h"
 
+extern void EndMemcManager();
+
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub2", LoadInitSprFileNum);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub2", LoadDrawSprOther);
@@ -57,4 +59,7 @@ INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub2", ProcDebug_memcsub2);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub2", MainMemcLoad);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub2", EndMemcLoad);
+void EndMemcLoad()
+{
+    EndMemcManager();
+}
