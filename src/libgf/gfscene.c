@@ -1,5 +1,7 @@
 #include "common.h"
 
+extern void GFFog_MakePacket();
+
 INCLUDE_ASM("asm/nonmatchings/libgf/gfscene", GFScene_MakeInstance);
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfscene", GFScene_SetViewScreen);
@@ -10,7 +12,10 @@ INCLUDE_ASM("asm/nonmatchings/libgf/gfscene", GFScene_SetClipScreen);
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfscene", GFScene_SetScreen);
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfscene", GFScene_MakePacket);
+void GFScene_MakePacket(void* a)
+{
+    GFFog_MakePacket((char*)a + 0x290);
+}
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfscene", GFScene_SetWorldView);
 
