@@ -48,7 +48,10 @@ INCLUDE_ASM("asm/nonmatchings/sound/buf", voBufIncCount);
 
 INCLUDE_ASM("asm/nonmatchings/sound/buf", voBufGetData);
 
-INCLUDE_ASM("asm/nonmatchings/sound/buf", voBufIsEmpty);
+int voBufIsEmpty(void* a)
+{
+    return (STRUCT_OFFSET(a, 0xC, int) == 0);
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/buf", voBufGetTag);
 
