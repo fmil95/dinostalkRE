@@ -1,10 +1,14 @@
 #include "common.h"
 
 extern int finish;
+extern int adjust_mode_00674810;
 
 INCLUDE_ASM("asm/nonmatchings/hoya/option/gun1_ajst", Gun1AjstGetViewScene);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/option/gun1_ajst", Gun1AjstGetProgNo);
+int Gun1AjstGetProgNo()
+{
+    return adjust_mode_00674810;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/option/gun1_ajst", Gun1AjstCheckGun1ScreenOut);
 

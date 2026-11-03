@@ -18,3 +18,4 @@ adjust_mode_0067486c = 0x0067486c;
 screen_off_sw_0067487c = 0x0067487c;
 wide_mode_flag_0067488c = 0x0067488c;
 finish = 0x0067484c;
+adjust_mode_00674810 = 0x00674810;
