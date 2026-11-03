@@ -17,7 +17,10 @@ INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyCreateTexture);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyCreateTexture2);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyInitTextureManager);
+void hyInitTextureManager()
+{
+    texMng[0] = 0;
+}
 
 int hyGetEntryNo()
 {
