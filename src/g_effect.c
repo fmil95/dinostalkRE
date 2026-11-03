@@ -6,6 +6,8 @@ extern char gsEffect_WindVec[];
 extern void sceVu0CopyVector();
 extern char gsEffect_BlurCol[];
 extern char gsEffect_BlurDisCol[];
+extern char gsEffect_FadeCol[];
+extern char gsEffect_FadeDisCol[];
 
 INCLUDE_ASM("asm/nonmatchings/g_effect", gs_effectResetEffectSrc);
 
@@ -97,7 +99,11 @@ INCLUDE_ASM("asm/nonmatchings/g_effect", gsEffectFade);
 
 INCLUDE_ASM("asm/nonmatchings/g_effect", gsEffectSetFade);
 
-INCLUDE_ASM("asm/nonmatchings/g_effect", gsEffectSetFadeNowColor);
+void gsEffectSetFadeNowColor(int a)
+{
+    sceVu0CopyVector(gsEffect_FadeCol, a);
+    sceVu0CopyVector(gsEffect_FadeDisCol, a);
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_effect", gsEffectFadeManagement);
 
