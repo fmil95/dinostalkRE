@@ -18,6 +18,11 @@ void String_MakeInstance(Unknown3* prm0, int prm1, int prm2, int prm3)
 
 INCLUDE_ASM("asm/nonmatchings/inststr", String_SetString);
 
-INCLUDE_ASM("asm/nonmatchings/inststr", String_SetPosition);
+void String_SetPosition(void* a, int b, int c)
+{
+    STRUCT_OFFSET(a, 0x108, int) = c;
+    STRUCT_OFFSET(a, 0x104, int) = b;
+    STRUCT_OFFSET(a, 0x100, int) = (STRUCT_OFFSET(a, 0x100, int) | 0x1);
+}
 
 INCLUDE_ASM("asm/nonmatchings/inststr", String_draw);
