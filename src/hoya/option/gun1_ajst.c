@@ -45,6 +45,10 @@ INCLUDE_ASM("asm/nonmatchings/hoya/option/gun1_ajst", Gun1AdjustProcGunAdjustFin
 
 INCLUDE_ASM("asm/nonmatchings/hoya/option/gun1_ajst", Gun1AdjustProcFinish);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/option/gun1_ajst", Gun1AdjustProcExit);
+void Gun1AdjustProcExit()
+{
+    finish = 1;
+    adjust_mode_00674810 = 0x63;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/option/gun1_ajst", Gun1Adjust);
