@@ -16,3 +16,4 @@ gfTexFrameCnt = 0x00674cc0;
 gsHeapSize = 0x0067332c;
 adjust_mode_0067486c = 0x0067486c;
 screen_off_sw_0067487c = 0x0067487c;
+wide_mode_flag_0067488c = 0x0067488c;
