@@ -2,6 +2,7 @@
 
 extern int _st7_dino_light_num;
 extern int _st7_glow_num;
+extern int _st7_hasi_light_num;
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldInitSt7);
 
@@ -66,7 +67,10 @@ INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldSt7_Neon_Scroll);
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldSt7_TV_Storm);
 
-INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldSt7_InitHasiLight);
+void gsWorldSt7_InitHasiLight()
+{
+    _st7_hasi_light_num = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldSt7_EntryHasiLight);
 
