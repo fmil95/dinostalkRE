@@ -3,7 +3,12 @@
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gflight", GFLight_Init);
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gflight", GFLight_SetVector);
+void GFLight_SetVector(GF_LIGHT* light, float* v0, float* v1, float* v2)
+{
+    sceVu0NormalLightMatrix(light->paraVect, v0, v1, v2);
+
+    light->paraVect[3][3] = 1.0f;
+}
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gflight", GFLight_SetColor);
 
