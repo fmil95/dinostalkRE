@@ -6,7 +6,10 @@ INCLUDE_ASM("asm/nonmatchings/benjamin/flare", GFFlare_SetStartPos);
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/flare", GFFlare_SetEndPos);
 
-INCLUDE_ASM("asm/nonmatchings/benjamin/flare", GFFlare_SetColorRate);
+void GFFlare_SetColorRate(void* p, float v)
+{
+    STRUCT_OFFSET(p, 0x138, float) = v;
+}
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/flare", GFFlare_SetTextureID);
 
