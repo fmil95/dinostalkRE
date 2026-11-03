@@ -4,6 +4,8 @@ extern void mcdCloseSet();
 extern void mcdQuit();
 extern void mcdGetQueCondition();
 extern int mcdResult;
+extern char saveDataBox[];
+extern void mcdReadSet();
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", CreateIconSys);
 
@@ -89,7 +91,10 @@ INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", OpenSaveData);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", WriteSaveData);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", ReadSaveData);
+void ReadSaveData(int a, int b)
+{
+    mcdReadSet(a, b, saveDataBox, 0x2e14);
+}
 
 void CloseSaveData()
 {
