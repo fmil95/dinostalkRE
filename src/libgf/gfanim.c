@@ -83,7 +83,15 @@ Uint32 GFAnim_ShapeFlagClear(GF_INST_OBJECT* obj, Uint32 setFlag)
     return setFlag;
 }
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfanim", GFAnim_SetNextAnimation);
+void GFAnim_SetNextAnimation(GF_INST_OBJECT* object, PmtHEADER* nextanim, Uint32 flag, Sint32 time)
+{
+    object->compAllTimeAnim = time;
+    object->compCurTimeAnim = 0;
+    object->compNextAnim    = nextanim;
+    object->flagAnim        = (object->flagAnim & ~0xFF) | (flag & 0xFF);
+
+    gfAnim_Attach(object, nextanim, 3);
+}
 
 void GFAnim_SetCallbackFunction(GF_INST_OBJECT* object, GF_CallBackFunction function)
 {
