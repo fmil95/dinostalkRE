@@ -1,8 +1,13 @@
 #include "common.h"
 
+extern int gsOmakeManager[];
+
 INCLUDE_ASM("asm/nonmatchings/omake/omake", gsOmakeInitManager);
 
-INCLUDE_ASM("asm/nonmatchings/omake/omake", gsOmakeSetFlag);
+void gsOmakeSetFlag(int a)
+{
+    gsOmakeManager[0] = a;
+}
 
 INCLUDE_ASM("asm/nonmatchings/omake/omake", gsOmakeSetArmsFlagAll);
 
