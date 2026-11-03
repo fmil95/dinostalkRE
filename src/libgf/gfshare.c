@@ -2,7 +2,10 @@
 
 extern Uint32 gf_Vu1WorkSize;
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfshare", gf_GetShape);
+static GF_INST_SHAPE* gf_GetShape(GF_INST_OBJECT* pObj, Uint32 n)
+{
+    return &pObj->shape[n];
+}
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfshare", gf_GetShapeWorldMatrix);
 
