@@ -5,6 +5,7 @@ extern int SeSetBgmVol();
 extern int SeSetMasterVol();
 extern int SeSoundOff();
 extern int SeMain();
+extern int SeStopVoice();
 
 INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundInitModule);
 
@@ -33,7 +34,11 @@ INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundSeMeStop);
 
 INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundSeMeStop2);
 
-INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundStopVoice);
+int gsSoundStopVoice()
+{
+    SeStopVoice();
+    return 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundBgmPlay);
 
