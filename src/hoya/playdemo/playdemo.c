@@ -2,6 +2,8 @@
 
 extern int D_0064B34C[];
 extern int D_0064B354[];
+extern int gsPlayDemoFlag;
+extern void G_TEST_Init();
 
 INCLUDE_ASM("asm/nonmatchings/hoya/playdemo/playdemo", gsRecordPadInit);
 
@@ -37,6 +39,10 @@ int IsRecordHeaderExists()
 
 INCLUDE_ASM("asm/nonmatchings/hoya/playdemo/playdemo", gsPlayDemoInit);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/playdemo/playdemo", gsRecDemoInit);
+void gsRecDemoInit()
+{
+    gsPlayDemoFlag = 4;
+    G_TEST_Init();
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/playdemo/playdemo", gsPad_GetGuncon2BuckUp);

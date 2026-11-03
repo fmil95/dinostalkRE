@@ -172,3 +172,4 @@ pStgs_00674978 = 0x00674978;
 pStgs_006749a0 = 0x006749a0;
 ttl = 0x00673c84;
 logo = 0x00673c88;
+gsPlayDemoFlag = 0x00673d08;
