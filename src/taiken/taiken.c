@@ -1,5 +1,8 @@
 #include "common.h"
 
+extern int _clear_bit;
+extern int _clear_bit;
+
 INCLUDE_ASM("asm/nonmatchings/taiken/taiken", gsTaiken_Init);
 
 INCLUDE_ASM("asm/nonmatchings/taiken/taiken", gsTaiken_Exec);
@@ -30,7 +33,10 @@ INCLUDE_ASM("asm/nonmatchings/taiken/taiken", gsTaikenExec_CLEAR);
 
 INCLUDE_ASM("asm/nonmatchings/taiken/taiken", gsTaikenCall_CLEAR);
 
-INCLUDE_ASM("asm/nonmatchings/taiken/taiken", gsTaikenCall_CLEAR_ON_OFF);
+void gsTaikenCall_CLEAR_ON_OFF()
+{
+    _clear_bit = (_clear_bit ^ 0x2);
+}
 
 INCLUDE_ASM("asm/nonmatchings/taiken/taiken", _ready_go_put_font);
 
