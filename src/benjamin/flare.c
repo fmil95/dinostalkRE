@@ -1,10 +1,15 @@
 #include "common.h"
 
+extern void sceVu0CopyVector();
+
 INCLUDE_ASM("asm/nonmatchings/benjamin/flare", GFFlare_Update);
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/flare", GFFlare_SetStartPos);
 
-INCLUDE_ASM("asm/nonmatchings/benjamin/flare", GFFlare_SetEndPos);
+void GFFlare_SetEndPos(void* a)
+{
+    sceVu0CopyVector((char*)a + 0x120);
+}
 
 void GFFlare_SetColorRate(void* p, float v)
 {
