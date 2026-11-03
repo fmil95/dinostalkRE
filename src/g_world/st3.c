@@ -6,6 +6,8 @@ extern int gsWorldSt3_IwaCnt;
 extern int gsWorldSt3_IwaObjCnt;
 extern int _st3_demo0_timer;
 extern int _st3_demo0_step;
+extern int _st3_boss_died_flag;
+extern int _st3_boss_died_wait;
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st3", gsWorldInitSt3);
 
@@ -81,7 +83,11 @@ INCLUDE_ASM("asm/nonmatchings/g_world/st3", _st3_DinoCollWater_PRS);
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st3", gsWorldSt3_DinoCollWater);
 
-INCLUDE_ASM("asm/nonmatchings/g_world/st3", gsWorldSt3_initBossDied);
+void gsWorldSt3_initBossDied()
+{
+    _st3_boss_died_flag = 0;
+    _st3_boss_died_wait = 0x96;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st3", gsWorldSt3_EntryBossDied);
 
