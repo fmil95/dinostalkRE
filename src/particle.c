@@ -63,7 +63,10 @@ INCLUDE_ASM("asm/nonmatchings/particle", GFParticle_SetCreateSpeed);
 
 INCLUDE_ASM("asm/nonmatchings/particle", GFParticle_SetTextureID);
 
-INCLUDE_ASM("asm/nonmatchings/particle", GFParticle_GetTextureID);
+int GFParticle_GetTextureID(void* p)
+{
+    return STRUCT_OFFSET(p, 0xA0, int);
+}
 
 INCLUDE_ASM("asm/nonmatchings/particle", GFParticle_SetAttractRate);
 
