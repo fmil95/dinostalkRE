@@ -3,6 +3,7 @@
 extern void EndMemcManager();
 extern int pmss_006745c4;
 extern void hyCheckFadeFinishFlag();
+extern int gsNextProg;
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub2", LoadInitSprFileNum);
 
@@ -12,7 +13,11 @@ INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub2", LoadCalcSprOther);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub2", GotoNextStage_memcsub2);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub2", GotoModeSelect);
+void GotoModeSelect()
+{
+    gsNextProg = 0xf;
+    EndMemcManager();
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub2", makeAllFileListTex_memcsub2);
 
