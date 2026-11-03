@@ -17,7 +17,10 @@ void videoDecReset(void* p)
 
 INCLUDE_ASM("asm/nonmatchings/sound/decoder", videoDecDelete);
 
-INCLUDE_ASM("asm/nonmatchings/sound/decoder", videoDecAbort);
+void videoDecAbort(void* a)
+{
+    STRUCT_OFFSET(a, 0xA8, int) = 1;
+}
 
 int videoDecGetState(void* p)
 {
