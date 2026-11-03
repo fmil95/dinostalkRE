@@ -1,10 +1,20 @@
 #include "common.h"
 
+extern int scePadPortClose();
+extern int scePadPortClose();
+extern int scePadEnd();
+
 INCLUDE_ASM("asm/nonmatchings/g_pad", gsPad_Init);
 
 INCLUDE_ASM("asm/nonmatchings/g_pad", gsPad_Reset);
 
-INCLUDE_ASM("asm/nonmatchings/g_pad", gsPad_End);
+int gsPad_End()
+{
+    scePadPortClose(1, 0);
+    scePadPortClose(0, 0);
+    scePadEnd();
+    return 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_pad", _gsPad_changeByOpton);
 
