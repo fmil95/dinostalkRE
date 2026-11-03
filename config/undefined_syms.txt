@@ -148,3 +148,4 @@ gf_trans_spot_light = 0x00673e74;
 mcdResult = 0x00673c40;
 gsGunExtraId = 0x00673590;
 _clear_bit = 0x00674b0c;
+gPad = 0x00673f28;
