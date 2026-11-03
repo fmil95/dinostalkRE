@@ -40,7 +40,7 @@ options:
   extensions_path: tools/splat_ext
 
   # ELF sections
-  section_order: [".text", ".vutext", ".rodata", ".data", ".bss"]
+  section_order: [".text", ".vutext", ".data", ".rodata", ".lit4", ".sdata", ".sbss", ".bss"]
   auto_link_sections: [".rodata", ".data", ".bss"]
 
   # Linker script options
@@ -53,7 +53,7 @@ segments:
     type: code
     start: 0x001000
     vram: 0x00100000
-    bss_size: 0x2042b0
+    bss_size: 0x2050e0
     subsegments:
       - [0x001000, asm, start]     
       - [0x0010c8, c, main]    
@@ -397,10 +397,422 @@ segments:
       # - [0x199320, asm, sce/gcc/libgcc2_3]
       # - [0x19acc0, asm, sce/newlib/libc/errno]       
       - [0x19ace0, databin, vutext]
+      - [0x1ae350, databin, reginfo]
+      - [0x1ae380, data, sce/sn00]
+      - [0x1af4a8, data, sce/cd00]
+      - [0x1af500, data, main]
+      - [0x1afd40, data, timer]
+      - [0x1b0550, data, test]
+      - [0x1b0570, data, particle]
+      - [0x1b0a00, data, g_test]
+      - [0x1c8ac0, data, g_stage2]
+      - [0x1c8d00, data, g_stage3]
+      - [0x1c94c0, data, g_stage4]
+      - [0x1c9700, data, g_stage5]
+      - [0x1c9d40, data, g_stage7]
+      - [0x1c9fb0, data, g_stage8]
+      - [0x1ca200, data, g_stage1]
+      - [0x1ca7d0, data, g_stage9]
+      - [0x1d5840, data, g_effect]
+      - [0x1d6a80, data, g_parts]
+      - [0x1f27c0, data, g_shadow]
+      - [0x1f2830, data, g_cshadow]
+      - [0x1f2858, data, g_bulletmark]
+      - [0x1f2890, data, g_pad]
+      - [0x1f2bc0, data, g_camera]
+      - [0x1f6940, data, aelib]
+      - [0x1f8530, data, g_world]
+      - [0x2c3288, data, g_gun]
+      - [0x2e28c0, data, g_movie]
+      - [0x2e3960, data, g_instpacket]
+      - [0x2e3a00, data, g_world/st2]
+      - [0x2e42a0, data, g_world/st3]
+      - [0x2e5060, data, g_world/st3wave]
+      - [0x2e5560, data, g_world/st4]
+      - [0x2e5a30, data, g_world/st5]
+      - [0x2e5f50, data, g_world/st7]
+      - [0x2e6810, data, g_world/st7_demo]
+      - [0x2e68e0, data, g_world/st8]
+      - [0x2e6e10, data, g_world/st7test]
+      - [0x2e71e0, data, g_world/st1]
+      - [0x2e7810, data, g_world/st9]
+      - [0x2ea190, data, benjamin/g_ik]
+      - [0x2ea4d8, data, benjamin/g_ik_sub]
+      - [0x2eadd0, data, benjamin/ik_rapb]
+      - [0x2eb2e0, data, benjamin/ik_comp]
+      - [0x2eb6f0, data, benjamin/ik_trkr]
+      - [0x2ebd00, data, benjamin/ik_trex]
+      - [0x2ebff0, data, benjamin/ik_pteb]
+      - [0x2ec310, data, benjamin/ik_prso]
+      - [0x2ec8b0, data, benjamin/kinematics]
+      - [0x2ec8f0, data, benjamin/track]
+      - [0x2ec940, data, benjamin/g_track]
+      - [0x2ece40, data, benjamin/flare]
+      - [0x2ecf70, data, benjamin/g_staff]
+      - [0x2f59a8, data, benjamin/g_footpoint]
+      - [0x2fe288, data, g_enemy/enemain]
+      - [0x321f80, data, g_enemy/eneatc00]
+      - [0x35a630, data, g_enemy/enethkmn]
+      - [0x35a680, data, g_enemy/eneptnmn]
+      - [0x35b280, data, g_enemy/eneptn03]
+      - [0x35bf80, data, g_enemy/eneptn04]
+      - [0x35bf90, data, g_enemy/eneptntr]
+      - [0x35c340, data, g_enemy/enetest]
+      - [0x35c3d0, data, g_enemy/ene00pro/ene00mv]
+      - [0x35c6f8, data, g_enemy/ene01pro/ene01mv]
+      - [0x35c7b8, data, g_enemy/ene02pro/ene02mv]
+      - [0x35c938, data, g_enemy/ene03pro/ene03mv]
+      - [0x35cfb8, data, g_enemy/ene04pro/ene04mv]
+      - [0x35dbb8, data, g_enemy/ene_elsp/ene_elsm]
+      - [0x35de20, data, air/a_event]
+      - [0x3a38e0, data, air/a_item]
+      - [0x3b9490, data, air/a_evtflg]
+      - [0x3b9650, data, air/a_itmthk]
+      - [0x3bd290, data, air/insect/a_insect]
+      - [0x3c2568, data, air/insect/a_goki]
+      - [0x3c2788, data, air/insect/a_sany]
+      - [0x3c29d8, data, air/insect/a_tomb]
+      - [0x3c2a10, data, air/test/i_test]
+      - [0x3c6a50, data, air/a_spbtl]
+      - [0x3c9280, data, hoya/bmp]
+      - [0x427ff0, data, hoya/g_test2]
+      - [0x42dd38, data, hoya/hoya]
+      - [0x436a48, data, hoya/hyopen]
+      - [0x492f38, data, hoya/cockpit/g_cpblt]
+      - [0x4aed50, data, hoya/cockpit/g_cpboss]
+      - [0x4bc5a0, data, hoya/cockpit/g_cplife]
+      - [0x4c2630, data, hoya/cockpit/g_cpsight]
+      - [0x4df680, data, hoya/cockpit/g_other]
+      - [0x4e1d00, data, hoya/mem_card/g_savlod]
+      - [0x4ef0b0, data, hoya/mem_card/memcsub0]
+      - [0x4efb10, data, hoya/mem_card/memcsub1]
+      - [0x4f0308, data, hoya/mem_card/memcsub2]
+      - [0x4f0840, data, hoya/mem_card/memcsub3]
+      - [0x4f0d30, data, hoya/mem_card/memcsub4]
+      - [0x4f3c20, data, hoya/result/frsltsb1]
+      - [0x501760, data, hoya/result/g_frslt]
+      - [0x506d28, data, hoya/result/rsltsub1]
+      - [0x5073a0, data, hoya/continue/cntsub1]
+      - [0x507ac0, data, hoya/option/g_option]
+      - [0x507c40, data, hoya/option/optsub01]
+      - [0x517700, data, hoya/pause/g_pause]
+      - [0x519bf0, data, hoya/pause/pausesub]
+      - [0x524240, data, hoya/name/g_name]
+      - [0x544440, data, hoya/name/namesub]
+      - [0x5499b0, data, hoya/modesel/gsModeselect]
+      - [0x549e80, data, hoya/playdemo/demosub0]
+      - [0x54c330, data, hoya/playdemo/playdemo]
+      - [0x5537f8, data, taiken/taiken]
+      - [0x553a10, data, omake/ninnin]
+      - [0x553b00, data, omake/mugen]
+      - [0x553b90, data, omake/g_galery]
+      - [0x554230, data, omake/g_theate]
+      - [0x554a70, data, g_guncon1/g_guncon1]
+      - [0x554b48, data, g_guncon2/g_guncon2]
+      - [0x554b98, data, g_guncon2/src/guncon2]
+      - [0x554bf0, data, libgf/libgf]
+      - [0x554c30, data, libgf/gfinstance]
+      - [0x556c00, data, libgf/gfshape]
+      - [0x556c20, data, libgf/gfsprite]
+      - [0x556c70, data, libgf/gfanim]
+      - [0x556ce0, data, libgf/gflight]
+      - [0x556cf0, data, libgf/gfspecular]
+      - [0x556d00, data, libgf/gfvalloc]
+      - [0x556d28, data, sce/cd01]
+      - [0x556d50, data, sce/graphdev]
+      - [0x556da0, data, sce/devfont]
+      - [0x560dd0, data, sce/libdma]
+      - [0x560e50, data, sce/libpad]
+      - [0x560e98, data, sce/libgifpk]
+      - [0x560eb0, data, sce/libvu0]
+      - [0x560f00, data, sce/eecdvd]
+      - [0x562978, data, sce/libmc]
+      - [0x562a30, data, sce/mpeg]
+      - [0x562ac0, data, sce/mpc]
+      - [0x562b70, data, sce/ipuinit]
+      - [0x562bf0, data, sce/sdr_main]
+      - [0x562c28, data, nmlib/nmGC2Main]
+      - [0x562c48, data, sce/sn01]
+      - [0x562c68, data, sce/libgcc2]
+      - [0x562c70, data, sce/frame-dwarf2]
+      - [0x562c78, data, sce/impure]
+      - [0x562f70, data, sce/mallocr]
+      - [0x5633c8, data, sce/mlock]
+      - [0x5633d0, data, sce/locale]
+      - [0x5633e8, data, sce/glue]
+      - [0x5633f0, data, sce/intr]
+      - [0x563b98, data, sce/thread]
+      - [0x563ba0, data, sce/kprintf]
+      - [0x563ba8, data, sce/sifrpc]
+      - [0x563c30, data, sce/filestub]
+      - [0x563c48, data, sce/eeloadfile]
+      - [0x563c50, data, sce/initsys]
+      - [0x563c68, data, sce/libosd]
+      - [0x564428, data, sce/tlbfunc]
+      - [0x564a80, rodata, sce/devfont]
+      - [0x56ead0, rodata, sce/devfont_1]
+      - [0x570638, rodata, sce/sf_atan]
+      - [0x570690, rodata, sce/e_rem_pio2]
+      - [0x5708e0, rodata, sce/e_sqrt]
+      - [0x5708f0, rodata, sce/ef_acos]
+      - [0x570928, rodata, sce/ef_atan2]
+      - [0x570940, rodata, sce/ef_rem_pio2]
+      - [0x570d00, rodata, sce/ef_sqrt]
+      - [0x570d08, rodata, sce/k_cos]
+      - [0x570d70, rodata, sce/k_rem_pio2]
+      - [0x570de0, rodata, sce/k_sin]
+      - [0x570e50, rodata, sce/kf_cos]
+      - [0x570e70, rodata, sce/kf_rem_pio2]
+      - [0x570ec0, rodata, sce/kf_sin]
+      - [0x570ed8, rodata, sce/s_floor]
+      - [0x570ee8, rodata, sce/s_scalbn]
+      - [0x570f18, rodata, sce/sf_floor]
+      - [0x570f20, rodata, sce/sf_scalbn]
+      - [0x570f30, rodata, sce/dp-bit]
+      - [0x571020, rodata, sce/ctype_]
+      - [0x571130, rodata, sce/vfprintf]
+      - [0x571340, rodata, sce/vfscanf]
+      - [0x571808, rodata, sce/locale]
+      - [0x571850, rodata, sce/mprec]
+      - [0x571a50, rodata, sce/s_infconst]
+      - [0x572180, lit4, lit4]
+      - [0x574180, sdata, mem]
+      - [0x574238, sdata, mem_1]
+      - [0x5742d8, sdata, g_test]
+      - [0x574330, sdata, g_stage2]
+      - [0x574338, sdata, g_stage3]
+      - [0x574340, sdata, g_stage4]
+      - [0x574350, sdata, g_stage7]
+      - [0x574368, sdata, g_stage8]
+      - [0x574370, sdata, g_stage1]
+      - [0x5743b8, sdata, g_stage9]
+      - [0x5743c8, sdata, g_parts]
+      - [0x574528, sdata, g_shadow]
+      - [0x574538, sdata, g_cshadow]
+      - [0x574548, sdata, g_pad]
+      - [0x5745a0, sdata, g_shock]
+      - [0x5745a8, sdata, g_movie]
+      - [0x5745c0, sdata, g_kyousei]
+      - [0x5745d8, sdata, g_shocktest]
+      - [0x574610, sdata, g_world/st3wave]
+      - [0x574668, sdata, g_world/st1]
+      - [0x5746e0, sdata, benjamin/g_ik]
+      - [0x5746e8, sdata, benjamin/ik_rapb]
+      - [0x5746f0, sdata, benjamin/ik_comp]
+      - [0x5746f8, sdata, benjamin/ik_trkr]
+      - [0x574710, sdata, benjamin/g_staff]
+      - [0x5747a0, sdata, benjamin/g_footpoint]
+      - [0x574868, sdata, g_enemy/eneptn03]
+      - [0x574918, sdata, g_enemy/enetest]
+      - [0x574958, sdata, g_enemy/ene03pro/ene03joy]
+      - [0x574988, sdata, air/a_item]
+      - [0x5749f0, sdata, air/test/i_test]
+      - [0x574a90, sdata, hoya/g_test2]
+      - [0x574c50, sdata, hoya/mem_card/mcduse]
+      - [0x574c90, sdata, hoya/result/frsltsb1]
+      - [0x574ca0, sdata, hoya/result/g_frslt]
+      - [0x574cc8, sdata, hoya/pause/g_pause]
+      - [0x574cd0, sdata, hoya/pause/pausesub]
+      - [0x574cd8, sdata, hoya/name/g_name]
+      - [0x574cf0, sdata, hoya/modesel/gsModeselect]
+      - [0x574d10, sdata, hoya/playdemo/demosub0]
+      - [0x574d40, sdata, sound/se_rpc]
+      - [0x574d58, sdata, sound/CdvUse]
+      - [0x574d68, sdata, sound/mainmpeg]
+      - [0x574dc0, sdata, sound/decoder]
+      - [0x574e00, sdata, sound/disp]
+      - [0x574e10, sdata, taiken/taiken]
+      - [0x574e18, sdata, omake/g_galery]
+      - [0x574e30, sdata, omake/g_theate]
+      - [0x574e38, sdata, g_guncon2/g_guncon2]
+      - [0x574e50, sdata, libgf/gfinstance]
+      - [0x574e58, sdata, libgf/gfshape]
+      - [0x574e60, sdata, libgf/gfscene]
+      - [0x574e68, sdata, libgf/gfmicro]
+      - [0x574e70, sdata, libgf/gfpointlight]
+      - [0x574e78, sdata, libgf/gfshare]
+      - [0x574e80, sdata, libgf/gfspecular]
+      - [0x574e88, sdata, libgf/gfvalloc]
+      - [0x574ec0, sdata, libgf/gfvcache]
+      - { type: sbss, vram: 0x00673ed0, name: sce/sbss_pad }
+      - { type: sbss, vram: 0x00673f00, name: main }
+      - { type: sbss, vram: 0x00673f08, name: mem }
+      - { type: sbss, vram: 0x00673f18, name: timer }
+      - { type: sbss, vram: 0x00673f28, name: pad }
+      - { type: sbss, vram: 0x00673f38, name: g_test }
+      - { type: sbss, vram: 0x00673f60, name: g_stage7 }
+      - { type: sbss, vram: 0x00673f78, name: g_effect }
+      - { type: sbss, vram: 0x00673f98, name: g_parts }
+      - { type: sbss, vram: 0x00673fd0, name: g_shadow }
+      - { type: sbss, vram: 0x00673fd8, name: g_cshadow }
+      - { type: sbss, vram: 0x00673fe0, name: g_camera }
+      - { type: sbss, vram: 0x00674008, name: aelib }
+      - { type: sbss, vram: 0x00674020, name: g_world }
+      - { type: sbss, vram: 0x00674038, name: g_gun }
+      - { type: sbss, vram: 0x00674050, name: g_movie }
+      - { type: sbss, vram: 0x00674078, name: g_kyousei }
+      - { type: sbss, vram: 0x00674080, name: g_world/st2 }
+      - { type: sbss, vram: 0x00674090, name: g_world/st3 }
+      - { type: sbss, vram: 0x006740f0, name: g_world/st3wave }
+      - { type: sbss, vram: 0x00674100, name: g_world/st4 }
+      - { type: sbss, vram: 0x00674118, name: g_world/st7 }
+      - { type: sbss, vram: 0x006741e8, name: g_world/st7_demo }
+      - { type: sbss, vram: 0x006741f8, name: g_world/st8 }
+      - { type: sbss, vram: 0x00674228, name: g_world/st7test }
+      - { type: sbss, vram: 0x00674298, name: g_world/st1 }
+      - { type: sbss, vram: 0x006742b0, name: g_world/st9 }
+      - { type: sbss, vram: 0x006742c0, name: benjamin/g_track }
+      - { type: sbss, vram: 0x006742c8, name: benjamin/g_staff }
+      - { type: sbss, vram: 0x006742e8, name: g_enemy/enetest }
+      - { type: sbss, vram: 0x006742f8, name: air/a_rdcscn }
+      - { type: sbss, vram: 0x00674300, name: sound/g_sound }
+      - { type: sbss, vram: 0x00674308, name: hoya/g_ezipu }
+      - { type: sbss, vram: 0x00674320, name: hoya/cockpit/g_cpblt }
+      - { type: sbss, vram: 0x00674328, name: hoya/cockpit/g_cpboss }
+      - { type: sbss, vram: 0x00674330, name: hoya/cockpit/g_cpcmb }
+      - { type: sbss, vram: 0x00674460, name: hoya/cockpit/g_cpgswc }
+      - { type: sbss, vram: 0x00674478, name: hoya/cockpit/g_cpsight }
+      - { type: sbss, vram: 0x00674480, name: hoya/mem_card/g_savlod }
+      - { type: sbss, vram: 0x00674490, name: hoya/mem_card/mcduse }
+      - { type: sbss, vram: 0x006744e8, name: hoya/mem_card/memcsub0 }
+      - { type: sbss, vram: 0x00674518, name: hoya/mem_card/memcsub1 }
+      - { type: sbss, vram: 0x00674598, name: hoya/mem_card/memcsub2 }
+      - { type: sbss, vram: 0x006745f0, name: hoya/mem_card/memcsub3 }
+      - { type: sbss, vram: 0x00674668, name: hoya/mem_card/memcsub4 }
+      - { type: sbss, vram: 0x006746d0, name: hoya/title/ttlsub01 }
+      - { type: sbss, vram: 0x006746f8, name: hoya/title/ttlsub02 }
+      - { type: sbss, vram: 0x00674700, name: hoya/title/ttlsub03 }
+      - { type: sbss, vram: 0x00674720, name: hoya/title/ttlsub04 }
+      - { type: sbss, vram: 0x00674748, name: hoya/result/frsltsb1 }
+      - { type: sbss, vram: 0x00674778, name: hoya/result/g_frslt }
+      - { type: sbss, vram: 0x00674788, name: hoya/result/g_rslt }
+      - { type: sbss, vram: 0x00674798, name: hoya/result/rsltsub1 }
+      - { type: sbss, vram: 0x006747e0, name: hoya/continue/cntsub1 }
+      - { type: sbss, vram: 0x00674808, name: hoya/option/gun1_ajst }
+      - { type: sbss, vram: 0x00674850, name: hoya/option/gun_ajst }
+      - { type: sbss, vram: 0x00674898, name: hoya/option/optsub01 }
+      - { type: sbss, vram: 0x006748e0, name: hoya/pause/pausesub }
+      - { type: sbss, vram: 0x00674900, name: hoya/name/namesub }
+      - { type: sbss, vram: 0x00674930, name: hoya/modesel/gsModeselect }
+      - { type: sbss, vram: 0x00674978, name: hoya/startgs3/stgssub3 }
+      - { type: sbss, vram: 0x006749a0, name: hoya/startgs3/stgssub5 }
+      - { type: sbss, vram: 0x006749c8, name: sound/se_rpc }
+      - { type: sbss, vram: 0x006749e0, name: sound/CdvUse }
+      - { type: sbss, vram: 0x00674a48, name: sound/mainmpeg }
+      - { type: sbss, vram: 0x00674a88, name: sound/decoder }
+      - { type: sbss, vram: 0x00674a98, name: sound/disp }
+      - { type: sbss, vram: 0x00674ac8, name: taiken/taiken }
+      - { type: sbss, vram: 0x00674b20, name: omake/ninnin }
+      - { type: sbss, vram: 0x00674b68, name: omake/mugen }
+      - { type: sbss, vram: 0x00674ba8, name: omake/g_galery }
+      - { type: sbss, vram: 0x00674c08, name: omake/g_theate }
+      - { type: sbss, vram: 0x00674c50, name: g_guncon1/g_guncon1 }
+      - { type: sbss, vram: 0x00674c58, name: g_guncon2/g_guncon2 }
+      - { type: sbss, vram: 0x00674c68, name: g_guncon2/src/gun_adjust }
+      - { type: sbss, vram: 0x00674cb0, name: libgf/gfinstance }
+      - { type: sbss, vram: 0x00674cb8, name: libgf/gftex }
+      - { type: sbss, vram: 0x00674cc8, name: libgf/gfshare }
+      - { type: sbss, vram: 0x00674cd0, name: libgf/gfvalloc }
+      - { type: sbss, vram: 0x00674cd8, name: libgf/gfvcache }
+      - { type: sbss, vram: 0x00674ce0, name: nmlib/nmGC2Main }
+      - { type: sbss, vram: 0x00674ce8, name: sce/sbrkr }
+      - { type: bss, vram: 0x00674d00, name: sce/crt0 }
+      - { type: bss, vram: 0x00674e80, name: main }
+      - { type: bss, vram: 0x00674f20, name: mem }
+      - { type: bss, vram: 0x0068cf20, name: fileio }
+      - { type: bss, vram: 0x0068d140, name: pad }
+      - { type: bss, vram: 0x0068d360, name: test }
+      - { type: bss, vram: 0x0068d3e0, name: g_test }
+      - { type: bss, vram: 0x0068d540, name: g_stage7 }
+      - { type: bss, vram: 0x0068d570, name: g_effect }
+      - { type: bss, vram: 0x0068d740, name: g_parts }
+      - { type: bss, vram: 0x0068d800, name: g_shadow }
+      - { type: bss, vram: 0x0068da00, name: g_pad }
+      - { type: bss, vram: 0x0068dc30, name: g_camera }
+      - { type: bss, vram: 0x00691400, name: aelib }
+      - { type: bss, vram: 0x00691670, name: g_world }
+      - { type: bss, vram: 0x00691820, name: g_gun }
+      - { type: bss, vram: 0x006a6940, name: g_shock }
+      - { type: bss, vram: 0x006a6980, name: g_movie }
+      - { type: bss, vram: 0x006a6e30, name: g_kyousei }
+      - { type: bss, vram: 0x006a7490, name: g_world/st2 }
+      - { type: bss, vram: 0x006a7520, name: g_world/st3 }
+      - { type: bss, vram: 0x006a7c00, name: g_world/st3wave }
+      - { type: bss, vram: 0x006c7040, name: g_world/st4 }
+      - { type: bss, vram: 0x006c7280, name: g_world/st7 }
+      - { type: bss, vram: 0x006c7b00, name: g_world/st7_demo }
+      - { type: bss, vram: 0x006c7b20, name: g_world/st8 }
+      - { type: bss, vram: 0x006c7d90, name: benjamin/g_track }
+      - { type: bss, vram: 0x006c8940, name: benjamin/g_staff }
+      - { type: bss, vram: 0x006c8aa0, name: benjamin/g_footpoint }
+      - { type: bss, vram: 0x006c8ba0, name: g_enemy/eneptn01 }
+      - { type: bss, vram: 0x006ce040, name: g_enemy/enetest }
+      - { type: bss, vram: 0x006e3068, name: air/test/i_test }
+      - { type: bss, vram: 0x006f50c0, name: sound/g_sound }
+      - { type: bss, vram: 0x006f51f0, name: hoya/bmp }
+      - { type: bss, vram: 0x006f5280, name: hoya/g_ezipu }
+      - { type: bss, vram: 0x0080dc28, name: hoya/cockpit/g_cpboss }
+      - { type: bss, vram: 0x0080dc38, name: hoya/cockpit/g_cpcmb }
+      - { type: bss, vram: 0x0080dcb0, name: hoya/cockpit/g_cpgswc }
+      - { type: bss, vram: 0x0080dcc0, name: hoya/cockpit/g_cplife }
+      - { type: bss, vram: 0x0080ed20, name: hoya/cockpit/g_cprdr }
+      - { type: bss, vram: 0x0080ed50, name: hoya/cockpit/g_cpsight }
+      - { type: bss, vram: 0x00813330, name: hoya/mem_card/g_memc }
+      - { type: bss, vram: 0x00813340, name: hoya/mem_card/g_savlod }
+      - { type: bss, vram: 0x00813710, name: hoya/mem_card/memcsub1 }
+      - { type: bss, vram: 0x00817ee0, name: hoya/mem_card/memcsub2 }
+      - { type: bss, vram: 0x0081c6b0, name: hoya/mem_card/memcsub3 }
+      - { type: bss, vram: 0x0081d500, name: hoya/mem_card/memcsub4 }
+      - { type: bss, vram: 0x0081e350, name: hoya/result/frsltsb1 }
+      - { type: bss, vram: 0x0081e590, name: hoya/result/rsltsub1 }
+      - { type: bss, vram: 0x0083a380, name: hoya/continue/cntsub1 }
+      - { type: bss, vram: 0x0083b630, name: hoya/option/gun_ajst }
+      - { type: bss, vram: 0x0083b6b0, name: hoya/option/optsub01 }
+      - { type: bss, vram: 0x0083b9e0, name: hoya/pause/g_pause }
+      - { type: bss, vram: 0x0083dc60, name: hoya/pause/pausesub }
+      - { type: bss, vram: 0x0083ee40, name: hoya/modesel/gsModeselect }
+      - { type: bss, vram: 0x0084b760, name: hoya/startgs3/stgssub3 }
+      - { type: bss, vram: 0x0084bad0, name: hoya/startgs3/stgssub5 }
+      - { type: bss, vram: 0x0084be40, name: sound/se_rpc }
+      - { type: bss, vram: 0x0084c0c0, name: sound/CdvUse }
+      - { type: bss, vram: 0x0084ec00, name: sound/mainmpeg }
+      - { type: bss, vram: 0x00857440, name: sound/decoder }
+      - { type: bss, vram: 0x00857c40, name: sound/disp }
+      - { type: bss, vram: 0x00857f90, name: taiken/taiken }
+      - { type: bss, vram: 0x00858a90, name: omake/ninnin }
+      - { type: bss, vram: 0x00859b10, name: omake/mugen }
+      - { type: bss, vram: 0x0085a610, name: omake/g_galery }
+      - { type: bss, vram: 0x0085c1b0, name: omake/g_theate }
+      - { type: bss, vram: 0x0085e010, name: g_guncon1/g_guncon1 }
+      - { type: bss, vram: 0x0085e050, name: g_guncon2/g_adjustgun }
+      - { type: bss, vram: 0x00870078, name: g_guncon2/g_guncon2 }
+      - { type: bss, vram: 0x00870178, name: g_guncon2/src/gun_adjust }
+      - { type: bss, vram: 0x00870200, name: g_guncon2/src/guncon2 }
+      - { type: bss, vram: 0x00870780, name: libgf/gftex }
+      - { type: bss, vram: 0x00870960, name: sce/devfont }
+      - { type: bss, vram: 0x00870ac0, name: sce/libpad }
+      - { type: bss, vram: 0x00870d80, name: sce/eecdvd }
+      - { type: bss, vram: 0x00871040, name: sce/libmc }
+      - { type: bss, vram: 0x00872640, name: sce/sdr_main }
+      - { type: bss, vram: 0x00872800, name: sce/sdr_cb }
+      - { type: bss, vram: 0x00873940, name: nmlib/nmGC2Main }
+      - { type: bss, vram: 0x008739a0, name: sce/libgcc2 }
+      - { type: bss, vram: 0x008739c0, name: sce/frame-dwarf2 }
+      - { type: bss, vram: 0x008739d0, name: sce/thread }
+      - { type: bss, vram: 0x00874200, name: sce/tty }
+      - { type: bss, vram: 0x008745c0, name: sce/kprintf }
+      - { type: bss, vram: 0x00874640, name: sce/sifcmd }
+      - { type: bss, vram: 0x008748c0, name: sce/sifrpc }
+      - { type: bss, vram: 0x00876100, name: sce/filestub }
+      - { type: bss, vram: 0x008774c0, name: sce/iopheap }
+      - { type: bss, vram: 0x00877680, name: sce/eeloadfile }
+      - { type: bss, vram: 0x008778c0, name: sce/iopreset }
+      - { type: bss, vram: 0x00877928, name: sce/deci2 }
+      - { type: bss, vram: 0x00878980, name: sce/tlbtrap }
 
-  - name: mfifo
+  - name: elf_tail
     type: databin
-    start: 0x393000
-    vram: 0x004c0000
+    start: 0x574ed0
+    vram: 0x00900000
 
   - [0x733043]
