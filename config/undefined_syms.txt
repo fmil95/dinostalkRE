@@ -150,3 +150,4 @@ gsGunExtraId = 0x00673590;
 _clear_bit = 0x00674b0c;
 gPad = 0x00673f28;
 gPadTrg = 0x00673f30;
+N_Read_Unit = 0x00674a80;

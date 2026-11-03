@@ -7,6 +7,7 @@ extern int mono_flg;
 extern int isWithAudio;
 extern int UserProg;
 extern char init_flg;
+extern int N_Read_Unit;
 
 INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", cdvMpegInit);
 
@@ -76,7 +77,12 @@ INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", pcmCallback);
 
 INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", copy2area);
 
-INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", readBufCreate);
+void readBufCreate(void* a)
+{
+    STRUCT_OFFSET(a, 0xC, int) = (N_Read_Unit << 16);
+    STRUCT_OFFSET(a, 0x8, int) = 0;
+    STRUCT_OFFSET(a, 0x4, int) = 0;
+}
 
 void readBufDelete(void* a)
 {
