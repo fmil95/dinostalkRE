@@ -10,6 +10,8 @@ extern int _st3_boss_died_flag;
 extern int _st3_boss_died_wait;
 extern int _st3_se_port_boat_eng;
 extern int _st3_se_port_boat_spl;
+extern char D_002F2030[];
+extern void sceVu0CopyVector();
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st3", gsWorldInitSt3);
 
@@ -114,7 +116,12 @@ void gsWorldSt3_Demo0_Init()
     _st3_demo0_step = -1;
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_world/st3", gsWorldSt3_Demo0_Request);
+void gsWorldSt3_Demo0_Request(int a)
+{
+    _st3_demo0_step = 0;
+    _st3_demo0_timer = 0;
+    sceVu0CopyVector(D_002F2030, a);
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st3", gsWorldSt3_Demo0_Exec);
 
