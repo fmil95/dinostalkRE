@@ -3,33 +3,34 @@
 #ifndef GUNSUV_USA_LIBGF_GFTEX_H
 #define GUNSUV_USA_LIBGF_GFTEX_H
 
-typedef int Sint32;
+#include "common.h"
+#include <eestruct.h>
 
-struct gf_texdb_head {
-	Uint32 size;
-	Uint32 textureMax;
-	Uint32 textureNum;
-	Uint32 pad;
+struct gf_texdb_head { // 0x10
+	/* 0x0 */ Uint32 size;
+	/* 0x4 */ Uint32 textureMax;
+	/* 0x8 */ Uint32 textureNum;
+	/* 0xc */ Uint32 pad;
 };
 
-typedef gf_texdb_head GF_TEXDB_HEAD;
+typedef struct gf_texdb_head GF_TEXDB_HEAD;
 
-struct gf_texdb {
-	Uint64 guid[2];
-	Uint16 flag;
-	Uint16 pig_flag;
-	Uint32 *pig;
-	Sint32 score;
-	Uint16 allocSize;
-	Uint16 pad;
-	sceGsTex0 tex0;
-	sceGsTex1 tex1;
-	sceGsMiptbp1 miptbp1;
-	sceGsMiptbp2 miptbp2;
-	sceGsClamp clamp;
+struct gf_texdb { // 0x48
+	/* 0x00 */ Uint64 guid[2];
+	/* 0x10 */ Uint16 flag;
+	/* 0x12 */ Uint16 pig_flag;
+	/* 0x14 */ Uint32 *pig;
+	/* 0x18 */ Sint32 score;
+	/* 0x1c */ Uint16 allocSize;
+	/* 0x1e */ Uint16 pad;
+	/* 0x20 */ sceGsTex0 tex0;
+	/* 0x28 */ sceGsTex1 tex1;
+	/* 0x30 */ sceGsMiptbp1 miptbp1;
+	/* 0x38 */ sceGsMiptbp2 miptbp2;
+	/* 0x40 */ sceGsClamp clamp;
 };
 
-typedef gf_texdb GF_TEXDB;
+typedef struct gf_texdb GF_TEXDB;
 
 void GFTex_InitDatabase(Uint32 *buf, Uint32 size);
 void GFTex_ResetDatabase();

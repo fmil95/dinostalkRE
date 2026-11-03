@@ -1,4 +1,7 @@
-#include "common.h"
+#include "gunsuv_usa/libgf/gftex.h"
+
+extern GF_TEXDB_HEAD* gfDatabaseHead;
+extern Uint32 gfTexFrameCnt;
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gftex", GFTex_InitDatabase);
 
@@ -64,7 +67,10 @@ INCLUDE_ASM("asm/nonmatchings/libgf/gftex", gfTex_IsFormat32);
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gftex", gfTex_GetTbpTbw);
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gftex", GFTex_GetDatabase);
+GF_TEXDB_HEAD* GFTex_GetDatabase()
+{
+    return gfDatabaseHead;
+}
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gftex", gfTex_GetTwTh);
 
