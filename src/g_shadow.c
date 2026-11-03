@@ -32,7 +32,10 @@ void gpShadow_SetObject(void* p, int v)
     STRUCT_OFFSET(p, 0x18, int) = v;
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_shadow", gpShadow_Visible);
+void gpShadow_Visible(void* p, int v)
+{
+    STRUCT_OFFSET(p, 0x0, int) = v;
+}
 
 void gpShadow_SetVolumeLength(void* p, float v)
 {
