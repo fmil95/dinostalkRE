@@ -2,6 +2,7 @@
 
 extern int D_00653B08[];
 extern int D_00653B10[];
+extern int D_00653B0C[];
 
 INCLUDE_ASM("asm/nonmatchings/g_guncon1/g_guncon1", gsGuncon1_InitAll);
 
@@ -25,7 +26,10 @@ int gsGuncon1_Get()
     return D_00653B08[0];
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_guncon1/g_guncon1", gsGuncon1_GetTrg);
+int gsGuncon1_GetTrg()
+{
+    return D_00653B0C[0];
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_guncon1/g_guncon1", gsGuncon1_FlashTrigger);
 
