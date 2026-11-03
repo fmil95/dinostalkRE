@@ -10,7 +10,10 @@ INCLUDE_ASM("asm/nonmatchings/fileio", SCEREAD2);
 
 INCLUDE_ASM("asm/nonmatchings/fileio", SCEOPEN2);
 
-INCLUDE_ASM("asm/nonmatchings/fileio", FIO_ReadFile);
+void FIO_ReadFile(int a, int b)
+{
+    fio_ReadFile(a, 0, 0, b, 4, 1);
+}
 
 INCLUDE_ASM("asm/nonmatchings/fileio", FIO_ReadFile_NoChk);
 
