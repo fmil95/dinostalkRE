@@ -1,6 +1,8 @@
 #include "common.h"
 
 extern void EndMemcManager();
+extern int pmss_006746a4;
+extern void hyCheckFadeFinishFlag();
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub4", McConnectCheck_memcsub4);
 
@@ -10,7 +12,10 @@ INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub4", SetFadePara_memcsub4);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub4", SwitchFadeTimer_memcsub4);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub4", CheckFadeFinishFlag_memcsub4);
+void CheckFadeFinishFlag_memcsub4()
+{
+    hyCheckFadeFinishFlag((pmss_006746a4 + 64));
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub4", Draw2dObject_memcsub4);
 
