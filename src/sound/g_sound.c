@@ -11,6 +11,8 @@ extern int SeVabOpen();
 extern int gsVRMode;
 extern void SeCSLMidiXFade();
 extern void SeCSLMidiStop();
+extern int gsSoundBgmNo;
+extern void SeCSLMidiPlay();
 
 INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundInitModule);
 
@@ -50,7 +52,16 @@ int gsSoundStopVoice()
     return 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundBgmPlay);
+int gsSoundBgmPlay(int a)
+{
+    if (gsVRMode == 0)
+    {
+        gsSoundBgmNo = a;
+        SeCSLMidiPlay(a);
+    }
+
+    return 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundBgmReplay);
 

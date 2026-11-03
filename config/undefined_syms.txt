@@ -187,3 +187,4 @@ memcManager = 0x00673c08;
 oldProcNo = 0x006746cc;
 gsVRMode = 0x00673184;
 _step_2 = 0x00673d14;
+gsSoundBgmNo = 0x00673a5c;
