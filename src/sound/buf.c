@@ -37,7 +37,23 @@ INCLUDE_ASM("asm/nonmatchings/sound/buf", viBufPutTs);
 
 INCLUDE_ASM("asm/nonmatchings/sound/buf", viBufGetTs);
 
-INCLUDE_ASM("asm/nonmatchings/sound/buf", voBufCreate);
+int voBufCreate(VoBuf* f, VoData* data, VoTag* tag, int size)
+{
+    int i;
+
+    f->data = data;
+    f->tag = tag;
+    f->size = size;
+    f->count = 0;
+    f->write = 0;
+
+    for (i = 0; i < size; i++)
+    {
+        f->tag[i].status = VOBUF_STATUS_EMPTY;
+    }
+
+    return 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/buf", voBufDelete);
 
