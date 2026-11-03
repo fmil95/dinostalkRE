@@ -23,7 +23,10 @@ int mcdGetWriteQue()
     return writeque;
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/mcduse", mcdGetQueCondition);
+int mcdGetQueCondition()
+{
+    return ((unsigned int)0 < (unsigned int)(writeque ^ stepque));
+}
 
 int mcdGetErrorFunc()
 {
