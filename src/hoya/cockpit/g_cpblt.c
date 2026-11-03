@@ -1,6 +1,11 @@
 #include "common.h"
 
-INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_cpblt", gsCOCKPIT_InitBulletSendTex);
+extern int tex2dSendFlag_00674320;
+
+void gsCOCKPIT_InitBulletSendTex()
+{
+    tex2dSendFlag_00674320 = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_cpblt", PermittoSend2dWeaponTex);
 
