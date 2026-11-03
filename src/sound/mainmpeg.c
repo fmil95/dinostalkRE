@@ -1,4 +1,6 @@
-#include "common.h"
+#include "sound/mainmpeg.h"
+
+#define min(x, y) (((x) > (y)) ? (y) : (x))
 
 extern int frame_cnt;
 extern char err_sts;
@@ -7,7 +9,6 @@ extern int mono_flg;
 extern int isWithAudio;
 extern int UserProg;
 extern char init_flg;
-extern int N_Read_Unit;
 extern char audioDec[];
 extern void audioDecSendToIOP();
 extern char videoDec[];
@@ -89,18 +90,18 @@ INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", pcmCallback);
 
 INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", copy2area);
 
-void readBufCreate(void* a)
+void readBufCreate(ReadBuf* b)
 {
-    STRUCT_OFFSET(a, 0xC, int) = (N_Read_Unit << 16);
-    STRUCT_OFFSET(a, 0x8, int) = 0;
-    STRUCT_OFFSET(a, 0x4, int) = 0;
+    b->put = 0;
+    b->count = 0;
+    b->size = N_Read_Unit * READ_UNIT_SIZE;
 }
 
-void readBufDelete(void* a)
+void readBufDelete(ReadBuf* b)
 {
-    STRUCT_OFFSET(a, 0x4, int) = 0;
-    STRUCT_OFFSET(a, 0x8, int) = 0;
-    STRUCT_OFFSET(a, 0xC, int) = 0;
+    b->put = 0;
+    b->count = 0;
+    b->size = 0;
 }
 
 INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", readBufBeginPut);
