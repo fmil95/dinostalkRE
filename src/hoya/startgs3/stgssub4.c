@@ -1,9 +1,15 @@
 #include "common.h"
 
+extern int gsNextProg;
+extern void LetsGotoTitle();
+
 void InitStgsEnd(void) {
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/startgs3/stgssub4", MainStgsEnd);
+void MainStgsEnd()
+{
+    LetsGotoTitle(gsNextProg);
+}
 
 void EndStgsEnd(void) {
 }
