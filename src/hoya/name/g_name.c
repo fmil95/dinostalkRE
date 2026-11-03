@@ -4,7 +4,10 @@ INCLUDE_ASM("asm/nonmatchings/hoya/name/g_name", LetsGotoNameScene);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/name/g_name", LetsGotoNameEntryScene);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/name/g_name", gsNAME_Draw1);
+int gsNAME_Draw1(int a)
+{
+    return a;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/name/g_name", gsNAME_Draw2);
 
