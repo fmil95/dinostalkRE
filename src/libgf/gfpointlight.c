@@ -12,7 +12,10 @@ void GFPointLight_SetColor(void) {
 void GFPointLight_MakePacket(void) {
 }
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfpointlight", GFPointLight_Draw);
+int GFPointLight_Draw(int a)
+{
+    return a;
+}
 
 void GFPointLight_SetShape(void) {
 }
