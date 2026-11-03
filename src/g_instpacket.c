@@ -8,7 +8,11 @@ int GFSetpkt_SetPacket0(void* a, int b)
     return b;
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_instpacket", GFSetpkt_SetPacket1);
+int GFSetpkt_SetPacket1(void* a, int b)
+{
+    STRUCT_OFFSET(a, 0x104, int) = b;
+    return b;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_instpacket", GFSetpkt_SetPacket);
 
