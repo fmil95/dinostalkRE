@@ -31,7 +31,20 @@ GF_CACHE_CELL* GFCache_IsOn(Uint32* guid)
     return gfCache_GetCellByGuid(guid);
 }
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfvcache", gfCache_GetCellByGuid);
+static GF_CACHE_CELL* gfCache_GetCellByGuid(Uint32* guid)
+{
+    GF_CACHE_CELL* p;
+
+    for (p = gfInfo_00674cdc; p != NULL; p = p->next)
+    {
+        if (p->used_flag != 0 && p->guid == *guid)
+        {
+            return p;
+        }
+    }
+
+    return NULL;
+}
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfvcache", GFCache_ChangeScore);
 
