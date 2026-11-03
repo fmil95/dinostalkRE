@@ -39,7 +39,10 @@ INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundBgmCrossFade);
 
 INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundClose);
 
-INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundSetEffect);
+int gsSoundSetEffect()
+{
+    return 0;
+}
 
 int gsSoundGetEffect()
 {
