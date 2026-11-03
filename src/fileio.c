@@ -17,7 +17,10 @@ void FIO_ReadFile(int a, int b)
 
 INCLUDE_ASM("asm/nonmatchings/fileio", FIO_ReadFile_NoChk);
 
-INCLUDE_ASM("asm/nonmatchings/fileio", FIO_ReadFile_Align);
+void FIO_ReadFile_Align(int a, int b)
+{
+    fio_ReadFile(a, 0, 0, 0, b, 1);
+}
 
 INCLUDE_ASM("asm/nonmatchings/fileio", FIO_ReadFile_Align2);
 
