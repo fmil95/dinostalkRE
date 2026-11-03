@@ -9,6 +9,8 @@ extern void viBufCount();
 extern char D_00652728[];
 extern int viBufRestartDMA();
 extern int viBufStopDMA();
+extern int RotateThreadReadyQueue();
+extern int viBufAddDMA();
 
 INCLUDE_ASM("asm/nonmatchings/sound/decoder", videoDecCreate);
 
@@ -65,7 +67,12 @@ INCLUDE_ASM("asm/nonmatchings/sound/decoder", decBs0);
 
 INCLUDE_ASM("asm/nonmatchings/sound/decoder", mpegError);
 
-INCLUDE_ASM("asm/nonmatchings/sound/decoder", mpegNodata);
+int mpegNodata()
+{
+    RotateThreadReadyQueue(2);
+    viBufAddDMA(D_00652728);
+    return 1;
+}
 
 int mpegStopDMA()
 {
