@@ -102,6 +102,9 @@ INCLUDE_ASM("asm/nonmatchings/particle", GFParticle_OffInstance);
 
 INCLUDE_ASM("asm/nonmatchings/particle", GFParticle_Vu0RandomInit);
 
-INCLUDE_ASM("asm/nonmatchings/particle", GFParticle_SetExecFunction);
+void GFParticle_SetExecFunction(void* p, int v)
+{
+    STRUCT_OFFSET(p, 0x148, int) = v;
+}
 
 INCLUDE_ASM("asm/nonmatchings/particle", GFParticle_SetMulVelocity);
