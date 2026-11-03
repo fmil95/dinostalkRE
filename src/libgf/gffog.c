@@ -8,7 +8,11 @@ INCLUDE_ASM("asm/nonmatchings/libgf/gffog", GFFog_Draw);
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gffog", GFFog_SetNear);
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gffog", GFFog_SetFar);
+float GFFog_SetFar(void* a, float x)
+{
+    STRUCT_OFFSET(a, 0xC, float) = x;
+    return x;
+}
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gffog", GFFog_SetMin);
 
