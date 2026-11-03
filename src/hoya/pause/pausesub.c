@@ -1,5 +1,8 @@
 #include "common.h"
 
+extern int pPpp;
+extern void hyCheckFadeFinishFlag();
+
 INCLUDE_ASM("asm/nonmatchings/hoya/pause/pausesub", gsPAUSE_InitVitality);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/pause/pausesub", gsPAUSE_PutVitalityUnder);
@@ -20,7 +23,10 @@ INCLUDE_ASM("asm/nonmatchings/hoya/pause/pausesub", SetFadeParaPause_pausesub);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/pause/pausesub", SwitchFadeTimerPause_pausesub);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/pause/pausesub", CheckFadeFinishFlagPause_pausesub);
+void CheckFadeFinishFlagPause_pausesub()
+{
+    hyCheckFadeFinishFlag((pPpp + 144));
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/pause/pausesub", gsPAUSE_PutLife);
 
