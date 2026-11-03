@@ -3,6 +3,8 @@
 extern float waveRndVec;
 extern float waveScrollX;
 extern float waveScrollZ;
+extern int gsWave_chgColTime;
+extern char gsWave_chgColFlag;
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st3wave", gsWaveScrollX);
 
@@ -58,7 +60,11 @@ INCLUDE_ASM("asm/nonmatchings/g_world/st3wave", GFWave_Draw);
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st3wave", gsSt3WaveChange);
 
-INCLUDE_ASM("asm/nonmatchings/g_world/st3wave", gsWave_ChgColStart);
+void gsWave_ChgColStart()
+{
+    gsWave_chgColTime = 0;
+    gsWave_chgColFlag = 1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st3wave", gsWave_ChgColExec);
 
