@@ -1,5 +1,8 @@
 #include "common.h"
 
+extern int isCountVblank;
+extern int frd;
+
 INCLUDE_ASM("asm/nonmatchings/sound/disp", initDisplay);
 
 INCLUDE_ASM("asm/nonmatchings/sound/disp", cdvMpegChgOffset);
@@ -88,6 +91,10 @@ INCLUDE_ASM("asm/nonmatchings/sound/disp", handler_endimage);
 
 INCLUDE_ASM("asm/nonmatchings/sound/disp", startDisplay);
 
-INCLUDE_ASM("asm/nonmatchings/sound/disp", endDisplay);
+void endDisplay()
+{
+    isCountVblank = 0;
+    frd = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/disp", SetUserData);

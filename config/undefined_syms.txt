@@ -57,3 +57,5 @@ stepque = 0x0067449c;
 writeque = 0x00674498;
 wait = 0x00674974;
 init_flg = 0x00674a70;
+isCountVblank = 0x00673de8;
+frd = 0x00673d98;
