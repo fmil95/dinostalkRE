@@ -3,7 +3,10 @@
 void LetsGotoContinueScene(void) {
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/continue/g_cnt", gsCONTINUE_Draw1);
+int gsCONTINUE_Draw1(int a)
+{
+    return a;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/continue/g_cnt", gsCONTINUE_Draw2);
 
