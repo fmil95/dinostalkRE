@@ -5,6 +5,18 @@
 
 #include "common.h"
 
+struct pod_header { // 0x20
+	/* 0x00 */ Uint32 magic;
+	/* 0x04 */ Uint16 version;
+	/* 0x06 */ Uint16 pad;
+	/* 0x08 */ Sint32 shapeNum;
+	/* 0x0c */ Sint32 rootShape;
+	/* 0x10 */ Uint32 extBlockNum;
+	/* 0x14 */ Sint32 pad2[3];
+};
+
+typedef struct pod_header PodHEADER;
+
 struct pod_shapetbl { // 0x50
 	/* 0x00 */ Uint16 parent;
 	/* 0x02 */ Uint16 child;

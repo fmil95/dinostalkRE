@@ -130,3 +130,5 @@ _st7_shock_jeep_cnt = 0x006741e4;
 IscSe_Port_GokiA = 0x006739e0;
 IscSe_Port_GokiB = 0x006739e4;
 IscSe_Port_Tomb = 0x006739e8;
+gfDatabase = 0x00674cbc;
+gfDatabaseAddr = 0x00673e5c;
