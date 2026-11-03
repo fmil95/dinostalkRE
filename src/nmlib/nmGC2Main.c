@@ -6,7 +6,18 @@ typedef struct {
     /* 0x24 */ void* serve;
 } sceSifClientData;
 
+typedef struct nm_TimerRegAdr_tag
+{
+    /* 0x0 */ u_int* count;
+    /* 0x4 */ u_int* mode;
+    /* 0x8 */ u_int* comp;
+    /* 0xc */ u_int* hold;
+} nm_TimerRegAdr_t;
+
 extern sceSifClientData cdUsbGun;
+extern int nm_MeterTimerNo;
+extern nm_TimerRegAdr_t nm_TimerRegAdr[];
+extern int time0;
 extern char sdata_00873980[];
 extern char D_0066F5C8[];
 extern char D_0066F5D8[];
@@ -75,6 +86,13 @@ int nmUsbGunSync(int mode)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/nmlib/nmGC2Main", nmPadTimerReset);
+void nmPadTimerReset()
+{
+    int no;
+
+    no = *nm_TimerRegAdr[nm_MeterTimerNo].count;
+
+    time0 = no;
+}
 
 INCLUDE_ASM("asm/nonmatchings/nmlib/nmGC2Main", nmPadWaitTimer);
