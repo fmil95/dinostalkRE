@@ -71,7 +71,10 @@ void G_MEMC_Exec()
 
 INCLUDE_ASM("asm/nonmatchings/hoya/g_test2", G_MEMC_End);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/g_test2", G_MODESEL_Init);
+void G_MODESEL_Init()
+{
+    G_TTL_Init();
+}
 
 void G_MODESEL_Exec()
 {
