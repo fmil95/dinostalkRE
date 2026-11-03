@@ -3,13 +3,17 @@
 extern int logo;
 extern void hyCheckFadeFinishFlag();
 extern void hySetFadePara2();
+extern void hySwitchFadeTimer();
 
 void SetFadePara_ttlsub03(int a, int b, int c)
 {
     hySetFadePara2(a, b, c, (logo + 64));
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/title/ttlsub03", SwitchFadeTimer_ttlsub03);
+void SwitchFadeTimer_ttlsub03(int a)
+{
+    hySwitchFadeTimer(a, (logo + 64));
+}
 
 void CheckFadeFinishFlag_ttlsub03()
 {
