@@ -8,6 +8,12 @@ extern char gsEffect_BlurCol[];
 extern char gsEffect_BlurDisCol[];
 extern char gsEffect_FadeCol[];
 extern char gsEffect_FadeDisCol[];
+extern char gsEffectS[];
+extern char gsEffectM[];
+extern char gsEffectL[];
+extern void gs_effectResetEffectSrc();
+extern void gs_effectResetEffectSrc();
+extern void gs_effectResetEffectSrc();
 
 INCLUDE_ASM("asm/nonmatchings/g_effect", gs_effectResetEffectSrc);
 
@@ -48,7 +54,12 @@ INCLUDE_ASM("asm/nonmatchings/g_effect", gs_effectInitEffectSrc);
 
 INCLUDE_ASM("asm/nonmatchings/g_effect", gsEffectInit);
 
-INCLUDE_ASM("asm/nonmatchings/g_effect", gsEffectReset);
+void gsEffectReset()
+{
+    gs_effectResetEffectSrc(gsEffectS, 0x78, 0xc);
+    gs_effectResetEffectSrc(gsEffectM, 0x32, 0x30);
+    gs_effectResetEffectSrc(gsEffectL, 5, 0x134);
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_effect", gf_calcViewPosZ);
 
