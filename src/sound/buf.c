@@ -108,4 +108,10 @@ VoData* voBufGetAddr(VoBuf* f)
     return voBufIsEmpty(f) ? (VoData*)NULL : f->data + ((f->write - f->count + f->size) % f->size);
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/buf", voBufDecCount);
+void voBufDecCount(VoBuf* f)
+{
+    if (f->count > 0)
+    {
+        f->count--;
+    }
+}
