@@ -68,7 +68,20 @@ Uint32 GFAnim_ShapeFlagSet(GF_INST_OBJECT* obj, Uint32 setFlag)
     return setFlag;
 }
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfanim", GFAnim_ShapeFlagClear);
+Uint32 GFAnim_ShapeFlagClear(GF_INST_OBJECT* obj, Uint32 setFlag)
+{
+    Sint32 i;
+    GF_INST_SHAPE* shape;
+
+    shape = obj->shape;
+
+    for (i = 0; i < obj->nShape; i++, shape++)
+    {
+        shape->flagAnim &= ~setFlag;
+    }
+
+    return setFlag;
+}
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfanim", GFAnim_SetNextAnimation);
 
