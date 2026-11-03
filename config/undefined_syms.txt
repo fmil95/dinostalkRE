@@ -20,3 +20,4 @@ wide_mode_flag_0067488c = 0x0067488c;
 finish = 0x0067484c;
 adjust_mode_00674810 = 0x00674810;
 trans = 0x00674848;
+_VlcnCnt = 0x00673858;

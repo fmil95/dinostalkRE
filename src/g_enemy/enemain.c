@@ -1,5 +1,7 @@
 #include "common.h"
 
+extern int _VlcnCnt;
+
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_Main);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_PauseProc);
@@ -191,7 +193,10 @@ INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_Flashing);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_TrntyDethMoveInit);
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", VolcanoInit);
+void VolcanoInit()
+{
+    _VlcnCnt = 0;
+}
 
 void VolcanoMain(void) {
 }
