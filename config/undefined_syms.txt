@@ -138,3 +138,6 @@ gf_pShareBufSize = 0x00674ccc;
 gf_trans_specular = 0x00673e80;
 gfInfo_00674cdc = 0x00674cdc;
 gfInfoHead_00674cd8 = 0x00674cd8;
+gfInfoAddr_00673e88 = 0x00673e88;
+gfInfoHead_00674cd0 = 0x00674cd0;
+gfInfo_00674cd4 = 0x00674cd4;

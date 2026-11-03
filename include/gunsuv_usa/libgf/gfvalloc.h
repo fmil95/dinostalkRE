@@ -5,6 +5,27 @@
 
 #include "common.h"
 
+struct gf_vram_cell { // 0x10
+	/* 0x0 */ struct gf_vram_cell *prev;
+	/* 0x4 */ struct gf_vram_cell *next;
+	/* 0x8 */ Uint8 stat;
+	/* 0x9 */ Uint8 pad;
+	/* 0xa */ Uint8 used_flag;
+	/* 0xb */ Uint8 reserved_flag;
+	/* 0xc */ Uint16 pos;
+	/* 0xe */ Uint16 size;
+};
+
+typedef struct gf_vram_cell GF_VRAM_CELL;
+
+struct gf_vram_head { // 0xc
+	/* 0x0 */ Uint32 size;
+	/* 0x4 */ Uint32 cellMax;
+	/* 0x8 */ GF_VRAM_CELL *top_cell;
+};
+
+typedef struct gf_vram_head GF_VRAM_HEAD;
+
 typedef struct { // 0xc
 	/* 0x0 */ Uint32 w;
 	/* 0x4 */ Uint32 h;

@@ -1,8 +1,23 @@
 #include "gunsuv_usa/libgf/gfvalloc.h"
 
+extern Uint32* gfInfoAddr_00673e88;
+extern GF_VRAM_HEAD* gfInfoHead_00674cd0;
+extern GF_VRAM_CELL* gfInfo_00674cd4;
+
+static void gfVram_ClearAllCell();
+static void gfVram_DefragCell();
+
 INCLUDE_ASM("asm/nonmatchings/libgf/gfvalloc", GFVram_SetInfoAddr);
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfvalloc", gfVram_ClearAllCell);
+static void gfVram_ClearAllCell()
+{
+    int i;
+
+    for (i = 0; i < gfInfoHead_00674cd0->cellMax; i++)
+    {
+        gfInfo_00674cd4[i].stat = 0;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfvalloc", gfVram_GetUnusedCell);
 
