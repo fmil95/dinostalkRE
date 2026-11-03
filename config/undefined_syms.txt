@@ -23,3 +23,4 @@ trans = 0x00674848;
 _VlcnCnt = 0x00673858;
 mpeg_err = 0x00674a18;
 ErrorNum = 0x00674a04;
+Read_Pos = 0x00674a08;

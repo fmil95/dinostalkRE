@@ -2,6 +2,7 @@
 
 extern int mpeg_err;
 extern unsigned short ErrorNum;
+extern int Read_Pos;
 
 INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvCallBack);
 
@@ -26,7 +27,10 @@ unsigned short cdvGetError()
     return ErrorNum;
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvGetReadPos);
+int cdvGetReadPos()
+{
+    return Read_Pos;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvGetDiscNameSet);
 
