@@ -2,6 +2,9 @@
 
 extern int D_00653B74[];
 extern int D_00653B64[];
+extern int _flash_trg;
+extern int _flash_cycle_cnt;
+extern int _flash_bright;
 
 INCLUDE_ASM("asm/nonmatchings/g_guncon2/g_guncon2", gsGuncon2_Init);
 
@@ -45,7 +48,12 @@ INCLUDE_ASM("asm/nonmatchings/g_guncon2/g_guncon2", gsGuncon2_InitAdjustPara);
 
 INCLUDE_ASM("asm/nonmatchings/g_guncon2/g_guncon2", gsGuncon2_DrawFlash);
 
-INCLUDE_ASM("asm/nonmatchings/g_guncon2/g_guncon2", gsGuncon2_Flash_INIT);
+void gsGuncon2_Flash_INIT()
+{
+    _flash_trg = 0;
+    _flash_cycle_cnt = 0;
+    _flash_bright = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_guncon2/g_guncon2", gsGuncon2_Flash_CALL);
 

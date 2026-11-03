@@ -69,3 +69,6 @@ gsNextProg = 0x00673230;
 gsExtProgWorkP = 0x00673300;
 gsExtProgRpFile = 0x00673304;
 gsExtProgRpFunc = 0x00673324;
+_flash_trg = 0x00674c58;
+_flash_cycle_cnt = 0x00674c5c;
+_flash_bright = 0x00674c60;
