@@ -42,7 +42,10 @@ INCLUDE_ASM("asm/nonmatchings/sound/buf", voBufDelete);
 
 INCLUDE_ASM("asm/nonmatchings/sound/buf", voBufReset);
 
-INCLUDE_ASM("asm/nonmatchings/sound/buf", voBufIsFull);
+int voBufIsFull(void* a)
+{
+    return ((STRUCT_OFFSET(a, 0xC, int) ^ STRUCT_OFFSET(a, 0x10, int)) == 0);
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/buf", voBufIncCount);
 
