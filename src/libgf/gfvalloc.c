@@ -19,7 +19,20 @@ static void gfVram_ClearAllCell()
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfvalloc", gfVram_GetUnusedCell);
+static GF_VRAM_CELL* gfVram_GetUnusedCell()
+{
+    int i;
+
+    for (i = 0; i < gfInfoHead_00674cd0->cellMax; i++)
+    {
+        if (gfInfo_00674cd4[i].stat == 0)
+        {
+            return &gfInfo_00674cd4[i];
+        }
+    }
+
+    return NULL;
+}
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfvalloc", GFVram_AddFreeArea);
 
