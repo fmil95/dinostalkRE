@@ -15,7 +15,26 @@ qword* GFFog_MakePacket(GF_FOG* fog, qword* packbuf)
     return packbuf + 1;
 }
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gffog", GFFog_Draw);
+qword* GFFog_Draw(GF_FOG* fog, qword* packet)
+{
+    qword* cur;
+
+    cur = GFFog_MakePacket(fog, packet);
+
+    _GFPKT_DV_CNT_DIRECT(cur, 2);
+    cur++;
+
+    ((long*)cur)[1] = 0xE;
+    ((long*)cur)[0] = 0x1000000000008001L;
+    cur++;
+
+    gf_trans_fog = fog;
+
+    ((long*)cur)[1] = 0x3D;
+    ((long*)cur)[0] = *(long*)fog->col;
+
+    return cur + 1;
+}
 
 Float32 GFFog_SetNear(GF_FOG* fog, Float32 near)
 {
