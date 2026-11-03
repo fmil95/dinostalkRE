@@ -1,5 +1,7 @@
 #include "common.h"
 
+extern int _st9_se_port_lava;
+
 INCLUDE_ASM("asm/nonmatchings/g_world/st9", gsWorldInitSt9);
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st9", gsWorldSt9_WorkInit);
@@ -20,7 +22,10 @@ INCLUDE_ASM("asm/nonmatchings/g_world/st9", gsSt9_MiragePointRand);
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st9", gsSt9_SetMirage);
 
-INCLUDE_ASM("asm/nonmatchings/g_world/st9", gsWorldSt9_InitBackSE);
+void gsWorldSt9_InitBackSE()
+{
+    _st9_se_port_lava = 0x14;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st9", gsWorldSt9_PlayBackSE);
 
