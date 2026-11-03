@@ -30,7 +30,10 @@ void GFTrack_AddFlag(void* a, int b)
     STRUCT_OFFSET(a, 0xC, int) = (STRUCT_OFFSET(a, 0xC, int) | b);
 }
 
-INCLUDE_ASM("asm/nonmatchings/benjamin/track", GFTrack_EraseFlag);
+void GFTrack_EraseFlag(void* a, int b)
+{
+    STRUCT_OFFSET(a, 0xC, int) = (STRUCT_OFFSET(a, 0xC, int) & ~b);
+}
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/track", GFTrack_Draw);
 
