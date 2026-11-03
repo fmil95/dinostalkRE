@@ -3,6 +3,7 @@
 extern int D_0065176C[];
 extern int SeTransNow();
 extern int D_0065175C[];
+extern int D_00651760[];
 
 int get_SE_MAX() 
 {
@@ -194,7 +195,10 @@ int IOPReadNow()
     return ((D_0065175C[0] ^ 0x1) == 0);
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeTransNow);
+int SeTransNow()
+{
+    return ((D_00651760[0] ^ 0x1) == 0);
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeReqQueInc);
 
