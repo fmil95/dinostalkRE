@@ -14,7 +14,15 @@ int GFSetpkt_SetPacket1(void* a, int b)
     return b;
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_instpacket", GFSetpkt_SetPacket);
+int GFSetpkt_SetPacket(int a, int b, int c)
+{
+    if (!(((unsigned int)a < 2) == 0))
+    {
+        ((int*)((char*)b + 0x100))[a] = c;
+    }
+
+    return c;
+}
 
 void GFSetpkt_SetRefInst(void* p, int v)
 {
