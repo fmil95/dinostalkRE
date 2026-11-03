@@ -1,5 +1,8 @@
 #include "common.h"
 
+extern int gsCptBossGaugeViewFlag;
+extern void gsCOCKPIT_InitBossInfo();
+
 INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_cpboss", BossInitSprName);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_cpboss", BossDrawSprName);
@@ -30,7 +33,11 @@ INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_cpboss", SetBossInfoNum);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_cpboss", SetBossInfoOld);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_cpboss", CleartBossInfo);
+void CleartBossInfo()
+{
+    gsCptBossGaugeViewFlag = 0;
+    gsCOCKPIT_InitBossInfo();
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_cpboss", CalcCommon);
 
