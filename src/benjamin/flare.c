@@ -20,7 +20,10 @@ void GFFlare_SetPosScale(void* p, float v)
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/flare", GFFlare_SetSize);
 
-INCLUDE_ASM("asm/nonmatchings/benjamin/flare", GFFlare_SetSibling);
+void GFFlare_SetSibling(void* p, int v)
+{
+    STRUCT_OFFSET(p, 0x2C, int) = v;
+}
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/flare", GFFlare_SetRGBA);
 
