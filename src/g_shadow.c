@@ -1,6 +1,7 @@
 #include "common.h"
 
 extern float gpShadowFarZ;
+extern float gpShadowMaxAlpha;
 
 INCLUDE_ASM("asm/nonmatchings/g_shadow", gpShadow_Init);
 
@@ -37,7 +38,10 @@ void gpShadow_ReSetScreenFarZ(float v)
     gpShadowFarZ = v;
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_shadow", gpShadow_SetMaxAlpha);
+void gpShadow_SetMaxAlpha(float v)
+{
+    gpShadowMaxAlpha = v;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_shadow", gpShadow_SetLightVector);
 
