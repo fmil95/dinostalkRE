@@ -2,6 +2,7 @@
 
 extern void mcdCloseSet();
 extern void mcdQuit();
+extern void mcdGetQueCondition();
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", CreateIconSys);
 
@@ -33,7 +34,10 @@ void GetSystemData2Box(void) {
 void GetGameData2Box(void) {
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", GetQueCondition);
+void GetQueCondition()
+{
+    mcdGetQueCondition();
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", GetResultValue);
 
