@@ -4,6 +4,8 @@ extern int gsEffect_FadeCnt;
 extern void gsEffectAddWithPri();
 extern char gsEffect_WindVec[];
 extern void sceVu0CopyVector();
+extern char gsEffect_BlurCol[];
+extern char gsEffect_BlurDisCol[];
 
 INCLUDE_ASM("asm/nonmatchings/g_effect", gs_effectResetEffectSrc);
 
@@ -75,7 +77,11 @@ INCLUDE_ASM("asm/nonmatchings/g_effect", gsEffectInitBlur);
 
 INCLUDE_ASM("asm/nonmatchings/g_effect", gsEffectSetBlurFade);
 
-INCLUDE_ASM("asm/nonmatchings/g_effect", gsEffectSetBlurNowColor);
+void gsEffectSetBlurNowColor(int a)
+{
+    sceVu0CopyVector(gsEffect_BlurCol, a);
+    sceVu0CopyVector(gsEffect_BlurDisCol, a);
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_effect", gsEffectBlurStatPush);
 
