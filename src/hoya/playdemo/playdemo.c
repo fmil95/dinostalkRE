@@ -1,5 +1,7 @@
 #include "common.h"
 
+extern int D_0064B34C[];
+
 INCLUDE_ASM("asm/nonmatchings/hoya/playdemo/playdemo", gsRecordPadInit);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/playdemo/playdemo", gsRecordPadMain);
@@ -24,7 +26,10 @@ INCLUDE_ASM("asm/nonmatchings/hoya/playdemo/playdemo", gsPlayDemoPadSwitch);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/playdemo/playdemo", retGunActTaddr);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/playdemo/playdemo", IsRecordHeaderExists);
+int IsRecordHeaderExists()
+{
+    return D_0064B34C[0];
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/playdemo/playdemo", gsPlayDemoInit);
 
