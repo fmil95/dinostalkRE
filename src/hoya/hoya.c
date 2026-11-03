@@ -1,5 +1,7 @@
 #include "common.h"
 
+extern int texMng[];
+
 INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyGun1CheckScreenOut);
 
 void hySetBgCol(void) {
@@ -17,7 +19,10 @@ INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyCreateTexture2);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyInitTextureManager);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyGetEntryNo);
+int hyGetEntryNo()
+{
+    return texMng[0];
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hySetEntryNo);
 
