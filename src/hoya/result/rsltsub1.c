@@ -1,5 +1,7 @@
 #include "common.h"
 
+extern void EndLetterAll();
+
 INCLUDE_ASM("asm/nonmatchings/hoya/result/rsltsub1", MakeAllNumberTex_rsltsub1);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/result/rsltsub1", RsltInitSprOther_rsltsub1);
@@ -72,4 +74,7 @@ INCLUDE_ASM("asm/nonmatchings/hoya/result/rsltsub1", Draw2dObjectRslt);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/result/rsltsub1", MainResult);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/result/rsltsub1", EndResult);
+void EndResult()
+{
+    EndLetterAll();
+}
