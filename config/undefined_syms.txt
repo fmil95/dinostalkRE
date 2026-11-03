@@ -152,3 +152,6 @@ gPad = 0x00673f28;
 gPadTrg = 0x00673f30;
 N_Read_Unit = 0x00674a80;
 delay_time = 0x00674844;
+search_num = 0x00674a20;
+search_que = 0x00674a28;
+search_prg = 0x00674a2c;
