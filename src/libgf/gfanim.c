@@ -46,7 +46,21 @@ INCLUDE_ASM("asm/nonmatchings/libgf/gfanim", gfAnim_QuaternionToMatrix);
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfanim", gfAnim_NormalizeQuaternion);
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfanim", gfAnim_InterpolateVector);
+static void gfAnim_InterpolateVector(float* v0, float* v1, float* v2, Float32 t, Sint32 is_rot)
+{
+    asm volatile(
+        ".set noreorder\n"
+        "lqc2 $vf4, 0x0(%1)\n"
+        "lqc2 $vf5, 0x0(%2)\n"
+        "mfc1 $8, %3\n"
+        "qmtc2.ni $8, $vf6\n"
+        "vsub.xyzw $vf7, $vf5, $vf4\n"
+        "vmulx.xyzw $vf7, $vf7, $vf6x\n"
+        "vadd.xyzw $vf9, $vf7, $vf4\n"
+        "sqc2 $vf9, 0x0(%0)\n"
+        ".set reorder\n"
+        : : "r"(v0), "r"(v1), "r"(v2), "f"(t) : "$8", "memory");
+}
 
 static void gfAnim_Vu0CopyQuat(Float32* v0, Float32* v1)
 {
