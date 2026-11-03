@@ -8,7 +8,10 @@ INCLUDE_ASM("asm/nonmatchings/benjamin/track", GFTrack_Lifeless);
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/track", GFTrack_SetTextureID);
 
-INCLUDE_ASM("asm/nonmatchings/benjamin/track", GFTrack_GetTextureID);
+int GFTrack_GetTextureID(void* p)
+{
+    return STRUCT_OFFSET(p, 0x8, int);
+}
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/track", GFTrack_SetStartRGBA);
 
