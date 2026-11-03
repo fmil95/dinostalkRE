@@ -1,5 +1,10 @@
 #include "common.h"
 
+extern int gsFootPointBegin;
+extern int gsFootPointBefore;
+extern char gsFootPointInst[];
+extern void GFInstance_Remove();
+
 INCLUDE_ASM("asm/nonmatchings/benjamin/g_footpoint", gsFootPoint_Init);
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/g_footpoint", gsFootPoint_InitFootPoint);
@@ -29,4 +34,9 @@ INCLUDE_ASM("asm/nonmatchings/benjamin/g_footpoint", gsFootPoint_GetChangeMatrix
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/g_footpoint", gsFootPoint_GetTexST);
 
-INCLUDE_ASM("asm/nonmatchings/benjamin/g_footpoint", gsFootPoint_Remove);
+void gsFootPoint_Remove()
+{
+    gsFootPointBegin = 0;
+    gsFootPointBefore = 0;
+    GFInstance_Remove(gsFootPointInst);
+}

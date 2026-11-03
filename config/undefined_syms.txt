@@ -173,3 +173,5 @@ pStgs_006749a0 = 0x006749a0;
 ttl = 0x00673c84;
 logo = 0x00673c88;
 gsPlayDemoFlag = 0x00673d08;
+gsFootPointBegin = 0x006737a0;
+gsFootPointBefore = 0x006737a4;
