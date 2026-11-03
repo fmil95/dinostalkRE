@@ -2,6 +2,7 @@
 
 extern int pPpp;
 extern void hyCheckFadeFinishFlag();
+extern void hySetFadePara2();
 
 INCLUDE_ASM("asm/nonmatchings/hoya/pause/pausesub", gsPAUSE_InitVitality);
 
@@ -19,7 +20,10 @@ INCLUDE_ASM("asm/nonmatchings/hoya/pause/pausesub", InitExplain);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/pause/pausesub", GetExpCur);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/pause/pausesub", SetFadeParaPause_pausesub);
+void SetFadeParaPause_pausesub(int a, int b, int c)
+{
+    hySetFadePara2(a, b, c, (pPpp + 144));
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/pause/pausesub", SwitchFadeTimerPause_pausesub);
 
