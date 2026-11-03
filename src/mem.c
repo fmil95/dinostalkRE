@@ -12,6 +12,7 @@ extern signed long gAllocSize;
 extern int gsHeapBak;
 extern int gsHeapCur;
 extern int gsHeapTop;
+extern void mem_SearchAllocInfo();
 
 void MEM_InitAllocation() 
 {
@@ -50,7 +51,10 @@ INCLUDE_ASM("asm/nonmatchings/mem", MEM_FreeAll);
 
 INCLUDE_ASM("asm/nonmatchings/mem", MEM_Free);
 
-INCLUDE_ASM("asm/nonmatchings/mem", mem_GetFreeAllocInfo);
+void mem_GetFreeAllocInfo()
+{
+    mem_SearchAllocInfo(0);
+}
 
 INCLUDE_ASM("asm/nonmatchings/mem", mem_SearchAllocInfo);
 
