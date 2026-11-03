@@ -1,8 +1,14 @@
 #include "common.h"
 
 extern int wait;
+extern int stgsOldProcNo;
+extern int gsNextProg;
 
-INCLUDE_ASM("asm/nonmatchings/hoya/startgs3/g_stgs", LetsGotoStartgs3);
+void LetsGotoStartgs3(int a)
+{
+    stgsOldProcNo = a;
+    gsNextProg = 0x12;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/startgs3/g_stgs", gsStageInit_STARTGS3);
 
