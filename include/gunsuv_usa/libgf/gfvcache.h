@@ -5,6 +5,17 @@
 
 #include "common.h"
 
+struct gf_cache_head { // 0x10
+	/* 0x0 */ Uint32 size;
+	/* 0x4 */ Uint32 cellMax;
+	/* 0x8 */ Uint16 cache_pos;
+	/* 0xa */ Uint16 cache_size;
+	/* 0xc */ Uint16 preset_pos;
+	/* 0xe */ Uint16 pad;
+};
+
+typedef struct gf_cache_head GF_CACHE_HEAD;
+
 struct gf_cache_cell { // 0x20
 	/* 0x00 */ struct gf_cache_cell *next;
 	/* 0x04 */ Uint8 stat;

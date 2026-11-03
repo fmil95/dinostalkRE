@@ -12,7 +12,12 @@ void GFLight_SetVector(GF_LIGHT* light, float* v0, float* v1, float* v2)
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gflight", GFLight_SetColor);
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gflight", GFLight_MakePacket);
+qword* GFLight_MakePacket(GF_LIGHT* light, qword* packbuf)
+{
+    light->packet = packbuf;
+
+    return packbuf;
+}
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gflight", GFLight_Draw);
 
