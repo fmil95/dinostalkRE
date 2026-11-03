@@ -1,6 +1,7 @@
 #include "common.h"
 
 extern void mcdCloseSet();
+extern void mcdQuit();
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", CreateIconSys);
 
@@ -147,6 +148,9 @@ INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", CollectAllGameData);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", SetAllGameData);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", EndMemcManager);
+void EndMemcManager()
+{
+    mcdQuit();
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", gsMemryCard_LoadModule);
