@@ -1,6 +1,7 @@
 #include "common.h"
 
 extern int D_00653B74[];
+extern int D_00653B64[];
 
 INCLUDE_ASM("asm/nonmatchings/g_guncon2/g_guncon2", gsGuncon2_Init);
 
@@ -31,7 +32,10 @@ int gsGuncon2_GetCycle()
     return D_00653B74[0];
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_guncon2/g_guncon2", gsGuncon2_SetState);
+void gsGuncon2_SetState(int a)
+{
+    D_00653B64[0] = a;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_guncon2/g_guncon2", gsGuncon2_CanChangeArms);
 
