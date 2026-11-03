@@ -1,5 +1,11 @@
 #include "gunsuv_usa/libgf/gfshare.h"
 
+extern Uint32 gf_pShareBufSize;
+
+extern Uint32* gf_pShareBufTop;
+
+extern Uint32* gf_pShareBuf;
+
 extern Uint32 gf_Vu1WorkSize;
 
 static GF_INST_SHAPE* gf_GetShape(GF_INST_OBJECT* pObj, Uint32 n)
@@ -45,7 +51,12 @@ INCLUDE_ASM("asm/nonmatchings/libgf/gfshare", GFShare_Eval);
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfshare", GFShare_Draw);
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfshare", GFShare_SetBuf);
+void GFShare_SetBuf(Uint32* pBuf, Uint32 size)
+{
+    gf_pShareBuf     = pBuf;
+    gf_pShareBufTop  = pBuf;
+    gf_pShareBufSize = size;
+}
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfshare", gf_GetShareBlock);
 
