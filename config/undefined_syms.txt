@@ -39,3 +39,4 @@ tex2dSendFlag_00674320 = 0x00674320;
 tex2dSendFlag_00674478 = 0x00674478;
 gsEffect_FadeCnt = 0x00673f90;
 gsShockIsOn = 0x006735a0;
+waveRndVec = 0x00673610;
