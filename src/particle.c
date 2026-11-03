@@ -1,5 +1,7 @@
 #include "common.h"
 
+extern void sceVu0CopyVector();
+
 INCLUDE_ASM("asm/nonmatchings/particle", gf_MyRand);
 
 INCLUDE_ASM("asm/nonmatchings/particle", gf_MyRandRange);
@@ -54,7 +56,10 @@ INCLUDE_ASM("asm/nonmatchings/particle", GFParticle_EraseStatus);
 
 INCLUDE_ASM("asm/nonmatchings/particle", GFParticle_InitPosition);
 
-INCLUDE_ASM("asm/nonmatchings/particle", GFParticle_SetPosition);
+void GFParticle_SetPosition()
+{
+    sceVu0CopyVector();
+}
 
 INCLUDE_ASM("asm/nonmatchings/particle", GFParticle_SetPositionFunction);
 
