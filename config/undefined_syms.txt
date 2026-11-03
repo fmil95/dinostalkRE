@@ -49,3 +49,4 @@ _st7_dino_light_num = 0x006741d0;
 _st7_glow_num = 0x006741b0;
 _st7_hasi_light_num = 0x006741bc;
 _st7_jeep_light_obj_num = 0x006741a8;
+_st7_neon_00_num = 0x006741b4;
