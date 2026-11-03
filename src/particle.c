@@ -24,7 +24,10 @@ INCLUDE_ASM("asm/nonmatchings/particle", GFParticle_SetAnimTbl);
 
 INCLUDE_ASM("asm/nonmatchings/particle", GFParticle_SetAnimTexInfoTbl);
 
-INCLUDE_ASM("asm/nonmatchings/particle", GFParticle_GetSize);
+int GFParticle_GetSize(void* p)
+{
+    return STRUCT_OFFSET(p, 0xEC, int);
+}
 
 INCLUDE_ASM("asm/nonmatchings/particle", GFParticle_Lifeless);
 
