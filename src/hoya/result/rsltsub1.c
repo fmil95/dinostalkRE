@@ -1,6 +1,8 @@
 #include "common.h"
 
 extern void EndLetterAll();
+extern int gsNextProg;
+extern void LetsGotoMemcScene();
 
 INCLUDE_ASM("asm/nonmatchings/hoya/result/rsltsub1", MakeAllNumberTex_rsltsub1);
 
@@ -62,7 +64,10 @@ INCLUDE_ASM("asm/nonmatchings/hoya/result/rsltsub1", ProcDrawThirdFixRank);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/result/rsltsub1", ProcDrawSaveWindow);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/result/rsltsub1", GotoNextScene);
+void GotoNextScene()
+{
+    LetsGotoMemcScene(gsNextProg);
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/result/rsltsub1", Return2Game);
 
