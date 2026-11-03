@@ -1,5 +1,8 @@
 #include "common.h"
 
+extern char D_002F1FC4[];
+extern void addScore2();
+
 int addNumber(int* prm0, int prm1, int prm2, int prm3) 
 {
     int temp, temp2;
@@ -13,7 +16,10 @@ int addNumber(int* prm0, int prm1, int prm2, int prm3)
 
 INCLUDE_ASM("asm/nonmatchings/hoya/score/g_scman", addScore2);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/score/g_scman", addScore);
+void addScore(int a)
+{
+    addScore2(D_002F1FC4, a);
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/score/g_scman", addScoreWorld);
 
