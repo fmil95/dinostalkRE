@@ -1,10 +1,27 @@
 #include "common.h"
 
+extern void sceGsSyncPath();
+extern void gsSoundClose();
+extern void gsSoundSeMain();
+extern void pfm_end();
+extern void GF_EndGraphicsFramework();
+extern void GFTex_ResetDatabase();
+extern void MEM_FreeAll();
+
 INCLUDE_ASM("asm/nonmatchings/benjamin/g_staff", gsStaffInit);
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/g_staff", gsStaffExec);
 
-INCLUDE_ASM("asm/nonmatchings/benjamin/g_staff", gsStaffEnd);
+void gsStaffEnd()
+{
+    sceGsSyncPath(0, 0);
+    gsSoundClose();
+    gsSoundSeMain();
+    pfm_end();
+    GF_EndGraphicsFramework();
+    GFTex_ResetDatabase();
+    MEM_FreeAll();
+}
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/g_staff", gsStaffDraw);
 
