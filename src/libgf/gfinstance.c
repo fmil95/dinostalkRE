@@ -8,7 +8,18 @@ INCLUDE_ASM("asm/nonmatchings/libgf/gfinstance", GFInstance_Eval);
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfinstance", GFInstance_Start);
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfinstance", GFInstance_End);
+void GFInstance_End()
+{
+    Uint32 i;
+
+    for (i = 0; i < 1001; i++)
+    {
+        if (gf_drawOtPtr[i] != NULL)
+        {
+            gf_drawOtPtr[i]->next = NULL;
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfinstance", GFInstance_Draw);
 

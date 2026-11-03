@@ -92,5 +92,7 @@ extern gf_inst_evalfunc* gf_default_evalfunc[];
 extern gf_inst_drawfunc* gf_default_drawfunc[];
 extern gf_inst_drawfunc gf_string_drawfunc;
 extern gf_inst_evalfunc gf_string_evalfunc;
+extern GF_INSTANCE* gf_drawOt[1001];
+extern GF_INSTANCE* gf_drawOtPtr[1001];
 
 #endif // GUNSUV_USA_LIBGF_GFINSTANCE_H
