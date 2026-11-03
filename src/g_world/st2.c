@@ -1,6 +1,11 @@
 #include "common.h"
 
 extern int _st2_rapt_flag;
+extern int _st2_se_port_river;
+extern int _st2_se_port_fall;
+extern int _st2_se_port_sawa;
+extern int _st2_se_sawa_vol;
+extern int _st2_shock_fall_flg;
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st2", gsWorldInitSt2);
 
@@ -37,7 +42,14 @@ INCLUDE_ASM("asm/nonmatchings/g_world/st2", gsWorldSt2_CheckRaptEnd);
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st2", gsWorldSt2_CheckBossDied);
 
-INCLUDE_ASM("asm/nonmatchings/g_world/st2", gsWorldSt2_InitBackSE);
+void gsWorldSt2_InitBackSE()
+{
+    _st2_se_port_river = 0x17;
+    _st2_se_port_fall = 0x16;
+    _st2_se_port_sawa = 0x15;
+    _st2_se_sawa_vol = 0x3fff;
+    _st2_shock_fall_flg = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st2", gsWorldSt2_PlayBackSE);
 
