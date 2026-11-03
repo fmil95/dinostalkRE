@@ -1,6 +1,7 @@
 #include "common.h"
 
 extern void sceVu0AddVector();
+extern void gsItem_SizeRot_Return();
 
 INCLUDE_ASM("asm/nonmatchings/air/a_item", gsItemInit);
 
@@ -43,7 +44,15 @@ INCLUDE_ASM("asm/nonmatchings/air/a_item", gsFlashAnotherItem);
 
 INCLUDE_ASM("asm/nonmatchings/air/a_item", gsDeleteAnotherItem);
 
-INCLUDE_ASM("asm/nonmatchings/air/a_item", gsHagAnotherItem);
+void gsHagAnotherItem(void* a)
+{
+    if (!((STRUCT_OFFSET(a, 0x0, int) & 0x100) != 0))
+    {
+        gsItem_SizeRot_Return(a);
+        STRUCT_OFFSET(a, 0xC, short) = 1;
+        STRUCT_OFFSET(a, 0x10, int) = 0;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/air/a_item", gsObjectSetFixItem);
 
