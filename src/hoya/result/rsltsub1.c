@@ -5,6 +5,7 @@ extern int gsNextProg;
 extern void LetsGotoMemcScene();
 extern int pRsltRslt;
 extern void hyCheckFadeFinishFlag();
+extern void hySetFadePara2();
 
 INCLUDE_ASM("asm/nonmatchings/hoya/result/rsltsub1", MakeAllNumberTex_rsltsub1);
 
@@ -44,7 +45,10 @@ INCLUDE_ASM("asm/nonmatchings/hoya/result/rsltsub1", ConvDinoBonus2Score);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/result/rsltsub1", NoDamageBonus2Score);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/result/rsltsub1", SetFadeParaRslt);
+void SetFadeParaRslt(int a, int b, int c)
+{
+    hySetFadePara2(a, b, c, (pRsltRslt + 2096));
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/result/rsltsub1", SwitchFadeTimerRslt);
 
