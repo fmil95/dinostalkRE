@@ -76,4 +76,7 @@ INCLUDE_ASM("asm/nonmatchings/libgf/gftex", gfTex_GetTwTh);
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gftex", gfTex_InitSysTex);
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gftex", GFTex_SetFrameCnt);
+void GFTex_SetFrameCnt(Uint32 cnt)
+{
+    gfTexFrameCnt = cnt;
+}
