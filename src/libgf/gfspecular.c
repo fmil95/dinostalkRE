@@ -1,8 +1,16 @@
+#include "gunsuv_usa/libgf/libgf.h"
 #include "gunsuv_usa/libgf/gfspecular.h"
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfspecular", GFSpecular_Init);
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfspecular", GFSpecular_MakePacket);
+qword* GFSpecular_MakePacket(GF_SPECULAR* specular, qword* packbuf)
+{
+    specular->packet = packbuf;
+
+    _GFPKT_DV_REF_STCYCL_UNPACK(packbuf, (Uint32)specular, 0x11, 3, 1, 1);
+
+    return packbuf + 1;
+}
 
 qword* GFSpecular_Draw(GF_SPECULAR* specular, qword* packet)
 {
