@@ -2,6 +2,7 @@
 
 extern void GFFog_MakePacket();
 extern void sceVu0CopyVector();
+extern void sceVu0CopyMatrix();
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfscene", GFScene_MakeInstance);
 
@@ -18,7 +19,10 @@ void GFScene_MakePacket(void* a)
     GFFog_MakePacket((char*)a + 0x290);
 }
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfscene", GFScene_SetWorldView);
+void GFScene_SetWorldView(void* a)
+{
+    sceVu0CopyMatrix((char*)a + 0x100);
+}
 
 void GFScene_SetCameraPos(void* a)
 {
