@@ -1,5 +1,7 @@
 #include "common.h"
 
+extern void mcdCloseSet();
+
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", CreateIconSys);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", InitMemcManager);
@@ -92,7 +94,10 @@ INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", OpenIconIco);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", WriteIconIco);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", CloseIconIco);
+void CloseIconIco()
+{
+    mcdCloseSet();
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", LoadSaveData);
 
