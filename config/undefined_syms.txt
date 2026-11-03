@@ -166,3 +166,4 @@ pRsltRslt = 0x006747b0;
 pCntCnt = 0x00673cb4;
 pFR = 0x00673c9c;
 pmss_00673c64 = 0x00673c64;
+pmss_0067463c = 0x0067463c;
