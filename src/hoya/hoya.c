@@ -71,7 +71,10 @@ INCLUDE_ASM("asm/nonmatchings/hoya/hoya", getkeyPush);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/hoya", getkeyPress);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/hoya", getkeyRelease);
+int getkeyRelease()
+{
+    return 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/hoya", getkeyState);
 
