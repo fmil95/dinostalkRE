@@ -30,7 +30,22 @@ int nmUsbGunGetConfig(u_char* config)
 
 INCLUDE_ASM("asm/nonmatchings/nmlib/nmGC2Main", nmUsbTransCtrl);
 
-INCLUDE_ASM("asm/nonmatchings/nmlib/nmGC2Main", nmUsbGunSync);
+int nmUsbGunSync(int mode)
+{
+    switch (mode)
+    {
+    case 0:
+        while (sceSifCheckStatRpc(&cdUsbGun) != 0)
+        {
+        }
+
+        return 0;
+    case 1:
+        return sceSifCheckStatRpc(&cdUsbGun);
+    default:
+        return 0;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/nmlib/nmGC2Main", nmPadTimerReset);
 
