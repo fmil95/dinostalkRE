@@ -4,7 +4,16 @@ INCLUDE_ASM("asm/nonmatchings/libgf/gfspecular", GFSpecular_Init);
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfspecular", GFSpecular_MakePacket);
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfspecular", GFSpecular_Draw);
+qword* GFSpecular_Draw(GF_SPECULAR* specular, qword* packet)
+{
+    qword* ret;
+
+    ret = GFSpecular_MakePacket(specular, packet);
+
+    gf_trans_specular = specular;
+
+    return ret;
+}
 
 void GFSpecular_SetVector(GF_SPECULAR* specular, float* vec)
 {
