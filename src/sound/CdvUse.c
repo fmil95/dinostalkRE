@@ -3,6 +3,7 @@
 extern int mpeg_err;
 extern unsigned short ErrorNum;
 extern int Read_Pos;
+extern unsigned short WriteQue;
 
 INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvCallBack);
 
@@ -18,7 +19,10 @@ INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvQueStart);
 
 INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvIsEoq);
 
-INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvGetWriteQue);
+unsigned short cdvGetWriteQue()
+{
+    return WriteQue;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvGetWorkingQue);
 
