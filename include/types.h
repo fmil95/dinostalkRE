@@ -39,10 +39,10 @@ typedef uchar byte;
 #define FALSE 0
 #define TRUE 1
 
-typedef int qword[4];
-typedef int sceVu0IVECTOR[4];
-typedef float sceVu0FVECTOR[4];
-typedef float sceVu0FMATRIX[4][4];
+typedef int qword[4] __attribute__((aligned (16)));
+typedef int sceVu0IVECTOR[4] __attribute__((aligned (16)));
+typedef float sceVu0FVECTOR[4] __attribute__((aligned (16)));
+typedef float sceVu0FMATRIX[4][4] __attribute__((aligned (16)));
 typedef char Sint8;
 typedef short int Sint16;
 typedef int Sint32;

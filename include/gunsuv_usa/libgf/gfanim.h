@@ -3,20 +3,12 @@
 #ifndef GUNSUV_USA_LIBGF_GFANIM_H
 #define GUNSUV_USA_LIBGF_GFANIM_H
 
-typedef float sceVu0FVECTOR[4];
+#include "common.h"
+#include "gunsuv_usa/libgf/gfshape.h"
+#include "gunsuv_usa/libgf/pmt.h"
 
-struct pmt_header {
-	Uint32 magic;
-	Uint32 version;
-	Sint32 shapeNum;
-	Sint32 free;
-};
-
-typedef pmt_header PmtHEADER;
 typedef Float32 PmtQUATERNION[4];
-typedef void (*GF_CallBackFunction)(/* parameters unknown */);
-typedef gf_object GF_INST_OBJECT;
-extern _GF_ANIMCOMPDATA _gfAnim_unitComp;
+//extern _GF_ANIMCOMPDATA _gfAnim_unitComp;
 
 void GFAnim_Attach(GF_INST_OBJECT *obj, PmtHEADER *anim);
 void GFAnim_HotAttach(GF_INST_OBJECT *obj, PmtHEADER *anim);

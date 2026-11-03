@@ -1,4 +1,4 @@
-#include "common.h"
+#include "gunsuv_usa/libgf/gfanim.h"
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfanim", gfAnim_InterpolateQuaternion);
 
@@ -18,7 +18,10 @@ INCLUDE_ASM("asm/nonmatchings/libgf/gfanim", gfAnim_calcmatrix);
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfanim", GFAnim_Eval);
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfanim", GFAnim_SetSpeed);
+void GFAnim_SetSpeed(GF_INST_OBJECT* obj, Float32 speed)
+{
+    obj->speedAnim = speed;
+}
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfanim", GFAnim_Forward);
 
