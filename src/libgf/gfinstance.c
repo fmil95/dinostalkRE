@@ -6,7 +6,16 @@ INCLUDE_ASM("asm/nonmatchings/libgf/gfinstance", gfInstance_Eval2);
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfinstance", GFInstance_Eval);   
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfinstance", GFInstance_Start);
+void GFInstance_Start()
+{
+    Uint32 i;
+
+    for (i = 0; i < 1001; i++)
+    {
+        gf_drawOt[i]    = NULL;
+        gf_drawOtPtr[i] = NULL;
+    }
+}
 
 void GFInstance_End()
 {
