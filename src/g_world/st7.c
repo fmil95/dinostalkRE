@@ -5,6 +5,7 @@ extern int _st7_glow_num;
 extern int _st7_hasi_light_num;
 extern int _st7_jeep_light_obj_num;
 extern int _st7_neon_00_num;
+extern int _st7_neon_01_num;
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldInitSt7);
 
@@ -65,7 +66,10 @@ INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldSt7_EntryNeon_00);
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldSt7_Neon_00);
 
-INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldSt7_InitNeon_01);
+void gsWorldSt7_InitNeon_01()
+{
+    _st7_neon_01_num = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldSt7_EntryNeon_01);
 
