@@ -1,5 +1,8 @@
 #include "common.h"
 
+extern int pStgs_006749a0;
+extern void hyCheckFadeFinishFlag();
+
 INCLUDE_ASM("asm/nonmatchings/hoya/startgs3/stgssub5", SetFadeParaFadeIn_stgssub5);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/startgs3/stgssub5", SetFadeParaFadeOut_stgssub5);
@@ -8,7 +11,10 @@ INCLUDE_ASM("asm/nonmatchings/hoya/startgs3/stgssub5", SetFadePara_stgssub5);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/startgs3/stgssub5", SwitchFadeTimer_stgssub5);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/startgs3/stgssub5", CheckFadeFinishFlag_stgssub5);
+void CheckFadeFinishFlag_stgssub5()
+{
+    hyCheckFadeFinishFlag((pStgs_006749a0 + 64));
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/startgs3/stgssub5", Draw2dObject_stgssub5);
 
