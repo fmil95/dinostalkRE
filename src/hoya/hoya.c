@@ -156,7 +156,10 @@ INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyCalcFade2);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hySwitchFadeTimer);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyCheckFadeFinishFlag);
+int hyCheckFadeFinishFlag(void* a)
+{
+    return (((STRUCT_OFFSET(a, 0x0, int) >> 1) ^ 0x1) & 0x1);
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/hoya", ClipLine2D);
 
