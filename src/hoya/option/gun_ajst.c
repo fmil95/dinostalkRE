@@ -5,6 +5,7 @@ extern int screen_off_sw_0067487c;
 extern int wide_mode_flag_0067488c;
 extern int D_00653B70[];
 extern void gun_teaching_gun_ajst();
+extern void adjust_check_gun_ajst();
 
 INCLUDE_ASM("asm/nonmatchings/hoya/option/gun_ajst", CheckGunScreenOut);
 
@@ -55,7 +56,10 @@ INCLUDE_ASM("asm/nonmatchings/hoya/option/gun_ajst", gun_adjust1_gun_ajst);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/option/gun_ajst", gun_adjust2_gun_ajst);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/option/gun_ajst", gun_adjust3);
+void gun_adjust3()
+{
+    adjust_check_gun_ajst();
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/option/gun_ajst", gun_adjust_W0_gun_ajst);
 
