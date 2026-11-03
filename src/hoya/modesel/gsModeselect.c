@@ -1,5 +1,9 @@
 #include "common.h"
 
+extern void _gsMSSequenceWaku();
+extern void _gsMSSequenceBG();
+extern void _gsMSSequenceFade();
+
 INCLUDE_ASM("asm/nonmatchings/hoya/modesel/gsModeselect", gsStageInit_ModeSelect);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/modesel/gsModeselect", _gsMSLoadPigModeSelect);
@@ -44,7 +48,12 @@ INCLUDE_ASM("asm/nonmatchings/hoya/modesel/gsModeselect", _gsMSSetXY);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/modesel/gsModeselect", _gsMSSetUV);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/modesel/gsModeselect", _gsMSSequencePrimitive);
+void _gsMSSequencePrimitive()
+{
+    _gsMSSequenceWaku();
+    _gsMSSequenceBG();
+    _gsMSSequenceFade();
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/modesel/gsModeselect", _gsMSWakuColorJudge);
 
