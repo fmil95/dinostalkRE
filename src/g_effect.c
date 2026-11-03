@@ -58,7 +58,10 @@ INCLUDE_ASM("asm/nonmatchings/g_effect", gsEffectFuncRandomMove2);
 
 INCLUDE_ASM("asm/nonmatchings/g_effect", gsEffectFuncRandomMove3);
 
-INCLUDE_ASM("asm/nonmatchings/g_effect", gsEffectFuncMakeParticle);
+void gsEffectFuncMakeParticle(int a)
+{
+    gsEffectAddWithPri(a, 0, 108, 0);
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_effect", gsEffectFuncFadein);
 
