@@ -91,7 +91,10 @@ INCLUDE_ASM("asm/nonmatchings/libgf/gfshare", gf_GetShareBlock);
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfshare", gf_CopyShareBlock);
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfshare", GFShare_GetUsedBufSize);
+Uint32 GFShare_GetUsedBufSize()
+{
+    return (Uint32)gf_pShareBuf - (Uint32)gf_pShareBufTop;
+}
 
 void GFShare_SetVu1WorkSize(Uint32 size)
 {

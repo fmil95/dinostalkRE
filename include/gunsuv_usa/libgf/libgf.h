@@ -10,7 +10,7 @@ extern sceVu0FMATRIX gUnitMatrix;
 
 void GF_InitGraphicsFramework();
 void GF_EndGraphicsFramework();
-void gf_setsorykey(float *p[4], GF_INSTANCE *inst);
+void gf_setsorykey(sceVu0FMATRIX p, GF_INSTANCE *inst);
 void GF_sort_shape(sceVu0FMATRIX *cam);
 void _GFPKT_DMA_SET_TAG_0(qword *p, Uint32 id, Uint32 qwc);
 void _GFPKT_DMA_SET_TAG_1(qword *p, Uint32 id, Uint32 qwc, Uint32 addr);
