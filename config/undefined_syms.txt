@@ -127,3 +127,6 @@ _st7_se_port_jeep_run = 0x006741d8;
 _st7_se_port_fire_a = 0x006741dc;
 _st7_se_port_fire_b = 0x006741e0;
 _st7_shock_jeep_cnt = 0x006741e4;
+IscSe_Port_GokiA = 0x006739e0;
+IscSe_Port_GokiB = 0x006739e4;
+IscSe_Port_Tomb = 0x006739e8;

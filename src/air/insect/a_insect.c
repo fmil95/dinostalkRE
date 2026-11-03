@@ -1,5 +1,9 @@
 #include "common.h"
 
+extern int IscSe_Port_GokiA;
+extern int IscSe_Port_GokiB;
+extern int IscSe_Port_Tomb;
+
 INCLUDE_ASM("asm/nonmatchings/air/insect/a_insect", gsIscInfosAllClear);
 
 INCLUDE_ASM("asm/nonmatchings/air/insect/a_insect", gsIscInfosClear);
@@ -38,6 +42,11 @@ INCLUDE_ASM("asm/nonmatchings/air/insect/a_insect", gsInsectInfoCheck);
 
 INCLUDE_ASM("asm/nonmatchings/air/insect/a_insect", gsIscInit_AfterMovie);
 
-INCLUDE_ASM("asm/nonmatchings/air/insect/a_insect", gsInit_IscSe);
+void gsInit_IscSe()
+{
+    IscSe_Port_GokiA = -1;
+    IscSe_Port_GokiB = -1;
+    IscSe_Port_Tomb = -1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/air/insect/a_insect", gsIscSe_VolumeAdjust);
