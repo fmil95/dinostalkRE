@@ -1,6 +1,9 @@
 #include "common.h"
 
 extern int tex2dSendFlag_00674320;
+extern int gsGunExtraId;
+extern void PermittoSend2dWeaponTex();
+extern void gsCOCKPIT_InitBullet();
 
 void gsCOCKPIT_InitBulletSendTex()
 {
@@ -9,7 +12,11 @@ void gsCOCKPIT_InitBulletSendTex()
 
 INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_cpblt", PermittoSend2dWeaponTex);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_cpblt", PermittoSend2dWeaponTex2);
+void PermittoSend2dWeaponTex2(int a, int b)
+{
+    PermittoSend2dWeaponTex(a, b);
+    gsCOCKPIT_InitBullet(a, gsGunExtraId, b);
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_cpblt", Send2dWeaponTex);
 
