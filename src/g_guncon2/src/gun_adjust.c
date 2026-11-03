@@ -1,6 +1,11 @@
 #include "common.h"
 
 extern void gun_teaching_gun_adjust();
+extern int adjust_mode_00674c84;
+extern int teach_time_00674c8c;
+extern int chk_mon_timer_00674c90;
+extern int screen_off_sw_00674c94;
+extern int check_delay_timer_00674c98;
 
 INCLUDE_ASM("asm/nonmatchings/g_guncon2/src/gun_adjust", gun_adjust_init);
 
@@ -8,7 +13,14 @@ INCLUDE_ASM("asm/nonmatchings/g_guncon2/src/gun_adjust", init_gun_adjust_para);
 
 INCLUDE_ASM("asm/nonmatchings/g_guncon2/src/gun_adjust", gun_adjust_main);
 
-INCLUDE_ASM("asm/nonmatchings/g_guncon2/src/gun_adjust", GunAdjustInit_gun_adjust);
+void GunAdjustInit_gun_adjust()
+{
+    adjust_mode_00674c84 = 0;
+    teach_time_00674c8c = 0;
+    chk_mon_timer_00674c90 = 0;
+    screen_off_sw_00674c94 = 0;
+    check_delay_timer_00674c98 = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_guncon2/src/gun_adjust", GunAdjust_gun_adjust);
 
