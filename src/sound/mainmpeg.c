@@ -6,6 +6,7 @@ extern int GS_Send_Flg;
 extern int mono_flg;
 extern int isWithAudio;
 extern int UserProg;
+extern char init_flg;
 
 INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", cdvMpegInit);
 
@@ -55,7 +56,11 @@ INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", termAll);
 
 INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", defMain);
 
-INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", ResetMpeg);
+int ResetMpeg()
+{
+    init_flg = 0;
+    return 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", strFileOpen);
 
