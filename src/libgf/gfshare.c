@@ -7,7 +7,19 @@ static GF_INST_SHAPE* gf_GetShape(GF_INST_OBJECT* pObj, Uint32 n)
     return &pObj->shape[n];
 }
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfshare", gf_GetShapeWorldMatrix);
+static sceVu0FMATRIX* gf_GetShapeWorldMatrix(GF_INST_OBJECT* pObj, Uint32 n)
+{
+    GF_INST_SHAPE* pShape;
+
+    pShape = gf_GetShape(pObj, n);
+
+    if (pShape != NULL)
+    {
+        return &pShape->head.worldMatrix;
+    }
+
+    return (sceVu0FMATRIX*)pShape;
+}
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfshare", gf_GetShapeLightMatrix);
 
