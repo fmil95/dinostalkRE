@@ -1,5 +1,7 @@
 #include "common.h"
 
+extern void sceVu0AddVector();
+
 INCLUDE_ASM("asm/nonmatchings/air/a_item", gsItemInit);
 
 INCLUDE_ASM("asm/nonmatchings/air/a_item", gsEventObjItemDataLoad);
@@ -16,7 +18,10 @@ INCLUDE_ASM("asm/nonmatchings/air/a_item", gsMakeSet_AllFixItem);
 
 INCLUDE_ASM("asm/nonmatchings/air/a_item", gsEventObjSetItemMain);
 
-INCLUDE_ASM("asm/nonmatchings/air/a_item", gsSt1_ItemManagement);
+void gsSt1_ItemManagement(int a)
+{
+    sceVu0AddVector((char*)a + 0x20, (char*)a + 0x20, (char*)a + 0x50);
+}
 
 INCLUDE_ASM("asm/nonmatchings/air/a_item", gsDistCheckItemSet);
 
