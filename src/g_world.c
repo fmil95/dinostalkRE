@@ -60,7 +60,10 @@ INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldLineSwitchDINO_ENTRY);
 
 INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldTriggerLineSwitch_DINO);
 
-INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldBulletEffectGnd_INIT);
+void gsWorldBulletEffectGnd_INIT()
+{
+    _bullet_effect_gnd_list = 0;
+}
 
 void gsWorldBulletEffectGnd_ENTRY(int v)
 {
