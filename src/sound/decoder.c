@@ -2,10 +2,14 @@
 
 extern int s_volume;
 extern void audioDecResume();
+extern void sceMpegSetDecodeMode();
 
 INCLUDE_ASM("asm/nonmatchings/sound/decoder", videoDecCreate);
 
-INCLUDE_ASM("asm/nonmatchings/sound/decoder", videoDecSetDecodeMode);
+void videoDecSetDecodeMode()
+{
+    sceMpegSetDecodeMode();
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/decoder", videoDecBeginPut);
 
