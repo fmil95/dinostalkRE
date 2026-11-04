@@ -8,6 +8,7 @@ extern void hyCheckFadeFinishFlag();
 extern void hySetFadePara2();
 extern void hySwitchFadeTimer();
 
+extern void addScore2();
 INCLUDE_ASM("asm/nonmatchings/hoya/result/rsltsub1", MakeAllNumberTex_rsltsub1);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/result/rsltsub1", RsltInitSprOther_rsltsub1);
@@ -42,7 +43,12 @@ INCLUDE_ASM("asm/nonmatchings/hoya/result/rsltsub1", ConvTime2Score);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/result/rsltsub1", ConvTimeBonus2Score);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/result/rsltsub1", ConvDinoBonus2Score);
+int ConvDinoBonus2Score()
+{
+    addScore2(pRsltRslt + 0x750, STRUCT_OFFSET(pRsltRslt, 0x764, int));
+
+    return 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/result/rsltsub1", NoDamageBonus2Score);
 
