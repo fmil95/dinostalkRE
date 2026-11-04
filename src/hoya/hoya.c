@@ -108,7 +108,15 @@ INCLUDE_ASM("asm/nonmatchings/hoya/hoya", getkeyState);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/hoya", GunStateUpdate);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/hoya", getGunPush);
+int getGunPush()
+{
+    if (gsGuncon2_CheckConnect())
+    {
+        return gsGuncon2_GetRTrg();
+    }
+
+    return 0;
+}
 
 int getGunPress()
 {
