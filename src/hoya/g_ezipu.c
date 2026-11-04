@@ -91,7 +91,12 @@ INCLUDE_ASM("asm/nonmatchings/hoya/g_ezipu", gsEzIpuSetToIPUtags);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/g_ezipu", gsEzIpuSetDMAtoIPU);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/g_ezipu", gsEzIpuSetDMAfromIPU);
+void gsEzIpuSetDMAfromIPU(void* p, int n)
+{
+    *(volatile u_int*)0x1000B010 = (u_int)p & 0x0FFFFFFF;
+    *(volatile u_int*)0x1000B020 = n << 6;
+    *(volatile u_int*)0x1000B000 = 0x100;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/g_ezipu", gsEzIpuGetFlags);
 
