@@ -325,7 +325,25 @@ void audioDecBeginPut(AudioDec* ad, u_char** ptr0, int* len0, u_char** ptr1, int
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/decoder", audioDecEndPut);
+void audioDecEndPut(AudioDec* ad, int size)
+{
+    if (ad->state == AU_STATE_INIT)
+    {
+        u_int hdr_add = min((u_int)size, AU_HDR_SIZE - ad->hdrCount);
+        ad->hdrCount += hdr_add;
+
+        if ((u_int)ad->hdrCount >= AU_HDR_SIZE)
+        {
+            ad->state = AU_STATE_PRESET;
+        }
+
+        size -= hdr_add;
+    }
+
+    ad->put = (ad->put + size) % ad->size;
+    ad->count += size;
+    ad->totalBytes += size;
+}
 
 int audioDecIsPreset(AudioDec* ad)
 {
