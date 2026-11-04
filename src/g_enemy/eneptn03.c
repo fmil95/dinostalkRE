@@ -11,6 +11,18 @@ extern void (*ST7carno_wait_funcs[])();
 extern void (*ST7carno_wave_funcs[])();
 extern void* memset();
 extern void sceVu0CopyVector();
+extern void (*ST7carno_combi02_funcs[])();
+extern void (*ST7carno_combi03_funcs[])();
+extern void (*ST7carno_escape_funcs[])();
+extern void (*ST7carno_head_funcs[])();
+extern void (*ST7carno_jump_funcs[])();
+extern void (*ST7carno_jumphead_funcs[])();
+extern void (*ST7carno_straight_funcs[])();
+extern void (*ST2carno_ptnfuncs[])();
+extern void (*ST5carno_ptnfuncs[])();
+extern void (*ST7trex_ptnfuncs[])();
+extern void (*ST9trex_ptnfuncs[])();
+extern void (*ST7carno_step_funcs[])();
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn03", eneptn03_ST2carno_main);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn03", eneptn03_ST2carno_manage);
@@ -451,7 +463,13 @@ void eneptn03_ST7carno_combi01_13(void* a)
     STRUCT_OFFSET(a, 0x62, short) = 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn03", eneptn03_ST7carno_combi02);
+void eneptn03_ST7carno_combi02(char* a)
+{
+    STRUCT_OFFSET(a, 0, int) |= 2;
+    STRUCT_OFFSET(a, 0x70, short) = 10;
+    STRUCT_OFFSET(a, 0x6E, short) = STRUCT_OFFSET(a, 0x5C, u_short);
+    ST7carno_combi02_funcs[STRUCT_OFFSET(a, 0x62, short)](a);
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn03", eneptn03_ST7carno_combi02_00);
 
