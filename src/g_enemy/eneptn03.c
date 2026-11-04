@@ -23,7 +23,10 @@ extern void (*ST5carno_ptnfuncs[])();
 extern void (*ST7trex_ptnfuncs[])();
 extern void (*ST9trex_ptnfuncs[])();
 extern void (*ST7carno_step_funcs[])();
-INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn03", eneptn03_ST2carno_main);
+void eneptn03_ST2carno_main(char* a)
+{
+    ST2carno_ptnfuncs[STRUCT_OFFSET(a, 0xC, int)](a);
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn03", eneptn03_ST2carno_manage);
 
