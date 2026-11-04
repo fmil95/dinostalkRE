@@ -561,9 +561,16 @@ PROBLEMATIC_FUNCS = set(
 # segment is not dotted. A file opts in by changing its yaml rodata entry to
 # `.rodata`; rodata it can't attribute to a single function then has to be
 # pulled in with INCLUDE_RODATA (or written in C) at the right place.
+#
+# ee-gcc 2.96 aligns jump tables to 16 bytes (`.align 4`), while spimdisasm's
+# EEGCC profile assumes 8, so migrated jump tables would land too early after
+# C-generated rodata. The profile is corrected here as well.
 def enable_per_file_rodata_migration() -> None:
+    from spimdisasm.common import Compiler
     from splat.segtypes.common.c import CommonSegC
     from splat.util import options
+
+    Compiler.EEGCC.value.prevAlign_jumptable = 4
 
     original_split = CommonSegC.split
 
