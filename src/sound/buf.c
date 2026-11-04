@@ -84,7 +84,17 @@ INCLUDE_ASM("asm/nonmatchings/sound/buf", viBufStopDMA);
 
 INCLUDE_ASM("asm/nonmatchings/sound/buf", viBufRestartDMA);
 
-INCLUDE_ASM("asm/nonmatchings/sound/buf", viBufDelete);
+int viBufDelete(ViBuf* f)
+{
+    setD4_CHCR((0 << 8) | (1 << 2) | 1);
+    *D4_QWC = 0;
+    *D4_MADR = 0;
+    *D4_TADR = 0;
+
+    DeleteSema(f->sema);
+
+    return 1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/buf", viBufIsActive);
 
