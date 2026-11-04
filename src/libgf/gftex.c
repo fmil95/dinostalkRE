@@ -242,7 +242,28 @@ INCLUDE_ASM("asm/nonmatchings/libgf/gftex", GFTex_MakePixelTransPacket);
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gftex", GFTex_MakePixelTransPacket_TexDB);
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gftex", gfTex_IsFormat32);
+static Sint32 gfTex_IsFormat32(Sint32 no, Uint16 flag)
+{
+    switch (no)
+    {
+    case 0:
+        return (flag >> 3) & 1;
+    case 1:
+        return (flag >> 4) & 1;
+    case 2:
+        return (flag >> 5) & 1;
+    case 3:
+        return (flag >> 6) & 1;
+    case 4:
+        return (flag >> 7) & 1;
+    case 5:
+        return (flag >> 8) & 1;
+    case 6:
+        return (flag >> 9) & 1;
+    }
+
+    return 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gftex", gfTex_GetTbpTbw);
 
