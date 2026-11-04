@@ -200,7 +200,23 @@ void ene04BmoveElem091(char* a)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/ene04pro/ene04mv", ene04BmoveElem140);
+void ene04BmoveElem140(char* a)
+{
+    Enemy_AnmChg00(a, 0xE, 8, 0);
+    STRUCT_OFFSET(a, 0x0, int) |= 0x40000200;
+    if (rand() % 3 == 0)
+    {
+        if ((rand() & 1) == 0)
+        {
+            Enemy_SeSet00(a, 0x190);
+        }
+        else
+        {
+            Enemy_SeSet00(a, 0x191);
+        }
+    }
+    STRUCT_OFFSET(a, 0x8C, int)++;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/ene04pro/ene04mv", ene04BmoveElem141);
 
