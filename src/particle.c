@@ -15,7 +15,16 @@ INCLUDE_ASM("asm/nonmatchings/particle", gf_GetDistance);
 
 INCLUDE_ASM("asm/nonmatchings/particle", GFParticle_Update);
 
-INCLUDE_ASM("asm/nonmatchings/particle", GFParticle_Kill);
+void GFParticle_Kill(char* a)
+{
+    u_int i;
+    char* p = STRUCT_OFFSET(a, 0xF0, char*);
+
+    for (i = 0; i < STRUCT_OFFSET(a, 0xEC, u_int); i++, p += 0x70)
+    {
+        STRUCT_OFFSET(p, 0x58, int) = -1;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/particle", gf_UpdateAllParticle);
 
