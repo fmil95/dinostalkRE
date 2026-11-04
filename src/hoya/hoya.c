@@ -74,7 +74,22 @@ int hyGetTexId(int i)
     return D_0052CFEC[i * 2];
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyLoadTexture);
+int hyLoadTexture(int a, int b, int c)
+{
+    int* m = texMng;
+    int* base = m + 1;
+    int i = m[0];
+    int* e = base + i * 2;
+
+    e[0] = TEST_LoadTexture(a, b);
+    e[1] = c;
+    m[0]++;
+    if (m[0] >= 0x80)
+    {
+        m[0] = 0;
+    }
+    return i;
+}
 
 int hyEntryTexture(int a, int b, int c)
 {
