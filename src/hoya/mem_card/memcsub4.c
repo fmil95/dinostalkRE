@@ -24,7 +24,20 @@ int McConnectCheck_memcsub4(int a)
     return r;
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub4", McDisconnectCheck_memcsub4);
+int McDisconnectCheck_memcsub4(int a)
+{
+    int r = a;
+    int* p;
+
+    if (CheckMemcType(0, 0) != 2)
+    {
+        p = (int*)pmss_006746a4;
+        r = 0xD2;
+        p[1] = 0;
+        p[0x81] &= ~6;
+    }
+    return r;
+}
 
 void SetFadePara_memcsub4(int a, int b, int c)
 {
