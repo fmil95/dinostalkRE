@@ -10,7 +10,17 @@ extern int rsltTblStandardNoDamageBonus[];
 extern int weaponRank[];
 INCLUDE_ASM("asm/nonmatchings/hoya/hyopen", hyWepRankGetWeaponRank);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/hyopen", hyWepRankGetWeaponNo);
+int hyWepRankGetWeaponNo(u_int i)
+{
+    int r = -1;
+
+    if (i < 0x16)
+    {
+        r = weaponRank[i];
+    }
+
+    return r;
+}
 
 int hyGetStageNumber(int arg0)
 {
