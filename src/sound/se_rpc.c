@@ -281,7 +281,10 @@ int SeSetMasterVol(int a)
     return ezSe(0x8360, a, 1);
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeSetSeVol);
+int SeSetSeVol(int a)
+{
+    return ezSe(0x8370, a, 1);
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeSetBgmVol);
 
