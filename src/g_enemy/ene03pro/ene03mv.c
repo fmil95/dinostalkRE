@@ -67,7 +67,13 @@ INCLUDE_ASM("asm/nonmatchings/g_enemy/ene03pro/ene03mv", ene03moveElem0a0);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/ene03pro/ene03mv", ene03moveElem0a1);
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/ene03pro/ene03mv", ene03moveElem0e0);
+void ene03moveElem0e0(char* a)
+{
+    Enemy_AnmChg00(a, (u_char)(STRUCT_OFFSET(a, 0x84, int) * 3 + 0x1B), 8, 0);
+    STRUCT_OFFSET(a, 0x0, int) |= 0x40000000;
+    STRUCT_OFFSET(a, 0xC0, int) = 0;
+    STRUCT_OFFSET(a, 0x8C, int)++;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/ene03pro/ene03mv", ene03moveElem0e1);
 
