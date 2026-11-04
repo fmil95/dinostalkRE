@@ -99,7 +99,10 @@ INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldBulletSeObj);
 
 INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldGetOBJ_TYPE);
 
-INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldEntryOBJ_BREAK_NO);
+void gsWorldEntryOBJ_BREAK_NO(char* a, int b)
+{
+    STRUCT_OFFSET(a + STRUCT_OFFSET(a, 0x51400, int) * 4, 0xB415C, int) = b;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldEntryOBJ_REACT_NO);
 
