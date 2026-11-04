@@ -110,7 +110,12 @@ INCLUDE_ASM("asm/nonmatchings/sound/decoder", videoDecMain);
 
 INCLUDE_ASM("asm/nonmatchings/sound/decoder", decBs0);
 
-INCLUDE_ASM("asm/nonmatchings/sound/decoder", mpegError);
+int mpegError(sceMpeg* mp, sceMpegCbDataError* cberror, void* anyData)
+{
+    printf(D_00673DE0, cberror->errMessage);
+
+    return 1;
+}
 
 int mpegNodata(sceMpeg* mp, sceMpegCbData* cbdata, void* anyData)
 {
