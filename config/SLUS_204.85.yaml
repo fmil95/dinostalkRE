@@ -670,7 +670,7 @@ segments:
       - [0x56dec0, .rodata, omake/g_galery]
       - [0x56df80, .rodata, omake/g_theate]
       - [0x56e040, rodata, g_guncon2/g_adjustgun]
-      - [0x56e0a0, rodata, g_guncon2/src/gun_adjust]
+      - [0x56e0a0, .rodata, g_guncon2/src/gun_adjust]
       - [0x56e130, rodata, g_guncon2/src/guncon2]
       - [0x56e190, .rodata, libgf/gftex]
       - [0x56e440, rodata, libgf/gfmodel]
