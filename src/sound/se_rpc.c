@@ -652,7 +652,12 @@ int SeStrmPlayNo(int a)
     return r;
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeStrmInit);
+int SeStrmInit()
+{
+    ezSeL(0x81D0, D_0066CB80, 0x80);
+    ezSe(0x8510, 0, 1);
+    return 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeStrmOpenWithSetParam);
 
