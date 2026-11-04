@@ -180,7 +180,10 @@ void gsWorldResetGV_FLAG(char* a, int i, int m)
     STRUCT_OFFSET(a + i * 4, 0xC3334, int) &= ~m;
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldSetODV_FLAG);
+void gsWorldSetODV_FLAG(char* a, int i, int m)
+{
+    STRUCT_OFFSET(a + i * 4, 0xC3A44, int) |= m;
+}
 
 void gsWorldResetODV_FLAG(char* a, int i, int m)
 {
