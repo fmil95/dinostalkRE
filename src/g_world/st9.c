@@ -5,6 +5,20 @@ extern int _st9_lavaanim_texidx;
 extern int _st9_situation;
 extern short _st9_lava_pointid;
 
+extern char gsEnemyInfos[];
+extern void _gsWorldSt9_RockBreakTREX();
+extern int gsPause;
+extern char gsWorldManager[];
+extern char gsWorldBreakList[];
+extern void gsWorldSt9_PlayBackSE();
+extern void gsWorldSt9_TREX_Light();
+extern void gsSt9_LavaSpout();
+extern void gsSt9_SetMirage();
+extern void gsWorldSt9_DemoManager();
+extern void gsWorldSt9Demo_LavaRise();
+extern void gsWorldSt9Demo_FogBackChange();
+extern void gsSt9_RockCrossTREX();
+extern void gsWorldSt9_CheckBossDied();
 INCLUDE_ASM("asm/nonmatchings/g_world/st9", gsWorldInitSt9);
 
 void gsWorldSt9_WorkInit()
@@ -57,4 +71,19 @@ INCLUDE_ASM("asm/nonmatchings/g_world/st9", gsWorldSt9_CheckBossDied);
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st9", _gsWorldSt9_RockBreakTREX);
 
-INCLUDE_ASM("asm/nonmatchings/g_world/st9", gsWorldSt9_RockBreakTREX);
+void gsWorldSt9_RockBreakTREX()
+{
+    char* p = gsEnemyInfos;
+    int i;
+
+    for (i = 9; i >= 0; i--, p += 0x2A50)
+    {
+        if (STRUCT_OFFSET(p, 0, int) & 1)
+        {
+            if (STRUCT_OFFSET(p, 0x2A, short) == 7)
+            {
+                _gsWorldSt9_RockBreakTREX(STRUCT_OFFSET(p, 0xD30, int), p + 0xBA0);
+            }
+        }
+    }
+}
