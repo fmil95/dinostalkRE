@@ -34,7 +34,22 @@ OptS* FreeDataSearchOpt(char* a)
     return 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_ckt2", OrderChangeOpt);
+void OrderChangeOpt(char* a)
+{
+    int i;
+    OptS* p = (OptS*)(a + 0x1F0);
+
+    for (i = 4; i >= 0; i--, p++)
+    {
+        if (STRUCT_OFFSET(p, 0x0, int) & 1)
+        {
+            if (STRUCT_OFFSET(p, 0x4, int) != 0)
+            {
+                STRUCT_OFFSET(p, 0x4, int) -= 1;
+            }
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_ckt2", gsCOCKPIT_takiEffMakeOptData);
 
