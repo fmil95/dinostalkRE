@@ -470,7 +470,16 @@ int SeKeyonDir2(int a, int b, int c, int d, int e, int f)
     return ezSeL(0x83B0, dat, 0x10);
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeKeyon);
+int SeKeyon(int a, int b, int c, int d)
+{
+    int hi = b / 256;
+    dat[0] = a;
+    dat[1] = b;
+    dat[2] = c;
+    dat[3] = d;
+    dat[4] = hi;
+    return ezSeL(0x81B0, dat, 0x10);
+}
 
 int SeCSLMidiPlaySt()
 {
