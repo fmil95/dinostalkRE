@@ -74,7 +74,32 @@ INCLUDE_ASM("asm/nonmatchings/libgf/gfvcache", gfCache_SearchAllocPos);
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfvcache", gfCache_Alloc);
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfvcache", gfCache_PseudoAlloc);
+static Sint32 gfCache_PseudoAlloc(GF_CACHE_CELL* cell, Uint16 size)
+{
+    GF_CACHE_CELL* p;
+    Uint16 remain;
+    Sint32 score;
+
+    remain = size;
+    score = 0;
+
+    for (p = cell; p != NULL; p = p->next)
+    {
+        if (p->used_flag != 0)
+        {
+            score += p->score * p->size;
+        }
+
+        if (p->size >= remain)
+        {
+            return score;
+        }
+
+        remain -= p->size;
+    }
+
+    return -1;
+}
 
 GF_CACHE_CELL* GFCache_IsOn(Uint32* guid)
 {
