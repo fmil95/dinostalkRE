@@ -71,7 +71,30 @@ INCLUDE_ASM("asm/nonmatchings/air/a_item", gsObjectSetAnotherItem);
 
 INCLUDE_ASM("asm/nonmatchings/air/a_item", gsAllItemInfosClear);
 
-INCLUDE_ASM("asm/nonmatchings/air/a_item", gsFieldItemInfosClear);
+void gsFieldItemInfosClear(int a, char* b)
+{
+    char* p;
+    int i;
+
+    if (b == 0)
+    {
+        b = (char*)Fix_Item + a * 0x210;
+    }
+    STRUCT_OFFSET(b, 0, int) = 0;
+    STRUCT_OFFSET(b, 4, int) = 0;
+    STRUCT_OFFSET(b, 0x30, int) = 0;
+    STRUCT_OFFSET(b, 0x34, int) = 0;
+    STRUCT_OFFSET(b, 0x38, int) = 0;
+    STRUCT_OFFSET(b, 0x3c, int) = 0;
+    p = b + 0x20;
+    i = 3;
+    do
+    {
+        STRUCT_OFFSET(p, -0x10, int) = 0;
+        STRUCT_OFFSET(p, 0, int) = 0;
+        p += 4;
+    } while (--i >= 0);
+}
 
 INCLUDE_ASM("asm/nonmatchings/air/a_item", gsEnemyItemInfosClear);
 
