@@ -274,7 +274,14 @@ void gsWorldEntryOBJ_TREASURE2(char* a, int b)
     ((u_short*)0x69167E)[STRUCT_OFFSET(a, 0x51400, int)] = b;
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldCheckOBJ_TREASURE);
+int gsWorldCheckOBJ_TREASURE(char* a, int b)
+{
+    if (b >= 0 && (u_int)b < STRUCT_OFFSET(a, 0x51400, u_int))
+    {
+        return _treasure_box_map[b];
+    }
+    return -1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldEntryOBJ_ODV_FLAG);
 
