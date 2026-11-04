@@ -69,7 +69,12 @@ void saeSetLoadImage(SaePrim* p, int ch)
 
 INCLUDE_ASM("asm/nonmatchings/aelib", saeSetSprite2);
 
-INCLUDE_ASM("asm/nonmatchings/aelib", saeSetPolyG3);
+void saeSetPolyG3(SaePrim* p, int ch)
+{
+    p->next10 = _saePrimCurrent[ch];
+    p->type = 5;
+    _saePrimCurrent[ch] = p;
+}
 
 void saeSetPartSoft(SaePrim* p, int ch)
 {
