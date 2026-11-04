@@ -7,6 +7,10 @@ extern GF_VRAM_CELL* gfInfo_00674cd4;
 static void gfVram_ClearAllCell();
 static void gfVram_DefragCell();
 
+static Uint8 gfVram_PsmToFlag(Uint16 mode);
+static Sint32 gfVram_ChangeArea(Uint16 pos, Uint16 size, Uint8 flag, Sint32 is_free);
+static Uint16 gfVram_SearchArea(GF_VRAM_CELL* start_cell, Uint16 size, Uint8 flag);
+static Sint32 gfVram_PseudoAlloc(GF_VRAM_CELL* cell, Uint16 size, Uint8 flag);
 INCLUDE_ASM("asm/nonmatchings/libgf/gfvalloc", GFVram_SetInfoAddr);
 
 static void gfVram_ClearAllCell()
@@ -42,7 +46,15 @@ INCLUDE_ASM("asm/nonmatchings/libgf/gfvalloc", gfVram_SearchArea);
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfvalloc", gfVram_PseudoAlloc);
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfvalloc", GFVram_Free);
+Sint32 GFVram_Free(Uint16 pos, Uint16 size, Uint16 mode)
+{
+    Sint32 ret;
+
+    ret = gfVram_ChangeArea(pos, size, gfVram_PsmToFlag(mode), 1);
+    gfVram_DefragCell();
+
+    return ret;
+}
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfvalloc", gfVram_PsmToFlag);
 
