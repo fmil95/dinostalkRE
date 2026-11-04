@@ -69,6 +69,7 @@ int viBufDelete(ViBuf *f);
 int viBufIsActive(ViBuf *f);
 int viBufCount(ViBuf *f);
 void viBufFlush(ViBuf *f);
+int viBufModifyPts(ViBuf *f, TimeStamp *new_ts);
 int viBufPutTs(ViBuf *f, TimeStamp *ts);
 int viBufGetTs(ViBuf *f, TimeStamp *ts);
 
@@ -104,7 +105,6 @@ int voBufIsEmpty(VoBuf *f);
 VoTag* voBufGetTag(VoBuf *f);
 VoData* voBufGetAddr(VoBuf *f);
 void voBufDecCount(VoBuf *f);
-
-viBufModifyPts();
+
 
 #endif // SOUND_BUF_H

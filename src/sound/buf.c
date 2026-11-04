@@ -22,6 +22,18 @@ extern int SignalSema(int sema);
 #define FS(f) ((f->dmaStart + f->dmaN) * VIBUF_ELM_SIZE)
 #define FN(f) ((f->n - 2 - f->dmaN) * VIBUF_ELM_SIZE)
 
+#define min(x, y) (((x) > (y)) ? (y) : (x))
+#define max(x, y) (((x) > (y)) ? (x) : (y))
+
+#define IPU_BP ((volatile u_int*)0x10002020)
+
+extern inline int IsPtsInRegion(int tgt, int pos, int len, int size)
+{
+    int tgt1 = (tgt - pos + size) % size;
+
+    return tgt1 < len;
+}
+
 #define DMA_ID_REFE 0
 #define DMA_ID_NEXT 2
 #define DMA_ID_REF  3
@@ -169,7 +181,35 @@ void viBufFlush(ViBuf* f)
 
 INCLUDE_ASM("asm/nonmatchings/sound/buf", viBufModifyPts);
 
-INCLUDE_ASM("asm/nonmatchings/sound/buf", viBufPutTs);
+
+int viBufPutTs(ViBuf* f, TimeStamp* ts)
+{
+    int ret = 0;
+
+    WaitSema(f->sema);
+
+    if (f->count_ts < f->n_ts)
+    {
+        viBufModifyPts(f, ts);
+
+        if (ts->pts >= 0 || ts->dts >= 0)
+        {
+            f->ts[f->wt_ts].pts = ts->pts;
+            f->ts[f->wt_ts].dts = ts->dts;
+            f->ts[f->wt_ts].pos = ts->pos;
+            f->ts[f->wt_ts].len = ts->len;
+
+            f->count_ts++;
+            f->wt_ts = (f->wt_ts + 1) % f->n_ts;
+        }
+
+        ret = 1;
+    }
+
+    SignalSema(f->sema);
+
+    return ret;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/buf", viBufGetTs);
 
