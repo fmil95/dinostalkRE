@@ -8,6 +8,11 @@ extern void (*pTailSwingFunc_6[])(void*);
 extern void (*pSetHitFunc_2[])();
 extern char gsEnemyInfos[];
 extern void gsIKinitOne();
+extern int (*pHitFunc_7[])();
+extern u_short* _gsIkControlTbl[];
+extern void sceVu0CopyVector();
+extern char D_002F1E50[];
+extern void (*pHeadStareFunc_3[])();
 void gsIKinit()
 {
     int p = (int)gsEnemyInfos;
@@ -46,7 +51,16 @@ void gsIK_SetHit(char* a, int b)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/benjamin/g_ik", _gsIK_HeadStare);
+void _gsIK_HeadStare(char* a)
+{
+    char v[16];
+
+    if (pHeadStareFunc_3[STRUCT_OFFSET(a, 0x2A, short)])
+    {
+        sceVu0CopyVector(v, D_002F1E50);
+        pHeadStareFunc_3[STRUCT_OFFSET(a, 0x2A, short)](a, v);
+    }
+}
 
 void _gsIK_FootMoveL(void* a)
 {
