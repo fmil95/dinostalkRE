@@ -2,6 +2,7 @@
 
 extern void Enemy_ActChg00();
 
+extern char gsEnemyInfos[];
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn03", eneptn03_ST2carno_main);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn03", eneptn03_ST2carno_manage);
@@ -554,7 +555,31 @@ INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn03", eneptn03_ST9trex_turn);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn03", eneptn03_ST9trex_meteo);
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn03", eneptn03_getothercarno);
+char* eneptn03_getothercarno(char* a)
+{
+    int i;
+    char* p = gsEnemyInfos;
+
+    for (i = 0; i < 10; i++, p += 0x2A50)
+    {
+        short k;
+
+        if (!(STRUCT_OFFSET(p, 0, int) & 1))
+        {
+            continue;
+        }
+        if (i == STRUCT_OFFSET(a, 0x28, short))
+        {
+            continue;
+        }
+        k = STRUCT_OFFSET(p, 0x2A, short);
+        if ((k == 8 || k == 0xE) && STRUCT_OFFSET(a, 0x2A, short) != k)
+        {
+            return p;
+        }
+    }
+    return 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn03", Enemy_eneptn03_Init);
 
