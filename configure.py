@@ -32,7 +32,36 @@ from typing import Dict, List, Set, Union
 # object that two different paddings produce byte-for-byte identically is kept:
 # a corruption depends on the layout, so two layouts agreeing means neither was
 # corrupted. The ninja "cc" rule calls this as `configure.py --as-checked`.
-AS_CHECKED_MAX_TRIES = 8
+#
+# Agreement alone is not enough (some corruptions are stable across paddings),
+# so an object is also rejected when any R_MIPS_HI16 relocation in .text points
+# at an instruction that is not a lui.
+AS_CHECKED_MAX_TRIES = 32
+
+
+def has_broken_hi16(data: bytes) -> bool:
+    import struct
+
+    shoff, = struct.unpack_from("<I", data, 0x20)
+    shentsize, shnum, shstrndx = struct.unpack_from("<HHH", data, 0x2E)
+    sections = [struct.unpack_from("<IIIIIIIIII", data, shoff + i * shentsize) for i in range(shnum)]
+    strtab = sections[shstrndx]
+
+    def name(sec):
+        start = strtab[4] + sec[0]
+        return data[start:data.index(b"\0", start)].decode()
+
+    for sec in sections:
+        if sec[1] != 9 or name(sec) != ".rel.text":  # SHT_REL
+            continue
+        text = sections[sec[7]]  # sh_info: section the relocations apply to
+        for off in range(sec[4], sec[4] + sec[5], 8):
+            r_offset, r_info = struct.unpack_from("<II", data, off)
+            if r_info & 0xFF == 5:  # R_MIPS_HI16
+                insn, = struct.unpack_from("<I", data, text[4] + r_offset)
+                if insn >> 26 != 0x0F:  # not lui
+                    return True
+    return False
 
 
 def as_checked(argv: List[str]) -> int:
@@ -66,6 +95,9 @@ def as_checked(argv: List[str]) -> int:
 
             with open(tmp_o, "rb") as f:
                 data = f.read()
+
+            if has_broken_hi16(data):
+                continue
 
             if data in seen:
                 with open(out, "wb") as f:
