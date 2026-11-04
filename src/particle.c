@@ -194,25 +194,3 @@ INCLUDE_RODATA("asm/nonmatchings/particle", D_00664700);
 
 INCLUDE_RODATA("asm/nonmatchings/particle", D_00664708);
 
-INCLUDE_RODATA("asm/nonmatchings/particle", jtbl_00664710);
-
-INCLUDE_RODATA("asm/nonmatchings/particle", jtbl_00664730);
-
-INCLUDE_RODATA("asm/nonmatchings/particle", D_00664750);
-
-INCLUDE_RODATA("asm/nonmatchings/particle", D_00664770);
-
-INCLUDE_RODATA("asm/nonmatchings/particle", D_00664790);
-
-INCLUDE_RODATA("asm/nonmatchings/particle", D_006647B0);
-
-INCLUDE_RODATA("asm/nonmatchings/particle", D_006647D0);
-
-INCLUDE_RODATA("asm/nonmatchings/particle", D_006647F0);
-
-INCLUDE_RODATA("asm/nonmatchings/particle", D_00664810);
-
-INCLUDE_RODATA("asm/nonmatchings/particle", D_00664830);
-
-INCLUDE_RODATA("asm/nonmatchings/particle", D_00664850);
-

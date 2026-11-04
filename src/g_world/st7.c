@@ -243,15 +243,3 @@ INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldSt7_PlayBackSE);
 INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldSt7_FarAdjust);
 INCLUDE_RODATA("asm/nonmatchings/g_world/st7", D_00665B18);
 
-INCLUDE_RODATA("asm/nonmatchings/g_world/st7", jtbl_00665B20);
-
-INCLUDE_RODATA("asm/nonmatchings/g_world/st7", jtbl_00665B50);
-
-INCLUDE_RODATA("asm/nonmatchings/g_world/st7", jtbl_00665B70);
-
-INCLUDE_RODATA("asm/nonmatchings/g_world/st7", jtbl_00665B90);
-
-INCLUDE_RODATA("asm/nonmatchings/g_world/st7", D_00665BB0);
-
-INCLUDE_RODATA("asm/nonmatchings/g_world/st7", D_00665BC0);
-
