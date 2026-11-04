@@ -69,7 +69,15 @@ int gsSoundBgmPlay(int a)
     return 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundBgmReplay);
+int gsSoundBgmReplay()
+{
+    if (gsVRMode == 0 && gsSoundBgmNo >= 0)
+    {
+        SeCSLMidiPlay(gsSoundBgmNo);
+    }
+
+    return 0;
+}
 
 int gsSoundBgmStop()
 {
