@@ -21,6 +21,10 @@ INCLUDE_ASM("asm/nonmatchings/taiken/taiken", _select_put_info);
 
 INCLUDE_ASM("asm/nonmatchings/taiken/taiken", gsTaiken_Init_KEYWORD);
 
+INCLUDE_RODATA("asm/nonmatchings/taiken/taiken", D_0066CDA0);
+
+INCLUDE_RODATA("asm/nonmatchings/taiken/taiken", D_0066CDC8);
+
 INCLUDE_ASM("asm/nonmatchings/taiken/taiken", gsTaiken_Exec_KEYWORD);
 
 INCLUDE_ASM("asm/nonmatchings/taiken/taiken", _keyword_put_word);
@@ -41,3 +45,5 @@ void gsTaikenCall_CLEAR_ON_OFF()
 INCLUDE_ASM("asm/nonmatchings/taiken/taiken", _ready_go_put_font);
 
 INCLUDE_ASM("asm/nonmatchings/taiken/taiken", _clear_put_font);
+INCLUDE_RODATA("asm/nonmatchings/taiken/taiken", D_0066CDF8);
+
