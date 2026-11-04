@@ -576,7 +576,7 @@ segments:
       - [0x566600, rodata, g_shocktest]
       - [0x566610, rodata, g_world/brk]
       - [0x5666a8, rodata, g_world/st2]
-      - [0x566750, rodata, g_world/st3]
+      - [0x566750, .rodata, g_world/st3]
       - [0x566890, rodata, g_world/st4]
       - [0x566958, rodata, g_world/st5]
       - [0x566a28, rodata, g_world/st7]

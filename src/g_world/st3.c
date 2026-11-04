@@ -114,6 +114,26 @@ INCLUDE_ASM("asm/nonmatchings/g_world/st3", _st3_DinoCollWater_PTR);
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st3", _st3_DinoCollWater_PRS);
 
+INCLUDE_RODATA("asm/nonmatchings/g_world/st3", D_00665750);
+
+INCLUDE_RODATA("asm/nonmatchings/g_world/st3", D_00665780);
+
+INCLUDE_RODATA("asm/nonmatchings/g_world/st3", D_00665790);
+
+INCLUDE_RODATA("asm/nonmatchings/g_world/st3", D_006657A0);
+
+INCLUDE_RODATA("asm/nonmatchings/g_world/st3", D_006657B0);
+
+INCLUDE_RODATA("asm/nonmatchings/g_world/st3", D_006657C0);
+
+INCLUDE_RODATA("asm/nonmatchings/g_world/st3", D_006657F0);
+
+INCLUDE_RODATA("asm/nonmatchings/g_world/st3", D_00665800);
+
+INCLUDE_RODATA("asm/nonmatchings/g_world/st3", D_00665810);
+
+INCLUDE_RODATA("asm/nonmatchings/g_world/st3", D_00665820);
+
 INCLUDE_ASM("asm/nonmatchings/g_world/st3", gsWorldSt3_DinoCollWater);
 
 void gsWorldSt3_initBossDied()
@@ -155,3 +175,7 @@ void gsWorldSt3_Demo0_Request(int a)
 INCLUDE_ASM("asm/nonmatchings/g_world/st3", gsWorldSt3_Demo0_Exec);
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st3", gsWorldSt3_ObjSort);
+INCLUDE_RODATA("asm/nonmatchings/g_world/st3", D_00665870);
+
+INCLUDE_RODATA("asm/nonmatchings/g_world/st3", D_00665880);
+
