@@ -1,4 +1,5 @@
 #include "common.h"
+extern int gsGuncon1Manager[];
 
 extern int D_00653B08[];
 extern int D_00653B10[];
@@ -33,7 +34,10 @@ int gsGuncon1_GetTrg()
 
 INCLUDE_ASM("asm/nonmatchings/g_guncon1/g_guncon1", gsGuncon1_FlashTrigger);
 
-INCLUDE_ASM("asm/nonmatchings/g_guncon1/g_guncon1", gsGuncon1_CheckOut);
+int gsGuncon1_CheckOut()
+{
+    return (gsGuncon1Manager[0] & 0x8) > 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_guncon1/g_guncon1", gsGuncon1_CheckOutTrg);
 
