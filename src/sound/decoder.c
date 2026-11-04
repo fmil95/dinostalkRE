@@ -1,16 +1,12 @@
-#include "common.h"
+#include "sound/decoder.h"
 
+extern VideoDec videoDec;
+extern int printf();
+extern char D_00673DE0[];
+extern int RotateThreadReadyQueue();
 extern int s_volume;
 extern void audioDecResume();
-extern void sceMpegSetDecodeMode();
-extern void viBufBeginPut();
-extern void viBufEndPut();
-extern void viBufCount();
-extern char D_00652728[];
-extern int viBufRestartDMA();
-extern int viBufStopDMA();
 extern int RotateThreadReadyQueue();
-extern int viBufAddDMA();
 extern int remoteSema;
 extern int remoteSema;
 extern void WaitSema();
@@ -24,45 +20,45 @@ extern int s_vol_r1;
 
 INCLUDE_ASM("asm/nonmatchings/sound/decoder", videoDecCreate);
 
-void videoDecSetDecodeMode()
+void videoDecSetDecodeMode(VideoDec* vd, int ni, int np, int nb)
 {
-    sceMpegSetDecodeMode();
+    sceMpegSetDecodeMode(&vd->mpeg, ni, np, nb);
 }
 
-void videoDecBeginPut(void* a)
+void videoDecBeginPut(VideoDec* vd, u_char** ptr0, int* len0, u_char** ptr1, int* len1)
 {
-    viBufBeginPut((char*)a + 0x48);
+    viBufBeginPut(&vd->vibuf, ptr0, len0, ptr1, len1);
 }
 
-void videoDecEndPut(void* a)
+void videoDecEndPut(VideoDec* vd, int size)
 {
-    viBufEndPut((char*)a + 0x48);
+    viBufEndPut(&vd->vibuf, size);
 }
 
-void videoDecReset(void* p)
+void videoDecReset(VideoDec* vd)
 {
-    STRUCT_OFFSET(p, 0xA8, int) = 0;
+    vd->state = VD_STATE_NORMAL;
 }
 
 INCLUDE_ASM("asm/nonmatchings/sound/decoder", videoDecDelete);
 
-void videoDecAbort(void* a)
+void videoDecAbort(VideoDec* vd)
 {
-    STRUCT_OFFSET(a, 0xA8, int) = 1;
+    vd->state = VD_STATE_ABORT;
 }
 
-int videoDecGetState(void* p)
+u_int videoDecGetState(VideoDec* vd)
 {
-    return STRUCT_OFFSET(p, 0xA8, int);
+    return vd->state;
 }
 
 INCLUDE_ASM("asm/nonmatchings/sound/decoder", videoDecSetState);
 
 INCLUDE_ASM("asm/nonmatchings/sound/decoder", videoDecPutTs);
 
-void videoDecInputCount(void* a)
+int videoDecInputCount(VideoDec* vd)
 {
-    viBufCount((char*)a + 0x48);
+    return viBufCount(&vd->vibuf);
 }
 
 INCLUDE_ASM("asm/nonmatchings/sound/decoder", videoDecInputSpaceCount);
@@ -77,22 +73,25 @@ INCLUDE_ASM("asm/nonmatchings/sound/decoder", decBs0);
 
 INCLUDE_ASM("asm/nonmatchings/sound/decoder", mpegError);
 
-int mpegNodata()
+int mpegNodata(sceMpeg* mp, sceMpegCbData* cbdata, void* anyData)
 {
     RotateThreadReadyQueue(2);
-    viBufAddDMA(D_00652728);
+    viBufAddDMA(&videoDec.vibuf);
+
     return 1;
 }
 
-int mpegStopDMA()
+int mpegStopDMA(sceMpeg* mp, sceMpegCbData* cbdata, void* anyData)
 {
-    viBufStopDMA(D_00652728);
+    viBufStopDMA(&videoDec.vibuf);
+
     return 1;
 }
 
-int mpegRestartDMA()
+int mpegRestartDMA(sceMpeg* mp, sceMpegCbData* cbdata, void* anyData)
 {
-    viBufRestartDMA(D_00652728);
+    viBufRestartDMA(&videoDec.vibuf);
+
     return 1;
 }
 
