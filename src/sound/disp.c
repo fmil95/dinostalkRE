@@ -154,7 +154,12 @@ u_int* setSCISSOR_1(u_int* p, u_int scax0, u_int scax1, u_int scay0, u_int scay1
     return setGIFad(p, SCE_GS_SCISSOR_1, val);
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/disp", setSCISSOR_2);
+u_int* setSCISSOR_2(u_int* p, u_int scax0, u_int scax1, u_int scay0, u_int scay1)
+{
+    u_long val = SCE_GS_SET_SCISSOR_2(scax0, scax1, scay0, scay1);
+
+    return setGIFad(p, SCE_GS_SCISSOR_2, val);
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/disp", setXYOFFSET_1);
 
