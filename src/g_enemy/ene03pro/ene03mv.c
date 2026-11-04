@@ -1,10 +1,8 @@
 #include "common.h"
 #include <stdlib.h>
+#include "g_enemy/enemain.h"
+#include "gunsuv_usa/libgf/gfanim.h"
 
-extern void Enemy_AnmChg00();
-extern void Enemy_AnmChg01();
-
-extern int GFAnim_ShapeFlagCheck();
 extern void Enemy_ActChg00();
 extern void Enemy_SeSet00();
 INCLUDE_ASM("asm/nonmatchings/g_enemy/ene03pro/ene03mv", ene03move_main);
@@ -33,7 +31,26 @@ void ene03moveElem000(char* a)
     STRUCT_OFFSET(a, 0x8C, int)++;
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/ene03pro/ene03mv", ene03moveElem001);
+void ene03moveElem001(char* a)
+{
+    char* p = a + 0xBA0;
+
+    if (GFAnim_ShapeFlagCheck((GF_INST_OBJECT*)p, 0) & 2)
+    {
+        GFAnim_ShapeFlagClear((GF_INST_OBJECT*)p, 2);
+        if (rand() % 3 == 0)
+        {
+            if (STRUCT_OFFSET(a, 0x2A, short) == 7)
+            {
+                Enemy_SeSet00(a, 0x172);
+            }
+            else
+            {
+                Enemy_SeSet00(a, 0x186);
+            }
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/ene03pro/ene03mv", ene03moveElem020);
 

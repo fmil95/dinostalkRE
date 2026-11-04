@@ -25,7 +25,7 @@ ene_mvdummy();
 enemy_movemain();
 enemy_positionset();
 void Enemy_AnmChg00();
-Enemy_AnmChg01();
+void Enemy_AnmChg01();
 void Enemy_ActChg00();
 enemy_rotadd();
 enemy_veadd();
