@@ -175,7 +175,15 @@ INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_ShdFtpSet);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_PoisonMain);
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_AllPsInfInt);
+void Enemy_AllPsInfInt()
+{
+    int i;
+
+    for (i = 0; i < 20; i++)
+    {
+        Enemy_PsInfInt(&gsPoisonInfos[i]);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_PsInfInt);
 
