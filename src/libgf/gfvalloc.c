@@ -40,7 +40,29 @@ static GF_VRAM_CELL* gfVram_GetUnusedCell()
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfvalloc", GFVram_AddFreeArea);
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfvalloc", GFVram_Alloc);
+Uint16 GFVram_Alloc(Uint16 size, Uint16 mode)
+{
+    Uint8 flag;
+    Uint16 start;
+
+    if (gfInfoHead_00674cd0->top_cell == NULL)
+    {
+        return 0xFFFF;
+    }
+
+    flag = gfVram_PsmToFlag(mode);
+    start = gfVram_SearchArea(gfInfoHead_00674cd0->top_cell, size, flag);
+
+    if (start == 0xFFFF)
+    {
+        return 0xFFFF;
+    }
+
+    gfVram_ChangeArea(start, size, flag, 0);
+    gfVram_DefragCell();
+
+    return start;
+}
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfvalloc", gfVram_SearchArea);
 
