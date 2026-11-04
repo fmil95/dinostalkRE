@@ -194,7 +194,15 @@ INCLUDE_ASM("asm/nonmatchings/g_gun", gsGunYakkyo_EXEC);
 
 INCLUDE_ASM("asm/nonmatchings/g_gun", gsGunPlaySE_FIRE_EXTRA);
 
-INCLUDE_ASM("asm/nonmatchings/g_gun", gsGunStopEeSE_GUN);
+void gsGunStopEeSE_GUN(int a)
+{
+    char* p = D_003C246C + a * 48;
+
+    gsSoundEeSE_STOP(p);
+    gsSoundEeSE_STOP(p + 4);
+    gsSoundEeSE_STOP(p + 8);
+    gsSoundEeSE_STOP(p + 12);
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_gun", gsGunCheckBombHit_CAMERA);
 
