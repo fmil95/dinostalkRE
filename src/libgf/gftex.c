@@ -10,6 +10,10 @@ extern GF_TEXDB gfTexFrame[];
 extern void gfTex_ClearDb();
 extern void GFVram_FreeAll();
 extern void GFCache_Flush();
+static void gfTex_FreeVram(sceGsTex0* tex0, sceGsTex1* tex1, sceGsMiptbp1* miptbp1, sceGsMiptbp2* miptbp2, Sint32 no_tex);
+static Sint32 gfTex_SearchDb(Uint64* guid);
+static void gfTex_Defrag();
+static void gfTex_SetDatabaseForCache(GF_TEXDB* db_out, Uint32* pig, Uint16 pos);
 INCLUDE_ASM("asm/nonmatchings/libgf/gftex", GFTex_InitDatabase);
 
 void GFTex_ResetDatabase()
@@ -127,7 +131,25 @@ void GFTex_FlushVramCache_Preset()
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gftex", gfTex_SetMipmapRegs);
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gftex", GFTex_Remove);
+Sint32 GFTex_Remove(Sint32 index)
+{
+    GF_TEXDB* db;
+    Sint32 same;
+
+    db = &gfDatabase[index];
+    db->flag &= ~1;
+
+    same = gfTex_SearchDb(db->guid);
+
+    if (same == -1 && (db->flag & 2))
+    {
+        gfTex_FreeVram(&db->tex0, &db->tex1, &db->miptbp1, &db->miptbp2, (db->flag >> 2) & 1);
+    }
+
+    gfTex_Defrag();
+
+    return same != -1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gftex", gfTex_FreeVram);
 
