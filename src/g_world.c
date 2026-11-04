@@ -8,6 +8,25 @@ extern void sceVu0CopyVector();
 extern void* GFTex_GetDb();
 extern u_short D_0069167E[];
 extern short _treasure_box_map[];
+extern int gsWorldStageNo;
+extern void gsWorldSt1_SpecialEffect();
+extern void gsWorldSt2_SpecialEffect();
+extern void gsWorldSt3_SpecialEffect();
+extern void gsWorldSt4_SpecialEffect();
+extern void gsWorldSt5_SpecialEffect();
+extern void gsWorldSt7_SpecialEffect();
+extern void gsWorldSt8_SpecialEffect();
+extern void gsWorldSt9_SpecialEffect();
+extern void gsWorldSt7Test_SpecialEffect();
+extern int gsWorldSt1_SpecialEffect2();
+extern int gsWorldSt2_SpecialEffect2();
+extern int gsWorldSt3_SpecialEffect2();
+extern int gsWorldSt4_SpecialEffect2();
+extern int gsWorldSt5_SpecialEffect2();
+extern int gsWorldSt7_SpecialEffect2();
+extern int gsWorldSt8_SpecialEffect2();
+extern int gsWorldSt9_SpecialEffect2();
+extern int gsWorldSt7Test_SpecialEffect2();
 void gsWorldRestoreMipmap()
 {
     STRUCT_OFFSET(GFTex_GetDb(), 0x2C, int) = 0xFFCC;
@@ -35,7 +54,39 @@ INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldMoveBackObj);
 
 INCLUDE_RODATA("asm/nonmatchings/g_world", D_00665018);
 
-INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldCallSpecialEffect);
+void gsWorldCallSpecialEffect()
+{
+    switch (gsWorldStageNo)
+    {
+    case 0:
+        gsWorldSt1_SpecialEffect();
+        break;
+    case 1:
+        gsWorldSt2_SpecialEffect();
+        break;
+    case 2:
+        gsWorldSt3_SpecialEffect();
+        break;
+    case 3:
+        gsWorldSt4_SpecialEffect();
+        break;
+    case 4:
+        gsWorldSt5_SpecialEffect();
+        break;
+    case 6:
+        gsWorldSt7_SpecialEffect();
+        break;
+    case 7:
+        gsWorldSt8_SpecialEffect();
+        break;
+    case 8:
+        gsWorldSt9_SpecialEffect();
+        break;
+    case -1:
+        gsWorldSt7Test_SpecialEffect();
+        break;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldCallSpecialEffect2);
 
