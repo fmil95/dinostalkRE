@@ -5,6 +5,8 @@ extern int hyCheckFadeFinishFlag();
 extern void hySetFadePara2();
 extern void hySwitchFadeTimer();
 
+INCLUDE_RODATA("asm/nonmatchings/hoya/result/frsltsb1", D_0066BEB0);
+
 INCLUDE_ASM("asm/nonmatchings/hoya/result/frsltsb1", MakeAllNumberTex_frsltsb1);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/result/frsltsb1", RsltInitSprOther_frsltsb1);
@@ -67,6 +69,8 @@ INCLUDE_ASM("asm/nonmatchings/hoya/result/frsltsb1", ProcFadeIn_frsltsb1);
 INCLUDE_ASM("asm/nonmatchings/hoya/result/frsltsb1", ProcFadeOut_frsltsb1);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/result/frsltsb1", ProcDrawFirstPlay);
+
+INCLUDE_RODATA("asm/nonmatchings/hoya/result/frsltsb1", D_0066BF68);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/result/frsltsb1", ProcDrawSecondPlay);
 
