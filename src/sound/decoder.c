@@ -86,8 +86,8 @@ int videoDecDelete(VideoDec* vd)
     sceMpegDelete(&vd->mpeg);
 
     vd->state = 0;
-    vd->sema = 0;
     vd->hid_endimage = 0;
+    vd->hid_vblank = 0;
 
     return 1;
 }

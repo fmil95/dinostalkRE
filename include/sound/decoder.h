@@ -118,13 +118,12 @@ int audioDecSendToIOP(AudioDec *ad);
 #define VD_STATE_FLUSH  2
 #define VD_STATE_END    3
 
-typedef struct { // 0xb8
+typedef struct { // 0xb4
 	/* 0x00 */ sceMpeg mpeg;
 	/* 0x48 */ ViBuf vibuf;
 	/* 0xa8 */ u_int state;
-	/* 0xac */ int sema;
-	/* 0xb0 */ int hid_endimage;
-	/* 0xb4 */ int hid_vblank;
+	/* 0xac */ int hid_endimage;
+	/* 0xb0 */ int hid_vblank;
 } VideoDec;
 
 int videoDecCreate(VideoDec *vd, u_char *mpegWork, int mpegWorkSize, u_long128 *data, u_long128 *tag, int tagSize, TimeStamp *pts, int n_pts);
