@@ -1,4 +1,8 @@
 #include "common.h"
+extern int gsStageNo;
+extern int St1BossFlg;
+extern int LeaderNo;
+extern int DieLeaderNo;
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn01", Enemy_RotLRChk00);
 
@@ -78,7 +82,15 @@ INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn01", eneptn01_BoidHighMove);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn01", AllCircleLoop);
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn01", eneptn01_st1bossinit);
+void eneptn01_st1bossinit()
+{
+    if (gsStageNo == 0)
+    {
+        St1BossFlg = 0;
+        LeaderNo = -1;
+        DieLeaderNo = -2;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn01", eneptn01_cls03);
 

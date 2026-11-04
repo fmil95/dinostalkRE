@@ -1,4 +1,7 @@
 #include "common.h"
+extern char gParticleM[];
+extern char gParticleMS[];
+extern void GFMicro_MakePacket();
 
 extern int gsEffect_FadeCnt;
 extern void gsEffectAddWithPri();
@@ -50,7 +53,10 @@ INCLUDE_ASM("asm/nonmatchings/g_effect", gsEffectAddThunder);
 
 INCLUDE_ASM("asm/nonmatchings/g_effect", gsEffectAddScale);
 
-INCLUDE_ASM("asm/nonmatchings/g_effect", gsEffectInitMicro);
+void gsEffectInitMicro(int a, int b, int c)
+{
+    GFMicro_MakePacket(gParticleM, b, gParticleMS, c);
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_effect", gsEffectTexLoad);
 
@@ -58,7 +64,10 @@ INCLUDE_ASM("asm/nonmatchings/g_effect", gsEffectGetTexIdx);
 
 INCLUDE_ASM("asm/nonmatchings/g_effect", gsEffectTexReset);
 
-INCLUDE_ASM("asm/nonmatchings/g_effect", gs_EffectMemAlign);
+u_int gs_EffectMemAlign(u_int a, u_int b)
+{
+    return a + (b - a % b);
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_effect", gs_effectInitEffectSrc);
 

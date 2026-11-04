@@ -1,4 +1,6 @@
 #include "common.h"
+extern int SCEOPEN2();
+extern void exit();
 
 extern void fio_ReadFile();
 
@@ -44,7 +46,17 @@ INCLUDE_ASM("asm/nonmatchings/fileio", fio_ReadFile);
 
 INCLUDE_ASM("asm/nonmatchings/fileio", FIO_GetFileSize);
 
-INCLUDE_ASM("asm/nonmatchings/fileio", fio_OpenFile);
+int fio_OpenFile(char* name, int flags)
+{
+    int fd = SCEOPEN2(name, flags, 0x1FF);
+
+    if (fd < 0)
+    {
+        exit(1);
+    }
+
+    return fd;
+}
 
 INCLUDE_ASM("asm/nonmatchings/fileio", FIO_WriteFile);
 

@@ -1,4 +1,5 @@
 #include "common.h"
+extern int gsFootPointTexIndex[];
 
 extern int gsFootPointBegin;
 extern int gsFootPointBefore;
@@ -16,7 +17,10 @@ void gsFootPoint_Eval(void) {
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/g_footpoint", gsFootPoint_Draw);
 
-INCLUDE_ASM("asm/nonmatchings/benjamin/g_footpoint", gsFootPoint_SetFootPoint);
+void gsFootPoint_SetFootPoint(void* a, int i)
+{
+    STRUCT_OFFSET(a, 0x8, int) = gsFootPointTexIndex[i];
+}
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/g_footpoint", gsFootPoint_InitPacket);
 

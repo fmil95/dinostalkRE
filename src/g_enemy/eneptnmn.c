@@ -36,7 +36,11 @@ INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptnmn", eneptn_gmleveljmp);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptnmn", eneptn_thkmdchg);
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptnmn", eneptn_rechkptn);
+void eneptn_rechkptn(void* a)
+{
+    STRUCT_OFFSET(a, 0x7C, int) = 0;
+    STRUCT_OFFSET(a, 0x4, int) |= 0x80000000;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptnmn", eneptn_enmtyloop);
 
