@@ -5,6 +5,8 @@ extern int IscSe_Port_GokiB;
 extern int IscSe_Port_Tomb;
 
 extern void gsIscInfosClear();
+extern char gsIscInfos[];
+extern void GFInstance_Remove();
 void gsIscInfosAllClear()
 {
     int i;
@@ -49,7 +51,21 @@ INCLUDE_ASM("asm/nonmatchings/air/insect/a_insect", gsInsect_DeadDisp01);
 
 INCLUDE_ASM("asm/nonmatchings/air/insect/a_insect", gsInsectInfoCheck);
 
-INCLUDE_ASM("asm/nonmatchings/air/insect/a_insect", gsIscInit_AfterMovie);
+void gsIscInit_AfterMovie()
+{
+    char* p = gsIscInfos;
+    int i;
+
+    for (i = 0x13; i >= 0; i--, p += 0x3C0)
+    {
+        if (STRUCT_OFFSET(p, 0, int) & 1)
+        {
+            GFInstance_Remove(p + 0x230);
+            gsIscInfosClear(-1, p);
+        }
+    }
+    gsInit_IscSe();
+}
 
 void gsInit_IscSe()
 {
