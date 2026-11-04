@@ -44,7 +44,14 @@ INCLUDE_ASM("asm/nonmatchings/g_enemy/ene04pro/ene04mv", ene04moveElem091);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/ene04pro/ene04mv", ene04moveElem0f0);
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/ene04pro/ene04mv", ene04moveElem0f1);
+void ene04moveElem0f1(char* a)
+{
+    if (GFAnim_ShapeFlagCheck(a + 0xBA0, 0) & 2)
+    {
+        STRUCT_OFFSET(a, 0x0, int) &= 0xBFFFFFFF;
+        Enemy_ActChg00(a, 0);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/ene04pro/ene04mv", ene04moveElem1c0);
 
