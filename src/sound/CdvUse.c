@@ -177,7 +177,22 @@ int cdvCdStandbySet()
     return WriteQue;
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvTrayOpenSet);
+int cdvTrayOpenSet()
+{
+    u_short w;
+    u_short m;
+
+    if (cdvIsEoq(3))
+    {
+        return -1;
+    }
+    cdvCdStopSet();
+    w = WriteQue;
+    m = MaxQue;
+    STRUCT_OFFSET(Cdv_Que, w * 40, short) = 11;
+    WriteQue = (w + 1) % (m + 1);
+    return WriteQue;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvTrayCloseWaitSet);
 
