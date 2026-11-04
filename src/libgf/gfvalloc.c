@@ -38,7 +38,73 @@ static GF_VRAM_CELL* gfVram_GetUnusedCell()
     return NULL;
 }
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfvalloc", GFVram_AddFreeArea);
+Sint32 GFVram_AddFreeArea(Uint16 pos, Uint16 size, Uint16 mode)
+{
+    GF_VRAM_CELL* cell;
+    GF_VRAM_CELL* p;
+
+    cell = gfVram_GetUnusedCell();
+    p = gfInfoHead_00674cd0->top_cell;
+
+    if (p == NULL)
+    {
+        cell->prev = NULL;
+        cell->next = NULL;
+    }
+    else
+    {
+        while (1)
+        {
+            if (p->pos >= pos)
+            {
+                cell->prev = p->prev;
+                cell->next = p;
+                break;
+            }
+
+            if (p->next == NULL)
+            {
+                cell->prev = p;
+                cell->next = NULL;
+                break;
+            }
+
+            p = p->next;
+        }
+    }
+
+    if (cell->prev != NULL && pos < cell->prev->pos + cell->prev->size)
+    {
+        return -1;
+    }
+
+    if (cell->next != NULL && cell->next->pos < pos + size)
+    {
+        return -1;
+    }
+
+    cell->used_flag = 0;
+    cell->stat = 1;
+    cell->reserved_flag = ~gfVram_PsmToFlag(mode) & 7;
+    cell->pos = pos;
+    cell->size = size;
+
+    if (cell->prev == NULL)
+    {
+        gfInfoHead_00674cd0->top_cell = cell;
+    }
+    else
+    {
+        cell->prev->next = cell;
+    }
+
+    if (cell->next != NULL)
+    {
+        cell->next->prev = cell;
+    }
+
+    return 0;
+}
 
 Uint16 GFVram_Alloc(Uint16 size, Uint16 mode)
 {
