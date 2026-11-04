@@ -62,7 +62,10 @@ int gsPad_GetRTrg2(int i)
     return D_002F18A4[i].w[16];
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_pad", gsPad_GetState);
+int gsPad_GetState(int i)
+{
+    return D_002F18A4[i].w[2];
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_pad", gsPad_GetStep);
 
