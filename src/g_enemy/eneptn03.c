@@ -192,7 +192,22 @@ INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn03", eneptn03_ST7carno_wave02);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn03", eneptn03_ST7carno_wave03);
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn03", eneptn03_ST7carno_wave04);
+void eneptn03_ST7carno_wave04(char* a)
+{
+    char v[16];
+    int f;
+
+    memset(v, 0, 16);
+    f = STRUCT_OFFSET(a, 0, int);
+    if (!(f & 0x40000000))
+    {
+        STRUCT_OFFSET(a, 0, int) = f | 0x1000000;
+        sceVu0CopyVector(a + 0x1C0, v);
+        sceVu0CopyVector(a + 0x1D0, v);
+        sceVu0CopyVector(a + 0x250, v);
+        STRUCT_OFFSET(a, 0x62, u_short)++;
+    }
+}
 
 void eneptn03_ST7carno_wave05(void* a)
 {
