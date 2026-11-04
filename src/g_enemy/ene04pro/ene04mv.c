@@ -55,7 +55,7 @@ void ene04moveElem051(char* a)
 {
     if (GFAnim_ShapeFlagCheck(a + 0xBA0, 0) & 2)
     {
-        STRUCT_OFFSET(a, 0x0, int) &= 0xBFFFFFFF;
+        STRUCT_OFFSET(a, 0x0, int) &= ~0x40000000;
         Enemy_ActChg00(a, 0);
     }
 }
@@ -80,7 +80,7 @@ void ene04moveElem0f1(char* a)
 {
     if (GFAnim_ShapeFlagCheck(a + 0xBA0, 0) & 2)
     {
-        STRUCT_OFFSET(a, 0x0, int) &= 0xBFFFFFFF;
+        STRUCT_OFFSET(a, 0x0, int) &= ~0x40000000;
         Enemy_ActChg00(a, 0);
     }
 }
@@ -91,7 +91,7 @@ void ene04moveElem1c1(char* a)
 {
     if (GFAnim_ShapeFlagCheck(a + 0xBA0, 0) & 2)
     {
-        STRUCT_OFFSET(a, 0x0, int) &= 0xBFFFFFFF;
+        STRUCT_OFFSET(a, 0x0, int) &= ~0x40000000;
         Enemy_ActChg00(a, 0);
     }
 }
@@ -135,7 +135,7 @@ void ene04BmoveElem091(char* a)
 {
     if (GFAnim_ShapeFlagCheck(a + 0xBA0, 0) & 2)
     {
-        STRUCT_OFFSET(a, 0x0, int) &= 0xBFFFFFFF;
+        STRUCT_OFFSET(a, 0x0, int) &= ~0x40000000;
         Enemy_ActChg00(a, 0);
         Enemy_AnmChg00(a, 0, 8, 1);
     }
