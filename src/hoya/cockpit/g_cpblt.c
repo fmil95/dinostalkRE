@@ -106,6 +106,10 @@ INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_cpblt", PutBullet_BulletLaser);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_cpblt", PutBullet_BulletMineThrower);
 
+INCLUDE_RODATA("asm/nonmatchings/hoya/cockpit/g_cpblt", D_0066A590);
+
+INCLUDE_RODATA("asm/nonmatchings/hoya/cockpit/g_cpblt", D_0066A5A8);
+
 INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_cpblt", PutBullet_Bullet);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_cpblt", gsCOCKPIT_PutBullet);
