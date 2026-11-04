@@ -1,5 +1,8 @@
 #include "sound/mainmpeg.h"
 #include "sound/disp.h"
+extern void SetUserData(int* a, int* b, int* c, u_int* d);
+extern int SleepThread();
+typedef struct { long raw[0x46]; } sceGsDBuff;
 
 #define min(x, y) (((x) > (y)) ? (y) : (x))
 #define UncAddr(p) ((void*)(((u_int)(p) & 0x0FFFFFFF) | 0x20000000))
@@ -64,7 +67,57 @@ extern void termAll();
 
 static int copy2area(u_char* pd0, int d0, u_char* pd1, int d1, u_char* ps0, int s0, u_char* ps1, int s1);
 
-INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", cdvMpegInit);
+extern u_char* mpegWork;
+extern u_long128* viBufData;
+extern u_long128* viBufTag;
+extern int Vibuf_Size;
+extern TimeStamp* timeStamp;
+extern int t_Size;
+extern u_char* audioBuff;
+extern int sd_Size;
+extern VoData* voBufData;
+extern VoTag* voBufTag;
+extern int N_Vobuf;
+extern void cdvErrInit();
+extern void initDisplay();
+
+void cdvMpegInit(sceGsDBuff db, int a1, int a2, int a3, int a4, int a5, int a6, u_char* rbuf, int n_read_unit, u_long128* vi_data, u_long128* vi_tag, int vi_size, TimeStamp* ts, int ts_size, VoData* vo_data, VoTag* vo_tag, int n_vobuf, u_char* audio_buff, int sd_size, u_char* mpeg_work)
+{
+    int i;
+    int j;
+
+    init_flg = 1;
+
+    for (i = 0; i < 2; i++)
+    {
+        for (j = 0; j < 4; j++)
+        {
+            pad_00857400[i * 4 + j].skip = 0;
+            pad_00857400[i * 4 + j].use = 0;
+        }
+    }
+
+    readBuf.data = rbuf;
+    N_Read_Unit = n_read_unit;
+    viBufData = vi_data;
+    viBufTag = vi_tag;
+    Vibuf_Size = vi_size;
+    timeStamp = ts;
+    t_Size = ts_size;
+    voBufData = vo_data;
+    voBufTag = vo_tag;
+    N_Vobuf = n_vobuf;
+    audioBuff = audio_buff;
+    sd_Size = sd_size;
+    mpegWork = mpeg_work;
+    err_sts = 0;
+    UserProg = 0;
+    GS_Send_Flg = 0;
+    mono_flg = 0;
+
+    cdvErrInit();
+    initDisplay(db, a1, a2, a3, a4, a5, a6);
+}
 
 int PortSlotCheck(int port, int slot)
 {
@@ -259,17 +312,6 @@ extern char defStack[];
 extern char videoDecStack[];
 extern char userStack[];
 extern int _gp;
-extern u_char* mpegWork;
-extern u_long128* viBufData;
-extern u_long128* viBufTag;
-extern int Vibuf_Size;
-extern TimeStamp* timeStamp;
-extern int t_Size;
-extern u_char* audioBuff;
-extern int sd_Size;
-extern VoData* voBufData;
-extern VoTag* voBufTag;
-extern int N_Vobuf;
 
 int initAll(char* bsfilename, int w, int h, char flag)
 {
