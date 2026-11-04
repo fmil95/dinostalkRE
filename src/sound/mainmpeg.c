@@ -124,7 +124,21 @@ int strFileOpen(StrFile* file, char* filename)
 
 INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", strFileClose);
 
-INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", strFileRead);
+int strFileRead(StrFile* file, void* buff, int size)
+{
+    int count;
+    u_int err;
+
+    count = sceCdStRead(size >> 11, (u_int*)buff, 1, &err);
+    count <<= 11;
+
+    if (err)
+    {
+        printf(D_0066CD88, err);
+    }
+
+    return count;
+}
 
 void proceedAudio()
 {
