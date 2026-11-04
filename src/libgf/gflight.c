@@ -1,3 +1,4 @@
+#include "gunsuv_usa/libgf/libgf.h"
 #include "gunsuv_usa/libgf/gflight.h"
 #include "gunsuv_usa/libgf/gfshape.h"
 
@@ -36,7 +37,32 @@ qword* GFLight_MakePacket(GF_LIGHT* light, qword* packbuf)
     return packbuf;
 }
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gflight", GFLight_Draw);
+qword* GFLight_Draw(qword* packet, GF_LIGHT* light)
+{
+    qword* cur;
+    qword* src;
+    Sint32 i;
+
+    cur = packet;
+    _GFPKT_DV_CNT_STCYCL_UNPACK(cur, 9, 8, 1, 1);
+    cur++;
+
+    src = (qword*)light;
+
+    for (i = 0; i < 8; i++)
+    {
+        asm volatile(
+            "lq $6, 0(%1)\n"
+            "sq $6, 0(%0)\n"
+            : : "r"(cur), "r"(src) : "$6", "memory");
+        cur++;
+        src++;
+    }
+
+    gf_trans_light = light;
+
+    return cur;
+}
 
 void GFLight_SetShape(GF_INST_SHAPE* shape, GF_LIGHT* light)
 {
