@@ -197,7 +197,43 @@ void cdvMpegChgVolume(int v)
     s_volume = v;
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/decoder", audioDecCreate);
+int audioDecCreate(AudioDec* ad, u_char* buff, int buffSize, int iopBuffSize)
+{
+    ad->data = buff;
+    ad->size = buffSize;
+    ad->state = AU_STATE_INIT;
+    ad->hdrCount = 0;
+    ad->put = 0;
+    ad->count = 0;
+    ad->totalBytes = 0;
+    ad->totalBytesSent = 0;
+
+    ad->iopBuffSize = iopBuffSize;
+    ad->iopLastPos = 0;
+    ad->iopPausePos = 0;
+
+    ad->iopBuff = sceSifAllocIopHeap(iopBuffSize);
+
+    if (ad->iopBuff < 0)
+    {
+        return 1;
+    }
+
+    ad->iopZero = sceSifAllocIopHeap(0x800);
+
+    if (ad->iopZero < 0)
+    {
+        return 1;
+    }
+
+    memset(_0_buf, 0, 0x800);
+    sendToIOP(ad->iopZero, _0_buf, 0x800);
+
+    pushMasterVolume();
+    changeMasterVolume(s_volume);
+
+    return 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/decoder", audioDecDelete);
 
