@@ -15,6 +15,9 @@ extern int adjust_center_gun_adjust();
 extern void set_adjustX_gun_adjust();
 extern int D_00653B78[];
 extern void Guncon2_TransCtrlData();
+extern int center_y_00674ca0;
+extern void set_adjustY_gun_adjust();
+extern int adjust_wide_gun_adjust();
 INCLUDE_ASM("asm/nonmatchings/g_guncon2/src/gun_adjust", gun_adjust_init);
 
 INCLUDE_ASM("asm/nonmatchings/g_guncon2/src/gun_adjust", init_gun_adjust_para);
@@ -50,7 +53,20 @@ void gun_adjust0_gun_adjust()
     gun_teaching_gun_adjust();
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_guncon2/src/gun_adjust", gun_adjust1_gun_adjust);
+int gun_adjust1_gun_adjust(int a, int b)
+{
+    int ret;
+
+    ret = adjust_center_gun_adjust(a);
+
+    if (ret != 0)
+    {
+        set_adjustX_gun_adjust(b, center_x_00674c9c);
+        set_adjustY_gun_adjust(b, center_y_00674ca0);
+    }
+
+    return ret;
+}
 
 int gun_adjust2_gun_adjust()
 {
