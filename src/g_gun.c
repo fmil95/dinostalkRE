@@ -164,7 +164,15 @@ void gsGunPlaySE_RELOAD_A(int a)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_gun", gsGunPlaySE_RELOAD_B);
+void gsGunPlaySE_RELOAD_B(int a)
+{
+    short s = STRUCT_OFFSET(D_003C114E + a * 180, 0, short);
+
+    if (s >= 0)
+    {
+        gsSoundSeMePlay(s);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_gun", gsGunYakkyo_ENTRY);
 
