@@ -39,7 +39,19 @@ INCLUDE_ASM("asm/nonmatchings/hoya/g_string", GetUV);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/g_string", GetUV2);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/g_string", ChangeDrawFlag);
+void ChangeDrawFlag(int i, int on)
+{
+    FontMng* m = &fntMng[i];
+
+    if (on)
+    {
+        STRUCT_OFFSET(m, 0x0, int) |= 4;
+    }
+    else
+    {
+        STRUCT_OFFSET(m, 0x0, int) &= ~4;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/g_string", EntryFontOne);
 
