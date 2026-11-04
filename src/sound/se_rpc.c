@@ -486,7 +486,10 @@ int SeStrmRevOn(int a)
     return ezSe(0x8480, a, 1);
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeStrmRevOff);
+int SeStrmRevOff(int a)
+{
+    return ezSe(0x8470, a, 1);
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeStrmPlaySt);
 
