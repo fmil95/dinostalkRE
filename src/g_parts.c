@@ -3,6 +3,17 @@
 extern void _gpClearWorldRecov();
 
 extern void _gpGetPodGeometryNum();
+extern int eval_time_00673fc8;
+extern int eval_end_flag_00673fc4;
+extern void gpInstance_Eval2();
+extern int gpGetPodGeometryNum();
+extern void* MEM_MallocAlign();
+extern char D_00664C40[];
+extern void _gpMakeWorldOdvGeomBound();
+extern void* memset();
+extern void gpModifyCollisionTriangle2();
+extern void gpSetMatrixXYZ();
+extern void sceVu0CopyMatrix();
 INCLUDE_ASM("asm/nonmatchings/g_parts", _gpGetBoundBox);
 
 INCLUDE_ASM("asm/nonmatchings/g_parts", gpGetBoundBox);
@@ -180,7 +191,16 @@ INCLUDE_ASM("asm/nonmatchings/g_parts", gpInstance_MakeRotMatrix);
 
 INCLUDE_ASM("asm/nonmatchings/g_parts", gpInstance_Eval2);
 
-INCLUDE_ASM("asm/nonmatchings/g_parts", gpInstance_Eval);
+void gpInstance_Eval(int a)
+{
+    eval_time_00673fc8 = 0;
+    do
+    {
+        eval_end_flag_00673fc4 = 1;
+        gpInstance_Eval2(a);
+        eval_time_00673fc8++;
+    } while (eval_end_flag_00673fc4 == 0);
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_parts", gpGetEyeComLine);
 
