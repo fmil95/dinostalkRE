@@ -7,6 +7,7 @@ extern int aeSetAD();
 extern void FlushCache();
 extern void sceGsSwapDBuff();
 extern void aeStartMfifo();
+extern void aeLoadImage();
 INCLUDE_ASM("asm/nonmatchings/aelib", aeInit);
 
 INCLUDE_ASM("asm/nonmatchings/aelib", aeStartMfifo);
@@ -155,7 +156,12 @@ int _saeDrawPrim_AD(void* a)
     return STRUCT_OFFSET(a, 0x4, int);
 }
 
-INCLUDE_ASM("asm/nonmatchings/aelib", _saeDrawPrim_LDIMG);
+int _saeDrawPrim_LDIMG(char* p)
+{
+    aeLoadImage(STRUCT_OFFSET(p, 0x4, u_short), STRUCT_OFFSET(p, 0x1, u_char), STRUCT_OFFSET(p, 0x6, u_short), STRUCT_OFFSET(p, 0x10, int), STRUCT_OFFSET(p, 0xC, int), STRUCT_OFFSET(p, 0x14, int), STRUCT_OFFSET(p, 0x18, int), STRUCT_OFFSET(p, 0x1C, int), STRUCT_OFFSET(p, 0x20, int));
+
+    return STRUCT_OFFSET(p, 0x8, int);
+}
 
 INCLUDE_ASM("asm/nonmatchings/aelib", _saeDrawPrim_SPRT2);
 
