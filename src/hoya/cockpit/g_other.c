@@ -46,7 +46,17 @@ void gsTimerCntTime(int a)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_other", gsTimerPauseTime);
+void gsTimerPauseTime(int a)
+{
+    if (a)
+    {
+        gsCOCKPIT_TimerCnt.a |= 2;
+    }
+    else
+    {
+        gsCOCKPIT_TimerCnt.a &= ~2;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_other", gsTimerPauseTimeEx);
 
