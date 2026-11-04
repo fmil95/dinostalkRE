@@ -28,7 +28,10 @@ void InitLetterAll()
 
 INCLUDE_ASM("asm/nonmatchings/hoya/g_string", DeleteEntryNumSprite);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/g_string", GetFontInfo);
+FontMng* GetFontInfo(int i)
+{
+    return &fntMng[i];
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/g_string", GetUV);
 
