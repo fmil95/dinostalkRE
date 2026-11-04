@@ -13,6 +13,13 @@ extern u_short* _gsIkControlTbl[];
 extern void sceVu0CopyVector();
 extern char D_002F1E50[];
 extern void (*pHeadStareFunc_3[])();
+extern void _gsIK_RaptInit();
+extern void _gsIK_CompInit();
+extern void _gsIK_TrkrInit();
+extern void _gsIK_TrexInit();
+extern void _gsIK_PtebInit();
+extern void _gsIK_PrsoInit();
+extern void _gsIK_CrnInit();
 void gsIKinit()
 {
     int p = (int)gsEnemyInfos;
@@ -24,7 +31,47 @@ void gsIKinit()
     } while (p < (int)gsEnemyInfos + 0x1A720);
 }
 
-INCLUDE_ASM("asm/nonmatchings/benjamin/g_ik", gsIKinitOne);
+void gsIKinitOne(void* a)
+{
+    switch (STRUCT_OFFSET(a, 0x2A, short))
+    {
+    case 0:
+    case 1:
+    case 2:
+        _gsIK_RaptInit(a);
+        break;
+    case 3:
+        _gsIK_RaptInit(a);
+        break;
+    case 4:
+        _gsIK_CompInit(a);
+        break;
+    case 5:
+    case 16:
+        _gsIK_RaptInit(a);
+        break;
+    case 6:
+        _gsIK_TrkrInit(a);
+        break;
+    case 7:
+    case 8:
+    case 14:
+        _gsIK_TrexInit(a);
+        break;
+    case 9:
+    case 10:
+    case 11:
+        _gsIK_PtebInit(a);
+        break;
+    case 12:
+    case 15:
+        _gsIK_PrsoInit(a);
+        break;
+    case 13:
+        _gsIK_CrnInit(a);
+        break;
+    }
+}
 
 void gsIKprocHead(void) {
 }
