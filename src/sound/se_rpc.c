@@ -276,7 +276,10 @@ int SeSePortOff()
     return ezSe(0x8420, 0, 1);
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeMidiPortOff);
+int SeMidiPortOff()
+{
+    return ezSe(0x8430, 0, 1);
+}
 
 int SeStrmOff()
 {
