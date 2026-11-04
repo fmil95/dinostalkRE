@@ -10,6 +10,7 @@ extern char rArmHitSubProcFlag[];
 extern char D_003EAEA0[];
 extern char _gsIK_PtebRArmHitPos[];
 
+extern int gsPartPteb[];
 void _gsIK_PtebInit(void* a)
 {
     _gsIK_InitDataHead((char*)a + 0xD40);
@@ -19,7 +20,11 @@ INCLUDE_ASM("asm/nonmatchings/benjamin/ik_pteb", _gsIK_PtebResetInfo);
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/ik_pteb", _gsIK_PtebHeadStare);
 
-INCLUDE_ASM("asm/nonmatchings/benjamin/ik_pteb", _gsIK_PtebSetHit);
+void _gsIK_PtebSetHit(void* a, int i)
+{
+    STRUCT_OFFSET(a, 0xD58, int) |= gsPartPteb[i];
+    STRUCT_OFFSET(a, 0xD5C, int) |= gsPartPteb[i];
+}
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/ik_pteb", _gsIK_PtebHit);
 
