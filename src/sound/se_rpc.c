@@ -18,6 +18,8 @@ extern SeEnt D_0064B564[];
 extern int u_dat[];
 extern int D_0064B364[][4];
 extern u_char dat[];
+extern int StrmPort[][2];
+extern char D_0066CB80[];
 int get_SE_MAX() 
 {
     return 1000;
@@ -429,7 +431,13 @@ INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeDir2);
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeSetVolume);
 
-INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeSetPitch);
+int SeSetPitch(int a, u_int b)
+{
+    if (b < 0x30)
+    {
+        return ezSe(0x8500, (a << 16) | b, 1);
+    }
+}
 
 int SeKeyon3D(int a, int b, int c, int d, int e, int f)
 {
