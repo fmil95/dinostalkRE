@@ -1,5 +1,9 @@
 #include "sound/buf.h"
 #include "sound/disp.h"
+#define D2_TADR ((volatile u_int*)0x1000A030)
+#define D2_QWC ((volatile u_int*)0x1000A020)
+#define D2_CHCR ((volatile u_int*)0x1000A000)
+#define DmaAddr(p) ((void*)((u_int)(p) & 0x0FFFFFFF))
 
 #define ExitHandler() asm volatile("sync.l; ei")
 
@@ -285,7 +289,12 @@ u_int* setTRXDIR(u_int* p, u_int xdir)
     return setGIFad(p, SCE_GS_TRXDIR, (u_long)xdir);
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/disp", loadImage);
+void loadImage(u_int* tags)
+{
+    *D2_TADR = (u_int)DmaAddr(tags);
+    *D2_QWC = 0;
+    *D2_CHCR = 0x105;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/disp", vblankHandler);
 
