@@ -162,4 +162,23 @@ void GFCache_Invalidate(Uint16 pos, Uint16 size)
     gfCache_DefragCell();
 }
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfvcache", gfCache_DefragCell);
+static void gfCache_DefragCell()
+{
+    GF_CACHE_CELL* p;
+
+    p = gfInfo_00674cdc;
+
+    while (p->next != NULL)
+    {
+        if (p->used_flag == 0 && p->next->used_flag == 0)
+        {
+            p->next->stat = 0;
+            p->size += p->next->size;
+            p->next = p->next->next;
+        }
+        else
+        {
+            p = p->next;
+        }
+    }
+}
