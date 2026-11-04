@@ -102,7 +102,25 @@ void _gsIK_TailSwing(void* a)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/benjamin/g_ik", _gsIK_HitProc);
+int _gsIK_HitProc(char* a)
+{
+    short i;
+    int (*f)();
+
+    if (STRUCT_OFFSET(a, 0xD58, int))
+    {
+        i = STRUCT_OFFSET(a, 0x2A, short);
+        f = pHitFunc_7[i];
+        if (f)
+        {
+            if (_gsIkControlTbl[i][STRUCT_OFFSET(a, 0x84, int)] & 0xC00)
+            {
+                return f(a);
+            }
+        }
+    }
+    return 0;
+}
 
 void _gsIK_AdjustDeadPose(void* a)
 {
