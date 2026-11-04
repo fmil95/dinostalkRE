@@ -46,7 +46,14 @@ void setD3_CHCR(u_int a)
     EIntr();
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/buf", setD4_CHCR);
+void setD4_CHCR(u_int a)
+{
+    DIntr();
+    *D_ENABLEW = *D_ENABLER | 0x10000;
+    *D4_CHCR = a;
+    *D_ENABLEW = *D_ENABLER & ~0x10000;
+    EIntr();
+}
 
 void scTag2(QWORD* q, void* addr, u_int id, u_int qwc)
 {
