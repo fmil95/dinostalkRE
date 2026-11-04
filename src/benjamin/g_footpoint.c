@@ -6,11 +6,16 @@ extern int gsFootPointBefore;
 extern char gsFootPointInst[];
 extern void GFInstance_Remove();
 
+extern int gsfootpointpig_files[];
+extern int TEST_LoadTexture();
 INCLUDE_ASM("asm/nonmatchings/benjamin/g_footpoint", gsFootPoint_Init);
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/g_footpoint", gsFootPoint_InitFootPoint);
 
-INCLUDE_ASM("asm/nonmatchings/benjamin/g_footpoint", gsFootPoint_LoadTexture);
+void gsFootPoint_LoadTexture(int i)
+{
+    gsFootPointTexIndex[i] = TEST_LoadTexture(gsfootpointpig_files[i], 1);
+}
 
 void gsFootPoint_Eval(void) {
 }
