@@ -8,6 +8,7 @@ extern void hySetFadePara2();
 extern void hySwitchFadeTimer();
 extern int GotoNextStage_memcsub2();
 
+extern void GotoModeSelect();
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub2", LoadInitSprFileNum);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub2", LoadDrawSprOther);
@@ -74,7 +75,12 @@ int ProcEnd_memcsub2(int a)
     return a;
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub2", ProcEnd2_memcsub2);
+int ProcEnd2_memcsub2(int a)
+{
+    GotoModeSelect();
+
+    return a;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub2", InitMemcLoad);
 
