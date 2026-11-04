@@ -14,7 +14,12 @@ INCLUDE_ASM("asm/nonmatchings/hoya/playdemo/playdemo", gsRecordPadMain);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/playdemo/playdemo", gsRecordPadMain2);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/playdemo/playdemo", gsRecordPadEnd);
+void gsRecordPadEnd()
+{
+    MEM_Free(playDemo[3]);
+    MEM_Free(playDemo[4]);
+    playDemo[0] = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/playdemo/playdemo", gsRecordPadFPutData);
 
