@@ -25,7 +25,20 @@ int McConnectCheck_memcsub0(int a)
     return r;
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub0", McDisconnectCheck_memcsub0);
+int McDisconnectCheck_memcsub0(int a)
+{
+    int r = a;
+    int* p;
+
+    if (CheckMemcType(0, 0) != 2)
+    {
+        p = (int*)pmss_00673c64;
+        r = 0xD2;
+        p[1] = 0;
+        p[0x81] &= ~6;
+    }
+    return r;
+}
 
 void SetFadePara_memcsub0(int a, int b, int c)
 {
