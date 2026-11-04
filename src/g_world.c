@@ -53,7 +53,24 @@ void gsWorldInitReaction(char* a)
 
 INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldEntryReaction);
 
-INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldCheckEntryReaction);
+int gsWorldCheckEntryReaction(char* a, char* b)
+{
+    int i;
+    int r = 2;
+
+    if (STRUCT_OFFSET(b, 0, int) >= 0)
+    {
+        for (i = 0; i < 0x40; i++, a += 0x18)
+        {
+            if (STRUCT_OFFSET(a, 0, char*) == b)
+            {
+                break;
+            }
+        }
+        r = i != 0x40;
+    }
+    return r;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldPlayReaction);
 
