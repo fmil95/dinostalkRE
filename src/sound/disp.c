@@ -105,7 +105,12 @@ u_int* setUV(u_int* p, u_int u, u_int v)
     return setGIFad(p, SCE_GS_UV, val);
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/disp", setRGBAQ);
+u_int* setRGBAQ(u_int* p, u_int r, u_int g, u_int b, u_int a, u_int q)
+{
+    u_long val = SCE_GS_SET_RGBAQ(r, g, b, a, q);
+
+    return setGIFad(p, SCE_GS_RGBAQ, val);
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/disp", setXYZ2);
 
