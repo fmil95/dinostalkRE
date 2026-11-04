@@ -61,7 +61,27 @@ void ene01move05(char* a)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/ene01pro/ene01mv", ene01move07);
+void ene01move07(char* a)
+{
+    char* p = a + 0xBA0;
+
+    STRUCT_OFFSET(a, 0x200, int) = 0;
+    if (STRUCT_OFFSET(a, 0x8C, int) == 0)
+    {
+        Enemy_AnmChg00(a, 0, 8, 1);
+        STRUCT_OFFSET(a, 0x0, int) |= 0x40000;
+        STRUCT_OFFSET(a, 0x8C, int) = -1;
+    }
+    else if (GFAnim_ShapeFlagCheck((GF_INST_OBJECT*)p, 0) & 2)
+    {
+        GFAnim_ShapeFlagClear((GF_INST_OBJECT*)p, 2);
+        Enemy_SeReq(a, 0xC8, 0);
+        if (rand() % 3 == 0)
+        {
+            Enemy_SeReq(a, 0x14A, 1);
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/ene01pro/ene01mv", ene01move09);
 
