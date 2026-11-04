@@ -7,6 +7,7 @@ extern void GF_EndGraphicsFramework();
 extern void hySetFadePara2();
 extern void hySwitchFadeTimer();
 
+extern char* hySearchSMSpriteInfo();
 void SetFadeParaPause_namesub(int a, int b, int c)
 {
     hySetFadePara2(a, b, c, (pGnn + 192));
@@ -50,7 +51,10 @@ INCLUDE_ASM("asm/nonmatchings/hoya/name/namesub", semiProcMakeSavedata);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/name/namesub", semiProcScrollObj);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/name/namesub", semiProcSetStorngBar);
+void semiProcSetStorngBar()
+{
+    STRUCT_OFFSET(STRUCT_OFFSET(hySearchSMSpriteInfo(pGnn + 0x29C, 0xB), 0x24, char*), 4, int) = 0x12C;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/name/namesub", ProcFadeIn_namesub);
 
