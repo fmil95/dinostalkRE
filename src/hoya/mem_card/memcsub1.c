@@ -7,7 +7,21 @@ extern void hySetFadePara2();
 extern void hySwitchFadeTimer();
 extern int GotoNextStage_memcsub1();
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub1", McConnectCheck_memcsub1);
+extern int CheckMemcType();
+int McConnectCheck_memcsub1(int a)
+{
+    int r = a;
+    int* p;
+
+    if (CheckMemcType(0, 0) == 2)
+    {
+        p = (int*)pmss_00674568;
+        r = 0xC8;
+        p[1] = 0;
+        p[0x81] &= ~0xFFE;
+    }
+    return r;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub1", McDisconnectCheck_memcsub1);
 
