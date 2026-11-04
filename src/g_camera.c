@@ -96,6 +96,20 @@ INCLUDE_ASM("asm/nonmatchings/g_camera", gsGetCameraAmp);
 
 INCLUDE_ASM("asm/nonmatchings/g_camera", _gsCameraGetItem);
 
+INCLUDE_RODATA("asm/nonmatchings/g_camera", D_00664D10);
+
+INCLUDE_RODATA("asm/nonmatchings/g_camera", D_00664D20);
+
+INCLUDE_RODATA("asm/nonmatchings/g_camera", D_00664D30);
+
+INCLUDE_RODATA("asm/nonmatchings/g_camera", D_00664D48);
+
+INCLUDE_RODATA("asm/nonmatchings/g_camera", D_00664D50);
+
+INCLUDE_RODATA("asm/nonmatchings/g_camera", D_00664D58);
+
+INCLUDE_RODATA("asm/nonmatchings/g_camera", D_00664D60);
+
 INCLUDE_ASM("asm/nonmatchings/g_camera", gsCameraGetItem);
 
 INCLUDE_ASM("asm/nonmatchings/g_camera", gsCameraSubLife);
@@ -107,6 +121,30 @@ INCLUDE_ASM("asm/nonmatchings/g_camera", _gsCameraDamageEffect);
 INCLUDE_ASM("asm/nonmatchings/g_camera", _gsCameraDamageEffect_TREX);
 
 INCLUDE_ASM("asm/nonmatchings/g_camera", gsCameraDamageEffect_TREX);
+
+INCLUDE_RODATA("asm/nonmatchings/g_camera", D_00664DE0);
+
+INCLUDE_RODATA("asm/nonmatchings/g_camera", D_00664DF0);
+
+INCLUDE_RODATA("asm/nonmatchings/g_camera", D_00664E00);
+
+INCLUDE_RODATA("asm/nonmatchings/g_camera", D_00664E10);
+
+INCLUDE_RODATA("asm/nonmatchings/g_camera", D_00664E20);
+
+INCLUDE_RODATA("asm/nonmatchings/g_camera", D_00664E30);
+
+INCLUDE_RODATA("asm/nonmatchings/g_camera", D_00664E40);
+
+INCLUDE_RODATA("asm/nonmatchings/g_camera", D_00664E50);
+
+INCLUDE_RODATA("asm/nonmatchings/g_camera", D_00664E60);
+
+INCLUDE_RODATA("asm/nonmatchings/g_camera", D_00664E70);
+
+INCLUDE_RODATA("asm/nonmatchings/g_camera", D_00664E80);
+
+INCLUDE_RODATA("asm/nonmatchings/g_camera", D_00664E90);
 
 INCLUDE_ASM("asm/nonmatchings/g_camera", gsCameraDamageEffect);
 
@@ -228,6 +266,14 @@ INCLUDE_ASM("asm/nonmatchings/g_camera", gsCameraCountItem_Tachyon);
 INCLUDE_ASM("asm/nonmatchings/g_camera", gsCameraSetPauseParam);
 
 INCLUDE_ASM("asm/nonmatchings/g_camera", _gsCameraTraceTilt);
+
+INCLUDE_RODATA("asm/nonmatchings/g_camera", D_00664F08);
+
+INCLUDE_RODATA("asm/nonmatchings/g_camera", D_00664F18);
+
+INCLUDE_RODATA("asm/nonmatchings/g_camera", D_00664F28);
+
+INCLUDE_RODATA("asm/nonmatchings/g_camera", D_00664F48);
 
 INCLUDE_ASM("asm/nonmatchings/g_camera", gsCameraTraceTilt);
 
