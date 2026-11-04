@@ -10,6 +10,10 @@ extern FixItemS Fix_Item[];
 typedef struct { char b[0x220]; } ThrowWeaponS;
 extern ThrowWeaponS gsThrow_Weapon[];
 extern void gfShape_AttachObject2_item();
+extern char gScene[];
+extern void GFInstance_AddChild();
+extern void GFInstance_Remove();
+extern void gsClear_ThrowWeapon_Infos();
 INCLUDE_ASM("asm/nonmatchings/air/a_item", gsItemInit);
 
 INCLUDE_ASM("asm/nonmatchings/air/a_item", gsEventObjItemDataLoad);
@@ -134,7 +138,20 @@ INCLUDE_ASM("asm/nonmatchings/air/a_item", gsClearFixItem);
 
 INCLUDE_ASM("asm/nonmatchings/air/a_item", gsMakeAddFixItem);
 
-INCLUDE_ASM("asm/nonmatchings/air/a_item", gsAddFixItem);
+void gsAddFixItem()
+{
+    char* p = (char*)Fix_Item;
+    int i;
+
+    for (i = 0x3F; i >= 0; i--, p += 0x210)
+    {
+        if ((STRUCT_OFFSET(p, 0, long) & 0x11) == 0x11)
+        {
+            STRUCT_OFFSET(p, 0, int) |= 2;
+            GFInstance_AddChild(gScene, p + 0x70);
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/air/a_item", gsItemReset_ForMovie);
 
