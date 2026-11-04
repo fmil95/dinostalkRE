@@ -193,7 +193,20 @@ void Enemy_AllPsInfInt()
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_PsInfInt);
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_SarchEmptyPsInf);
+int Enemy_SarchEmptyPsInf()
+{
+    int i;
+
+    for (i = 0; i < 20; i++)
+    {
+        if ((STRUCT_OFFSET(&gsPoisonInfos[i], 0x0, int) & 1) == 0)
+        {
+            return i;
+        }
+    }
+
+    return -1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", enemy_poisonmv);
 
