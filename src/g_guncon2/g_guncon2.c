@@ -37,7 +37,17 @@ int gsGuncon2_Get()
     return STRUCT_OFFSET(m, 0x28, int);
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_guncon2/g_guncon2", gsGuncon2_GetTrg);
+int gsGuncon2_GetTrg()
+{
+    void* m = gsGuncon2Manager[0];
+
+    if (m == 0)
+    {
+        return 0;
+    }
+
+    return STRUCT_OFFSET(m, 0x2C, int);
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_guncon2/g_guncon2", gsGuncon2_GetRTrg);
 
