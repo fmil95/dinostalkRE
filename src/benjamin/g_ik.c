@@ -37,7 +37,20 @@ void _gsIK_FootMoveL(void* a)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/benjamin/g_ik", _gsIK_FootMoveR);
+void _gsIK_FootMoveR(void* a)
+{
+    void (*f)(void*);
+
+    if (gsPause == 0)
+    {
+        f = pFootMoveRFunc_5[STRUCT_OFFSET(a, 0x2A, short)];
+
+        if (f)
+        {
+            f(a);
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/g_ik", _gsIK_TailSwing);
 
