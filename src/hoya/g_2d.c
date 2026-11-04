@@ -1,6 +1,16 @@
 #include "common.h"
 
-INCLUDE_ASM("asm/nonmatchings/hoya/g_2d", hyInitDrawPoint);
+void hyInitDrawPoint(char* p)
+{
+    STRUCT_OFFSET(p, 0x0, long) = 0x40;
+    STRUCT_OFFSET(p, 0x8, int) = 0xFFFFFF;
+    STRUCT_OFFSET(p, 0xE, short) = 0;
+    STRUCT_OFFSET(p, 0xC, short) = 0;
+    STRUCT_OFFSET(p, 0x13, char) = -0x80;
+    STRUCT_OFFSET(p, 0x12, char) = -0x80;
+    STRUCT_OFFSET(p, 0x11, char) = -0x80;
+    STRUCT_OFFSET(p, 0x10, char) = -0x80;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/g_2d", hyDrawPoint);
 
