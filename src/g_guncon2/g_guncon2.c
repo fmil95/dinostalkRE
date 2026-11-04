@@ -74,7 +74,16 @@ int gsGuncon2_Get2()
     return _gsGuncon2_changeByOpton(STRUCT_OFFSET(m, 0x28, int));
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_guncon2/g_guncon2", gsGuncon2_GetTrg2);
+int gsGuncon2_GetTrg2()
+{
+    void* m = gsGuncon2Manager[0];
+
+    if (m == 0)
+    {
+        return 0;
+    }
+    return _gsGuncon2_changeByOpton(STRUCT_OFFSET(m, 0x2C, int));
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_guncon2/g_guncon2", gsGuncon2_GetGunPos);
 
