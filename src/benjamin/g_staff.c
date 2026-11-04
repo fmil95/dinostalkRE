@@ -8,6 +8,8 @@ extern void GF_EndGraphicsFramework();
 extern void GFTex_ResetDatabase();
 extern void MEM_FreeAll();
 
+INCLUDE_RODATA("asm/nonmatchings/benjamin/g_staff", D_00666990);
+
 INCLUDE_ASM("asm/nonmatchings/benjamin/g_staff", gsStaffInit);
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/g_staff", gsStaffExec);
@@ -62,3 +64,9 @@ INCLUDE_ASM("asm/nonmatchings/benjamin/g_staff", staffFontCheckHit);
 INCLUDE_ASM("asm/nonmatchings/benjamin/g_staff", staffSetJump);
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/g_staff", staffSetChangeSize);
+INCLUDE_RODATA("asm/nonmatchings/benjamin/g_staff", D_00666A90);
+
+INCLUDE_RODATA("asm/nonmatchings/benjamin/g_staff", D_00666AC0);
+
+INCLUDE_RODATA("asm/nonmatchings/benjamin/g_staff", D_00666AF0);
+
