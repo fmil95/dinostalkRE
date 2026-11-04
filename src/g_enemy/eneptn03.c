@@ -450,7 +450,21 @@ void eneptn03_ST7carno_combi00_10(void* a)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn03", eneptn03_ST7carno_combi00_11);
+void eneptn03_ST7carno_combi00_11(char* a)
+{
+    char* o = eneptn03_getothercarno(a);
+
+    if (o != NULL)
+    {
+        STRUCT_OFFSET(a, 0x62, u_short)++;
+
+        if (STRUCT_OFFSET(o, 0xC, int) == STRUCT_OFFSET(a, 0xC, int))
+        {
+            STRUCT_OFFSET(o, 0x5C, short) = STRUCT_OFFSET(a, 0x5C, short);
+            STRUCT_OFFSET(o, 0x62, short) = 0xC;
+        }
+    }
+}
 
 void eneptn03_ST7carno_combi00_12(void* a)
 {
