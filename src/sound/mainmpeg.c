@@ -252,7 +252,41 @@ int videoCallback(sceMpeg* mp, sceMpegCbDataStr* str, void* data)
     return (len > 0) ? 1 : 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", pcmCallback);
+int pcmCallback(sceMpeg* mp, sceMpegCbDataStr* str, void* data)
+{
+    ReadBuf* rb = (ReadBuf*)data;
+    u_char* ps0 = str->data;
+    u_char* ps1 = rb->data;
+    int s0;
+    int s1;
+    u_char* pd0;
+    u_char* pd1;
+    int d0, d1;
+    int len;
+    int ret;
+
+    ps0 = str->data + 4;
+
+    if (ps0 >= rb->data + rb->size)
+    {
+        ps0 -= rb->size;
+    }
+
+    len = str->len - 4;
+
+    ps1 = rb->data;
+    s0 = min(rb->data + rb->size - ps0, len);
+    s1 = len - s0;
+
+    audio_dec_flg = 1;
+
+    audioDecBeginPut(&audioDec, &pd0, &d0, &pd1, &d1);
+    ret = copy2area(pd0, d0, pd1, d1, ps0, s0, ps1, s1);
+
+    audioDecEndPut(&audioDec, ret);
+
+    return (ret > 0) ? 1 : 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", copy2area);
 
