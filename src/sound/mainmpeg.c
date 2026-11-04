@@ -2,6 +2,16 @@
 
 #define min(x, y) (((x) > (y)) ? (y) : (x))
 
+extern int sceCdDiskReady(int mode);
+extern void* sceSifAllocIopHeap(int size);
+extern int sceCdStInit(u_int bufmax, u_int bankmax, u_int iop_bufaddr);
+extern int sceCdSearchFile(sceCdlFILE* fp, const char* name);
+extern int sceCdStStart(u_int lbn, sceCdRMode* mode);
+extern int start_sec;
+extern int sceCdStRead(u_int sectors, u_int* buf, u_int mode, u_int* err);
+extern int printf();
+extern char D_0066CD88[];
+
 extern int frame_cnt;
 extern char err_sts;
 extern int GS_Send_Flg;
@@ -73,7 +83,44 @@ int ResetMpeg()
     return 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", strFileOpen);
+int strFileOpen(StrFile* file, char* filename)
+{
+    sceCdRMode mode;
+
+    sceCdDiskReady(0);
+
+    file->iopBuf = sceSifAllocIopHeap(0x28010);
+
+    if (file->iopBuf == NULL)
+    {
+        return 1;
+    }
+
+    if (!sceCdStInit(0x50, 5, ((u_int)file->iopBuf + 15) / 16 * 16))
+    {
+        return 2;
+    }
+
+    if (!sceCdSearchFile(&file->fp, filename))
+    {
+        return 3;
+    }
+
+    file->size = file->fp.size;
+
+    mode.trycount = 0;
+    mode.spindlctrl = 0;
+    mode.datapattern = 0;
+
+    start_sec = file->fp.lsn;
+
+    if (!sceCdStStart(file->fp.lsn, &mode))
+    {
+        return 4;
+    }
+
+    return 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", strFileClose);
 
