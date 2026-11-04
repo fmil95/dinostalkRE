@@ -52,7 +52,10 @@ int gsPad_Get2(int i)
     return D_002F18A4[i].w[14];
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_pad", gsPad_GetTrg2);
+int gsPad_GetTrg2(int i)
+{
+    return D_002F18A4[i].w[15];
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_pad", gsPad_GetRTrg2);
 
