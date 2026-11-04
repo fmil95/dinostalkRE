@@ -5,6 +5,7 @@ extern void sceVu0CopyVectorXYZ();
 extern void sceVu0UnitMatrix();
 extern void sceVu0RotMatrix();
 
+extern void* GFTex_GetDb();
 INCLUDE_ASM("asm/nonmatchings/particle", gf_MyRand);
 
 INCLUDE_ASM("asm/nonmatchings/particle", gf_MyRandRange);
@@ -125,7 +126,13 @@ void GFParticle_SetCreateSpeed(void* a, float x, float y)
     STRUCT_OFFSET(a, 0xAC, int) = 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/particle", GFParticle_SetTextureID);
+void GFParticle_SetTextureID(char* a, int b)
+{
+    if (b == 0xFFFFFFF || GFTex_GetDb(b) != 0)
+    {
+        STRUCT_OFFSET(a, 0xA0, int) = b;
+    }
+}
 
 int GFParticle_GetTextureID(void* p)
 {
