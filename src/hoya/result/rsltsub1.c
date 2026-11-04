@@ -41,7 +41,12 @@ INCLUDE_ASM("asm/nonmatchings/hoya/result/rsltsub1", RsltDrawSprYN);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/result/rsltsub1", ConvTime2Score);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/result/rsltsub1", ConvTimeBonus2Score);
+int ConvTimeBonus2Score()
+{
+    addScore2(pRsltRslt + 0x750, STRUCT_OFFSET(pRsltRslt, 0x760, int));
+
+    return 0;
+}
 
 int ConvDinoBonus2Score()
 {
