@@ -25,7 +25,10 @@ INCLUDE_ASM("asm/nonmatchings/sound/disp", texload);
 
 INCLUDE_ASM("asm/nonmatchings/sound/disp", dispSetTags);
 
-INCLUDE_ASM("asm/nonmatchings/sound/disp", dispSwitch);
+void dispSwitch(Display* d, int id)
+{
+    *(volatile u_long*)0x12000090 = ((u_long)d->fb_w << 9) | (id ? d->fbp1 : d->fbp0);
+}
 
 void dispClear(void) {
 }
