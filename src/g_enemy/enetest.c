@@ -5,11 +5,31 @@ extern void GFInstance_Remove();
 extern void enetest_end();
 extern void enetest_init();
 
+extern void TEST_destroy_instshape();
+extern void GF_EndGraphicsFramework();
+extern void MEM_FreeAll();
+extern char gsEnemyInfos[];
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enetest", enetest_init);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enetest", enetest_main);
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/enetest", enetest_end);
+void enetest_end(void)
+{
+    int i;
+    char* p;
+
+    sceGsSyncPath(0, 0);
+    for (i = 9, p = gsEnemyInfos; i >= 0; i--, p += 0x2A50)
+    {
+        if (STRUCT_OFFSET(p, 0x0, int) & 1)
+        {
+            TEST_destroy_instshape(STRUCT_OFFSET(p, 0xCBC, int));
+        }
+    }
+    sceGsSyncPath(0, 0);
+    GF_EndGraphicsFramework();
+    MEM_FreeAll();
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enetest", enetestinfoprt);
 
