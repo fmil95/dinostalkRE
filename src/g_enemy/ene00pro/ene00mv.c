@@ -3,7 +3,24 @@
 #include "g_enemy/enemain.h"
 #include <stdlib.h>
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/ene00pro/ene00mv", ene00move_main);
+extern void ene00joy_plmain();
+extern void enemy_thkmain();
+extern int D_002F18B4[2];
+extern void (*ene00movestbl[])();
+void ene00move_main(char* a)
+{
+    STRUCT_OFFSET(a, 0x98, int) = STRUCT_OFFSET(STRUCT_OFFSET(a, 0xCBC, char*), 0x148, int);
+    if (STRUCT_OFFSET(a, 0, int) < 0)
+    {
+        STRUCT_OFFSET(a, 0xE4, int) = D_002F18B4[0];
+        ene00joy_plmain(a);
+    }
+    else
+    {
+        enemy_thkmain(a);
+    }
+    ene00movestbl[STRUCT_OFFSET(a, 0x84, int)](a);
+}
 
 void enedummymv_ene00mv(void) {
 }
