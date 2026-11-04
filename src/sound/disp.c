@@ -1,8 +1,7 @@
-#include "common.h"
+#include "sound/disp.h"
 
 extern int isCountVblank;
 extern int frd;
-extern void setGIFad();
 
 INCLUDE_ASM("asm/nonmatchings/sound/disp", initDisplay);
 
@@ -36,9 +35,9 @@ INCLUDE_ASM("asm/nonmatchings/sound/disp", setGIFtag);
 
 INCLUDE_ASM("asm/nonmatchings/sound/disp", setGIFad);
 
-void setTEXFLUSH(int a)
+u_int* setTEXFLUSH(u_int* p)
 {
-    setGIFad(a, 63, 0);
+    return setGIFad(p, SCE_GS_TEXFLUSH, 0);
 }
 
 INCLUDE_ASM("asm/nonmatchings/sound/disp", setTEX1_1);
