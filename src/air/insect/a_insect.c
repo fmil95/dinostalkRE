@@ -4,7 +4,16 @@ extern int IscSe_Port_GokiA;
 extern int IscSe_Port_GokiB;
 extern int IscSe_Port_Tomb;
 
-INCLUDE_ASM("asm/nonmatchings/air/insect/a_insect", gsIscInfosAllClear);
+extern void gsIscInfosClear();
+void gsIscInfosAllClear()
+{
+    int i;
+
+    for (i = 0; i < 20; i++)
+    {
+        gsIscInfosClear(i, 0);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/air/insect/a_insect", gsIscInfosClear);
 
