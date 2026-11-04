@@ -1,8 +1,12 @@
+#include "gunsuv_usa/libgf/gfmodel.h"
+#include "gunsuv_usa/libgf/gfobject.h"
+#include "gunsuv_usa/libgf/gfshape.h"
 #include "gunsuv_usa/libgf/gfinstance.h"
 
 extern Sint32 eval_end_flag_00674cb0;
 extern Sint32 eval_time_00674cb4;
 static void gfInstance_Eval2(GF_INSTANCE* inst);
+extern Uint32 gf_drawpolynum;
 INCLUDE_ASM("asm/nonmatchings/libgf/gfinstance", gfInstance_MakeRotMatrix);
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfinstance", gfInstance_Eval2);
@@ -43,7 +47,38 @@ void GFInstance_End()
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfinstance", GFInstance_Draw);
+qword* GFInstance_Draw(qword* packet)
+{
+    qword* cur;
+    GF_INSTANCE* inst;
+    gf_inst_drawfunc* func;
+    Uint32 i;
+
+    cur = packet;
+
+    gf_trans_light = NULL;
+    gf_trans_point_light = NULL;
+    gf_trans_spot_light = NULL;
+    gf_drawpolynum = 0;
+
+    for (i = 0; i < 1001; i++)
+    {
+        for (inst = gf_drawOt[i]; inst != NULL; inst = inst->next)
+        {
+            for (func = inst->drawFunc; *func != NULL; func++)
+            {
+                cur = (*func)(cur, inst);
+            }
+
+            if (inst->type == 2)
+            {
+                gf_drawpolynum += ((GF_INST_SHAPE*)inst)->object->model->shapeOfs[((GF_INST_SHAPE*)inst)->no].npoly;
+            }
+        }
+    }
+
+    return cur;
+}
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfinstance", GFInstance_InitHead);
 
