@@ -503,6 +503,9 @@ INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeMeOpen);
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeMeOpenEE);
 
-INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeMeClose);
+int SeMeClose(int a)
+{
+    return SeMeCloseB(D_0064B564[a].w[0]);
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeMeCloseB);
