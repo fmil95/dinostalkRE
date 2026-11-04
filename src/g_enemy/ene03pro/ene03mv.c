@@ -255,7 +255,20 @@ void ene03moveElem222(char* a)
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/ene03pro/ene03mv", ene03moveElem223);
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/ene03pro/ene03mv", ene03moveElem230);
+void ene03moveElem230(char* a)
+{
+    Enemy_AnmChg00(a, 0x66, 8, 0);
+    STRUCT_OFFSET(a, 0x0, int) = (STRUCT_OFFSET(a, 0x0, int) | 0x40000000) & ~0x400;
+    if (STRUCT_OFFSET(a, 0x2A, short) == 7)
+    {
+        Enemy_SeSet00(a, 0x176);
+    }
+    else
+    {
+        Enemy_SeSet00(a, 0x18A);
+    }
+    STRUCT_OFFSET(a, 0x8C, int)++;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/ene03pro/ene03mv", ene03moveElem231);
 
