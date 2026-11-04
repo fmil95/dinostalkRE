@@ -1,10 +1,17 @@
 #include "common.h"
 
+extern void PutScScore();
 INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_cpscor", gsCOCKPIT_InitScore);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_cpscor", PutScScore);
 
-void PutScFixChar(void) {
+void PutScFixChar() {
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_cpscor", gsCOCKPIT_PutScore);
+void gsCOCKPIT_PutScore(int a)
+{
+    int s = a & 1;
+
+    PutScScore(s);
+    PutScFixChar(s);
+}
