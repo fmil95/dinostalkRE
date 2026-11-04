@@ -15,7 +15,25 @@ void gpCShadow_Init(int a, float x, float y)
     gpCShadowBefore = 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_cshadow", gpCShadow_InitCShadow);
+void gpCShadow_InitCShadow(void* a, int b)
+{
+    int before = gpCShadowBefore;
+
+    STRUCT_OFFSET(a, 0x4, int) = b;
+    STRUCT_OFFSET(a, 0x6030, int) = 0;
+    STRUCT_OFFSET(a, 0x0, int) = 0;
+
+    if (before)
+    {
+        STRUCT_OFFSET(before, 0x6030, int) = (int)a;
+    }
+    else
+    {
+        gpCShadowBegin = (int)a;
+    }
+
+    gpCShadowBefore = (int)a;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_cshadow", gpCShadow_Draw);
 
