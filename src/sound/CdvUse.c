@@ -10,6 +10,17 @@ extern int search_que;
 extern int search_prg;
 extern int search_ptr;
 
+extern int s_lsn;
+extern int s_sectors;
+extern int s_buf;
+extern int s_mode;
+extern short s_que;
+extern int Cdv_Que;
+extern void sceCdInit();
+extern void ResetMpeg();
+extern char defbuf[];
+extern char StopFlg;
+extern u_short StepQue;
 INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvCallBack);
 
 INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvInit);
@@ -127,7 +138,14 @@ INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvMain);
 
 INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", GetSecByte);
 
-INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", ReadDataCreate);
+void ReadDataCreate(int a, int b, int c, int d, int e)
+{
+    s_lsn = a;
+    s_sectors = b;
+    s_buf = c;
+    s_mode = d;
+    s_que = e;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvTrapError);
 
