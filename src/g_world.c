@@ -172,7 +172,10 @@ INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldEntryBACK_COLA_OFF);
 
 INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldSetGV_FLAG);
 
-INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldResetGV_FLAG);
+void gsWorldResetGV_FLAG(char* a, int i, int m)
+{
+    STRUCT_OFFSET(a + i * 4, 0xC3334, int) &= ~m;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldSetODV_FLAG);
 
