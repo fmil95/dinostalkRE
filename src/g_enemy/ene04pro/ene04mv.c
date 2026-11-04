@@ -60,7 +60,15 @@ void ene04moveElem051(char* a)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/ene04pro/ene04mv", ene04moveElem070);
+void ene04moveElem070(char* a)
+{
+    Enemy_AnmChg00(a, (STRUCT_OFFSET(a, 0x84, int) << 1) + 0x1C, 8, 1);
+    if (rand() % 3 == 0)
+    {
+        Enemy_SeSet00(a, 0x17C);
+    }
+    STRUCT_OFFSET(a, 0x8C, int)++;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/ene04pro/ene04mv", ene04moveElem090);
 
