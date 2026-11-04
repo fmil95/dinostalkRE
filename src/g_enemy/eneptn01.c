@@ -7,6 +7,7 @@ extern int DieLeaderNo;
 extern void eneptn01_ST1PuteraLeaderPtn();
 extern void eneptn01_ST1PuteraNonLeaderPtn();
 extern void leader_set();
+extern char gsEnemyInfos[];
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn01", Enemy_RotLRChk00);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn01", Enemy_Forming);
@@ -51,7 +52,33 @@ INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn01", eneptn01_cls02);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn01", leader_getinfo);
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn01", leader_check);
+int leader_check(char* a)
+{
+    int f;
+
+    if (LeaderNo == STRUCT_OFFSET(a, 0x28, short))
+    {
+        return 0;
+    }
+    if (LeaderNo < 0)
+    {
+        return 1;
+    }
+    f = STRUCT_OFFSET(gsEnemyInfos + LeaderNo * 0x2A50, 0, int);
+    if (!(f & 1))
+    {
+        return 1;
+    }
+    if (f & 0x20)
+    {
+        return 1;
+    }
+    if (f & 0x20000000)
+    {
+        return 1;
+    }
+    return 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn01", leader_set);
 
