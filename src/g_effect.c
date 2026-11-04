@@ -81,7 +81,16 @@ int gsEffectGetTexIdx(int i)
     return e->b;
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_effect", gsEffectTexReset);
+void gsEffectTexReset()
+{
+    int i;
+
+    for (i = 0; i < 64; i++)
+    {
+        effectTexInfo[i].c = 0;
+        effectTexInfo[i].b = 0;
+    }
+}
 
 u_int gs_EffectMemAlign(u_int a, u_int b)
 {
