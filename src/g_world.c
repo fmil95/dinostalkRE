@@ -124,7 +124,10 @@ void gsWorldEntryGV_AREA(char* a, int b)
     STRUCT_OFFSET(a + STRUCT_OFFSET(a, 0xC3330, int) * 4, 0xC393C, int) = b;
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldEntryODV_AREA);
+void gsWorldEntryODV_AREA(char* a, int b)
+{
+    STRUCT_OFFSET(a + STRUCT_OFFSET(a, 0xC3A40, int) * 4, 0xC5FC0, int) = b;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldEntryOBJ_ALPHA);
 
