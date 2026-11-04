@@ -138,7 +138,20 @@ INCLUDE_ASM("asm/nonmatchings/air/a_item", gsInit_ThrowWeapon);
 
 INCLUDE_ASM("asm/nonmatchings/air/a_item", gsClear_ThrowWeapon_Infos);
 
-INCLUDE_ASM("asm/nonmatchings/air/a_item", gsSearch_ThrowWeapon_FreeInfos);
+int gsSearch_ThrowWeapon_FreeInfos()
+{
+    int i;
+
+    for (i = 0; i < 16; i++)
+    {
+        if ((STRUCT_OFFSET(&gsThrow_Weapon[i], 0x0, u_short) & 1) == 0)
+        {
+            return i;
+        }
+    }
+
+    return -1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/air/a_item", gsMake_ThrowWeapon);
 
