@@ -119,7 +119,19 @@ int gsSoundSeMeStop(int a)
     return 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundSeMeStop2);
+int gsSoundSeMeStop2(int a)
+{
+    if (a >= 0 && a < get_SE_MAX())
+    {
+        int v = D_0064B56C[a].w[0];
+
+        if (v != 0xF000)
+        {
+            gsSoundStopVoice(v);
+        }
+    }
+    return 0;
+}
 
 int gsSoundStopVoice()
 {
