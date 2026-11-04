@@ -1,8 +1,16 @@
 #include "common.h"
+extern void GFTrack_Lifeless();
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/track", GFTrack_Update);
 
-INCLUDE_ASM("asm/nonmatchings/benjamin/track", GFTrack_MallocMemory);
+void GFTrack_MallocMemory(void* a, int b, int c)
+{
+    STRUCT_OFFSET(a, 0x0, int) = b;
+    STRUCT_OFFSET(a, 0x4, int) = c;
+    STRUCT_OFFSET(a, 0xC, int) = 0;
+    STRUCT_OFFSET(a, 0xC0, int) = 0;
+    GFTrack_Lifeless(a);
+}
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/track", GFTrack_Lifeless);
 
