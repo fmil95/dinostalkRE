@@ -105,7 +105,10 @@ INCLUDE_ASM("asm/nonmatchings/hoya/g_string", DrawMessageData2);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/g_string", InitShortSentence);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/g_string", AddShortSentence);
+void AddShortSentence(int i, int v)
+{
+    shortSentence[i] = v;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/g_string", PutShortStr4Font);
 
