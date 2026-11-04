@@ -1,7 +1,7 @@
 #include "common.h"
 
 extern int pStgs_00674978;
-extern void hyCheckFadeFinishFlag();
+extern int hyCheckFadeFinishFlag();
 extern void hySetFadePara2();
 extern void hySwitchFadeTimer();
 
@@ -19,9 +19,9 @@ void SwitchFadeTimer_stgssub3(int a)
     hySwitchFadeTimer(a, (pStgs_00674978 + 64));
 }
 
-void CheckFadeFinishFlag_stgssub3()
+int CheckFadeFinishFlag_stgssub3()
 {
-    hyCheckFadeFinishFlag((pStgs_00674978 + 64));
+    return hyCheckFadeFinishFlag((pStgs_00674978 + 64));
 }
 
 INCLUDE_ASM("asm/nonmatchings/hoya/startgs3/stgssub3", Draw2dObject_stgssub3);

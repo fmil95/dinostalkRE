@@ -1,7 +1,7 @@
 #include "common.h"
 
 extern int pGnn;
-extern void hyCheckFadeFinishFlag();
+extern int hyCheckFadeFinishFlag();
 extern void GFTex_ResetDatabase();
 extern void GF_EndGraphicsFramework();
 extern void hySetFadePara2();
@@ -18,9 +18,9 @@ void SwitchFadeTimerPause_namesub(int a)
     hySwitchFadeTimer(a, (pGnn + 192));
 }
 
-void CheckFadeFinishFlagPause_namesub()
+int CheckFadeFinishFlagPause_namesub()
 {
-    hyCheckFadeFinishFlag((pGnn + 192));
+    return hyCheckFadeFinishFlag((pGnn + 192));
 }
 
 INCLUDE_ASM("asm/nonmatchings/hoya/name/namesub", Draw2dObjectName);

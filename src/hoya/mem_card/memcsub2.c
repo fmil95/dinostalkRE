@@ -2,7 +2,7 @@
 
 extern void EndMemcManager();
 extern int pmss_006745c4;
-extern void hyCheckFadeFinishFlag();
+extern int hyCheckFadeFinishFlag();
 extern int gsNextProg;
 extern void hySetFadePara2();
 extern void hySwitchFadeTimer();
@@ -66,9 +66,9 @@ void SwitchFadeTimerPause_memcsub2(int a)
     hySwitchFadeTimer(a, (pmss_006745c4 + 64));
 }
 
-void CheckFadeFinishFlagPause_memcsub2()
+int CheckFadeFinishFlagPause_memcsub2()
 {
-    hyCheckFadeFinishFlag((pmss_006745c4 + 64));
+    return hyCheckFadeFinishFlag((pmss_006745c4 + 64));
 }
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub2", Draw2dObject_memcsub2);

@@ -1,7 +1,7 @@
 #include "common.h"
 
 extern int pFR;
-extern void hyCheckFadeFinishFlag();
+extern int hyCheckFadeFinishFlag();
 extern void hySetFadePara2();
 extern void hySwitchFadeTimer();
 
@@ -53,9 +53,9 @@ void SwitchFadeTimer_frsltsb1(int a)
     hySwitchFadeTimer(a, (pFR + 8128));
 }
 
-void CheckFadeFinishFlag_frsltsb1()
+int CheckFadeFinishFlag_frsltsb1()
 {
-    hyCheckFadeFinishFlag((pFR + 8128));
+    return hyCheckFadeFinishFlag((pFR + 8128));
 }
 
 INCLUDE_ASM("asm/nonmatchings/hoya/result/frsltsb1", Draw2dObjectFResult);

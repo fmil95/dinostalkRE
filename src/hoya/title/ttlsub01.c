@@ -1,7 +1,7 @@
 #include "common.h"
 
 extern int ttl;
-extern void hyCheckFadeFinishFlag();
+extern int hyCheckFadeFinishFlag();
 extern void hySetFadePara2();
 extern void hySwitchFadeTimer();
 
@@ -16,9 +16,9 @@ void SwitchFadeTimer_ttlsub01(int a)
     hySwitchFadeTimer(a, (ttl + 2304));
 }
 
-void CheckFadeFinishFlag_ttlsub01()
+int CheckFadeFinishFlag_ttlsub01()
 {
-    hyCheckFadeFinishFlag((ttl + 2304));
+    return hyCheckFadeFinishFlag((ttl + 2304));
 }
 
 INCLUDE_ASM("asm/nonmatchings/hoya/title/ttlsub01", Calculation_ttlsub01);

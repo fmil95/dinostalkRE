@@ -4,7 +4,7 @@ extern void EndLetterAll();
 extern int gsNextProg;
 extern void LetsGotoMemcScene();
 extern int pRsltRslt;
-extern void hyCheckFadeFinishFlag();
+extern int hyCheckFadeFinishFlag();
 extern void hySetFadePara2();
 extern void hySwitchFadeTimer();
 
@@ -72,9 +72,9 @@ void SwitchFadeTimerRslt(int a)
     hySwitchFadeTimer(a, (pRsltRslt + 2096));
 }
 
-void CheckFadeFinishFlagRslt()
+int CheckFadeFinishFlagRslt()
 {
-    hyCheckFadeFinishFlag((pRsltRslt + 2096));
+    return hyCheckFadeFinishFlag((pRsltRslt + 2096));
 }
 
 INCLUDE_ASM("asm/nonmatchings/hoya/result/rsltsub1", ProcFadeIn_rsltsub1);

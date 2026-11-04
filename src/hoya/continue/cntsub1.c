@@ -2,7 +2,7 @@
 
 extern void EndLetterAll();
 extern int pCntCnt;
-extern void hyCheckFadeFinishFlag();
+extern int hyCheckFadeFinishFlag();
 extern void hySetFadePara2();
 extern void hySwitchFadeTimer();
 
@@ -16,9 +16,9 @@ void SwitchFadeTimer_cntsub1(int a)
     hySwitchFadeTimer(a, (pCntCnt + 1024));
 }
 
-void CheckFadeFinishFlag_cntsub1()
+int CheckFadeFinishFlag_cntsub1()
 {
-    hyCheckFadeFinishFlag((pCntCnt + 1024));
+    return hyCheckFadeFinishFlag((pCntCnt + 1024));
 }
 
 INCLUDE_ASM("asm/nonmatchings/hoya/continue/cntsub1", continueGameOver);

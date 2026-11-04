@@ -1,7 +1,7 @@
 #include "common.h"
 
 extern int pOptOption;
-extern void hyCheckFadeFinishFlag();
+extern int hyCheckFadeFinishFlag();
 extern void hySetFadePara2();
 extern void hySwitchFadeTimer();
 extern void OptDrawSprMenuLight();
@@ -18,9 +18,9 @@ void SwitchFadeTimerOpt(int a)
     hySwitchFadeTimer(a, (pOptOption + 13200));
 }
 
-void CheckFadeFinishFlagOpt()
+int CheckFadeFinishFlagOpt()
 {
-    hyCheckFadeFinishFlag((pOptOption + 13200));
+    return hyCheckFadeFinishFlag((pOptOption + 13200));
 }
 
 INCLUDE_ASM("asm/nonmatchings/hoya/option/optsub01", OptInitSprOther);
