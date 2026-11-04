@@ -92,7 +92,19 @@ INCLUDE_ASM("asm/nonmatchings/hoya/g_string", strChangeColSentence1);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/g_string", strChangeColSentence2);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/g_string", strChangeDrawFlag);
+void strChangeDrawFlag(int i, int on)
+{
+    FontMng* m = &fntMng[i];
+
+    if (on)
+    {
+        STRUCT_OFFSET(m, 0x0, int) |= 4;
+    }
+    else
+    {
+        STRUCT_OFFSET(m, 0x0, int) &= ~4;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/g_string", strDrawSentence);
 
