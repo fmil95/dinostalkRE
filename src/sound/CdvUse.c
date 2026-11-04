@@ -21,6 +21,13 @@ extern void ResetMpeg();
 extern char defbuf[];
 extern char StopFlg;
 extern u_short StepQue;
+extern u_short MaxQue;
+extern int cdvIsEoq();
+extern int cdvTrayOpenSet();
+extern int cdvTrayCloseWaitSet();
+extern void cdvDiscNameChangeSet();
+extern int cdvGetDiscNameSet();
+extern int cdvNameCheckSet();
 INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvCallBack);
 
 INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvInit);
@@ -86,7 +93,21 @@ INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvWaitWorkingSet);
 
 INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvDiscReadySet);
 
-INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvSyncSet);
+int cdvSyncSet()
+{
+    u_short w;
+    u_short m;
+
+    if (cdvIsEoq(1))
+    {
+        return -1;
+    }
+    w = WriteQue;
+    m = MaxQue;
+    STRUCT_OFFSET(Cdv_Que, w * 40, short) = 1;
+    WriteQue = (w + 1) % (m + 1);
+    return WriteQue;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvSeekSet);
 
