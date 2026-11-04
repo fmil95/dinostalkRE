@@ -1,4 +1,5 @@
 #include "common.h"
+#include <stdio.h>
 #include <libcdvd.h>
 
 extern int mpeg_err;
@@ -32,6 +33,13 @@ extern long StopCnt;
 extern int ErrorFlg;
 extern int cntrl_flg;
 extern void cdvTrapError();
+extern char D_0066CBC0[];
+extern sceCdlFILE chkFile_2;
+extern char chkbuf[];
+extern char nambuf[];
+extern sceCdRMode DiscRMode;
+extern void cdvGetBufName();
+extern int cdvCheckDiscName();
 void cdvCallBack(int reason)
 {
     int err;
@@ -414,9 +422,57 @@ void ReadDataCreate(int a, int b, int c, int d, int e)
     s_que = e;
 }
 
-INCLUDE_RODATA("asm/nonmatchings/sound/CdvUse", D_0066CC58);
 
-INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvTrapError);
+void cdvTrapError()
+{
+    switch (ErrorFlg)
+    {
+    case 0:
+        printf("ERROR!!!!!!!!\n");
+        ErrorFlg = 1;
+        sceCdBreak();
+        return;
+    case 1:
+        if (sceCdStandby() != 0)
+        {
+            ErrorFlg++;
+        }
+        break;
+    case 2:
+        while (sceCdSearchFile(&chkFile_2, D_0066CBC0) == 0);
+        ErrorFlg++;
+        break;
+    case 3:
+        while (sceCdRead(chkFile_2.lsn, 1, nambuf, &DiscRMode) == 0);
+        ErrorFlg++;
+        break;
+    case 4:
+        if (sceCdSync(1) == 0)
+        {
+            ErrorFlg++;
+        }
+        break;
+    case 5:
+        cdvGetBufName(chkbuf, nambuf);
+
+        if (cdvCheckDiscName() == 0x100)
+        {
+            ErrorFlg++;
+        }
+        else
+        {
+            ErrorFlg = 1;
+        }
+    case 6:
+        if (sceCdDiskReady(1) == 2)
+        {
+            ErrorFlg = 0;
+            ErrorNum = 0x100;
+            cntrl_flg = 0;
+        }
+        break;
+    }
+}
 
 void cdvErrInit()
 {
