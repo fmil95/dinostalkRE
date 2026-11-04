@@ -111,7 +111,7 @@ G_OVERRIDES = {
     "se_rpc.c": "-G8",
     "g_savlod.c": "-G8",
     "mcduse.c": "-G8",
-    "CdvUse.c": "-G8"
+    "CdvUse.c": "-G8",
 }
 
 O_OVERRIDES = {
@@ -515,6 +515,40 @@ PROBLEMATIC_FUNCS = set(
     ]
 )
 
+#MARK: Rodata migration
+# splat can migrate a C file's rodata (jump tables, strings, constants) into the
+# asm files of the functions that use it, so that an INCLUDE_ASM function emits
+# its own rodata and a matched function emits it from C. The C object then
+# provides the whole .rodata of the file, in function order.
+#
+# splat only supports this globally and errors out on any C file whose rodata
+# is still disassembled to its own asm file (`rodata` instead of `.rodata`).
+# To migrate files one at a time, migrate_rodata_to_functions is enabled in the
+# yaml, and this wrapper turns it off while splitting every C file whose rodata
+# segment is not dotted. A file opts in by changing its yaml rodata entry to
+# `.rodata`; rodata it can't attribute to a single function then has to be
+# pulled in with INCLUDE_RODATA (or written in C) at the right place.
+def enable_per_file_rodata_migration() -> None:
+    from splat.segtypes.common.c import CommonSegC
+    from splat.util import options
+
+    original_split = CommonSegC.split
+
+    def split_with_opt_in(self, rom_bytes):
+        rodata = self.siblings.get(".rodata") or self.siblings.get(".rdata")
+        enabled = options.opts.migrate_rodata_to_functions
+
+        if rodata is None or not rodata.type.startswith("."):
+            options.opts.migrate_rodata_to_functions = False
+
+        try:
+            return original_split(self, rom_bytes)
+        finally:
+            options.opts.migrate_rodata_to_functions = enabled
+
+    CommonSegC.split = split_with_opt_in
+
+
 def replace_instructions_with_opcodes(asm_folder: Path) -> None:
     """
     Replace branch instructions with raw opcodes for functions that trigger the short loop bug.
@@ -587,6 +621,7 @@ def main():
         if args.clean_only:
             return
 
+    enable_per_file_rodata_migration()
     split.main([YAML_FILE], modes="all", verbose=False)
 
     linker_entries = split.linker_writer.entries

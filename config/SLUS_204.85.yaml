@@ -25,7 +25,7 @@ options:
   rodata_string_guesser_level: 0 # improve string detection
   suggestion_rodata_section_start: True
   pair_rodata_to_text: False
-  migrate_rodata_to_functions: False
+  migrate_rodata_to_functions: True
 
   # Auto-generate undefined functions and symbols
   create_undefined_funcs_auto: True
