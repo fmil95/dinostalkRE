@@ -121,7 +121,12 @@ void saeSetSprite3(SaePrim* p, int ch)
     _saePrimCurrent[ch] = p;
 }
 
-INCLUDE_ASM("asm/nonmatchings/aelib", saeSetTile);
+void saeSetTile(SaePrim* p, int ch)
+{
+    p->next8 = _saePrimCurrent[ch];
+    p->type = 10;
+    _saePrimCurrent[ch] = p;
+}
 
 INCLUDE_ASM("asm/nonmatchings/aelib", saeDrawPrim);
 
