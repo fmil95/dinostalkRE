@@ -16,6 +16,9 @@ extern int FIO_ReadFile_Align();
 extern void Enemy_PmtDataSet();
 typedef struct { char b[0x2A50]; } EnemyInfoS;
 extern EnemyInfoS gsEnemyInfos[];
+extern void GFInstance_Remove();
+extern void Enemy_AllPsInfInt();
+extern void Enemy_WorkInit();
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_Main);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_PauseProc);
@@ -47,7 +50,22 @@ void Enemy_AnmStpOrStt(char* a, int on)
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_AllWorkInit);
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_AllWkIntReLd);
+void Enemy_AllWkIntReLd()
+{
+    short i;
+    char* p = (char*)gsEnemyInfos;
+
+    for (i = 0; i < 10; i++)
+    {
+        if (STRUCT_OFFSET(p, 0, int) & 1)
+        {
+            GFInstance_Remove(p + 0xBA0);
+        }
+        Enemy_WorkInit(p);
+        p += 0x2A50;
+    }
+    Enemy_AllPsInfInt();
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_WorkInit);
 
