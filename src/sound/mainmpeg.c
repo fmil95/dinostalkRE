@@ -692,4 +692,25 @@ void cdvMpegSendModeSet(int v)
     GS_Send_Flg = v;
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", UserThread);
+void UserThread()
+{
+    int a;
+    int b;
+    int c;
+    u_int d;
+    int ret;
+
+    while (1)
+    {
+        SetUserData(&a, &b, &c, &d);
+
+        ret = ((int (*)(int, int, int, int, u_int))UserProg)(mpeg_sts, a, b, c, d & 0x0FFFFFFF);
+
+        if (GS_Send_Flg == 2 && !voBufIsEmpty(&voBuf) && ret > 0)
+        {
+            voBufDecCount(&voBuf);
+        }
+
+        SleepThread();
+    }
+}
