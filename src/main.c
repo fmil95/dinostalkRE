@@ -2,13 +2,13 @@
 #include <libgraph.h>
 #include <libdma.h>
 #include <libdev.h>
+#include <eekernel.h>
 
 #define SCE_GS_ALPHA_GREATER (6)
 #define SCE_GS_FALSE         (0)
 #define SCE_GS_TRUE          (1)
 #define SCE_GS_NONE          (0)
 
-extern void FlushCache(int);
 extern void sceVpu0Reset();
 extern void MEM_InitAllocation();
 extern void TIMER_InitTimer();

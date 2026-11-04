@@ -1,6 +1,6 @@
 #include "common.h"
 
-extern void sceGsResetGraph();
+#include <libgraph.h>
 extern int gsMovie_skipGunKey;
 extern void cdvMpegSkipReset();
 extern void cdvMpegSkipSet();

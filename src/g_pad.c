@@ -1,8 +1,6 @@
 #include "common.h"
 
-extern int scePadPortClose();
-extern int scePadPortClose();
-extern int scePadEnd();
+#include <libpad.h>
 
 INCLUDE_ASM("asm/nonmatchings/g_pad", gsPad_Init);
 

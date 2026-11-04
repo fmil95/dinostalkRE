@@ -1,25 +1,21 @@
 #include "sound/mainmpeg.h"
 #include "sound/disp.h"
-extern void SetUserData(int* a, int* b, int* c, u_int* d);
-extern int SleepThread();
-typedef struct { long raw[0x46]; } sceGsDBuff;
+#include <eekernel.h>
+#include <sif.h>
+#include <sifdev.h>
+#include <libgraph.h>
+#include <libsdr.h>
+#include <stdio.h>
 
 #define min(x, y) (((x) > (y)) ? (y) : (x))
 #define UncAddr(p) ((void*)(((u_int)(p) & 0x0FFFFFFF) | 0x20000000))
 
+extern void SetUserData(int* a, int* b, int* c, u_int* d);
 extern int sceCdDiskReady(int mode);
-extern void* sceSifAllocIopHeap(int size);
 extern int sceCdStInit(u_int bufmax, u_int bankmax, u_int iop_bufaddr);
 extern int sceCdSearchFile(sceCdlFILE* fp, const char* name);
 extern int sceCdStStart(u_int lbn, sceCdRMode* mode);
 extern int sceCdStRead(u_int sectors, u_int* buf, u_int mode, u_int* err);
-extern int printf();
-extern int TerminateThread();
-extern int DeleteThread();
-extern int DisableDmac();
-extern int EnableDmac();
-extern int RemoveDmacHandler();
-extern int sceGsSyncVCallback();
 extern void dispDelete();
 
 extern char D_0066CD88[];
@@ -39,7 +35,7 @@ extern int videoDecTh;
 extern int defaultTh;
 extern int userTh;
 extern int dma_flg;
-extern int save_func;
+extern int (*save_func)(int);
 extern PadSkip pad_00857400[];
 extern Display display;
 extern VoBuf voBuf;
@@ -48,17 +44,7 @@ extern VideoDec videoDec;
 extern ReadBuf readBuf;
 extern StrFile infile;
 
-struct ThreadParam { int status; void* entry; void* stack; int stackSize; void* gpReg; int initPriority; int currentPriority; u_int attr; u_int option; int waitType; int waitId; int wakeupCount; };
-struct SemaParam { int count; int maxCount; int initCount; int waitThreads; int attr; int option; };
 
-extern int CreateSema();
-extern int DeleteSema();
-extern int GetThreadId();
-extern int ReferThreadStatus();
-extern int ChangeThreadPriority();
-extern int RotateThreadReadyQueue();
-extern int StartThread();
-extern int sceGsSyncPath();
 extern int remoteSema;
 extern int mpeg_sts;
 extern int myTh;
@@ -226,7 +212,6 @@ void cdvMpegPlayEnd()
 extern char D_0066CC90[];
 extern char D_0066CCA0[];
 extern char D_0066CCB8[];
-extern int sceGsSyncV();
 
 int PlayMpeg(char* name, int w, int h, char flag)
 {
@@ -291,17 +276,8 @@ int isAudioOK()
     return isWithAudio ? audioDecIsPreset(&audioDec) : 1;
 }
 
-extern void* sceGsGetGParam();
-extern int sceGsSyncV(int mode);
-extern int sceGsSyncVCallback();
 extern int dispCreate(Display* d, int fb_w, int fb_h);
 extern void dispClear(Display* d, u_int val);
-extern void sceMpegInit();
-extern void sceSdRemoteInit();
-extern int sceMpegAddStrCallback();
-extern int CreateThread();
-extern int StartThread();
-extern int AddDmacHandler();
 extern int videoCallback(sceMpeg* mp, sceMpegCbDataStr* str, void* data);
 extern int pcmCallback(sceMpeg* mp, sceMpegCbDataStr* str, void* data);
 extern int vblankHandler(int val);
@@ -311,19 +287,18 @@ extern void UserThread();
 extern char defStack[];
 extern char videoDecStack[];
 extern char userStack[];
-extern int _gp;
 
 int initAll(char* bsfilename, int w, int h, char flag)
 {
     struct ThreadParam th_param;
     int ret;
-    int* gp;
+    sceGsGParam* gp;
 
     dma_flg = 1;
 
     gp = sceGsGetGParam();
     sceGsSyncV(0);
-    save_func = gp[2];
+    save_func = (int (*)(int))gp->sceGsVSCfunc;
     sceGsSyncVCallback(0);
 
     if (dispCreate(&display, w, h))

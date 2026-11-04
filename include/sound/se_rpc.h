@@ -4,6 +4,7 @@
 #define SOUND_SE_RPC_H
 
 #include "common.h"
+#include <sifrpc.h>
 
 typedef struct VAB_ALC
 {
@@ -33,16 +34,6 @@ typedef struct ME_ALC
     int unk10;
 } ME_ALC;
 
-typedef struct sceSifClientData
-{
-    /* 0x00 */ unsigned int rpcd[4];
-    /* 0x10 */ unsigned int command;
-    /* 0x14 */ void*        buff;
-    /* 0x18 */ void*        cbuff;
-    /* 0x1C */ void*        func;
-    /* 0x20 */ void*        para;
-    /* 0x24 */ void*        serve;
-} sceSifClientData;
  
 typedef struct SE_STATUS
 {

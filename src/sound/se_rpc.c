@@ -134,7 +134,7 @@ retry:
 
 int SeRpcCom(int prm0, int prm1, int prm2) 
 {
-    return sceSifCallRpc(&SegCd, prm0, 0, sbuff_0084be40, prm1, sbuff_0084be40, prm2, 0, 0);
+    return sceSifCallRpc(&SegCd, prm0, 0, (void*)sbuff_0084be40, prm1, (void*)sbuff_0084be40, prm2, 0, 0);
 }
 
 int ezSeL(int prm0, void* prm1, int prm2)

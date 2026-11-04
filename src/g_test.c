@@ -7,8 +7,7 @@ extern int gsExtProgNo;
 extern int gsExtProgNext;
 extern int _time_over_cnt;
 extern int _time_over_step;
-extern void sceGsSyncPath();
-extern void sceGsSyncV();
+#include <libgraph.h>
 extern void gsEffectSetFadeNowColor();
 extern void gsEffectSetFade();
 

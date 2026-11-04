@@ -6,61 +6,7 @@
 #include "common.h"
 #include "sound/buf.h"
 
-typedef int sceMpegCbType;
-
-typedef struct { // 0x48
-	/* 0x00 */ int width;
-	/* 0x04 */ int height;
-	/* 0x08 */ int frameCount;
-	/* 0x10 */ long pts;
-	/* 0x18 */ long dts;
-	/* 0x20 */ u_long flags;
-	/* 0x28 */ long pts2nd;
-	/* 0x30 */ long dts2nd;
-	/* 0x38 */ u_long flags2nd;
-	/* 0x40 */ void *sys;
-} sceMpeg;
-
-typedef struct {
-	sceMpegCbType type;
-	char *errMessage;
-} sceMpegCbDataError;
-
-typedef struct {
-	sceMpegCbType type;
-	long pts;
-	long dts;
-} sceMpegCbDataTimeStamp;
-
-typedef struct {
-	sceMpegCbType type;
-	u_char *header;
-	u_char *data;
-	u_int len;
-	long pts;
-	long dts;
-} sceMpegCbDataStr;
-
-typedef union {
-	sceMpegCbType type;
-	sceMpegCbDataError error;
-	sceMpegCbDataTimeStamp ts;
-	sceMpegCbDataStr str;
-} sceMpegCbData;
-
-typedef int (*sceMpegCallback)(sceMpeg *mp, sceMpegCbData *cbdata, void *anyData);
-
-#define sceMpegCbError       0
-#define sceMpegCbNodata      1
-#define sceMpegCbStopDMA     2
-#define sceMpegCbRestartDMA  3
-#define sceMpegCbTimeStamp   5
-
-int sceMpegCreate(sceMpeg *mp, u_char *work_area, int work_area_size);
-int sceMpegAddCallback(sceMpeg *mp, sceMpegCbType type, sceMpegCallback cb, void *anyData);
-int sceMpegDelete(sceMpeg *mp);
-int sceMpegIsRefBuffEmpty(sceMpeg *mp);
-void sceMpegSetDecodeMode(sceMpeg *mp, int ni, int np, int nb);
+#include <libmpeg.h>
 
 #define AU_STATE_INIT   0
 #define AU_STATE_PRESET 1

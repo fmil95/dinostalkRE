@@ -1,10 +1,9 @@
 #include "g_shocktest.h"
 #include <libgraph.h>
+#include <eekernel.h>
 
-extern int sceDevConsPrintf(int cd, char* fmt, ...);
 extern int gsShockSetSeqNo(int, int);
 extern int gsPad_GetTrg(int);
-extern void FlushCache(int);
 
 extern int gConsole;
 extern sceGsDBuff gDb;

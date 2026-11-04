@@ -1,4 +1,10 @@
 #include "sound/decoder.h"
+#include <eekernel.h>
+#include <sif.h>
+#include <sifdev.h>
+#include <libsdr.h>
+#include <stdio.h>
+#include <string.h>
 
 #define UncAddr(p) ((void*)(((u_int)(p) & 0x0FFFFFFF) | 0x20000000))
 #define min(x, y) (((x) > (y)) ? (y) : (x))
@@ -6,35 +12,16 @@
 extern VideoDec videoDec;
 extern VoBuf voBuf;
 extern int decBs0(VideoDec* vd);
-extern void* memcpy(void* dst, const void* src, unsigned int n);
-extern int printf();
 extern char D_00673DE0[];
-extern int RotateThreadReadyQueue();
 extern int s_volume;
-extern int RotateThreadReadyQueue();
 extern int remoteSema;
-extern void WaitSema();
-extern int sceSdRemote();
-extern void SignalSema();
 extern int s_vol_l0;
 extern int s_vol_r0;
 extern int s_vol_l1;
 extern int s_vol_r1;
 extern char _0_buf[];
-extern int sceSifAllocIopHeap();
-extern int sceSifFreeIopHeap();
-extern void* memset(void* dst, int c, unsigned int n);
 
-typedef struct {
-    u_int data;
-    u_int addr;
-    u_int size;
-    u_int mode;
-} sceSifDmaData;
 
-extern void FlushCache(int);
-extern int sceSifSetDma(sceSifDmaData* sdd, int len);
-extern int sceSifDmaStat(int id);
 
 static void iopGetArea(int* pd0, int* d0, int* pd1, int* d1, AudioDec* ad, int pos);
 static int sendToIOP2area(int pd0, int d0, int pd1, int d1, u_char* ps0, int s0, u_char* ps1, int s1);
@@ -264,14 +251,14 @@ int audioDecCreate(AudioDec* ad, u_char* buff, int buffSize, int iopBuffSize)
     ad->iopLastPos = 0;
     ad->iopPausePos = 0;
 
-    ad->iopBuff = sceSifAllocIopHeap(iopBuffSize);
+    ad->iopBuff = (int)sceSifAllocIopHeap(iopBuffSize);
 
     if (ad->iopBuff < 0)
     {
         return 1;
     }
 
-    ad->iopZero = sceSifAllocIopHeap(0x800);
+    ad->iopZero = (int)sceSifAllocIopHeap(0x800);
 
     if (ad->iopZero < 0)
     {
