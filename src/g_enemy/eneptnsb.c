@@ -1,5 +1,9 @@
 #include "common.h"
 
+extern void* memset();
+extern void Enemy_MkUnitV00();
+extern void Enemy_OpVInPd00();
+extern int Enemy_OpVLRChk00();
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptnsb", eneptn_samegoalchk);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptnsb", eneptn_elseneatcchk);
@@ -32,7 +36,16 @@ INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptnsb", eneptn_glarvchsub00);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptnsb", eneptn_glarvch01);
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptnsb", eneptn_glinprdch00);
+void eneptn_glinprdch00(char* a, int b)
+{
+    char v[16];
+    char* p;
+
+    memset(v, 0, 16);
+    p = a + b * 16;
+    Enemy_MkUnitV00(v, a + 0x240);
+    Enemy_OpVInPd00(a + 0x270, v, p + 0x110);
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptnsb", eneptn_glrlch00);
 
