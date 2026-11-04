@@ -1,12 +1,17 @@
+#include "sound/buf.h"
 #include "sound/disp.h"
-extern int center_flg_h;
-extern int center_flg_w;
-extern int s_frm_ofy;
-extern int s_frm_ofx;
-extern int s_ctxt;
 
+#define ExitHandler() asm volatile("sync.l; ei")
+
+extern VoBuf voBuf;
+extern int isFrameEnd;
 extern int isCountVblank;
 extern int frd;
+extern int s_ctxt;
+extern int s_frm_ofx;
+extern int s_frm_ofy;
+extern int center_flg_w;
+extern int center_flg_h;
 
 INCLUDE_ASM("asm/nonmatchings/sound/disp", initDisplay);
 
@@ -284,7 +289,18 @@ INCLUDE_ASM("asm/nonmatchings/sound/disp", loadImage);
 
 INCLUDE_ASM("asm/nonmatchings/sound/disp", vblankHandler);
 
-INCLUDE_ASM("asm/nonmatchings/sound/disp", handler_endimage);
+int handler_endimage(int val)
+{
+    if (isFrameEnd)
+    {
+        voBufDecCount(&voBuf);
+        isFrameEnd = 0;
+    }
+
+    ExitHandler();
+
+    return -1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/disp", startDisplay);
 
