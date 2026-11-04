@@ -37,7 +37,8 @@ G_OVERRIDES = {
     "aelib.c": "-G8",
     "se_rpc.c": "-G8",
     "g_savlod.c": "-G8",
-    "mcduse.c": "-G8"
+    "mcduse.c": "-G8",
+    "CdvUse.c": "-G8"
 }
 
 O_OVERRIDES = {
