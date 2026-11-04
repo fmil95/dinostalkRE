@@ -20,6 +20,20 @@ extern void SeSetVolume();
 extern int get_SE_MAX();
 extern void Se();
 extern void SeStop();
+extern void _gsSoundEE_DeleteChBuf();
+extern int _g_sound_bgm_cnt;
+extern int _g_sound_bgm_tbl[];
+extern int SeCSLBankOpen();
+extern int SeCSLSqOpen();
+extern int SeReadNow();
+extern void sceGsSyncV();
+extern int gsSoundComWait();
+extern int SeIopStatus();
+extern int SeComNow();
+typedef struct { int w[6]; } SeEntS;
+extern SeEntS D_0064B56C[];
+extern int gsSoundStopVoice();
+extern int* _g_sound_ch[];
 INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundInitModule);
 
 INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundInitAll);
@@ -185,7 +199,19 @@ INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundPlaySE_WORLD);
 
 INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundEeSE_ALL_CLEAR);
 
-INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundEeSE_ALL_SLEEP);
+void gsSoundEeSE_ALL_SLEEP()
+{
+    int i;
+
+    for (i = 0; i < 4; i++)
+    {
+        SeSetVolume(0, 0, i + 12);
+        if (_g_sound_ch_buf[i])
+        {
+            *_g_sound_ch_buf[i] = -1;
+        }
+    }
+}
 
 void gsSoundEeSE_ALL_WAKE()
 {
