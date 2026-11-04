@@ -63,7 +63,12 @@ u_int* setTEXFLUSH(u_int* p)
     return setGIFad(p, SCE_GS_TEXFLUSH, 0);
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/disp", setTEX1_1);
+u_int* setTEX1_1(u_int* p, u_int lcm, u_int mxl, u_int mmag, u_int mmin, u_int mtba, u_int l, u_int k)
+{
+    u_long val = SCE_GS_SET_TEX1_1(lcm, mxl, mmag, mmin, mtba, l, k);
+
+    return setGIFad(p, SCE_GS_TEX1_1, val);
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/disp", setTEX1_2);
 
