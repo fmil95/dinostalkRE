@@ -72,7 +72,12 @@ void saeSetLoadImage(SaePrim* p, int ch)
     _saePrimCurrent[ch] = p;
 }
 
-INCLUDE_ASM("asm/nonmatchings/aelib", saeSetSprite2);
+void saeSetSprite2(SaePrim* p, int ch)
+{
+    p->next4 = _saePrimCurrent[ch];
+    p->type = 4;
+    _saePrimCurrent[ch] = p;
+}
 
 void saeSetPolyG3(SaePrim* p, int ch)
 {
