@@ -172,7 +172,20 @@ void ClearMemcDirCreateData()
     creteData.b = 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", GetMemcDirCreateData);
+void GetMemcDirCreateData(char* a, int b, int c)
+{
+    char* p;
+
+    c = c + b;
+    STRUCT_OFFSET(a, 0, char) = 0;
+    p = D_005E6000 + c * 0x880;
+    STRUCT_OFFSET(a, 1, u_char) = STRUCT_OFFSET(p, 1, u_char);
+    STRUCT_OFFSET(a, 2, u_char) = STRUCT_OFFSET(p, 2, u_char);
+    STRUCT_OFFSET(a, 3, u_char) = STRUCT_OFFSET(p, 3, u_char);
+    STRUCT_OFFSET(a, 4, u_char) = STRUCT_OFFSET(p, 4, u_char);
+    STRUCT_OFFSET(a, 5, u_char) = STRUCT_OFFSET(p, 5, u_char);
+    STRUCT_OFFSET(a, 6, u_short) = STRUCT_OFFSET(p, 6, u_short);
+}
 
 void SetMemcDirCreateData(McDirCreate* p)
 {
