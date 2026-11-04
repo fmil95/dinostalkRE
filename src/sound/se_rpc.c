@@ -214,7 +214,15 @@ INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeReqQueInc);
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeReqQueDec);
 
-INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeJobQueInc);
+int SeJobQueInc()
+{
+    TJobSt.unk4++;
+
+    if (TJobSt.unk4 >= 0x40)
+    {
+        TJobSt.unk4 = 0;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeTjobStart);
 
