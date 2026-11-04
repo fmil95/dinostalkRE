@@ -9,6 +9,9 @@ extern char D_003E43A0[];
 extern char waveColList[];
 extern void sceVu0CopyVector();
 
+extern char gf_default_instwave_drawfunc[];
+extern char gf_default_instwave_evalfunc[];
+extern void GFInstance_InitHead();
 INCLUDE_ASM("asm/nonmatchings/g_world/st3wave", gsWaveScrollX);
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st3wave", gsWaveScrollZ);
@@ -57,7 +60,18 @@ void printVector(void) {
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st3wave", gsWaveMakeWave);
 
-INCLUDE_ASM("asm/nonmatchings/g_world/st3wave", GFWave_MakeInstance);
+char* GFWave_MakeInstance(char* a)
+{
+    GFInstance_InitHead(a);
+    STRUCT_OFFSET(a, 0xDC, char*) = gf_default_instwave_drawfunc;
+    STRUCT_OFFSET(a, 0xD8, char*) = gf_default_instwave_evalfunc;
+    STRUCT_OFFSET(a, 0xCC, int) = 6;
+    STRUCT_OFFSET(a, 0xD0, int) = 0x40;
+    STRUCT_OFFSET(a, 0x100, int) = 0;
+    STRUCT_OFFSET(a, 0x104, short) = 0;
+    STRUCT_OFFSET(a, 0x106, short) = 0;
+    return a;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st3wave", GFWave_Draw);
 
