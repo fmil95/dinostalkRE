@@ -326,7 +326,10 @@ INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeInit);
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeSpu2Init);
 
-INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeSetEffect);
+int SeSetEffect(int a, int b, int c)
+{
+    return ezSe(0x8220, (c << 16) | (a << 12) | b, 1);
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeSetEffectDepth);
 
