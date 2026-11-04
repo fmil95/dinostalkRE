@@ -4,8 +4,6 @@ extern int gsHeapSize;
 extern int gsHeapTop;
 extern char _end[];
 extern char D_D0000[];
-extern char D_00664930[];
-
 extern void scePrintf(const char* fmt, ...);
 extern void* malloc(unsigned int size);
 
@@ -22,7 +20,7 @@ int FullAllocAndFree()
     gsHeapSize = heap_size;
     gsHeapTop  = (int)heap_addr;
 
-    scePrintf(D_00664930, heap_addr, size);
+    scePrintf("heap_addr:%x ,size:%x\n", heap_addr, size);
 
     return heap_size;
 }
