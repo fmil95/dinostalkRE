@@ -218,4 +218,22 @@ INCLUDE_ASM("asm/nonmatchings/air/a_item", gsThrowWeapon);
 
 INCLUDE_ASM("asm/nonmatchings/air/a_item", gsSetMatrix_ThrowWeapon);
 
-INCLUDE_ASM("asm/nonmatchings/air/a_item", gsThrowWeaponReset);
+void gsThrowWeaponReset()
+{
+    char* p = (char*)gsThrow_Weapon;
+    int i;
+
+    for (i = 0xF; i >= 0; i--, p += 0x220)
+    {
+        u_short f = STRUCT_OFFSET(p, 0, u_short);
+
+        if (f & 1)
+        {
+            if (f & 2)
+            {
+                GFInstance_Remove(p + 0x90);
+            }
+            gsClear_ThrowWeapon_Infos(-1, p);
+        }
+    }
+}
