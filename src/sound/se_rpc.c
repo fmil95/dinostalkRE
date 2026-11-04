@@ -399,7 +399,14 @@ void SeVabClose(int a)
     SeVabCloseB(D_0064B364[a][0]);
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeVabCloseB);
+void SeVabCloseB(int a)
+{
+    if (VabAlc[a].unk0 != 0)
+    {
+        VabAlc[a].unk0 = 0;
+        VabAlc[a].unkC = -1;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", Se3D);
 
