@@ -28,6 +28,8 @@ extern char gsEffect_BlurAddCol[];
 extern char gsEffect_BlurAddColBak[];
 extern char gsEffect_BlurDisColBak[];
 
+typedef struct { int a; int b; int c; } EffectTexInfoS;
+extern EffectTexInfoS effectTexInfo[];
 INCLUDE_ASM("asm/nonmatchings/g_effect", gs_effectResetEffectSrc);
 
 INCLUDE_ASM("asm/nonmatchings/g_effect", gsEffectRemove);
@@ -60,7 +62,24 @@ void gsEffectInitMicro(int a, int b, int c)
 
 INCLUDE_ASM("asm/nonmatchings/g_effect", gsEffectTexLoad);
 
-INCLUDE_ASM("asm/nonmatchings/g_effect", gsEffectGetTexIdx);
+int gsEffectGetTexIdx(int i)
+{
+    EffectTexInfoS* e;
+
+    if (i < 0)
+    {
+        return i;
+    }
+
+    e = &effectTexInfo[i];
+
+    if (e->c == 0)
+    {
+        return 0;
+    }
+
+    return e->b;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_effect", gsEffectTexReset);
 
