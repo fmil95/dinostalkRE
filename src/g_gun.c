@@ -14,6 +14,11 @@ extern char D_003C246C[];
 extern char gsGunInfo[];
 extern int gShockData[];
 extern void gsShockSetSeq();
+extern char gsWorldManager[];
+extern void gsWorldCrashOBJ_FLUSH();
+extern void gsGunCrash_FLUSH_CH_ENE();
+extern int gsArmsTypeTbl[];
+extern int D_003C245C[];
 INCLUDE_ASM("asm/nonmatchings/g_gun", gsInitGunManager);
 
 INCLUDE_ASM("asm/nonmatchings/g_gun", gsInitGunManager_START_GAME);
@@ -121,7 +126,11 @@ INCLUDE_ASM("asm/nonmatchings/g_gun", _gsGunCrashObject);
 
 INCLUDE_ASM("asm/nonmatchings/g_gun", gsGunCrashObject);
 
-INCLUDE_ASM("asm/nonmatchings/g_gun", gsGunCrash_FLUSH_CH);
+void gsGunCrash_FLUSH_CH(int a, int b)
+{
+    gsWorldCrashOBJ_FLUSH(gsWorldManager, a);
+    gsGunCrash_FLUSH_CH_ENE(b);
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_gun", gsGunCrash_FLUSH_CH_ENE);
 
