@@ -196,7 +196,19 @@ int cdvTrayOpenSet()
 
 INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvTrayCloseWaitSet);
 
-INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvDiscChangeSet);
+int cdvDiscChangeSet(char* a)
+{
+    if (cdvIsEoq(0xB))
+    {
+        return -1;
+    }
+    cdvTrayOpenSet();
+    cdvTrayCloseWaitSet();
+    cdvDiscNameChangeSet(a);
+    cdvGetDiscNameSet();
+    cdvNameCheckSet();
+    return WriteQue;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvSearchFileSet);
 
