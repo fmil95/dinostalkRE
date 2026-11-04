@@ -1,6 +1,8 @@
 #include "common.h"
+#include <libvu0.h>
 extern void GFTrack_Lifeless();
 
+extern void* GFTex_GetDb();
 INCLUDE_ASM("asm/nonmatchings/benjamin/track", GFTrack_Update);
 
 void GFTrack_MallocMemory(void* a, int b, int c)
@@ -29,7 +31,12 @@ INCLUDE_ASM("asm/nonmatchings/benjamin/track", GFTrack_SetStartST);
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/track", GFTrack_SetEndST);
 
-INCLUDE_ASM("asm/nonmatchings/benjamin/track", GFTrack_SetStartPos);
+void GFTrack_SetStartPos(void* t, sceVu0FVECTOR a, sceVu0FVECTOR b)
+{
+    sceVu0CopyVector((float*)((char*)t + 0x60), a);
+    sceVu0CopyVector((float*)((char*)t + 0x70), b);
+    STRUCT_OFFSET(t, 0xC, int) |= 0x8;
+}
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/track", GFTrack_InitStartPos);
 
