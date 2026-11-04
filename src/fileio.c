@@ -73,7 +73,20 @@ void FIOCache_Init()
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/fileio", fio_GetEmptyCacheInfo);
+CacheInfoS* fio_GetEmptyCacheInfo()
+{
+    int i;
+
+    for (i = 0; i < 64; i++)
+    {
+        if (fio_CacheInfo[i].a == 0)
+        {
+            return &fio_CacheInfo[i];
+        }
+    }
+
+    return 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/fileio", FIOCache_ReadPack_Align2);
 
