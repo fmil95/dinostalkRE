@@ -12,7 +12,10 @@ INCLUDE_ASM("asm/nonmatchings/g_parts", gpGetNextGeometryBlock);
 
 INCLUDE_ASM("asm/nonmatchings/g_parts", gpInitWorldManager);
 
-INCLUDE_ASM("asm/nonmatchings/g_parts", gpStepWorldManagerOverHead_GV);
+void gpStepWorldManagerOverHead_GV(void* a)
+{
+    STRUCT_OFFSET(a, 0xC6B30, int) = STRUCT_OFFSET(a, 0xC6B30, int) + 1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_parts", gpEntryWorldManagerOverHead_GV);
 
