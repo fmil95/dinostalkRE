@@ -92,6 +92,10 @@ INCLUDE_ASM("asm/nonmatchings/g_guncon2/src/gun_adjust", adjust_wide_gun_adjust)
 
 INCLUDE_ASM("asm/nonmatchings/g_guncon2/src/gun_adjust", adjust_check_gun_adjust);
 
-INCLUDE_ASM("asm/nonmatchings/g_guncon2/src/gun_adjust", set_adjustX_gun_adjust);
+void set_adjustX_gun_adjust(void* p)
+{
+    STRUCT_OFFSET(D_00653B78, STRUCT_OFFSET(p, 0x0, int) * 16, int) = STRUCT_OFFSET(D_00653B78, STRUCT_OFFSET(p, 0x0, int) * 16, int) + center_x_00674c9c - 0x1A6;
+    Guncon2_TransCtrlData(STRUCT_OFFSET(p, 0x34, int), STRUCT_OFFSET(p, 0x0, int));
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_guncon2/src/gun_adjust", set_adjustY_gun_adjust);
