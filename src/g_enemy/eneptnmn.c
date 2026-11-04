@@ -1,6 +1,13 @@
 #include "common.h"
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptnmn", enemy_ptnmvmain);
+extern void (*enemy_ptnfuncs[])();
+extern void obrpt_itemsnatchmain();
+extern int Enemy_DelCheck();
+void enemy_ptnmvmain(char* a)
+{
+    enemy_ptnfuncs[STRUCT_OFFSET(a, 0x5C, u_short)](a);
+    obrpt_itemsnatchmain(a);
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptnmn", eneptn_goptntbl);
 
