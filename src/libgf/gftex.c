@@ -156,7 +156,25 @@ GF_TEXDB_HEAD* GFTex_GetDatabase()
     return gfDatabaseHead;
 }
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gftex", gfTex_GetTwTh);
+static Uint32 gfTex_GetTwTh(Sint32 twth)
+{
+    Sint32 ret;
+    Sint32 tmp;
+
+    ret = 1;
+
+    if (twth <= 0)
+    {
+        return 0;
+    }
+
+    for (tmp = twth - 1; tmp >= 2; tmp /= 2)
+    {
+        ret++;
+    }
+
+    return ret;
+}
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gftex", gfTex_InitSysTex);
 
