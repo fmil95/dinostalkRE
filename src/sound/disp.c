@@ -84,7 +84,12 @@ u_int* setTEX0_1(u_int* p, u_int tbp, u_int tbw, u_int psm, u_int tw, u_int th, 
     return setGIFad(p, SCE_GS_TEX0_1, val);
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/disp", setTEX0_2);
+u_int* setTEX0_2(u_int* p, u_int tbp, u_int tbw, u_int psm, u_int tw, u_int th, u_int tcc, u_int tfx, u_int cbp, u_int cpsm, u_int csm, u_int csa, u_int cld)
+{
+    u_long val = SCE_GS_SET_TEX0_2(tbp, tbw, psm, tw, th, tcc, tfx, cbp, cpsm, csm, csa, cld);
+
+    return setGIFad(p, SCE_GS_TEX0_2, val);
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/disp", setPRIM);
 
