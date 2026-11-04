@@ -73,7 +73,18 @@ INCLUDE_ASM("asm/nonmatchings/mem", _mem_free);
 
 INCLUDE_ASM("asm/nonmatchings/mem", MEM_FreeAll);
 
-INCLUDE_ASM("asm/nonmatchings/mem", MEM_Free);
+void MEM_Free(int a)
+{
+    _mem_free(a);
+    if (a == gsHeapBak)
+    {
+        gsHeapCur = a;
+    }
+    else
+    {
+        printf(D_00663F28);
+    }
+}
 
 void mem_GetFreeAllocInfo()
 {
