@@ -177,7 +177,23 @@ Sint32 GFVram_Free(Uint16 pos, Uint16 size, Uint16 mode)
     return ret;
 }
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfvalloc", gfVram_PsmToFlag);
+static Uint8 gfVram_PsmToFlag(Uint16 mode)
+{
+    switch (mode)
+    {
+    case 1:
+    case 0x31:
+        return 1;
+    case 0x1B:
+        return 6;
+    case 0x24:
+        return 2;
+    case 0x2C:
+        return 4;
+    default:
+        return 7;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfvalloc", gfVram_ChangeArea);
 
