@@ -24,6 +24,19 @@ extern int sceSifAllocIopHeap();
 extern int sceSifFreeIopHeap();
 extern void* memset(void* dst, int c, unsigned int n);
 
+typedef struct {
+    u_int data;
+    u_int addr;
+    u_int size;
+    u_int mode;
+} sceSifDmaData;
+
+extern void FlushCache(int);
+extern int sceSifSetDma(sceSifDmaData* sdd, int len);
+extern int sceSifDmaStat(int id);
+
+static void iopGetArea(int* pd0, int* d0, int* pd1, int* d1, AudioDec* ad, int pos);
+static int sendToIOP2area(int pd0, int d0, int pd1, int d1, u_char* ps0, int s0, u_char* ps1, int s1);
 static int sendToIOP(int dst, u_char* src, int size);
 void pushMasterVolume();
 void popMasterVolume();
@@ -352,7 +365,27 @@ int audioDecIsPreset(AudioDec* ad)
 
 INCLUDE_ASM("asm/nonmatchings/sound/decoder", audioDecSendToIOP);
 
-INCLUDE_ASM("asm/nonmatchings/sound/decoder", iopGetArea);
+static void iopGetArea(int* pd0, int* d0, int* pd1, int* d1, AudioDec* ad, int pos)
+{
+    int len = (pos + ad->iopBuffSize - ad->iopLastPos - 1024) % ad->iopBuffSize;
+
+    len = (len / 1024) * 1024;
+
+    if (ad->iopBuffSize - ad->iopLastPos >= len)
+    {
+        *pd0 = ad->iopBuff + ad->iopLastPos;
+        *d0 = len;
+        *pd1 = 0;
+        *d1 = 0;
+    }
+    else
+    {
+        *pd0 = ad->iopBuff + ad->iopLastPos;
+        *d0 = ad->iopBuffSize - ad->iopLastPos;
+        *pd1 = ad->iopBuff;
+        *d1 = len - (ad->iopBuffSize - ad->iopLastPos);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/decoder", ConvertMONO);
 
