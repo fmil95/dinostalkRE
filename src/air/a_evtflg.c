@@ -1,11 +1,20 @@
 #include "common.h"
 
+extern int Event_Flag[];
+extern int Flag_OffBit[];
+extern int Flag_CheckOnBit[];
 INCLUDE_ASM("asm/nonmatchings/air/a_evtflg", gsEventFlagOnOffCheck);
 
 INCLUDE_ASM("asm/nonmatchings/air/a_evtflg", gsEventFlagOn);
 
 void gsEventFlagOff(int);
-INCLUDE_ASM("asm/nonmatchings/air/a_evtflg", gsEventFlagOff);
+void gsEventFlagOff(int n)
+{
+    int w = n / 32;
+    int b = n % 32;
+
+    Event_Flag[n >> 5] &= Flag_OffBit[b];
+}
 
 INCLUDE_ASM("asm/nonmatchings/air/a_evtflg", gsEventFlagCtrlOfSwitchLine);
 
