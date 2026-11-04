@@ -4,6 +4,13 @@ extern int gsGunExtraId;
 extern void gsSoundEeSE_STOP();
 extern void gsSoundEeSE_STOP();
 
+extern char D_003C1144[];
+extern void gsSoundSeMePlay();
+extern char D_003C1146[];
+extern char D_003C114C[];
+extern char D_003C114E[];
+extern char D_003C1148[];
+extern char D_003C246C[];
 INCLUDE_ASM("asm/nonmatchings/g_gun", gsInitGunManager);
 
 INCLUDE_ASM("asm/nonmatchings/g_gun", gsInitGunManager_START_GAME);
@@ -125,7 +132,15 @@ INCLUDE_ASM("asm/nonmatchings/g_gun", gsSetBulletParam);
 
 INCLUDE_ASM("asm/nonmatchings/g_gun", gsGunPlaySE_FIRE);
 
-INCLUDE_ASM("asm/nonmatchings/g_gun", gsGunPlaySE_LOAD_A);
+void gsGunPlaySE_LOAD_A(int a)
+{
+    short s = STRUCT_OFFSET(D_003C1144 + a * 180, 0, short);
+
+    if (s >= 0)
+    {
+        gsSoundSeMePlay(s);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_gun", gsGunPlaySE_LOAD_B);
 
