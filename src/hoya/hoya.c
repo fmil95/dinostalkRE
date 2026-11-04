@@ -9,6 +9,13 @@ extern void FIO_ReadFile_Align();
 extern void hyDestroySMSpriteInfoSub();
 extern void gplInitSprite2();
 
+extern int gsGuncon2_GetTrg();
+extern int gsGuncon2_GetRTrg();
+extern int gsGuncon2_Get();
+extern int MakeTextureAreaOnMemory();
+extern int GFTex_Add();
+extern int D_0052CFEC[];
+extern int D_0052CFF0[];
 INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyGun1CheckScreenOut);
 
 void hySetBgCol(void) {
@@ -103,7 +110,15 @@ INCLUDE_ASM("asm/nonmatchings/hoya/hoya", GunStateUpdate);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/hoya", getGunPush);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/hoya", getGunPress);
+int getGunPress()
+{
+    if (gsGuncon2_CheckConnect())
+    {
+        return gsGuncon2_GetTrg();
+    }
+
+    return 0;
+}
 
 int getGunRelease()
 {
