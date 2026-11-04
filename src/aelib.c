@@ -55,7 +55,12 @@ void saeSetAD(SaePrim* p, int ch)
     _saePrimCurrent[ch] = p;
 }
 
-INCLUDE_ASM("asm/nonmatchings/aelib", saeSetLoadImage);
+void saeSetLoadImage(SaePrim* p, int ch)
+{
+    p->next8 = _saePrimCurrent[ch];
+    p->type = 3;
+    _saePrimCurrent[ch] = p;
+}
 
 INCLUDE_ASM("asm/nonmatchings/aelib", saeSetSprite2);
 
