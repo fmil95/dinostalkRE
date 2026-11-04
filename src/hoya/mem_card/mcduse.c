@@ -60,7 +60,15 @@ int mcdEndChk()
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/mcduse", mcdGetChkType);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/mcduse", mcdGetChkFree);
+int mcdGetChkFree()
+{
+    if (chk_flg == 0)
+    {
+        return -3;
+    }
+
+    return chk_free;
+}
 
 int mcdGetChkFormat()
 {
