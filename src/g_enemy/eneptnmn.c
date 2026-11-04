@@ -75,6 +75,12 @@ INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptnmn", obrpt_plitemch);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptnmn", obrpt_setstlnitem);
 
+INCLUDE_RODATA("asm/nonmatchings/g_enemy/eneptnmn", D_006675E0);
+
+INCLUDE_RODATA("asm/nonmatchings/g_enemy/eneptnmn", D_006675F0);
+
+INCLUDE_RODATA("asm/nonmatchings/g_enemy/eneptnmn", D_00667600);
+
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptnmn", eneptn_snatchitem00);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptnmn", eneptn_snatchitem01);
