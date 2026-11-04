@@ -101,7 +101,10 @@ INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyLoadPigContinue);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyLoadPigName);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyLoadPigFont);
+void hyLoadPigFont()
+{
+    gsFONT_IdtexNo1 = TEST_EntryTexture(FIO_ReadFile_Align(D_0066A478, 0x40), 1);
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyLoadPigFont2);
 
