@@ -40,7 +40,17 @@ void videoDecReset(VideoDec* vd)
     vd->state = VD_STATE_NORMAL;
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/decoder", videoDecDelete);
+int videoDecDelete(VideoDec* vd)
+{
+    viBufDelete(&vd->vibuf);
+    sceMpegDelete(&vd->mpeg);
+
+    vd->state = 0;
+    vd->sema = 0;
+    vd->hid_endimage = 0;
+
+    return 1;
+}
 
 void videoDecAbort(VideoDec* vd)
 {
