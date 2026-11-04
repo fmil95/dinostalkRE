@@ -302,4 +302,14 @@ void EndMemcManager()
     mcdQuit();
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", gsMemryCard_LoadModule);
+void gsMemryCard_LoadModule()
+{
+    int i;
+
+    for (i = 0; i < 2; i++)
+    {
+        while (sceSifLoadModule(irx_path_0[i], 0, 0) < 0)
+        {
+        }
+    }
+}
