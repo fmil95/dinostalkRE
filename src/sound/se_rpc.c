@@ -351,7 +351,12 @@ int SeCSLMidiPlayPort(int a)
     return ezSe(0x82C0, a, 1);
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeCSLMidiSetLocation);
+int SeCSLMidiSetLocation(int a, int b)
+{
+    ezSe(0x8270, a, 1);
+
+    return ezSe(0x8490, b, 1);
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeCSLMidiPlayBP);
 
