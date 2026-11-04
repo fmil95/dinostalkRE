@@ -4,6 +4,9 @@ extern int tex2dSendFlag_00674478;
 extern void gsCOCKPIT_InitSightGrenade();
 extern void gsCOCKPIT_PutSightGrenade();
 
+extern char gsCOCKPIT_Sights[];
+extern int gsCOCKPIT_IdtexSightsForward;
+extern void gplInitSprite();
 INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_cpsight", hyEntryObj4Sight);
 
 void gsCOCKPIT_InitSightSendTex()
@@ -33,7 +36,18 @@ INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_cpsight", gsCOCKPIT_InitSightGutori
 
 INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_cpsight", gsCOCKPIT_InitSightMissilePod);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_cpsight", gsCOCKPIT_InitSightGrenade);
+void gsCOCKPIT_InitSightGrenade()
+{
+    char* s = gsCOCKPIT_Sights;
+    char** q = (char**)(s + 0x4f4);
+
+    *q = s + 0x668;
+    gplInitSprite(s + 0x668, gsCOCKPIT_IdtexSightsForward);
+    STRUCT_OFFSET(*q, 0, u_char) = STRUCT_OFFSET(s, 0x20, u_char);
+    STRUCT_OFFSET(*q, 1, u_char) = STRUCT_OFFSET(s, 0x24, u_char);
+    STRUCT_OFFSET(*q, 2, u_char) = STRUCT_OFFSET(s, 0x28, u_char);
+    STRUCT_OFFSET(*q, 0x18, u_char) = STRUCT_OFFSET(s, 0x2C, u_char);
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_cpsight", gsCOCKPIT_InitSightBowgun);
 
