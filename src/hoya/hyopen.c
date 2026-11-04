@@ -10,7 +10,20 @@ extern int rsltTblStandardNoDamageBonus[];
 extern int weaponRank[];
 extern int D_00535D74[][2];
 extern int rsltTblStandardTimeBonus[][2];
-INCLUDE_ASM("asm/nonmatchings/hoya/hyopen", hyWepRankGetWeaponRank);
+int hyWepRankGetWeaponRank(int w)
+{
+    int i;
+
+    for (i = 0; i < 22; i++)
+    {
+        if (w == weaponRank[i])
+        {
+            return i;
+        }
+    }
+
+    return -1;
+}
 
 int hyWepRankGetWeaponNo(u_int i)
 {
