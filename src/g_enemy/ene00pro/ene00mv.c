@@ -12,7 +12,28 @@ INCLUDE_ASM("asm/nonmatchings/g_enemy/ene00pro/ene00mv", ene00move00);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/ene00pro/ene00mv", ene00move02);
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/ene00pro/ene00mv", ene00move05);
+void ene00move05(char* a)
+{
+    if (STRUCT_OFFSET(a, 0x8C, int) == 0)
+    {
+        int n = STRUCT_OFFSET(a, 0x84, int) << 1;
+
+        int r = n + 0x1C;
+
+        if (STRUCT_OFFSET(a, 0x0, int) & 0x8000)
+        {
+            r = n + 0x1D;
+        }
+        Enemy_AnmChg00(a, r, 8, 0);
+        STRUCT_OFFSET(a, 0x0, int) |= 0x40000000;
+        STRUCT_OFFSET(a, 0x8C, int)++;
+    }
+    else if (GFAnim_ShapeFlagCheck((GF_INST_OBJECT*)(a + 0xBA0), 0) & 2)
+    {
+        STRUCT_OFFSET(a, 0x0, int) ^= 0x40000000;
+        Enemy_ActChg00(a, 0);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/ene00pro/ene00mv", ene00move09);
 
