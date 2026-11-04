@@ -114,7 +114,10 @@ void ClearMemcDirCreateData()
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", GetMemcDirCreateData);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", SetMemcDirCreateData);
+void SetMemcDirCreateData(McDirCreate* p)
+{
+    creteData = *p;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", CmpMemcDirCreateData);
 
