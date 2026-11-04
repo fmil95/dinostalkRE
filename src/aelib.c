@@ -51,7 +51,12 @@ void saeSetPolyFt4(SaePrim* p, int ch)
     _saePrimCurrent[ch] = p;
 }
 
-INCLUDE_ASM("asm/nonmatchings/aelib", saeSetSprite);
+void saeSetSprite(SaePrim* p, int ch)
+{
+    p->next4 = _saePrimCurrent[ch];
+    p->type = 1;
+    _saePrimCurrent[ch] = p;
+}
 
 void saeSetAD(SaePrim* p, int ch)
 {
