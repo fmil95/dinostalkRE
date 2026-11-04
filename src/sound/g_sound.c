@@ -61,7 +61,18 @@ int gsSoundReadBgm(int a)
     return 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundReadWait);
+int gsSoundReadWait()
+{
+    SeMain();
+    while (SeReadNow() == 1)
+    {
+        sceGsSyncV(0);
+        SeMain();
+    }
+    sceGsSyncV(0);
+    gsSoundComWait();
+    return 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundComWait);
 
