@@ -1,4 +1,5 @@
 #include "common.h"
+extern void* gsGuncon2Manager[];
 
 extern int D_00653B74[];
 extern int D_00653B64[];
@@ -10,7 +11,17 @@ INCLUDE_ASM("asm/nonmatchings/g_guncon2/g_guncon2", gsGuncon2_Init);
 
 INCLUDE_ASM("asm/nonmatchings/g_guncon2/g_guncon2", gsGuncon2_Exec);
 
-INCLUDE_ASM("asm/nonmatchings/g_guncon2/g_guncon2", gsGuncon2_CheckConnect);
+int gsGuncon2_CheckConnect()
+{
+    void* m = gsGuncon2Manager[0];
+
+    if (m && STRUCT_OFFSET(m, 0x34, int) != -1)
+    {
+        return 1;
+    }
+
+    return 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_guncon2/g_guncon2", gsGuncon2_GetActivePort);
 
