@@ -12,7 +12,13 @@ INCLUDE_ASM("asm/nonmatchings/hoya/g_ezipu", gsEzIpuSetLoadImageTags);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/g_ezipu", gsEzIpuSetLoadImageTagsGeneral);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/g_ezipu", setDMAscTag_g_ezipu);
+void setDMAscTag_g_ezipu(u_int* p, u_int spr, void* addr, u_int irq, u_int id, u_int pce, u_int qwc)
+{
+    u_long* val = (u_long*)p;
+
+    *val = (u_long)spr << 63 | (u_long)((u_int)addr & 0xFFFFFFF0) << 32 | (u_long)irq << 31 | (u_long)id << 28 | (u_long)pce << 26 | (u_long)qwc << 0;
+
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/g_ezipu", setGIFtag_g_ezipu);
 
