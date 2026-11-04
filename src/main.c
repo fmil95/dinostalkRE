@@ -3,6 +3,7 @@
 #include <libdma.h>
 #include <libdev.h>
 #include <eekernel.h>
+#include <stdlib.h>
 
 #define SCE_GS_ALPHA_GREATER (6)
 #define SCE_GS_FALSE         (0)
@@ -52,8 +53,6 @@ extern void gsPad_Update();
 extern void gsResultInit();
 extern void hyReflectResultData_FROM_CONTINUE();
 extern int sceCdReadClock(sceCdCLOCK* rtc);
-extern void srand(unsigned int seed);
-extern int rand();
 
 extern sceGsDBuff gDb;
 extern int frame;

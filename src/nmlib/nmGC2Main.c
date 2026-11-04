@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "common.h"
 #include <sifrpc.h>
 
@@ -19,7 +20,7 @@ extern char D_0066F5D8[];
 extern char D_0066F5F8[];
 extern char D_0066F618[];
 
-extern int printf();
+
 
 INCLUDE_ASM("asm/nonmatchings/nmlib/nmGC2Main", nmUsbGunInit);
 
