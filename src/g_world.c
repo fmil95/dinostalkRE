@@ -88,7 +88,41 @@ void gsWorldCallSpecialEffect()
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldCallSpecialEffect2);
+int gsWorldCallSpecialEffect2(int r)
+{
+    switch (gsWorldStageNo)
+    {
+    case 0:
+        r = gsWorldSt1_SpecialEffect2(r);
+        break;
+    case 1:
+        r = gsWorldSt2_SpecialEffect2(r);
+        break;
+    case 2:
+        r = gsWorldSt3_SpecialEffect2(r);
+        break;
+    case 3:
+        r = gsWorldSt4_SpecialEffect2(r);
+        break;
+    case 4:
+        r = gsWorldSt5_SpecialEffect2(r);
+        break;
+    case 6:
+        r = gsWorldSt7_SpecialEffect2(r);
+        break;
+    case 7:
+        r = gsWorldSt8_SpecialEffect2(r);
+        break;
+    case 8:
+        r = gsWorldSt9_SpecialEffect2(r);
+        break;
+    case -1:
+        r = gsWorldSt7Test_SpecialEffect2(r);
+        break;
+    }
+
+    return r;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldDamageObject);
 
