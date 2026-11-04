@@ -266,7 +266,10 @@ int SeGetPort(int a)
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeGetVhName);
 
-INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeSoundOff);
+int SeSoundOff()
+{
+    return ezSe(0x8460, 0, 1);
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeSePortOff);
 
