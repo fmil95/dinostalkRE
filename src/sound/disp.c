@@ -17,6 +17,10 @@ extern int s_frm_ofy;
 extern int center_flg_w;
 extern int center_flg_h;
 
+extern int user_width;
+extern int user_height;
+extern int isUp;
+extern int vo_send_addr;
 INCLUDE_ASM("asm/nonmatchings/sound/disp", initDisplay);
 
 void cdvMpegChgOffset(int ofx, int ofy)
@@ -319,4 +323,13 @@ void endDisplay()
     frd = 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/disp", SetUserData);
+void SetUserData(int* a, int* b, int* c, int* d)
+{
+    int w = user_width;
+    int s = vo_send_addr;
+
+    *a = w;
+    *b = user_height;
+    *c = isUp;
+    *d = s;
+}
