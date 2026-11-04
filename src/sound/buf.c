@@ -179,7 +179,55 @@ void viBufFlush(ViBuf* f)
     SignalSema(f->sema);
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/buf", viBufModifyPts);
+int viBufModifyPts(ViBuf* f, TimeStamp* new_ts)
+{
+    TimeStamp* ts;
+    int rd = (f->wt_ts - f->count_ts + f->n_ts) % f->n_ts;
+    int datasize = VIBUF_ELM_SIZE * f->n;
+    int loop = 1;
+
+    if (f->count_ts > 0)
+    {
+        while (loop)
+        {
+            ts = f->ts + rd;
+
+            if (ts->len == 0 || new_ts->len == 0)
+            {
+                break;
+            }
+
+            if (IsPtsInRegion(ts->pos, new_ts->pos, new_ts->len, datasize))
+            {
+                int len = min(new_ts->pos + new_ts->len - ts->pos, ts->len);
+
+                ts->pos = (ts->pos + len) % datasize;
+                ts->len -= len;
+
+                if (ts->len == 0)
+                {
+                    if (ts->pts >= 0)
+                    {
+                        ts->pts = TS_NONE;
+                        ts->dts = TS_NONE;
+                        ts->pos = 0;
+                        ts->len = 0;
+                    }
+
+                    f->count_ts = max(f->count_ts - 1, 0);
+                }
+            }
+            else
+            {
+                loop = 0;
+            }
+
+            rd = (rd + 1) % f->n_ts;
+        }
+    }
+
+    return 0;
+}
 
 
 int viBufPutTs(ViBuf* f, TimeStamp* ts)
