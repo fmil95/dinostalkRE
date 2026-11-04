@@ -4,35 +4,9 @@
 #define GUNSUV_USA_LIBGF_GFMODEL_H
 
 #include "common.h"
+#include <eestruct.h>
 #include "gunsuv_usa/libgf/gfobject.h"
 #include "gunsuv_usa/libgf/pod.h"
-
-typedef struct { // 0x10
-	/* 0x0:0 */ long unsigned int NLOOP : 15;
-	/* 0x1:7 */ long unsigned int EOP : 1;
-	/* 0x2:0 */ long unsigned int pad16 : 16;
-	/* 0x4:0 */ long unsigned int id : 14;
-	/* 0x5:6 */ long unsigned int PRE : 1;
-	/* 0x5:7 */ long unsigned int PRIM : 11;
-	/* 0x7:2 */ long unsigned int FLG : 2;
-	/* 0x7:4 */ long unsigned int NREG : 4;
-	/* 0x8:0 */ long unsigned int REGS0 : 4;
-	/* 0x8:4 */ long unsigned int REGS1 : 4;
-	/* 0x9:0 */ long unsigned int REGS2 : 4;
-	/* 0x9:4 */ long unsigned int REGS3 : 4;
-	/* 0xa:0 */ long unsigned int REGS4 : 4;
-	/* 0xa:4 */ long unsigned int REGS5 : 4;
-	/* 0xb:0 */ long unsigned int REGS6 : 4;
-	/* 0xb:4 */ long unsigned int REGS7 : 4;
-	/* 0xc:0 */ long unsigned int REGS8 : 4;
-	/* 0xc:4 */ long unsigned int REGS9 : 4;
-	/* 0xd:0 */ long unsigned int REGS10 : 4;
-	/* 0xd:4 */ long unsigned int REGS11 : 4;
-	/* 0xe:0 */ long unsigned int REGS12 : 4;
-	/* 0xe:4 */ long unsigned int REGS13 : 4;
-	/* 0xf:0 */ long unsigned int REGS14 : 4;
-	/* 0xf:4 */ long unsigned int REGS15 : 4;
-} sceGifTag;
 
 struct gf_shapeofs { // 0x10
 	/* 0x0 */ qword *packet;
