@@ -237,3 +237,13 @@ void gsThrowWeaponReset()
         }
     }
 }
+INCLUDE_RODATA("asm/nonmatchings/air/a_item", D_00669B28);
+
+INCLUDE_RODATA("asm/nonmatchings/air/a_item", D_00669B48);
+
+INCLUDE_RODATA("asm/nonmatchings/air/a_item", D_00669B50);
+
+INCLUDE_RODATA("asm/nonmatchings/air/a_item", D_00669B58);
+
+INCLUDE_RODATA("asm/nonmatchings/air/a_item", D_00669B60);
+
