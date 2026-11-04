@@ -1,3 +1,4 @@
+#include "gunsuv_usa/libgf/libgf.h"
 #include "gunsuv_usa/libgf/gfmodel.h"
 
 Uint32 GFModel_GetVu1TransSize(Uint32 work_size)
@@ -11,7 +12,24 @@ Uint32 GFModel_GetVu1TransSize(Uint32 work_size)
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfmodel", GFModel_MakePreset);
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfmodel", gfModel_MakeModelInitPacket);
+static qword* gfModel_MakeModelInitPacket(Sint32 pack_size, qword* packet)
+{
+    qword* cur;
+
+    _GFPKT_DV_CNT_STCYCL_UNPACK(packet, 0xDE, 1, 1, 1);
+
+    cur = packet + 1;
+    (*cur)[0] = pack_size;
+    (*cur)[1] = 0;
+    (*cur)[2] = 0;
+    (*cur)[3] = 0;
+    cur++;
+
+    _GFPKT_DMA_SET_TAG_0(cur, 6, 0);
+    cur++;
+
+    return cur;
+}
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfmodel", GFModel_MakeShapePacket);
 
