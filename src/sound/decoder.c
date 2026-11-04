@@ -360,7 +360,17 @@ INCLUDE_ASM("asm/nonmatchings/sound/decoder", sendToIOP2area);
 
 INCLUDE_ASM("asm/nonmatchings/sound/decoder", sendToIOP);
 
-INCLUDE_ASM("asm/nonmatchings/sound/decoder", pushMasterVolume);
+void pushMasterVolume()
+{
+    WaitSema(remoteSema);
+
+    s_vol_l0 = sceSdRemote(1, 0x8020, 0x980);
+    s_vol_r0 = sceSdRemote(1, 0x8020, 0xA80);
+    s_vol_l1 = sceSdRemote(1, 0x8020, 0x981);
+    s_vol_r1 = sceSdRemote(1, 0x8020, 0xA81);
+
+    SignalSema(remoteSema);
+}
 
 void popMasterVolume()
 {
