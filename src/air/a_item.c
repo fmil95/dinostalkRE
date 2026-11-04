@@ -134,7 +134,20 @@ INCLUDE_ASM("asm/nonmatchings/air/a_item", gsItem_SizeRot_Change);
 
 INCLUDE_ASM("asm/nonmatchings/air/a_item", gsItem_SizeRot_Return);
 
-INCLUDE_ASM("asm/nonmatchings/air/a_item", gsClearFixItem);
+void gsClearFixItem()
+{
+    char* p = (char*)Fix_Item;
+    int i;
+
+    for (i = 0x3F; i >= 0; i--, p += 0x210)
+    {
+        if ((STRUCT_OFFSET(p, 0, long) & 3) == 3)
+        {
+            GFInstance_Remove(p + 0x70);
+            gsFieldItemInfosClear(-1, p);
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/air/a_item", gsMakeAddFixItem);
 
