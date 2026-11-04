@@ -78,7 +78,19 @@ void cdvMpegSkipReset(int port, int slot)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", cdvMpegSkipResetAll);
+void cdvMpegSkipResetAll()
+{
+    int port;
+    int slot;
+
+    for (port = 0; port < 2; port++)
+    {
+        for (slot = 0; slot < 4; slot++)
+        {
+            cdvMpegSkipReset(port, slot);
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", cdvMpegPadUseSet);
 
