@@ -22,6 +22,14 @@ INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_efdmg", gsCOCKPIT_PutEfDamageCuttin
 
 INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_efdmg", gsCOCKPIT_PutEfDamageBlood);
 
+INCLUDE_RODATA("asm/nonmatchings/hoya/cockpit/g_efdmg", D_0066A9B0);
+
+INCLUDE_RODATA("asm/nonmatchings/hoya/cockpit/g_efdmg", D_0066AA30);
+
+INCLUDE_RODATA("asm/nonmatchings/hoya/cockpit/g_efdmg", D_0066AA40);
+
+INCLUDE_RODATA("asm/nonmatchings/hoya/cockpit/g_efdmg", D_0066AAB0);
+
 INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_efdmg", gsCOCKPIT_PutEfDamage);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_efdmg", gsCOCKPIT_SetEfDamage);
