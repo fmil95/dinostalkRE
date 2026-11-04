@@ -96,7 +96,21 @@ int GetErr()
     return ((unsigned int)0 < (unsigned int)mcdResult);
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", CheckSystemDataVersion);
+int CheckSystemDataVersion()
+{
+    int i;
+    int r = 0;
+
+    for (i = 0; i < 16; i++)
+    {
+        if (saveDataBox[i] != sysVer[i])
+        {
+            r = 1;
+            break;
+        }
+    }
+    return r;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", CheckGameDataVersion);
 
