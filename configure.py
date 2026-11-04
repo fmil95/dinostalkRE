@@ -35,7 +35,8 @@ G_OVERRIDES = {
     "mem.c": "-G8",
     "main.c": "-G8",
     "aelib.c": "-G8",
-    "se_rpc.c": "-G8"
+    "se_rpc.c": "-G8",
+    "g_savlod.c": "-G8"
 }
 
 O_OVERRIDES = {
