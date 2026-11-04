@@ -22,26 +22,26 @@ typedef struct ISC_INFO
 
 extern ISC_INFO gsIscInfos[];
 
-gsIscInfosAllClear();
-gsIscInfosClear();
-gsFreeIscInfosSearch();
-gsIscPictureLoad();
-gsIscAnimLoad();
-gsMake_IscObjPacket();
-gsObjSet_Insect();
-gsMake_AllIscObj();
-gsInitInsect();
-gsManagementInsect();
-gsInsectAnimSet();
-gsMakeIscLocalMatrix();
-gsFixIscSetIdCheck();
-gsInsectAddBreakVe();
-gsInsectDead();
-gsInsect_DeadDisp00();
-gsInsect_DeadDisp01();
-gsInsectInfoCheck();
-gsIscInit_AfterMovie();
-gsInit_IscSe();
-gsIscSe_VolumeAdjust();
+int gsIscInfosAllClear();
+int gsIscInfosClear();
+int gsFreeIscInfosSearch();
+int gsIscPictureLoad();
+int gsIscAnimLoad();
+int gsMake_IscObjPacket();
+int gsObjSet_Insect();
+int gsMake_AllIscObj();
+int gsInitInsect();
+int gsManagementInsect();
+int gsInsectAnimSet();
+int gsMakeIscLocalMatrix();
+int gsFixIscSetIdCheck();
+int gsInsectAddBreakVe();
+int gsInsectDead();
+int gsInsect_DeadDisp00();
+int gsInsect_DeadDisp01();
+int gsInsectInfoCheck();
+int gsIscInit_AfterMovie();
+int gsInit_IscSe();
+int gsIscSe_VolumeAdjust();
 
 #endif // AIR_INSECT_A_INSECT_H

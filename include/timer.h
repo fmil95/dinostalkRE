@@ -5,9 +5,9 @@
 
 #include "common.h"
 
-TIMER_InitTimer();
-TIMER_SetTimer();
-TIMER_StartTimer();
+int TIMER_InitTimer();
+int TIMER_SetTimer();
+int TIMER_StartTimer();
 unsigned short TIMER_StopTimer(int prm0);
 unsigned short TIMER_GetTimer(int prm0);
 

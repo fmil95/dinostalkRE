@@ -5,12 +5,12 @@
 
 #include "common.h"
 
-gsEventMatrixThinkMain();
-gsThinkMatrixDataCheck();
-gsThinkMatrixDataCheck2();
-gsEventMatrixCmpDataINT();
-gsEventMatrixCmpDataFLOAT();
+int gsEventMatrixThinkMain();
+int gsThinkMatrixDataCheck();
+int gsThinkMatrixDataCheck2();
+int gsEventMatrixCmpDataINT();
+int gsEventMatrixCmpDataFLOAT();
 int gsGetRandINT(int prm0);
-gsRotChange();
+int gsRotChange();
 
 #endif // AIR_A_EVTTHK_H

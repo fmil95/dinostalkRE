@@ -36,8 +36,12 @@ typedef ulong   undefined8;
 typedef uchar byte;
 //typedef union QW;
 
+#ifndef FALSE
 #define FALSE 0
+#endif
+#ifndef TRUE
 #define TRUE 1
+#endif
 
 typedef int qword[4] __attribute__((aligned (16)));
 typedef int sceVu0IVECTOR[4] __attribute__((aligned (16)));

@@ -3,21 +3,21 @@
 #ifndef LIBDMA_H
 #define LIBDMA_H
 
-sceDmaGetChan();
-sceDmaReset();
-sceDmaDebug();
-sceDmaPutEnv();
-sceDmaGetEnv();
-sceDmaPutStallAddr();
-sceDmaSend();
-sceDmaSendN();
-sceDmaSendI();
-sceDmaRecv();
-sceDmaRecvN();
-sceDmaRecvI();
-sceDmaSync();
-sceDmaWatch();
-sceDmaPause();
-sceDmaRestart();
+int sceDmaGetChan();
+int sceDmaReset();
+int sceDmaDebug();
+int sceDmaPutEnv();
+int sceDmaGetEnv();
+int sceDmaPutStallAddr();
+int sceDmaSend();
+int sceDmaSendN();
+int sceDmaSendI();
+int sceDmaRecv();
+int sceDmaRecvN();
+int sceDmaRecvI();
+int sceDmaSync();
+int sceDmaWatch();
+int sceDmaPause();
+int sceDmaRestart();
 
 #endif // LIBDMA_H
