@@ -210,7 +210,12 @@ u_int* setTRXPOS(u_int* p, u_int ssax, u_int ssay, u_int dsax, u_int dsay, u_int
     return setGIFad(p, SCE_GS_TRXPOS, val);
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/disp", setTRXREG);
+u_int* setTRXREG(u_int* p, u_int rrw, u_int rrh)
+{
+    u_long val = ((u_long)rrh << 32) | ((u_long)rrw << 0);
+
+    return setGIFad(p, SCE_GS_TRXREG, val);
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/disp", setTRXDIR);
 
