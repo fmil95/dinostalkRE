@@ -142,9 +142,13 @@ void eneptn01_cls03(char* a)
     }
 }
 
+INCLUDE_RODATA("asm/nonmatchings/g_enemy/eneptn01", D_00668198);
+
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn01", eneptn01_ST1PuteraLeaderPtn);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn01", AttackCheck);
+
+INCLUDE_RODATA("asm/nonmatchings/g_enemy/eneptn01", D_006683B8);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn01", eneptn01_ST1PuteraNonLeaderPtn);
 
@@ -173,6 +177,8 @@ INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn01", eneptn01_attack01);
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn01", eneptn01_attack02);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn01", eneptn01_attack02b);
+
+INCLUDE_RODATA("asm/nonmatchings/g_enemy/eneptn01", D_00668590);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn01", eneptn01_attack03);
 
