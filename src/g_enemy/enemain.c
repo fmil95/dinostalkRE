@@ -20,7 +20,30 @@ INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_Main);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_PauseProc);
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_AnmStpOrStt);
+void Enemy_AnmStpOrStt(char* a, int on)
+{
+    char* p = a + 0xBA0;
+    char* q = STRUCT_OFFSET(a, 0xD30, char*);
+    int i;
+
+    for (i = 0; i < STRUCT_OFFSET(p, 0x118, int); i++, q += 0x170)
+    {
+        if (!(STRUCT_OFFSET(a, 0x0, int) & 4))
+        {
+            if (on)
+                STRUCT_OFFSET(q, 0x100, int) &= ~2;
+            else
+                STRUCT_OFFSET(q, 0x100, int) |= 2;
+        }
+        else
+        {
+            if (on)
+                STRUCT_OFFSET(q, 0x100, int) &= ~3;
+            else
+                STRUCT_OFFSET(q, 0x100, int) |= 3;
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_AllWorkInit);
 
