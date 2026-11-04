@@ -10,6 +10,13 @@ extern char icon[];
 extern void mcdWriteSet();
 extern void mcdFormatSet();
 
+typedef struct { int w[544]; } MemcInfo;
+extern MemcInfo D_005E6044[];
+extern MemcInfo D_005E604C[];
+extern MemcInfo D_005E6048[];
+extern MemcInfo D_005E6040[];
+extern MemcInfo D_005E6054[];
+extern int ico;
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", CreateIconSys);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", InitMemcManager);
@@ -18,7 +25,10 @@ INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", CheckMemcType);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", CheckMemcFormat);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", CheckMemcCapacityDir);
+int CheckMemcCapacityDir(int a, int b)
+{
+    return D_005E6044[b + a].w[0] < 0x8F;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", CheckMemcEntryNum);
 
