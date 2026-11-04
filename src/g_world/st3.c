@@ -74,7 +74,13 @@ void gsWorldSt3_InitKoiwa()
     gsWorldSt3_KoiwaCnt = 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_world/st3", gsWorldSt3_EntryKoiwa);
+void gsWorldSt3_EntryKoiwa(int a)
+{
+    int n = gsWorldSt3_KoiwaCnt;
+
+    gsWorldSt3_KoiwaOdv[n] = a;
+    gsWorldSt3_KoiwaCnt = n + 1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st3", gsWorldSt3_Koiwa);
 
