@@ -235,7 +235,16 @@ INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundEeSE_PLAY2);
 
 INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundEeSE_PLAY_WORLD);
 
-INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundEeSE_STOP);
+int gsSoundEeSE_STOP(int* a)
+{
+    if (a && *a >= 0)
+    {
+        SeSetVolume(0, 0, *a);
+        SeStopVoice(*a);
+        _gsSoundEE_DeleteChBuf(a);
+    }
+    return 0;
+}
 
 int gsSoundEeSE_VOLUME(int* a, int b, int c)
 {
