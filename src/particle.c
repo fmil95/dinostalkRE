@@ -127,7 +127,11 @@ INCLUDE_ASM("asm/nonmatchings/particle", GFParticle_SetCollidePlane);
 
 INCLUDE_ASM("asm/nonmatchings/particle", GFParticle_SetTail);
 
-INCLUDE_ASM("asm/nonmatchings/particle", GFParticle_SetCreateRange);
+void GFParticle_SetCreateRange(char* a, void* b, void* c)
+{
+    sceVu0CopyVector(a + 0x70, b);
+    sceVu0CopyVector(a + 0x80, c);
+}
 
 void GFParticle_SetAttractPos(void* a)
 {
