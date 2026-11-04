@@ -317,7 +317,13 @@ INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn03", eneptn03_ST7carno_combi01_00);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn03", eneptn03_ST7carno_combi01_01);
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn03", eneptn03_ST7carno_combi01_02);
+void eneptn03_ST7carno_combi01_02(void* a)
+{
+    if ((STRUCT_OFFSET(a, 0x0, int) & 0x40000000) == 0)
+    {
+        STRUCT_OFFSET(a, 0x62, short) = (STRUCT_OFFSET(a, 0x62, unsigned short) + 1);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn03", eneptn03_ST7carno_combi01_03);
 
