@@ -22,7 +22,15 @@ void ene04moveElem000(char* a)
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/ene04pro/ene04mv", ene04moveElem001);
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/ene04pro/ene04mv", ene04moveElem020);
+void ene04moveElem020(char* a)
+{
+    Enemy_AnmChg00(a, 5, 8, 1);
+    if (rand() % 3 == 0)
+    {
+        Enemy_SeSet00(a, 0x17C);
+    }
+    STRUCT_OFFSET(a, 0x8C, int)++;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/ene04pro/ene04mv", ene04moveElem021);
 
