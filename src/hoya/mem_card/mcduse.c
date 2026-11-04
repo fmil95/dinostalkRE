@@ -214,7 +214,25 @@ INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/mcduse", mcdEntSpaceSet);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/mcduse", mcdRenameSet);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/mcduse", mcdSlotMaxSet);
+int mcdSlotMaxSet(int a, int b)
+{
+    int w;
+    int m;
+    char* q;
+
+    if (mcdCheckEoq(1) < 0)
+    {
+        return -1;
+    }
+    w = writeque;
+    m = maxque;
+    q = queaddr;
+    STRUCT_OFFSET(q, w * 40 + 0, short) = 0x15;
+    STRUCT_OFFSET(q, w * 40 + 8, int) = a;
+    STRUCT_OFFSET(q, w * 40 + 24, int) = b;
+    writeque = (w + 1) % m;
+    return writeque;
+}
 
 int mcdPauseExe()
 {
