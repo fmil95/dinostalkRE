@@ -313,3 +313,11 @@ void gsMemryCard_LoadModule()
         }
     }
 }
+INCLUDE_RODATA("asm/nonmatchings/hoya/mem_card/g_savlod", D_0066ABD0);
+
+INCLUDE_RODATA("asm/nonmatchings/hoya/mem_card/g_savlod", D_0066ABF0);
+
+INCLUDE_RODATA("asm/nonmatchings/hoya/mem_card/g_savlod", D_0066AC00);
+
+INCLUDE_RODATA("asm/nonmatchings/hoya/mem_card/g_savlod", D_0066AC18);
+
