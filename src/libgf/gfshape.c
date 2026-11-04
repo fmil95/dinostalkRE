@@ -1,7 +1,9 @@
+#include "gunsuv_usa/libgf/pod.h"
 #include "gunsuv_usa/libgf/libgf.h"
 #include "gunsuv_usa/libgf/gftex.h"
 #include "gunsuv_usa/libgf/gfanim.h"
 
+extern sceVu0FVECTOR D_00655C00;
 INCLUDE_ASM("asm/nonmatchings/libgf/gfshape", gfShape_AttachObject2);
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfshape", GFShape_AttachObject);
@@ -26,7 +28,26 @@ void GFShape_Eval(GF_INST_SHAPE* inst)
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfshape", GFShape_Draw);
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfshape", GFShape_MakeMatrixTransferPacket);
+qword* GFShape_MakeMatrixTransferPacket(float* mat_lw[4], float* mat_light[4], qword* packet)
+{
+    qword* cur;
+
+    _GFPKT_DV_CNT_FLUSH(packet, 0);
+    _GFPKT_DV_CNT_STCYCL_UNPACK(packet + 1, 0xE0, 8, 1, 1);
+    sceVu0CopyMatrix((void*)(packet + 2), (void*)mat_lw);
+    sceVu0CopyMatrix((void*)(packet + 6), (void*)mat_light);
+    _GFPKT_DV_CNT_MSCAL_FLUSH(packet + 10, 0, 0);
+    _GFPKT_DV_CNT_STCYCL_STROW(packet + 11, 1, 1, 1);
+
+    cur = packet + 12;
+
+    asm volatile(
+        "lq $6, 0(%1)\n"
+        "sq $6, 0(%0)\n"
+        : : "r"(cur), "r"(D_00655C00) : "$6", "memory");
+
+    return cur + 1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfshape", GFShape_MakeAllMatrixTransferPacket);
 
