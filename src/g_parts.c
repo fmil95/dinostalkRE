@@ -241,4 +241,13 @@ int gpGetPodGeometryNum(char* a)
 
 INCLUDE_ASM("asm/nonmatchings/g_parts", _gpMakeWorldOdvGeomBound);
 
-INCLUDE_ASM("asm/nonmatchings/g_parts", gpMakeWorldOdvGeomBound);
+void* gpMakeWorldOdvGeomBound(char* a)
+{
+    char* p = STRUCT_OFFSET(a, 0, char*);
+    void* m;
+    int n = gpGetPodGeometryNum(a);
+
+    m = MEM_MallocAlign(n << 5, 0x40, D_00664C40, 0x1789);
+    _gpMakeWorldOdvGeomBound(p, STRUCT_OFFSET(p, 0xC, int), m);
+    return m;
+}
