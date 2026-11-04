@@ -27,7 +27,16 @@ void GFCache_SetInfoAddr(Uint32* buf, Uint32 buf_size, Uint16 cache_pos, Uint16 
     GFCache_Flush();
 }
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfvcache", GFCache_Flush);
+void GFCache_Flush()
+{
+    gfCache_ClearAllCell();
+
+    gfInfo_00674cdc->stat = 1;
+    gfInfo_00674cdc->next = NULL;
+    gfInfo_00674cdc->used_flag = 0;
+    gfInfo_00674cdc->pos = gfInfoHead_00674cd8->cache_pos;
+    gfInfo_00674cdc->size = gfInfoHead_00674cd8->cache_size;
+}
 
 Uint16 GFCache_GetPresetTransPos()
 {
