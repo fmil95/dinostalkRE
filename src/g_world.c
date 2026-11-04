@@ -33,6 +33,8 @@ INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldBuildWorld);
 
 INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldMoveBackObj);
 
+INCLUDE_RODATA("asm/nonmatchings/g_world", D_00665018);
+
 INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldCallSpecialEffect);
 
 INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldCallSpecialEffect2);
