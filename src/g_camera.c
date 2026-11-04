@@ -3,6 +3,7 @@
 typedef struct { int a; int b; } CamUseItemS;
 extern CamUseItemS _camera_use_item[];
 extern int _cam_use_item_cnt;
+extern void sceVu0CopyVector();
 INCLUDE_ASM("asm/nonmatchings/g_camera", gsSetCameraMatrix);
 
 INCLUDE_ASM("asm/nonmatchings/g_camera", gsCameraCalcRotMatrix);
@@ -154,7 +155,44 @@ INCLUDE_ASM("asm/nonmatchings/g_camera", gsCameraShock_EXEC);
 
 INCLUDE_ASM("asm/nonmatchings/g_camera", gsCameraShock_RESET);
 
-INCLUDE_ASM("asm/nonmatchings/g_camera", _searchTarget_GetPos);
+void _searchTarget_GetPos(float* dst, char* e)
+{
+    int n;
+
+    switch (STRUCT_OFFSET(e, 0x2A, short))
+    {
+    case 0:
+    case 1:
+    case 2:
+    case 3:
+    case 5:
+    case 6:
+    case 16:
+        n = 13;
+        break;
+    case 7:
+    case 8:
+    case 14:
+        n = 9;
+        break;
+    case 9:
+    case 10:
+    case 11:
+        n = 2;
+        break;
+    case 12:
+    case 15:
+        n = 7;
+        break;
+    case 4:
+    case 13:
+    default:
+        n = 1;
+        break;
+    }
+
+    sceVu0CopyVector(dst, STRUCT_OFFSET(e, 0xCBC, char*) + n * 0x170 + 0x70);
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_camera", gsCameraSearchTarget);
 
