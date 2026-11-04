@@ -42,7 +42,15 @@ int gsSoundReset()
     return 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundSeMePlay);
+int gsSoundSeMePlay(int a)
+{
+    if (a >= 0 && a < get_SE_MAX())
+    {
+        Se(a);
+    }
+
+    return 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundSeMePlayDir);
 
