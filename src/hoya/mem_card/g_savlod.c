@@ -101,7 +101,19 @@ INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", CheckGameDataId);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", CheckSystemDataSum);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", CheckGameDataSum);
+int CheckGameDataSum(int n)
+{
+    int s = 0;
+    int* p = (int*)(D_005E2728 + n * 0x29C);
+    int i = 0xA6;
+
+    do
+    {
+        s ^= *p++;
+    } while (--i >= 0);
+    s ^= D_005E3C0C[n];
+    return s != 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", CheckMemcStatus);
 
