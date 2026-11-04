@@ -71,7 +71,17 @@ u_int videoDecSetState(VideoDec* vd, u_int state)
     return old;
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/decoder", videoDecPutTs);
+int videoDecPutTs(VideoDec* vd, long pts_val, long dts_val, u_char* start, int len)
+{
+    TimeStamp ts;
+
+    ts.pts = pts_val;
+    ts.dts = dts_val;
+    ts.pos = start - (u_char*)vd->vibuf.data;
+    ts.len = len;
+
+    return viBufPutTs(&videoDec.vibuf, &ts);
+}
 
 int videoDecInputCount(VideoDec* vd)
 {
