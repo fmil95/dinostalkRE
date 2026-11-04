@@ -20,7 +20,14 @@ INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_other", gsTimerInit);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_other", gsTimerSetTime);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_other", gsTimerGetTime);
+void gsTimerGetTime(void* p)
+{
+    STRUCT_OFFSET(p, 0x4, int) = gsCOCKPIT_TimerCnt.c;
+    STRUCT_OFFSET(p, 0x8, u_char) = gsCOCKPIT_TimerCnt.d[0];
+    STRUCT_OFFSET(p, 0x9, u_char) = gsCOCKPIT_TimerCnt.d[1];
+    STRUCT_OFFSET(p, 0xA, u_char) = gsCOCKPIT_TimerCnt.d[2];
+    STRUCT_OFFSET(p, 0xB, u_char) = gsCOCKPIT_TimerCnt.d[3];
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_other", gsTimerSetFrame);
 
