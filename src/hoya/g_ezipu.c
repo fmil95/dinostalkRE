@@ -25,7 +25,10 @@ INCLUDE_ASM("asm/nonmatchings/hoya/g_ezipu", gsEzIpuInitSpr);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/g_ezipu", gsEzIpuDraw);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/g_ezipu", gsEzIpuSetLoadImageTags);
+void gsEzIpuSetLoadImageTags(int a, int b, int c, int d, int e, int f)
+{
+    gsEzIpuSetLoadImageTagsGeneral(a, b, 0x400, c, d, e, f);
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/g_ezipu", gsEzIpuSetLoadImageTagsGeneral);
 
