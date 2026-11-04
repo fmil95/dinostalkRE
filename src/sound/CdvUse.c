@@ -142,7 +142,17 @@ INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvFileReadSet);
 
 INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvGetFileStsSet);
 
-INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvDiscNameChange);
+void cdvDiscNameChange(char* a)
+{
+    int i;
+
+    for (i = 0; i < 9; i++)
+    {
+        defbuf[i] = a[i];
+    }
+
+    defbuf[9] = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvDiscNameChangeSet);
 
