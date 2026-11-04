@@ -49,7 +49,24 @@ int mcdQuit()
     return 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/mcduse", mcdCheckEoq);
+int mcdCheckEoq(int n)
+{
+    int m = maxque;
+    int s;
+    int w;
+
+    if (m < n)
+    {
+        return -1;
+    }
+    s = stepque;
+    w = writeque;
+    if (w < s)
+    {
+        return (s - w < n) ? -1 : 0;
+    }
+    return (m + s - w < n) ? -1 : 0;
+}
 
 int mcdGetStepQue()
 {
