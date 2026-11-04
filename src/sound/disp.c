@@ -42,7 +42,16 @@ u_int* setTexRect(u_int* p, Rect* poly, Rect* tex)
     return p;
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/disp", setFlatRect);
+u_int* setFlatRect(u_int* p, Rect* rect, u_int val)
+{
+    p = setPRIM(p, 6, 0, 0, 0, 0, 0, 1, s_ctxt, 0);
+    p = setXYZ2(p, rect->x, rect->y, 0);
+
+    p = setRGBAQ(p, val & 0xFF, (val >> 8) & 0xFF, (val >> 16) & 0xFF, (val >> 24) & 0xFF, 0);
+    p = setXYZ2(p, rect->x + rect->w, rect->y + rect->h, 0);
+
+    return p;
+}
 
 u_int* setDMAscTag(u_int* p, u_int spr, void* addr, u_int irq, u_int id, u_int pce, u_int qwc)
 {
