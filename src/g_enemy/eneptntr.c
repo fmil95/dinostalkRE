@@ -44,6 +44,8 @@ INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptntr", trnty_ptn21);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptntr", trnty_ptn30);
 
+INCLUDE_RODATA("asm/nonmatchings/g_enemy/eneptntr", D_00668FD8);
+
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptntr", trnty_ptn31);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptntr", trnty_ptn32);

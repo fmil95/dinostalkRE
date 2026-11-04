@@ -604,7 +604,7 @@ segments:
       - [0x5695f0, rodata, g_enemy/eneptn02]
       - [0x569980, .rodata, g_enemy/eneptn03]
       - [0x569d80, rodata, g_enemy/eneptn04]
-      - [0x569fd8, rodata, g_enemy/eneptntr]
+      - [0x569fd8, .rodata, g_enemy/eneptntr]
       - [0x56a260, rodata, g_enemy/enetest]
       - [0x56a718, rodata, g_enemy/ene01pro/ene01mv]
       - [0x56a8e0, rodata, g_enemy/ene03pro/ene03mv]
