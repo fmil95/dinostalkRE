@@ -1,7 +1,4 @@
 #include "sound/mainmpeg.h"
-extern char abort_flg;
-extern int writerest;
-extern PadSkip pad_00857400[];
 
 #define min(x, y) (((x) > (y)) ? (y) : (x))
 
@@ -16,6 +13,9 @@ extern int printf();
 extern char D_0066CD88[];
 
 extern int frame_cnt;
+extern int writerest;
+extern char abort_flg;
+extern PadSkip pad_00857400[];
 extern char err_sts;
 extern int GS_Send_Flg;
 extern int mono_flg;
