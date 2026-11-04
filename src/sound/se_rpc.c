@@ -342,7 +342,13 @@ int SePortInit()
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeSoundAllClose);
 
-INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeInitHot);
+void SeInitHot()
+{
+    SeSpu2AllocInit(0);
+    SeAllocInit();
+    TJobSt.unk4 = 0;
+    TJobSt.unk0 = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeInit);
 
