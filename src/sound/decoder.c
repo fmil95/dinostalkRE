@@ -139,7 +139,16 @@ int mpegRestartDMA(sceMpeg* mp, sceMpegCbData* cbdata, void* anyData)
     return 1;
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/decoder", mpegTS);
+int mpegTS(sceMpeg* mp, sceMpegCbDataTimeStamp* cbts, void* anyData)
+{
+    TimeStamp ts;
+
+    viBufGetTs(&videoDec.vibuf, &ts);
+    cbts->pts = ts.pts;
+    cbts->dts = ts.dts;
+
+    return 1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/decoder", cpy2area);
 
