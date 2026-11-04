@@ -571,7 +571,7 @@ segments:
       - [0x565ca0, .rodata, g_bulletmark]
       - [0x565cd0, .rodata, g_pad]
       - [0x565d10, .rodata, g_camera]
-      - [0x565fc0, rodata, aelib]
+      - [0x565fc0, .rodata, aelib]
       - [0x565ff0, .rodata, g_world]
       - [0x566150, .rodata, g_gun]
       - [0x5665d8, rodata, g_movie]
