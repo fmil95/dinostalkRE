@@ -275,7 +275,10 @@ INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeSePortOff);
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeMidiPortOff);
 
-INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeStrmOff);
+int SeStrmOff()
+{
+    return ezSe(0x8450, 0, 1);
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeSpuPortOff);
 
