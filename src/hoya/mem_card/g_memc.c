@@ -3,7 +3,16 @@
 extern int memcManager;
 extern int gsNextProg;
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_memc", LetsGotoMemcScene);
+extern int tex2dSendFlag_0067447c;
+void LetsGotoMemcScene(int a)
+{
+    if (a != -1)
+    {
+        memcManager = a;
+    }
+
+    gsNextProg = 0xe;
+}
 
 void LetsGotoMemcScene4Continue(int a)
 {
