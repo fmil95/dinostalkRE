@@ -162,7 +162,144 @@ int isAudioOK()
     return isWithAudio ? audioDecIsPreset(&audioDec) : 1;
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", initAll);
+extern void* sceGsGetGParam();
+extern int sceGsSyncV(int mode);
+extern int sceGsSyncVCallback();
+extern int dispCreate(Display* d, int fb_w, int fb_h);
+extern void dispClear(Display* d, u_int val);
+extern void sceMpegInit();
+extern void sceSdRemoteInit();
+extern int sceMpegAddStrCallback();
+extern int CreateThread();
+extern int StartThread();
+extern int AddDmacHandler();
+extern int videoCallback(sceMpeg* mp, sceMpegCbDataStr* str, void* data);
+extern int pcmCallback(sceMpeg* mp, sceMpegCbDataStr* str, void* data);
+extern int vblankHandler(int val);
+extern int handler_endimage(int val);
+extern void defMain();
+extern void UserThread();
+extern char defStack[];
+extern char videoDecStack[];
+extern char userStack[];
+extern int _gp;
+extern u_char* mpegWork;
+extern u_long128* viBufData;
+extern u_long128* viBufTag;
+extern int Vibuf_Size;
+extern TimeStamp* timeStamp;
+extern int t_Size;
+extern u_char* audioBuff;
+extern int sd_Size;
+extern VoData* voBufData;
+extern VoTag* voBufTag;
+extern int N_Vobuf;
+struct ThreadParam { int status; void* entry; void* stack; int stackSize; void* gpReg; int initPriority; int currentPriority; u_int attr; u_int option; int waitType; int waitId; int wakeupCount; };
+
+int initAll(char* bsfilename, int w, int h)
+{
+    struct ThreadParam th_param;
+    int ret;
+    int* gp;
+
+    dma_flg = 1;
+
+    gp = sceGsGetGParam();
+    sceGsSyncV(0);
+    save_func = gp[2];
+    sceGsSyncVCallback(0);
+
+    if (dispCreate(&display, w, h))
+    {
+        return 0x121;
+    }
+
+    dispClear(&display, 0x80000000);
+
+    *(volatile u_int*)0x1000E000 = *(volatile u_int*)0x1000E000 | 0x3;
+    *(volatile u_int*)0x1000E010 = 0x4;
+
+    readBufCreate(&readBuf);
+
+    sceMpegInit();
+    videoDecCreate(&videoDec, mpegWork, 0x50368, viBufData, viBufTag, Vibuf_Size, timeStamp, t_Size);
+
+    sceSdRemoteInit();
+
+    if (audioDecCreate(&audioDec, audioBuff, sd_Size << 10, 0x3000))
+    {
+        return 0x122;
+    }
+
+    sceMpegAddStrCallback(&videoDec.mpeg, 0, 0, (sceMpegCallback)videoCallback, &readBuf);
+
+    if (isWithAudio)
+    {
+        sceMpegAddStrCallback(&videoDec.mpeg, 2, 0, (sceMpegCallback)pcmCallback, &readBuf);
+    }
+
+    {
+        VoData* vd = UncAddr(voBufData);
+        voBufCreate(&voBuf, vd, voBufTag, N_Vobuf);
+    }
+
+    th_param.entry = defMain;
+    th_param.stack = defStack;
+    th_param.stackSize = 0x800;
+    th_param.initPriority = 2;
+    th_param.gpReg = &_gp;
+    th_param.option = 0;
+    defaultTh = CreateThread(&th_param);
+
+    th_param.entry = videoDecMain;
+    th_param.stack = videoDecStack;
+    th_param.stackSize = 0x4000;
+    th_param.initPriority = 2;
+    th_param.gpReg = &_gp;
+    th_param.option = 0;
+    videoDecTh = CreateThread(&th_param);
+
+    if (UserProg)
+    {
+        th_param.entry = UserThread;
+        th_param.stack = userStack;
+        th_param.stackSize = 0x4000;
+        th_param.initPriority = 1;
+        th_param.gpReg = &_gp;
+        th_param.option = 0;
+        userTh = CreateThread(&th_param);
+        StartThread(userTh, 0);
+    }
+
+    while (ret = strFileOpen(&infile, bsfilename))
+    {
+        switch (ret)
+        {
+        case 1:
+            return 0x123;
+        case 3:
+            return 0x124;
+        case 2:
+            return 0x125;
+        case 4:
+            return 0x126;
+        }
+    }
+
+    sceGsSyncVCallback(vblankHandler);
+
+    videoDec.hid_endimage = AddDmacHandler(2, handler_endimage, 0);
+
+    if (videoDec.hid_endimage == -1)
+    {
+        return 0x128;
+    }
+
+    dma_flg = EnableDmac(2);
+
+    return 0;
+}
+
 
 void termAll()
 {
