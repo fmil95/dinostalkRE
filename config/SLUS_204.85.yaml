@@ -573,7 +573,7 @@ segments:
       - [0x565d10, .rodata, g_camera]
       - [0x565fc0, rodata, aelib]
       - [0x566018, .rodata, g_world]
-      - [0x566150, rodata, g_gun]
+      - [0x566150, .rodata, g_gun]
       - [0x5665d8, rodata, g_movie]
       - [0x566600, rodata, g_shocktest]
       - [0x566610, rodata, g_world/brk]

@@ -38,6 +38,8 @@ INCLUDE_ASM("asm/nonmatchings/g_gun", gsTriggerGuncon1);
 
 INCLUDE_ASM("asm/nonmatchings/g_gun", gsManagementGun);
 
+INCLUDE_RODATA("asm/nonmatchings/g_gun", D_00665150);
+
 INCLUDE_ASM("asm/nonmatchings/g_gun", gsSetGunBullet);
 
 INCLUDE_ASM("asm/nonmatchings/g_gun", gsGunSetBulletVector);
@@ -271,3 +273,65 @@ void gsGunStopSE_FLY(int a)
 }
 
 INCLUDE_ASM("asm/nonmatchings/g_gun", gsGunPlaySE_BOMB);
+INCLUDE_RODATA("asm/nonmatchings/g_gun", D_006653A8);
+
+INCLUDE_RODATA("asm/nonmatchings/g_gun", D_006653C0);
+
+INCLUDE_RODATA("asm/nonmatchings/g_gun", D_006653D0);
+
+INCLUDE_RODATA("asm/nonmatchings/g_gun", D_006653E0);
+
+INCLUDE_RODATA("asm/nonmatchings/g_gun", D_006653F0);
+
+INCLUDE_RODATA("asm/nonmatchings/g_gun", D_00665400);
+
+INCLUDE_RODATA("asm/nonmatchings/g_gun", D_00665410);
+
+INCLUDE_RODATA("asm/nonmatchings/g_gun", D_00665420);
+
+INCLUDE_RODATA("asm/nonmatchings/g_gun", D_00665430);
+
+INCLUDE_RODATA("asm/nonmatchings/g_gun", D_00665440);
+
+INCLUDE_RODATA("asm/nonmatchings/g_gun", D_00665450);
+
+INCLUDE_RODATA("asm/nonmatchings/g_gun", D_00665468);
+
+INCLUDE_RODATA("asm/nonmatchings/g_gun", D_00665480);
+
+INCLUDE_RODATA("asm/nonmatchings/g_gun", D_00665498);
+
+INCLUDE_RODATA("asm/nonmatchings/g_gun", D_006654B0);
+
+INCLUDE_RODATA("asm/nonmatchings/g_gun", D_006654C8);
+
+INCLUDE_RODATA("asm/nonmatchings/g_gun", D_006654E0);
+
+INCLUDE_RODATA("asm/nonmatchings/g_gun", D_006654F0);
+
+INCLUDE_RODATA("asm/nonmatchings/g_gun", D_00665500);
+
+INCLUDE_RODATA("asm/nonmatchings/g_gun", D_00665510);
+
+INCLUDE_RODATA("asm/nonmatchings/g_gun", D_00665520);
+
+INCLUDE_RODATA("asm/nonmatchings/g_gun", D_00665530);
+
+INCLUDE_RODATA("asm/nonmatchings/g_gun", D_00665540);
+
+INCLUDE_RODATA("asm/nonmatchings/g_gun", D_00665550);
+
+INCLUDE_RODATA("asm/nonmatchings/g_gun", D_00665568);
+
+INCLUDE_RODATA("asm/nonmatchings/g_gun", D_00665578);
+
+INCLUDE_RODATA("asm/nonmatchings/g_gun", D_00665588);
+
+INCLUDE_RODATA("asm/nonmatchings/g_gun", D_00665598);
+
+INCLUDE_RODATA("asm/nonmatchings/g_gun", D_006655A8);
+
+INCLUDE_RODATA("asm/nonmatchings/g_gun", D_006655B8);
+
+INCLUDE_RODATA("asm/nonmatchings/g_gun", D_006655C8);
+
