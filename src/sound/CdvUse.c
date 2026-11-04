@@ -1,4 +1,5 @@
 #include "common.h"
+#include <libcdvd.h>
 
 extern int mpeg_err;
 extern unsigned short ErrorNum;
@@ -16,7 +17,6 @@ extern int s_buf;
 extern int s_mode;
 extern short s_que;
 extern int Cdv_Que;
-extern void sceCdInit();
 extern void ResetMpeg();
 extern char defbuf[];
 extern char StopFlg;
@@ -29,7 +29,51 @@ extern int cdvDiscNameChangeSet();
 extern int cdvGetDiscNameSet();
 extern int cdvNameCheckSet();
 extern long StopCnt;
-INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvCallBack);
+extern int ErrorFlg;
+extern int cntrl_flg;
+extern void cdvTrapError();
+void cdvCallBack(int reason)
+{
+    int err;
+
+    if (ErrorFlg != 0)
+    {
+        return;
+    }
+
+    while ((err = sceCdGetError()) == -1);
+
+    if (err == 0)
+    {
+        ErrorNum = 0x100;
+        cntrl_flg++;
+        return;
+    }
+
+    switch (reason)
+    {
+    case 4:
+        ErrorNum = 0x102;
+        break;
+    case 1:
+        ErrorNum = 0x105;
+        break;
+    case 2:
+    case 3:
+        break;
+    case 5:
+        ErrorNum = 0x107;
+        break;
+    case 6:
+        ErrorNum = 0x109;
+        break;
+    case 7:
+        ErrorNum = 0x10E;
+        break;
+    }
+
+    cdvTrapError();
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvInit);
 
