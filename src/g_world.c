@@ -38,7 +38,17 @@ INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldCallSpecialEffect2);
 
 INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldDamageObject);
 
-INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldInitReaction);
+void gsWorldInitReaction(char* a)
+{
+    char* p = a + 0x5E8;
+    int i = 0x3F;
+
+    do
+    {
+        STRUCT_OFFSET(p, 0, int) = 0;
+        p -= 0x18;
+    } while (--i >= 0);
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldEntryReaction);
 
