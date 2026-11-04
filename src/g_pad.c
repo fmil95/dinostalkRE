@@ -1,6 +1,8 @@
 #include "common.h"
 
 #include <libpad.h>
+typedef struct { int w[22]; } PadWork;
+extern PadWork D_002F18A4[];
 
 INCLUDE_ASM("asm/nonmatchings/g_pad", gsPad_Init);
 
@@ -45,7 +47,10 @@ INCLUDE_ASM("asm/nonmatchings/g_pad", gsPad_AGetTrg);
 
 INCLUDE_ASM("asm/nonmatchings/g_pad", gsPad_AGetRTrg);
 
-INCLUDE_ASM("asm/nonmatchings/g_pad", gsPad_Get2);
+int gsPad_Get2(int i)
+{
+    return D_002F18A4[i].w[14];
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_pad", gsPad_GetTrg2);
 
