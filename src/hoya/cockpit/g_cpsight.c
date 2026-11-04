@@ -199,6 +199,8 @@ INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_cpsight", gsCOCKPIT_PutSightLaser);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_cpsight", gsCOCKPIT_PutSightMineThrower);
 
+INCLUDE_RODATA("asm/nonmatchings/hoya/cockpit/g_cpsight", D_0066A940);
+
 INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_cpsight", PutSights);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_cpsight", gsCOCKPIT_PutSights);
