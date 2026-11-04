@@ -185,7 +185,27 @@ int mcdCloseSet(int a, int b)
     return writeque;
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/mcduse", mcdSeekSet);
+int mcdSeekSet(int a, int b, int c, int d)
+{
+    int w;
+    int m;
+    char* q;
+
+    if (mcdCheckEoq(1) < 0)
+    {
+        return -1;
+    }
+    w = writeque;
+    m = maxque;
+    q = queaddr;
+    STRUCT_OFFSET(q, w * 40 + 0, short) = 4;
+    STRUCT_OFFSET(q, w * 40 + 4, int) = a;
+    STRUCT_OFFSET(q, w * 40 + 8, int) = b;
+    STRUCT_OFFSET(q, w * 40 + 12, int) = c;
+    STRUCT_OFFSET(q, w * 40 + 16, int) = d;
+    writeque = (w + 1) % m;
+    return writeque;
+}
 
 int mcdReadSet(int a, int b, int c, int d)
 {
