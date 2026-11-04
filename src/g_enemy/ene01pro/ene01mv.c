@@ -106,6 +106,8 @@ INCLUDE_ASM("asm/nonmatchings/g_enemy/ene01pro/ene01mv", ene01move0a);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/ene01pro/ene01mv", ene01move0d);
 
+INCLUDE_RODATA("asm/nonmatchings/g_enemy/ene01pro/ene01mv", D_00669718);
+
 INCLUDE_ASM("asm/nonmatchings/g_enemy/ene01pro/ene01mv", ene01move18);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/ene01pro/ene01mv", ene01move20);
