@@ -92,7 +92,18 @@ void cdvMpegSkipResetAll()
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", cdvMpegPadUseSet);
+void cdvMpegPadUseSet(int port, int slot, int use)
+{
+    if (PortSlotCheck(port, slot) == 0)
+    {
+        pad_00857400[port * 4 + slot].use = use;
+
+        if (use)
+        {
+            pad_00857400[port * 4 + slot].skip = 0;
+        }
+    }
+}
 
 void cdvMpegRestoreSet(char v)
 {
