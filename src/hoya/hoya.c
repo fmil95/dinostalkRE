@@ -137,7 +137,13 @@ int getkeyRelease()
     return 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/hoya", getkeyState);
+int getkeyState(int p)
+{
+    int a = gsPad_Get(p);
+    int b = gsPad_AGet(p);
+
+    return a | b;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/hoya", GunStateUpdate);
 
