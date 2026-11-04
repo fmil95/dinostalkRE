@@ -118,7 +118,19 @@ void gun_adjust_W0_gun_ajst()
     gun_teaching_gun_ajst();
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/option/gun_ajst", gun_adjust_W1_gun_ajst);
+int gun_adjust_W1_gun_ajst(int a, int b)
+{
+    int ret;
+
+    ret = adjust_center_gun_ajst(a);
+
+    if (ret != 0)
+    {
+        set_adjustX_gun_ajst(b, center_x_00674884);
+    }
+
+    return ret;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/option/gun_ajst", gun_adjust_W2_gun_ajst);
 
