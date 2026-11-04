@@ -19,6 +19,9 @@ extern void gsWorldCrashOBJ_FLUSH();
 extern void gsGunCrash_FLUSH_CH_ENE();
 extern int gsArmsTypeTbl[];
 extern int D_003C245C[];
+extern void sceVu0CopyVector();
+extern void gsSetItemFromBreakObject();
+extern int gsWorldCheckOBJ_TREASURE();
 INCLUDE_ASM("asm/nonmatchings/g_gun", gsInitGunManager);
 
 INCLUDE_ASM("asm/nonmatchings/g_gun", gsInitGunManager_START_GAME);
@@ -127,7 +130,17 @@ int gsGunGetExtArmsTypeNo()
     return ((gsGunExtraId & 0x1) + 2);
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_gun", gsGunPutTreasure);
+void gsGunPutTreasure(int a, void* b)
+{
+    char buf[16];
+    int v = gsWorldCheckOBJ_TREASURE(gsWorldManager, a);
+
+    if (v >= 0)
+    {
+        sceVu0CopyVector(buf, b);
+        gsSetItemFromBreakObject(buf, v);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_gun", _gsGunCrashObject);
 
