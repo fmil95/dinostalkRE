@@ -5,6 +5,8 @@ typedef struct { int w[22]; } PadWork;
 extern PadWork D_002F18A4[];
 
 extern int _us_key_exchange();
+extern int _us_get_port_g_pad();
+extern int _us_key_exchange2();
 INCLUDE_ASM("asm/nonmatchings/g_pad", gsPad_Init);
 
 INCLUDE_ASM("asm/nonmatchings/g_pad", gsPad_Reset);
@@ -39,7 +41,12 @@ int gsPad_GetNgc1(int a)
     return _us_key_exchange(D_002F18A4[p].w[4]);
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_pad", gsPad_Get);
+int gsPad_Get(int a)
+{
+    int p = _us_get_port_g_pad(a);
+
+    return _us_key_exchange2(_us_key_exchange(D_002F18A4[p].w[4]));
+}
 
 int gsPad_GetTrgNgc1(int a)
 {
