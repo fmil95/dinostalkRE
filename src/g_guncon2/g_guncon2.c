@@ -25,7 +25,14 @@ int gsGuncon2_CheckConnect()
     return 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_guncon2/g_guncon2", gsGuncon2_GetActivePort);
+int gsGuncon2_GetActivePort()
+{
+    if (gsGuncon2Manager[0] == (void*)GetGunBuffer(0))
+    {
+        return 0;
+    }
+    return (gsGuncon2Manager[0] == (void*)GetGunBuffer(1)) ? 1 : -1;
+}
 
 int gsGuncon2_Get()
 {
