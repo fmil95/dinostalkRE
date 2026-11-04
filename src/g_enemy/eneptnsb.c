@@ -79,3 +79,5 @@ INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptnsb", hitobject_chk00);
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptnsb", hitgrd_chk00);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptnsb", hitgrd_chk01);
+INCLUDE_RODATA("asm/nonmatchings/g_enemy/eneptnsb", D_006676D0);
+
