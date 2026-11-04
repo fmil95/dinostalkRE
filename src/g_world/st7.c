@@ -35,7 +35,13 @@ void gsWorldSt7_InitJeepLight()
     _st7_jeep_light_obj_num = 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldSt7_EntryJeepLight);
+void gsWorldSt7_EntryJeepLight(int a)
+{
+    int n = _st7_jeep_light_obj_num;
+
+    _st7_jeep_light_obj[n] = a;
+    _st7_jeep_light_obj_num = n + 1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st7", _st7_jeep_light_calc);
 
