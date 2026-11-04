@@ -1,4 +1,6 @@
 #include "common.h"
+typedef struct SaePrim { u_char type; struct SaePrim* next4; struct SaePrim* next8; struct SaePrim* nextC; struct SaePrim* next10; } SaePrim;
+extern SaePrim* _saePrimCurrent[2];
 
 extern int aeSetAD();
 
@@ -46,7 +48,12 @@ INCLUDE_ASM("asm/nonmatchings/aelib", saeSetPolyFt4);
 
 INCLUDE_ASM("asm/nonmatchings/aelib", saeSetSprite);
 
-INCLUDE_ASM("asm/nonmatchings/aelib", saeSetAD);
+void saeSetAD(SaePrim* p, int ch)
+{
+    p->next4 = _saePrimCurrent[ch];
+    p->type = 2;
+    _saePrimCurrent[ch] = p;
+}
 
 INCLUDE_ASM("asm/nonmatchings/aelib", saeSetLoadImage);
 
