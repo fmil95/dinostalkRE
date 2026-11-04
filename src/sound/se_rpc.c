@@ -17,6 +17,7 @@ extern int sceClose();
 extern SeEnt D_0064B564[];
 extern int u_dat[];
 extern int D_0064B364[][4];
+extern u_char dat[];
 int get_SE_MAX() 
 {
     return 1000;
@@ -430,7 +431,18 @@ INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeSetVolume);
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeSetPitch);
 
-INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeKeyon3D);
+int SeKeyon3D(int a, int b, int c, int d, int e, int f)
+{
+    int hi = b / 256;
+    dat[0] = a;
+    dat[1] = b;
+    dat[2] = c;
+    dat[3] = d;
+    dat[4] = e;
+    dat[5] = f;
+    dat[6] = hi;
+    return ezSeL(0x8210, dat, 0x10);
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeKeyonDir);
 
