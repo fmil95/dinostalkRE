@@ -12,7 +12,17 @@ INCLUDE_ASM("asm/nonmatchings/sound/disp", initDisplay);
 
 INCLUDE_ASM("asm/nonmatchings/sound/disp", cdvMpegChgOffset);
 
-INCLUDE_ASM("asm/nonmatchings/sound/disp", cdvMpegChgCtxt);
+int cdvMpegChgCtxt(u_int ctxt)
+{
+    if (ctxt < 2)
+    {
+        s_ctxt = ctxt;
+
+        return 0;
+    }
+
+    return 1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/disp", dispCreate);
 
