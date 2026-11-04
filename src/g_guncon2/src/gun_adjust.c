@@ -8,7 +8,7 @@ extern int screen_off_sw_00674c94;
 extern int check_delay_timer_00674c98;
 extern int wide_mode_flag_00674ca4;
 extern void set_bg_color();
-extern void adjust_check_gun_adjust();
+extern int adjust_check_gun_adjust();
 
 INCLUDE_ASM("asm/nonmatchings/g_guncon2/src/gun_adjust", gun_adjust_init);
 
@@ -47,7 +47,10 @@ void gun_adjust0_gun_adjust()
 
 INCLUDE_ASM("asm/nonmatchings/g_guncon2/src/gun_adjust", gun_adjust1_gun_adjust);
 
-INCLUDE_ASM("asm/nonmatchings/g_guncon2/src/gun_adjust", gun_adjust2_gun_adjust);
+int gun_adjust2_gun_adjust()
+{
+    return adjust_check_gun_adjust() == 1;
+}
 
 void gun_adjust_W0_gun_adjust()
 {
