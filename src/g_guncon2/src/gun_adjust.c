@@ -92,7 +92,21 @@ int gun_adjust_W1_gun_adjust(int a, int b)
     return ret;
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_guncon2/src/gun_adjust", gun_adjust_W2_gun_adjust);
+int gun_adjust_W2_gun_adjust(int a, int b)
+{
+    int ret;
+
+    ret = adjust_wide_gun_adjust(a);
+
+    if (ret != 0)
+    {
+        set_adjustY_gun_adjust(b, center_y_00674ca0);
+    }
+
+    set_bg_color(0x6E, 0x6E, 0x6E);
+
+    return ret;
+}
 
 void gun_adjust_W3_gun_adjust(int a, int b)
 {
