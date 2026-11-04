@@ -68,7 +68,15 @@ INCLUDE_ASM("asm/nonmatchings/sound/buf", viBufReset);
 
 INCLUDE_ASM("asm/nonmatchings/sound/buf", viBufBeginPut);
 
-INCLUDE_ASM("asm/nonmatchings/sound/buf", viBufEndPut);
+void viBufEndPut(ViBuf* f, int size)
+{
+    WaitSema(f->sema);
+
+    f->readBytes += size;
+    f->totalBytes += size;
+
+    SignalSema(f->sema);
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/buf", viBufAddDMA);
 
