@@ -685,7 +685,10 @@ INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn03", eneptn03_ST7trex_sub02);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn03", eneptn03_ST7trex_thkchg);
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn03", eneptn03_ST9trex_main);
+void eneptn03_ST9trex_main(char* a)
+{
+    ST9trex_ptnfuncs[STRUCT_OFFSET(a, 0xC, int)](a);
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn03", eneptn03_ST9trex_manage);
 
