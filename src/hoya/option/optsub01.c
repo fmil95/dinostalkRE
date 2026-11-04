@@ -64,6 +64,10 @@ INCLUDE_ASM("asm/nonmatchings/hoya/option/optsub01", Draw2dObjectOptMonitor);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/option/optsub01", Draw2dObjectOptAjstScn);
 
+INCLUDE_RODATA("asm/nonmatchings/hoya/option/optsub01", D_0066C2A0);
+
+INCLUDE_RODATA("asm/nonmatchings/hoya/option/optsub01", D_0066C2C0);
+
 INCLUDE_ASM("asm/nonmatchings/hoya/option/optsub01", Draw2dObjectOptAjstGunGuncon1);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/option/optsub01", Draw2dObjectOptAjstGunGuncon2);
@@ -104,6 +108,10 @@ INCLUDE_ASM("asm/nonmatchings/hoya/option/optsub01", ProcAjstScreen);
 INCLUDE_ASM("asm/nonmatchings/hoya/option/optsub01", ProcAjstGun);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/option/optsub01", InitOpt);
+
+INCLUDE_RODATA("asm/nonmatchings/hoya/option/optsub01", D_0066C338);
+
+INCLUDE_RODATA("asm/nonmatchings/hoya/option/optsub01", D_0066C348);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/option/optsub01", MainOpt);
 

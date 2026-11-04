@@ -648,7 +648,7 @@ segments:
       - [0x56cff0, .rodata, hoya/result/rsltsub1]
       - [0x56d0e0, rodata, hoya/continue/cntsub1]
       - [0x56d200, rodata, hoya/option/gun_ajst]
-      - [0x56d2a0, rodata, hoya/option/optsub01]
+      - [0x56d2a0, .rodata, hoya/option/optsub01]
       - [0x56d380, rodata, hoya/pause/g_pause]
       - [0x56d420, rodata, hoya/pause/pausesub]
       - [0x56d478, rodata, hoya/name/namesub]
