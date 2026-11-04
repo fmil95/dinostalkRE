@@ -195,7 +195,15 @@ INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundEeSE_PLAY_WORLD);
 
 INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundEeSE_STOP);
 
-INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundEeSE_VOLUME);
+int gsSoundEeSE_VOLUME(int* a, int b, int c)
+{
+    if (a && *a >= 0)
+    {
+        SeSetVolume((u_short)b, (u_short)c, *a);
+    }
+
+    return 0;
+}
 
 int gsSoundEeSE_PITCH(int* a, int b)
 {
