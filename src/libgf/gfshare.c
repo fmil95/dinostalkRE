@@ -151,3 +151,5 @@ Uint32 GFShare_GetVu1WorkSize()
 {
     return gf_Vu1WorkSize;
 }
+INCLUDE_RODATA("asm/nonmatchings/libgf/gfshare", D_0066D458);
+

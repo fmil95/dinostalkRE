@@ -673,7 +673,7 @@ segments:
       - [0x56e130, rodata, g_guncon2/src/guncon2]
       - [0x56e190, .rodata, libgf/gftex]
       - [0x56e440, rodata, libgf/gfmodel]
-      - [0x56e458, rodata, libgf/gfshare]
+      - [0x56e458, .rodata, libgf/gfshare]
       - [0x56e470, .rodata, libgf/gfvalloc]
       - [0x56e5a8, rodata, sce/graphdev]
       - [0x56ead0, rodata, sce/devfont]
