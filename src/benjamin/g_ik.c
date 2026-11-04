@@ -5,6 +5,9 @@ extern int gsPause;
 extern void (*pFootMoveLFunc_4[])(void*);
 extern void (*pFootMoveRFunc_5[])(void*);
 extern void (*pTailSwingFunc_6[])(void*);
+extern void (*pSetHitFunc_2[])();
+extern char gsEnemyInfos[];
+extern void gsIKinitOne();
 INCLUDE_ASM("asm/nonmatchings/benjamin/g_ik", gsIKinit);
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/g_ik", gsIKinitOne);
@@ -18,7 +21,21 @@ INCLUDE_ASM("asm/nonmatchings/benjamin/g_ik", gsIK_UpdateData);
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/g_ik", gsIK_ResetInfo);
 
-INCLUDE_ASM("asm/nonmatchings/benjamin/g_ik", gsIK_SetHit);
+void gsIK_SetHit(char* a, int b)
+{
+    short i = STRUCT_OFFSET(a, 0x2A, short);
+    void (*f)() = pSetHitFunc_2[i];
+
+    if (f)
+    {
+        if (b > 0 && i < 0x11)
+        {
+            asm volatile("sync");
+            f(a, b);
+            asm volatile("sync");
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/g_ik", _gsIK_HeadStare);
 
