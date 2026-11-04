@@ -96,7 +96,18 @@ int viBufDelete(ViBuf* f)
     return 1;
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/buf", viBufIsActive);
+int viBufIsActive(ViBuf* f)
+{
+    int ret;
+
+    WaitSema(f->sema);
+
+    ret = f->isActive;
+
+    SignalSema(f->sema);
+
+    return ret;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/buf", viBufCount);
 
