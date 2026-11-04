@@ -137,6 +137,29 @@ Sint32 GFCache_ChangeScore(Uint32* guid, Sint32 bscore)
     return 1;
 }
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfvcache", GFCache_Invalidate);
+void GFCache_Invalidate(Uint16 pos, Uint16 size)
+{
+    GF_CACHE_CELL* p;
+    Uint16 end;
+
+    if (size == 0)
+    {
+        end = gfInfoHead_00674cd8->cache_pos + gfInfoHead_00674cd8->cache_size;
+    }
+    else
+    {
+        end = pos + size;
+    }
+
+    for (p = gfInfo_00674cdc; p != NULL; p = p->next)
+    {
+        if ((p->pos >= pos && p->pos < end) || (p->pos <= pos && pos < p->pos + p->size))
+        {
+            p->used_flag = 0;
+        }
+    }
+
+    gfCache_DefragCell();
+}
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfvcache", gfCache_DefragCell);
