@@ -1,4 +1,6 @@
 #include "common.h"
+#include <eestruct.h>
+extern int flag;
 
 INCLUDE_ASM("asm/nonmatchings/hoya/g_ezipu", gsEzIpuChangeDraw);
 
@@ -14,7 +16,13 @@ INCLUDE_ASM("asm/nonmatchings/hoya/g_ezipu", setDMAscTag_g_ezipu);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/g_ezipu", setGIFtag_g_ezipu);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/g_ezipu", setGIFad_g_ezipu);
+void setGIFad_g_ezipu(u_int* p, u_int reg, u_long value)
+{
+    p[0] = value & 0xFFFFFFFF;
+    p[1] = value >> 32;
+    p[2] = reg;
+    p[3] = 0x00;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/g_ezipu", setBITBLTBUF_g_ezipu);
 
