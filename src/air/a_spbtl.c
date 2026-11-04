@@ -11,7 +11,16 @@ extern void SetBossInfoNum();
 extern void gsEventFlagOn();
 extern short st3MainGroupIdx;
 extern int st3LastSetIdx;
-INCLUDE_ASM("asm/nonmatchings/air/a_spbtl", gsSt1BossInit);
+void gsSt1BossInit()
+{
+    SpBattleCount = 0x14;
+    SpBattleFlag = 0;
+    SingleSetNo = 0;
+    st3MainGroupNo = 0;
+    gsSpBattleBossSet(0x1E);
+    SpBattleFlag |= 1;
+    SetBossInfoNum(&SpBattleCount, 9);
+}
 
 INCLUDE_ASM("asm/nonmatchings/air/a_spbtl", gsSt1BossManagement);
 
