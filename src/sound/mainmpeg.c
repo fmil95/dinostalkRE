@@ -45,6 +45,23 @@ extern VideoDec videoDec;
 extern ReadBuf readBuf;
 extern StrFile infile;
 
+struct ThreadParam { int status; void* entry; void* stack; int stackSize; void* gpReg; int initPriority; int currentPriority; u_int attr; u_int option; int waitType; int waitId; int wakeupCount; };
+struct SemaParam { int count; int maxCount; int initCount; int waitThreads; int attr; int option; };
+
+extern int CreateSema();
+extern int DeleteSema();
+extern int GetThreadId();
+extern int ReferThreadStatus();
+extern int ChangeThreadPriority();
+extern int RotateThreadReadyQueue();
+extern int StartThread();
+extern int sceGsSyncPath();
+extern int remoteSema;
+extern int mpeg_sts;
+extern int myTh;
+extern int initAll(char* bsfilename, int w, int h, char flag);
+extern void termAll();
+
 static int copy2area(u_char* pd0, int d0, u_char* pd1, int d1, u_char* ps0, int s0, u_char* ps1, int s1);
 
 INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", cdvMpegInit);
@@ -153,7 +170,66 @@ void cdvMpegPlayEnd()
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", PlayMpeg);
+extern char D_0066CC90[];
+extern char D_0066CCA0[];
+extern char D_0066CCB8[];
+extern int sceGsSyncV();
+
+int PlayMpeg(char* name, int w, int h, char flag)
+{
+    struct ThreadParam st;
+    struct SemaParam sema;
+    int ret;
+    int pri;
+
+    if (init_flg)
+    {
+        sema.initCount = 1;
+        sema.maxCount = 1;
+        remoteSema = CreateSema(&sema);
+
+        mpeg_sts = 0;
+        defaultTh = 0;
+        videoDecTh = 0;
+        userTh = 0;
+        abort_flg = 0;
+        audio_dec_flg = 0;
+        frame_cnt = 0;
+
+        ret = initAll(name, w, h, flag);
+        printf(D_0066CC90, ret);
+
+        if (ret == 0)
+        {
+            myTh = GetThreadId();
+            ReferThreadStatus(myTh, &st);
+            pri = st.currentPriority;
+            ChangeThreadPriority(myTh, 1);
+            StartThread(defaultTh, 0);
+            StartThread(videoDecTh, &videoDec);
+            ChangeThreadPriority(myTh, 3);
+            RotateThreadReadyQueue(2);
+            printf(D_0066CCA0, ReferThreadStatus(defaultTh, 0));
+            sceGsSyncPath(0, 0);
+            sceGsSyncV(0);
+            ChangeThreadPriority(myTh, pri);
+        }
+
+        printf(D_0066CC90, ret);
+        termAll();
+        printf(D_0066CCB8, ret);
+        DeleteSema(remoteSema);
+
+        if (ret == 0 && abort_flg)
+        {
+            return abort_flg + 0x128;
+        }
+
+        return ret;
+    }
+
+    return 0x120;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", readMpeg);
 
@@ -194,9 +270,8 @@ extern int sd_Size;
 extern VoData* voBufData;
 extern VoTag* voBufTag;
 extern int N_Vobuf;
-struct ThreadParam { int status; void* entry; void* stack; int stackSize; void* gpReg; int initPriority; int currentPriority; u_int attr; u_int option; int waitType; int waitId; int wakeupCount; };
 
-int initAll(char* bsfilename, int w, int h)
+int initAll(char* bsfilename, int w, int h, char flag)
 {
     struct ThreadParam th_param;
     int ret;
