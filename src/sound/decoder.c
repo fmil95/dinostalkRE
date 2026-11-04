@@ -257,7 +257,20 @@ int audioDecPause(AudioDec* ad)
     return 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/decoder", audioDecResume);
+int audioDecResume(AudioDec* ad)
+{
+    WaitSema(remoteSema);
+
+    sceSdRemote(1, 0x80E0, 0, 0x13, ad->iopBuff, (ad->iopBuffSize / 1024) * 1024, ad->iopBuff + ad->iopPausePos);
+
+    ad->state = AU_STATE_PLAY;
+
+    SignalSema(remoteSema);
+
+    changeInputVolume(0x7FFF);
+
+    return 0;
+}
 
 void audioDecStart(AudioDec* ad)
 {
