@@ -19,6 +19,9 @@ extern MemcInfo D_005E6054[];
 extern int ico;
 typedef struct { u_char a[6]; short b; } McDirCreate;
 extern McDirCreate creteData;
+extern char D_005E2728[];
+extern int D_005E3C0C[];
+extern void* memset();
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", CreateIconSys);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", InitMemcManager);
@@ -47,7 +50,19 @@ INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", CheckMemcErrorFile);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", SetSumValueSystemData);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", SetSumValueGameData);
+int SetSumValueGameData(int n)
+{
+    int s = 0;
+    int* p = (int*)(D_005E2728 + n * 0x29C);
+    int i = 0xA6;
+
+    do
+    {
+        s ^= *p++;
+    } while (--i >= 0);
+    D_005E3C0C[n] = s;
+    return s;
+}
 
 void SetSystemData2Box(void) {
 }
