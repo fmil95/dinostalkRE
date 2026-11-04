@@ -56,7 +56,15 @@ INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundSeMePlayDir);
 
 INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundSeMePlay3D);
 
-INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundSeMeStop);
+int gsSoundSeMeStop(int a)
+{
+    if (a >= 0 && a < get_SE_MAX())
+    {
+        SeStop(a);
+    }
+
+    return 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundSeMeStop2);
 
