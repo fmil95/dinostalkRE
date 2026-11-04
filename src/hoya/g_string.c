@@ -101,7 +101,10 @@ void AddMessageData2(int a, char* b)
 
 INCLUDE_ASM("asm/nonmatchings/hoya/g_string", DrawMessageData);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/g_string", DrawMessageData2);
+void DrawMessageData2(int a, MsgData* b, int c)
+{
+    strDrawSentence2(b[a].p, b[a].q, c, b[a].r);
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/g_string", InitShortSentence);
 
