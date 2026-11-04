@@ -1,4 +1,7 @@
 #include "sound/mainmpeg.h"
+extern char audio_dec_flg;
+#define UncAddr(p) ((void*)(((u_int)(p) & 0x0FFFFFFF) | 0x20000000))
+static int copy2area(u_char* pd0, int d0, u_char* pd1, int d1, u_char* ps0, int s0, u_char* ps1, int s1);
 
 #define min(x, y) (((x) > (y)) ? (y) : (x))
 
@@ -219,7 +222,35 @@ void proceedAudio()
     audioDecSendToIOP(&audioDec);
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", videoCallback);
+int videoCallback(sceMpeg* mp, sceMpegCbDataStr* str, void* data)
+{
+    ReadBuf* rb = (ReadBuf*)data;
+    u_char* ps0 = str->data;
+    u_char* ps1 = rb->data;
+    int s0 = min(rb->data + rb->size - str->data, str->len);
+    int s1 = str->len - s0;
+    u_char* pd0;
+    u_char* pd1;
+    u_char* pd0Unc;
+    u_char* pd1Unc;
+    int d0, d1;
+    int len;
+
+    videoDecBeginPut(&videoDec, &pd0, &d0, &pd1, &d1);
+    pd0Unc = (u_char*)UncAddr(pd0);
+    pd1Unc = (u_char*)UncAddr(pd1);
+
+    len = copy2area(pd0Unc, d0, pd1Unc, d1, ps0, s0, ps1, s1);
+
+    if (len > 0)
+    {
+        videoDecPutTs(&videoDec, str->pts, str->dts, pd0, len);
+    }
+
+    videoDecEndPut(&videoDec, len);
+
+    return (len > 0) ? 1 : 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", pcmCallback);
 
