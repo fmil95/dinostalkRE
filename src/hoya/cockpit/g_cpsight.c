@@ -37,7 +37,18 @@ void gsCOCKPIT_InitSightHandgun()
     STRUCT_OFFSET(*q, 0x18, u_char) = STRUCT_OFFSET(s, 0x2C, u_char);
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_cpsight", gsCOCKPIT_InitSightMagnum);
+void gsCOCKPIT_InitSightMagnum()
+{
+    char* s = gsCOCKPIT_Sights;
+    char** q = (char**)(s + 0x13c);
+
+    *q = s + 0x668;
+    gplInitSprite(s + 0x668, gsCOCKPIT_IdtexSightsForward);
+    STRUCT_OFFSET(*q, 0, u_char) = STRUCT_OFFSET(s, 0x20, u_char);
+    STRUCT_OFFSET(*q, 1, u_char) = STRUCT_OFFSET(s, 0x24, u_char);
+    STRUCT_OFFSET(*q, 2, u_char) = STRUCT_OFFSET(s, 0x28, u_char);
+    STRUCT_OFFSET(*q, 0x18, u_char) = STRUCT_OFFSET(s, 0x2C, u_char);
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_cpsight", gsCOCKPIT_InitSightFire);
 
