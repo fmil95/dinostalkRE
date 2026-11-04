@@ -242,7 +242,26 @@ void _gsSoundEE_EntryChBuf(int a, int* b)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/g_sound", _gsSoundEE_DeleteChBuf);
+void _gsSoundEE_DeleteChBuf(int* a)
+{
+    u_int n;
+    int** p;
+
+    if (a)
+    {
+        n = *a - 12;
+        if (n < 4)
+        {
+            p = &_g_sound_ch_buf[n];
+            if (*p)
+            {
+                **p = -1;
+            }
+            *p = 0;
+            _g_sound_ch[n] = 0;
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/g_sound", _gsSound3D_GetPos);
 
