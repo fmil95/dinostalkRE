@@ -1,5 +1,7 @@
 #include "sound/decoder.h"
 
+#define min(x, y) (((x) > (y)) ? (y) : (x))
+
 extern VideoDec videoDec;
 extern VoBuf voBuf;
 extern int decBs0(VideoDec* vd);
@@ -8,18 +10,25 @@ extern int printf();
 extern char D_00673DE0[];
 extern int RotateThreadReadyQueue();
 extern int s_volume;
-extern void audioDecResume();
 extern int RotateThreadReadyQueue();
 extern int remoteSema;
-extern int remoteSema;
 extern void WaitSema();
-extern void sceSdRemote();
-extern void sceSdRemote();
+extern int sceSdRemote();
 extern void SignalSema();
 extern int s_vol_l0;
 extern int s_vol_r0;
 extern int s_vol_l1;
 extern int s_vol_r1;
+extern char _0_buf[];
+extern int sceSifAllocIopHeap();
+extern int sceSifFreeIopHeap();
+extern void* memset(void* dst, int c, unsigned int n);
+
+static int sendToIOP(int dst, u_char* src, int size);
+void pushMasterVolume();
+void popMasterVolume();
+static void changeMasterVolume(u_int val);
+void changeInputVolume(int a);
 
 int videoDecCreate(VideoDec* vd, u_char* mpegWork, int mpegWorkSize, u_long128* data, u_long128* tag, int tagSize, TimeStamp* pts, int n_pts)
 {
@@ -196,9 +205,9 @@ INCLUDE_ASM("asm/nonmatchings/sound/decoder", audioDecPause);
 
 INCLUDE_ASM("asm/nonmatchings/sound/decoder", audioDecResume);
 
-void audioDecStart()
+void audioDecStart(AudioDec* ad)
 {
-    audioDecResume();
+    audioDecResume(ad);
 }
 
 INCLUDE_ASM("asm/nonmatchings/sound/decoder", audioDecReset);
@@ -207,9 +216,9 @@ INCLUDE_ASM("asm/nonmatchings/sound/decoder", audioDecBeginPut);
 
 INCLUDE_ASM("asm/nonmatchings/sound/decoder", audioDecEndPut);
 
-int audioDecIsPreset(void* a)
+int audioDecIsPreset(AudioDec* ad)
 {
-    return ((STRUCT_OFFSET(a, 0x54, int) < STRUCT_OFFSET(a, 0x48, int)) ^ 0x1);
+    return ad->totalBytesSent >= ad->iopBuffSize;
 }
 
 INCLUDE_ASM("asm/nonmatchings/sound/decoder", audioDecSendToIOP);
