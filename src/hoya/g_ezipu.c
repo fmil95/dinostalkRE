@@ -37,7 +37,12 @@ void setGIFad_g_ezipu(u_int* p, u_int reg, u_long value)
     p[3] = 0x00;
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/g_ezipu", setBITBLTBUF_g_ezipu);
+void setBITBLTBUF_g_ezipu(u_int* p, u_int dbp, u_int dbw, u_int dpsm)
+{
+    u_long val = ((u_long)dpsm << 56) | ((u_long)dbw << 48) | ((u_long)dbp << 32);
+
+    setGIFad_g_ezipu(p, SCE_GS_BITBLTBUF, val);
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/g_ezipu", setTRXPOS_g_ezipu);
 
