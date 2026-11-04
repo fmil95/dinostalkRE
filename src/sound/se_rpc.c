@@ -331,7 +331,10 @@ int SeSetEffect(int a, int b, int c)
     return ezSe(0x8220, (c << 16) | (a << 12) | b, 1);
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeSetEffectDepth);
+int SeSetEffectDepth(int a, int b)
+{
+    return ezSe(0x8410, (b << 16) | a, 1);
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", Se);
 
