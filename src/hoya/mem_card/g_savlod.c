@@ -64,7 +64,10 @@ void GetQueCondition()
     mcdGetQueCondition();
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", GetResultValue);
+int GetResultValue(int a, int b)
+{
+    return D_005E6054[b + a].w[0];
+}
 
 int GetErr()
 {
