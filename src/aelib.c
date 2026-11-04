@@ -114,7 +114,12 @@ void saeSetPolyGt4(SaePrim* p, int ch)
     _saePrimCurrent[ch] = p;
 }
 
-INCLUDE_ASM("asm/nonmatchings/aelib", saeSetSprite3);
+void saeSetSprite3(SaePrim* p, int ch)
+{
+    p->next4 = _saePrimCurrent[ch];
+    p->type = 9;
+    _saePrimCurrent[ch] = p;
+}
 
 INCLUDE_ASM("asm/nonmatchings/aelib", saeSetTile);
 
