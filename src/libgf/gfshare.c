@@ -85,7 +85,25 @@ static GF_INST_OBJECT* gf_GetParentObj(GF_INST_SHAPE* inst)
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfshare", GFShare_Eval);
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfshare", GFShare_Draw);
+qword* GFShare_Draw(qword* packet, GF_INST_SHAPE* inst)
+{
+    qword* cur;
+
+    cur = packet;
+
+    if (gf_GetShareBlock(inst) != NULL)
+    {
+        cur = GFShape_MakeMatrixTransferPacket((float**)gUnitMatrix, (float**)gUnitMatrix, cur);
+        cur = GFPacket_Add(cur, inst->extPacket);
+
+        if ((Uint32)gf_pShareBufTop + gf_pShareBufSize < (Uint32)gf_pShareBuf)
+        {
+            printf(D_0066D458);
+        }
+    }
+
+    return cur;
+}
 
 void GFShare_SetBuf(Uint32* pBuf, Uint32 size)
 {
