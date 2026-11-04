@@ -344,7 +344,10 @@ INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeCSLMidiPlayNo);
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeCSLSetMidi);
 
-INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeCSLMidiVolume);
+int SeCSLMidiVolume(int a, int b)
+{
+    return ezSe(0x83C0, (a << 16) | b, 1);
+}
 
 int SeCSLMidiPlayPort(int a)
 {
