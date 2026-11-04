@@ -47,7 +47,27 @@ void MEM_Malloc(int a, int b, int c)
     MEM_MallocAlign(a, 0x10, b, c);
 }
 
-INCLUDE_ASM("asm/nonmatchings/mem", _memalign_GS);
+void* _memalign_GS(int a, int s)
+{
+    int m = a - 1;
+    int base = gsHeapCur;
+    int sz = (s + m) & ~m;
+    int p = (base + m) & ~m;
+    int* q;
+
+    gsHeapBak = base;
+    gsHeapCur = p + sz;
+    sz >>= 2;
+    if (sz > 0)
+    {
+        q = (int*)base;
+        do
+        {
+            *q++ = 0;
+        } while (--sz);
+    }
+    return (void*)p;
+}
 
 INCLUDE_ASM("asm/nonmatchings/mem", MEM_MallocAlign);
 
