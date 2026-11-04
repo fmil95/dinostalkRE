@@ -119,7 +119,16 @@ INCLUDE_ASM("asm/nonmatchings/g_enemy/ene03pro/ene03mv", ene03moveElem220);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/ene03pro/ene03mv", ene03moveElem221);
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/ene03pro/ene03mv", ene03moveElem222);
+void ene03moveElem222(char* a)
+{
+    int r = GFAnim_ShapeFlagCheck(a + 0xBA0, 0);
+
+    if (r & 2)
+    {
+        Enemy_AnmChg00(a, 0x71, 8, 0);
+        STRUCT_OFFSET(a, 0x8C, int)++;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/ene03pro/ene03mv", ene03moveElem223);
 
