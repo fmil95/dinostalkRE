@@ -168,7 +168,20 @@ INCLUDE_ASM("asm/nonmatchings/g_camera", gsCameraUseItem_ENTRY);
 
 INCLUDE_ASM("asm/nonmatchings/g_camera", gsCameraUseItem_EXEC);
 
-INCLUDE_ASM("asm/nonmatchings/g_camera", gsCameraCountItem_Medicine);
+int gsCameraCountItem_Medicine()
+{
+    gsCamera.unk258++;
+
+    if (gsCamera.unk258 >= 100)
+    {
+        gsCamera.unk258 = 99;
+    }
+
+    if (gsCamera.unk258 < 0)
+    {
+        gsCamera.unk258 = 0;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_camera", gsCameraCountItem_Revicer);
 
