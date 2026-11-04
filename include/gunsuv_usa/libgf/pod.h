@@ -68,6 +68,14 @@ struct pod_material { // 0x60
 };
 
 typedef struct pod_material PodMATERIAL;
+
+struct pod_geometry { // 0x10
+	/* 0x0 */ Sint32 vertNum;
+	/* 0x4 */ Uint32 prim;
+	/* 0x8 */ Sint32 pad[2];
+};
+
+typedef struct pod_geometry PodGEOMETRY;
 Sint32 GFPod_IsPodData(Uint32 *pod);
 Uint32* GFPod_MapTextureIndex(Uint32 *pod, Sint32 index_ofs);
 PodMATERIAL* GFPod_GetNextMaterialBlock(PodMATERIAL *material);

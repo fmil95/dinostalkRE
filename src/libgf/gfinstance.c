@@ -1,10 +1,23 @@
 #include "gunsuv_usa/libgf/gfinstance.h"
 
+extern Sint32 eval_end_flag_00674cb0;
+extern Sint32 eval_time_00674cb4;
+static void gfInstance_Eval2(GF_INSTANCE* inst);
 INCLUDE_ASM("asm/nonmatchings/libgf/gfinstance", gfInstance_MakeRotMatrix);
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfinstance", gfInstance_Eval2);
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfinstance", GFInstance_Eval);   
+void GFInstance_Eval(GF_INSTANCE* inst)
+{
+    eval_time_00674cb4 = 0;
+
+    do
+    {
+        eval_end_flag_00674cb0 = 1;
+        gfInstance_Eval2(inst);
+        eval_time_00674cb4++;
+    } while (eval_end_flag_00674cb0 == 0);
+}
 
 void GFInstance_Start()
 {
