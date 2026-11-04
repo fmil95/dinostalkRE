@@ -266,7 +266,26 @@ int mcdDeleteSet(int a, int b, int c, int d)
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/mcduse", mcdFormatSet);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/mcduse", mcdUnformatSet);
+int mcdUnformatSet(int a, int b, int c)
+{
+    int w;
+    int m;
+    char* q;
+
+    if (mcdCheckEoq(1) < 0)
+    {
+        return -1;
+    }
+    w = writeque;
+    m = maxque;
+    q = queaddr;
+    STRUCT_OFFSET(q, w * 40 + 0, short) = 0x11;
+    STRUCT_OFFSET(q, w * 40 + 4, int) = a;
+    STRUCT_OFFSET(q, w * 40 + 8, int) = b;
+    STRUCT_OFFSET(q, w * 40 + 12, int) = c;
+    writeque = (w + 1) % m;
+    return writeque;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/mcduse", mcdEntSpaceSet);
 
