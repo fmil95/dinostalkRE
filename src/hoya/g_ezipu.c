@@ -85,4 +85,7 @@ INCLUDE_ASM("asm/nonmatchings/hoya/g_ezipu", gsEzIpuMain);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/g_ezipu", gsEzIpuEnd);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/g_ezipu", scTag);
+void scTag(u_long* q, void* addr, u_int id, u_int qwc)
+{
+    *q = (u_long)(u_int)addr << 32 | (u_long)id << 28 | (u_long)qwc << 0;
+}
