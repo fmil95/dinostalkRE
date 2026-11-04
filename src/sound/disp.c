@@ -10,7 +10,28 @@ extern int frd;
 
 INCLUDE_ASM("asm/nonmatchings/sound/disp", initDisplay);
 
-INCLUDE_ASM("asm/nonmatchings/sound/disp", cdvMpegChgOffset);
+void cdvMpegChgOffset(int ofx, int ofy)
+{
+    if (ofx == 0xEFFF)
+    {
+        center_flg_w = 1;
+    }
+    else if (ofx != 0xFFFF)
+    {
+        s_frm_ofx = ofx;
+        center_flg_w = 0;
+    }
+
+    if (ofy == 0xEFFF)
+    {
+        center_flg_h = 1;
+    }
+    else if (ofy != 0xFFFF)
+    {
+        s_frm_ofy = ofy;
+        center_flg_h = 0;
+    }
+}
 
 int cdvMpegChgCtxt(u_int ctxt)
 {
