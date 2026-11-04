@@ -207,7 +207,21 @@ void cdvDelSearchDataAll()
     FileQueClear(1);
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvDelSearchDataAllSet);
+int cdvDelSearchDataAllSet()
+{
+    u_short w;
+    u_short m;
+
+    if (cdvIsEoq(1))
+    {
+        return -1;
+    }
+    w = WriteQue;
+    m = MaxQue;
+    STRUCT_OFFSET(Cdv_Que, w * 40, short) = 16;
+    WriteQue = (w + 1) % (m + 1);
+    return WriteQue;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvFileReadSet);
 
