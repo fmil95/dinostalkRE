@@ -48,7 +48,15 @@ u_int* setGIFtag(u_int* p, u_long regs, u_int nreg, u_int flg, u_int prim, u_int
     return p + 4;
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/disp", setGIFad);
+u_int* setGIFad(u_int* p, u_int reg, u_long value)
+{
+    p[0] = value & 0xFFFFFFFF;
+    p[1] = value >> 32;
+    p[2] = reg;
+    p[3] = 0x00;
+
+    return p + 4;
+}
 
 u_int* setTEXFLUSH(u_int* p)
 {
