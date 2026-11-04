@@ -134,7 +134,15 @@ int getGunRelease()
     return 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/hoya", getGunState);
+int getGunState()
+{
+    if (gsGuncon2_CheckConnect())
+    {
+        return gsGuncon2_Get();
+    }
+
+    return 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyInitEearthQuake);
 
