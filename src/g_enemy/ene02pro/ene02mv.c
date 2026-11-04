@@ -38,7 +38,47 @@ void ene02move01(char* a)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/ene02pro/ene02mv", ene02move02);
+void ene02move02(char* a)
+{
+    char* p;
+
+    STRUCT_OFFSET(a, 0x200, int) = 0;
+    if (STRUCT_OFFSET(a, 0x8C, int) == 0)
+    {
+        if (STRUCT_OFFSET(a, 0x84, int) == 2)
+        {
+            if ((STRUCT_OFFSET(a, 0x0, int) & 0x20000) == 0)
+            {
+                Enemy_AnmChg00(a, 5, 8, 1);
+            }
+            else
+            {
+                Enemy_AnmChg00(a, 9, 8, 1);
+            }
+        }
+        else
+        {
+            if ((STRUCT_OFFSET(a, 0x0, int) & 0x20000) == 0)
+            {
+                Enemy_AnmChg00(a, 7, 8, 1);
+            }
+            else
+            {
+                Enemy_AnmChg00(a, 9, 8, 1);
+            }
+        }
+        STRUCT_OFFSET(a, 0x8C, int)++;
+    }
+    else if (STRUCT_OFFSET(a, 0x94, int) != 9)
+    {
+        p = a + 0xBA0;
+        if (GFAnim_ShapeFlagCheck((GF_INST_OBJECT*)p, 0) & 2)
+        {
+            GFAnim_ShapeFlagClear((GF_INST_OBJECT*)p, 2);
+            Enemy_SeReq(a, 0xD2, 0);
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/ene02pro/ene02mv", ene02move04);
 
