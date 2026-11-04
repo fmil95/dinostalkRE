@@ -134,7 +134,12 @@ INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldEntryBACK_SCALE);
 
 INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldEntryBACK_TRANS);
 
-INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldEntryBACK_COLOR);
+void gsWorldEntryBACK_COLOR(char* a, void* v)
+{
+    int n = STRUCT_OFFSET(a, 0xC1820, int) - 1;
+
+    sceVu0CopyVector(a + n * 0x1B0 + 0xC19B0, v);
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldEntryTransGV);
 
