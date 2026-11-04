@@ -17,7 +17,23 @@ extern char* queaddr;
 extern void mcdFlushQue();
 extern long pause;
 extern long pause_cnt;
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/mcduse", mcdFlushQue);
+void mcdFlushQue()
+{
+    int n = maxque;
+    char* p;
+
+    writeque = 0;
+    stepque = 0;
+    if (n > 0)
+    {
+        p = queaddr;
+        do
+        {
+            *(short*)p = -1;
+            p += 0x28;
+        } while (--n);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/mcduse", mcdInit);
 
