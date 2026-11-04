@@ -15,6 +15,9 @@ extern int FIOCache_GetCheckSum();
 extern void gsEffectSetFadeNowColor();
 extern void gsEffectSetFade();
 
+extern int gsNextProg;
+extern int gsCurProg;
+extern int _afterMovieExit;
 INCLUDE_ASM("asm/nonmatchings/g_test", G_TEST_Init);
 
 INCLUDE_ASM("asm/nonmatchings/g_test", G_TEST_Exec);
@@ -45,7 +48,18 @@ INCLUDE_ASM("asm/nonmatchings/g_test", gsExtProg_EXEC);
 
 INCLUDE_ASM("asm/nonmatchings/g_test", gsExtProg_TIME_OVER);
 
-INCLUDE_ASM("asm/nonmatchings/g_test", gsStageExit_AfterMovie);
+int gsStageExit_AfterMovie()
+{
+    if (gsNextProg != gsCurProg)
+    {
+        sceGsSyncPath(0, 0);
+        sceGsSyncV(0);
+        _afterMovieExit = 1;
+        return 1;
+    }
+    _afterMovieExit = 0;
+    return 0;
+}
 
 void gsPC_Start(void) {
 }
