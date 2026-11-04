@@ -86,7 +86,13 @@ INCLUDE_ASM("asm/nonmatchings/g_parts", gpJudgeCollisionSphere);
 
 INCLUDE_ASM("asm/nonmatchings/g_parts", gpSetCollisionTriangleInfo);
 
-INCLUDE_ASM("asm/nonmatchings/g_parts", gpModifyCollisionTriangle);
+void gpModifyCollisionTriangle(char* a, char* b)
+{
+    char v[16];
+
+    memset(v, 0, 16);
+    gpModifyCollisionTriangle2(a, b, v);
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_parts", gpModifyCollisionTriangle2);
 
