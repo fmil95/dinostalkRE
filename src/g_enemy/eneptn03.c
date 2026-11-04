@@ -113,7 +113,10 @@ INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn03", eneptn03_ST5carno_return);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn03", eneptn03_ST5carno_runaway);
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn03", eneptn03_ST7carno_main);
+void eneptn03_ST7carno_main(char* a)
+{
+    ((void (**)())0x45AD10)[STRUCT_OFFSET(a, 0xC, int)](a);
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn03", eneptn03_ST7carno_manage);
 
