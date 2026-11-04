@@ -1,5 +1,6 @@
 #include "common.h"
 #include "hoya/option/gun_ajst.h"
+#include "g_guncon2/src/guncon2.h"
 
 extern int adjust_mode_0067486c;
 extern int screen_off_sw_0067487c;
@@ -21,7 +22,6 @@ extern int center_y_00674888;
 extern int adjust_wide_gun_ajst();
 extern void set_adjustY_gun_ajst();
 extern int D_00653B78[];
-extern void Guncon2_TransCtrlData();
 INCLUDE_ASM("asm/nonmatchings/hoya/option/gun_ajst", CheckGunScreenOut);
 
 int GetScreenOffSw()

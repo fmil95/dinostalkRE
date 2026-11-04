@@ -3,7 +3,7 @@
 #ifndef G_ENEMY_ENETEST_H
 #define G_ENEMY_ENETEST_H
 
-enetest_init();
+void enetest_init();
 enetest_main();
 void enetest_end(void);
 enetestinfoprt();

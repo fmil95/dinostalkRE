@@ -3,7 +3,7 @@
 #ifndef BENJAMIN_G_SHRINK_H
 #define BENJAMIN_G_SHRINK_H
 
-gsDinoSetDeadShrinkY();
+void gsDinoSetDeadShrinkY();
 gsDinoSetDeadShrinkXZ();
 gsDinoIsShrinking();
 

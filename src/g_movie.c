@@ -2,7 +2,7 @@
 
 #include <libgraph.h>
 #include "g_movie.h"
-extern int cdvMpegPlaySet();
+#include "sound/CdvUse.h"
 extern int waitingQue;
 extern int gsMovie_skipGunKey;
 extern void cdvMpegSkipReset();

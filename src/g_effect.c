@@ -1,11 +1,11 @@
 #include "common.h"
 #include "g_effect.h"
+#include "g_plane.h"
 extern char gParticleM[];
 extern char gParticleMS[];
 extern void GFMicro_MakePacket();
 
 extern int gsEffect_FadeCnt;
-extern int gsEffectAddWithPri();
 extern char gsEffect_WindVec[];
 extern void sceVu0CopyVector();
 extern char gsEffect_BlurCol[];
@@ -34,7 +34,6 @@ extern EffectTexInfoS effectTexInfo[];
 extern int gsEffectAdd();
 extern void GFParticle_SetDirection();
 extern char gsEffectFadeTile[];
-extern void gplInitTile();
 INCLUDE_ASM("asm/nonmatchings/g_effect", gs_effectResetEffectSrc);
 
 INCLUDE_ASM("asm/nonmatchings/g_effect", gsEffectRemove);

@@ -6,8 +6,8 @@
 void gsShockInit();
 gsShockManagement();
 gsShockSetSeqVel();
-gsShockSetSeq();
-gsShockSetSeqNo();
+void gsShockSetSeq();
+int gsShockSetSeqNo(int, int);
 gsShockSetSeqNoVel();
 void gsShockSetEnable(int v);
 void gsShockReset();

@@ -3,7 +3,7 @@
 #ifndef G_TEST_H
 #define G_TEST_H
 
-G_TEST_Init();
+void G_TEST_Init();
 G_TEST_Exec();
 G_TEST_End();
 void gsExtProg_INIT();

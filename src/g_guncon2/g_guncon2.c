@@ -1,5 +1,6 @@
 #include "common.h"
 #include "g_guncon2/g_guncon2.h"
+#include "g_guncon2/src/guncon2.h"
 extern void* gsGuncon2Manager[];
 
 extern int D_00653B74[];
@@ -9,7 +10,6 @@ extern int _flash_cycle_cnt;
 extern int _flash_bright;
 
 extern int gunrtrg;
-extern int GetGunBuffer();
 INCLUDE_ASM("asm/nonmatchings/g_guncon2/g_guncon2", gsGuncon2_Init);
 
 INCLUDE_ASM("asm/nonmatchings/g_guncon2/g_guncon2", gsGuncon2_Exec);

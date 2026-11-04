@@ -1,7 +1,7 @@
 #include "common.h"
+#include "air/a_event.h"
 
 extern int* InitPlaceData[];
-extern void _gsEnemySet_MovieInit();
 typedef struct { int* p; char pad[0x400]; } EvtS;
 extern EvtS EventData[];
 extern int Evt_Count;

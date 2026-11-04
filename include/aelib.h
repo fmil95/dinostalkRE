@@ -3,8 +3,8 @@
 #ifndef AELIB_H
 #define AELIB_H
 
-aeInit();
-aeStartMfifo();
+void aeInit();
+void aeStartMfifo();
 aeStopMfifo();
 aeSwapDBMfifo();
 aePresetPolyFt4();
@@ -17,10 +17,10 @@ aePresetPartLine1();
 aePresetTile();
 aePresetPolyGt4();
 aeKickPrim();
-aeKickEndTag();
-aeLoadImage();
+void aeKickEndTag();
+void aeLoadImage();
 aeStoreImage();
-aeSetAD();
+int aeSetAD();
 saeInit();
 saeSetPolyFt4();
 saeSetSprite();

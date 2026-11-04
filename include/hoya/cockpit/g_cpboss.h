@@ -4,10 +4,10 @@
 #define HOYA_COCKPIT_G_CPBOSS_H
 
 gsCOCKPIT_InitBossInfo2();
-gsCOCKPIT_InitBossInfo();
+void gsCOCKPIT_InitBossInfo();
 SetBossInfo();
 SetBossInfoLife();
-SetBossInfoNum();
+void SetBossInfoNum();
 SetBossInfoOld();
 void CleartBossInfo();
 CalcCommon();

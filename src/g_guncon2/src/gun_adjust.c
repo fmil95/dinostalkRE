@@ -1,5 +1,6 @@
 #include "common.h"
 #include "g_guncon2/src/gun_adjust.h"
+#include "g_guncon2/src/guncon2.h"
 
 extern void gun_teaching_gun_adjust();
 extern int adjust_mode_00674c84;
@@ -15,7 +16,6 @@ extern int center_x_00674c9c;
 extern int adjust_center_gun_adjust();
 extern void set_adjustX_gun_adjust();
 extern int D_00653B78[];
-extern void Guncon2_TransCtrlData();
 extern int center_y_00674ca0;
 extern void set_adjustY_gun_adjust();
 extern int adjust_wide_gun_adjust();

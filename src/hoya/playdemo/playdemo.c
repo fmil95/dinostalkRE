@@ -1,11 +1,11 @@
 #include "common.h"
 #include "hoya/playdemo/playdemo.h"
+#include "g_test.h"
+#include "omake/omake.h"
 
 extern int D_0064B34C[];
 extern int D_0064B354[];
 extern int gsPlayDemoFlag;
-extern void G_TEST_Init();
-extern void gsOmakeInitManager();
 
 extern int playDemo[];
 extern void MEM_Free();

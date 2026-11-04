@@ -3,6 +3,5 @@
 #ifndef G_ENEMY_ENE03PRO_ENE03JOY_H
 #define G_ENEMY_ENE03PRO_ENE03JOY_H
 
-ene03joy_plmain();
-
+void ene03joy_plmain();
 #endif // G_ENEMY_ENE03PRO_ENE03JOY_H

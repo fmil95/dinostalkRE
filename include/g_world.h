@@ -72,7 +72,7 @@ void gsWorldEntryOBJ_TREASURE2(char* a, int b);
 int gsWorldCheckOBJ_TREASURE(char* a, int b);
 gsWorldEntryOBJ_ODV_FLAG();
 gsWorldEntryOBJ_CRASH();
-gsWorldCrashOBJ_FLUSH();
+void gsWorldCrashOBJ_FLUSH();
 gsWorldCrashOBJ();
 gsWorldCrashOBJ2();
 gsWorldCrashOBJ_GUN();

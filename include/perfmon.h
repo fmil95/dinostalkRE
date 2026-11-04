@@ -11,7 +11,7 @@ pfm_dmastart();
 pfm_dma1int();
 pfm_vbint();
 pfm_init();
-pfm_end();
+void pfm_end();
 pfm_start();
 int pfm_set();
 #endif // PERFMON_H

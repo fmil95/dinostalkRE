@@ -21,7 +21,7 @@ eneptn_thkmdchg();
 void eneptn_rechkptn(void* a);
 eneptn_enmtyloop();
 void eneptn_delcheck(char* a);
-obrpt_itemsnatchmain();
+void obrpt_itemsnatchmain();
 obrpt_itemsarch();
 obrpt_plitemch();
 obrpt_setstlnitem();

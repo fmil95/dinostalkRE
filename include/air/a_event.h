@@ -8,7 +8,7 @@ gsReadEventMatrix();
 gsReadSwlEventMatrix();
 gsReadEventObject();
 void gsEnemySet_MovieInit(int a);
-_gsEnemySet_MovieInit();
+void _gsEnemySet_MovieInit();
 int gsSearchEventNo(int a);
 gsEventMatrixCtrl();
 gsSetEventObject();

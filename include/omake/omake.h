@@ -5,6 +5,6 @@
 
 void gsOmakeInitManager();
 void gsOmakeSetFlag(int a);
-gsOmakeSetArmsFlagAll();
+void gsOmakeSetArmsFlagAll(int arg0);
 void gsOmakeResetArmsFlag(int i, int m);
 #endif // OMAKE_OMAKE_H

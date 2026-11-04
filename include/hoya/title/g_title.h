@@ -9,7 +9,7 @@ LetsGotoDaisakusen();
 void LetsGotoOpening(int a);
 gsStageInit_TITLE();
 gsStageExec_TITLE();
-gsStageEnd_TITLE();
+void gsStageEnd_TITLE();
 int gsTITLE_Draw1(int a);
 gsTITLE_Draw2();
 

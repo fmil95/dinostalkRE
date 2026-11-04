@@ -15,7 +15,6 @@ extern int chk_slot;
 extern int re_flg;
 extern int maxque;
 extern char* queaddr;
-extern void mcdFlushQue();
 extern long pause;
 extern long pause_cnt;
 extern int mcdCheckEoq();

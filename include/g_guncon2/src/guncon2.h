@@ -4,11 +4,11 @@
 #define G_GUNCON2_SRC_GUNCON2_H
 
 GetUsbGunBuffer();
-GetGunBuffer();
+int GetGunBuffer();
 Guncon2_Init();
 Guncon2_SetPort();
 Guncon2_Job();
-Guncon2_TransCtrlData();
+void Guncon2_TransCtrlData();
 Guncon2_Action();
 
 #endif // G_GUNCON2_SRC_GUNCON2_H

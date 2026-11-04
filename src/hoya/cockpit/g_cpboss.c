@@ -1,7 +1,7 @@
 #include "common.h"
+#include "hoya/cockpit/g_cpboss.h"
 
 extern int gsCptBossGaugeViewFlag;
-extern void gsCOCKPIT_InitBossInfo();
 
 INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_cpboss", BossInitSprName);
 

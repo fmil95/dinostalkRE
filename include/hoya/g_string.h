@@ -4,7 +4,7 @@
 #define HOYA_G_STRING_H
 
 void LoadLetterPig();
-InitLetter();
+void InitLetter();
 void InitLetterAll();
 int DeleteEntryNumSprite(u_int i);
 GetFontInfo();
@@ -30,8 +30,8 @@ strRemoveSentence2();
 strChangeColSentence1();
 strChangeColSentence2();
 void strChangeDrawFlag(int i, int on);
-strDrawSentence();
-strDrawSentence2();
+void strDrawSentence();
+void strDrawSentence2();
 strEraseSentence();
 strGetOneFontData();
 strManagementFunc();

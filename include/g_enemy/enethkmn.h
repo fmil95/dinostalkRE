@@ -3,7 +3,7 @@
 #ifndef G_ENEMY_ENETHKMN_H
 #define G_ENEMY_ENETHKMN_H
 
-enemy_thkmain();
+void enemy_thkmain();
 enemy_getstate();
 enemy_getthkwander();
 enemy_getthkattack();

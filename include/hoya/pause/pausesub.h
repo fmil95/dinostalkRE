@@ -4,9 +4,9 @@
 #define HOYA_PAUSE_PAUSESUB_H
 
 gsPAUSE_InitVitality();
-gsPAUSE_PutVitalityUnder();
-gsPAUSE_PutVitalityHead();
-gsPAUSE_PutVitalityLife();
+void gsPAUSE_PutVitalityUnder();
+void gsPAUSE_PutVitalityHead();
+void gsPAUSE_PutVitalityLife();
 void gsPAUSE_PutVitality(int a);
 gsPAUSE_PutLife();
 InitPausePause00();

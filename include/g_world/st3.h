@@ -36,7 +36,7 @@ void gsWorldSt3_EntryBossDied();
 gsWorldSt3_CheckBossDied();
 void gsWorldSt3_InitBackSE();
 gsWorldSt3_PlayBackSE();
-gsWorldSt3_TexScroll();
+int gsWorldSt3_TexScroll();
 void gsWorldSt3_Demo0_Init();
 void gsWorldSt3_Demo0_Request(int a);
 gsWorldSt3_Demo0_Exec();

@@ -6,7 +6,7 @@
 gsCOCKPIT_InitLockOn();
 gsCOCKPIT_CheckLockOn();
 PutLockOn();
-gsTimerInit();
+void gsTimerInit();
 gsTimerSetTime();
 void gsTimerGetTime(void* p);
 gsTimerSetFrame();
@@ -16,7 +16,7 @@ void gsTimerCntTime(int a);
 void gsTimerPauseTime(int a);
 void gsTimerPauseTimeEx(int a);
 void gsTimerPassDirecTime(int a);
-gsTimerCntroler();
+void gsTimerCntroler();
 gsCOCKPIT_InitTime();
 gsCOCKPIT_InitTime2();
 void gsCOCKPIT_PutTime(int a);

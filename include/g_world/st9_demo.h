@@ -4,7 +4,7 @@
 #define G_WORLD_ST9_DEMO_H
 
 void gsWorldST9_DemoInit();
-gsWorldSt9_DemoManager();
+void gsWorldSt9_DemoManager();
 gsWorldSt9_Demo();
 gsSt9Demo_EndChack();
 gsSt9Demo_ChancelCheck();

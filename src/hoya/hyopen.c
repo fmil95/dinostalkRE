@@ -1,9 +1,9 @@
 #include "common.h"
 #include "frozen_types.h"
+#include "hoya/hyopen.h"
 
 extern Unknown2 gsResult;
 extern int D_002F1FC4[];
-extern void gsResultAllInit();
 
 extern int rsltTblStandardDinoBonus[];
 extern int rsltTblStandardNoDamageBonus[];

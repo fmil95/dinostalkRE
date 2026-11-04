@@ -3,8 +3,8 @@
 #ifndef G_GUNCON1_G_GUNCON1_H
 #define G_GUNCON1_G_GUNCON1_H
 
-gsGuncon1_InitAll();
-gsGuncon1_Init();
+void gsGuncon1_InitAll();
+void gsGuncon1_Init();
 void gsGuncon1_ClearFlag(int a);
 gsGuncon1_LoadPad();
 gsGuncon1_Exec();

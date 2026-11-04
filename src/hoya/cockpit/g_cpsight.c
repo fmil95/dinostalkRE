@@ -1,44 +1,11 @@
 #include "common.h"
+#include "g_plane.h"
+#include "hoya/cockpit/g_cpsight.h"
 
 extern int tex2dSendFlag_00674478;
-extern void gsCOCKPIT_InitSightGrenade();
-extern void gsCOCKPIT_PutSightGrenade();
 
 extern char gsCOCKPIT_Sights[];
 extern int gsCOCKPIT_IdtexSightsForward;
-extern void gplInitSprite();
-extern void gsCOCKPIT_PutSightBowgun();
-extern void gsCOCKPIT_PutSightFire();
-extern void gsCOCKPIT_PutSightGutoring();
-extern void gsCOCKPIT_PutSightHandGrenade();
-extern void gsCOCKPIT_PutSightHandgun();
-extern void gsCOCKPIT_PutSightLaser();
-extern void gsCOCKPIT_PutSightMachine();
-extern void gsCOCKPIT_PutSightMagnum();
-extern void gsCOCKPIT_PutSightMineThrower();
-extern void gsCOCKPIT_PutSightMissile();
-extern void gsCOCKPIT_PutSightMissilePod();
-extern void gsCOCKPIT_PutSightPlasma();
-extern void gsCOCKPIT_PutSightRifle();
-extern void gsCOCKPIT_PutSightRocket();
-extern void gsCOCKPIT_PutSightShotgun();
-extern void gsCOCKPIT_PutSightSpark();
-extern void gsCOCKPIT_InitSightBowgun();
-extern void gsCOCKPIT_InitSightFire();
-extern void gsCOCKPIT_InitSightGutoring();
-extern void gsCOCKPIT_InitSightHandGrenade();
-extern void gsCOCKPIT_InitSightHandgun();
-extern void gsCOCKPIT_InitSightLaser();
-extern void gsCOCKPIT_InitSightMachine();
-extern void gsCOCKPIT_InitSightMagnum();
-extern void gsCOCKPIT_InitSightMineThrower();
-extern void gsCOCKPIT_InitSightMissile();
-extern void gsCOCKPIT_InitSightMissilePod();
-extern void gsCOCKPIT_InitSightPlasma();
-extern void gsCOCKPIT_InitSightRifle();
-extern void gsCOCKPIT_InitSightRocket();
-extern void gsCOCKPIT_InitSightShotgun();
-extern void gsCOCKPIT_InitSightSpark();
 INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_cpsight", hyEntryObj4Sight);
 
 void gsCOCKPIT_InitSightSendTex()

@@ -1,4 +1,6 @@
 #include "common.h"
+#include "air/a_spbtl.h"
+#include "hoya/cockpit/g_cpboss.h"
 
 typedef struct { char b[0x2A50]; } EnemyInfoS;
 extern EnemyInfoS gsEnemyInfos[];
@@ -6,8 +8,6 @@ extern int SpBattleCount;
 extern int SpBattleFlag;
 extern short SingleSetNo;
 extern int st3MainGroupNo;
-extern void gsSpBattleBossSet();
-extern void SetBossInfoNum();
 extern void gsEventFlagOn();
 extern short st3MainGroupIdx;
 extern int st3LastSetIdx;

@@ -4,8 +4,8 @@
 #define HOYA_G_TEST2_H
 
 hySetVram();
-G_TTL_Init();
-G_TTL_Exec();
+void G_TTL_Init();
+void G_TTL_Exec();
 void G_TTL_End();
 void G_RESULT_Init();
 void G_RESULT_Exec();

@@ -1,5 +1,6 @@
 #include "common.h"
 #include "benjamin/ik_trex.h"
+#include "benjamin/kinematics.h"
 
 extern char D_003EA7D0[];
 extern char fvTrexTailNullTrans[];
@@ -11,9 +12,7 @@ extern char lArmHitSubProcFlag[];
 extern char D_003EA870[];
 extern char _gsIK_TrexLArmHitPos[];
 extern char _gsIK_TrexInterpolateArm[];
-extern int IK_JoinNullShape();
 extern int _gsIK_ArmHitSub();
-extern int IK_CutNullShape();
 extern char rArmHitSubProcFlag[];
 extern char D_003EAA10[];
 extern char _gsIK_TrexRArmHitPos[];

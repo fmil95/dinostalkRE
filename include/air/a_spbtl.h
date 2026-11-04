@@ -15,7 +15,7 @@ void gsSt7_BattleInit_OBRAPT();
 gsSt7_DieCheck_OBRAPT();
 int gsGetCheckIdEnemyNum(int id);
 gsSt3GetSetBossNum();
-gsSpBattleBossSet();
+void gsSpBattleBossSet();
 void gsSt4_ExpInit();
 gsSt4_ExpManage();
 

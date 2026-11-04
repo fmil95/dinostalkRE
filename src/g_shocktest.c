@@ -1,8 +1,8 @@
 #include "g_shocktest.h"
 #include <libgraph.h>
 #include <eekernel.h>
+#include "g_shock.h"
 
-extern int gsShockSetSeqNo(int, int);
 extern int gsPad_GetTrg(int);
 
 extern int gConsole;

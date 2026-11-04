@@ -1,11 +1,10 @@
 #include "common.h"
 #include "g_shock.h"
+#include "g_pad.h"
 
 extern int gsShockIsOn;
-extern void gsShockReset();
 
 extern char gsShockInfo[];
-extern int gsPadSetAct();
 void gsShockInit()
 {
     gsShockReset();

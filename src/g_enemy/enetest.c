@@ -1,13 +1,13 @@
 #include "common.h"
+#include "g_enemy/enetest.h"
+#include "gunsuv_usa/libgf/libgf.h"
+#include "mem.h"
+#include "test.h"
 
 extern char D_004026E0[];
 extern void GFInstance_Remove();
 extern void enetest_end();
-extern void enetest_init();
 
-extern void TEST_destroy_instshape();
-extern void GF_EndGraphicsFramework();
-extern void MEM_FreeAll();
 extern char gsEnemyInfos[];
 INCLUDE_RODATA("asm/nonmatchings/g_enemy/enetest", D_00669260);
 

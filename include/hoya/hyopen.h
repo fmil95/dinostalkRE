@@ -6,11 +6,11 @@
 int hyWepRankGetWeaponRank(int w);
 int hyWepRankGetWeaponNo(u_int i);
 int hyGetStageNumber(int arg0);
-gsResultInit();
-gsResultAllInit();
+void gsResultInit();
+void gsResultAllInit();
 void hyReflectResultData();
 void hyReflectResultData_FROM_CONTINUE();
-gsOptionInit();
+void gsOptionInit();
 void gsPauseResetProc();
 SetOptionScreenAdjust();
 hyGetLimitTime();

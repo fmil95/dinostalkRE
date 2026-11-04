@@ -4,7 +4,7 @@
 #define G_GUN_H
 
 gsInitGunManager();
-gsInitGunManager_START_GAME();
+void gsInitGunManager_START_GAME();
 gsInitGunManager_LOAD_GAME();
 gsGunClearManager();
 gsTriggerGun();
@@ -53,7 +53,7 @@ int gsGunGetExtArmsTypeNo();
 void gsGunPutTreasure(int a, void* b);
 gsGunCrashObject();
 void gsGunCrash_FLUSH_CH(int a, int b);
-gsGunCrash_FLUSH_CH_ENE();
+void gsGunCrash_FLUSH_CH_ENE();
 gsInitGunBulletModel();
 gsInitGunBullet();
 gsSetBulletModel();

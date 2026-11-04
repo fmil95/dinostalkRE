@@ -1,6 +1,5 @@
 #include "common.h"
-
-extern void gsWorldSt5_CheckBossDied();
+#include "g_world/st5.h"
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st5", gsWorldInitSt5);
 

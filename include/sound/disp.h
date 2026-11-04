@@ -54,15 +54,15 @@ u_int *setTRXDIR(u_int *p, u_int xdir);
 
 /*
 
-initDisplay();
+void initDisplay();
 dispCreate();
-dispDelete();
+void dispDelete();
 texsave();
 texload();
 dispSetTags();
 dispClear();
 void loadImage(u_int* tags);
-vblankHandler();
+int vblankHandler(int val);
 int handler_endimage(int val);
 startDisplay();
 void endDisplay();

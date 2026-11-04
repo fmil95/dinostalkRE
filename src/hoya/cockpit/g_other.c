@@ -1,12 +1,11 @@
 #include "common.h"
+#include "hoya/cockpit/g_other.h"
 
 extern int D_005DE6A8[];
 extern int D_005DE6A4[];
 
 typedef struct { int a; int b; int c; u_char d[4]; } CockpitTimer;
 extern CockpitTimer gsCOCKPIT_TimerCnt;
-extern void gsTimerInit();
-extern void gsTimerCntroler();
 extern void PutTimeTime();
 INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_other", gsCOCKPIT_InitLockOn);
 

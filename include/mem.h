@@ -6,7 +6,7 @@
 void MEM_InitAllocation();
 void MEM_EndAllocation();
 void MEM_Malloc(int a, int b, int c);
-MEM_MallocAlign();
+void* MEM_MallocAlign();
 void MEM_FreeAll();
 void MEM_Free(int a);
 void MEM_CheckViolation();

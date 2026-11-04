@@ -1,8 +1,8 @@
 #include "common.h"
+#include "hoya/cockpit/g_cpblt.h"
 
 extern int tex2dSendFlag_00674320;
 extern int gsGunExtraId;
-extern void PermittoSend2dWeaponTex();
 extern void gsCOCKPIT_InitBullet();
 
 extern int gsArmsTypeTbl[];
@@ -25,25 +25,6 @@ extern void PutBullet_BulletRifleSc();
 extern void PutBullet_BulletRocket();
 extern void PutBullet_BulletShotGun();
 extern void PutBullet_BulletSpark();
-extern void gsCOCKPIT_InitBulletBowgun();
-extern void gsCOCKPIT_InitBulletFGrenade();
-extern void gsCOCKPIT_InitBulletFire();
-extern void gsCOCKPIT_InitBulletGrenade();
-extern void gsCOCKPIT_InitBulletGutoring();
-extern void gsCOCKPIT_InitBulletHandGrenade();
-extern void gsCOCKPIT_InitBulletHandgun();
-extern void gsCOCKPIT_InitBulletLaser();
-extern void gsCOCKPIT_InitBulletMachine();
-extern void gsCOCKPIT_InitBulletMagnum();
-extern void gsCOCKPIT_InitBulletMineThrower();
-extern void gsCOCKPIT_InitBulletMissile();
-extern void gsCOCKPIT_InitBulletMissilePod();
-extern void gsCOCKPIT_InitBulletPlasma();
-extern void gsCOCKPIT_InitBulletRifle();
-extern void gsCOCKPIT_InitBulletRifleSc();
-extern void gsCOCKPIT_InitBulletRocket();
-extern void gsCOCKPIT_InitBulletShotgun();
-extern void gsCOCKPIT_InitBulletSpark();
 void gsCOCKPIT_InitBulletSendTex()
 {
     tex2dSendFlag_00674320 = 0;

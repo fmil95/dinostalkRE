@@ -3,11 +3,11 @@
 #ifndef HOYA_HOYA_H
 #define HOYA_HOYA_H
 
-hyGun1CheckScreenOut();
+void hyGun1CheckScreenOut();
 hySetBgCol();
 hyInitEzSprite();
 hySetEzSprite();
-MakeTextureAreaOnMemory();
+int MakeTextureAreaOnMemory();
 int hyCreateTexture(int a, int b, int c, int d, int e);
 int hyCreateTexture2(int a, int b, int c, int d, int e);
 void hyInitTextureManager();
@@ -49,7 +49,7 @@ hyInitEearthQuake();
 hyFeelEearthQuake();
 hyInitSpriteManager();
 hyInitSpriteInfo();
-hySearchSMSpriteInfo();
+char* hySearchSMSpriteInfo();
 void hyDrawSMSprite(void* a, int b);
 hyEntrySMSprite();
 void hyDestroySMSpriteInfo(void* a);
@@ -62,7 +62,7 @@ int hyCheckReed(int a);
 hyHex2Bcd();
 sceVu0RotCameraMatrix();
 void hyInitFadeMng(void* a);
-hySetFadePara();
+void hySetFadePara();
 hyCalcFade();
 void hyInitFadeMng2(void* a);
 void hySetFadePara2();

@@ -1,8 +1,8 @@
 #include "common.h"
 #include "hoya/cockpit/g_cockpt.h"
+#include "hoya/cockpit/g_cpblt.h"
+#include "hoya/cockpit/g_cpsight.h"
 
-extern int Send2dSightTex();
-extern int Send2dWeaponTex();
 INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_cockpt", gsCOCKPIT_InitCocpit);
 
 int Send2dCockpitTex()

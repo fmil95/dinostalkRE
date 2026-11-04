@@ -4,8 +4,8 @@
 #define BENJAMIN_KINEMATICS_H
 
 IK_ComputeJoint();
-IK_JoinNullShape();
-IK_CutNullShape();
+int IK_JoinNullShape();
+int IK_CutNullShape();
 IK_Matrix2Euler();
 IK_OpenPmtAnimation();
 IK_Interpolate2Anim();

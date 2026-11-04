@@ -1,12 +1,12 @@
 #include "common.h"
 #include "g_guncon2/g_adjustgun.h"
+#include "gunsuv_usa/libgf/libgf.h"
+#include "mem.h"
+#include "perfmon.h"
 extern char gDb[];
 
 extern int AdjustGunMode;
 extern void sceGsSyncPath();
-extern void pfm_end();
-extern void GF_EndGraphicsFramework();
-extern void MEM_FreeAll();
 
 INCLUDE_ASM("asm/nonmatchings/g_guncon2/g_adjustgun", GUN_ADJUST_Init);
 

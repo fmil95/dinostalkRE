@@ -1,7 +1,7 @@
 #include "common.h"
+#include "hoya/score/g_scman.h"
 
 extern char D_002F1FC4[];
-extern void addScore2();
 
 int addNumber(int* prm0, int prm1, int prm2, int prm3) 
 {

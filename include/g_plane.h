@@ -4,18 +4,18 @@
 #define G_PLANE_H
 
 void gplInitPlane();
-gplInitSprite();
+void gplInitSprite();
 gplSetSprite();
 gplChangeClutSprite();
 gplInitPolyFt4();
 gplSetPolyFt4();
 gplInitPolyFt42();
 gplSetPolyFt42();
-gplInitSprite2();
+void gplInitSprite2();
 gplSetSprite2();
 gplInitPartLine();
 gplSetPartLine();
-gplInitTile();
+void gplInitTile();
 gplSetTile();
 gplInitPolyGt4();
 gplSetPolyGt4();

@@ -1,4 +1,6 @@
 #include "common.h"
+#include "g_parts.h"
+#include "mem.h"
 
 extern void _gpClearWorldRecov();
 
@@ -7,11 +9,8 @@ extern int eval_time_00673fc8;
 extern int eval_end_flag_00673fc4;
 extern void gpInstance_Eval2();
 extern int gpGetPodGeometryNum();
-extern void* MEM_MallocAlign();
 extern void _gpMakeWorldOdvGeomBound();
 extern void* memset();
-extern void gpModifyCollisionTriangle2();
-extern void gpSetMatrixXYZ();
 extern void sceVu0CopyMatrix();
 INCLUDE_ASM("asm/nonmatchings/g_parts", _gpGetBoundBox);
 

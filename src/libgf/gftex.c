@@ -1,5 +1,6 @@
 #include "gunsuv_usa/libgf/gftex.h"
 #include "gunsuv_usa/libgf/gfvcache.h"
+#include "gunsuv_usa/libgf/gfvalloc.h"
 
 extern GF_TEXDB_HEAD* gfDatabaseHead;
 extern GF_TEXDB* gfDatabase;
@@ -8,8 +9,6 @@ extern Uint32 gfTexFrameCnt;
 extern GF_TEXDB gfTexFrame[];
 
 extern void gfTex_ClearDb();
-extern void GFVram_FreeAll();
-extern void GFCache_Flush();
 static void gfTex_FreeVram(sceGsTex0* tex0, sceGsTex1* tex1, sceGsMiptbp1* miptbp1, sceGsMiptbp2* miptbp2, Sint32 no_tex);
 static Sint32 gfTex_SearchDb(Uint64* guid);
 static void gfTex_Defrag();
