@@ -415,7 +415,15 @@ void ene03btatcsp03(char* a)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/ene03pro/ene03mv", ene03dmgmvsp00);
+void ene03dmgmvsp00(char* a)
+{
+    Enemy_AnmChg00(a, 0x31, 8, 0);
+    bigdino_vbrset(a, 0x3B, 0x3C, 0x3D);
+    STRUCT_OFFSET(a, 0xC0, int) = 0;
+    STRUCT_OFFSET(a, 0x0, int) |= 0x40000000;
+    STRUCT_OFFSET(a, 0xC4, int) = 0;
+    STRUCT_OFFSET(a, 0x8C, int)++;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/ene03pro/ene03mv", ene03dmgmvsp01);
 
