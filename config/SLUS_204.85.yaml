@@ -667,7 +667,7 @@ segments:
       - [0x56dba0, .rodata, sound/CdvUse]
       - [0x56dc90, rodata, sound/mainmpeg]
       - [0x56dda0, .rodata, taiken/taiken]
-      - [0x56de20, rodata, omake/ninnin]
+      - [0x56de20, .rodata, omake/ninnin]
       - [0x56de70, .rodata, omake/mugen]
       - [0x56dec0, .rodata, omake/g_galery]
       - [0x56df80, .rodata, omake/g_theate]
