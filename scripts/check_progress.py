@@ -1,6 +1,8 @@
 import json
 import sys
 
+LIBRARY_UNITS = {"sce1", "sce2"}
+
 try:
     with open("report.json", "r") as f:
         data = json.load(f)
@@ -8,27 +10,42 @@ except FileNotFoundError:
     print("Error: \"report.json\" not found. Please run \"./scripts/checks.sh --report\" first to generate the report file.")
     sys.exit(1)
 
-for category in data["categories"]:
-    name = category.get("name")
-    if name != "Engine":
-        continue
-    
-    measures = category.get("measures", {})
 
-    fuzzy_match_percent = measures.get("fuzzy_match_percent", 0.0)
-    total_code = int(measures.get("total_code", 0)) / 1024
-    matched_code = int(measures.get("matched_code", 0)) / 1024
-    matched_code_percent = measures.get("matched_code_percent", 0.0)
+def totals(units):
+    total_code = sum(int(u["measures"].get("total_code", 0)) for u in units)
+    matched_code = sum(int(u["measures"].get("matched_code", 0)) for u in units)
+    total_funcs = sum(int(u["measures"].get("total_functions", 0)) for u in units)
+    matched_funcs = sum(int(u["measures"].get("matched_functions", 0)) for u in units)
+    return total_code, matched_code, total_funcs, matched_funcs
 
-    total_data = int(measures.get("total_data", 0)) / 1024
-    matched_data = int(measures.get("matched_data", 0)) / 1024
-    matched_data_percent = measures.get("matched_data_percent", 0.0)
 
-    total_functions = measures.get("total_functions")
-    matched_functions = measures.get("matched_functions")
-    
-    print(f"{name}:")
-    print(f"  - Fuzzy match:       {fuzzy_match_percent:.2f}%")
-    print(f"  - Perfect match:     {matched_code_percent:.2f}% ({matched_code:.2f} KiB / {total_code:.2f} KiB)")
-    print(f"  - Matched data:      {matched_data_percent:.2f}% ({matched_data:.2f} KiB / {total_data:.2f} KiB)")
-    print(f"  - Matched functions: {matched_functions} / {total_functions}\n")
+def percent(part, whole):
+    return 100.0 * part / whole if whole else 0.0
+
+
+def show(title, units):
+    total_code, matched_code, total_funcs, matched_funcs = totals(units)
+    print(f"{title}:")
+    print(f"  - Matched functions: {matched_funcs} / {total_funcs} ({percent(matched_funcs, total_funcs):.2f}%)")
+    print(f"  - Matched code:      {matched_code / 1024:.2f} KiB / {total_code / 1024:.2f} KiB ({percent(matched_code, total_code):.2f}%)\n")
+
+
+units = [u for u in data["units"] if int(u["measures"].get("total_functions", 0)) > 0]
+game = [u for u in units if u["name"] not in LIBRARY_UNITS]
+libs = [u for u in units if u["name"] in LIBRARY_UNITS]
+
+show("Game code", game)
+show("SDK libraries (sce1/sce2)", libs)
+show("Everything", units)
+
+if "--categories" in sys.argv:
+    categories = {}
+    for u in game:
+        category = (u.get("metadata", {}).get("progress_categories") or ["other"])[0]
+        categories.setdefault(category, []).append(u)
+
+    print(f"{'category':<14}{'functions':>14}{'code':>10}")
+
+    for name, members in sorted(categories.items()):
+        total_code, matched_code, total_funcs, matched_funcs = totals(members)
+        print(f"{name:<14}{matched_funcs:>6} / {total_funcs:<5}{percent(matched_code, total_code):>9.1f}%")

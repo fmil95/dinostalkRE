@@ -39,6 +39,15 @@ You should see this, provided you encountered no errors during the process:
 out/SLUS_204.85: OK
 ```
 
+## Progress
+
+To see how much of the game is matched, generate the objdiff report and run the progress script:
+
+```bash
+./scripts/checks.sh --report
+python3 scripts/check_progress.py --categories
+```
+
 ## Credits
 
 ![Game Cover](https://i.imgur.com/M3RCOWV.png)
