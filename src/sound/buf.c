@@ -17,6 +17,11 @@ extern int SignalSema(int sema);
 #define D_ENABLER ((volatile u_int*)0x1000F520)
 #define D_ENABLEW ((volatile u_int*)0x1000F590)
 
+#define TS_NONE (-1)
+
+#define FS(f) ((f->dmaStart + f->dmaN) * VIBUF_ELM_SIZE)
+#define FN(f) ((f->n - 2 - f->dmaN) * VIBUF_ELM_SIZE)
+
 #define DMA_ID_REFE 0
 #define DMA_ID_NEXT 2
 #define DMA_ID_REF  3
@@ -66,7 +71,38 @@ int viBufCreate(ViBuf* f, u_long128* data, u_long128* tag, int size, TimeStamp* 
 
 INCLUDE_ASM("asm/nonmatchings/sound/buf", viBufReset);
 
-INCLUDE_ASM("asm/nonmatchings/sound/buf", viBufBeginPut);
+void viBufBeginPut(ViBuf* f, u_char** ptr0, int* len0, u_char** ptr1, int* len1)
+{
+    int es;
+    int en;
+    int fs;
+    int fn;
+
+    WaitSema(f->sema);
+
+    fs = FS(f);
+    fn = FN(f);
+
+    es = (fs + f->readBytes) % f->buffSize;
+    en = fn - f->readBytes;
+
+    if (f->buffSize - es >= en)
+    {
+        *ptr0 = (u_char*)f->data + es;
+        *len0 = en;
+        *ptr1 = NULL;
+        *len1 = 0;
+    }
+    else
+    {
+        *ptr0 = (u_char*)f->data + es;
+        *len0 = f->buffSize - es;
+        *ptr1 = (u_char*)f->data;
+        *len1 = en - (f->buffSize - es);
+    }
+
+    SignalSema(f->sema);
+}
 
 void viBufEndPut(ViBuf* f, int size)
 {
