@@ -1,3 +1,4 @@
+#include "gunsuv_usa/libgf/gfpack.h"
 #include "gunsuv_usa/libgf/libgf.h"
 #include "gunsuv_usa/libgf/gfmicro.h"
 
@@ -21,4 +22,26 @@ qword* GFMicro_MakePacket(GF_MICRO* micro, qword* packbuf, Uint32* dsmcode, Sint
     return packbuf + 2;
 }
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfmicro", GFMicro_Draw);
+qword* GFMicro_Draw(qword* packet, GF_MICRO* micro)
+{
+    qword* cur;
+    Sint32 packsize;
+
+    packsize = ((0x220 - micro->workSize) / 2 - 5) / 7;
+    packsize -= packsize % 6;
+
+    _GFPKT_DV_CNT_STCYCL_UNPACK(packet, 0xDE, 1, 1, 1);
+
+    cur = packet + 1;
+    (*cur)[0] = packsize * 4;
+    (*cur)[1] = 0;
+    (*cur)[2] = 0;
+    (*cur)[3] = 0;
+    cur++;
+
+    cur = GFPacket_Add(cur, micro->packet);
+
+    gf_trans_micro = micro;
+
+    return cur;
+}
