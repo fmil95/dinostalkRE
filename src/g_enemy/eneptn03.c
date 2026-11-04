@@ -670,7 +670,10 @@ void eneptn03_ST7carno_breakobj02(char* a)
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn03", eneptn03_ST7carno_breakobj03);
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn03", eneptn03_ST7trex_main);
+void eneptn03_ST7trex_main(char* a)
+{
+    ST7trex_ptnfuncs[STRUCT_OFFSET(a, 0xC, int)](a);
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn03", eneptn03_ST7trex_manage);
 
