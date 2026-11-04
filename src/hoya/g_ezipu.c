@@ -51,7 +51,12 @@ void setTRXPOS_g_ezipu(u_int* p, u_int dir, u_int dsax, u_int dsay)
     setGIFad_g_ezipu(p, SCE_GS_TRXPOS, val);
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/g_ezipu", setTRXREG_g_ezipu);
+void setTRXREG_g_ezipu(u_int* p, u_int rrw, u_int rrh)
+{
+    u_long val = ((u_long)rrh << 32) | ((u_long)rrw << 0);
+
+    setGIFad_g_ezipu(p, SCE_GS_TRXREG, val);
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/g_ezipu", setTRXDIR_g_ezipu);
 
