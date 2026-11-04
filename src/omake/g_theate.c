@@ -1,6 +1,12 @@
 #include "common.h"
 
-INCLUDE_ASM("asm/nonmatchings/omake/g_theate", the_texInit);
+extern char D_0066CF80[];
+extern int pTheBin;
+extern int FIO_ReadFile_Align();
+void the_texInit()
+{
+    pTheBin = FIO_ReadFile_Align(D_0066CF80, 0x40);
+}
 
 INCLUDE_ASM("asm/nonmatchings/omake/g_theate", G_THEATE_Init);
 
