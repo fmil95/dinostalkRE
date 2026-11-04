@@ -154,7 +154,15 @@ void gsGunPlaySE_LOAD_B(int a)
 
 INCLUDE_ASM("asm/nonmatchings/g_gun", gsGunPlaySE_EMPTY);
 
-INCLUDE_ASM("asm/nonmatchings/g_gun", gsGunPlaySE_RELOAD_A);
+void gsGunPlaySE_RELOAD_A(int a)
+{
+    short s = STRUCT_OFFSET(D_003C114C + a * 180, 0, short);
+
+    if (s >= 0)
+    {
+        gsSoundSeMePlay(s);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_gun", gsGunPlaySE_RELOAD_B);
 
