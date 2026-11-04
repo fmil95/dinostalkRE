@@ -14,6 +14,12 @@ extern void SeCSLMidiStop();
 extern int gsSoundBgmNo;
 extern void SeCSLMidiPlay();
 
+extern int* _g_sound_ch_buf[];
+extern void SeSetPitch();
+extern void SeSetVolume();
+extern int get_SE_MAX();
+extern void Se();
+extern void SeStop();
 INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundInitModule);
 
 INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundInitAll);
@@ -125,7 +131,27 @@ int gsSoundOff()
 
 INCLUDE_ASM("asm/nonmatchings/sound/g_sound", _gsSoundEE_LoadFreePort);
 
-INCLUDE_ASM("asm/nonmatchings/sound/g_sound", _gsSoundEE_EntryChBuf);
+void _gsSoundEE_EntryChBuf(int a, int* b)
+{
+    int i = a - 12;
+
+    if (i >= 0)
+    {
+        int* old = _g_sound_ch_buf[i];
+
+        if (old)
+        {
+            *old = -1;
+        }
+
+        _g_sound_ch_buf[i] = b;
+    }
+
+    if (b)
+    {
+        *b = a;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/g_sound", _gsSoundEE_DeleteChBuf);
 
