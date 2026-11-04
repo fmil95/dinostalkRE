@@ -6,7 +6,27 @@ INCLUDE_ASM("asm/nonmatchings/air/a_evtthk", gsThinkMatrixDataCheck);
 
 INCLUDE_ASM("asm/nonmatchings/air/a_evtthk", gsThinkMatrixDataCheck2);
 
-INCLUDE_ASM("asm/nonmatchings/air/a_evtthk", gsEventMatrixCmpDataINT);
+int gsEventMatrixCmpDataINT(int a, int b, int mode)
+{
+    int r = 0;
+
+    switch (mode)
+    {
+    case 0:
+        r = a < b;
+        break;
+    case 1:
+        r = b < a;
+        break;
+    case 2:
+        r = a != b;
+        break;
+    case 3:
+        r = a == b;
+        break;
+    }
+    return r;
+}
 
 INCLUDE_ASM("asm/nonmatchings/air/a_evtthk", gsEventMatrixCmpDataFLOAT);
 
