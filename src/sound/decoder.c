@@ -237,7 +237,25 @@ int audioDecCreate(AudioDec* ad, u_char* buff, int buffSize, int iopBuffSize)
 
 INCLUDE_ASM("asm/nonmatchings/sound/decoder", audioDecDelete);
 
-INCLUDE_ASM("asm/nonmatchings/sound/decoder", audioDecPause);
+int audioDecPause(AudioDec* ad)
+{
+    int ret;
+
+    ad->state = AU_STATE_PAUSE;
+
+    changeInputVolume(0);
+
+    WaitSema(remoteSema);
+
+    ret = sceSdRemote(1, 0x80E0, 0, 2, 0, 0) & 0x00FFFFFF;
+    ad->iopPausePos = ret - ad->iopBuff;
+
+    sceSdRemote(1, 0x80D0, 0, 0, ad->iopZero, 0x4000, 0x800);
+
+    SignalSema(remoteSema);
+
+    return 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/decoder", audioDecResume);
 
