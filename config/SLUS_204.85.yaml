@@ -663,8 +663,8 @@ segments:
       - [0x56e130, rodata, g_guncon2/src/guncon2]
       - [0x56e190, rodata, libgf/gftex]
       - [0x56e458, rodata, libgf/gfshare]
-      - [0x56e538, rodata, libgf/gfvalloc]
-      - [0x56e5e0, rodata, sce/graphdev]
+      - [0x56e470, .rodata, libgf/gfvalloc]
+      - [0x56e5a8, rodata, sce/graphdev]
       - [0x56ead0, rodata, sce/devfont]
       - [0x56fae0, rodata, sce/libdma]
       - [0x56faf8, rodata, sce/libpad]
@@ -760,7 +760,7 @@ segments:
       - [0x574e70, sdata, libgf/gfpointlight]
       - [0x574e78, sdata, libgf/gfshare]
       - [0x574e80, sdata, libgf/gfspecular]
-      - [0x574e88, sdata, libgf/gfvalloc]
+      - [0x574e88, .sdata, libgf/gfvalloc]
       - [0x574ec0, sdata, libgf/gfvcache]
       - { type: sbss, vram: 0x00673ed0, name: sce/sbss_pad }
       - { type: sbss, vram: 0x00673f00, name: main }

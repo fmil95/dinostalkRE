@@ -112,6 +112,7 @@ G_OVERRIDES = {
     "g_savlod.c": "-G8",
     "mcduse.c": "-G8",
     "CdvUse.c": "-G8",
+    "gfvalloc.c": "-G8",
 }
 
 O_OVERRIDES = {

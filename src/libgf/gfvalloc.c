@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "gunsuv_usa/libgf/gfvalloc.h"
 
-extern Uint32* gfInfoAddr_00673e88;
+static Uint32* gfInfoAddr = NULL;
 extern GF_VRAM_HEAD* gfInfoHead_00674cd0;
 extern GF_VRAM_CELL* gfInfo_00674cd4;
 
@@ -12,15 +12,6 @@ static Uint8 gfVram_PsmToFlag(Uint16 mode);
 static Sint32 gfVram_ChangeArea(Uint16 pos, Uint16 size, Uint8 flag, Sint32 is_free);
 static Uint16 gfVram_SearchArea(GF_VRAM_CELL* start_cell, Uint16 size, Uint8 flag);
 static Sint32 gfVram_PseudoAlloc(GF_VRAM_CELL* cell, Uint16 size, Uint8 flag);
-extern char D_0066D538[];
-extern char D_0066D560[];
-extern char D_0066D588[];
-extern char D_00673E90[];
-extern char D_00673E98[];
-extern char D_00673EA0[];
-extern char D_00673EA8[];
-extern char D_00673EB0[];
-extern char D_00673EB8[];
 INCLUDE_ASM("asm/nonmatchings/libgf/gfvalloc", GFVram_SetInfoAddr);
 
 static void gfVram_ClearAllCell()
@@ -249,21 +240,21 @@ void GFVram_PrintAllocationStatus()
 
     p = gfInfoHead_00674cd0->top_cell;
 
-    printf(D_0066D538);
-    printf(D_0066D560);
-    printf(D_0066D538);
+    printf("  +-------+-------+---+---+------+\n");
+    printf("  |  pos  | size  |4HH|4HL|  24  |\n");
+    printf("  +-------+-------+---+---+------+\n");
 
     while (p != NULL)
     {
-        printf(D_0066D588, p->pos, p->size,
-               (p->reserved_flag & 4) ? D_00673EA0 : (p->used_flag & 4) ? D_00673E90 : D_00673E98,
-               (p->reserved_flag & 2) ? D_00673EA0 : (p->used_flag & 2) ? D_00673E90 : D_00673E98,
-               (p->reserved_flag & 1) ? D_00673EB8 : (p->used_flag & 1) ? D_00673EA8 : D_00673EB0);
+        printf("  | %5d | %5d |%s|%s|%s|\n", p->pos, p->size,
+               (p->reserved_flag & 4) ? " + " : (p->used_flag & 4) ? " * " : " . ",
+               (p->reserved_flag & 2) ? " + " : (p->used_flag & 2) ? " * " : " . ",
+               (p->reserved_flag & 1) ? " ++++ " : (p->used_flag & 1) ? " **** " : " .... ");
 
         p = p->next;
     }
 
-    printf(D_0066D538);
+    printf("  +-------+-------+---+---+------+\n");
 }
 
 void GFVram_SetFrameBufferSize(Uint32 w, Uint32 h, Uint32 psm)
