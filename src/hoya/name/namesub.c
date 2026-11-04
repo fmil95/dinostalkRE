@@ -69,6 +69,16 @@ INCLUDE_ASM("asm/nonmatchings/hoya/name/namesub", ProcFadeIn_namesub);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/name/namesub", ProcFadeOut_namesub);
 
+INCLUDE_RODATA("asm/nonmatchings/hoya/name/namesub", D_0066C478);
+
+INCLUDE_RODATA("asm/nonmatchings/hoya/name/namesub", D_0066C498);
+
+INCLUDE_RODATA("asm/nonmatchings/hoya/name/namesub", D_0066C4A8);
+
+INCLUDE_RODATA("asm/nonmatchings/hoya/name/namesub", D_0066C4C0);
+
+INCLUDE_RODATA("asm/nonmatchings/hoya/name/namesub", D_0066C4D8);
+
 INCLUDE_ASM("asm/nonmatchings/hoya/name/namesub", InitNameName00);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/name/namesub", InitNameName01);
@@ -82,3 +92,29 @@ void EndName()
     GFTex_ResetDatabase();
     GF_EndGraphicsFramework();
 }
+INCLUDE_RODATA("asm/nonmatchings/hoya/name/namesub", D_0066C610);
+
+INCLUDE_RODATA("asm/nonmatchings/hoya/name/namesub", jtbl_0066C640);
+
+INCLUDE_RODATA("asm/nonmatchings/hoya/name/namesub", jtbl_0066C660);
+
+INCLUDE_RODATA("asm/nonmatchings/hoya/name/namesub", jtbl_0066C680);
+
+INCLUDE_RODATA("asm/nonmatchings/hoya/name/namesub", jtbl_0066C6A0);
+
+INCLUDE_RODATA("asm/nonmatchings/hoya/name/namesub", D_0066C6E0);
+
+INCLUDE_RODATA("asm/nonmatchings/hoya/name/namesub", D_0066C708);
+
+INCLUDE_RODATA("asm/nonmatchings/hoya/name/namesub", D_0066C730);
+
+INCLUDE_RODATA("asm/nonmatchings/hoya/name/namesub", D_0066C758);
+
+INCLUDE_RODATA("asm/nonmatchings/hoya/name/namesub", D_0066C780);
+
+INCLUDE_RODATA("asm/nonmatchings/hoya/name/namesub", D_0066C7A8);
+
+INCLUDE_RODATA("asm/nonmatchings/hoya/name/namesub", D_0066C7D0);
+
+INCLUDE_RODATA("asm/nonmatchings/hoya/name/namesub", D_0066C7F8);
+
