@@ -49,7 +49,21 @@ INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_AllReqest);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_AllReqest_LvSet);
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_HowManySet);
+u_short Enemy_HowManySet()
+{
+    u_short n = 0;
+    int i;
+
+    for (i = 0; i < 10; i++)
+    {
+        if (STRUCT_OFFSET(&gsEnemyInfos[i], 0x0, int) & 1)
+        {
+            n++;
+        }
+    }
+
+    return n;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_DelCheck);
 
