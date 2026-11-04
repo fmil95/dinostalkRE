@@ -1,5 +1,10 @@
 #include "common.h"
 
+extern void (*pDeadPoseFunc_8[])(void*);
+extern int gsPause;
+extern void (*pFootMoveLFunc_4[])(void*);
+extern void (*pFootMoveRFunc_5[])(void*);
+extern void (*pTailSwingFunc_6[])(void*);
 INCLUDE_ASM("asm/nonmatchings/benjamin/g_ik", gsIKinit);
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/g_ik", gsIKinitOne);
@@ -25,7 +30,20 @@ INCLUDE_ASM("asm/nonmatchings/benjamin/g_ik", _gsIK_TailSwing);
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/g_ik", _gsIK_HitProc);
 
-INCLUDE_ASM("asm/nonmatchings/benjamin/g_ik", _gsIK_AdjustDeadPose);
+void _gsIK_AdjustDeadPose(void* a)
+{
+    void (*f)(void*);
+
+    if (gsPause == 0)
+    {
+        f = pDeadPoseFunc_8[STRUCT_OFFSET(a, 0x2A, short)];
+
+        if (f)
+        {
+            f(a);
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/g_ik", gsIK_RotDeadBody);
 
