@@ -90,7 +90,20 @@ AnotherItemS* gsAnotherItemFreeInfosSearch()
     return 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/air/a_item", gsAnotherItemFreeInfosSearch2);
+int gsAnotherItemFreeInfosSearch2()
+{
+    int i;
+
+    for (i = 0; i < 48; i++)
+    {
+        if ((STRUCT_OFFSET(&Another_Item[i], 0x0, int) & 1) == 0)
+        {
+            return i;
+        }
+    }
+
+    return -1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/air/a_item", gfShape_AttachObject2_item);
 
