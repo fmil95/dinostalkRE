@@ -40,7 +40,12 @@ void GFTrack_SetStartST(void* t, sceVu0FVECTOR a, sceVu0FVECTOR b)
     STRUCT_OFFSET(t, 0xC, int) |= 0x10;
 }
 
-INCLUDE_ASM("asm/nonmatchings/benjamin/track", GFTrack_SetEndST);
+void GFTrack_SetEndST(void* t, sceVu0FVECTOR a, sceVu0FVECTOR b)
+{
+    sceVu0CopyVector((float*)((char*)t + 0xA0), a);
+    sceVu0CopyVector((float*)((char*)t + 0xB0), b);
+    STRUCT_OFFSET(t, 0xC, int) |= 0x10;
+}
 
 void GFTrack_SetStartPos(void* t, sceVu0FVECTOR a, sceVu0FVECTOR b)
 {
