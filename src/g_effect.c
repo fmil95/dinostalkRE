@@ -180,7 +180,17 @@ INCLUDE_ASM("asm/nonmatchings/g_effect", gsEffectBlurManagement);
 
 INCLUDE_ASM("asm/nonmatchings/g_effect", gsEffectBlurFullScreen);
 
-INCLUDE_ASM("asm/nonmatchings/g_effect", gsEffectInitFade);
+void gsEffectInitFade()
+{
+    char* p = gsEffectFadeTile;
+    int i;
+
+    for (i = 7; i >= 0; i--, p += 0x80)
+    {
+        gplInitTile(p);
+        STRUCT_OFFSET(p, 4, int) = -1;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_effect", gsEffectFade);
 
