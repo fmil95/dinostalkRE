@@ -39,9 +39,16 @@ typedef struct { // 0x34
 	/* 0x30 */ int fd;
 } StrFile;
 
+typedef struct { // 0x4
+	/* 0x0 */ u_short skip;
+	/* 0x2 */ u_char use;
+	/* 0x3 */ u_char pad;
+} PadSkip;
+
 extern int N_Read_Unit;
 
 int strFileOpen(StrFile *file, char *filename);
+int PortSlotCheck(int port, int slot);
 int readMpeg(VideoDec *vd, ReadBuf *rb, StrFile *file);
 
 void readBufCreate(ReadBuf *b);

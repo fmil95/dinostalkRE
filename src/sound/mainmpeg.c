@@ -1,4 +1,7 @@
 #include "sound/mainmpeg.h"
+extern char abort_flg;
+extern int writerest;
+extern PadSkip pad_00857400[];
 
 #define min(x, y) (((x) > (y)) ? (y) : (x))
 
@@ -36,7 +39,22 @@ int PortSlotCheck(int port, int slot)
     return 1;
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", cdvMpegSkipSet);
+void cdvMpegSkipSet(int port, int slot, u_short mask, int flag)
+{
+    if (PortSlotCheck(port, slot))
+    {
+        return;
+    }
+
+    if (flag)
+    {
+        pad_00857400[port * 4 + slot].skip |= mask;
+    }
+    else
+    {
+        pad_00857400[port * 4 + slot].skip &= ~mask;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", cdvMpegSkipSetAll);
 
