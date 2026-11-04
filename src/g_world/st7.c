@@ -101,7 +101,13 @@ void gsWorldSt7_InitHasiLight()
     _st7_hasi_light_num = 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldSt7_EntryHasiLight);
+void gsWorldSt7_EntryHasiLight(int a)
+{
+    int n = _st7_hasi_light_num;
+
+    _st7_hasi_light_obj[n] = a;
+    _st7_hasi_light_num = n + 1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldSt7_HasiLight);
 
