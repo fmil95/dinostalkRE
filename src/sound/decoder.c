@@ -124,7 +124,20 @@ int videoDecIsFlushed(VideoDec* vd)
     return (videoDecInputCount(vd) == 0) && sceMpegIsRefBuffEmpty(&vd->mpeg);
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/decoder", videoDecMain);
+void videoDecMain(VideoDec* vd)
+{
+    viBufReset(&vd->vibuf);
+
+    voBufReset(&voBuf);
+
+    decBs0(vd);
+
+    while (voBuf.count)
+    {
+    }
+
+    videoDecSetState(vd, VD_STATE_END);
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/decoder", decBs0);
 
