@@ -23,7 +23,14 @@ void ene03moveElem021(char* a)
     STRUCT_OFFSET(a, 0x8C, int)++;
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/ene03pro/ene03mv", ene03moveElem022);
+void ene03moveElem022(char* a)
+{
+    if (GFAnim_ShapeFlagCheck(a + 0xBA0, 0) & 2)
+    {
+        STRUCT_OFFSET(a, 0x8C, int) = 3;
+        STRUCT_OFFSET(a, 0x0, int) |= 0x800;
+    }
+}
 
 void ene03moveElem023(char* a)
 {
