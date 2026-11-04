@@ -6,7 +6,11 @@ extern void sceVu0CopyVector();
 extern int gsPartComp[];
 extern void _gsIK_InitDataHead();
 extern int _gsIK_CompGroundData;
-INCLUDE_ASM("asm/nonmatchings/benjamin/ik_comp", _gsIK_CompInit);
+void _gsIK_CompInit(void* a)
+{
+    _gsIK_InitDataHead((char*)a + 0xD40);
+    STRUCT_OFFSET(a, 0xD60, int) = (int)&_gsIK_CompGroundData;
+}
 
 void _gsIK_CompUpdateData(void* a, void* b)
 {
