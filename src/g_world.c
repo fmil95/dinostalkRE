@@ -147,7 +147,12 @@ void gsWorldEntryGND_ALPHA(void* a, int b, long c)
 
 INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldEntryGND_COL);
 
-INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldEntryOBJ_REPLACE);
+void gsWorldEntryOBJ_REPLACE(char* a)
+{
+    int x = STRUCT_OFFSET(a, 0x51400, int);
+
+    STRUCT_OFFSET(a + x * 4, 0x7E2CC, int) = x;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldEntryOBJ_COLA_OFF);
 
