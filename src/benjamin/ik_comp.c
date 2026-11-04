@@ -3,6 +3,9 @@
 extern void sceVu0CopyVector();
 extern void sceVu0CopyVector();
 
+extern int gsPartComp[];
+extern void _gsIK_InitDataHead();
+extern int _gsIK_CompGroundData;
 INCLUDE_ASM("asm/nonmatchings/benjamin/ik_comp", _gsIK_CompInit);
 
 void _gsIK_CompUpdateData(void* a, void* b)
@@ -20,4 +23,8 @@ INCLUDE_ASM("asm/nonmatchings/benjamin/ik_comp", _gsIK_CompFootMoveL);
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/ik_comp", _gsIK_CompFootMoveR);
 
-INCLUDE_ASM("asm/nonmatchings/benjamin/ik_comp", _gsIK_CompSetHit);
+void _gsIK_CompSetHit(void* a, int i)
+{
+    STRUCT_OFFSET(a, 0xD58, int) |= gsPartComp[i];
+    STRUCT_OFFSET(a, 0xD5C, int) |= gsPartComp[i];
+}
