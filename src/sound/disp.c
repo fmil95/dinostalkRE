@@ -217,7 +217,10 @@ u_int* setTRXREG(u_int* p, u_int rrw, u_int rrh)
     return setGIFad(p, SCE_GS_TRXREG, val);
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/disp", setTRXDIR);
+u_int* setTRXDIR(u_int* p, u_int xdir)
+{
+    return setGIFad(p, SCE_GS_TRXDIR, (u_long)xdir);
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/disp", loadImage);
 
