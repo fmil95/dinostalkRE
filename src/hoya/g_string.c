@@ -7,12 +7,14 @@ extern void GFTex_Remove();
 extern void InitLetter();
 extern void LoadLetterPig();
 
-extern void strAddSentence();
 extern void strDrawSentence2();
 typedef struct { int p; int q; int r; int s; } MsgData;
 typedef struct { char b[408]; } FontMng;
 extern FontMng fntMng[];
 extern int shortSentence[];
+extern void strDrawSentence();
+typedef struct { char b[0x630]; } StrManS;
+extern StrManS strManager[];
 void LoadLetterPig()
 {
     hyLoadPigFont();
@@ -95,11 +97,14 @@ void strEndStringManager()
     EndLetterAll();
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/g_string", AddMessageData);
+void AddMessageData(int a, int* b)
+{
+    strAddSentence(**(int**)((char*)b + a * 12 + 8));
+}
 
 void AddMessageData2(int a, char* b)
 {
-    strAddSentence(*STRUCT_OFFSET(b + a * 16, 0xC, int*), b);
+    strAddSentence(*STRUCT_OFFSET(b + a * 16, 0xC, int*));
 }
 
 INCLUDE_ASM("asm/nonmatchings/hoya/g_string", DrawMessageData);
