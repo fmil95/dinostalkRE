@@ -6,7 +6,24 @@
 extern void Enemy_ActChg00();
 extern void Enemy_SeSet00();
 extern void bigdino_vbrset();
-INCLUDE_ASM("asm/nonmatchings/g_enemy/ene03pro/ene03mv", ene03move_main);
+extern void ene03joy_plmain();
+extern void enemy_thkmain();
+extern int D_002F18B4[2];
+extern void (*ene03movestbl2[])();
+void ene03move_main(char* a)
+{
+    STRUCT_OFFSET(a, 0x98, int) = STRUCT_OFFSET(STRUCT_OFFSET(a, 0xCBC, char*), 0x148, int);
+    if (STRUCT_OFFSET(a, 0, int) < 0)
+    {
+        STRUCT_OFFSET(a, 0xE4, int) = D_002F18B4[0];
+        ene03joy_plmain(a);
+    }
+    else
+    {
+        enemy_thkmain(a);
+    }
+    ene03movestbl2[STRUCT_OFFSET(a, 0x84, int) * 8 + STRUCT_OFFSET(a, 0x8C, int)](a);
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/ene03pro/ene03mv", bigdino_vbrset);
 
