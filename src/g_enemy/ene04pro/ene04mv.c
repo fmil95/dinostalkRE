@@ -248,4 +248,22 @@ INCLUDE_ASM("asm/nonmatchings/g_enemy/ene04pro/ene04mv", ene04BmoveElem2c0);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/ene04pro/ene04mv", ene04BmoveElem2c1);
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/ene04pro/ene04mv", ene04BmoveElem2c2);
+void ene04BmoveElem2c2(char* a)
+{
+    int f;
+
+    STRUCT_OFFSET(a, 0x200, int) = 0;
+    if (Enemy_DelDethPrcMain(a) > 0)
+    {
+        f = STRUCT_OFFSET(a, 0x0, int);
+        if (!(f & 0x40))
+        {
+            STRUCT_OFFSET(a, 0x0, int) = f | 0x40;
+            gsDeleteEnemySetItemObj(a);
+            f = STRUCT_OFFSET(a, 0x0, int);
+        }
+        STRUCT_OFFSET(a, 0x0, int) = f | 0x800000;
+        gsDinoSetDeadShrinkY(a, 0x2D);
+        STRUCT_OFFSET(a, 0x8C, int)++;
+    }
+}
