@@ -37,7 +37,14 @@ extern inline int IsPtsInRegion(int tgt, int pos, int len, int size)
 
 INCLUDE_ASM("asm/nonmatchings/sound/buf", getFIFOindex);
 
-INCLUDE_ASM("asm/nonmatchings/sound/buf", setD3_CHCR);
+void setD3_CHCR(u_int a)
+{
+    DIntr();
+    *D_ENABLEW = *D_ENABLER | 0x10000;
+    *D3_CHCR = a;
+    *D_ENABLEW = *D_ENABLER & ~0x10000;
+    EIntr();
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/buf", setD4_CHCR);
 
