@@ -12,6 +12,79 @@ import re
 from pathlib import Path
 from typing import Dict, List, Set, Union
 
+#MARK: Assembler workaround
+# The EE assembler (tools/cc/ee/bin/as, GNU as 2.10-ee-001003-1) has a bug that
+# depends on its internal memory layout. When a relaxable macro instruction such
+# as `lw $2,sym($5)` (expanded to lui/addu/lw) lands on an internal fragment
+# chunk boundary, gas writes the wrong bytes for the expansion. The usual
+# symptom is the `lui` being overwritten by the final `lw` of the same macro,
+# while keeping its R_MIPS_HI16 relocation.
+#
+# Whether it triggers depends on how much memory gas allocated before that
+# instruction (even the length of the output path changes it), so a function
+# that matches can break in the full build when unrelated code in the same
+# file changes. The per-function object compare can't see it because it masks
+# relocated words; only the final checksum catches it.
+#
+# Workaround: assemble each C file's .s several times, prepending 0, 1, 2, ...
+# no-op `.align 2` directives to .text. They create empty fragments, which
+# shifts gas's internal layout, but never change the output bytes. The first
+# object that two different paddings produce byte-for-byte identically is kept:
+# a corruption depends on the layout, so two layouts agreeing means neither was
+# corrupted. The ninja "cc" rule calls this as `configure.py --as-checked`.
+AS_CHECKED_MAX_TRIES = 8
+
+
+def as_checked(argv: List[str]) -> int:
+    """argv: <as path> <as flags...> -o <out.o> <in.s>"""
+    import subprocess
+
+    as_path, *args = argv
+    src = args[-1]
+    out = args[args.index("-o") + 1]
+    flags = [a for i, a in enumerate(args[:-1]) if a != "-o" and args[i - 1] != "-o"]
+
+    with open(src) as f:
+        text = f.read()
+
+    tmp_s = f"{out}.pad.s"
+    tmp_o = f"{out}.pad.o"
+    seen: Dict[bytes, int] = {}
+
+    try:
+        for pad in range(AS_CHECKED_MAX_TRIES):
+            with open(tmp_s, "w") as f:
+                f.write("\t.text\n" + "\t.align\t2\n" * pad + text)
+
+            if os.path.exists(tmp_o):
+                os.remove(tmp_o)
+
+            res = subprocess.run([as_path, *flags, "-o", tmp_o, tmp_s])
+
+            if res.returncode != 0:
+                return res.returncode
+
+            with open(tmp_o, "rb") as f:
+                data = f.read()
+
+            if data in seen:
+                with open(out, "wb") as f:
+                    f.write(data)
+                return 0
+
+            seen[data] = pad
+    finally:
+        for p in (tmp_s, tmp_o):
+            if os.path.exists(p):
+                os.remove(p)
+
+    print(f"as-checked: no two paddings agreed for {src}", file=sys.stderr)
+    return 1
+
+
+if __name__ == "__main__" and len(sys.argv) > 1 and sys.argv[1] == "--as-checked":
+    sys.exit(as_checked(sys.argv[2:]))
+
 import ninja_syntax
 import splat
 import splat.scripts.split as split
@@ -273,7 +346,8 @@ def build_stuff(linker_entries: List[LinkerEntry], skip_checksum=False, objects_
             f"{CC_DIR}/ee-gcc -S {COMMON_INCLUDES} {COMMON_COMPILE_FLAGS} $gflag $oflag $in $cflags -o $out.s; "
             #f"{WINE_RUN} {CC_DIR}/ee-gcc -S {COMMON_INCLUDES} {COMMON_COMPILE_FLAGS} $in $cflags -o $out.s; "
             # f"wineserver -w; "
-            f"{AS_EE} -O2 -mabi=eabi $gflag -o $out $out.s; "
+            # assembled through the workaround described under "Assembler workaround"
+            f"{sys.executable} {ROOT / 'configure.py'} --as-checked {AS_EE} -O2 -mabi=eabi $gflag -o $out $out.s && "
             # f"{WINE_RUN} {AS_EE} -G4 -O2 -mabi=eabi -o $out $out.s; "
             # f"wineserver -w; "
             f"test -s $out && {cross}strip $out -N dummy-symbol-name"
