@@ -212,7 +212,15 @@ int SeTransNow()
     return ((D_00651760[0] ^ 0x1) == 0);
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeReqQueInc);
+void SeReqQueInc()
+{
+    TJobSt.unk0++;
+
+    if (TJobSt.unk0 >= 0x40)
+    {
+        TJobSt.unk0 = 0;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeReqQueDec);
 
