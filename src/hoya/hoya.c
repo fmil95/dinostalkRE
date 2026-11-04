@@ -52,7 +52,10 @@ void hySetEntryNo(int a)
     texMng[0] = a;
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyGetTexUv);
+int hyGetTexUv(int i, int j)
+{
+    return D_0052CFF0[i * 2] + j * 8;
+}
 
 int hyGetTexId(int i)
 {
