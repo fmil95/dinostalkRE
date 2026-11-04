@@ -22,6 +22,8 @@ extern int _st7_fire_light_num;
 extern int _st7_fire_light_time;
 extern int _st7_fire_light_step;
 extern int rand();
+extern char gsEnemyInfos[];
+extern void _gsWorldSt7_TrexHeadColl();
 INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldInitSt7);
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldSt7EntryTex_GND);
@@ -169,7 +171,22 @@ INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldSt7_BrowDoramDamage);
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st7", _gsWorldSt7_TrexHeadColl);
 
-INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldSt7_TrexHeadColl);
+void gsWorldSt7_TrexHeadColl()
+{
+    char* p = gsEnemyInfos;
+    int i;
+
+    for (i = 9; i >= 0; i--, p += 0x2A50)
+    {
+        if (STRUCT_OFFSET(p, 0, int) & 1)
+        {
+            if (STRUCT_OFFSET(p, 0x2A, short) == 7)
+            {
+                _gsWorldSt7_TrexHeadColl(STRUCT_OFFSET(p, 0xD30, int), p + 0xBA0);
+            }
+        }
+    }
+}
 
 void gsWorldSt7_InitDinoLight()
 {
