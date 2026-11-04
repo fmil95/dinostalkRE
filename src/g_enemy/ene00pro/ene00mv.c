@@ -101,7 +101,24 @@ INCLUDE_ASM("asm/nonmatchings/g_enemy/ene00pro/ene00mv", ene00move39);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/ene00pro/ene00mv", ene00move3a);
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/ene00pro/ene00mv", ene00move3d);
+void ene00move3d(char* a)
+{
+    switch (STRUCT_OFFSET(a, 0x8C, int))
+    {
+    case 0:
+        STRUCT_OFFSET(a, 0x0, int) &= ~0x30000000;
+        Enemy_AnmChg00(a, 0x68, 8, 0);
+        STRUCT_OFFSET(a, 0xC0, int) = 0;
+        STRUCT_OFFSET(a, 0x8C, int)++;
+        break;
+    case 1:
+        if (GFAnim_ShapeFlagCheck((GF_INST_OBJECT*)(a + 0xBA0), 0) & 2)
+        {
+            STRUCT_OFFSET(a, 0x8C, int)++;
+        }
+        break;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/ene00pro/ene00mv", ene00move3e);
 
