@@ -20,6 +20,8 @@ extern void GFInstance_Remove();
 extern void Enemy_AllPsInfInt();
 extern void Enemy_WorkInit();
 extern void (*enemy_movestbl[])();
+typedef struct { char b[0x230]; } AnotherItemE;
+extern AnotherItemE Another_Item[];
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_Main);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_PauseProc);
@@ -144,7 +146,20 @@ INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", enemy_blowoffcnt);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", enemy_hitbloodset);
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", enemy_obrptitemdrop);
+void enemy_obrptitemdrop(char* a)
+{
+    int s;
+
+    if (STRUCT_OFFSET(a, 0x2A, short) == 0x10)
+    {
+        s = STRUCT_OFFSET(a, 0x76, short);
+        if (s >= 0 && (STRUCT_OFFSET(a, 0, int) & 0xC000))
+        {
+            STRUCT_OFFSET(a, 0x76, short) = -1;
+            STRUCT_OFFSET(&Another_Item[s], 0, int) &= ~0x300;
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", enemy_godmgact);
 
