@@ -5,6 +5,7 @@ extern int D_00653B08[];
 extern int D_00653B10[];
 extern int D_00653B0C[];
 
+extern int _gc1_key_tbl[];
 INCLUDE_ASM("asm/nonmatchings/g_guncon1/g_guncon1", gsGuncon1_InitAll);
 
 INCLUDE_ASM("asm/nonmatchings/g_guncon1/g_guncon1", gsGuncon1_Init);
@@ -78,4 +79,20 @@ void gsGuncon1_GetCamSight(char* a)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_guncon1/g_guncon1", gsGuncon1_ExchangePad);
+int gsGuncon1_ExchangePad(int a, int b)
+{
+    int* p = _gc1_key_tbl + b * 16;
+    int bit = 1;
+    int r = 0;
+    int i;
+
+    for (i = 15; i >= 0; i--, p++)
+    {
+        if (a & bit)
+        {
+            r |= *p;
+        }
+        bit <<= 1;
+    }
+    return r & 0x9F3;
+}
