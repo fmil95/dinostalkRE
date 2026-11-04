@@ -7,9 +7,18 @@ extern Uint32* gfDatabaseAddr;
 extern Uint32 gfTexFrameCnt;
 extern GF_TEXDB gfTexFrame[];
 
+extern void gfTex_ClearDb();
+extern void GFVram_FreeAll();
+extern void GFCache_Flush();
 INCLUDE_ASM("asm/nonmatchings/libgf/gftex", GFTex_InitDatabase);
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gftex", GFTex_ResetDatabase);
+void GFTex_ResetDatabase()
+{
+    STRUCT_OFFSET(gfDatabaseHead, 0x8, int) = 0;
+    gfTex_ClearDb();
+    GFVram_FreeAll();
+    GFCache_Flush();
+}
 
 void GFTex_EntryDatabase(Uint32* buf)
 {
