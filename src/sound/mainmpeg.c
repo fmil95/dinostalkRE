@@ -1,34 +1,51 @@
 #include "sound/mainmpeg.h"
-extern char audio_dec_flg;
-#define UncAddr(p) ((void*)(((u_int)(p) & 0x0FFFFFFF) | 0x20000000))
-static int copy2area(u_char* pd0, int d0, u_char* pd1, int d1, u_char* ps0, int s0, u_char* ps1, int s1);
+#include "sound/disp.h"
 
 #define min(x, y) (((x) > (y)) ? (y) : (x))
+#define UncAddr(p) ((void*)(((u_int)(p) & 0x0FFFFFFF) | 0x20000000))
 
 extern int sceCdDiskReady(int mode);
 extern void* sceSifAllocIopHeap(int size);
 extern int sceCdStInit(u_int bufmax, u_int bankmax, u_int iop_bufaddr);
 extern int sceCdSearchFile(sceCdlFILE* fp, const char* name);
 extern int sceCdStStart(u_int lbn, sceCdRMode* mode);
-extern int start_sec;
 extern int sceCdStRead(u_int sectors, u_int* buf, u_int mode, u_int* err);
 extern int printf();
+extern int TerminateThread();
+extern int DeleteThread();
+extern int DisableDmac();
+extern int EnableDmac();
+extern int RemoveDmacHandler();
+extern int sceGsSyncVCallback();
+extern void dispDelete();
+
 extern char D_0066CD88[];
 
+extern int start_sec;
 extern int frame_cnt;
 extern int writerest;
 extern char abort_flg;
-extern PadSkip pad_00857400[];
+extern char audio_dec_flg;
 extern char err_sts;
+extern char init_flg;
 extern int GS_Send_Flg;
 extern int mono_flg;
 extern int isWithAudio;
 extern int UserProg;
-extern char init_flg;
+extern int videoDecTh;
+extern int defaultTh;
+extern int userTh;
+extern int dma_flg;
+extern int save_func;
+extern PadSkip pad_00857400[];
+extern Display display;
+extern VoBuf voBuf;
 extern AudioDec audioDec;
 extern VideoDec videoDec;
 extern ReadBuf readBuf;
 extern StrFile infile;
+
+static int copy2area(u_char* pd0, int d0, u_char* pd1, int d1, u_char* ps0, int s0, u_char* ps1, int s1);
 
 INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", cdvMpegInit);
 
@@ -148,6 +165,7 @@ int isAudioOK()
 INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", initAll);
 
 INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", termAll);
+
 
 void defMain()
 {
