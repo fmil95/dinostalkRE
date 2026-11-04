@@ -55,7 +55,11 @@ INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldClearBreakAction);
 
 INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldGetLineDistance);
 
-INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldInitLineSwitch);
+void gsWorldInitLineSwitch(int a, float* b)
+{
+    gsWorldLineSwitchManager[1] = a;
+    sceVu0CopyVector(&gsWorldLineSwitchManager[4], b);
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldTriggerLineSwitch);
 
