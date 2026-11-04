@@ -7,6 +7,38 @@ extern void gsCOCKPIT_PutSightGrenade();
 extern char gsCOCKPIT_Sights[];
 extern int gsCOCKPIT_IdtexSightsForward;
 extern void gplInitSprite();
+extern void gsCOCKPIT_PutSightBowgun();
+extern void gsCOCKPIT_PutSightFire();
+extern void gsCOCKPIT_PutSightGutoring();
+extern void gsCOCKPIT_PutSightHandGrenade();
+extern void gsCOCKPIT_PutSightHandgun();
+extern void gsCOCKPIT_PutSightLaser();
+extern void gsCOCKPIT_PutSightMachine();
+extern void gsCOCKPIT_PutSightMagnum();
+extern void gsCOCKPIT_PutSightMineThrower();
+extern void gsCOCKPIT_PutSightMissile();
+extern void gsCOCKPIT_PutSightMissilePod();
+extern void gsCOCKPIT_PutSightPlasma();
+extern void gsCOCKPIT_PutSightRifle();
+extern void gsCOCKPIT_PutSightRocket();
+extern void gsCOCKPIT_PutSightShotgun();
+extern void gsCOCKPIT_PutSightSpark();
+extern void gsCOCKPIT_InitSightBowgun();
+extern void gsCOCKPIT_InitSightFire();
+extern void gsCOCKPIT_InitSightGutoring();
+extern void gsCOCKPIT_InitSightHandGrenade();
+extern void gsCOCKPIT_InitSightHandgun();
+extern void gsCOCKPIT_InitSightLaser();
+extern void gsCOCKPIT_InitSightMachine();
+extern void gsCOCKPIT_InitSightMagnum();
+extern void gsCOCKPIT_InitSightMineThrower();
+extern void gsCOCKPIT_InitSightMissile();
+extern void gsCOCKPIT_InitSightMissilePod();
+extern void gsCOCKPIT_InitSightPlasma();
+extern void gsCOCKPIT_InitSightRifle();
+extern void gsCOCKPIT_InitSightRocket();
+extern void gsCOCKPIT_InitSightShotgun();
+extern void gsCOCKPIT_InitSightSpark();
 INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_cpsight", hyEntryObj4Sight);
 
 void gsCOCKPIT_InitSightSendTex()
@@ -201,6 +233,66 @@ INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_cpsight", gsCOCKPIT_PutSightMineThr
 
 INCLUDE_RODATA("asm/nonmatchings/hoya/cockpit/g_cpsight", D_0066A940);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_cpsight", PutSights);
+void PutSights(int a, int type)
+{
+    switch (type)
+    {
+    case 0:
+        gsCOCKPIT_PutSightMachine(a);
+        break;
+    case 1:
+    case 19:
+        gsCOCKPIT_PutSightRifle(a);
+        break;
+    case 3:
+        gsCOCKPIT_PutSightMissile(a);
+        break;
+    case 4:
+        gsCOCKPIT_PutSightHandgun(a);
+        break;
+    case 5:
+        gsCOCKPIT_PutSightMagnum(a);
+        break;
+    case 6:
+        gsCOCKPIT_PutSightFire(a);
+        break;
+    case 7:
+        gsCOCKPIT_PutSightHandGrenade(a);
+        break;
+    case 8:
+        gsCOCKPIT_PutSightGutoring(a);
+        break;
+    case 9:
+        gsCOCKPIT_PutSightMissilePod(a);
+        break;
+    case 10:
+        gsCOCKPIT_PutSightGrenade(a);
+        break;
+    case 11:
+        gsCOCKPIT_PutSightBowgun(a);
+        break;
+    case 12:
+        gsCOCKPIT_PutSightPlasma(a);
+        break;
+    case 13:
+        gsCOCKPIT_PutSightRocket(a);
+        break;
+    case 14:
+        gsCOCKPIT_PutSightShotgun(a);
+        break;
+    case 15:
+        gsCOCKPIT_PutSightSpark(a);
+        break;
+    case 16:
+        gsCOCKPIT_PutSightGrenade(a);
+        break;
+    case 17:
+        gsCOCKPIT_PutSightLaser(a);
+        break;
+    case 18:
+        gsCOCKPIT_PutSightMineThrower(a);
+        break;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_cpsight", gsCOCKPIT_PutSights);
