@@ -6,6 +6,7 @@ extern int gsPlayDemoFlag;
 extern void G_TEST_Init();
 extern void gsOmakeInitManager();
 
+extern int playDemo[];
 INCLUDE_ASM("asm/nonmatchings/hoya/playdemo/playdemo", gsRecordPadInit);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/playdemo/playdemo", gsRecordPadMain);
@@ -16,7 +17,14 @@ INCLUDE_ASM("asm/nonmatchings/hoya/playdemo/playdemo", gsRecordPadEnd);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/playdemo/playdemo", gsRecordPadFPutData);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/playdemo/playdemo", gsPlayPadInit);
+void gsPlayPadInit(int a, int b)
+{
+    playDemo[2] = a;
+    playDemo[1] = b;
+    playDemo[4] = 0;
+    playDemo[3] = 0;
+    playDemo[0] = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/playdemo/playdemo", gsPlayPadMain);
 
