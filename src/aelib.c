@@ -1,11 +1,11 @@
 #include "common.h"
+#include <eekernel.h>
+#include <libgraph.h>
 typedef struct SaePrim { u_char type; struct SaePrim* next4; struct SaePrim* next8; struct SaePrim* nextC; struct SaePrim* next10; } SaePrim;
 extern SaePrim* _saePrimCurrent[2];
 
 extern int aeSetAD();
 
-extern void FlushCache();
-extern void sceGsSwapDBuff();
 extern void aeStartMfifo();
 extern void aeLoadImage();
 INCLUDE_ASM("asm/nonmatchings/aelib", aeInit);
@@ -14,11 +14,11 @@ INCLUDE_ASM("asm/nonmatchings/aelib", aeStartMfifo);
 
 INCLUDE_ASM("asm/nonmatchings/aelib", aeStopMfifo);
 
-void aeSwapDBMfifo(int a, int b)
+void aeSwapDBMfifo(sceGsDBuff* db, int id)
 {
     aeStopMfifo();
     FlushCache(0);
-    sceGsSwapDBuff(a, b);
+    sceGsSwapDBuff(db, id);
     aeStartMfifo();
 }
 
