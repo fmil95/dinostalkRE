@@ -28,6 +28,7 @@ extern int cdvTrayCloseWaitSet();
 extern void cdvDiscNameChangeSet();
 extern int cdvGetDiscNameSet();
 extern int cdvNameCheckSet();
+extern long StopCnt;
 INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvCallBack);
 
 INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvInit);
@@ -50,7 +51,16 @@ INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvFlush);
 
 INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvQueStop);
 
-INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvQueStart);
+int cdvQueStart()
+{
+    if (StopFlg == 0)
+    {
+        return -1;
+    }
+    StopFlg = 0;
+    StopCnt = 0;
+    return 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvIsEoq);
 
