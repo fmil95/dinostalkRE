@@ -1,3 +1,8 @@
+#include "gunsuv_usa/libgf/gfshape.h"
+#include "gunsuv_usa/libgf/gfpack.h"
+#include "gunsuv_usa/libgf/libgf.h"
+#include <stdio.h>
+#include "gunsuv_usa/libgf/pod.h"
 #include "gunsuv_usa/libgf/gfshare.h"
 
 extern Uint32 gf_pShareBufSize;
@@ -8,6 +13,8 @@ extern Uint32* gf_pShareBuf;
 
 extern Uint32 gf_Vu1WorkSize;
 
+extern char D_0066D458[];
+static PodSHAPE* gf_GetShareBlock(GF_INST_SHAPE* inst);
 static GF_INST_SHAPE* gf_GetShape(GF_INST_OBJECT* pObj, Uint32 n)
 {
     return &pObj->shape[n];
@@ -87,7 +94,28 @@ void GFShare_SetBuf(Uint32* pBuf, Uint32 size)
     gf_pShareBufSize = size;
 }
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfshare", gf_GetShareBlock);
+static PodSHAPE* gf_GetShareBlock(GF_INST_SHAPE* inst)
+{
+    PodHEADER* pPod;
+    PodEXTENDTBL* pExtTbl;
+    Uint32 extBlkNum;
+    Uint32 i;
+
+    pPod = (PodHEADER*)gf_GetParentObj(inst)->model->podData;
+    pExtTbl = (PodEXTENDTBL*)(pPod + 1);
+    pExtTbl = (PodEXTENDTBL*)((PodSHAPETBL*)pExtTbl + pPod->shapeNum);
+    extBlkNum = pPod->extBlockNum;
+
+    for (i = 0; i < extBlkNum; i++, pExtTbl++)
+    {
+        if (pExtTbl->extId == 0 && pExtTbl->free[0] == inst->no)
+        {
+            return (PodSHAPE*)((Uint8*)pPod + pExtTbl->free[1]);
+        }
+    }
+
+    return NULL;
+}
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfshare", gf_CopyShareBlock);
 
