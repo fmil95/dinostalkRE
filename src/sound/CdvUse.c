@@ -25,7 +25,7 @@ extern u_short MaxQue;
 extern int cdvIsEoq();
 extern int cdvTrayOpenSet();
 extern int cdvTrayCloseWaitSet();
-extern void cdvDiscNameChangeSet();
+extern int cdvDiscNameChangeSet();
 extern int cdvGetDiscNameSet();
 extern int cdvNameCheckSet();
 extern long StopCnt;
@@ -111,7 +111,21 @@ INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvGetBufName);
 
 INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvCheckDiscName);
 
-INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvNameCheckSet);
+int cdvNameCheckSet()
+{
+    u_short w;
+    u_short m;
+
+    if (cdvIsEoq(1))
+    {
+        return -1;
+    }
+    w = WriteQue;
+    m = MaxQue;
+    STRUCT_OFFSET(Cdv_Que, w * 40, short) = 0x16;
+    WriteQue = (w + 1) % (m + 1);
+    return WriteQue;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvWaitWorkingSet);
 
