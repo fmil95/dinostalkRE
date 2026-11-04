@@ -6,6 +6,9 @@ extern float gpCShadowAlpha;
 extern int gpCShadowBegin;
 extern int gpCShadowBefore;
 
+extern char* gpCShadow_SetGsRegs();
+extern void _GFPKT_DV_CNT_FLUSH();
+extern void _GFPKT_DV_CNT_MSCAL_FLUSH();
 void gpCShadow_Init(int a, float x, float y)
 {
     gpCShadowMicro = a;
@@ -37,7 +40,15 @@ void gpCShadow_InitCShadow(void* a, int b)
 
 INCLUDE_ASM("asm/nonmatchings/g_cshadow", gpCShadow_Draw);
 
-INCLUDE_ASM("asm/nonmatchings/g_cshadow", gpCShadow_InitPacket);
+char* gpCShadow_InitPacket(char* a)
+{
+    char* p = gpCShadow_SetGsRegs(a, 0);
+
+    _GFPKT_DV_CNT_FLUSH(p, 0);
+    p += 0x10;
+    _GFPKT_DV_CNT_MSCAL_FLUSH(p, 0, 0);
+    return p + 0x10;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_cshadow", gpCShadow_CalcAlpha);
 
