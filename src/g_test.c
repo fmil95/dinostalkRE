@@ -18,7 +18,13 @@ extern void gsEffectSetFade();
 extern int gsNextProg;
 extern int gsCurProg;
 extern int _afterMovieExit;
+INCLUDE_RODATA("asm/nonmatchings/g_test", D_00664870);
+
 INCLUDE_ASM("asm/nonmatchings/g_test", G_TEST_Init);
+
+INCLUDE_RODATA("asm/nonmatchings/g_test", D_006648A8);
+
+INCLUDE_RODATA("asm/nonmatchings/g_test", D_006648B8);
 
 INCLUDE_ASM("asm/nonmatchings/g_test", G_TEST_Exec);
 
@@ -86,3 +92,9 @@ void _dbgCS_OverWrite()
 {
     _dbgCS_sum0 = FIOCache_GetCheckSum(_dbgCS_p, _dbgCS_siz);
 }
+INCLUDE_RODATA("asm/nonmatchings/g_test", D_00664900);
+
+INCLUDE_RODATA("asm/nonmatchings/g_test", D_00664910);
+
+INCLUDE_RODATA("asm/nonmatchings/g_test", D_00664920);
+
