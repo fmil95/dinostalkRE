@@ -59,7 +59,106 @@ INCLUDE_ASM("asm/nonmatchings/libgf/gftex", gfTex_SetDefaultValue);
 
 INCLUDE_RODATA("asm/nonmatchings/libgf/gftex", D_0066D190);
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gftex", gfTex_CalcAllocationSize);
+static void gfTex_CalcAllocationSize(Uint16 mode, Sint16 w, Sint16 h, Uint16* size_out, Uint16* w_out)
+{
+    Uint32 page_w;
+    Uint32 page_h;
+    Uint32 block_w;
+    Uint32 block_h;
+    Uint32 aw;
+    Uint32 ah;
+    Uint32 min_tbw;
+
+    aw = 1 << w;
+    ah = 1 << h;
+
+    switch (mode)
+    {
+    case 2:
+    case 0xA:
+    case 0x32:
+    case 0x3A:
+        page_w = 64;
+        page_h = 64;
+        block_w = 16;
+        block_h = 8;
+        min_tbw = 64;
+        break;
+    case 0x13:
+        page_w = 128;
+        page_h = 64;
+        block_w = 16;
+        block_h = 16;
+        min_tbw = 128;
+        break;
+    case 0x14:
+        page_w = 128;
+        page_h = 128;
+        block_w = 32;
+        block_h = 16;
+        min_tbw = 128;
+        break;
+    default:
+        page_w = 64;
+        page_h = 32;
+        block_w = 8;
+        block_h = 8;
+        min_tbw = 64;
+        break;
+    }
+
+    if (aw <= page_h && ah <= page_w)
+    {
+        if (aw < block_w)
+        {
+            aw = block_w;
+        }
+
+        if (ah < block_h)
+        {
+            ah = block_h;
+        }
+
+        if (aw != block_w || ah != block_h)
+        {
+            if (aw < ah)
+            {
+                aw = ah;
+            }
+
+            ah = aw;
+        }
+    }
+    else
+    {
+        if (aw < page_w)
+        {
+            aw = page_w;
+        }
+
+        if (ah < page_h)
+        {
+            ah = page_h;
+        }
+    }
+
+    if (size_out != NULL)
+    {
+        *size_out = (aw / block_w) * (ah / block_h);
+    }
+
+    if (w_out != NULL)
+    {
+        if (aw < min_tbw)
+        {
+            *w_out = min_tbw >> 6;
+        }
+        else
+        {
+            *w_out = aw >> 6;
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gftex", GFTex_GetDb);
 
