@@ -3,7 +3,12 @@
 extern int Event_Flag[];
 extern int Flag_OffBit[];
 extern int Flag_CheckOnBit[];
-INCLUDE_ASM("asm/nonmatchings/air/a_evtflg", gsEventFlagOnOffCheck);
+int gsEventFlagOnOffCheck(int n)
+{
+    int b = n % 32;
+
+    return (Event_Flag[n >> 5] & Flag_CheckOnBit[b]) > 0u;
+}
 
 void gsEventFlagOn(int n)
 {
