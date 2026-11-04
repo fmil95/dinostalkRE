@@ -24,7 +24,12 @@ void gsSt1BossInit()
 
 INCLUDE_ASM("asm/nonmatchings/air/a_spbtl", gsSt1BossManagement);
 
-INCLUDE_ASM("asm/nonmatchings/air/a_spbtl", gsSt2_BattleInit_RAPT);
+void gsSt2_BattleInit_RAPT()
+{
+    SpBattleCount = 0x14;
+    SetBossInfoNum(&SpBattleCount, 1);
+    gsEventFlagOn(0x3F);
+}
 
 INCLUDE_ASM("asm/nonmatchings/air/a_spbtl", gsSt2_DieCheck_RAPT);
 
