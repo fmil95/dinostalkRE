@@ -2,6 +2,7 @@
 
 extern void _gpClearWorldRecov();
 
+extern void _gpGetPodGeometryNum();
 INCLUDE_ASM("asm/nonmatchings/g_parts", _gpGetBoundBox);
 
 INCLUDE_ASM("asm/nonmatchings/g_parts", gpGetBoundBox);
@@ -209,7 +210,14 @@ INCLUDE_ASM("asm/nonmatchings/g_parts", gpGetCollisionVertexOBJ);
 
 INCLUDE_ASM("asm/nonmatchings/g_parts", _gpGetPodGeometryNum);
 
-INCLUDE_ASM("asm/nonmatchings/g_parts", gpGetPodGeometryNum);
+int gpGetPodGeometryNum(char* a)
+{
+    int r = 0;
+    char* p = STRUCT_OFFSET(a, 0, char*);
+
+    _gpGetPodGeometryNum(p, STRUCT_OFFSET(p, 0xC, int), &r);
+    return r;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_parts", _gpMakeWorldOdvGeomBound);
 
