@@ -689,7 +689,7 @@ segments:
       - [0x570518, rodata, sce/csc]
       - [0x570530, rodata, sce/sdr_main]
       - [0x570560, rodata, sce/sdr_cb]
-      - [0x5705c8, rodata, nmlib/nmGC2Main]
+      - [0x5705c8, .rodata, nmlib/nmGC2Main]
       - [0x570638, rodata, sce/sf_atan]
       - [0x570690, rodata, sce/e_rem_pio2]
       - [0x5708e0, rodata, sce/e_sqrt]

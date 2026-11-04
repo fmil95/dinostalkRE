@@ -16,19 +16,13 @@ extern nm_TimerRegAdr_t nm_TimerRegAdr[];
 extern int time0;
 extern char sdata_00873980[];
 extern char D_0066F5C8[];
-extern char D_0066F5D8[];
-extern char D_0066F5F8[];
-extern char D_0066F618[];
-
-
-
 INCLUDE_ASM("asm/nonmatchings/nmlib/nmGC2Main", nmUsbGunInit);
 
 int nmUsbGunGetInfo(u_char* info)
 {
     if (sceSifCheckStatRpc((sceSifRpcData*)&cdUsbGun) != 0)
     {
-        printf(D_0066F5D8);
+        printf("not complete get info!!\n");
     }
 
     return sceSifCallRpc(&cdUsbGun, 1, 1, sdata_00873980, 0x20, info, 0x20, NULL, NULL);
@@ -40,7 +34,7 @@ int nmUsbGunRead(u_int no, char* data)
 
     if (sceSifCheckStatRpc((sceSifRpcData*)&cdUsbGun) != 0)
     {
-        printf(D_0066F5F8);
+        printf("not complete read data!!\n");
     }
 
     return sceSifCallRpc(&cdUsbGun, 2, 1, sdata_00873980, 0x20, data, 0x20, NULL, NULL);
@@ -52,7 +46,7 @@ int nmUsbGunGetLocation(int no, u_char* location)
 
     if (sceSifCheckStatRpc((sceSifRpcData*)&cdUsbGun) != 0)
     {
-        printf(D_0066F618);
+        printf("not complete get location!!\n");
     }
 
     return sceSifCallRpc(&cdUsbGun, 3, 1, sdata_00873980, 0x20, location, 0x20, NULL, NULL);
