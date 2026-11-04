@@ -29,3 +29,7 @@ INCLUDE_ASM("asm/nonmatchings/g_world/st1", gsSt1LenflareInit);
 INCLUDE_ASM("asm/nonmatchings/g_world/st1", gsSt1LensflareManagement);
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st1", gsSt1LensflareDelete);
+INCLUDE_RODATA("asm/nonmatchings/g_world/st1", D_00666750);
+
+INCLUDE_RODATA("asm/nonmatchings/g_world/st1", D_00666760);
+
