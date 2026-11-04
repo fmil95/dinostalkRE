@@ -33,7 +33,15 @@ void GFTex_EntryDatabase(Uint32* buf)
     gfDatabaseAddr = buf;
 }
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gftex", gfTex_ClearDb);
+void gfTex_ClearDb()
+{
+    int i;
+
+    for (i = 0; i < gfDatabaseHead->textureMax; i++)
+    {
+        gfDatabase[i].flag = 0;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gftex", GFTex_Add);
 
