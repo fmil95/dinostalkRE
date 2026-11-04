@@ -18,6 +18,10 @@ extern int _st7_glow_obj_no[];
 extern int _st7_hasi_light_obj[];
 extern int _st7_jeep_light_obj[];
 extern int _st7_neon_00_obj[];
+extern int _st7_fire_light_num;
+extern int _st7_fire_light_time;
+extern int _st7_fire_light_step;
+extern int rand();
 INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldInitSt7);
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldSt7EntryTex_GND);
@@ -125,7 +129,13 @@ INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldSt7_HasiLight);
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldSt7_Fire);
 
-INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldSt7_InitFireLight);
+void gsWorldSt7_InitFireLight()
+{
+    _st7_fire_light_obj_num = 0;
+    _st7_fire_light_num = 0;
+    _st7_fire_light_time = 0;
+    _st7_fire_light_step = rand() % 30 + 6;
+}
 
 void gsWorldSt7_EntryFireLightObj(int a)
 {
