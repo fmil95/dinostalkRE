@@ -73,7 +73,20 @@ INCLUDE_ASM("asm/nonmatchings/air/a_item", gsEnemyItemInfosClear);
 
 INCLUDE_ASM("asm/nonmatchings/air/a_item", gsAllItemReset);
 
-INCLUDE_ASM("asm/nonmatchings/air/a_item", gsFixItemFreeInfosSearch);
+FixItemS* gsFixItemFreeInfosSearch()
+{
+    int i;
+
+    for (i = 0; i < 64; i++)
+    {
+        if ((STRUCT_OFFSET(&Fix_Item[i], 0x0, int) & 1) == 0)
+        {
+            return &Fix_Item[i];
+        }
+    }
+
+    return 0;
+}
 
 AnotherItemS* gsAnotherItemFreeInfosSearch()
 {
