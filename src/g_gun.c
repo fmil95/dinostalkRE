@@ -105,7 +105,14 @@ INCLUDE_ASM("asm/nonmatchings/g_gun", gsGunBulletCheckEnd_SPARK);
 
 INCLUDE_ASM("asm/nonmatchings/g_gun", gsGunCheckReload);
 
-INCLUDE_ASM("asm/nonmatchings/g_gun", gsGunGetReloadBullet);
+int gsGunGetReloadBullet(int a)
+{
+    int t = gsArmsTypeTbl[a];
+    int x = D_003C245C[a * 12];
+    int y = ((int*)(gsGunInfo + 0x20))[t * 45];
+
+    return (y < x) ? y : x;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_gun", _gsGunEntryGun);
 
