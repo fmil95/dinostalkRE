@@ -203,7 +203,12 @@ u_int* setBITBLTBUF(u_int* p, u_int sbp, u_int sbw, u_int spsm, u_int dbp, u_int
     return setGIFad(p, SCE_GS_BITBLTBUF, val);
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/disp", setTRXPOS);
+u_int* setTRXPOS(u_int* p, u_int ssax, u_int ssay, u_int dsax, u_int dsay, u_int dir)
+{
+    u_long val = ((u_long)dir << 59) | ((u_long)dsay << 48) | ((u_long)dsax << 32) | ((u_long)ssay << 16) | (u_long)ssax;
+
+    return setGIFad(p, SCE_GS_TRXPOS, val);
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/disp", setTRXREG);
 
