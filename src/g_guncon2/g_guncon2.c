@@ -7,6 +7,7 @@ extern int _flash_trg;
 extern int _flash_cycle_cnt;
 extern int _flash_bright;
 
+extern int gunrtrg;
 INCLUDE_ASM("asm/nonmatchings/g_guncon2/g_guncon2", gsGuncon2_Init);
 
 INCLUDE_ASM("asm/nonmatchings/g_guncon2/g_guncon2", gsGuncon2_Exec);
@@ -49,7 +50,15 @@ int gsGuncon2_GetTrg()
     return STRUCT_OFFSET(m, 0x2C, int);
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_guncon2/g_guncon2", gsGuncon2_GetRTrg);
+int gsGuncon2_GetRTrg()
+{
+    if (gsGuncon2Manager[0] == 0)
+    {
+        return 0;
+    }
+
+    return gunrtrg;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_guncon2/g_guncon2", _gsGuncon2_changeByOpton);
 
