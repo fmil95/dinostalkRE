@@ -252,7 +252,17 @@ void gsWorldResetODV_FLAG(char* a, int i, int m)
 
 INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldCheckODV_OBJ_BREAK);
 
-INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldInitOBJ_TREASURE);
+void gsWorldInitOBJ_TREASURE()
+{
+    short v = -1;
+    short* p = _treasure_box_map;
+    int i;
+
+    for (i = 199; i >= 0; i--)
+    {
+        p[i] = v;
+    }
+}
 
 void gsWorldEntryOBJ_TREASURE(char* a)
 {
