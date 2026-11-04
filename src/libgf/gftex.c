@@ -131,7 +131,20 @@ INCLUDE_ASM("asm/nonmatchings/libgf/gftex", GFTex_Remove);
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gftex", gfTex_FreeVram);
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gftex", gfTex_Defrag);
+static void gfTex_Defrag()
+{
+    int i;
+
+    for (i = gfDatabaseHead->textureNum; i > 0; i--)
+    {
+        if (gfDatabase[i - 1].flag & 1)
+        {
+            break;
+        }
+    }
+
+    gfDatabaseHead->textureNum = i;
+}
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gftex", gfTex_SearchDb);
 
