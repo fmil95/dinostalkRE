@@ -11,6 +11,9 @@ extern char D_003C114C[];
 extern char D_003C114E[];
 extern char D_003C1148[];
 extern char D_003C246C[];
+extern char gsGunInfo[];
+extern int gShockData[];
+extern void gsShockSetSeq();
 INCLUDE_ASM("asm/nonmatchings/g_gun", gsInitGunManager);
 
 INCLUDE_ASM("asm/nonmatchings/g_gun", gsInitGunManager_START_GAME);
@@ -130,7 +133,29 @@ INCLUDE_ASM("asm/nonmatchings/g_gun", gsSetBulletModel);
 
 INCLUDE_ASM("asm/nonmatchings/g_gun", gsSetBulletParam);
 
-INCLUDE_ASM("asm/nonmatchings/g_gun", gsGunPlaySE_FIRE);
+void gsGunPlaySE_FIRE(int a)
+{
+    char* g = gsGunInfo + a * 180;
+    short* p = (short*)(g + 0x50);
+    int i = 1;
+    short s;
+
+    do
+    {
+        s = *p++;
+
+        if (s >= 0)
+        {
+            gsSoundSeMePlay(s);
+        }
+    } while (--i >= 0);
+
+    s = STRUCT_OFFSET(g, 0xAA, short);
+    if (s >= 0)
+    {
+        gsShockSetSeq(0, gShockData[s]);
+    }
+}
 
 void gsGunPlaySE_LOAD_A(int a)
 {
