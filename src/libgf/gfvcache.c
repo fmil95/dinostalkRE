@@ -5,7 +5,27 @@ extern GF_CACHE_CELL* gfInfo_00674cdc;
 
 static GF_CACHE_CELL* gfCache_GetCellByGuid(Uint32* guid);
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfvcache", GFCache_SetInfoAddr);
+extern Uint32* gfInfoAddr_00673ec0;
+static void gfCache_ClearAllCell();
+void GFCache_SetInfoAddr(Uint32* buf, Uint32 buf_size, Uint16 cache_pos, Uint16 cache_size, Uint16 preset_size)
+{
+    if (buf == NULL)
+    {
+        gfInfoAddr_00673ec0 = NULL;
+        return;
+    }
+
+    ((GF_CACHE_HEAD*)buf)->size = buf_size;
+    ((GF_CACHE_HEAD*)buf)->cellMax = (buf_size - sizeof(GF_CACHE_HEAD)) / sizeof(GF_CACHE_CELL);
+    ((GF_CACHE_HEAD*)buf)->cache_size = cache_size;
+    ((GF_CACHE_HEAD*)buf)->cache_pos = cache_pos;
+    ((GF_CACHE_HEAD*)buf)->preset_pos = cache_pos + (cache_size - preset_size);
+    gfInfo_00674cdc = (GF_CACHE_CELL*)(buf + 4);
+    gfInfoHead_00674cd8 = (GF_CACHE_HEAD*)buf;
+    gfInfoAddr_00673ec0 = buf;
+
+    GFCache_Flush();
+}
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfvcache", GFCache_Flush);
 
