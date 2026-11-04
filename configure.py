@@ -33,7 +33,9 @@ G_OVERRIDES = {
     "inststr.c": "-G2",
     "g_cdv.c": "-G2",
     "mem.c": "-G8",
-    "main.c": "-G8"
+    "main.c": "-G8",
+    "aelib.c": "-G8",
+    "se_rpc.c": "-G8"
 }
 
 O_OVERRIDES = {
