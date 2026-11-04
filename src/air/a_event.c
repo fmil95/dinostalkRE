@@ -1,5 +1,10 @@
 #include "common.h"
 
+extern int* InitPlaceData[];
+extern void _gsEnemySet_MovieInit();
+typedef struct { int* p; char pad[0x400]; } EvtS;
+extern EvtS EventData[];
+extern int Evt_Count;
 INCLUDE_ASM("asm/nonmatchings/air/a_event", gsEventInit);
 
 INCLUDE_ASM("asm/nonmatchings/air/a_event", gsReadEventMatrix);
@@ -8,7 +13,16 @@ INCLUDE_ASM("asm/nonmatchings/air/a_event", gsReadSwlEventMatrix);
 
 INCLUDE_ASM("asm/nonmatchings/air/a_event", gsReadEventObject);
 
-INCLUDE_ASM("asm/nonmatchings/air/a_event", gsEnemySet_MovieInit);
+void gsEnemySet_MovieInit(int a)
+{
+    int* p = InitPlaceData[a];
+
+    while (*p != -1)
+    {
+        _gsEnemySet_MovieInit(p);
+        p += 4;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/air/a_event", _gsEnemySet_MovieInit);
 
