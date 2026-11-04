@@ -4,6 +4,7 @@
 #define SOUND_MAINMPEG_H
 
 #include "common.h"
+#include "sound/decoder.h"
 
 #define READ_UNIT_SIZE (64 * 1024)
 
@@ -41,6 +42,7 @@ typedef struct { // 0x34
 extern int N_Read_Unit;
 
 int strFileOpen(StrFile *file, char *filename);
+int readMpeg(VideoDec *vd, ReadBuf *rb, StrFile *file);
 
 void readBufCreate(ReadBuf *b);
 void readBufDelete(ReadBuf *b);

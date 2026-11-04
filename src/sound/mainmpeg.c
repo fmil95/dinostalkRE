@@ -19,12 +19,10 @@ extern int mono_flg;
 extern int isWithAudio;
 extern int UserProg;
 extern char init_flg;
-extern char audioDec[];
-extern void audioDecSendToIOP();
-extern char videoDec[];
-extern char readBuf[];
-extern char infile[];
-extern void readMpeg();
+extern AudioDec audioDec;
+extern VideoDec videoDec;
+extern ReadBuf readBuf;
+extern StrFile infile;
 
 INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", cdvMpegInit);
 
@@ -66,7 +64,10 @@ INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", PlayMpeg);
 
 INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", readMpeg);
 
-INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", isAudioOK);
+int isAudioOK()
+{
+    return isWithAudio ? audioDecIsPreset(&audioDec) : 1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", initAll);
 
@@ -74,7 +75,7 @@ INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", termAll);
 
 void defMain()
 {
-    readMpeg(videoDec, readBuf, infile);
+    readMpeg(&videoDec, &readBuf, &infile);
 }
 
 int ResetMpeg()
@@ -142,7 +143,7 @@ int strFileRead(StrFile* file, void* buff, int size)
 
 void proceedAudio()
 {
-    audioDecSendToIOP(audioDec);
+    audioDecSendToIOP(&audioDec);
 }
 
 INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", videoCallback);

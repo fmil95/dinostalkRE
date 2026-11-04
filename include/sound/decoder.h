@@ -111,6 +111,7 @@ int audioDecReset(AudioDec *ad);
 void audioDecBeginPut(AudioDec *ad, u_char **ptr0, int *len0, u_char **ptr1, int *len1);
 void audioDecEndPut(AudioDec *ad, int size);
 int audioDecIsPreset(AudioDec *ad);
+int audioDecSendToIOP(AudioDec *ad);
 
 #define VD_STATE_NORMAL 0
 #define VD_STATE_ABORT  1
@@ -153,7 +154,6 @@ videoDecMain();
 decBs0();
 cdvMpegChgVolume();
 audioDecStart();
-audioDecSendToIOP();
 changeMasterVolume();
 */
 
