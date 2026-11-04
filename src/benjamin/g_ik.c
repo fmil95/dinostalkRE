@@ -81,7 +81,21 @@ void _gsIK_AdjustDeadPose(void* a)
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/g_ik", gsIK_RotDeadBody);
 
-INCLUDE_ASM("asm/nonmatchings/benjamin/g_ik", gsIK_RecoverBodyRotXZ);
+void gsIK_RecoverBodyRotXZ(char* a, int v)
+{
+    if ((u_int)(STRUCT_OFFSET(a, 0x2A, u_short) - 9) < 3)
+    {
+        return;
+    }
+
+    a += 0xD40;
+    STRUCT_OFFSET(a, 0x0, int) |= 0x100000;
+
+    if (v > 0)
+    {
+        STRUCT_OFFSET(a, 0x14, short) = v;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/g_ik", _gsIK_GetCross);
 
