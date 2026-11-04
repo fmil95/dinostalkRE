@@ -122,7 +122,14 @@ int viBufCount(ViBuf* f)
     return ret;
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/buf", viBufFlush);
+void viBufFlush(ViBuf* f)
+{
+    WaitSema(f->sema);
+
+    f->readBytes = (f->readBytes + VIBUF_ELM_SIZE - 1) / VIBUF_ELM_SIZE * VIBUF_ELM_SIZE;
+
+    SignalSema(f->sema);
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/buf", viBufModifyPts);
 
