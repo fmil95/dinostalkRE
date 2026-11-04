@@ -5,6 +5,9 @@ extern char gDammyScene[];
 extern void GFScene_MakeInstance();
 extern void GFScene_SetScreen();
 
+typedef struct { char b[0x1C0]; } ItemS;
+extern ItemS item[];
+typedef struct { char b[0x1E0]; } OptS;
 INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_ckt2", gsCOCKPIT_InitCocpit2);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_ckt2", gsCOCKPIT_takiEffOptInit);
@@ -27,7 +30,22 @@ INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_ckt2", gsCOCKPIT_TakionGetEffect);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_ckt2", gsCOCKPIT_InitData);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_ckt2", FreeDataSearch);
+ItemS* FreeDataSearch()
+{
+    int i;
+
+    for (i = 0; i < 32; i++)
+    {
+        if ((STRUCT_OFFSET(&item[i], 0x0, int) & 1) == 0)
+        {
+            STRUCT_OFFSET(&item[i], 0x0, int) |= 1;
+
+            return &item[i];
+        }
+    }
+
+    return 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_ckt2", NextItemData);
 
