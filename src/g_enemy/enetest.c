@@ -9,6 +9,8 @@ extern void TEST_destroy_instshape();
 extern void GF_EndGraphicsFramework();
 extern void MEM_FreeAll();
 extern char gsEnemyInfos[];
+INCLUDE_RODATA("asm/nonmatchings/g_enemy/enetest", D_00669260);
+
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enetest", enetest_init);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enetest", enetest_main);
@@ -47,3 +49,19 @@ void enetest_reload()
     enetest_end();
     enetest_init();
 }
+INCLUDE_RODATA("asm/nonmatchings/g_enemy/enetest", D_006692C8);
+
+INCLUDE_RODATA("asm/nonmatchings/g_enemy/enetest", D_006692D8);
+
+INCLUDE_RODATA("asm/nonmatchings/g_enemy/enetest", D_006692E8);
+
+INCLUDE_RODATA("asm/nonmatchings/g_enemy/enetest", D_006692F8);
+
+INCLUDE_RODATA("asm/nonmatchings/g_enemy/enetest", D_00669308);
+
+INCLUDE_RODATA("asm/nonmatchings/g_enemy/enetest", D_00669318);
+
+INCLUDE_RODATA("asm/nonmatchings/g_enemy/enetest", D_00669330);
+
+INCLUDE_RODATA("asm/nonmatchings/g_enemy/enetest", D_00669340);
+
