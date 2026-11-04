@@ -27,12 +27,91 @@ extern int gsWorldSt7_SpecialEffect2();
 extern int gsWorldSt8_SpecialEffect2();
 extern int gsWorldSt9_SpecialEffect2();
 extern int gsWorldSt7Test_SpecialEffect2();
+extern long gsPixelTest;
+extern int gsStageNo;
+extern long D_002AE9D0[];
+extern char gsWorldManager[];
+extern char gScene[];
+extern char gsWorldReactionList[];
+extern char gsWorldBreakList[];
+extern int gsWorldTimer;
+extern int gsWorldTimer2;
+extern void gpInitWorldManager();
+extern void gsWorldInitOBJ_TREASURE();
+extern void gsWorldBulletEffectGnd_INIT();
+extern void gsWorldInitReaction();
+extern void gsWorldInitBreakAction();
+extern int gsWorldInitSt1();
+extern int gsWorldInitSt2();
+extern int gsWorldInitSt3();
+extern int gsWorldInitSt4();
+extern int gsWorldInitSt5();
+extern int gsWorldInitSt7();
+extern int gsWorldInitSt8();
+extern int gsWorldInitSt9();
+extern int gsWorldInitSt7Test();
 void gsWorldRestoreMipmap()
 {
     STRUCT_OFFSET(GFTex_GetDb(), 0x2C, int) = 0xFFCC;
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldInitWorld);
+int gsWorldInitWorld(int stage, int p)
+{
+    gpInitWorldManager(gsWorldManager, gScene);
+    gsWorldStageNo = stage;
+    gsWorldInitOBJ_TREASURE();
+    gsWorldBulletEffectGnd_INIT();
+
+    if (gsStageNo != 1 && gsStageNo != 6)
+    {
+        gsPixelTest = 0x5000D;
+    }
+    else
+    {
+        gsPixelTest = 0x5008D;
+    }
+
+    D_002AE9D0[0] = gsPixelTest;
+    D_002AE9D0[30] = gsPixelTest;
+
+    switch (stage)
+    {
+    case 0:
+        p = gsWorldInitSt1(p);
+        break;
+    case 1:
+        p = gsWorldInitSt2(p);
+        break;
+    case 2:
+        p = gsWorldInitSt3(p);
+        break;
+    case 3:
+        p = gsWorldInitSt4(p);
+        break;
+    case 4:
+        p = gsWorldInitSt5(p);
+        break;
+    case 6:
+        p = gsWorldInitSt7(p);
+        break;
+    case 7:
+        p = gsWorldInitSt8(p);
+        break;
+    case 8:
+        p = gsWorldInitSt9(p);
+        break;
+    case -1:
+        p = gsWorldInitSt7Test(p);
+        break;
+    }
+
+    gsWorldInitReaction(gsWorldReactionList);
+    gsWorldInitBreakAction(gsWorldBreakList);
+    gsWorldTimer = 0;
+    gsWorldTimer2 = 0;
+
+    return p;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldClipGnd);
 
