@@ -7,6 +7,9 @@ extern int gsPlayDemoFlag;
 extern int gsPlayDemoFlag;
 extern int gsPlayDemoFlag;
 
+extern int gsPause;
+extern int gsVRMode;
+extern void Enemy_PauseProc();
 INCLUDE_ASM("asm/nonmatchings/hoya/playdemo/demosub0", gsInitDemo);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/playdemo/demosub0", gsDemoLoadPig);
@@ -31,4 +34,18 @@ INCLUDE_ASM("asm/nonmatchings/hoya/playdemo/demosub0", gsGuncon2_DemoGetGunPos);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/playdemo/demosub0", gsGetCameraDemoRot_SCP);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/playdemo/demosub0", gsDemoPause);
+void gsDemoPause(int a)
+{
+    if (a)
+    {
+        gsPause = 1;
+        gsVRMode = 2;
+        Enemy_PauseProc(1);
+    }
+    else
+    {
+        gsPause = 0;
+        gsVRMode = 0;
+        Enemy_PauseProc(0);
+    }
+}
