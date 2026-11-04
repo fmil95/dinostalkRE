@@ -8,7 +8,26 @@ INCLUDE_ASM("asm/nonmatchings/g_parts", gpGetBoundBox);
 
 INCLUDE_ASM("asm/nonmatchings/g_parts", gpGetNextMaterialBlock);
 
-INCLUDE_ASM("asm/nonmatchings/g_parts", gpGetNextGeometryBlock);
+char* gpGetNextGeometryBlock(char* a, char* b)
+{
+    int f = STRUCT_OFFSET(a, 4, int);
+    int n = 1;
+
+    if (f & 1)
+    {
+        n = 2;
+    }
+
+    if (f & 2)
+    {
+        n++;
+    }
+    if (f & 4)
+    {
+        n++;
+    }
+    return b + n * STRUCT_OFFSET(b, 0, int) * 16 + 0x10;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_parts", gpInitWorldManager);
 
