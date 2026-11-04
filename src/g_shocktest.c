@@ -8,8 +8,6 @@ extern int gsPad_GetTrg(int);
 extern int gConsole;
 extern sceGsDBuff gDb;
 extern int shockNo_0;
-extern char D_00665600[];
-
 void G_SHOCKTEST_Init() 
 {
     gsFrame = frame;
@@ -29,7 +27,7 @@ void G_SHOCKTEST_Exec()
 
     trg = gsPad_GetTrg(0);
 
-    sceDevConsPrintf(gConsole, D_00665600, shockNo_0);
+    sceDevConsPrintf(gConsole, "SHOCK TYPE %d\n", shockNo_0);
 
     if (trg & 0x28)
     {
