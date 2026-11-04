@@ -13,6 +13,12 @@ extern int check_delay_timer_00674880;
 extern int adj_point[];
 extern int gun_point[];
 
+extern int center_x_00674884;
+extern int adjust_center_gun_ajst();
+extern void set_adjustX_gun_ajst();
+extern int center_y_00674888;
+extern int adjust_wide_gun_ajst();
+extern void set_adjustY_gun_ajst();
 INCLUDE_ASM("asm/nonmatchings/hoya/option/gun_ajst", CheckGunScreenOut);
 
 int GetScreenOffSw()
@@ -86,7 +92,19 @@ void gun_adjust0_gun_ajst()
     gun_teaching_gun_ajst();
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/option/gun_ajst", gun_adjust1_gun_ajst);
+int gun_adjust1_gun_ajst(int a, int b)
+{
+    int ret;
+
+    ret = adjust_center_gun_ajst(a);
+
+    if (ret != 0)
+    {
+        set_adjustX_gun_ajst(b, center_x_00674884);
+    }
+
+    return ret;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/option/gun_ajst", gun_adjust2_gun_ajst);
 
