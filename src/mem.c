@@ -16,6 +16,9 @@ extern void mem_SearchAllocInfo();
 extern void MEM_MallocAlign();
 
 extern int cur_magic_0;
+extern char D_00663F28[];
+extern void _mem_free();
+extern int printf();
 void MEM_InitAllocation() 
 {
     unsigned int i;
@@ -48,7 +51,23 @@ INCLUDE_ASM("asm/nonmatchings/mem", _memalign_GS);
 
 INCLUDE_ASM("asm/nonmatchings/mem", MEM_MallocAlign);
 
-INCLUDE_ASM("asm/nonmatchings/mem", mem_CheckAlignment);
+int mem_CheckAlignment(u_int a)
+{
+    int i;
+
+    if (a & 3)
+    {
+        return -1;
+    }
+    for (i = 0; i < 31; i++)
+    {
+        if (a == (1 << i))
+        {
+            return 0;
+        }
+    }
+    return -1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/mem", _mem_free);
 
