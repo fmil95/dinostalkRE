@@ -80,7 +80,12 @@ void setTRXDIR_g_ezipu(u_int* p, u_int xdir)
     setGIFad_g_ezipu(p, SCE_GS_TRXDIR, (u_long)xdir);
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/g_ezipu", gsEzIpuLoadImage);
+void gsEzIpuLoadImage(void* p)
+{
+    *(volatile u_int*)0x1000A030 = (u_int)p & 0x0FFFFFFF;
+    *(volatile u_int*)0x1000A020 = 0;
+    *(volatile u_int*)0x1000A000 = 0x105;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/g_ezipu", gsEzIpuSetToIPUtags);
 
