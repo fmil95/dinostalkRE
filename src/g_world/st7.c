@@ -85,7 +85,13 @@ void gsWorldSt7_InitNeon_00()
     _st7_neon_00_num = 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldSt7_EntryNeon_00);
+void gsWorldSt7_EntryNeon_00(int a)
+{
+    int n = _st7_neon_00_num;
+
+    _st7_neon_00_obj[n] = a;
+    _st7_neon_00_num = n + 1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldSt7_Neon_00);
 
