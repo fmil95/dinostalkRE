@@ -252,7 +252,17 @@ void hySetFadePara2()
 
 INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyCalcFade2);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hySwitchFadeTimer);
+void hySwitchFadeTimer(int a, int* p)
+{
+    if (a)
+    {
+        *p |= 4;
+    }
+    else
+    {
+        *p &= ~4;
+    }
+}
 
 int hyCheckFadeFinishFlag(void* a)
 {
