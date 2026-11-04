@@ -8,6 +8,7 @@ extern int aeSetAD();
 
 extern void aeStartMfifo();
 extern void aeLoadImage();
+extern sceGsStoreImage _aeStrImg;
 INCLUDE_ASM("asm/nonmatchings/aelib", aeInit);
 
 INCLUDE_ASM("asm/nonmatchings/aelib", aeStartMfifo);
@@ -48,7 +49,12 @@ INCLUDE_ASM("asm/nonmatchings/aelib", aeKickEndTag);
 
 INCLUDE_ASM("asm/nonmatchings/aelib", aeLoadImage);
 
-INCLUDE_ASM("asm/nonmatchings/aelib", aeStoreImage);
+void aeStoreImage(short a, short b, short c, short d, short e, short f, short g, u_long128* h)
+{
+    sceGsSetDefStoreImage(&_aeStrImg, a, b, c, d, e, f, g);
+    FlushCache(0);
+    sceGsExecStoreImage(&_aeStrImg, h);
+}
 
 INCLUDE_ASM("asm/nonmatchings/aelib", aeSetAD);
 
