@@ -100,4 +100,11 @@ INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_other", PutTimeTime);
 void PutTimeFixChar() {
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_other", gsCOCKPIT_PutTime);
+void gsCOCKPIT_PutTime(int a)
+{
+    int s = a & 1;
+
+    gsTimerCntroler();
+    PutTimeTime(s);
+    PutTimeFixChar(s);
+}
