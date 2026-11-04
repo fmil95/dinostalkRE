@@ -1,6 +1,13 @@
 #include "common.h"
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptntr", trnty_ptnmain);
+extern void (*trnty_ptnfuncs[])();
+void trnty_ptnmain(char* a)
+{
+    if (STRUCT_OFFSET(a, 0x84, int) != 0x3D)
+    {
+        trnty_ptnfuncs[STRUCT_OFFSET(a, 0x5C, u_short)](a);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptntr", trnty_glarvchk);
 
