@@ -66,7 +66,12 @@ INCLUDE_ASM("asm/nonmatchings/aelib", saeSetSprite2);
 
 INCLUDE_ASM("asm/nonmatchings/aelib", saeSetPolyG3);
 
-INCLUDE_ASM("asm/nonmatchings/aelib", saeSetPartSoft);
+void saeSetPartSoft(SaePrim* p, int ch)
+{
+    p->next8 = _saePrimCurrent[ch];
+    p->type = 6;
+    _saePrimCurrent[ch] = p;
+}
 
 void saeSetPartLine(SaePrim* p, int ch)
 {
