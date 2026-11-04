@@ -5,7 +5,7 @@ extern void hySetFadePara();
 extern void hyDrawSMSpriteSub();
 extern int gsGuncon2_CheckConnect();
 extern char D_0066A4E8[];
-extern void FIO_ReadFile_Align();
+extern int FIO_ReadFile_Align();
 extern void hyDestroySMSpriteInfoSub();
 extern void gplInitSprite2();
 
@@ -16,6 +16,15 @@ extern int MakeTextureAreaOnMemory();
 extern int GFTex_Add();
 extern int D_0052CFEC[];
 extern int D_0052CFF0[];
+extern int gsPad_GetTrg();
+extern int gsPad_AGetTrg();
+extern int gsPad_GetRTrg();
+extern int gsPad_AGetRTrg();
+extern int gsPad_Get();
+extern int gsPad_AGet();
+extern char D_0066A478[];
+extern int TEST_EntryTexture();
+extern int gsFONT_IdtexNo1;
 INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyGun1CheckScreenOut);
 
 void hySetBgCol(void) {
@@ -109,7 +118,13 @@ INCLUDE_ASM("asm/nonmatchings/hoya/hoya", KeyStateUpdate);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/hoya", getkeyPush);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/hoya", getkeyPress);
+int getkeyPress(int p)
+{
+    int a = gsPad_GetTrg(p);
+    int b = gsPad_AGetTrg(p);
+
+    return a | b;
+}
 
 int getkeyRelease()
 {
