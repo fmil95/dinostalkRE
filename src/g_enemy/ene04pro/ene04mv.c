@@ -3,6 +3,9 @@
 #include "g_enemy/enemain.h"
 #include "gunsuv_usa/libgf/gfanim.h"
 
+extern int Enemy_DelDethPrcMain();
+extern void gsDeleteEnemySetItemObj();
+extern void gsDinoSetDeadShrinkY();
 INCLUDE_ASM("asm/nonmatchings/g_enemy/ene04pro/ene04mv", ene04move_main);
 
 void enedummyElem_ene04mv(void) {
@@ -225,7 +228,15 @@ INCLUDE_ASM("asm/nonmatchings/g_enemy/ene04pro/ene04mv", ene04BmoveElem144);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/ene04pro/ene04mv", ene04BmoveElem145);
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/ene04pro/ene04mv", ene04BmoveElem146);
+void ene04BmoveElem146(char* a)
+{
+    if (GFAnim_ShapeFlagCheck(a + 0xBA0, 0) & 2)
+    {
+        STRUCT_OFFSET(a, 0x0, int) ^= 0x40000200;
+        Enemy_ActChg00(a, 0);
+        Enemy_AnmChg00(a, 0, 8, 1);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/ene04pro/ene04mv", ene04BmoveElem1c0);
 
