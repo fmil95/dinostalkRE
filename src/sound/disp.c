@@ -168,7 +168,12 @@ u_int* setXYOFFSET_1(u_int* p, u_int ofx, u_int ofy)
     return setGIFad(p, SCE_GS_XYOFFSET_1, val);
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/disp", setXYOFFSET_2);
+u_int* setXYOFFSET_2(u_int* p, u_int ofx, u_int ofy)
+{
+    u_long val = SCE_GS_SET_XYOFFSET_2(ofx, ofy);
+
+    return setGIFad(p, SCE_GS_XYOFFSET_2, val);
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/disp", setPRMODECONT);
 
