@@ -2,6 +2,7 @@
 
 extern void sceVu0CopyVector();
 
+extern void* GFTex_GetDb();
 INCLUDE_ASM("asm/nonmatchings/benjamin/flare", GFFlare_Update);
 
 void GFFlare_SetStartPos(void* a)
@@ -19,7 +20,13 @@ void GFFlare_SetColorRate(void* p, float v)
     STRUCT_OFFSET(p, 0x138, float) = v;
 }
 
-INCLUDE_ASM("asm/nonmatchings/benjamin/flare", GFFlare_SetTextureID);
+void GFFlare_SetTextureID(char* a, int b)
+{
+    if (b == 0xFFFFFFF || GFTex_GetDb(b) != 0)
+    {
+        STRUCT_OFFSET(a, 0x28, int) = b;
+    }
+}
 
 void GFFlare_SetPosScale(void* p, float v)
 {
