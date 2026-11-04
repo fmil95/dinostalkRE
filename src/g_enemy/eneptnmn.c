@@ -51,7 +51,21 @@ void eneptn_rechkptn(void* a)
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptnmn", eneptn_enmtyloop);
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptnmn", eneptn_delcheck);
+void eneptn_delcheck(char* a)
+{
+    if (Enemy_DelCheck(a) >= 0)
+    {
+        int x = STRUCT_OFFSET(a, 4, int);
+        int y = STRUCT_OFFSET(a, 0, int);
+
+        x |= 0x80000000;
+        y |= 0x10000000;
+        STRUCT_OFFSET(a, 0x52, short) = 1;
+        STRUCT_OFFSET(a, 4, int) = x;
+        STRUCT_OFFSET(a, 0, int) = y;
+        STRUCT_OFFSET(a, 0x7C, int) = 0;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptnmn", obrpt_itemsnatchmain);
 
