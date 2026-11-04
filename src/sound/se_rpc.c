@@ -429,7 +429,21 @@ INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeDir);
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeDir2);
 
-INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeSetVolume);
+int SeSetVolume(int a0, int b0, u_int c)
+{
+    u_short a = a0;
+    u_short b = b0;
+
+    if (c < 0x30)
+    {
+        dat[1] = a >> 8;
+        dat[3] = b >> 8;
+        dat[4] = c;
+        dat[0] = a;
+        dat[2] = b;
+        return ezSeL(0x83D0, dat, 0x10);
+    }
+}
 
 int SeSetPitch(int a, u_int b)
 {
