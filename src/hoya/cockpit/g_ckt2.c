@@ -65,7 +65,24 @@ ItemS* FreeDataSearch()
     return 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_ckt2", NextItemData);
+ItemS* NextItemData()
+{
+    int i;
+    ItemS* p = item;
+
+    for (i = 0; i < 32; i++, p++)
+    {
+        if (STRUCT_OFFSET(p, 0x0, int) & 1)
+        {
+            if (STRUCT_OFFSET(p, 0x4, int) == 0)
+            {
+                return p;
+            }
+        }
+    }
+
+    return 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_ckt2", OrderChange);
 
