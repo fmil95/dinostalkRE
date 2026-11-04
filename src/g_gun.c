@@ -142,7 +142,15 @@ void gsGunPlaySE_LOAD_A(int a)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_gun", gsGunPlaySE_LOAD_B);
+void gsGunPlaySE_LOAD_B(int a)
+{
+    short s = STRUCT_OFFSET(D_003C1146 + a * 180, 0, short);
+
+    if (s >= 0)
+    {
+        gsSoundSeMePlay(s);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_gun", gsGunPlaySE_EMPTY);
 
