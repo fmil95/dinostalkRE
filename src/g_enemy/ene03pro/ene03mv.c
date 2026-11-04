@@ -3,6 +3,7 @@
 extern void Enemy_AnmChg00();
 extern void Enemy_AnmChg01();
 
+extern int GFAnim_ShapeFlagCheck();
 INCLUDE_ASM("asm/nonmatchings/g_enemy/ene03pro/ene03mv", ene03move_main);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/ene03pro/ene03mv", bigdino_vbrset);
@@ -16,7 +17,11 @@ INCLUDE_ASM("asm/nonmatchings/g_enemy/ene03pro/ene03mv", ene03moveElem001);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/ene03pro/ene03mv", ene03moveElem020);
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/ene03pro/ene03mv", ene03moveElem021);
+void ene03moveElem021(char* a)
+{
+    Enemy_AnmChg00(a, (STRUCT_OFFSET(a, 0x84, int) << 1) + 1, 8, 0);
+    STRUCT_OFFSET(a, 0x8C, int)++;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/ene03pro/ene03mv", ene03moveElem022);
 
