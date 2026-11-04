@@ -7,6 +7,14 @@ extern int D_00651760[];
 extern char PortGroup[];
 extern int ezSeL();
 
+extern int SeCSLMidiPortSt();
+typedef struct { int w[6]; } SeEnt;
+extern SeEnt D_0064B56C[];
+extern int fp;
+extern int sceOpen();
+extern int sceLseek();
+extern int sceClose();
+extern SeEnt D_0064B564[];
 int get_SE_MAX() 
 {
     return 1000;
@@ -157,7 +165,7 @@ int ezSeL(int prm0, void* prm1, int prm2)
     return sbuff_0084be40[0];
 }
 
-int ezSe(int prm0, int prm1)
+int ezSe(int prm0, int prm1, int prm2)
 {
     int rsize;
  
@@ -373,7 +381,18 @@ INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeCSLBankOpenN);
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeCSLBankClose);
 
-INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeCSLBankCloseB);
+int SeCSLBankCloseB(int a)
+{
+    if (VabAlc[a].unk0 == 0)
+    {
+        return 0xEF00;
+    }
+
+    VabAlc[a].unk0 = 0;
+    VabAlc[a].unkC = -1;
+
+    return 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeCSLSqOpenEE);
 
