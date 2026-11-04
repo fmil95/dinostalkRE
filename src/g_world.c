@@ -180,7 +180,10 @@ void gsWorldEntryOBJ_TREASURE(char* a)
     ((u_short*)0x69167E)[STRUCT_OFFSET(a, 0x51400, int)] = 0x100;
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldEntryOBJ_TREASURE2);
+void gsWorldEntryOBJ_TREASURE2(char* a, int b)
+{
+    ((u_short*)0x69167E)[STRUCT_OFFSET(a, 0x51400, int)] = b;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldCheckOBJ_TREASURE);
 
