@@ -522,7 +522,24 @@ INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn03", eneptn03_ST7carno_combi03_08);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn03", eneptn03_ST7carno_combi03_09);
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn03", eneptn03_ST7carno_combi03_10);
+void eneptn03_ST7carno_combi03_10(char* a)
+{
+    char* o = eneptn03_getothercarno(a);
+
+    if (o)
+    {
+        if (STRUCT_OFFSET(o, 0x62, short) < 0xA)
+        {
+            if (STRUCT_OFFSET(o, 0xC, int) == 0xC)
+            {
+                STRUCT_OFFSET(a, 0, int) |= 0x1000000;
+                STRUCT_OFFSET(a, 0x70, short) = 0xB;
+                Enemy_ActChg00(a, 0xB);
+            }
+        }
+        STRUCT_OFFSET(a, 0x62, u_short)++;
+    }
+}
 
 void eneptn03_ST7carno_combi03_11(void* a)
 {
