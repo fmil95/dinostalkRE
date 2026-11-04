@@ -31,3 +31,9 @@ INCLUDE_ASM("asm/nonmatchings/g_bulletmark", gpBulletMark_GetChangeMatrix);
 INCLUDE_ASM("asm/nonmatchings/g_bulletmark", gpBulletMark_GetTexST);
 
 INCLUDE_ASM("asm/nonmatchings/g_bulletmark", gpBulletMark_UpDate);
+INCLUDE_RODATA("asm/nonmatchings/g_bulletmark", D_00664CA0);
+
+INCLUDE_RODATA("asm/nonmatchings/g_bulletmark", D_00664CB0);
+
+INCLUDE_RODATA("asm/nonmatchings/g_bulletmark", D_00664CC0);
+
