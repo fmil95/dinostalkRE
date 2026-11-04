@@ -147,7 +147,12 @@ void gsWorldEntryOBJ_BREAK_MICRO(char* a, int b)
     STRUCT_OFFSET(a + n * 0x1B0, 0x9F124, int) = b;
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldEntryOBJ_BREAK_LIGHT);
+void gsWorldEntryOBJ_BREAK_LIGHT(char* a, int b)
+{
+    int n = STRUCT_OFFSET(a, 0x51400, int) - 1;
+
+    STRUCT_OFFSET(a + n * 0x1B0, 0x9F128, int) = b;
+}
 
 void gsWorldEntryOBJ_BREAK_SE(char* a, int b)
 {
