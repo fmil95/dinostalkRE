@@ -1,10 +1,5 @@
 #include "common.h"
-#include "sifrpc.h"
-
-typedef struct {
-    /* 0x00 */ int pad[9];
-    /* 0x24 */ void* serve;
-} sceSifClientData;
+#include <sifrpc.h>
 
 typedef struct nm_TimerRegAdr_tag
 {
@@ -30,7 +25,7 @@ INCLUDE_ASM("asm/nonmatchings/nmlib/nmGC2Main", nmUsbGunInit);
 
 int nmUsbGunGetInfo(u_char* info)
 {
-    if (sceSifCheckStatRpc(&cdUsbGun) != 0)
+    if (sceSifCheckStatRpc((sceSifRpcData*)&cdUsbGun) != 0)
     {
         printf(D_0066F5D8);
     }
@@ -42,7 +37,7 @@ int nmUsbGunRead(u_int no, char* data)
 {
     sdata_00873980[0] = no;
 
-    if (sceSifCheckStatRpc(&cdUsbGun) != 0)
+    if (sceSifCheckStatRpc((sceSifRpcData*)&cdUsbGun) != 0)
     {
         printf(D_0066F5F8);
     }
@@ -54,7 +49,7 @@ int nmUsbGunGetLocation(int no, u_char* location)
 {
     sdata_00873980[0] = no;
 
-    if (sceSifCheckStatRpc(&cdUsbGun) != 0)
+    if (sceSifCheckStatRpc((sceSifRpcData*)&cdUsbGun) != 0)
     {
         printf(D_0066F618);
     }
@@ -74,13 +69,13 @@ int nmUsbGunSync(int mode)
     switch (mode)
     {
     case 0:
-        while (sceSifCheckStatRpc(&cdUsbGun) != 0)
+        while (sceSifCheckStatRpc((sceSifRpcData*)&cdUsbGun) != 0)
         {
         }
 
         return 0;
     case 1:
-        return sceSifCheckStatRpc(&cdUsbGun);
+        return sceSifCheckStatRpc((sceSifRpcData*)&cdUsbGun);
     default:
         return 0;
     }
