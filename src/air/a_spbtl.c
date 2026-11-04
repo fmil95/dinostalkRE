@@ -76,6 +76,11 @@ INCLUDE_ASM("asm/nonmatchings/air/a_spbtl", gsSt3GetSetBossNum);
 
 INCLUDE_ASM("asm/nonmatchings/air/a_spbtl", gsSpBattleBossSet);
 
-INCLUDE_ASM("asm/nonmatchings/air/a_spbtl", gsSt4_ExpInit);
+void gsSt4_ExpInit()
+{
+    SpBattleCount = 0x28;
+    SpBattleFlag = 0;
+    SetBossInfoNum(&SpBattleCount, 5);
+}
 
 INCLUDE_ASM("asm/nonmatchings/air/a_spbtl", gsSt4_ExpManage);
