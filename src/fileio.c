@@ -62,7 +62,16 @@ int fio_OpenFile(char* name, int flags)
 
 INCLUDE_ASM("asm/nonmatchings/fileio", FIO_WriteFile);
 
-INCLUDE_ASM("asm/nonmatchings/fileio", FIOCache_Init);
+void FIOCache_Init()
+{
+    int i;
+
+    for (i = 0; i < 64; i++)
+    {
+        fio_CacheInfo[i].a = 0;
+        fio_CacheInfo[i].b = 0;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/fileio", fio_GetEmptyCacheInfo);
 
