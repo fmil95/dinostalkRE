@@ -162,7 +162,17 @@ INCLUDE_ASM("asm/nonmatchings/g_camera", gsGetCameraZoom);
 
 INCLUDE_ASM("asm/nonmatchings/g_camera", gsPutCinesco);
 
-INCLUDE_ASM("asm/nonmatchings/g_camera", gsCameraUseItem_INIT);
+int gsCameraUseItem_INIT()
+{
+    int i;
+
+    _cam_use_item_cnt = 0;
+
+    for (i = 0; i < 16; i++)
+    {
+        _camera_use_item[i].a = -1;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_camera", gsCameraUseItem_ENTRY);
 
