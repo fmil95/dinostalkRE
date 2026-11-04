@@ -322,7 +322,13 @@ void eneptn03_ST7carno_jumphead08(void* a)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn03", eneptn03_ST7carno_step);
+void eneptn03_ST7carno_step(char* a)
+{
+    STRUCT_OFFSET(a, 0, int) |= 2;
+    STRUCT_OFFSET(a, 0x70, short) = 9;
+    STRUCT_OFFSET(a, 0x6E, short) = STRUCT_OFFSET(a, 0x5C, u_short);
+    ST7carno_step_funcs[STRUCT_OFFSET(a, 0x62, short)](a);
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn03", eneptn03_ST7carno_step00);
 
