@@ -594,7 +594,7 @@ segments:
       - [0x567830, rodata, benjamin/ik_pteb]
       - [0x567838, rodata, benjamin/ik_prso]
       - [0x567880, .rodata, benjamin/ik_crn]
-      - [0x567890, rodata, benjamin/g_ik]
+      - [0x567890, .rodata, benjamin/g_ik]
       - [0x5678d8, rodata, benjamin/kinematics]
       - [0x567950, rodata, benjamin/g_track]
       - [0x567970, rodata, benjamin/g_shrink]
