@@ -53,7 +53,20 @@ void AdjustInit_gun_ajst()
 
 INCLUDE_ASM("asm/nonmatchings/hoya/option/gun_ajst", GunAdjust_gun_ajst);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/option/gun_ajst", change_wide_gun_ajst);
+int change_wide_gun_ajst(char* a)
+{
+    if (STRUCT_OFFSET(a, 0x28, int) & 8)
+    {
+        if (STRUCT_OFFSET(a, 0x2C, int) & 0x20)
+        {
+            if (STRUCT_OFFSET(a, 0x1C, int) == -1)
+            {
+                return 1;
+            }
+        }
+    }
+    return 0;
+}
 
 void change_wide_mode_gun_ajst()
 {
