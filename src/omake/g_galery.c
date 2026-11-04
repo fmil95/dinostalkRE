@@ -1,6 +1,12 @@
 #include "common.h"
 
-INCLUDE_ASM("asm/nonmatchings/omake/g_galery", gal_texInit);
+extern char D_0066CEC0[];
+extern int pGalBin;
+extern int FIO_ReadFile_Align();
+void gal_texInit()
+{
+    pGalBin = FIO_ReadFile_Align(D_0066CEC0, 0x40);
+}
 
 INCLUDE_ASM("asm/nonmatchings/omake/g_galery", G_GALERY_Init);
 
