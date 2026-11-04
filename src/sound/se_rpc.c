@@ -703,7 +703,22 @@ int SeMeStop(int a)
     return SeMeStopB(D_0064B564[a].w[0]);
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeMeStopB);
+int SeMeStopB(int a)
+{
+    int i;
+
+    for (i = 0; i < 0x10; i++)
+    {
+        if (MeAlc[i].unk4 == a)
+        {
+            break;
+        }
+    }
+    if (i != 0x10)
+    {
+        return ezSe(0x8170, a, 1);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeMeOpenN);
 
