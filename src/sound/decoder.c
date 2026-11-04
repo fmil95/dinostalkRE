@@ -391,7 +391,30 @@ INCLUDE_ASM("asm/nonmatchings/sound/decoder", ConvertMONO);
 
 INCLUDE_ASM("asm/nonmatchings/sound/decoder", sendToIOP2area);
 
-INCLUDE_ASM("asm/nonmatchings/sound/decoder", sendToIOP);
+static int sendToIOP(int dst, u_char* src, int size)
+{
+    sceSifDmaData transData;
+    int did;
+
+    if (size <= 0)
+    {
+        return 0;
+    }
+
+    transData.data = (u_int)src;
+    transData.addr = (u_int)dst;
+    transData.size = size;
+    transData.mode = 0;
+    FlushCache(0);
+
+    did = sceSifSetDma(&transData, 1);
+
+    while (sceSifDmaStat(did) >= 0)
+    {
+    }
+
+    return size;
+}
 
 void pushMasterVolume()
 {
