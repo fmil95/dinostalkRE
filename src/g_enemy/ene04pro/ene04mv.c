@@ -2,6 +2,9 @@
 
 extern int GFAnim_ShapeFlagCheck();
 extern void Enemy_AnmChg00();
+extern void Enemy_ActChg00();
+extern int rand();
+extern void Enemy_SeSet00();
 INCLUDE_ASM("asm/nonmatchings/g_enemy/ene04pro/ene04mv", ene04move_main);
 
 void enedummyElem_ene04mv(void) {
@@ -24,7 +27,14 @@ void ene04moveElem050(char* a)
     STRUCT_OFFSET(a, 0x8C, int)++;
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/ene04pro/ene04mv", ene04moveElem051);
+void ene04moveElem051(char* a)
+{
+    if (GFAnim_ShapeFlagCheck(a + 0xBA0, 0) & 2)
+    {
+        STRUCT_OFFSET(a, 0x0, int) &= 0xBFFFFFFF;
+        Enemy_ActChg00(a, 0);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/ene04pro/ene04mv", ene04moveElem070);
 
