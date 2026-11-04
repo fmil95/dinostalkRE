@@ -266,7 +266,15 @@ int hyWait(int a)
     return (a - (0 < a));
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyGetTimeSync);
+int hyGetTimeSync(int a, int b)
+{
+    if (b == 0)
+    {
+        a = a % 60;
+    }
+
+    return a;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyGetTimeSecond);
 
