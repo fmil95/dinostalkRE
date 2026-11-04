@@ -10151,3 +10151,7 @@ key_value                                        = 0x00878bb0;
 _end                                             = 0x00878fb0;
 D_0066CFA8                                       = 0x0066CFA8; // force_migration:True align:8
 D_0066CEE8                                       = 0x0066CEE8; // force_migration:True align:8
+D_00664C00                                       = 0x00664C00; // force_migration:True align:8
+D_00664C10                                       = 0x00664C10; // force_migration:True align:8
+D_00664C20                                       = 0x00664C20; // force_migration:True align:8
+D_00664C30                                       = 0x00664C30; // force_migration:True align:8

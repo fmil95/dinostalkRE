@@ -8,7 +8,6 @@ extern int eval_end_flag_00673fc4;
 extern void gpInstance_Eval2();
 extern int gpGetPodGeometryNum();
 extern void* MEM_MallocAlign();
-extern char D_00664C40[];
 extern void _gpMakeWorldOdvGeomBound();
 extern void* memset();
 extern void gpModifyCollisionTriangle2();
@@ -260,7 +259,7 @@ void* gpMakeWorldOdvGeomBound(char* a)
     void* m;
     int n = gpGetPodGeometryNum(a);
 
-    m = MEM_MallocAlign(n << 5, 0x40, D_00664C40, 0x1789);
+    m = MEM_MallocAlign(n << 5, 0x40, "g_parts.c", 0x1789);
     _gpMakeWorldOdvGeomBound(p, STRUCT_OFFSET(p, 0xC, int), m);
     return m;
 }
