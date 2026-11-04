@@ -21,7 +21,10 @@ INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", CreateIconSys);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", InitMemcManager);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", CheckMemcType);
+int CheckMemcType(int a, int b)
+{
+    return D_005E6040[b + a].w[0];
+}
 
 int CheckMemcFormat(int a, int b)
 {
