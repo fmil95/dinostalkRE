@@ -44,6 +44,29 @@ int gsGuncon1_CheckOut()
 
 INCLUDE_ASM("asm/nonmatchings/g_guncon1/g_guncon1", gsGuncon1_CheckOutTrg);
 
-INCLUDE_ASM("asm/nonmatchings/g_guncon1/g_guncon1", gsGuncon1_GetCamSight);
+void gsGuncon1_GetCamSight(char* a)
+{
+    int* m = gsGuncon1Manager;
+    int f = m[0];
+
+    if (!(f & 4))
+    {
+        return;
+    }
+    if (f & 8)
+    {
+        return;
+    }
+    if (STRUCT_OFFSET(a, 0xE0, int) != 1)
+    {
+        STRUCT_OFFSET(a, 0xD0, int) = m[4] << 4;
+        STRUCT_OFFSET(a, 0xD4, int) = m[5] << 3;
+    }
+    else
+    {
+        STRUCT_OFFSET(a, 0xD0, int) = 0x1000;
+        STRUCT_OFFSET(a, 0xD4, int) = 0x700;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_guncon1/g_guncon1", gsGuncon1_ExchangePad);
