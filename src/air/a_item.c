@@ -120,7 +120,11 @@ int gsAnotherItemFreeInfosSearch2()
 
 INCLUDE_ASM("asm/nonmatchings/air/a_item", gfShape_AttachObject2_item);
 
-INCLUDE_ASM("asm/nonmatchings/air/a_item", GFShape_AttachObject_item);
+void GFShape_AttachObject_item(int a, void* b)
+{
+    STRUCT_OFFSET(b, 0x11C, int) = a;
+    gfShape_AttachObject2_item(b, a, STRUCT_OFFSET(STRUCT_OFFSET(STRUCT_OFFSET(b, 0x114, void*), 0x0, void*), 0xC, int));
+}
 
 INCLUDE_ASM("asm/nonmatchings/air/a_item", gsItem_SizeRot_Change);
 
