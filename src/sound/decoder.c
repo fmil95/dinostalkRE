@@ -62,7 +62,14 @@ u_int videoDecGetState(VideoDec* vd)
     return vd->state;
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/decoder", videoDecSetState);
+u_int videoDecSetState(VideoDec* vd, u_int state)
+{
+    u_int old = vd->state;
+
+    vd->state = state;
+
+    return old;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/decoder", videoDecPutTs);
 
