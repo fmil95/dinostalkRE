@@ -83,6 +83,8 @@ INCLUDE_ASM("asm/nonmatchings/hoya/result/rsltsub1", ProcFadeOut_rsltsub1);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/result/rsltsub1", ProcDrawFirstTimeBonus);
 
+INCLUDE_RODATA("asm/nonmatchings/hoya/result/rsltsub1", D_0066BFF0);
+
 INCLUDE_ASM("asm/nonmatchings/hoya/result/rsltsub1", ProcDrawFirstDinoBonus);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/result/rsltsub1", ProcDrawFirstNoDamageBonus);
