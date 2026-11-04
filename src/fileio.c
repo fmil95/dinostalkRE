@@ -6,6 +6,8 @@ extern void fio_ReadFile();
 
 typedef struct { int a; int b; } CacheInfoS;
 extern CacheInfoS fio_CacheInfo[];
+extern int SCELSEEK2();
+extern int SCECLOSE2();
 INCLUDE_ASM("asm/nonmatchings/fileio", SCELSEEK2);
 
 INCLUDE_ASM("asm/nonmatchings/fileio", SCECLOSE2);
@@ -46,7 +48,21 @@ void FIO_ReadFilePartly_Align(int a, int b, int c, int d)
 
 INCLUDE_ASM("asm/nonmatchings/fileio", fio_ReadFile);
 
-INCLUDE_ASM("asm/nonmatchings/fileio", FIO_GetFileSize);
+int FIO_GetFileSize(char* name)
+{
+    int fd = fio_OpenFile(name, 1);
+
+    if (fd < 0)
+    {
+        return -1;
+    }
+    {
+        int r = SCELSEEK2(fd, 0, 2);
+
+        SCECLOSE2(fd);
+        return r;
+    }
+}
 
 int fio_OpenFile(char* name, int flags)
 {
