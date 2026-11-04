@@ -19,6 +19,7 @@ extern EnemyInfoS gsEnemyInfos[];
 extern void GFInstance_Remove();
 extern void Enemy_AllPsInfInt();
 extern void Enemy_WorkInit();
+extern void (*enemy_movestbl[])();
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_Main);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_PauseProc);
@@ -113,7 +114,12 @@ INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_plbkchk);
 void ene_mvdummy(void) {
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", enemy_movemain);
+void enemy_movemain(char* a)
+{
+    enemy_movestbl[STRUCT_OFFSET(a, 0x2A, short)](a);
+    enemy_positionset(a);
+    enemy_blowoffcnt(a);
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", enemy_positionset);
 
