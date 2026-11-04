@@ -41,7 +41,28 @@ void scTag2(QWORD* q, void* addr, u_int id, u_int qwc)
     q->l[0] = (u_long)(u_int)addr << 32 | (u_long)id << 28 | (u_long)qwc << 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/buf", viBufCreate);
+int viBufCreate(ViBuf* f, u_long128* data, u_long128* tag, int size, TimeStamp* ts, int n_ts)
+{
+    struct SemaParam param;
+
+    f->data = data;
+    f->tag = UncAddr(tag);
+    f->n = size;
+    f->buffSize = size * VIBUF_ELM_SIZE;
+
+    f->ts = ts;
+    f->n_ts = n_ts;
+
+    param.initCount = 1;
+    param.maxCount = 1;
+    f->sema = CreateSema(&param);
+
+    viBufReset(f);
+
+    f->totalBytes = 0;
+
+    return 1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/buf", viBufReset);
 
