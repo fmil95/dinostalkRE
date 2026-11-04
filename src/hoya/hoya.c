@@ -27,7 +27,10 @@ INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hySetEzSprite);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/hoya", MakeTextureAreaOnMemory);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyCreateTexture);
+int hyCreateTexture(int a, int b, int c, int d, int e)
+{
+    return GFTex_Add(MakeTextureAreaOnMemory(a, b, c, (u_char)d, (u_char)e));
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyCreateTexture2);
 
