@@ -4,7 +4,7 @@ extern char gParticleMS[];
 extern void GFMicro_MakePacket();
 
 extern int gsEffect_FadeCnt;
-extern void gsEffectAddWithPri();
+extern int gsEffectAddWithPri();
 extern char gsEffect_WindVec[];
 extern void sceVu0CopyVector();
 extern char gsEffect_BlurCol[];
@@ -30,6 +30,10 @@ extern char gsEffect_BlurDisColBak[];
 
 typedef struct { int a; int b; int c; } EffectTexInfoS;
 extern EffectTexInfoS effectTexInfo[];
+extern int gsEffectAdd();
+extern void GFParticle_SetDirection();
+extern char gsEffectFadeTile[];
+extern void gplInitTile();
 INCLUDE_ASM("asm/nonmatchings/g_effect", gs_effectResetEffectSrc);
 
 INCLUDE_ASM("asm/nonmatchings/g_effect", gsEffectRemove);
@@ -42,13 +46,22 @@ INCLUDE_ASM("asm/nonmatchings/g_effect", gsEffectAddOne);
 
 INCLUDE_ASM("asm/nonmatchings/g_effect", gsEffectAddWithVector);
 
-INCLUDE_ASM("asm/nonmatchings/g_effect", gsEffectAddWithRot);
+int gsEffectAddWithRot(int a, int b, int c, int d)
+{
+    char* r = (char*)gsEffectAdd(a, b, c);
+
+    if (r)
+    {
+        GFParticle_SetDirection(r + 0x110, d);
+    }
+    return (int)r;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_effect", gsEffectAddWithPri);
 
-void gsEffectAdd(int a, int b, int c)
+int gsEffectAdd(int a, int b, int c)
 {
-    gsEffectAddWithPri(a, b, c, 1);
+    return gsEffectAddWithPri(a, b, c, 1);
 }
 
 INCLUDE_ASM("asm/nonmatchings/g_effect", gsEffectAddThunder);
