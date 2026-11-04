@@ -503,7 +503,18 @@ int SeCSLMidiPause(int a)
     return r;
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeCSLMidiStopP);
+int SeCSLMidiStopP(int a)
+{
+    int r = SeCSLMidiPortSt(a);
+    int ret = 0;
+
+    if (r == 1)
+    {
+        ret = ezSe(0x82D0, a, 1);
+        BgmAlc[a].unk0 = r;
+    }
+    return ret;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeCSLMidiStop);
 
