@@ -2,11 +2,21 @@
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn00", eneptn00_wait00);
 
+INCLUDE_RODATA("asm/nonmatchings/g_enemy/eneptn00", D_006677E8);
+
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn00", eneptn00_turn00);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn00", eneptn00_turn01);
 
+INCLUDE_RODATA("asm/nonmatchings/g_enemy/eneptn00", D_006678E8);
+
+INCLUDE_RODATA("asm/nonmatchings/g_enemy/eneptn00", D_00667948);
+
+INCLUDE_RODATA("asm/nonmatchings/g_enemy/eneptn00", D_006679A8);
+
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn00", eneptn00_drctstep00);
+
+INCLUDE_RODATA("asm/nonmatchings/g_enemy/eneptn00", D_00667A88);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn00", eneptn00_gotogl00);
 
@@ -21,6 +31,8 @@ INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn00", eneptn00_jump00);
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn00", eneptn00_breaking);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn00", eneptn00_wnd00);
+
+INCLUDE_RODATA("asm/nonmatchings/g_enemy/eneptn00", D_00667BB0);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn00", eneptn00_cls00);
 
@@ -65,5 +77,17 @@ INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn00", eneptn00_attack04);
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn00", eneptn00_quickdel);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn00", eneptn00_attack08);
+
+INCLUDE_RODATA("asm/nonmatchings/g_enemy/eneptn00", D_00667E08);
+
+INCLUDE_RODATA("asm/nonmatchings/g_enemy/eneptn00", D_00667E10);
+
+INCLUDE_RODATA("asm/nonmatchings/g_enemy/eneptn00", D_00667E18);
+
+INCLUDE_RODATA("asm/nonmatchings/g_enemy/eneptn00", D_00667E20);
+
+INCLUDE_RODATA("asm/nonmatchings/g_enemy/eneptn00", D_00667E28);
+
+INCLUDE_RODATA("asm/nonmatchings/g_enemy/eneptn00", D_00667E30);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn00", eneptn00_attack09);
