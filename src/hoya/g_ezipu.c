@@ -20,7 +20,14 @@ void setDMAscTag_g_ezipu(u_int* p, u_int spr, void* addr, u_int irq, u_int id, u
 
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/g_ezipu", setGIFtag_g_ezipu);
+void setGIFtag_g_ezipu(u_int* p, u_long regs, u_int nreg, u_int flg, u_int prim, u_int pre, u_int eop, u_int nloop)
+{
+    p[0] = eop << 15 | nloop;
+    p[1] = pre << (46 - 32) | prim << (47 - 32) | flg << (58 - 32) | nreg << (60 - 32);
+    p[2] = regs & 0xFFFFFFFF;
+    p[3] = regs >> 32;
+
+}
 
 void setGIFad_g_ezipu(u_int* p, u_int reg, u_long value)
 {
