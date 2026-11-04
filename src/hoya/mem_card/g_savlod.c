@@ -22,6 +22,11 @@ extern McDirCreate creteData;
 extern char D_005E2728[];
 extern int D_005E3C0C[];
 extern void* memset();
+extern char id[];
+extern char sysVer[];
+extern char D_005E6000[];
+extern char* irx_path_0[];
+extern int sceSifLoadModule();
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", CreateIconSys);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", InitMemcManager);
@@ -95,7 +100,21 @@ INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", CheckSystemDataVersion);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", CheckGameDataVersion);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", CheckSystemDataId);
+int CheckSystemDataId()
+{
+    int i;
+    int r = 0;
+
+    for (i = 0; i < 16; i++)
+    {
+        if (saveDataBox[0x10 + i] != id[i])
+        {
+            r = 1;
+            break;
+        }
+    }
+    return r;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", CheckGameDataId);
 
