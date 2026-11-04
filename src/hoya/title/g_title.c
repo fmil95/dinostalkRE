@@ -3,7 +3,15 @@
 extern int oldProcNo;
 extern int gsNextProg;
 
-INCLUDE_ASM("asm/nonmatchings/hoya/title/g_title", LetsGotoTitle);
+void LetsGotoTitle(int a)
+{
+    if (a != -1)
+    {
+        oldProcNo = a;
+    }
+
+    gsNextProg = 8;
+}
 
 void LetsGotoStart(int a)
 {
