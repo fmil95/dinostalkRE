@@ -394,7 +394,10 @@ INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeVabOpenB);
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeVabOpenN);
 
-INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeVabClose);
+void SeVabClose(int a)
+{
+    SeVabCloseB(D_0064B364[a][0]);
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeVabCloseB);
 
