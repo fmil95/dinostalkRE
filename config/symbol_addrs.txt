@@ -10150,3 +10150,4 @@ EEEPC                                            = 0x00878ba8;
 key_value                                        = 0x00878bb0;
 _end                                             = 0x00878fb0;
 D_0066CFA8                                       = 0x0066CFA8; // force_migration:True align:8
+D_0066CEE8                                       = 0x0066CEE8; // force_migration:True align:8

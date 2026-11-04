@@ -666,7 +666,7 @@ segments:
       - [0x56dda0, .rodata, taiken/taiken]
       - [0x56de20, rodata, omake/ninnin]
       - [0x56de70, rodata, omake/mugen]
-      - [0x56dec0, rodata, omake/g_galery]
+      - [0x56dec0, .rodata, omake/g_galery]
       - [0x56df80, .rodata, omake/g_theate]
       - [0x56e040, rodata, g_guncon2/g_adjustgun]
       - [0x56e0a0, rodata, g_guncon2/src/gun_adjust]
