@@ -175,7 +175,10 @@ INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldCheckODV_OBJ_BREAK);
 
 INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldInitOBJ_TREASURE);
 
-INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldEntryOBJ_TREASURE);
+void gsWorldEntryOBJ_TREASURE(char* a)
+{
+    ((u_short*)0x69167E)[STRUCT_OFFSET(a, 0x51400, int)] = 0x100;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldEntryOBJ_TREASURE2);
 
