@@ -17,6 +17,7 @@ extern char rArmHitSubProcFlag[];
 extern char D_003EAA10[];
 extern char _gsIK_TrexRArmHitPos[];
 
+extern int gsPartTrex[];
 INCLUDE_ASM("asm/nonmatchings/benjamin/ik_trex", _gsIK_TrexInit);
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/ik_trex", _gsIK_TrexUpdateData);
@@ -31,7 +32,11 @@ INCLUDE_ASM("asm/nonmatchings/benjamin/ik_trex", _gsIK_TrexFootMoveR);
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/ik_trex", _gsIK_TrexTailSwing);
 
-INCLUDE_ASM("asm/nonmatchings/benjamin/ik_trex", _gsIK_TrexSetHit);
+void _gsIK_TrexSetHit(void* a, int i)
+{
+    STRUCT_OFFSET(a, 0xD58, int) |= gsPartTrex[i];
+    STRUCT_OFFSET(a, 0xD5C, int) |= gsPartTrex[i];
+}
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/ik_trex", _gsIK_TrexHit);
 
