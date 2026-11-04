@@ -26,7 +26,19 @@ void gsEnemySet_MovieInit(int a)
 
 INCLUDE_ASM("asm/nonmatchings/air/a_event", _gsEnemySet_MovieInit);
 
-INCLUDE_ASM("asm/nonmatchings/air/a_event", gsSearchEventNo);
+int gsSearchEventNo(int a)
+{
+    int i;
+
+    for (i = 0; i < Evt_Count; i++)
+    {
+        if (*EventData[i].p == a)
+        {
+            return i;
+        }
+    }
+    return -1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/air/a_event", gsEventMatrixCtrl);
 
