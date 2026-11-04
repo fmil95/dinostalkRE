@@ -4,6 +4,9 @@ extern int St1BossFlg;
 extern int LeaderNo;
 extern int DieLeaderNo;
 
+extern void eneptn01_ST1PuteraLeaderPtn();
+extern void eneptn01_ST1PuteraNonLeaderPtn();
+extern void leader_set();
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn01", Enemy_RotLRChk00);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn01", Enemy_Forming);
@@ -92,7 +95,25 @@ void eneptn01_st1bossinit()
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn01", eneptn01_cls03);
+void eneptn01_cls03(char* a)
+{
+    if (GetOrderNo(STRUCT_OFFSET(a, 0x28, short)) == 0)
+    {
+        leader_getinfo(a);
+    }
+    if (leader_check(a))
+    {
+        leader_set();
+    }
+    if (STRUCT_OFFSET(a, 0x28, short) == LeaderNo)
+    {
+        eneptn01_ST1PuteraLeaderPtn(a);
+    }
+    else
+    {
+        eneptn01_ST1PuteraNonLeaderPtn(a);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn01", eneptn01_ST1PuteraLeaderPtn);
 
