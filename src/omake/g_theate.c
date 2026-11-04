@@ -3,6 +3,11 @@
 extern char D_0066CF80[];
 extern int pTheBin;
 extern int FIO_ReadFile_Align();
+extern void* memset();
+extern void gsEffectSetFadeNowColor();
+extern void gsSoundClose();
+extern void GF_EndGraphicsFramework();
+extern void MEM_FreeAll();
 void the_texInit()
 {
     pTheBin = FIO_ReadFile_Align(D_0066CF80, 0x40);
@@ -10,7 +15,16 @@ void the_texInit()
 
 INCLUDE_ASM("asm/nonmatchings/omake/g_theate", G_THEATE_Init);
 
-INCLUDE_ASM("asm/nonmatchings/omake/g_theate", G_THEATE_End);
+void G_THEATE_End()
+{
+    char v[16];
+
+    memset(v, 0, 16);
+    gsEffectSetFadeNowColor(v);
+    gsSoundClose();
+    GF_EndGraphicsFramework();
+    MEM_FreeAll();
+}
 
 INCLUDE_ASM("asm/nonmatchings/omake/g_theate", G_THEATE_Exec);
 
