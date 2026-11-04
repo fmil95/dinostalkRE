@@ -45,7 +45,21 @@ int gsSoundReadSe(int a)
     return 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundReadBgm);
+int gsSoundReadBgm(int a)
+{
+    int n = _g_sound_bgm_cnt;
+    int m = n + 1;
+
+    _g_sound_bgm_tbl[n] = a;
+    if (m >= 4)
+    {
+        m = 0;
+    }
+    _g_sound_bgm_cnt = m;
+    SeCSLBankOpen(a);
+    SeCSLSqOpen(a);
+    return 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundReadWait);
 
