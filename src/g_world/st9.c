@@ -28,7 +28,22 @@ void gsWorldSt9_WorkInit()
     _st9_lava_pointid = 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_world/st9", gsWorldSt9_SpecialEffect);
+void gsWorldSt9_SpecialEffect()
+{
+    gsWorldSt9_PlayBackSE();
+    if (!(gsPause & 1))
+    {
+        gsWorldSt9_TREX_Light();
+        gsSt9_LavaSpout();
+        gsSt9_SetMirage();
+        gsWorldSt9_RockBreakTREX();
+        gsWorldSt9_DemoManager();
+        gsWorldSt9Demo_LavaRise();
+        gsWorldSt9Demo_FogBackChange();
+        gsSt9_RockCrossTREX(gsWorldManager, gsWorldBreakList);
+        gsWorldSt9_CheckBossDied();
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st9", gsWorldSt9_SpecialEffect2);
 
