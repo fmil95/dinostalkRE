@@ -1,6 +1,5 @@
 #include "common.h"
 
-extern char D_0066CF80[];
 extern int pTheBin;
 extern int FIO_ReadFile_Align();
 extern void* memset();
@@ -10,7 +9,7 @@ extern void GF_EndGraphicsFramework();
 extern void MEM_FreeAll();
 void the_texInit()
 {
-    pTheBin = FIO_ReadFile_Align(D_0066CF80, 0x40);
+    pTheBin = FIO_ReadFile_Align("cdrom0:\\DATA\\THEATER\\THEMAIN.BIN;1", 0x40);
 }
 
 INCLUDE_ASM("asm/nonmatchings/omake/g_theate", G_THEATE_Init);
