@@ -70,3 +70,19 @@ INCLUDE_ASM("asm/nonmatchings/hoya/modesel/gsModeselect", _gsMSupdateCursol);
 INCLUDE_ASM("asm/nonmatchings/hoya/modesel/gsModeselect", _gsMSDecide);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/modesel/gsModeselect", _gsMSCancel);
+INCLUDE_RODATA("asm/nonmatchings/hoya/modesel/gsModeselect", D_0066C6E0);
+
+INCLUDE_RODATA("asm/nonmatchings/hoya/modesel/gsModeselect", D_0066C708);
+
+INCLUDE_RODATA("asm/nonmatchings/hoya/modesel/gsModeselect", D_0066C730);
+
+INCLUDE_RODATA("asm/nonmatchings/hoya/modesel/gsModeselect", D_0066C758);
+
+INCLUDE_RODATA("asm/nonmatchings/hoya/modesel/gsModeselect", D_0066C780);
+
+INCLUDE_RODATA("asm/nonmatchings/hoya/modesel/gsModeselect", D_0066C7A8);
+
+INCLUDE_RODATA("asm/nonmatchings/hoya/modesel/gsModeselect", D_0066C7D0);
+
+INCLUDE_RODATA("asm/nonmatchings/hoya/modesel/gsModeselect", D_0066C7F8);
+
