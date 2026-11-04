@@ -94,7 +94,25 @@ int gsGuncon2_GetTrg2()
 
 INCLUDE_ASM("asm/nonmatchings/g_guncon2/g_guncon2", gsGuncon2_GetGunPos);
 
-INCLUDE_ASM("asm/nonmatchings/g_guncon2/g_guncon2", gsGuncon2_GetCamSight);
+void gsGuncon2_GetCamSight(char* a)
+{
+    int* m = (int*)gsGuncon2Manager;
+    int s;
+
+    if (m[5] == 4)
+    {
+        if (STRUCT_OFFSET(a, 0xE0, int) != 1)
+        {
+            STRUCT_OFFSET(a, 0xD0, int) = m[1] << 4;
+            STRUCT_OFFSET(a, 0xD4, int) = m[2] << 3;
+        }
+        else
+        {
+            STRUCT_OFFSET(a, 0xD0, int) = 0x1000;
+            STRUCT_OFFSET(a, 0xD4, int) = 0x700;
+        }
+    }
+}
 
 int gsGuncon2_GetCycle()
 {
