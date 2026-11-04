@@ -95,7 +95,50 @@ Uint16 GFCache_Alloc(Uint16 size, Sint32 bscore, Uint32* guid)
     return gfCache_Alloc(min, size, bscore, guid);
 }
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfvcache", gfCache_SearchAllocPos);
+static GF_CACHE_CELL* gfCache_SearchAllocPos(GF_CACHE_CELL* start_cell, GF_CACHE_CELL** end_cell, Uint16 size, Sint32 allow_preset, Sint32* score_out)
+{
+    GF_CACHE_CELL* p;
+    GF_CACHE_CELL* min;
+    Sint32 score;
+    Sint32 min_score;
+
+    min = NULL;
+
+    for (p = start_cell; p != NULL; p = p->next)
+    {
+        if (allow_preset == 0 && p->pos + size > gfInfoHead_00674cd8->preset_pos)
+        {
+            break;
+        }
+
+        score = gfCache_PseudoAlloc(p, size);
+
+        if (score == 0)
+        {
+            min = p;
+            min_score = 0;
+            break;
+        }
+
+        if (score > 0 && (min == NULL || score < min_score))
+        {
+            min_score = score;
+            min = p;
+        }
+    }
+
+    if (score_out != NULL)
+    {
+        *score_out = min_score;
+    }
+
+    if (end_cell != NULL)
+    {
+        *end_cell = p;
+    }
+
+    return min;
+}
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfvcache", gfCache_Alloc);
 
