@@ -8,7 +8,16 @@ extern void (*pTailSwingFunc_6[])(void*);
 extern void (*pSetHitFunc_2[])();
 extern char gsEnemyInfos[];
 extern void gsIKinitOne();
-INCLUDE_ASM("asm/nonmatchings/benjamin/g_ik", gsIKinit);
+void gsIKinit()
+{
+    int p = (int)gsEnemyInfos;
+
+    do
+    {
+        gsIKinitOne(p);
+        p += 0x2A50;
+    } while (p < (int)gsEnemyInfos + 0x1A720);
+}
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/g_ik", gsIKinitOne);
 
