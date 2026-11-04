@@ -27,7 +27,12 @@ INCLUDE_ASM("asm/nonmatchings/benjamin/track", GFTrack_SetStartRGBA);
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/track", GFTrack_SetEndRGBA);
 
-INCLUDE_ASM("asm/nonmatchings/benjamin/track", GFTrack_SetStartST);
+void GFTrack_SetStartST(void* t, sceVu0FVECTOR a, sceVu0FVECTOR b)
+{
+    sceVu0CopyVector((float*)((char*)t + 0x80), a);
+    sceVu0CopyVector((float*)((char*)t + 0x90), b);
+    STRUCT_OFFSET(t, 0xC, int) |= 0x10;
+}
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/track", GFTrack_SetEndST);
 
