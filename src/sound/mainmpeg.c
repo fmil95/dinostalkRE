@@ -26,7 +26,15 @@ extern StrFile infile;
 
 INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", cdvMpegInit);
 
-INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", PortSlotCheck);
+int PortSlotCheck(int port, int slot)
+{
+    if (port < 2 && slot < 4)
+    {
+        return 0;
+    }
+
+    return 1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", cdvMpegSkipSet);
 
