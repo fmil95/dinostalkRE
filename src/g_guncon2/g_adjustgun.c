@@ -1,4 +1,5 @@
 #include "common.h"
+extern char gDb[];
 
 extern int AdjustGunMode;
 extern void sceGsSyncPath();
@@ -33,4 +34,14 @@ INCLUDE_ASM("asm/nonmatchings/g_guncon2/g_adjustgun", gsAdjustGun_DrawBullet);
 
 INCLUDE_ASM("asm/nonmatchings/g_guncon2/g_adjustgun", draw_sprite);
 
-INCLUDE_ASM("asm/nonmatchings/g_guncon2/g_adjustgun", set_bg_color);
+void set_bg_color(int r, int g, int b)
+{
+    char* p = gDb;
+
+    STRUCT_OFFSET(p, 0x100, u_char) = r;
+    STRUCT_OFFSET(p, 0x101, u_char) = g;
+    STRUCT_OFFSET(p, 0x102, u_char) = b;
+    STRUCT_OFFSET(p, 0x1F0, u_char) = r;
+    STRUCT_OFFSET(p, 0x1F1, u_char) = g;
+    STRUCT_OFFSET(p, 0x1F2, u_char) = b;
+}
