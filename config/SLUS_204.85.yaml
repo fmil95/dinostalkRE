@@ -657,7 +657,7 @@ segments:
       - [0x56d180, .rodata, hoya/option/gun1_ajst]
       - [0x56d200, .rodata, hoya/option/gun_ajst]
       - [0x56d2a0, .rodata, hoya/option/optsub01]
-      - [0x56d380, rodata, hoya/pause/g_pause]
+      - [0x56d380, .rodata, hoya/pause/g_pause]
       - [0x56d420, rodata, hoya/pause/pausesub]
       - [0x56d460, .rodata, hoya/name/namesub]
       - [0x56d640, .rodata, hoya/modesel/gsModeselect]
