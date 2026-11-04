@@ -38,7 +38,15 @@ u_int* setDMAscTag(u_int* p, u_int spr, void* addr, u_int irq, u_int id, u_int p
     return p + 4;
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/disp", setGIFtag);
+u_int* setGIFtag(u_int* p, u_long regs, u_int nreg, u_int flg, u_int prim, u_int pre, u_int eop, u_int nloop)
+{
+    p[0] = eop << 15 | nloop;
+    p[1] = pre << (46 - 32) | prim << (47 - 32) | flg << (58 - 32) | nreg << (60 - 32);
+    p[2] = regs & 0xFFFFFFFF;
+    p[3] = regs >> 32;
+
+    return p + 4;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/disp", setGIFad);
 
