@@ -7,6 +7,8 @@ static GF_CACHE_CELL* gfCache_GetCellByGuid(Uint32* guid);
 
 extern Uint32* gfInfoAddr_00673ec0;
 static void gfCache_ClearAllCell();
+static GF_CACHE_CELL* gfCache_SearchAllocPos(GF_CACHE_CELL* start_cell, GF_CACHE_CELL** end_cell, Uint16 size, Sint32 allow_preset, Sint32* score_out);
+static Uint16 gfCache_Alloc(GF_CACHE_CELL* cell, Uint16 size, Sint32 bscore, Uint32* guid);
 void GFCache_SetInfoAddr(Uint32* buf, Uint32 buf_size, Uint16 cache_pos, Uint16 cache_size, Uint16 preset_size)
 {
     if (buf == NULL)
@@ -68,7 +70,30 @@ static GF_CACHE_CELL* gfCache_GetUnusedCell()
     return NULL;
 }
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfvcache", GFCache_Alloc);
+Uint16 GFCache_Alloc(Uint16 size, Sint32 bscore, Uint32* guid)
+{
+    GF_CACHE_CELL* p;
+    GF_CACHE_CELL* min;
+    Sint32 min_score;
+
+    p = gfInfo_00674cdc;
+
+    min = gfCache_SearchAllocPos(p, NULL, size, 0, &min_score);
+
+    if (min != NULL && min_score < bscore * size)
+    {
+        return gfCache_Alloc(min, size, bscore, guid);
+    }
+
+    min = gfCache_SearchAllocPos(p, NULL, size, 1, NULL);
+
+    if (min == NULL)
+    {
+        return 0xFFFF;
+    }
+
+    return gfCache_Alloc(min, size, bscore, guid);
+}
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfvcache", gfCache_SearchAllocPos);
 
