@@ -14,6 +14,8 @@ static void gfTex_FreeVram(sceGsTex0* tex0, sceGsTex1* tex1, sceGsMiptbp1* miptb
 static Sint32 gfTex_SearchDb(Uint64* guid);
 static void gfTex_Defrag();
 static void gfTex_SetDatabaseForCache(GF_TEXDB* db_out, Uint32* pig, Uint16 pos);
+extern GF_TEXDB D_00870780;
+static GF_TEXDB* gfTex_SetDefaultValue(GF_TEXDB* db, Uint32* pig);
 INCLUDE_ASM("asm/nonmatchings/libgf/gftex", GFTex_InitDatabase);
 
 void GFTex_ResetDatabase()
@@ -216,7 +218,23 @@ INCLUDE_ASM("asm/nonmatchings/libgf/gftex", gfTex_LoadImage);
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gftex", GFTex_MakeTexturePacket);
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gftex", GFTex_MakeTexturePresetPacket);
+qword* GFTex_MakeTexturePresetPacket(qword* pkt_buf, Sint32 index)
+{
+    if (index < 0)
+    {
+        return GFTex_MakeTexturePacket(pkt_buf, GFTex_GetDb(index), 0);
+    }
+
+    if (gfDatabase[index].flag & 2)
+    {
+        return GFTex_MakeTexturePacket(pkt_buf, &gfDatabase[index], 0);
+    }
+
+    gfTex_SetDefaultValue(&D_00870780, gfDatabase[index].pig);
+    gfTex_SetDatabaseForCache(&D_00870780, gfDatabase[index].pig, GFCache_GetPresetTransPos());
+
+    return GFTex_MakeTexturePacket(pkt_buf, &D_00870780, 1);
+}
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gftex", GFTex_MakePixelTransPacket);
 
