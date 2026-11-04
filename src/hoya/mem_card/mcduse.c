@@ -17,6 +17,7 @@ extern char* queaddr;
 extern void mcdFlushQue();
 extern long pause;
 extern long pause_cnt;
+extern int mcdCheckEoq();
 void mcdFlushQue()
 {
     int n = maxque;
@@ -171,7 +172,29 @@ INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/mcduse", mcdReadSet);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/mcduse", mcdWriteSet);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/mcduse", mcdFlushSet);
+int mcdFlushSet(int a, int b)
+{
+    int w;
+    int m;
+    char* q;
+
+    if (mcdCheckEoq(1) < 0)
+    {
+        return -1;
+    }
+    if (b < 0)
+    {
+        return 0;
+    }
+    w = writeque;
+    m = maxque;
+    q = queaddr;
+    STRUCT_OFFSET(q, w * 40 + 0, short) = 0xA;
+    STRUCT_OFFSET(q, w * 40 + 4, int) = a;
+    STRUCT_OFFSET(q, w * 40 + 8, int) = b;
+    writeque = (w + 1) % m;
+    return writeque;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/mcduse", mcdMkdirSet);
 
