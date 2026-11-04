@@ -7,6 +7,15 @@ extern void sceVu0AddVector();
 extern void gsEffectAddWithPri();
 extern void Enemy_PsInfInt();
 
+extern int Enemy_DataLoadExceptPmt();
+extern void Enemy_PmtDtLoad();
+typedef struct { char b[0x40]; } PoisonInfoS;
+extern PoisonInfoS gsPoisonInfos[];
+extern int gspmt_files[];
+extern int FIO_ReadFile_Align();
+extern void Enemy_PmtDataSet();
+typedef struct { char b[0x2A50]; } EnemyInfoS;
+extern EnemyInfoS gsEnemyInfos[];
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_Main);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_PauseProc);
@@ -139,7 +148,14 @@ INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", gsEnemyDelete);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_ShadowChk);
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_AllDataLoad);
+int Enemy_AllDataLoad(int a, int b)
+{
+    int r = Enemy_DataLoadExceptPmt(a);
+
+    Enemy_PmtDtLoad(b);
+
+    return r;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_DataLoadExceptPmt);
 
