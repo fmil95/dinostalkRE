@@ -9,7 +9,10 @@ INCLUDE_ASM("asm/nonmatchings/g_guncon1/g_guncon1", gsGuncon1_InitAll);
 
 INCLUDE_ASM("asm/nonmatchings/g_guncon1/g_guncon1", gsGuncon1_Init);
 
-INCLUDE_ASM("asm/nonmatchings/g_guncon1/g_guncon1", gsGuncon1_ClearFlag);
+void gsGuncon1_ClearFlag(int a)
+{
+    gsGuncon1Manager[0] &= ~a;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_guncon1/g_guncon1", gsGuncon1_LoadPad);
 
