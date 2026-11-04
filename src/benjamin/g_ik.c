@@ -118,7 +118,21 @@ INCLUDE_ASM("asm/nonmatchings/benjamin/g_ik", _gsIK_GetCross);
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/g_ik", _gsIK_GetCollision);
 
-INCLUDE_ASM("asm/nonmatchings/benjamin/g_ik", _gsIK_setShapeFlag);
+void _gsIK_setShapeFlag(char* a, int f, int s, int e)
+{
+    char* p;
+
+    if (e >= s)
+    {
+        p = (char*)(s * 0x170 + STRUCT_OFFSET(a, 0x11C, int));
+        do
+        {
+            STRUCT_OFFSET(p, 0x100, int) |= f;
+            s++;
+            p += 0x170;
+        } while (e >= s);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/g_ik", _gsIK_clearShapeFlag);
 
