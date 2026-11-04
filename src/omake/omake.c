@@ -2,6 +2,7 @@
 
 extern int gsOmakeManager[];
 
+extern int D_0065298C[];
 INCLUDE_ASM("asm/nonmatchings/omake/omake", gsOmakeInitManager);
 
 void gsOmakeSetFlag(int a)
@@ -11,4 +12,7 @@ void gsOmakeSetFlag(int a)
 
 INCLUDE_ASM("asm/nonmatchings/omake/omake", gsOmakeSetArmsFlagAll);
 
-INCLUDE_ASM("asm/nonmatchings/omake/omake", gsOmakeResetArmsFlag);
+void gsOmakeResetArmsFlag(int i, int m)
+{
+    D_0065298C[i] = ~m;
+}
