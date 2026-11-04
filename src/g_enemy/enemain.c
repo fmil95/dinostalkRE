@@ -159,7 +159,13 @@ int Enemy_AllDataLoad(int a, int b)
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_DataLoadExceptPmt);
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_PmtDtLoad);
+void Enemy_PmtDtLoad(int i)
+{
+    if (i <= 0x10)
+    {
+        Enemy_PmtDataSet(FIO_ReadFile_Align(gspmt_files[i], 0x40), i);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_PmtDataSet);
 
