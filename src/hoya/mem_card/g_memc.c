@@ -24,7 +24,13 @@ void LetsGotoMemcScene4Continue(int a)
     gsNextProg = 0xe;
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_memc", PermittoSendMcTex);
+void PermittoSendMcTex(u_int i)
+{
+    if (i < 3)
+    {
+        tex2dSendFlag_0067447c |= 1 << i;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_memc", Send2McTex);
 
