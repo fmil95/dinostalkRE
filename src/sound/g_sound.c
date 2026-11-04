@@ -171,7 +171,18 @@ INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundEeSE_ALL_CLEAR);
 
 INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundEeSE_ALL_SLEEP);
 
-INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundEeSE_ALL_WAKE);
+void gsSoundEeSE_ALL_WAKE()
+{
+    int i;
+
+    for (i = 0; i < 4; i++)
+    {
+        if (_g_sound_ch_buf[i])
+        {
+            *_g_sound_ch_buf[i] = i + 12;
+        }
+    }
+}
 
 void gsSoundEeSE_PLAY(int a, int b)
 {
