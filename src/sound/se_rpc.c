@@ -335,7 +335,10 @@ int SeCSLMidiPlaySt()
     return D_0065176C[0];
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeCSLMidiPortSt);
+int SeCSLMidiPortSt(int a)
+{
+    return ((1 << a) & D_0065176C[0]) > 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeCSLMidiPlayNo);
 
