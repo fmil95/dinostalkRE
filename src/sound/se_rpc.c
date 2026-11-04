@@ -534,7 +534,12 @@ int SeStrmStop(int a)
     return ezSe(0x530, a, 1);
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeStrmQuit);
+int SeStrmQuit()
+{
+    ezSe(0x8450, 0, 1);
+    ezSe(0x8150, 0, 1);
+    return ezSe(0x8150, 1, 1);
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeMePlay);
 
