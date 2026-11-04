@@ -636,7 +636,21 @@ INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeStrmPlaySt);
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeStrmPortSt);
 
-INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeStrmPlayNo);
+int SeStrmPlayNo(int a)
+{
+    int r;
+
+    if (SeStrmPortSt(a) == 0)
+    {
+        return -1;
+    }
+    r = StrmPort[a][0];
+    if (r == 0xFFFF)
+    {
+        r = -1;
+    }
+    return r;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeStrmInit);
 
