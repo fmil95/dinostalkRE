@@ -284,7 +284,15 @@ INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyGetTimeHour);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyConvTimePercentage);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyGetTimeSyncPercentage);
+int hyGetTimeSyncPercentage(int a, int b)
+{
+    if (b == 0)
+    {
+        a = a % 100;
+    }
+
+    return a;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyGetTimeSecondPercentage);
 
