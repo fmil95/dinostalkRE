@@ -97,7 +97,10 @@ INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldBulletEffectObj);
 
 INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldBulletSeObj);
 
-INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldGetOBJ_TYPE);
+int gsWorldGetOBJ_TYPE(char* a)
+{
+    return STRUCT_OFFSET(a, 0x51400, int) - 1;
+}
 
 void gsWorldEntryOBJ_BREAK_NO(char* a, int b)
 {
