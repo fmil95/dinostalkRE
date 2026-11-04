@@ -64,7 +64,39 @@ Uint16 GFVram_Alloc(Uint16 size, Uint16 mode)
     return start;
 }
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfvalloc", gfVram_SearchArea);
+static Uint16 gfVram_SearchArea(GF_VRAM_CELL* start_cell, Uint16 size, Uint8 flag)
+{
+    GF_VRAM_CELL* p;
+    GF_VRAM_CELL* min;
+    Sint32 score;
+    Sint32 min_score;
+
+    min = NULL;
+
+    for (p = start_cell; p != NULL; p = p->next)
+    {
+        score = gfVram_PseudoAlloc(p, size, flag);
+
+        if (score == 0)
+        {
+            min = p;
+            break;
+        }
+
+        if (score > 0 && (min == NULL || score < min_score))
+        {
+            min_score = score;
+            min = p;
+        }
+    }
+
+    if (min == NULL)
+    {
+        return 0xFFFF;
+    }
+
+    return min->pos;
+}
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfvalloc", gfVram_PseudoAlloc);
 
