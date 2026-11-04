@@ -16,6 +16,7 @@ extern int sceLseek();
 extern int sceClose();
 extern SeEnt D_0064B564[];
 extern int u_dat[];
+extern int D_0064B364[][4];
 int get_SE_MAX() 
 {
     return 1000;
@@ -546,7 +547,10 @@ int SeStrmQuit()
     return ezSe(0x8150, 1, 1);
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeMePlay);
+int SeMePlay(int a)
+{
+    return SeMePlayB(D_0064B564[a].w[0]);
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeMePlayB);
 
@@ -564,7 +568,7 @@ INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeMeOpenEE);
 
 int SeMeClose(int a)
 {
-    return SeMeCloseB(D_0064B564[a].w[0]);
+    return SeMeCloseB(((SeEnt*)0x64B564)[a].w[0]);
 }
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeMeCloseB);
