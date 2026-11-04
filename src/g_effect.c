@@ -64,10 +64,7 @@ INCLUDE_ASM("asm/nonmatchings/g_effect", gsEffectGetTexIdx);
 
 INCLUDE_ASM("asm/nonmatchings/g_effect", gsEffectTexReset);
 
-u_int gs_EffectMemAlign(u_int a, u_int b)
-{
-    return a + (b - a % b);
-}
+INCLUDE_ASM("asm/nonmatchings/g_effect", gs_EffectMemAlign);
 
 INCLUDE_ASM("asm/nonmatchings/g_effect", gs_effectInitEffectSrc);
 
