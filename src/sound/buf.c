@@ -211,7 +211,51 @@ int viBufPutTs(ViBuf* f, TimeStamp* ts)
     return ret;
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/buf", viBufGetTs);
+int viBufGetTs(ViBuf* f, TimeStamp* ts)
+{
+    u_int d4madr = *D4_MADR;
+    u_int ipubp = *IPU_BP;
+    int bp = f->env.ipubp & 0x7F;
+    int fp = (ipubp >> 16) & 0x3;
+    int ifc = (ipubp >> 8) & 0xF;
+    u_int d4madr_next = d4madr - ((fp + ifc) << 4);
+    u_int stop;
+    int datasize = VIBUF_ELM_SIZE * f->n;
+    int isEnd = 0;
+    int tscount;
+    int wt;
+    int i;
+
+    WaitSema(f->sema);
+
+    ts->pts = TS_NONE;
+    ts->dts = TS_NONE;
+
+    stop = (d4madr_next + (bp >> 3) + datasize - (u_int)f->data) % datasize;
+
+    tscount = f->count_ts;
+    wt = f->wt_ts;
+
+    for (i = 0; i < tscount && !isEnd; i++)
+    {
+        int rd = (wt - tscount + f->n_ts + i) % f->n_ts;
+
+        if (IsPtsInRegion(stop, f->ts[rd].pos, f->ts[rd].len, datasize))
+        {
+            ts->pts = f->ts[rd].pts;
+            ts->dts = f->ts[rd].dts;
+            f->ts[rd].pts = TS_NONE;
+            f->ts[rd].dts = TS_NONE;
+
+            isEnd = 1;
+            f->count_ts -= min(1, f->count_ts);
+        }
+    }
+
+    SignalSema(f->sema);
+
+    return 1;
+}
 
 int voBufCreate(VoBuf* f, VoData* data, VoTag* tag, int size)
 {
