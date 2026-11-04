@@ -1,6 +1,7 @@
 #include "common.h"
 
 extern int GFAnim_ShapeFlagCheck();
+extern void Enemy_AnmChg00();
 INCLUDE_ASM("asm/nonmatchings/g_enemy/ene04pro/ene04mv", ene04move_main);
 
 void enedummyElem_ene04mv(void) {
@@ -16,7 +17,12 @@ INCLUDE_ASM("asm/nonmatchings/g_enemy/ene04pro/ene04mv", ene04moveElem021);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/ene04pro/ene04mv", ene04moveElem030);
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/ene04pro/ene04mv", ene04moveElem050);
+void ene04moveElem050(char* a)
+{
+    Enemy_AnmChg00(a, (STRUCT_OFFSET(a, 0x84, int) << 1) + 0x1C, 8, 0);
+    STRUCT_OFFSET(a, 0x0, int) |= 0x40000000;
+    STRUCT_OFFSET(a, 0x8C, int)++;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/ene04pro/ene04mv", ene04moveElem051);
 
