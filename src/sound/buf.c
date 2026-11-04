@@ -1,13 +1,45 @@
 #include "sound/buf.h"
 #include "diei.h"
 
+extern int CreateSema(void* param);
+extern int DeleteSema(int sema);
+extern int WaitSema(int sema);
+extern int SignalSema(int sema);
+
+#define DmaAddr(p) ((void*)((u_int)(p) & 0x0FFFFFFF))
+#define UncAddr(p) ((void*)(((u_int)(p) & 0x0FFFFFFF) | 0x20000000))
+
+#define D3_CHCR   ((volatile u_int*)0x1000B000)
+#define D4_CHCR   ((volatile u_int*)0x1000B400)
+#define D4_MADR   ((volatile u_int*)0x1000B410)
+#define D4_QWC    ((volatile u_int*)0x1000B420)
+#define D4_TADR   ((volatile u_int*)0x1000B430)
+#define D_ENABLER ((volatile u_int*)0x1000F520)
+#define D_ENABLEW ((volatile u_int*)0x1000F590)
+
+#define DMA_ID_REFE 0
+#define DMA_ID_NEXT 2
+#define DMA_ID_REF  3
+
+struct SemaParam {
+    int count;
+    int maxCount;
+    int initCount;
+    int waitThreads;
+    int attr;
+    int option;
+};
+
 INCLUDE_ASM("asm/nonmatchings/sound/buf", getFIFOindex);
 
 INCLUDE_ASM("asm/nonmatchings/sound/buf", setD3_CHCR);
 
 INCLUDE_ASM("asm/nonmatchings/sound/buf", setD4_CHCR);
 
-INCLUDE_ASM("asm/nonmatchings/sound/buf", scTag2);
+void scTag2(QWORD* q, void* addr, u_int id, u_int qwc)
+{
+    q->l[0] = (u_long)(u_int)addr << 32 | (u_long)id << 28 | (u_long)qwc << 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/buf", viBufCreate);
 
