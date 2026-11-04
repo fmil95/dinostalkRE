@@ -145,7 +145,24 @@ void ene04BmoveElem000(char* a)
     STRUCT_OFFSET(a, 0x8C, int)++;
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/ene04pro/ene04mv", ene04BmoveElem001);
+void ene04BmoveElem001(char* a)
+{
+    if (GFAnim_ShapeFlagCheck(a + 0xBA0, 0) & 2)
+    {
+        GFAnim_ShapeFlagClear(a + 0xBA0, 2);
+        if (rand() % 3 == 0)
+        {
+            if ((rand() & 1) == 0)
+            {
+                Enemy_SeSet00(a, 0x190);
+            }
+            else
+            {
+                Enemy_SeSet00(a, 0x191);
+            }
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/ene04pro/ene04mv", ene04BmoveElem021);
 
