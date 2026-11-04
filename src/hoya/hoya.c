@@ -356,7 +356,17 @@ int hyGetTimeSyncPercentage(int a, int b)
 
 INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyGetTimeSecondPercentage);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyGetTimeMinutePercentage);
+int hyGetTimeMinutePercentage(int t, int b)
+{
+    t = t / 6000;
+
+    if (b == 0)
+    {
+        t = t % 60;
+    }
+
+    return t;
+}
 
 int hyGetTimeHourPercentage(int t, int b)
 {
