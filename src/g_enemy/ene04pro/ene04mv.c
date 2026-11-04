@@ -1,11 +1,8 @@
 #include "common.h"
+#include <stdlib.h>
+#include "g_enemy/enemain.h"
+#include "gunsuv_usa/libgf/gfanim.h"
 
-extern int GFAnim_ShapeFlagCheck();
-extern void Enemy_AnmChg00();
-extern void Enemy_ActChg00();
-extern int rand();
-extern void Enemy_SeSet00();
-extern void GFAnim_ShapeFlagClear();
 INCLUDE_ASM("asm/nonmatchings/g_enemy/ene04pro/ene04mv", ene04move_main);
 
 void enedummyElem_ene04mv(void) {
@@ -23,9 +20,9 @@ void ene04moveElem000(char* a)
 
 void ene04moveElem001(char* a)
 {
-    if (GFAnim_ShapeFlagCheck(a + 0xBA0, 0) & 2)
+    if (GFAnim_ShapeFlagCheck((GF_INST_OBJECT*)(a + 0xBA0), 0) & 2)
     {
-        GFAnim_ShapeFlagClear(a + 0xBA0, 2);
+        GFAnim_ShapeFlagClear((GF_INST_OBJECT*)(a + 0xBA0), 2);
         if (rand() % 3 == 0)
         {
             Enemy_SeSet00(a, 0x17C);
@@ -45,9 +42,9 @@ void ene04moveElem020(char* a)
 
 void ene04moveElem021(char* a)
 {
-    if (GFAnim_ShapeFlagCheck(a + 0xBA0, 0) & 2)
+    if (GFAnim_ShapeFlagCheck((GF_INST_OBJECT*)(a + 0xBA0), 0) & 2)
     {
-        GFAnim_ShapeFlagClear(a + 0xBA0, 2);
+        GFAnim_ShapeFlagClear((GF_INST_OBJECT*)(a + 0xBA0), 2);
         if (rand() % 3 == 0)
         {
             Enemy_SeSet00(a, 0x17C);
@@ -74,7 +71,7 @@ void ene04moveElem050(char* a)
 
 void ene04moveElem051(char* a)
 {
-    if (GFAnim_ShapeFlagCheck(a + 0xBA0, 0) & 2)
+    if (GFAnim_ShapeFlagCheck((GF_INST_OBJECT*)(a + 0xBA0), 0) & 2)
     {
         STRUCT_OFFSET(a, 0x0, int) &= ~0x40000000;
         Enemy_ActChg00(a, 0);
@@ -99,7 +96,7 @@ INCLUDE_ASM("asm/nonmatchings/g_enemy/ene04pro/ene04mv", ene04moveElem0f0);
 
 void ene04moveElem0f1(char* a)
 {
-    if (GFAnim_ShapeFlagCheck(a + 0xBA0, 0) & 2)
+    if (GFAnim_ShapeFlagCheck((GF_INST_OBJECT*)(a + 0xBA0), 0) & 2)
     {
         STRUCT_OFFSET(a, 0x0, int) &= ~0x40000000;
         Enemy_ActChg00(a, 0);
@@ -116,7 +113,7 @@ void ene04moveElem1c0(char* a)
 
 void ene04moveElem1c1(char* a)
 {
-    if (GFAnim_ShapeFlagCheck(a + 0xBA0, 0) & 2)
+    if (GFAnim_ShapeFlagCheck((GF_INST_OBJECT*)(a + 0xBA0), 0) & 2)
     {
         STRUCT_OFFSET(a, 0x0, int) &= ~0x40000000;
         Enemy_ActChg00(a, 0);
@@ -147,9 +144,9 @@ void ene04BmoveElem000(char* a)
 
 void ene04BmoveElem001(char* a)
 {
-    if (GFAnim_ShapeFlagCheck(a + 0xBA0, 0) & 2)
+    if (GFAnim_ShapeFlagCheck((GF_INST_OBJECT*)(a + 0xBA0), 0) & 2)
     {
-        GFAnim_ShapeFlagClear(a + 0xBA0, 2);
+        GFAnim_ShapeFlagClear((GF_INST_OBJECT*)(a + 0xBA0), 2);
         if (rand() % 3 == 0)
         {
             if ((rand() & 1) == 0)
@@ -172,7 +169,7 @@ INCLUDE_ASM("asm/nonmatchings/g_enemy/ene04pro/ene04mv", ene04BmoveElem023);
 
 void ene04BmoveElem026(char* a)
 {
-    if (GFAnim_ShapeFlagCheck(a + 0xBA0, 0) & 2)
+    if (GFAnim_ShapeFlagCheck((GF_INST_OBJECT*)(a + 0xBA0), 0) & 2)
     {
         STRUCT_OFFSET(a, 0x8C, int) = 1;
         STRUCT_OFFSET(a, 0x0, int) ^= 0x40000200;
@@ -192,7 +189,7 @@ void ene04BmoveElem090(char* a)
 
 void ene04BmoveElem091(char* a)
 {
-    if (GFAnim_ShapeFlagCheck(a + 0xBA0, 0) & 2)
+    if (GFAnim_ShapeFlagCheck((GF_INST_OBJECT*)(a + 0xBA0), 0) & 2)
     {
         STRUCT_OFFSET(a, 0x0, int) &= ~0x40000000;
         Enemy_ActChg00(a, 0);
