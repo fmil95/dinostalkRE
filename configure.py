@@ -145,6 +145,7 @@ G_OVERRIDES = {
     "mcduse.c": "-G8",
     "CdvUse.c": "-G8",
     "gfvalloc.c": "-G8",
+    "g_world.c": "-G8",
 }
 
 O_OVERRIDES = {
