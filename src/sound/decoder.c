@@ -101,7 +101,10 @@ int videoDecInputSpaceCount(VideoDec* vd)
 
 INCLUDE_ASM("asm/nonmatchings/sound/decoder", videoDecFlush);
 
-INCLUDE_ASM("asm/nonmatchings/sound/decoder", videoDecIsFlushed);
+int videoDecIsFlushed(VideoDec* vd)
+{
+    return (videoDecInputCount(vd) == 0) && sceMpegIsRefBuffEmpty(&vd->mpeg);
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/decoder", videoDecMain);
 
