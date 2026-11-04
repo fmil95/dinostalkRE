@@ -552,7 +552,7 @@ segments:
       - [0x564428, data, sce/tlbfunc]
       - [0x564a80, rodata, sce/crt0]
       - [0x564c10, rodata, main]
-      - [0x564e18, rodata, mem]
+      - [0x564e18, .rodata, mem]
       - [0x5656f0, rodata, fileio]
       - [0x565700, .rodata, particle]
       - [0x565710, .rodata, gs_math]

@@ -16,7 +16,6 @@ extern void mem_SearchAllocInfo();
 extern void MEM_MallocAlign();
 
 extern int cur_magic_0;
-extern char D_00663F28[];
 extern void _mem_free();
 extern int printf();
 void MEM_InitAllocation() 
@@ -102,7 +101,7 @@ void MEM_Free(int a)
     }
     else
     {
-        printf(D_00663F28);
+        printf("!!!!WARNING:dont free!!!!\n");
     }
 }
 
@@ -123,3 +122,83 @@ INCLUDE_ASM("asm/nonmatchings/mem", MEM_CheckViolation);
 INCLUDE_ASM("asm/nonmatchings/mem", mem_CheckViolation);
 
 INCLUDE_ASM("asm/nonmatchings/mem", MEM_DumpAllocationInfo);
+INCLUDE_RODATA("asm/nonmatchings/mem", D_006640C8);
+
+INCLUDE_RODATA("asm/nonmatchings/mem", D_006640E8);
+
+INCLUDE_RODATA("asm/nonmatchings/mem", D_00664118);
+
+INCLUDE_RODATA("asm/nonmatchings/mem", D_00664140);
+
+INCLUDE_RODATA("asm/nonmatchings/mem", D_00664160);
+
+INCLUDE_RODATA("asm/nonmatchings/mem", D_00664188);
+
+INCLUDE_RODATA("asm/nonmatchings/mem", D_006641B0);
+
+INCLUDE_RODATA("asm/nonmatchings/mem", D_006641D0);
+
+INCLUDE_RODATA("asm/nonmatchings/mem", D_006641F0);
+
+INCLUDE_RODATA("asm/nonmatchings/mem", D_00664210);
+
+INCLUDE_RODATA("asm/nonmatchings/mem", D_00664230);
+
+INCLUDE_RODATA("asm/nonmatchings/mem", D_00664250);
+
+INCLUDE_RODATA("asm/nonmatchings/mem", D_00664268);
+
+INCLUDE_RODATA("asm/nonmatchings/mem", D_00664298);
+
+INCLUDE_RODATA("asm/nonmatchings/mem", D_006642C8);
+
+INCLUDE_RODATA("asm/nonmatchings/mem", D_006642F0);
+
+INCLUDE_RODATA("asm/nonmatchings/mem", D_00664318);
+
+INCLUDE_RODATA("asm/nonmatchings/mem", D_00664340);
+
+INCLUDE_RODATA("asm/nonmatchings/mem", D_00664370);
+
+INCLUDE_RODATA("asm/nonmatchings/mem", D_00664398);
+
+INCLUDE_RODATA("asm/nonmatchings/mem", D_006643B8);
+
+INCLUDE_RODATA("asm/nonmatchings/mem", D_006643E0);
+
+INCLUDE_RODATA("asm/nonmatchings/mem", D_00664410);
+
+INCLUDE_RODATA("asm/nonmatchings/mem", D_00664438);
+
+INCLUDE_RODATA("asm/nonmatchings/mem", D_00664460);
+
+INCLUDE_RODATA("asm/nonmatchings/mem", D_00664490);
+
+INCLUDE_RODATA("asm/nonmatchings/mem", D_006644B8);
+
+INCLUDE_RODATA("asm/nonmatchings/mem", D_006644E0);
+
+INCLUDE_RODATA("asm/nonmatchings/mem", D_00664510);
+
+INCLUDE_RODATA("asm/nonmatchings/mem", D_00664538);
+
+INCLUDE_RODATA("asm/nonmatchings/mem", D_00664558);
+
+INCLUDE_RODATA("asm/nonmatchings/mem", D_00664578);
+
+INCLUDE_RODATA("asm/nonmatchings/mem", D_006645A0);
+
+INCLUDE_RODATA("asm/nonmatchings/mem", D_006645D0);
+
+INCLUDE_RODATA("asm/nonmatchings/mem", D_006645F8);
+
+INCLUDE_RODATA("asm/nonmatchings/mem", D_00664620);
+
+INCLUDE_RODATA("asm/nonmatchings/mem", D_00664650);
+
+INCLUDE_RODATA("asm/nonmatchings/mem", D_00664678);
+
+INCLUDE_RODATA("asm/nonmatchings/mem", D_006646A0);
+
+INCLUDE_RODATA("asm/nonmatchings/mem", D_006646C8);
+
