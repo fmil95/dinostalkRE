@@ -1,5 +1,8 @@
 #include "g_camera.h"
 
+typedef struct { int a; int b; } CamUseItemS;
+extern CamUseItemS _camera_use_item[];
+extern int _cam_use_item_cnt;
 INCLUDE_ASM("asm/nonmatchings/g_camera", gsSetCameraMatrix);
 
 INCLUDE_ASM("asm/nonmatchings/g_camera", gsCameraCalcRotMatrix);
@@ -169,7 +172,20 @@ INCLUDE_ASM("asm/nonmatchings/g_camera", gsCameraCountItem_Medicine);
 
 INCLUDE_ASM("asm/nonmatchings/g_camera", gsCameraCountItem_Revicer);
 
-INCLUDE_ASM("asm/nonmatchings/g_camera", gsCameraCountItem_Antidote);
+int gsCameraCountItem_Antidote()
+{
+    gsCamera.unk260++;
+
+    if (gsCamera.unk260 >= 100)
+    {
+        gsCamera.unk260 = 99;
+    }
+
+    if (gsCamera.unk260 < 0)
+    {
+        gsCamera.unk260 = 0;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_camera", gsCameraCountItem_Tachyon);
 
