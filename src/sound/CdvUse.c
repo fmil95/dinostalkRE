@@ -333,6 +333,10 @@ int cdvMpegGetError()
     return mpeg_err;
 }
 
+INCLUDE_RODATA("asm/nonmatchings/sound/CdvUse", D_0066CBC0);
+
+INCLUDE_RODATA("asm/nonmatchings/sound/CdvUse", D_0066CBD0);
+
 INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvMain);
 
 int GetSecByte(u_char m)
@@ -365,6 +369,8 @@ void ReadDataCreate(int a, int b, int c, int d, int e)
     s_mode = d;
     s_que = e;
 }
+
+INCLUDE_RODATA("asm/nonmatchings/sound/CdvUse", D_0066CC58);
 
 INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvTrapError);
 
