@@ -222,7 +222,15 @@ void SeReqQueInc()
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeReqQueDec);
+void SeReqQueDec()
+{
+    TJobSt.unk0--;
+
+    if (TJobSt.unk0 < 0)
+    {
+        TJobSt.unk0 = 0x3F;
+    }
+}
 
 int SeJobQueInc()
 {
