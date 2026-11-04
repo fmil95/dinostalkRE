@@ -59,7 +59,34 @@ INCLUDE_ASM("asm/nonmatchings/libgf/gftex", gfTex_CalcAllocationSize);
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gftex", GFTex_GetDb);
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gftex", GFTex_Validate);
+Sint32 GFTex_Validate(Sint32 index)
+{
+    GF_TEXDB* db;
+    Sint32 ret;
+    GF_CACHE_CELL* cp;
+
+    db = &gfDatabase[index];
+
+    if (db->flag & 2)
+    {
+        return 0;
+    }
+
+    ret = 0;
+    cp = GFCache_IsOn((Uint32*)db);
+
+    if (cp == NULL)
+    {
+        ret = 1;
+        gfTex_SetDatabaseForCache(db, db->pig, GFCache_Alloc(db->allocSize, 3, (Uint32*)db));
+    }
+    else
+    {
+        cp->score = 3;
+    }
+
+    return ret;
+}
 
 void GFTex_SetScore(Sint32 index, Sint32 score)
 {
