@@ -164,7 +164,25 @@ INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/mcduse", mcdCardInfoSet);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/mcduse", mcdOpenSet);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/mcduse", mcdCloseSet);
+int mcdCloseSet(int a, int b)
+{
+    int w;
+    int m;
+    char* q;
+
+    if (mcdCheckEoq(1) < 0)
+    {
+        return -1;
+    }
+    w = writeque;
+    m = maxque;
+    q = queaddr;
+    STRUCT_OFFSET(q, w * 40 + 4, int) = a;
+    STRUCT_OFFSET(q, w * 40 + 0, short) = 3;
+    STRUCT_OFFSET(q, w * 40 + 8, int) = b;
+    writeque = (w + 1) % m;
+    return writeque;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/mcduse", mcdSeekSet);
 
