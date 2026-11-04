@@ -243,7 +243,17 @@ INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeMain);
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeIopStatus);
 
-INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeGetPort);
+int SeGetPort(int a)
+{
+    SeEnt* p = &D_0064B56C[a];
+
+    if (p->w[0] == 0xF000)
+    {
+        return 0x30;
+    }
+
+    return *(u_char*)p;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeGetVhName);
 
