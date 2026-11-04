@@ -364,7 +364,17 @@ int hyGetTimeSyncPercentage(int a, int b)
     return a;
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyGetTimeSecondPercentage);
+int hyGetTimeSecondPercentage(int t, int b)
+{
+    t = t / 100;
+
+    if (b == 0)
+    {
+        t = t % 60;
+    }
+
+    return t;
+}
 
 int hyGetTimeMinutePercentage(int t, int b)
 {
