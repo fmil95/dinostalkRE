@@ -5,16 +5,15 @@
 
 gpShadow_Init();
 gpShadow_InitShadow();
-gpShadow_SetSortKey();
+void gpShadow_SetSortKey(float x);
 gpShadow_MakePreset();
-gpShadow_Eval();
+void gpShadow_Eval();
 gpShadow_AddPacket();
 gpShadow_Draw();
-gpShadow_SetObject();
-gpShadow_Visible();
-gpShadow_SetVolumeLength();
-gpShadow_ReSetScreenFarZ();
-gpShadow_SetMaxAlpha();
-gpShadow_SetLightVector();
-
+void gpShadow_SetObject(void* p, int v);
+void gpShadow_Visible(void* p, int v);
+void gpShadow_SetVolumeLength(void* p, float v);
+void gpShadow_ReSetScreenFarZ(float v);
+void gpShadow_SetMaxAlpha(float v);
+void gpShadow_SetLightVector(int a);
 #endif // G_SHADOW_H

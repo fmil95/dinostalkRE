@@ -4,19 +4,18 @@
 #define BENJAMIN_TRACK_H
 
 GFTrack_Update();
-GFTrack_MallocMemory();
+void GFTrack_MallocMemory(void* a, int b, int c);
 GFTrack_Lifeless();
-GFTrack_SetTextureID();
-GFTrack_GetTextureID();
+void GFTrack_SetTextureID(void* t, int id);
+int GFTrack_GetTextureID(void* p);
 GFTrack_SetStartRGBA();
 GFTrack_SetEndRGBA();
 GFTrack_SetStartST();
 GFTrack_SetEndST();
 GFTrack_SetStartPos();
 GFTrack_InitStartPos();
-GFTrack_AddFlag();
-GFTrack_EraseFlag();
-GFTrack_MakeInstance();
-GFTrack_OffInstance();
-
+void GFTrack_AddFlag(void* a, int b);
+void GFTrack_EraseFlag(void* a, int b);
+void GFTrack_MakeInstance(void* t);
+void GFTrack_OffInstance(void* a);
 #endif // BENJAMIN_TRACK_H

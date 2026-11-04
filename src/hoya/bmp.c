@@ -1,4 +1,5 @@
 #include "common.h"
+#include "hoya/bmp.h"
 
 INCLUDE_ASM("asm/nonmatchings/hoya/bmp", gs_frameGetterOne);
 

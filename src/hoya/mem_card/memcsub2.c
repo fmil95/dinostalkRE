@@ -1,4 +1,5 @@
 #include "common.h"
+#include "hoya/mem_card/memcsub2.h"
 
 extern void EndMemcManager();
 extern int pmss_006745c4;

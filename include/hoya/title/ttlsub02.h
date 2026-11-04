@@ -3,7 +3,7 @@
 #ifndef HOYA_TITLE_TTLSUB02_H
 #define HOYA_TITLE_TTLSUB02_H
 
-InitOpening();
+void InitOpening();
 MainOpening();
 EndOpening();
 

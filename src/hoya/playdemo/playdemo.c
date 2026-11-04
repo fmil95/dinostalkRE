@@ -1,4 +1,5 @@
 #include "common.h"
+#include "hoya/playdemo/playdemo.h"
 
 extern int D_0064B34C[];
 extern int D_0064B354[];

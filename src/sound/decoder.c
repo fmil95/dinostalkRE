@@ -22,8 +22,6 @@ extern int s_vol_l1;
 extern int s_vol_r1;
 extern char _0_buf[];
 
-
-
 static void iopGetArea(int* pd0, int* d0, int* pd1, int* d1, AudioDec* ad, int pos);
 static int sendToIOP2area(int pd0, int d0, int pd1, int d1, u_char* ps0, int s0, u_char* ps1, int s1);
 static int sendToIOP(int dst, u_char* src, int size);
@@ -167,7 +165,6 @@ int videoDecFlush(VideoDec* vd)
     return 1;
 }
 
-
 int videoDecIsFlushed(VideoDec* vd)
 {
     return (videoDecInputCount(vd) == 0) && sceMpegIsRefBuffEmpty(&vd->mpeg);
@@ -246,7 +243,6 @@ int decBs0(VideoDec* vd)
 
     return status;
 }
-
 
 int mpegError(sceMpeg* mp, sceMpegCbDataError* cberror, void* anyData)
 {

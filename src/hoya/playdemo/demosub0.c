@@ -1,4 +1,5 @@
 #include "common.h"
+#include "hoya/playdemo/demosub0.h"
 
 extern int _step_2;
 extern int _step_2;

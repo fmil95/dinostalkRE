@@ -1,4 +1,5 @@
 #include "common.h"
+#include "benjamin/flare.h"
 
 extern void sceVu0CopyVector();
 

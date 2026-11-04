@@ -3,14 +3,14 @@
 #ifndef HOYA_TITLE_G_TITLE_H
 #define HOYA_TITLE_G_TITLE_H
 
-LetsGotoTitle();
-LetsGotoStart();
+void LetsGotoTitle(int a);
+void LetsGotoStart(int a);
 LetsGotoDaisakusen();
-LetsGotoOpening();
+void LetsGotoOpening(int a);
 gsStageInit_TITLE();
 gsStageExec_TITLE();
 gsStageEnd_TITLE();
-gsTITLE_Draw1();
+int gsTITLE_Draw1(int a);
 gsTITLE_Draw2();
 
 #endif // HOYA_TITLE_G_TITLE_H

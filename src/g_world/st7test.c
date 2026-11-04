@@ -1,4 +1,5 @@
 #include "common.h"
+#include "g_world/st7test.h"
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st7test", gsWorldInitSt7Test);
 

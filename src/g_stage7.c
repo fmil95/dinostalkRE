@@ -1,4 +1,5 @@
 #include "common.h"
+#include "g_stage7.h"
 
 extern int _st7_ext_compel_no;
 extern int _st7_ext_compel_step;

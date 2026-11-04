@@ -3,15 +3,15 @@
 #ifndef BENJAMIN_G_IK_H
 #define BENJAMIN_G_IK_H
 
-gsIKinit();
-gsIKinitOne();
+void gsIKinit();
+void gsIKinitOne(void* a);
 gsIKprocHead();
 gsIKproc();
 gsIK_UpdateData();
 gsIK_ResetInfo();
-gsIK_SetHit();
+void gsIK_SetHit(char* a, int b);
 gsIK_RotDeadBody();
-gsIK_RecoverBodyRotXZ();
+void gsIK_RecoverBodyRotXZ(char* a, int v);
 benjaminRand();
 benjaminRandRange();
 

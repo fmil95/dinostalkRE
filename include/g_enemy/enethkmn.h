@@ -12,11 +12,10 @@ enemy_setpllenlevel();
 enemy_modechgmain();
 enemy_modchg00();
 enemy_modchg01();
-enemy_modchg02();
+void enemy_modchg02(void* a);
 enemy_modchg03();
 enemy_modchg04();
 enemy_modchg05();
 enemy_modchg08();
-enemy_modchg09();
-
+void enemy_modchg09(void* a);
 #endif // G_ENEMY_ENETHKMN_H

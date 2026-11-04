@@ -1,4 +1,5 @@
 #include "common.h"
+#include "g_guncon2/src/gun_adjust.h"
 
 extern void gun_teaching_gun_adjust();
 extern int adjust_mode_00674c84;

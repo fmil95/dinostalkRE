@@ -3,7 +3,7 @@
 #ifndef G_WORLD_ST9_DEMO_H
 #define G_WORLD_ST9_DEMO_H
 
-gsWorldST9_DemoInit();
+void gsWorldST9_DemoInit();
 gsWorldSt9_DemoManager();
 gsWorldSt9_Demo();
 gsSt9Demo_EndChack();

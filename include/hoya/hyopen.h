@@ -3,20 +3,19 @@
 #ifndef HOYA_HYOPEN_H
 #define HOYA_HYOPEN_H
 
-hyWepRankGetWeaponRank();
-hyWepRankGetWeaponNo();
+int hyWepRankGetWeaponRank(int w);
+int hyWepRankGetWeaponNo(u_int i);
 int hyGetStageNumber(int arg0);
 gsResultInit();
 gsResultAllInit();
 void hyReflectResultData();
 void hyReflectResultData_FROM_CONTINUE();
 gsOptionInit();
-gsPauseResetProc();
+void gsPauseResetProc();
 SetOptionScreenAdjust();
 hyGetLimitTime();
 GetResultRank();
-GetResultStandardTimeBonus();
-GetResultStandardDinoBonus();
-GetResultStandardNoDamageBonus();
-
+int GetResultStandardTimeBonus(u_int a, int b);
+int GetResultStandardDinoBonus(u_int i);
+int GetResultStandardNoDamageBonus(u_int i);
 #endif // HOYA_HYOPEN_H

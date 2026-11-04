@@ -1,4 +1,5 @@
 #include "common.h"
+#include "hoya/cockpit/g_cplife.h"
 
 INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_cplife", gsCOCKPIT_InitVitality);
 

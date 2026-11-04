@@ -1,4 +1,5 @@
 #include "common.h"
+#include "air/insect/a_tomb.h"
 
 extern char D_00669D70[];
 extern int rand();

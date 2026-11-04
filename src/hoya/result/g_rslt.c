@@ -1,4 +1,5 @@
 #include "common.h"
+#include "hoya/result/g_rslt.h"
 
 extern int tex2dSendFlag_00674788;
 extern int tex2dSendFlag_00674788;

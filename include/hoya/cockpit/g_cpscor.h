@@ -4,6 +4,5 @@
 #define HOYA_COCKPIT_G_CPSCOR_H
 
 gsCOCKPIT_InitScore();
-gsCOCKPIT_PutScore();
-
+void gsCOCKPIT_PutScore(int a);
 #endif // HOYA_COCKPIT_G_CPSCOR_H

@@ -10,6 +10,5 @@ InitContinue();
 Draw2dObject2Cnt();
 Draw2dObjectCnt();
 MainContinue();
-EndContinue();
-
+void EndContinue();
 #endif // HOYA_CONTINUE_CNTSUB1_H

@@ -1,4 +1,5 @@
 #include "common.h"
+#include "benjamin/g_ik_sub.h"
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/g_ik_sub", _gsIK_InitDataHead);
 

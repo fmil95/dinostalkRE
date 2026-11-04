@@ -4,10 +4,10 @@
 #define HOYA_OPTION_GUN_AJST_H
 
 CheckGunScreenOut();
-GetScreenOffSw();
-GetAdjustMode();
-GetWideModeFlag();
-GetTvType();
+int GetScreenOffSw();
+int GetAdjustMode();
+int GetWideModeFlag();
+int GetTvType();
 GunAdjustInit();
 InitGunAdjustPara();
 GunAdjustMain();

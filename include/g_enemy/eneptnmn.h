@@ -3,12 +3,12 @@
 #ifndef G_ENEMY_ENEPTNMN_H
 #define G_ENEMY_ENEPTNMN_H
 
-enemy_ptnmvmain();
+void enemy_ptnmvmain(char* a);
 eneptn_goptntbl();
 eneptn_sarchptn();
 eneptn_dummy();
 eneptn_onlygetdt();
-eneptn_loop00();
+void eneptn_loop00(void* a);
 eneptn_goleset00();
 eneptn_tbljump00();
 eneptn_rndjump00();
@@ -18,9 +18,9 @@ eneptn_atchitchkjmp();
 eneptn_plwpnchkjmp();
 eneptn_gmleveljmp();
 eneptn_thkmdchg();
-eneptn_rechkptn();
+void eneptn_rechkptn(void* a);
 eneptn_enmtyloop();
-eneptn_delcheck();
+void eneptn_delcheck(char* a);
 obrpt_itemsnatchmain();
 obrpt_itemsarch();
 obrpt_plitemch();

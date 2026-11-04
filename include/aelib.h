@@ -34,6 +34,5 @@ saeSetPolyFt42();
 saeSetPolyGt4();
 saeSetSprite3();
 saeSetTile();
-saeDrawPrim();
-
+void saeDrawPrim(int n);
 #endif // AELIB_H

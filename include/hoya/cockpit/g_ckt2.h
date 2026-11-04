@@ -6,7 +6,7 @@
 gsCOCKPIT_InitCocpit2();
 gsCOCKPIT_takiEffOptInit();
 FreeDataSearchOpt();
-OrderChangeOpt();
+void OrderChangeOpt(char* a);
 gsCOCKPIT_takiEffMakeOptData();
 ClipJudge();
 gsCOCKPIT_takiEffOptDraw();
@@ -20,7 +20,7 @@ AddShowStockData();
 gsCOCKPIT_ReqItemText();
 gsCOCKPIT_PutItemText();
 gsCOCKPIT_PutStockItemText();
-gsCOCKPIT_MakeDammyScene();
+void gsCOCKPIT_MakeDammyScene(int a);
 gsCOCKPIT_LoadItem();
 gsCOCKPIT_ItemDraw();
 gsCOCKPIT_TakionGetInit();

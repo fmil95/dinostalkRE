@@ -1,4 +1,5 @@
 #include "common.h"
+#include "hoya/cockpit/g_cockpt.h"
 
 extern int Send2dSightTex();
 extern int Send2dWeaponTex();

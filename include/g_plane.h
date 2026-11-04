@@ -3,7 +3,7 @@
 #ifndef G_PLANE_H
 #define G_PLANE_H
 
-gplInitPlane();
+void gplInitPlane();
 gplInitSprite();
 gplSetSprite();
 gplChangeClutSprite();
@@ -19,6 +19,5 @@ gplInitTile();
 gplSetTile();
 gplInitPolyGt4();
 gplSetPolyGt4();
-gplDrawPlane();
-
+void gplDrawPlane(int a);
 #endif // G_PLANE_H

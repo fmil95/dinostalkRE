@@ -4,7 +4,7 @@
 #define HOYA_RESULT_G_FRSLT_H
 
 LetsGotoFinalResultScene();
-PermittoSendFrsltTex();
+void PermittoSendFrsltTex(int a);
 Send2FrsltTex();
 ReleaseFResultScene();
 FRsltItemSet();
@@ -14,7 +14,7 @@ FRsltItemObjectSet();
 FRsltMakeItemInfo();
 FRsltItemSetItems();
 gsFRESULT_Draw1();
-gsFRESULT_Draw2();
+int gsFRESULT_Draw2(int a);
 gsStageInit_FRESULT();
 gsStageExec_FRESULT();
 

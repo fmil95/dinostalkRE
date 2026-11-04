@@ -3,10 +3,10 @@
 #ifndef HOYA_OPTION_GUN1_AJST_H
 #define HOYA_OPTION_GUN1_AJST_H
 
-Gun1AjstGetViewScene();
-Gun1AjstGetProgNo();
-Gun1AjstCheckGun1ScreenOut();
-Gun1AjstCheckFinish();
+int Gun1AjstGetViewScene();
+int Gun1AjstGetProgNo();
+void Gun1AjstCheckGun1ScreenOut();
+int Gun1AjstCheckFinish();
 Gun1AdjustInit();
 Gun1AdjustMain();
 

@@ -9,7 +9,7 @@ SetBossInfo();
 SetBossInfoLife();
 SetBossInfoNum();
 SetBossInfoOld();
-CleartBossInfo();
+void CleartBossInfo();
 CalcCommon();
 PutBInfo_DinoLifeGauge();
 gsCOCKPIT_PutBossInfo();

@@ -5,12 +5,11 @@
 
 enetest_init();
 enetest_main();
-enetest_end();
+void enetest_end(void);
 enetestinfoprt();
 enetest_mkcammatrix();
 enetest_joy();
 enetest_joysub00();
 enetest_joysub01();
-enetest_reload();
-
+void enetest_reload();
 #endif // G_ENEMY_ENETEST_H

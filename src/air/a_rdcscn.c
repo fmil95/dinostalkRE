@@ -1,4 +1,5 @@
 #include "common.h"
+#include "air/a_rdcscn.h"
 
 INCLUDE_ASM("asm/nonmatchings/air/a_rdcscn", gsInitScreenReduce);
 

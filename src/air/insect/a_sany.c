@@ -1,4 +1,5 @@
 #include "common.h"
+#include "air/insect/a_sany.h"
 
 extern void GFInstance_Remove();
 extern void gsIscInfosClear();

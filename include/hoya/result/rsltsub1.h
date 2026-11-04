@@ -5,6 +5,5 @@
 
 InitResult();
 MainResult();
-EndResult();
-
+void EndResult();
 #endif // HOYA_RESULT_RSLTSUB1_H

@@ -1,4 +1,5 @@
 #include "common.h"
+#include "g_kyousei.h"
 
 extern int* FIO_ReadFile_Align();
 extern void* memcpy();

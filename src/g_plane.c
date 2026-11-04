@@ -1,4 +1,5 @@
 #include "common.h"
+#include "g_plane.h"
 
 extern void aeInit();
 extern void saeDrawPrim();

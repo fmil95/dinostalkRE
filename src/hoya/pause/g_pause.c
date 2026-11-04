@@ -1,4 +1,5 @@
 #include "common.h"
+#include "hoya/pause/g_pause.h"
 
 INCLUDE_ASM("asm/nonmatchings/hoya/pause/g_pause", LetsGotoPauseScene);
 

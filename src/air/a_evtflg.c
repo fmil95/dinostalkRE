@@ -1,4 +1,5 @@
 #include "common.h"
+#include "air/a_evtflg.h"
 
 extern int Event_Flag[];
 extern int Flag_OffBit[];

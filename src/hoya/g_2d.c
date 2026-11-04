@@ -1,4 +1,5 @@
 #include "common.h"
+#include "hoya/g_2d.h"
 
 void hyInitDrawPoint(char* p)
 {

@@ -1,4 +1,5 @@
 #include "common.h"
+#include "omake/ninnin.h"
 
 INCLUDE_ASM("asm/nonmatchings/omake/ninnin", gsNinnin_Init);
 

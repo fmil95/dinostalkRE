@@ -44,7 +44,6 @@ extern VideoDec videoDec;
 extern ReadBuf readBuf;
 extern StrFile infile;
 
-
 extern int remoteSema;
 extern int mpeg_sts;
 extern int myTh;
@@ -392,7 +391,6 @@ int initAll(char* bsfilename, int w, int h, char flag)
     return 0;
 }
 
-
 void termAll()
 {
     readBufDelete(&readBuf);
@@ -454,7 +452,6 @@ void termAll()
 
     strFileClose(&infile);
 }
-
 
 void defMain()
 {

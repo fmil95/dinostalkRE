@@ -1,4 +1,5 @@
 #include "common.h"
+#include "benjamin/ik_crn.h"
 
 extern void _gsIK_InitDataHead();
 

@@ -3,7 +3,7 @@
 #ifndef BENJAMIN_G_TRACK_H
 #define BENJAMIN_G_TRACK_H
 
-gsTrackMicroInit();
+void gsTrackMicroInit(int a, int b, int c);
 gsTrackProc();
 gsTrackStart();
 

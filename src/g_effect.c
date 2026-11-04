@@ -1,4 +1,5 @@
 #include "common.h"
+#include "g_effect.h"
 extern char gParticleM[];
 extern char gParticleMS[];
 extern void GFMicro_MakePacket();

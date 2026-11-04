@@ -1,4 +1,5 @@
 #include "common.h"
+#include "g_world/st7_demo.h"
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st7_demo", gsWorldSt7_InitDemo);
 

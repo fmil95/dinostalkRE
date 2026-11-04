@@ -4,28 +4,28 @@
 #define HOYA_COCKPIT_G_CPSIGHT_H
 
 hyEntryObj4Sight();
-gsCOCKPIT_InitSightSendTex();
+void gsCOCKPIT_InitSightSendTex();
 PermittoSend2dSightTex();
 Send2dSightTex();
 gsCOCKPIT_InitSightMachine();
-gsCOCKPIT_InitSightRifle();
+void gsCOCKPIT_InitSightRifle();
 gsCOCKPIT_InitSightMissile();
-gsCOCKPIT_InitSightHandgun();
-gsCOCKPIT_InitSightMagnum();
+void gsCOCKPIT_InitSightHandgun();
+void gsCOCKPIT_InitSightMagnum();
 gsCOCKPIT_InitSightFire();
-gsCOCKPIT_InitSightHandGrenade();
+void gsCOCKPIT_InitSightHandGrenade();
 gsCOCKPIT_InitSightGutoring();
 gsCOCKPIT_InitSightMissilePod();
-gsCOCKPIT_InitSightGrenade();
+void gsCOCKPIT_InitSightGrenade();
 gsCOCKPIT_InitSightBowgun();
-gsCOCKPIT_InitSightPlasma();
-gsCOCKPIT_InitSightRocket();
+void gsCOCKPIT_InitSightPlasma();
+void gsCOCKPIT_InitSightRocket();
 gsCOCKPIT_InitSightShotgun();
-gsCOCKPIT_InitSightSpark();
-gsCOCKPIT_InitSightFGrenade();
+void gsCOCKPIT_InitSightSpark();
+void gsCOCKPIT_InitSightFGrenade();
 gsCOCKPIT_InitSightLaser();
-gsCOCKPIT_InitSightMineThrower();
-gsCOCKPIT_InitSights();
+void gsCOCKPIT_InitSightMineThrower();
+void gsCOCKPIT_InitSights(int type, int b);
 gsCOCKPIT_InitSightFirst();
 gsCOCKPIT_PutSightMachine();
 gsCOCKPIT_PutSightRifle();
@@ -42,10 +42,10 @@ gsCOCKPIT_PutSightPlasma();
 gsCOCKPIT_PutSightRocket();
 gsCOCKPIT_PutSightShotgun();
 gsCOCKPIT_PutSightSpark();
-gsCOCKPIT_PutSightFGrenade();
+void gsCOCKPIT_PutSightFGrenade();
 gsCOCKPIT_PutSightLaser();
 gsCOCKPIT_PutSightMineThrower();
-PutSights();
+void PutSights(int a, int type);
 gsCOCKPIT_PutSights();
 
 #endif // HOYA_COCKPIT_G_CPSIGHT_H

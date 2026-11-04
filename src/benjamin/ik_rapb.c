@@ -1,4 +1,5 @@
 #include "common.h"
+#include "benjamin/ik_rapb.h"
 
 extern char D_003E9570[];
 extern char fvRaptTailNullTrans[];

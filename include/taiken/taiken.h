@@ -14,6 +14,5 @@ gsTaikenInit_READY_GO();
 gsTaikenExec_READY_GO();
 gsTaikenExec_CLEAR();
 gsTaikenCall_CLEAR();
-gsTaikenCall_CLEAR_ON_OFF();
-
+void gsTaikenCall_CLEAR_ON_OFF();
 #endif // TAIKEN_TAIKEN_H

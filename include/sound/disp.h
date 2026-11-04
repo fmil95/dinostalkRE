@@ -61,12 +61,12 @@ texsave();
 texload();
 dispSetTags();
 dispClear();
-loadImage();
+void loadImage(u_int* tags);
 vblankHandler();
-handler_endimage();
+int handler_endimage(int val);
 startDisplay();
-endDisplay();
-SetUserData();
+void endDisplay();
+void SetUserData(int* a, int* b, int* c, int* d);
 */
 
 #endif // SOUND_DISP_H

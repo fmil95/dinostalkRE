@@ -1,4 +1,5 @@
 #include "common.h"
+#include "omake/omake.h"
 
 extern int gsOmakeManager[];
 

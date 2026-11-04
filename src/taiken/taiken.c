@@ -1,4 +1,5 @@
 #include "common.h"
+#include "taiken/taiken.h"
 
 extern int _clear_bit;
 extern int _clear_bit;

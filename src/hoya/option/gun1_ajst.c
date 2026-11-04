@@ -1,4 +1,5 @@
 #include "common.h"
+#include "hoya/option/gun1_ajst.h"
 
 extern int finish;
 extern int adjust_mode_00674810;

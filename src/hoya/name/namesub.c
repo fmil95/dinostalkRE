@@ -1,4 +1,5 @@
 #include "common.h"
+#include "hoya/name/namesub.h"
 
 extern int pGnn;
 extern int hyCheckFadeFinishFlag();

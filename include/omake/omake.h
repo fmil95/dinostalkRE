@@ -3,9 +3,8 @@
 #ifndef OMAKE_OMAKE_H
 #define OMAKE_OMAKE_H
 
-gsOmakeInitManager();
-gsOmakeSetFlag();
+void gsOmakeInitManager();
+void gsOmakeSetFlag(int a);
 gsOmakeSetArmsFlagAll();
-gsOmakeResetArmsFlag();
-
+void gsOmakeResetArmsFlag(int i, int m);
 #endif // OMAKE_OMAKE_H

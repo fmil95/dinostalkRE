@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "g_enemy/enemain.h"
 #include "gunsuv_usa/libgf/gfanim.h"
+#include "g_enemy/ene04pro/ene04mv.h"
 
 extern int Enemy_DelDethPrcMain();
 extern void gsDeleteEnemySetItemObj();

@@ -60,24 +60,24 @@ int readBufEndGet(ReadBuf *b, int size);
 
 /*
 cdvMpegInit();
-cdvMpegSkipSet();
-cdvMpegSkipSetAll();
-cdvMpegSkipReset();
-cdvMpegSkipResetAll();
-cdvMpegPadUseSet();
-cdvMpegRestoreSet();
-cdvMpegSoundSet();
-cdvMpegSoundSMSet();
-cdvMpegGetFrameCount();
-cdvMpegPlayEnd();
-PlayMpeg();
-ResetMpeg();
-proceedAudio();
+void cdvMpegSkipSet(int port, int slot, u_short mask, int flag);
+void cdvMpegSkipSetAll(u_short mask, int flag);
+void cdvMpegSkipReset(int port, int slot);
+void cdvMpegSkipResetAll();
+void cdvMpegPadUseSet(int port, int slot, int use);
+void cdvMpegRestoreSet(char v);
+void cdvMpegSoundSet(int v);
+void cdvMpegSoundSMSet(int v);
+int cdvMpegGetFrameCount();
+void cdvMpegPlayEnd();
+int PlayMpeg(char* name, int w, int h, char flag);
+int ResetMpeg();
+void proceedAudio();
 videoCallback();
 pcmCallback();
-cdvMpegUserProgSet();
-cdvMpegUserProgDelete();
-cdvMpegSendModeSet();
+void cdvMpegUserProgSet(int v);
+void cdvMpegUserProgDelete();
+void cdvMpegSendModeSet(int v);
 */
 
 #endif // SOUND_MAINMPEG_H

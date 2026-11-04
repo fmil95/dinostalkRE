@@ -1,4 +1,5 @@
 #include "common.h"
+#include "omake/g_galery.h"
 
 extern int pGalBin;
 extern int FIO_ReadFile_Align();

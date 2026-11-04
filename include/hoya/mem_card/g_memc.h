@@ -3,12 +3,12 @@
 #ifndef HOYA_MEM_CARD_G_MEMC_H
 #define HOYA_MEM_CARD_G_MEMC_H
 
-LetsGotoMemcScene();
-LetsGotoMemcScene4Continue();
-PermittoSendMcTex();
+void LetsGotoMemcScene(int a);
+void LetsGotoMemcScene4Continue(int a);
+void PermittoSendMcTex(u_int i);
 Send2McTex();
 gsMEMC_Draw1();
-gsMEMC_Draw2();
+int gsMEMC_Draw2(int a);
 gsStageInit_MEMC();
 gsStageExec_MEMC();
 

@@ -1,4 +1,5 @@
 #include "common.h"
+#include "g_enemy/eneptn00.h"
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn00", eneptn00_wait00);
 

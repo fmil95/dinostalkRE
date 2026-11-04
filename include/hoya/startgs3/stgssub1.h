@@ -4,7 +4,7 @@
 #define HOYA_STARTGS3_STGSSUB1_H
 
 InitStgsStart();
-MainStgsStart();
+void MainStgsStart();
 EndStgsStart();
 
 #endif // HOYA_STARTGS3_STGSSUB1_H

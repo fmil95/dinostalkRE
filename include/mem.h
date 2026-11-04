@@ -3,12 +3,12 @@
 #ifndef MEM_H
 #define MEM_H
 
-MEM_InitAllocation();
+void MEM_InitAllocation();
 void MEM_EndAllocation();
-MEM_Malloc();
+void MEM_Malloc(int a, int b, int c);
 MEM_MallocAlign();
 void MEM_FreeAll();
-MEM_Free();
+void MEM_Free(int a);
 void MEM_CheckViolation();
 MEM_DumpAllocationInfo();
 

@@ -3,11 +3,11 @@
 #ifndef HOYA_STARTGS3_G_STGS_H
 #define HOYA_STARTGS3_G_STGS_H
 
-LetsGotoStartgs3();
+void LetsGotoStartgs3(int a);
 gsStageInit_STARTGS3();
 gsStageExec_STARTGS3();
 gsStageEnd_STARTGS3();
-InitStgsWait();
+void InitStgsWait();
 MainStgsWait();
 EndStgsWait();
 

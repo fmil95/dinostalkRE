@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "g_enemy/enemain.h"
 #include "gunsuv_usa/libgf/gfanim.h"
+#include "g_enemy/ene03pro/ene03mv.h"
 
 extern void Enemy_ActChg00();
 extern void Enemy_SeSet00();

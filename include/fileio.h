@@ -3,18 +3,17 @@
 #ifndef FILEIO_H
 #define FILEIO_H
 
-FIO_ReadFile();
-FIO_ReadFile_NoChk();
+void FIO_ReadFile(int a, int b);
+void FIO_ReadFile_NoChk(int a, int b);
 int* FIO_ReadFile_Align(int arg0, int arg1);
-FIO_ReadFile_Align2();
-FIO_ReadFilePartly();
-FIO_ReadFilePartly_Align();
-FIO_GetFileSize();
+void FIO_ReadFile_Align2(int a, int b, int c);
+void FIO_ReadFilePartly(int a, int b, int c);
+void FIO_ReadFilePartly_Align(int a, int b, int c, int d);
+int FIO_GetFileSize(char* name);
 FIO_WriteFile();
-FIOCache_Init();
+void FIOCache_Init();
 FIOCache_ReadPack_Align2();
 FIOCache_ReadSdp();
 FIOCache_Search();
-FIOCache_GetCheckSum();
-
+u_int FIOCache_GetCheckSum(u_int* p, u_int size);
 #endif // FILEIO_H

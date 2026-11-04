@@ -1,7 +1,6 @@
 #include "sound/buf.h"
 #include <eekernel.h>
 
-
 #define DmaAddr(p) ((void*)((u_int)(p) & 0x0FFFFFFF))
 #define UncAddr(p) ((void*)(((u_int)(p) & 0x0FFFFFFF) | 0x20000000))
 
@@ -33,7 +32,6 @@ extern inline int IsPtsInRegion(int tgt, int pos, int len, int size)
 #define DMA_ID_REFE 0
 #define DMA_ID_NEXT 2
 #define DMA_ID_REF  3
-
 
 INCLUDE_ASM("asm/nonmatchings/sound/buf", getFIFOindex);
 
@@ -292,7 +290,6 @@ int viBufModifyPts(ViBuf* f, TimeStamp* new_ts)
 
     return 0;
 }
-
 
 int viBufPutTs(ViBuf* f, TimeStamp* ts)
 {

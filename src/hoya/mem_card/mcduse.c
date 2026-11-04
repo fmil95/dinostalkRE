@@ -1,4 +1,5 @@
 #include "common.h"
+#include "hoya/mem_card/mcduse.h"
 
 extern int err_num_cause;
 extern int err_num_func;

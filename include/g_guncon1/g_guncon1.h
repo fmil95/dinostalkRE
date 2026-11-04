@@ -5,17 +5,16 @@
 
 gsGuncon1_InitAll();
 gsGuncon1_Init();
-gsGuncon1_ClearFlag();
+void gsGuncon1_ClearFlag(int a);
 gsGuncon1_LoadPad();
 gsGuncon1_Exec();
-gsGuncon1_CheckPort();
-gsGuncon1_GetDelay();
-gsGuncon1_Get();
-gsGuncon1_GetTrg();
+int gsGuncon1_CheckPort();
+int gsGuncon1_GetDelay();
+int gsGuncon1_Get();
+int gsGuncon1_GetTrg();
 gsGuncon1_FlashTrigger();
-gsGuncon1_CheckOut();
+int gsGuncon1_CheckOut();
 gsGuncon1_CheckOutTrg();
-gsGuncon1_GetCamSight();
-gsGuncon1_ExchangePad();
-
+void gsGuncon1_GetCamSight(char* a);
+int gsGuncon1_ExchangePad(int a, int b);
 #endif // G_GUNCON1_G_GUNCON1_H

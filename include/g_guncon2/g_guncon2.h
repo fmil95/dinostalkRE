@@ -5,20 +5,20 @@
 
 gsGuncon2_Init();
 gsGuncon2_Exec();
-gsGuncon2_CheckConnect();
-gsGuncon2_GetActivePort();
-gsGuncon2_Get();
-gsGuncon2_GetTrg();
-gsGuncon2_GetRTrg();
-gsGuncon2_Get2();
-gsGuncon2_GetTrg2();
+int gsGuncon2_CheckConnect();
+int gsGuncon2_GetActivePort();
+int gsGuncon2_Get();
+int gsGuncon2_GetTrg();
+int gsGuncon2_GetRTrg();
+int gsGuncon2_Get2();
+int gsGuncon2_GetTrg2();
 gsGuncon2_GetGunPos();
-gsGuncon2_GetCamSight();
-gsGuncon2_GetCycle();
-gsGuncon2_SetState();
-gsGuncon2_CanChangeArms();
+void gsGuncon2_GetCamSight(char* a);
+int gsGuncon2_GetCycle();
+void gsGuncon2_SetState(int a);
+int gsGuncon2_CanChangeArms();
 gsGuncon2_Flash_CALL();
-gsGuncon2_Flash_RECALL();
+void gsGuncon2_Flash_RECALL();
 gsGuncon2_Flash_EXEC();
 gsGuncon2_LoadModule();
 

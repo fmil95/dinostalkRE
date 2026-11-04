@@ -1,4 +1,5 @@
 #include "common.h"
+#include "hoya/mem_card/memcsub0.h"
 
 extern void EndMemcManager();
 extern int prgMan[];

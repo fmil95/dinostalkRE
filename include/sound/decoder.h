@@ -97,7 +97,7 @@ videoDecCreate();
 videoDecFlush();
 videoDecMain();
 decBs0();
-cdvMpegChgVolume();
+void cdvMpegChgVolume(int v);
 audioDecStart();
 changeMasterVolume();
 */

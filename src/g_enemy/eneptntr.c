@@ -1,4 +1,5 @@
 #include "common.h"
+#include "g_enemy/eneptntr.h"
 
 extern void (*trnty_ptnfuncs[])();
 void trnty_ptnmain(char* a)

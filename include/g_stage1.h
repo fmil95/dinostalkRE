@@ -10,7 +10,7 @@ gsGetCameraRot_ST1();
 gsSt1_WindSwing();
 gsSt1_WindSwing2();
 gsCameraMove_St1();
-gsStage1_RepairAfterMovie();
+void gsStage1_RepairAfterMovie(int a);
 st1_coltest();
 
 #endif // G_STAGE1_H

@@ -1,4 +1,5 @@
 #include "common.h"
+#include "g_world/st8.h"
 
 extern int _st8_demo0_req;
 extern int _st8_demo0_step;

@@ -1,4 +1,5 @@
 #include "common.h"
+#include "g_enemy/eneptnsb.h"
 
 extern void* memset();
 extern void Enemy_MkUnitV00();

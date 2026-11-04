@@ -4,15 +4,15 @@
 #define G_MOVIE_H
 
 gsMovie_Init();
-gsMovie_SetSkipKey();
-gsMovie_Play();
+void gsMovie_SetSkipKey(int a, int b);
+void gsMovie_Play(int a);
 gsMovie_Exec();
 gsMovie_End();
 gsMovie_SetStartCol();
 gsMovie_SetEndCol();
 MpegFunc();
 movieTest_init();
-movieTest_end();
+void movieTest_end();
 movieTest();
 
 #endif // G_MOVIE_H

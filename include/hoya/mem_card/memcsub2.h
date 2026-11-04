@@ -5,6 +5,5 @@
 
 InitMemcLoad();
 MainMemcLoad();
-EndMemcLoad();
-
+void EndMemcLoad();
 #endif // HOYA_MEM_CARD_MEMCSUB2_H

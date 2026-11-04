@@ -5,6 +5,5 @@
 
 InitMemcSysSave();
 MainMemcSysSave();
-EndMemcSysSave();
-
+void EndMemcSysSave();
 #endif // HOYA_MEM_CARD_MEMCSUB3_H

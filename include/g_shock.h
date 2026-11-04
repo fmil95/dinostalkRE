@@ -9,7 +9,6 @@ gsShockSetSeqVel();
 gsShockSetSeq();
 gsShockSetSeqNo();
 gsShockSetSeqNoVel();
-gsShockSetEnable();
-gsShockReset();
-
+void gsShockSetEnable(int v);
+void gsShockReset();
 #endif // G_SHOCK_H

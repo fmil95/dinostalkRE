@@ -8,7 +8,7 @@ gsStageExec_ST7();
 gsStageInitCamera_ST7();
 gsStageGetCameraVector_ST7();
 gsStageJeepDirection_ST7();
-gsStage7_ChangeExtCompelTbl();
+void gsStage7_ChangeExtCompelTbl(int a);
 gsStage7_RepairAfterMovie();
 
 #endif // G_STAGE7_H

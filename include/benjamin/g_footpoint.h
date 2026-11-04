@@ -5,11 +5,10 @@
 
 gsFootPoint_Init();
 gsFootPoint_InitFootPoint();
-gsFootPoint_LoadTexture();
+void gsFootPoint_LoadTexture(int i);
 gsFootPoint_Eval();
 gsFootPoint_Draw();
-gsFootPoint_SetFootPoint();
+void gsFootPoint_SetFootPoint(void* a, int i);
 gsFootPoint_PutFootPoint();
-gsFootPoint_Remove();
-
+void gsFootPoint_Remove();
 #endif // BENJAMIN_G_FOOTPOINT_H

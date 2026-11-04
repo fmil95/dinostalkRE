@@ -5,7 +5,6 @@
 
 GUN_ADJUST_Init();
 GUN_ADJUST_Exec();
-GUN_ADJUST_End();
-set_bg_color();
-
+void GUN_ADJUST_End();
+void set_bg_color(int r, int g, int b);
 #endif // G_GUNCON2_G_ADJUSTGUN_H

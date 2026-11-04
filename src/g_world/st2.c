@@ -1,4 +1,5 @@
 #include "common.h"
+#include "g_world/st2.h"
 
 extern int _st2_rapt_flag;
 extern int _st2_se_port_river;

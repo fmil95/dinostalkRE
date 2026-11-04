@@ -1,4 +1,5 @@
 #include "common.h"
+#include "hoya/name/g_name.h"
 
 extern int nameManager[];
 extern int gsNextProg;

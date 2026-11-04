@@ -1,4 +1,5 @@
 #include "common.h"
+#include "hoya/mem_card/g_memc.h"
 
 extern int memcManager;
 extern int gsNextProg;

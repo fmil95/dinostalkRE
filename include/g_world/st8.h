@@ -15,7 +15,7 @@ gsWorldSt8_SetBackCOLA();
 gsWorldSt8_ObjSort_Half();
 gsWorldSt8_KakiTrans();
 gsWorldSt8_CheckBossDied();
-gsWorldSt8_Demo0_Init();
+void gsWorldSt8_Demo0_Init();
 gsWorldSt8_Demo0_Request();
 gsWorldSt8_Demo0_CallEnd();
 gsWorldSt8_Demo0_Exec();

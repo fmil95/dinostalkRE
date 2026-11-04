@@ -4,13 +4,12 @@
 #define TEST_H
 
 int TEST_LoadTexture(int arg0, int arg1);
-TEST_EntryTexture();
+int TEST_EntryTexture(unsigned int* pig, int prm1);
 TEST_Sync();
 TEST_SetObjMatrix();
 TEST_SetCameraMatrix();
 TEST_MoveObject();
 TEST_MoveCamera();
-TEST_create_instance();
-TEST_destroy_instshape();
-
+void TEST_create_instance(int prm0);
+void TEST_destroy_instshape();
 #endif // TEST_H

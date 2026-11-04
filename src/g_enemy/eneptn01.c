@@ -1,4 +1,5 @@
 #include "common.h"
+#include "g_enemy/eneptn01.h"
 extern int gsStageNo;
 extern int St1BossFlg;
 extern int LeaderNo;

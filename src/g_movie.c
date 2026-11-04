@@ -1,6 +1,7 @@
 #include "common.h"
 
 #include <libgraph.h>
+#include "g_movie.h"
 extern int cdvMpegPlaySet();
 extern int waitingQue;
 extern int gsMovie_skipGunKey;

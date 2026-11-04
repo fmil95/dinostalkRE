@@ -1,4 +1,5 @@
 #include "common.h"
+#include "benjamin/g_staff.h"
 
 extern void sceGsSyncPath();
 extern void gsSoundClose();

@@ -1,4 +1,5 @@
 #include "common.h"
+#include "hoya/modesel/gsModeselect.h"
 
 extern void _gsMSSequenceWaku();
 extern void _gsMSSequenceBG();

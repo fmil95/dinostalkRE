@@ -6,6 +6,5 @@
 InitNameName00();
 InitName();
 MainName();
-EndName();
-
+void EndName();
 #endif // HOYA_NAME_NAMESUB_H

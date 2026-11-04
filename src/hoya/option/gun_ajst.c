@@ -1,4 +1,5 @@
 #include "common.h"
+#include "hoya/option/gun_ajst.h"
 
 extern int adjust_mode_0067486c;
 extern int screen_off_sw_0067487c;

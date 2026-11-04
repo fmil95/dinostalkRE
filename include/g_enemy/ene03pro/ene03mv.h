@@ -3,6 +3,5 @@
 #ifndef G_ENEMY_ENE03PRO_ENE03MV_H
 #define G_ENEMY_ENE03PRO_ENE03MV_H
 
-ene03move_main();
-
+void ene03move_main(char* a);
 #endif // G_ENEMY_ENE03PRO_ENE03MV_H

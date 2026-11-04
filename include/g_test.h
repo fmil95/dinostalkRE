@@ -6,18 +6,17 @@
 G_TEST_Init();
 G_TEST_Exec();
 G_TEST_End();
-gsExtProg_INIT();
-gsExtProg_ENTRY_WORK();
+void gsExtProg_INIT();
+void gsExtProg_ENTRY_WORK(int a, int b, int c);
 gsExtProg_RECOV_WORK();
 gsExtProg_EXEC();
 gsExtProg_TIME_OVER();
-gsStageExit_AfterMovie();
+int gsStageExit_AfterMovie();
 gsPC_Start();
 gsPC_Disp();
 gsPC_Stop();
 gsLoading_Init();
 gsLoading_Exec();
-gsClearHiddenFrame();
-_dbgCS_OverWrite();
-
+void gsClearHiddenFrame(int a);
+void _dbgCS_OverWrite();
 #endif // G_TEST_H

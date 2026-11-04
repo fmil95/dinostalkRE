@@ -5,6 +5,5 @@
 
 InitMemcSysLoad();
 MainMemcSysLoad();
-EndMemcSysLoad();
-
+void EndMemcSysLoad();
 #endif // HOYA_MEM_CARD_MEMCSUB4_H

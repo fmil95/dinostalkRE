@@ -1,4 +1,5 @@
 #include "common.h"
+#include "g_instpacket.h"
 
 extern char gf_default_instdrawenv_drawfunc[];
 extern char gf_default_instdrawenv_evalfunc[];

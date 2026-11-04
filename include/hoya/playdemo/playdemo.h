@@ -6,18 +6,18 @@
 gsRecordPadInit();
 gsRecordPadMain();
 gsRecordPadMain2();
-gsRecordPadEnd();
+void gsRecordPadEnd();
 gsRecordPadFPutData();
-gsPlayPadInit();
+void gsPlayPadInit(int a, int b);
 gsPlayPadMain();
 gsPlayPadMain2();
-gsPlayPadEnd();
+void gsPlayPadEnd();
 gsPlayPadFGetData();
 gsPlayDemoPadSwitch();
-retGunActTaddr();
-IsRecordHeaderExists();
-gsPlayDemoInit();
-gsRecDemoInit();
+int retGunActTaddr();
+int IsRecordHeaderExists();
+void gsPlayDemoInit();
+void gsRecDemoInit();
 gsPad_GetGuncon2BuckUp();
 
 #endif // HOYA_PLAYDEMO_PLAYDEMO_H

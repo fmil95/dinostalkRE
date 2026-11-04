@@ -1,4 +1,5 @@
 #include "common.h"
+#include "g_enemy/ene_elsp/ene_elsm.h"
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/ene_elsp/ene_elsm", eneels_dmghitchk);
 

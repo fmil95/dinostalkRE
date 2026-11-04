@@ -6,12 +6,12 @@
 gsWaveScrollX();
 gsWaveScrollZ();
 gsWaveMovePos();
-gsWaveSetScroll();
+void gsWaveSetScroll(float x, float y);
 gsWaveInit();
 gsWaveCalc();
 gsMoveWave();
 gsWaveMakeScrollWave();
-gsWaveSetWaveSize();
+void gsWaveSetWaveSize(float v);
 gsWaveGetHeight();
 gsSetRefTex();
 gsWaveAvoidInit();
@@ -22,10 +22,10 @@ gsWaveAvoidSetEnd();
 gsWaveCollisionWater();
 printVector();
 gsWaveMakeWave();
-GFWave_MakeInstance();
+char* GFWave_MakeInstance(char* a);
 GFWave_Draw();
 gsSt3WaveChange();
-gsWave_ChgColStart();
+void gsWave_ChgColStart();
 gsWave_ChgColExec();
 
 #endif // G_WORLD_ST3WAVE_H

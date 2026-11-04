@@ -1,4 +1,5 @@
 #include "common.h"
+#include "g_stage1.h"
 
 extern int gsNextProg;
 extern void gsEnemySet_MovieInit();

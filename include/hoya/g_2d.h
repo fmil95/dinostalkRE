@@ -3,11 +3,11 @@
 #ifndef HOYA_G_2D_H
 #define HOYA_G_2D_H
 
-hyInitDrawPoint();
+void hyInitDrawPoint(char* p);
 hyDrawPoint();
 hyInitDrawLine();
 hyDrawLine();
-hyInitDrawLineStrip();
+void hyInitDrawLineStrip(char* p, char* q, int n);
 hyDrawLineStrip();
 hyInitDrawSprite();
 hyDrawSprite();

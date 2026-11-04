@@ -3,7 +3,7 @@
 #ifndef G_KYOUSEI_H
 #define G_KYOUSEI_H
 
-gsKMInit();
+void gsKMInit(char* a, char* b);
 gsKyouseiMove();
 
 #endif // G_KYOUSEI_H

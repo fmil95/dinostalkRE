@@ -1,4 +1,5 @@
 #include "common.h"
+#include "g_world/brk.h"
 
 INCLUDE_ASM("asm/nonmatchings/g_world/brk", gsWorldBreak_00);
 

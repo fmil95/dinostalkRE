@@ -1,4 +1,5 @@
 #include "common.h"
+#include "g_cshadow.h"
 
 extern int gpCShadowMicro;
 extern float gpCShadowFarZ;

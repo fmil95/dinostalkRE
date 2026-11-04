@@ -5,6 +5,5 @@
 
 gsStaffInit();
 gsStaffExec();
-gsStaffEnd();
-
+void gsStaffEnd();
 #endif // BENJAMIN_G_STAFF_H

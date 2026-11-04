@@ -1,4 +1,5 @@
 #include "common.h"
+#include "hoya/cockpit/g_cpscor.h"
 
 extern void PutScScore();
 INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_cpscor", gsCOCKPIT_InitScore);

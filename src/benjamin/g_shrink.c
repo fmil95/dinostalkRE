@@ -1,4 +1,5 @@
 #include "common.h"
+#include "benjamin/g_shrink.h"
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/g_shrink", gsDinoSetDeadShrinkY);
 

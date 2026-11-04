@@ -1,4 +1,5 @@
 #include "common.h"
+#include "g_stage2.h"
 
 INCLUDE_RODATA("asm/nonmatchings/g_stage2", D_00664948);
 

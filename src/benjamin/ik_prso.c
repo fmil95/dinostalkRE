@@ -1,4 +1,5 @@
 #include "common.h"
+#include "benjamin/ik_prso.h"
 
 extern void _gsIK_InitDataHead();
 

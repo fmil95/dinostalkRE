@@ -1,5 +1,6 @@
 #include "common.h"
 #include <eestruct.h>
+#include "hoya/g_ezipu.h"
 extern int flag;
 
 extern void gsEzIpuSetLoadImageTagsGeneral();

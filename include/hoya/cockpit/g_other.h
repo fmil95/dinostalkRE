@@ -8,17 +8,16 @@ gsCOCKPIT_CheckLockOn();
 PutLockOn();
 gsTimerInit();
 gsTimerSetTime();
-gsTimerGetTime();
+void gsTimerGetTime(void* p);
 gsTimerSetFrame();
-gsTimerGetFrame();
+int gsTimerGetFrame();
 int gsTimerGetPathTime();
-gsTimerCntTime();
-gsTimerPauseTime();
-gsTimerPauseTimeEx();
-gsTimerPassDirecTime();
+void gsTimerCntTime(int a);
+void gsTimerPauseTime(int a);
+void gsTimerPauseTimeEx(int a);
+void gsTimerPassDirecTime(int a);
 gsTimerCntroler();
 gsCOCKPIT_InitTime();
 gsCOCKPIT_InitTime2();
-gsCOCKPIT_PutTime();
-
+void gsCOCKPIT_PutTime(int a);
 #endif // HOYA_COCKPIT_G_OTHER_H

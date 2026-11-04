@@ -4,9 +4,8 @@
 #define PAD_H
 
 PAD_InitPad();
-PAD_EndPad();
+int PAD_EndPad();
 PAD_UpdatePad();
-PAD_GetPad();
-PAD_GetPadTrg();
-
+int PAD_GetPad(int a);
+int PAD_GetPadTrg(int a);
 #endif // PAD_H

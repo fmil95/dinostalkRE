@@ -4,6 +4,5 @@
 #define HOYA_COCKPIT_G_CPRLOD_H
 
 gsCOCKPIT_InitReload();
-gsCOCKPIT_PutReload();
-
+void gsCOCKPIT_PutReload(int a);
 #endif // HOYA_COCKPIT_G_CPRLOD_H

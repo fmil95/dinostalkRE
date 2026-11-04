@@ -1,4 +1,5 @@
 #include "common.h"
+#include "g_meminit.h"
 
 extern int gsHeapSize;
 extern int gsHeapTop;

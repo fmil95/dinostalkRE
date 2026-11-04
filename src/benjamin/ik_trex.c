@@ -1,4 +1,5 @@
 #include "common.h"
+#include "benjamin/ik_trex.h"
 
 extern char D_003EA7D0[];
 extern char fvTrexTailNullTrans[];

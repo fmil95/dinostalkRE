@@ -1,4 +1,5 @@
 #include "common.h"
+#include "omake/g_theate.h"
 
 extern int pTheBin;
 extern int FIO_ReadFile_Align();

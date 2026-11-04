@@ -2,6 +2,7 @@
 #include "gunsuv_usa/libgf/gfanim.h"
 #include "g_enemy/enemain.h"
 #include <stdlib.h>
+#include "g_enemy/ene02pro/ene02mv.h"
 
 extern void Enemy_AnmChg00();
 

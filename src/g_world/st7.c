@@ -1,4 +1,5 @@
 #include "common.h"
+#include "g_world/st7.h"
 
 extern int _st7_dino_light_num;
 extern int _st7_glow_num;

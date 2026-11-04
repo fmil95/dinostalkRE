@@ -1,4 +1,5 @@
 #include "common.h"
+#include "g_stage9.h"
 
 INCLUDE_ASM("asm/nonmatchings/g_stage9", gsStageInit_ST9);
 

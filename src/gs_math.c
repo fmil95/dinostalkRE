@@ -1,4 +1,5 @@
 #include "common.h"
+#include "gs_math.h"
 
 INCLUDE_ASM("asm/nonmatchings/gs_math", gsSinfNC);
 

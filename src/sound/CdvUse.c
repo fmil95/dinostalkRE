@@ -1,6 +1,7 @@
 #include "common.h"
 #include <stdio.h>
 #include <libcdvd.h>
+#include "sound/CdvUse.h"
 
 extern int mpeg_err;
 extern unsigned short ErrorNum;
@@ -421,7 +422,6 @@ void ReadDataCreate(int a, int b, int c, int d, int e)
     s_mode = d;
     s_que = e;
 }
-
 
 void cdvTrapError()
 {

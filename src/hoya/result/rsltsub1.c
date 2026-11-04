@@ -1,4 +1,5 @@
 #include "common.h"
+#include "hoya/result/rsltsub1.h"
 
 extern void EndLetterAll();
 extern int gsNextProg;

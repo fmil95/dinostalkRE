@@ -3,12 +3,12 @@
 #ifndef HOYA_COCKPIT_G_CPBLT_H
 #define HOYA_COCKPIT_G_CPBLT_H
 
-gsCOCKPIT_InitBulletSendTex();
+void gsCOCKPIT_InitBulletSendTex();
 PermittoSend2dWeaponTex();
-PermittoSend2dWeaponTex2();
+void PermittoSend2dWeaponTex2(int a, int b);
 Send2dWeaponTex();
 hyEntryObj4Blt();
-gsCOCKPIT_InitBullet();
+void gsCOCKPIT_InitBullet(int type, int b, int c);
 gsCOCKPIT_InitBulletRifleSc();
 gsCOCKPIT_InitBulletRifle();
 gsCOCKPIT_InitBulletMachine();

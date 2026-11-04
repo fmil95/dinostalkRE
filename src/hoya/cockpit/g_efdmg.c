@@ -1,4 +1,5 @@
 #include "common.h"
+#include "hoya/cockpit/g_efdmg.h"
 
 INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_efdmg", gsCOCKPIT_InitEfDamagePoison);
 

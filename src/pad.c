@@ -1,4 +1,5 @@
 #include "common.h"
+#include "pad.h"
 
 extern int gPad[1];
 extern int gPadTrg[1];

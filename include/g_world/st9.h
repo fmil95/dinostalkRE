@@ -4,7 +4,7 @@
 #define G_WORLD_ST9_H
 
 int gsWorldInitSt9();
-gsWorldSt9_WorkInit();
+void gsWorldSt9_WorkInit();
 void gsWorldSt9_SpecialEffect();
 int gsWorldSt9_SpecialEffect2();
 gsWorldSt9_TREX_Light();
@@ -13,7 +13,7 @@ gsSt9_SelectLavaPoint();
 gsSt9_LavaSpout();
 gsSt9_MiragePointRand();
 gsSt9_SetMirage();
-gsWorldSt9_InitBackSE();
+void gsWorldSt9_InitBackSE();
 gsWorldSt9_PlayBackSE();
 gsSt9Demo_Cancel();
 gsWorldSt9Demo_LavaRise();
@@ -24,6 +24,5 @@ gsCultAnimation();
 gsSt9_RockCrossTREX();
 gsWorldSt9_IwaBreak();
 gsWorldSt9_CheckBossDied();
-gsWorldSt9_RockBreakTREX();
-
+void gsWorldSt9_RockBreakTREX();
 #endif // G_WORLD_ST9_H

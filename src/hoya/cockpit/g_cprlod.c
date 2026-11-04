@@ -1,4 +1,5 @@
 #include "common.h"
+#include "hoya/cockpit/g_cprlod.h"
 
 extern char* reload;
 extern void CheckReload();

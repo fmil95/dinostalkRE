@@ -1,4 +1,5 @@
 #include "common.h"
+#include "air/test/i_test.h"
 
 INCLUDE_ASM("asm/nonmatchings/air/test/i_test", I_SHOW_Init);
 

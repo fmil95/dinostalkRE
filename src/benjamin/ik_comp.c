@@ -1,4 +1,5 @@
 #include "common.h"
+#include "benjamin/ik_comp.h"
 
 extern void sceVu0CopyVector();
 extern void sceVu0CopyVector();

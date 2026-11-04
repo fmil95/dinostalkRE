@@ -1,4 +1,5 @@
 #include "common.h"
+#include "g_enemy/eneptn03.h"
 
 extern void Enemy_ActChg00();
 

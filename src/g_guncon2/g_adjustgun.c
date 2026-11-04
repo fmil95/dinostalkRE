@@ -1,4 +1,5 @@
 #include "common.h"
+#include "g_guncon2/g_adjustgun.h"
 extern char gDb[];
 
 extern int AdjustGunMode;

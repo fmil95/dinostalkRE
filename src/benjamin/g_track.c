@@ -1,4 +1,5 @@
 #include "common.h"
+#include "benjamin/g_track.h"
 
 extern char gMicroTrack[];
 extern char gTrackMS[];

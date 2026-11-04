@@ -1,4 +1,5 @@
 #include "common.h"
+#include "g_world/st9_demo.h"
 
 extern short _st9_demo_flag;
 extern short _st9_demo_id;

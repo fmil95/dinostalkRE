@@ -3,20 +3,20 @@
 #ifndef AIR_A_SPBTL_H
 #define AIR_A_SPBTL_H
 
-gsSt1BossInit();
+void gsSt1BossInit();
 gsSt1BossManagement();
-gsSt2_BattleInit_RAPT();
+void gsSt2_BattleInit_RAPT();
 gsSt2_DieCheck_RAPT();
-gsSt3BossInit();
+void gsSt3BossInit();
 gsSt3BossManagement();
 gsSt3BossReqCheck();
 gsBossNumCount();
-gsSt7_BattleInit_OBRAPT();
+void gsSt7_BattleInit_OBRAPT();
 gsSt7_DieCheck_OBRAPT();
-gsGetCheckIdEnemyNum();
+int gsGetCheckIdEnemyNum(int id);
 gsSt3GetSetBossNum();
 gsSpBattleBossSet();
-gsSt4_ExpInit();
+void gsSt4_ExpInit();
 gsSt4_ExpManage();
 
 #endif // AIR_A_SPBTL_H

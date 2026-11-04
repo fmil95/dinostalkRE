@@ -5,6 +5,5 @@
 
 InitMemcFsize();
 MainMemcFsize();
-EndMemcFsize();
-
+void EndMemcFsize();
 #endif // HOYA_MEM_CARD_MEMCSUB0_H

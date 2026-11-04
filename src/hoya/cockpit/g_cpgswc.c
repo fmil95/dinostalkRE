@@ -1,4 +1,5 @@
 #include "common.h"
+#include "hoya/cockpit/g_cpgswc.h"
 
 INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_cpgswc", gsCOCKPIT_InitArms);
 

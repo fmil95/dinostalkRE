@@ -5,7 +5,7 @@
 
 I_SHOW_Init();
 I_SHOW_Exec();
-I_SHOW_End();
+void I_SHOW_End();
 ISHOW_PictureLoad();
 ISHOW_CreateItem();
 ISHOW_CreateObjectPacket();

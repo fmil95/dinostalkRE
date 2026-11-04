@@ -1,4 +1,5 @@
 #include "common.h"
+#include "benjamin/kinematics.h"
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/kinematics", IK_ComputeJoint);
 

@@ -7,11 +7,10 @@ gsInitDemo();
 gsDemoLoadPig();
 gsDemoInitSprite();
 gsPutDemoObjects();
-gsDemoRecPlayPad();
+void gsDemoRecPlayPad();
 gsManagementDemoCamera();
 gsTriggerDemoGuncon();
 gsGuncon2_DemoGetGunPos();
 gsGetCameraDemoRot_SCP();
-gsDemoPause();
-
+void gsDemoPause(int a);
 #endif // HOYA_PLAYDEMO_DEMOSUB0_H

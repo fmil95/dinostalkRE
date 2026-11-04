@@ -1,4 +1,5 @@
 #include "common.h"
+#include "g_guncon2/g_guncon2.h"
 extern void* gsGuncon2Manager[];
 
 extern int D_00653B74[];

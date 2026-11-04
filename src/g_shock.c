@@ -1,4 +1,5 @@
 #include "common.h"
+#include "g_shock.h"
 
 extern int gsShockIsOn;
 extern void gsShockReset();

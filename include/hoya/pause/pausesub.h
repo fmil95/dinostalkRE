@@ -7,7 +7,7 @@ gsPAUSE_InitVitality();
 gsPAUSE_PutVitalityUnder();
 gsPAUSE_PutVitalityHead();
 gsPAUSE_PutVitalityLife();
-gsPAUSE_PutVitality();
+void gsPAUSE_PutVitality(int a);
 gsPAUSE_PutLife();
 InitPausePause00();
 InitPausePause01();

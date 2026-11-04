@@ -1,4 +1,5 @@
 #include "common.h"
+#include "omake/mugen.h"
 
 INCLUDE_ASM("asm/nonmatchings/omake/mugen", gsMugen_Init);
 

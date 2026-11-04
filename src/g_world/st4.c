@@ -1,4 +1,5 @@
 #include "common.h"
+#include "g_world/st4.h"
 
 extern short _st4_hane_flag;
 extern short _st4_hane_count;
