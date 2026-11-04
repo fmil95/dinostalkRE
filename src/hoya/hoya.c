@@ -116,7 +116,13 @@ void hyLoadIcon()
 
 INCLUDE_ASM("asm/nonmatchings/hoya/hoya", KeyStateUpdate);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/hoya", getkeyPush);
+int getkeyPush(int p)
+{
+    int a = gsPad_GetRTrg(p);
+    int b = gsPad_AGetRTrg(p);
+
+    return a | b;
+}
 
 int getkeyPress(int p)
 {
