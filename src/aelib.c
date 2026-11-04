@@ -9,6 +9,17 @@ extern int aeSetAD();
 extern void aeStartMfifo();
 extern void aeLoadImage();
 extern sceGsStoreImage _aeStrImg;
+extern void aeKickEndTag();
+extern SaePrim* _saeDrawPrim_PLYFT4();
+extern SaePrim* _saeDrawPrim_PLYFT42();
+extern SaePrim* _saeDrawPrim_PLYGT4();
+extern SaePrim* _saeDrawPrim_SPRT();
+extern SaePrim* _saeDrawPrim_SPRT2();
+extern SaePrim* _saeDrawPrim_SPRT3();
+extern SaePrim* _saeDrawPrim_PLYG3();
+extern SaePrim* _saeDrawPrim_PRTSFT();
+extern SaePrim* _saeDrawPrim_PRTLN();
+extern SaePrim* _saeDrawPrim_TILE();
 INCLUDE_ASM("asm/nonmatchings/aelib", aeInit);
 
 INCLUDE_ASM("asm/nonmatchings/aelib", aeStartMfifo);
@@ -144,7 +155,56 @@ void saeSetTile(SaePrim* p, int ch)
     _saePrimCurrent[ch] = p;
 }
 
-INCLUDE_ASM("asm/nonmatchings/aelib", saeDrawPrim);
+void saeDrawPrim(int n)
+{
+    SaePrim* p;
+
+    for (p = _saePrimCurrent[n]; p != NULL; )
+    {
+        switch (p->type)
+        {
+        case 0:
+            p = _saeDrawPrim_PLYFT4(p);
+            break;
+        case 8:
+            p = _saeDrawPrim_PLYFT42(p);
+            break;
+        case 11:
+            p = _saeDrawPrim_PLYGT4(p);
+            break;
+        case 1:
+            p = _saeDrawPrim_SPRT(p);
+            break;
+        case 2:
+            p = (SaePrim*)_saeDrawPrim_AD(p);
+            break;
+        case 3:
+            p = (SaePrim*)_saeDrawPrim_LDIMG(p);
+            break;
+        case 4:
+            p = _saeDrawPrim_SPRT2(p);
+            break;
+        case 9:
+            p = _saeDrawPrim_SPRT3(p);
+            break;
+        case 5:
+            p = _saeDrawPrim_PLYG3(p);
+            break;
+        case 6:
+            p = _saeDrawPrim_PRTSFT(p);
+            break;
+        case 7:
+            p = _saeDrawPrim_PRTLN(p);
+            break;
+        case 10:
+            p = _saeDrawPrim_TILE(p);
+            break;
+        }
+    }
+
+    aeKickEndTag();
+    _saePrimCurrent[n] = NULL;
+}
 
 INCLUDE_ASM("asm/nonmatchings/aelib", _saeDrawPrim_PLYFT4);
 
