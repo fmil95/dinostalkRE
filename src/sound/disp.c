@@ -1,4 +1,9 @@
 #include "sound/disp.h"
+extern int center_flg_h;
+extern int center_flg_w;
+extern int s_frm_ofy;
+extern int s_frm_ofx;
+extern int s_ctxt;
 
 extern int isCountVblank;
 extern int frd;
@@ -25,7 +30,17 @@ INCLUDE_ASM("asm/nonmatchings/sound/disp", dispSwitch);
 void dispClear(void) {
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/disp", setTexRect);
+u_int* setTexRect(u_int* p, Rect* poly, Rect* tex)
+{
+    p = setPRIM(p, 6, 0, 1, 0, 0, 0, 1, s_ctxt, 0);
+    p = setUV(p, tex->x, tex->y);
+    p = setXYZ2(p, poly->x, poly->y, 0x3E8);
+
+    p = setUV(p, tex->x + tex->w, tex->y + tex->h);
+    p = setXYZ2(p, poly->x + poly->w, poly->y + poly->h, 0x3E8);
+
+    return p;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/disp", setFlatRect);
 

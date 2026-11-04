@@ -6,6 +6,24 @@
 #include "common.h"
 #include <eestruct.h>
 
+typedef struct { // 0x10
+	/* 0x0 */ int x;
+	/* 0x4 */ int y;
+	/* 0x8 */ int w;
+	/* 0xc */ int h;
+} Rect;
+
+typedef struct {
+	/* 0x00 */ int fbp0;
+	/* 0x04 */ int fbp1;
+	/* 0x08 */ int fb_w;
+} Display;
+
+u_int *setTexRect(u_int *p, Rect *poly, Rect *tex);
+u_int *setFlatRect(u_int *p, Rect *rect, u_int val);
+void dispSwitch(Display *d, int id);
+int cdvMpegChgCtxt(u_int ctxt);
+void cdvMpegChgOffset(int ofx, int ofy);
 u_int *setDMAscTag(u_int *p, u_int spr, void *addr, u_int irq, u_int id, u_int pce, u_int qwc);
 u_int *setGIFtag(u_int *p, u_long regs, u_int nreg, u_int flg, u_int prim, u_int pre, u_int eop, u_int nloop);
 u_int *setGIFad(u_int *p, u_int reg, u_long value);
@@ -37,17 +55,12 @@ u_int *setTRXDIR(u_int *p, u_int xdir);
 /*
 
 initDisplay();
-cdvMpegChgOffset();
-cdvMpegChgCtxt();
 dispCreate();
 dispDelete();
 texsave();
 texload();
 dispSetTags();
-dispSwitch();
 dispClear();
-setTexRect();
-setFlatRect();
 loadImage();
 vblankHandler();
 handler_endimage();
