@@ -13,6 +13,9 @@ extern int _st3_se_port_boat_spl;
 extern char D_002F2030[];
 extern void sceVu0CopyVector();
 
+extern int gsWorldSt3_IwaOdv[];
+extern int gsWorldSt3_KoiwaOdv[];
+extern int gsWorldSt3_SplashOdv[];
 INCLUDE_ASM("asm/nonmatchings/g_world/st3", gsWorldInitSt3);
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st3", gsWorldSt3EntryTex_GND);
@@ -37,7 +40,13 @@ void gsWorldSt3_InitIwa()
     gsWorldSt3_IwaObjCnt = 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_world/st3", gsWorldSt3_EntryIwa);
+void gsWorldSt3_EntryIwa(int a)
+{
+    int n = gsWorldSt3_IwaCnt;
+
+    gsWorldSt3_IwaOdv[n] = a;
+    gsWorldSt3_IwaCnt = n + 1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st3", gsWorldSt3_EntryIwaObj);
 
