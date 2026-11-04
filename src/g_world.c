@@ -187,7 +187,13 @@ void gsWorldEntryOBJ_REPLACE(char* a)
     STRUCT_OFFSET(a + x * 4, 0x7E2CC, int) = x;
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldEntryOBJ_COLA_OFF);
+void gsWorldEntryOBJ_COLA_OFF(char* a)
+{
+    int n = STRUCT_OFFSET(a, 0x51400, int) - 1;
+    int o = n * 0x1B0 + 0x666A0;
+
+    STRUCT_OFFSET(a + o, 0, int) |= 8;
+}
 
 void gsWorldEntryOBJ_SCORE(char* a, int b)
 {
