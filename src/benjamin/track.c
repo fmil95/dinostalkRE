@@ -3,6 +3,9 @@
 extern void GFTrack_Lifeless();
 
 extern void* GFTex_GetDb();
+extern void* gf_default_track_drawfunc[];
+extern void* gf_default_track_evalfunc[];
+extern void GFInstance_InitHead();
 INCLUDE_ASM("asm/nonmatchings/benjamin/track", GFTrack_Update);
 
 void GFTrack_MallocMemory(void* a, int b, int c)
@@ -71,7 +74,16 @@ INCLUDE_ASM("asm/nonmatchings/benjamin/track", GFTrack_Draw);
 void GFTrack_Eval(void) {
 }
 
-INCLUDE_ASM("asm/nonmatchings/benjamin/track", GFTrack_MakeInstance);
+void GFTrack_MakeInstance(void* t)
+{
+    STRUCT_OFFSET(t, 0xCC, int) = 0x400;
+    GFInstance_InitHead(t);
+    STRUCT_OFFSET(t, 0xDC, void**) = gf_default_track_drawfunc;
+    STRUCT_OFFSET(t, 0xD8, void**) = gf_default_track_evalfunc;
+    STRUCT_OFFSET(t, 0x104, int) = 0;
+    STRUCT_OFFSET(t, 0x100, int) = 0;
+    STRUCT_OFFSET(t, 0xD0, int) = 0x10;
+}
 
 void GFTrack_OffInstance(void* a)
 {
