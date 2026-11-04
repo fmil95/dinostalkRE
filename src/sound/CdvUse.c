@@ -186,7 +186,21 @@ int cdvDelSearchData()
     return 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvDelSearchDataSet);
+int cdvDelSearchDataSet()
+{
+    u_short w;
+    u_short m;
+
+    if (cdvIsEoq(1))
+    {
+        return -1;
+    }
+    w = WriteQue;
+    m = MaxQue;
+    STRUCT_OFFSET(Cdv_Que, w * 40, short) = 15;
+    WriteQue = (w + 1) % (m + 1);
+    return WriteQue;
+}
 
 void cdvDelSearchDataAll()
 {
