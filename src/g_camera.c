@@ -183,7 +183,20 @@ int gsCameraCountItem_Medicine()
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_camera", gsCameraCountItem_Revicer);
+int gsCameraCountItem_Revicer()
+{
+    gsCamera.unk25C++;
+
+    if (gsCamera.unk25C >= 100)
+    {
+        gsCamera.unk25C = 99;
+    }
+
+    if (gsCamera.unk25C < 0)
+    {
+        gsCamera.unk25C = 0;
+    }
+}
 
 int gsCameraCountItem_Antidote()
 {
