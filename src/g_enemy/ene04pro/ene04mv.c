@@ -6,6 +6,12 @@
 extern int Enemy_DelDethPrcMain();
 extern void gsDeleteEnemySetItemObj();
 extern void gsDinoSetDeadShrinkY();
+extern void ene04Bjoy_plmain();
+extern void enemy_thkmain();
+extern int D_002F18B4[2];
+extern void (*ene04Bmovestbl2[])();
+extern void ene04joy_plmain();
+extern void (*ene04movestbl2[])();
 INCLUDE_ASM("asm/nonmatchings/g_enemy/ene04pro/ene04mv", ene04move_main);
 
 void enedummyElem_ene04mv(void) {
@@ -123,7 +129,20 @@ void ene04moveElem1c1(char* a)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/ene04pro/ene04mv", ene04Bmove_main);
+void ene04Bmove_main(char* a)
+{
+    STRUCT_OFFSET(a, 0x98, int) = STRUCT_OFFSET(STRUCT_OFFSET(a, 0xCBC, char*), 0x148, int);
+    if (STRUCT_OFFSET(a, 0, int) < 0)
+    {
+        STRUCT_OFFSET(a, 0xE4, int) = D_002F18B4[0];
+        ene04Bjoy_plmain(a);
+    }
+    else
+    {
+        enemy_thkmain(a);
+    }
+    ((void (**)())0x45C2B8)[STRUCT_OFFSET(a, 0x84, int) * 8 + STRUCT_OFFSET(a, 0x8C, int)](a);
+}
 
 void enedummyElemB(void) {
 }
