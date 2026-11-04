@@ -12,6 +12,12 @@ extern int _st7_se_port_fire_a;
 extern int _st7_se_port_fire_b;
 extern int _st7_shock_jeep_cnt;
 
+extern int _st7_fire_light_obj[];
+extern int _st7_fire_light_obj_num;
+extern int _st7_glow_obj_no[];
+extern int _st7_hasi_light_obj[];
+extern int _st7_jeep_light_obj[];
+extern int _st7_neon_00_obj[];
 INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldInitSt7);
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldSt7EntryTex_GND);
@@ -97,7 +103,13 @@ INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldSt7_Fire);
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldSt7_InitFireLight);
 
-INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldSt7_EntryFireLightObj);
+void gsWorldSt7_EntryFireLightObj(int a)
+{
+    int n = _st7_fire_light_obj_num;
+
+    _st7_fire_light_obj[n] = a;
+    _st7_fire_light_obj_num = n + 1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldSt7_EntryFireLight);
 
