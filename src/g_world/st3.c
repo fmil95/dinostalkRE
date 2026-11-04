@@ -16,13 +16,21 @@ extern void sceVu0CopyVector();
 extern int gsWorldSt3_IwaOdv[];
 extern int gsWorldSt3_KoiwaOdv[];
 extern int gsWorldSt3_SplashOdv[];
+extern int gsWorldTimer;
+extern int _st3_tex_idx;
+extern int gsWorldSt3_TexScroll();
 INCLUDE_ASM("asm/nonmatchings/g_world/st3", gsWorldInitSt3);
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st3", gsWorldSt3EntryTex_GND);
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st3", gsWorldSt3_SpecialEffect);
 
-INCLUDE_ASM("asm/nonmatchings/g_world/st3", gsWorldSt3_SpecialEffect2);
+int gsWorldSt3_SpecialEffect2(int a)
+{
+    int r = gsWorldSt3_TexScroll(a, _st3_tex_idx + 0x21, ((u_int)(-gsWorldTimer) >> 3) & 0xFF, 1, 0x80, 0x80);
+
+    return gsWorldSt3_TexScroll(r, _st3_tex_idx + 0x22, ((u_int)(-gsWorldTimer) >> 2) & 0xFF, 1, 0x100, 0x100);
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st3", gsWorldSt3_BoatInit);
 
