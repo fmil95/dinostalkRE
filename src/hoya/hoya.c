@@ -4,7 +4,6 @@ extern int texMng[];
 extern void hySetFadePara();
 extern void hyDrawSMSpriteSub();
 extern int gsGuncon2_CheckConnect();
-extern char D_0066A4E8[];
 extern int FIO_ReadFile_Align();
 extern void hyDestroySMSpriteInfoSub();
 extern void gplInitSprite2();
@@ -22,7 +21,6 @@ extern int gsPad_GetRTrg();
 extern int gsPad_AGetRTrg();
 extern int gsPad_Get();
 extern int gsPad_AGet();
-extern char D_0066A478[];
 extern int TEST_EntryTexture();
 extern int gsFONT_IdtexNo1;
 extern int FIO_GetFileSize();
@@ -134,15 +132,31 @@ INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyLoadPigContinue);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyLoadPigName);
 
+INCLUDE_RODATA("asm/nonmatchings/hoya/hoya", D_0066A338);
+
+INCLUDE_RODATA("asm/nonmatchings/hoya/hoya", D_0066A360);
+
+INCLUDE_RODATA("asm/nonmatchings/hoya/hoya", D_0066A388);
+
+INCLUDE_RODATA("asm/nonmatchings/hoya/hoya", D_0066A3B0);
+
+INCLUDE_RODATA("asm/nonmatchings/hoya/hoya", D_0066A3D8);
+
+INCLUDE_RODATA("asm/nonmatchings/hoya/hoya", D_0066A400);
+
+INCLUDE_RODATA("asm/nonmatchings/hoya/hoya", D_0066A428);
+
+INCLUDE_RODATA("asm/nonmatchings/hoya/hoya", D_0066A450);
+
 void hyLoadPigFont()
 {
-    gsFONT_IdtexNo1 = TEST_EntryTexture(FIO_ReadFile_Align(D_0066A478, 0x40), 1);
+    gsFONT_IdtexNo1 = TEST_EntryTexture(FIO_ReadFile_Align("cdrom0:\\DATA\\FONT\\FNT_BIN.BIN;1", 0x40), 1);
 }
 
 char* hyLoadPigFont2(int a)
 {
-    int sz = FIO_GetFileSize(D_0066A478);
-    char* p = FIO_ReadFile(D_0066A478, a);
+    int sz = FIO_GetFileSize("cdrom0:\\DATA\\FONT\\FNT_BIN.BIN;1");
+    char* p = FIO_ReadFile("cdrom0:\\DATA\\FONT\\FNT_BIN.BIN;1", a);
 
     gsFONT_IdtexNo1 = TEST_EntryTexture(p, 1);
     return p + (sz + 3) / 4 * 4;
@@ -152,9 +166,13 @@ INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyLoadPigMemory);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyLoadPigStartgs3);
 
+INCLUDE_RODATA("asm/nonmatchings/hoya/hoya", D_0066A498);
+
+INCLUDE_RODATA("asm/nonmatchings/hoya/hoya", D_0066A4C0);
+
 void hyLoadIcon()
 {
-    FIO_ReadFile_Align(D_0066A4E8, 0x40);
+    FIO_ReadFile_Align("cdrom0:\\DATA\\ICON\\ICON_BIN.BIN;1", 0x40);
 }
 
 INCLUDE_ASM("asm/nonmatchings/hoya/hoya", KeyStateUpdate);
@@ -442,3 +460,5 @@ int hyGetTimeHourPercentage(int t, int b)
 
     return t;
 }
+INCLUDE_RODATA("asm/nonmatchings/hoya/hoya", D_0066A510);
+
