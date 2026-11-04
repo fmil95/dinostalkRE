@@ -95,7 +95,21 @@ int mcdGetErrorCause()
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/mcduse", mcdSetPause);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/mcduse", mcdStartChk);
+int mcdStartChk(int port, int slot)
+{
+    if (chk_flg != 0)
+    {
+        return -1;
+    }
+    chk_port = port;
+    chk_slot = slot;
+    chk_type = -1;
+    chk_free = -1;
+    chk_fmt = -1;
+    chk_flg = 1;
+    re_flg = 0;
+    return 0;
+}
 
 int mcdEndChk()
 {
