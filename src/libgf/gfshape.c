@@ -6,7 +6,25 @@
 extern sceVu0FVECTOR D_00655C00;
 INCLUDE_ASM("asm/nonmatchings/libgf/gfshape", gfShape_AttachObject2);
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfshape", GFShape_AttachObject);
+void GFShape_AttachObject(GF_INST_SHAPE* shape, GF_INST_OBJECT* obj)
+{
+    Sint32 no;
+
+    obj->shape = shape;
+
+    for (no = 0; no < obj->nShape; no++)
+    {
+        shape[no].head.type = 2;
+        GFInstance_InitHead(&shape[no].head);
+    }
+
+    no = ((PodHEADER*)obj->model->podData)->rootShape;
+
+    gfShape_AttachObject2(obj, obj->shape, no);
+
+    obj->head.child = &shape[no].head;
+    shape[no].head.parent = &obj->head;
+}
 
 void GFShape_Eval(GF_INST_SHAPE* inst)
 {
