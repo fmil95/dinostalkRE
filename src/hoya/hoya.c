@@ -348,4 +348,14 @@ INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyGetTimeSecondPercentage);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyGetTimeMinutePercentage);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyGetTimeHourPercentage);
+int hyGetTimeHourPercentage(int t, int b)
+{
+    t = t / 360000;
+
+    if (b == 0)
+    {
+        t = t % 60;
+    }
+
+    return t;
+}
