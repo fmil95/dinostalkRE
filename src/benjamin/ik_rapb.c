@@ -15,7 +15,14 @@ extern char D_003E9610[];
 extern char _gsIK_RaptRArmHitPos[];
 
 extern int gsPartRapt[];
-INCLUDE_ASM("asm/nonmatchings/benjamin/ik_rapb", _gsIK_RaptInit);
+extern void _gsIK_InitDataHead();
+extern int _gsIK_RaptGroundData[];
+extern int gsStageNo;
+void _gsIK_RaptInit(char* a)
+{
+    _gsIK_InitDataHead(a + 0xD40);
+    STRUCT_OFFSET(a, 0xD60, int) = ((int*)0x3E9DA8)[gsStageNo];
+}
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/ik_rapb", _gsIK_RaptUpdateData);
 
