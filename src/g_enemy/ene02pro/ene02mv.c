@@ -5,6 +5,12 @@
 
 extern void Enemy_AnmChg00();
 
+extern void ene02B_joy_plmain();
+extern void enemy_thkmain();
+extern int D_002F18B4[2];
+extern void (*ene02B_movestbl[])();
+extern void ene02joy_plmain();
+extern void (*ene02movestbl[])();
 INCLUDE_ASM("asm/nonmatchings/g_enemy/ene02pro/ene02mv", ene02move_main);
 
 void enedummymv_ene02mv(void) {
@@ -114,7 +120,20 @@ INCLUDE_ASM("asm/nonmatchings/g_enemy/ene02pro/ene02mv", ene02move23);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/ene02pro/ene02mv", ene02move2c);
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/ene02pro/ene02mv", ene02B_move_main);
+void ene02B_move_main(char* a)
+{
+    STRUCT_OFFSET(a, 0x98, int) = STRUCT_OFFSET(STRUCT_OFFSET(a, 0xCBC, char*), 0x148, int);
+    if (STRUCT_OFFSET(a, 0, int) < 0)
+    {
+        STRUCT_OFFSET(a, 0xE4, int) = D_002F18B4[0];
+        ene02B_joy_plmain(a);
+    }
+    else
+    {
+        enemy_thkmain(a);
+    }
+    ene02B_movestbl[STRUCT_OFFSET(a, 0x84, int)](a);
+}
 
 void ene02B_move00(void* a)
 {
