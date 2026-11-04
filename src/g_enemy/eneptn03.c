@@ -504,7 +504,19 @@ INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn03", eneptn03_ST7carno_breakobj00);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn03", eneptn03_ST7carno_breakobj01);
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn03", eneptn03_ST7carno_breakobj02);
+void eneptn03_ST7carno_breakobj02(char* a)
+{
+    if (eneptn03_getothercarno(a))
+    {
+        if (STRUCT_OFFSET(a, 0, int) & 0x100)
+        {
+            u_short t = STRUCT_OFFSET(a, 0x62, u_short);
+
+            ST7Carno_NowBreaking = 1;
+            STRUCT_OFFSET(a, 0x62, u_short) = t + 1;
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn03", eneptn03_ST7carno_breakobj03);
 
