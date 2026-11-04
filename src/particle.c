@@ -84,7 +84,18 @@ void GFParticle_SetPosition()
     sceVu0CopyVector();
 }
 
-INCLUDE_ASM("asm/nonmatchings/particle", GFParticle_SetPositionFunction);
+void GFParticle_SetPositionFunction(char* a, int f)
+{
+    STRUCT_OFFSET(a, 0xF4, int) = f;
+    if (f)
+    {
+        STRUCT_OFFSET(a, 0xE8, int) |= 8;
+    }
+    else
+    {
+        STRUCT_OFFSET(a, 0xE8, int) &= ~8;
+    }
+}
 
 void GFParticle_SetGravity(void* a)
 {
