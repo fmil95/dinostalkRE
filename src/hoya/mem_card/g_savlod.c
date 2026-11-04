@@ -23,7 +23,10 @@ INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", InitMemcManager);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", CheckMemcType);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", CheckMemcFormat);
+int CheckMemcFormat(int a, int b)
+{
+    return D_005E6048[b + a].w[0];
+}
 
 int CheckMemcCapacityDir(int a, int b)
 {
