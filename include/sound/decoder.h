@@ -48,6 +48,16 @@ typedef union {
 	sceMpegCbDataStr str;
 } sceMpegCbData;
 
+typedef int (*sceMpegCallback)(sceMpeg *mp, sceMpegCbData *cbdata, void *anyData);
+
+#define sceMpegCbError       0
+#define sceMpegCbNodata      1
+#define sceMpegCbStopDMA     2
+#define sceMpegCbRestartDMA  3
+#define sceMpegCbTimeStamp   5
+
+int sceMpegCreate(sceMpeg *mp, u_char *work_area, int work_area_size);
+int sceMpegAddCallback(sceMpeg *mp, sceMpegCbType type, sceMpegCallback cb, void *anyData);
 int sceMpegDelete(sceMpeg *mp);
 int sceMpegIsRefBuffEmpty(sceMpeg *mp);
 void sceMpegSetDecodeMode(sceMpeg *mp, int ni, int np, int nb);
@@ -66,6 +76,8 @@ typedef struct { // 0xb8
 	/* 0xb4 */ int hid_vblank;
 } VideoDec;
 
+int videoDecCreate(VideoDec *vd, u_char *mpegWork, int mpegWorkSize, u_long128 *data, u_long128 *tag, int tagSize, TimeStamp *pts, int n_pts);
+void videoDecMain(VideoDec *vd);
 void videoDecSetDecodeMode(VideoDec *vd, int ni, int np, int nb);
 void videoDecBeginPut(VideoDec *vd, u_char **ptr0, int *len0, u_char **ptr1, int *len1);
 void videoDecEndPut(VideoDec *vd, int size);

@@ -1,6 +1,9 @@
 #include "sound/decoder.h"
 
 extern VideoDec videoDec;
+extern VoBuf voBuf;
+extern int decBs0(VideoDec* vd);
+extern void* memcpy(void* dst, const void* src, unsigned int n);
 extern int printf();
 extern char D_00673DE0[];
 extern int RotateThreadReadyQueue();
@@ -18,7 +21,22 @@ extern int s_vol_r0;
 extern int s_vol_l1;
 extern int s_vol_r1;
 
-INCLUDE_ASM("asm/nonmatchings/sound/decoder", videoDecCreate);
+int videoDecCreate(VideoDec* vd, u_char* mpegWork, int mpegWorkSize, u_long128* data, u_long128* tag, int tagSize, TimeStamp* pts, int n_pts)
+{
+    sceMpegCreate(&vd->mpeg, mpegWork, mpegWorkSize);
+
+    sceMpegAddCallback(&vd->mpeg, sceMpegCbError, (sceMpegCallback)mpegError, NULL);
+    sceMpegAddCallback(&vd->mpeg, sceMpegCbNodata, mpegNodata, NULL);
+    sceMpegAddCallback(&vd->mpeg, sceMpegCbStopDMA, mpegStopDMA, NULL);
+    sceMpegAddCallback(&vd->mpeg, sceMpegCbRestartDMA, mpegRestartDMA, NULL);
+    sceMpegAddCallback(&vd->mpeg, sceMpegCbTimeStamp, (sceMpegCallback)mpegTS, NULL);
+
+    videoDecReset(vd);
+
+    viBufCreate(&vd->vibuf, data, tag, tagSize, pts, n_pts);
+
+    return 0;
+}
 
 void videoDecSetDecodeMode(VideoDec* vd, int ni, int np, int nb)
 {
