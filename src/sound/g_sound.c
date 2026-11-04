@@ -74,7 +74,21 @@ int gsSoundReadWait()
     return 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/g_sound", gsSoundComWait);
+int gsSoundComWait()
+{
+    sceGsSyncV(0);
+    sceGsSyncV(0);
+    SeIopStatus();
+    while (!SeComNow())
+    {
+        sceGsSyncV(0);
+        sceGsSyncV(0);
+        SeIopStatus();
+    }
+    sceGsSyncV(0);
+    sceGsSyncV(0);
+    return 0;
+}
 
 int gsSoundReset()
 {
