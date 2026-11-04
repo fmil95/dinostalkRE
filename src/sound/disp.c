@@ -119,7 +119,12 @@ u_int* setXYZ2(u_int* p, u_int x, u_int y, u_int z)
     return setGIFad(p, SCE_GS_XYZ2, val);
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/disp", setFRAME_1);
+u_int* setFRAME_1(u_int* p, u_int fbp, u_int fbw, u_int psm, u_int fbmask)
+{
+    u_long val = SCE_GS_SET_FRAME_1(fbp, fbw, psm, fbmask);
+
+    return setGIFad(p, SCE_GS_FRAME_1, val);
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/disp", setFRAME_2);
 
