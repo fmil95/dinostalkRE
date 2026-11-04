@@ -140,7 +140,12 @@ u_int* setTEST_1(u_int* p, u_int ate, u_int atst, u_int aref, u_int afail, u_int
     return setGIFad(p, SCE_GS_TEST_1, val);
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/disp", setTEST_2);
+u_int* setTEST_2(u_int* p, u_int ate, u_int atst, u_int aref, u_int afail, u_int date, u_int datm, u_int zte, u_int ztst)
+{
+    u_long val = SCE_GS_SET_TEST_2(ate, atst, aref, afail, date, datm, zte, ztst);
+
+    return setGIFad(p, SCE_GS_TEST_2, val);
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/disp", setSCISSOR_1);
 
