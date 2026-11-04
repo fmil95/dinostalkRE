@@ -4,7 +4,10 @@ extern UsbGunBuff usbgun[];
 typedef struct { char b[60]; } GunBuff;
 extern GunBuff gun_buff[];
 
-INCLUDE_ASM("asm/nonmatchings/g_guncon2/src/guncon2", GetUsbGunBuffer);
+UsbGunBuff* GetUsbGunBuffer(int i)
+{
+    return &usbgun[i];
+}
 
 GunBuff* GetGunBuffer(int i)
 {
