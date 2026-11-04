@@ -191,7 +191,10 @@ INCLUDE_ASM("asm/nonmatchings/hoya/hoya", PutBmpZ);
 void hyDumpVector(void) {
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyCheckReed);
+int hyCheckReed(int a)
+{
+    return a < 0 ? -1 : 10;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyHex2Bcd);
 
