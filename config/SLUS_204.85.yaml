@@ -639,7 +639,7 @@ segments:
       - [0x56bee8, rodata, hoya/mem_card/memcsub0]
       - [0x56bf10, .rodata, hoya/mem_card/memcsub1]
       - [0x56c470, rodata, hoya/mem_card/memcsub2]
-      - [0x56c680, rodata, hoya/mem_card/memcsub3]
+      - [0x56c680, .rodata, hoya/mem_card/memcsub3]
       - [0x56cb60, rodata, hoya/mem_card/memcsub4]
       - [0x56ce80, rodata, hoya/title/ttlsub02]
       - [0x56ceb0, rodata, hoya/result/frsltsb1]

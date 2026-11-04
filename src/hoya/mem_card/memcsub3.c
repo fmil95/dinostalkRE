@@ -66,11 +66,19 @@ INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub3", ProcMemcChecking_memcsub3
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub3", ProcSlotCheck_memcsub3);
 
+INCLUDE_RODATA("asm/nonmatchings/hoya/mem_card/memcsub3", D_0066B680);
+
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub3", ProcFormatCheck_memcsub3);
+
+INCLUDE_RODATA("asm/nonmatchings/hoya/mem_card/memcsub3", D_0066B6E8);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub3", ProcSaveDataCheck_memcsub3);
 
+INCLUDE_RODATA("asm/nonmatchings/hoya/mem_card/memcsub3", D_0066B9B0);
+
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub3", ProcSaveDataLoad_memcsub3);
+
+INCLUDE_RODATA("asm/nonmatchings/hoya/mem_card/memcsub3", D_0066BAE0);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub3", ProcSave);
 
@@ -102,3 +110,7 @@ void EndMemcSysSave()
 {
     EndMemcManager();
 }
+INCLUDE_RODATA("asm/nonmatchings/hoya/mem_card/memcsub3", D_0066BB40);
+
+INCLUDE_RODATA("asm/nonmatchings/hoya/mem_card/memcsub3", D_0066BB50);
+
