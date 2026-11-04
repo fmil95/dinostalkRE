@@ -4,13 +4,22 @@ extern SaePrim* _saePrimCurrent[2];
 
 extern int aeSetAD();
 
+extern void FlushCache();
+extern void sceGsSwapDBuff();
+extern void aeStartMfifo();
 INCLUDE_ASM("asm/nonmatchings/aelib", aeInit);
 
 INCLUDE_ASM("asm/nonmatchings/aelib", aeStartMfifo);
 
 INCLUDE_ASM("asm/nonmatchings/aelib", aeStopMfifo);
 
-INCLUDE_ASM("asm/nonmatchings/aelib", aeSwapDBMfifo);
+void aeSwapDBMfifo(int a, int b)
+{
+    aeStopMfifo();
+    FlushCache(0);
+    sceGsSwapDBuff(a, b);
+    aeStartMfifo();
+}
 
 INCLUDE_ASM("asm/nonmatchings/aelib", aePresetPolyFt4);
 
