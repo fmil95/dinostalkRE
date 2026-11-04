@@ -55,7 +55,12 @@ int ConvDinoBonus2Score()
     return 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/result/rsltsub1", NoDamageBonus2Score);
+int NoDamageBonus2Score()
+{
+    addScore2(pRsltRslt + 0x750, STRUCT_OFFSET(pRsltRslt, 0x768, int));
+
+    return 0;
+}
 
 void SetFadeParaRslt(int a, int b, int c)
 {
