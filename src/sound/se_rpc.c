@@ -361,7 +361,10 @@ INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeCSLMidiXFadeB);
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeCSLMidiXFade);
 
-INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeCSLMidiContinue);
+int SeCSLMidiContinue(int a)
+{
+    return ezSe(0x8400, a, 1);
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeCSLMidiPause);
 
