@@ -160,7 +160,22 @@ int cdvCdStopSet()
     return WriteQue;
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvCdStandbySet);
+int cdvCdStandbySet()
+{
+    u_short w;
+    u_short m;
+
+    if (cdvIsEoq(2))
+    {
+        return -1;
+    }
+    cdvDiscReadySet();
+    w = WriteQue;
+    m = MaxQue;
+    STRUCT_OFFSET(Cdv_Que, w * 40, short) = 8;
+    WriteQue = (w + 1) % (m + 1);
+    return WriteQue;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvTrayOpenSet);
 
