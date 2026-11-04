@@ -1,5 +1,6 @@
 #include "sound/decoder.h"
 
+#define UncAddr(p) ((void*)(((u_int)(p) & 0x0FFFFFFF) | 0x20000000))
 #define min(x, y) (((x) > (y)) ? (y) : (x))
 
 extern VideoDec videoDec;
@@ -139,7 +140,45 @@ int videoDecInputSpaceCount(VideoDec* vd)
     return len0 + len1;
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/decoder", videoDecFlush);
+struct SeqEnd { u_char b[4]; };
+extern struct SeqEnd D_00673DC8[];
+extern int cpy2area();
+
+int videoDecFlush(VideoDec* vd)
+{
+    u_char* pd0;
+    u_char* pd1;
+    u_char* pd0Unc;
+    u_char* pd1Unc;
+    struct SeqEnd seq_end_code = D_00673DC8[0];
+    int d0;
+    int d1;
+    int len;
+
+    videoDecBeginPut(vd, &pd0, &d0, &pd1, &d1);
+
+    if (d0 + d1 < 4)
+    {
+        return 0;
+    }
+
+    pd0Unc = (u_char*)UncAddr(pd0);
+    pd1Unc = (u_char*)UncAddr(pd1);
+
+    len = cpy2area(pd0Unc, d0, pd1Unc, d1, seq_end_code.b, 4, NULL, 0);
+
+    videoDecEndPut(&videoDec, len);
+
+    viBufFlush(&vd->vibuf);
+
+    if (vd->state == VD_STATE_NORMAL)
+    {
+        vd->state = VD_STATE_FLUSH;
+    }
+
+    return 1;
+}
+
 
 int videoDecIsFlushed(VideoDec* vd)
 {
