@@ -57,6 +57,8 @@ INCLUDE_ASM("asm/nonmatchings/libgf/gftex", gfTex_SetDatabaseForCache);
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gftex", gfTex_SetDefaultValue);
 
+INCLUDE_RODATA("asm/nonmatchings/libgf/gftex", D_0066D190);
+
 INCLUDE_ASM("asm/nonmatchings/libgf/gftex", gfTex_CalcAllocationSize);
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gftex", GFTex_GetDb);
