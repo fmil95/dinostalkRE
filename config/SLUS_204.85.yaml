@@ -638,7 +638,7 @@ segments:
       - [0x56bb30, rodata, hoya/cockpit/g_other]
       - [0x56bba8, rodata, hoya/mem_card/g_memc]
       - [0x56bbd0, .rodata, hoya/mem_card/g_savlod]
-      - [0x56bc30, rodata, hoya/mem_card/mcduse]
+      - [0x56bc30, .rodata, hoya/mem_card/mcduse]
       - [0x56bee8, rodata, hoya/mem_card/memcsub0]
       - [0x56bf10, .rodata, hoya/mem_card/memcsub1]
       - [0x56c470, .rodata, hoya/mem_card/memcsub2]
