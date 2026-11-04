@@ -188,7 +188,67 @@ void gsCOCKPIT_InitSightMineThrower()
     STRUCT_OFFSET(*q, 0x18, u_char) = STRUCT_OFFSET(s, 0x2C, u_char);
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_cpsight", gsCOCKPIT_InitSights);
+void gsCOCKPIT_InitSights(int type, int b)
+{
+    switch (type)
+    {
+    case 0:
+        gsCOCKPIT_InitSightMachine(b);
+        break;
+    case 1:
+    case 19:
+        gsCOCKPIT_InitSightRifle(b);
+        break;
+    case 3:
+        gsCOCKPIT_InitSightMissile(b);
+        break;
+    case 4:
+        gsCOCKPIT_InitSightHandgun(b);
+        break;
+    case 5:
+        gsCOCKPIT_InitSightMagnum(b);
+        break;
+    case 6:
+        gsCOCKPIT_InitSightFire(b);
+        break;
+    case 7:
+        gsCOCKPIT_InitSightHandGrenade(b);
+        break;
+    case 8:
+        gsCOCKPIT_InitSightGutoring(b);
+        break;
+    case 9:
+        gsCOCKPIT_InitSightMissilePod(b);
+        break;
+    case 10:
+        gsCOCKPIT_InitSightGrenade(b);
+        break;
+    case 11:
+        gsCOCKPIT_InitSightBowgun(b);
+        break;
+    case 12:
+        gsCOCKPIT_InitSightPlasma(b);
+        break;
+    case 13:
+        gsCOCKPIT_InitSightRocket(b);
+        break;
+    case 14:
+        gsCOCKPIT_InitSightShotgun(b);
+        break;
+    case 15:
+        gsCOCKPIT_InitSightSpark(b);
+        break;
+    case 16:
+        gsCOCKPIT_InitSightGrenade(b);
+        break;
+    case 17:
+        gsCOCKPIT_InitSightLaser(b);
+        break;
+    case 18:
+        gsCOCKPIT_InitSightMineThrower(b);
+        break;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_cpsight", gsCOCKPIT_InitSightFirst);
 
