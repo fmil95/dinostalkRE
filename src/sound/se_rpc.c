@@ -286,7 +286,12 @@ int SeStrmOff()
     return ezSe(0x8450, 0, 1);
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeSpuPortOff);
+int SeSpuPortOff(int a, int b)
+{
+    u_dat[0] = a;
+    u_dat[1] = b;
+    return ezSeL(0x8440, u_dat, 0x40);
+}
 
 int SeSetMasterVol(int a)
 {
