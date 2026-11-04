@@ -311,7 +311,27 @@ int cdvMpegGetError()
 
 INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvMain);
 
-INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", GetSecByte);
+int GetSecByte(u_char m)
+{
+    int r;
+
+    switch (m)
+    {
+    case 0:
+        r = 0x800;
+        break;
+    case 1:
+        r = 0x918;
+        break;
+    case 2:
+        r = 0x924;
+        break;
+    default:
+        r = 0x800;
+        break;
+    }
+    return r;
+}
 
 void ReadDataCreate(int a, int b, int c, int d, int e)
 {
