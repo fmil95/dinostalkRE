@@ -265,7 +265,40 @@ static Sint32 gfTex_IsFormat32(Sint32 no, Uint16 flag)
     return 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gftex", gfTex_GetTbpTbw);
+static void gfTex_GetTbpTbw(GF_TEXDB* tex_db, Sint32 no, Uint16* tbp, Uint16* tbw)
+{
+    switch (no)
+    {
+    case 0:
+        *tbp = tex_db->tex0.TBP0;
+        *tbw = tex_db->tex0.TBW;
+        break;
+    case 1:
+        *tbp = tex_db->miptbp1.TBP1;
+        *tbw = tex_db->miptbp1.TBW1;
+        break;
+    case 2:
+        *tbp = tex_db->miptbp1.TBP2;
+        *tbw = tex_db->miptbp1.TBW2;
+        break;
+    case 3:
+        *tbp = tex_db->miptbp1.TBP3;
+        *tbw = tex_db->miptbp1.TBW3;
+        break;
+    case 4:
+        *tbp = tex_db->miptbp2.TBP4;
+        *tbw = tex_db->miptbp2.TBW4;
+        break;
+    case 5:
+        *tbp = tex_db->miptbp2.TBP5;
+        *tbw = tex_db->miptbp2.TBW5;
+        break;
+    case 6:
+        *tbp = tex_db->miptbp2.TBP6;
+        *tbw = tex_db->miptbp2.TBW6;
+        break;
+    }
+}
 
 GF_TEXDB_HEAD* GFTex_GetDatabase()
 {
