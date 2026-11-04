@@ -28,7 +28,17 @@ void InitLetterAll()
     LoadLetterPig();
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/g_string", DeleteEntryNumSprite);
+int DeleteEntryNumSprite(u_int i)
+{
+    if (i >= 0x2BD)
+    {
+        return 1;
+    }
+
+    STRUCT_OFFSET(&fntMng[i], 0x0, int) &= ~1;
+
+    return 0;
+}
 
 FontMng* GetFontInfo(int i)
 {
