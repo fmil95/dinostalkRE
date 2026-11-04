@@ -15,6 +15,7 @@ extern int gsHeapTop;
 extern void mem_SearchAllocInfo();
 extern void MEM_MallocAlign();
 
+extern int cur_magic_0;
 void MEM_InitAllocation() 
 {
     unsigned int i;
@@ -62,7 +63,10 @@ void mem_GetFreeAllocInfo()
 
 INCLUDE_ASM("asm/nonmatchings/mem", mem_SearchAllocInfo);
 
-INCLUDE_ASM("asm/nonmatchings/mem", mem_GetMagicNumber);
+int mem_GetMagicNumber()
+{
+    return cur_magic_0++;
+}
 
 INCLUDE_ASM("asm/nonmatchings/mem", MEM_CheckViolation);
 
