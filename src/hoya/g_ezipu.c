@@ -89,7 +89,12 @@ void gsEzIpuLoadImage(void* p)
 
 INCLUDE_ASM("asm/nonmatchings/hoya/g_ezipu", gsEzIpuSetToIPUtags);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/g_ezipu", gsEzIpuSetDMAtoIPU);
+void gsEzIpuSetDMAtoIPU(void* p)
+{
+    *(volatile u_int*)0x1000B430 = (u_int)p & 0x0FFFFFFF;
+    *(volatile u_int*)0x1000B420 = 0;
+    *(volatile u_int*)0x1000B400 = 0x105;
+}
 
 void gsEzIpuSetDMAfromIPU(void* p, int n)
 {
