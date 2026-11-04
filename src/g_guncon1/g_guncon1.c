@@ -18,7 +18,16 @@ INCLUDE_ASM("asm/nonmatchings/g_guncon1/g_guncon1", gsGuncon1_LoadPad);
 
 INCLUDE_ASM("asm/nonmatchings/g_guncon1/g_guncon1", gsGuncon1_Exec);
 
-INCLUDE_ASM("asm/nonmatchings/g_guncon1/g_guncon1", gsGuncon1_CheckPort);
+int gsGuncon1_CheckPort()
+{
+    int f = gsGuncon1Manager[0];
+
+    if (f & 1)
+    {
+        return 0;
+    }
+    return (f & 2) ? 1 : -1;
+}
 
 int gsGuncon1_GetDelay()
 {
