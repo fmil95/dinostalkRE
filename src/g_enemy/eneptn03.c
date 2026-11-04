@@ -702,7 +702,33 @@ void eneptn03_ST7trex_main(char* a)
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn03", eneptn03_ST7trex_manage);
 
+INCLUDE_RODATA("asm/nonmatchings/g_enemy/eneptn03", D_00668980);
+
+INCLUDE_RODATA("asm/nonmatchings/g_enemy/eneptn03", D_00668990);
+
+INCLUDE_RODATA("asm/nonmatchings/g_enemy/eneptn03", D_006689A0);
+
+INCLUDE_RODATA("asm/nonmatchings/g_enemy/eneptn03", D_006689C0);
+
+INCLUDE_RODATA("asm/nonmatchings/g_enemy/eneptn03", D_006689E0);
+
+INCLUDE_RODATA("asm/nonmatchings/g_enemy/eneptn03", D_00668A00);
+
+INCLUDE_RODATA("asm/nonmatchings/g_enemy/eneptn03", D_00668A20);
+
+INCLUDE_RODATA("asm/nonmatchings/g_enemy/eneptn03", D_00668A30);
+
+INCLUDE_RODATA("asm/nonmatchings/g_enemy/eneptn03", D_00668A40);
+
+INCLUDE_RODATA("asm/nonmatchings/g_enemy/eneptn03", D_00668A50);
+
+INCLUDE_RODATA("asm/nonmatchings/g_enemy/eneptn03", D_00668A60);
+
+INCLUDE_RODATA("asm/nonmatchings/g_enemy/eneptn03", D_00668A70);
+
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn03", eneptn03_ST7trex_sub00);
+
+INCLUDE_RODATA("asm/nonmatchings/g_enemy/eneptn03", D_00668AA0);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn03", eneptn03_ST7trex_sub01);
 
@@ -739,6 +765,12 @@ INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn03", eneptn03_ST9trex_turnchk);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn03", eneptn03_ST9trex_movechk);
 
+INCLUDE_RODATA("asm/nonmatchings/g_enemy/eneptn03", D_00668B30);
+
+INCLUDE_RODATA("asm/nonmatchings/g_enemy/eneptn03", D_00668B40);
+
+INCLUDE_RODATA("asm/nonmatchings/g_enemy/eneptn03", D_00668B58);
+
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn03", eneptn03_ST9trex_thkchg);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn03", eneptn03_ST9trex_first);
@@ -752,6 +784,10 @@ INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn03", eneptn03_ST9trex_semifinal);
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn03", eneptn03_ST9trex_final);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn03", eneptn03_ST9trex_head);
+
+INCLUDE_RODATA("asm/nonmatchings/g_enemy/eneptn03", D_00668D00);
+
+INCLUDE_RODATA("asm/nonmatchings/g_enemy/eneptn03", D_00668D10);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn03", eneptn03_ST9trex_demo);
 
