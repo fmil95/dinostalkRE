@@ -12,7 +12,30 @@ extern int D_002F18B4[2];
 extern void (*ene04Bmovestbl2[])();
 extern void ene04joy_plmain();
 extern void (*ene04movestbl2[])();
-INCLUDE_ASM("asm/nonmatchings/g_enemy/ene04pro/ene04mv", ene04move_main);
+void ene04move_main(char* a)
+{
+    u_int k = STRUCT_OFFSET(a, 0x94, int) - 9;
+
+    if (k < 2)
+    {
+        STRUCT_OFFSET(a, 0, int) |= 0x10000000;
+    }
+    else
+    {
+        STRUCT_OFFSET(a, 0, int) &= ~0x10000000;
+    }
+    STRUCT_OFFSET(a, 0x98, int) = STRUCT_OFFSET(STRUCT_OFFSET(a, 0xCBC, char*), 0x148, int);
+    if (STRUCT_OFFSET(a, 0, int) < 0)
+    {
+        STRUCT_OFFSET(a, 0xE4, int) = D_002F18B4[0];
+        ene04joy_plmain(a);
+    }
+    else
+    {
+        enemy_thkmain(a);
+    }
+    ene04movestbl2[STRUCT_OFFSET(a, 0x84, int) * 4 + STRUCT_OFFSET(a, 0x8C, int)](a);
+}
 
 void enedummyElem_ene04mv(void) {
 }
