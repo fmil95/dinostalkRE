@@ -29,7 +29,14 @@ INCLUDE_ASM("asm/nonmatchings/sound/disp", setTexRect);
 
 INCLUDE_ASM("asm/nonmatchings/sound/disp", setFlatRect);
 
-INCLUDE_ASM("asm/nonmatchings/sound/disp", setDMAscTag);
+u_int* setDMAscTag(u_int* p, u_int spr, void* addr, u_int irq, u_int id, u_int pce, u_int qwc)
+{
+    u_long* val = (u_long*)p;
+
+    *val = (u_long)spr << 63 | (u_long)((u_int)addr & 0xFFFFFFF0) << 32 | (u_long)irq << 31 | (u_long)id << 28 | (u_long)pce << 26 | (u_long)qwc << 0;
+
+    return p + 4;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/disp", setGIFtag);
 
