@@ -207,7 +207,19 @@ INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", SaveIconIco);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", ClearSystemData);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", ClearGameData);
+void ClearGameData(int n)
+{
+    int* p;
+    int i;
+
+    memset(D_005E2728 + n * 0x29C, 0, 0x29C);
+    p = (int*)(D_005E2728 + 0x1500);
+    i = 7;
+    do
+    {
+        *p-- = 0;
+    } while (--i >= 0);
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", SetDefaultSystemData);
 
