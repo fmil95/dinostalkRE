@@ -382,7 +382,20 @@ void popMasterVolume()
     SignalSema(remoteSema);
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/decoder", changeMasterVolume);
+static void changeMasterVolume(u_int val)
+{
+    int i;
+
+    WaitSema(remoteSema);
+
+    for (i = 0; i < 2; i++)
+    {
+        sceSdRemote(1, 0x8010, i | 0x980, val);
+        sceSdRemote(1, 0x8010, i | 0xA80, val);
+    }
+
+    SignalSema(remoteSema);
+}
 
 void changeInputVolume(int a)
 {
