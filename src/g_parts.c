@@ -58,7 +58,14 @@ INCLUDE_ASM("asm/nonmatchings/g_parts", gpEntryWorldManagerGV);
 
 INCLUDE_ASM("asm/nonmatchings/g_parts", gpEntryWorldManagerODV);
 
-INCLUDE_ASM("asm/nonmatchings/g_parts", gpSetWorldManagerMatrixGND);
+void gpSetWorldManagerMatrixGND(char* a)
+{
+    sceVu0FMATRIX m;
+
+    gpSetMatrixXYZ(m);
+    sceVu0CopyMatrix(a, m);
+    sceVu0CopyMatrix(a + 0x40, m);
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_parts", gpEntryWorldManagerGND);
 
