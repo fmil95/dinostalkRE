@@ -4,6 +4,9 @@ extern void Enemy_ActChg00();
 
 extern char gsEnemyInfos[];
 extern void (*ST7carno_breakobj_funcs[])();
+extern void (*ST7carno_wait_funcs[])();
+extern void (*ST7carno_thkchg_funcs[])();
+extern void (*ST7carno_ptnfuncs[])();
 extern void (*ST7carno_combi00_funcs[])();
 extern int ST7Carno_NowBreaking;
 extern void (*ST7carno_wave_funcs[])();
@@ -113,7 +116,7 @@ INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn03", eneptn03_ST5carno_runaway);
 
 void eneptn03_ST7carno_main(char* a)
 {
-    ((void (**)())0x45AD10)[STRUCT_OFFSET(a, 0xC, int)](a);
+    ST7carno_ptnfuncs[STRUCT_OFFSET(a, 0xC, int)](a);
 }
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn03", eneptn03_ST7carno_manage);
@@ -129,7 +132,7 @@ void eneptn03_ST7carno_wait(char* a)
     STRUCT_OFFSET(a, 0, int) |= 2;
     STRUCT_OFFSET(a, 0x70, short) = 0;
     STRUCT_OFFSET(a, 0x6E, short) = STRUCT_OFFSET(a, 0x5C, u_short);
-    ((void (**)())0x45AD98)[STRUCT_OFFSET(a, 0x62, short)](a);
+    ST7carno_wait_funcs[STRUCT_OFFSET(a, 0x62, short)](a);
 }
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn03", eneptn03_ST7carno_wait00);
@@ -393,7 +396,7 @@ void eneptn03_ST7carno_thkchg(char* a)
     STRUCT_OFFSET(a, 0, int) |= 2;
     STRUCT_OFFSET(a, 0x70, short) = 2;
     STRUCT_OFFSET(a, 0x6E, short) = STRUCT_OFFSET(a, 0x5C, u_short);
-    ((void (**)())0x45AE80)[STRUCT_OFFSET(a, 0x62, short)](a);
+    ST7carno_thkchg_funcs[STRUCT_OFFSET(a, 0x62, short)](a);
 }
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn03", eneptn03_ST7carno_thkchg00);
