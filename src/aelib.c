@@ -44,7 +44,12 @@ INCLUDE_ASM("asm/nonmatchings/aelib", aeSetAD);
 
 INCLUDE_ASM("asm/nonmatchings/aelib", saeInit);
 
-INCLUDE_ASM("asm/nonmatchings/aelib", saeSetPolyFt4);
+void saeSetPolyFt4(SaePrim* p, int ch)
+{
+    p->next4 = _saePrimCurrent[ch];
+    p->type = 0;
+    _saePrimCurrent[ch] = p;
+}
 
 INCLUDE_ASM("asm/nonmatchings/aelib", saeSetSprite);
 
