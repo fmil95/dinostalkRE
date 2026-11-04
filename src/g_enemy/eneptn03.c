@@ -140,7 +140,14 @@ INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn03", eneptn03_ST7carno_head);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn03", eneptn03_ST7carno_head00);
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn03", eneptn03_ST7carno_head01);
+void eneptn03_ST7carno_head01(char* a)
+{
+    STRUCT_OFFSET(a, 0x40, int) = 0;
+    STRUCT_OFFSET(a, 0, int) &= ~0x1000000;
+    Enemy_ActChg00(a, 0x23);
+    STRUCT_OFFSET(a, 0, int) &= ~0x100;
+    STRUCT_OFFSET(a, 0x62, u_short)++;
+}
 
 void eneptn03_ST7carno_head02(void* a)
 {
