@@ -25,7 +25,19 @@ INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvCallBack);
 
 INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvInit);
 
-INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvClose);
+int cdvClose()
+{
+    if (Cdv_Que == 0)
+    {
+        return -1;
+    }
+
+    Cdv_Que = 0;
+    sceCdInit(5);
+    ResetMpeg();
+
+    return 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvFlush);
 
