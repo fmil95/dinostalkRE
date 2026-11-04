@@ -4,6 +4,8 @@ extern void exit();
 
 extern void fio_ReadFile();
 
+typedef struct { int a; int b; } CacheInfoS;
+extern CacheInfoS fio_CacheInfo[];
 INCLUDE_ASM("asm/nonmatchings/fileio", SCELSEEK2);
 
 INCLUDE_ASM("asm/nonmatchings/fileio", SCECLOSE2);
@@ -70,4 +72,16 @@ INCLUDE_ASM("asm/nonmatchings/fileio", FIOCache_ReadSdp);
 
 INCLUDE_ASM("asm/nonmatchings/fileio", FIOCache_Search);
 
-INCLUDE_ASM("asm/nonmatchings/fileio", FIOCache_GetCheckSum);
+u_int FIOCache_GetCheckSum(u_int* p, u_int size)
+{
+    u_int n = size >> 2;
+    u_int sum = 0;
+    u_int i;
+
+    for (i = 0; i < n; i++)
+    {
+        sum += p[i];
+    }
+
+    return sum;
+}
