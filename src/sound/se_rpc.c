@@ -352,7 +352,13 @@ void SeInitHot()
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeInit);
 
-INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeSpu2Init);
+void SeSpu2Init(int a)
+{
+    SeSoundOff();
+    SePortInit();
+    SeSpu2AllocInit(a);
+    SeAllocInit();
+}
 
 int SeSetEffect(int a, int b, int c)
 {
