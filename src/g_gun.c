@@ -152,7 +152,21 @@ void gsGunPlaySE_LOAD_B(int a)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_gun", gsGunPlaySE_EMPTY);
+void gsGunPlaySE_EMPTY(int a)
+{
+    short* p = (short*)(D_003C1148 + a * 180);
+    int i = 1;
+
+    do
+    {
+        short s = *p++;
+
+        if (s >= 0)
+        {
+            gsSoundSeMePlay(s);
+        }
+    } while (--i >= 0);
+}
 
 void gsGunPlaySE_RELOAD_A(int a)
 {
