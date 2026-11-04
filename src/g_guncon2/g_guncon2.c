@@ -25,7 +25,17 @@ int gsGuncon2_CheckConnect()
 
 INCLUDE_ASM("asm/nonmatchings/g_guncon2/g_guncon2", gsGuncon2_GetActivePort);
 
-INCLUDE_ASM("asm/nonmatchings/g_guncon2/g_guncon2", gsGuncon2_Get);
+int gsGuncon2_Get()
+{
+    void* m = gsGuncon2Manager[0];
+
+    if (m == 0)
+    {
+        return 0;
+    }
+
+    return STRUCT_OFFSET(m, 0x28, int);
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_guncon2/g_guncon2", gsGuncon2_GetTrg);
 
