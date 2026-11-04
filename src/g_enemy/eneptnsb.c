@@ -47,7 +47,16 @@ void eneptn_glinprdch00(char* a, int b)
     Enemy_OpVInPd00(a + 0x270, v, p + 0x110);
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptnsb", eneptn_glrlch00);
+short eneptn_glrlch00(char* a, int b)
+{
+    char v[16];
+    char* p;
+
+    memset(v, 0, 16);
+    p = a + b * 16;
+    Enemy_MkUnitV00(v, a + 0x240);
+    return Enemy_OpVLRChk00(a + 0x270, v, p + 0x110);
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptnsb", eneptn_glvectorchk);
 
