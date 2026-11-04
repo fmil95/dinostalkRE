@@ -58,7 +58,12 @@ INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub4", ProcCancel2);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub4", ProcSystemLoadKeikoku);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub4", ProcEnd_memcsub4);
+int ProcEnd_memcsub4(int a)
+{
+    GotoNextStage_memcsub4();
+
+    return a;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub4", ProcDebug_memcsub4);
 
