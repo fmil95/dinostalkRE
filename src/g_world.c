@@ -3,6 +3,10 @@
 extern int _bullet_effect_gnd_list;
 extern int _sw_dino_num;
 
+extern int gsWorldLineSwitchManager[];
+extern void sceVu0CopyVector();
+extern void* GFTex_GetDb();
+extern u_short D_0069167E[];
 INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldRestoreMipmap);
 
 INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldInitWorld);
@@ -74,7 +78,10 @@ void gsWorldBulletEffectGnd_ENTRY(int v)
     _bullet_effect_gnd_list = v;
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldBulletEffectGnd_GET_SE_ID);
+int gsWorldBulletEffectGnd_GET_SE_ID(int i)
+{
+    return STRUCT_OFFSET(_bullet_effect_gnd_list + i * 20, 0x10, int);
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldBulletEffectGnd);
 
