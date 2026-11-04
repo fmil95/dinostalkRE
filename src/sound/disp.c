@@ -196,7 +196,12 @@ u_int* setCLAMP_2(u_int* p, u_int wms, u_int wmt, u_int minu, u_int maxu, u_int 
     return setGIFad(p, SCE_GS_CLAMP_2, val);
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/disp", setBITBLTBUF);
+u_int* setBITBLTBUF(u_int* p, u_int sbp, u_int sbw, u_int spsm, u_int dbp, u_int dbw, u_int dpsm)
+{
+    u_long val = ((u_long)dpsm << 56) | ((u_long)dbw << 48) | ((u_long)dbp << 32) | ((u_long)spsm << 24) | ((u_long)sbw << 16) | (u_long)sbp;
+
+    return setGIFad(p, SCE_GS_BITBLTBUF, val);
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/disp", setTRXPOS);
 
