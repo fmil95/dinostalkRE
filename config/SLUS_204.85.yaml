@@ -623,7 +623,7 @@ segments:
       - [0x56b018, rodata, air/a_spbtl]
       - [0x56b058, rodata, sound/g_sound]
       - [0x56b0b8, rodata, hoya/bmp]
-      - [0x56b140, rodata, hoya/g_test2]
+      - [0x56b140, .rodata, hoya/g_test2]
       - [0x56b250, rodata, hoya/hoya]
       - [0x56b520, rodata, hoya/cockpit/g_ckt2]
       - [0x56b590, rodata, hoya/cockpit/g_cpblt]

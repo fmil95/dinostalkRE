@@ -12,6 +12,8 @@ extern void gsStageEnd_TITLE();
 
 INCLUDE_ASM("asm/nonmatchings/hoya/g_test2", hySetVram);
 
+INCLUDE_RODATA("asm/nonmatchings/hoya/g_test2", D_0066A140);
+
 INCLUDE_ASM("asm/nonmatchings/hoya/g_test2", G_TTL_Init);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/g_test2", G_TTL_Exec);
@@ -190,3 +192,5 @@ void gsHoyaOption_End()
     GF_EndGraphicsFramework();
     MEM_FreeAll();
 }
+INCLUDE_RODATA("asm/nonmatchings/hoya/g_test2", D_0066A230);
+
