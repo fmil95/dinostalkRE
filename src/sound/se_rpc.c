@@ -20,6 +20,12 @@ extern int D_0064B364[][4];
 extern u_char dat[];
 extern int StrmPort[][2];
 extern char D_0066CB80[];
+typedef struct { int w[6]; } BgmListEnt3;
+typedef struct { int w[7]; } BgmAlc3;
+extern BgmListEnt3 D_00651328[];
+extern BgmAlc3 D_006519A8[];
+extern int midi_current_port;
+extern int SeCSLMidiXFadeB();
 int get_SE_MAX() 
 {
     return 1000;
@@ -549,7 +555,12 @@ INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeCSLMidiPlay2);
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeCSLMidiXFadeB);
 
-INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeCSLMidiXFade);
+int SeCSLMidiXFade(int a, int b)
+{
+    int i = D_00651328[a].w[0] + midi_current_port;
+
+    return SeCSLMidiXFadeB(b, i, D_006519A8[i].w[0]);
+}
 
 int SeCSLMidiContinue(int a)
 {
