@@ -60,7 +60,13 @@ void gsWorldSt7_InitGlow()
     _st7_glow_num = 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldSt7_EntryGlow);
+void gsWorldSt7_EntryGlow(int a)
+{
+    int n = _st7_glow_num;
+
+    _st7_glow_obj_no[n] = a;
+    _st7_glow_num = n + 1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldSt7_Glow);
 
