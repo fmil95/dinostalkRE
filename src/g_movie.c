@@ -1,6 +1,8 @@
 #include "common.h"
 
 #include <libgraph.h>
+extern int cdvMpegPlaySet();
+extern int waitingQue;
 extern int gsMovie_skipGunKey;
 extern void cdvMpegSkipReset();
 extern void cdvMpegSkipSet();
@@ -14,7 +16,10 @@ void gsMovie_SetSkipKey(int a, int b)
     gsMovie_skipGunKey = b;
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_movie", gsMovie_Play);
+void gsMovie_Play(int a)
+{
+    waitingQue = cdvMpegPlaySet(a, 0, 0);
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_movie", gsMovie_Exec);
 
