@@ -8,6 +8,10 @@ extern int gsExtProgNext;
 extern int _time_over_cnt;
 extern int _time_over_step;
 #include <libgraph.h>
+extern int _dbgCS_p;
+extern int _dbgCS_siz;
+extern int _dbgCS_sum0;
+extern int FIOCache_GetCheckSum();
 extern void gsEffectSetFadeNowColor();
 extern void gsEffectSetFade();
 
@@ -64,4 +68,7 @@ void gsClearHiddenFrame(int a)
     gsEffectSetFade(a, 1);
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_test", _dbgCS_OverWrite);
+void _dbgCS_OverWrite()
+{
+    _dbgCS_sum0 = FIOCache_GetCheckSum(_dbgCS_p, _dbgCS_siz);
+}
