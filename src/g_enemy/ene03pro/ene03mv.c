@@ -1,4 +1,5 @@
 #include "common.h"
+#include <stdlib.h>
 
 extern void Enemy_AnmChg00();
 extern void Enemy_AnmChg01();
@@ -13,7 +14,24 @@ INCLUDE_ASM("asm/nonmatchings/g_enemy/ene03pro/ene03mv", bigdino_vbrset);
 void enedummyElem_ene03mv(void) {
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/ene03pro/ene03mv", ene03moveElem000);
+void ene03moveElem000(char* a)
+{
+    STRUCT_OFFSET(a, 0x0, int) &= ~0x40000000;
+    Enemy_AnmChg00(a, 0, 8, 1);
+    STRUCT_OFFSET(a, 0x0, int) &= ~0x800;
+    if (rand() % 3 == 0)
+    {
+        if (STRUCT_OFFSET(a, 0x2A, short) == 7)
+        {
+            Enemy_SeSet00(a, 0x172);
+        }
+        else
+        {
+            Enemy_SeSet00(a, 0x186);
+        }
+    }
+    STRUCT_OFFSET(a, 0x8C, int)++;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/ene03pro/ene03mv", ene03moveElem001);
 
