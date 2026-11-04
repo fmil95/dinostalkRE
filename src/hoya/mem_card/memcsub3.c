@@ -78,7 +78,19 @@ INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub3", ProcMcBroakenFile_memcsub
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub3", ProcCancel_memcsub3);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub3", ProcEnd_memcsub3);
+int ProcEnd_memcsub3(int a)
+{
+    if (memcManager == 0x63)
+    {
+        LetsGotoTitle(gsNextProg);
+    }
+    else
+    {
+        LetsGotoTitle(gsNextProg);
+    }
+    EndMemcManager();
+    return a;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub3", InitMemcSysSave);
 
