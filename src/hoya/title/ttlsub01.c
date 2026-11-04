@@ -5,6 +5,7 @@ extern void hyCheckFadeFinishFlag();
 extern void hySetFadePara2();
 extern void hySwitchFadeTimer();
 
+extern void hyDrawSMSprite();
 void SetFadePara_ttlsub01(int a, int b, int c)
 {
     hySetFadePara2(a, b, c, (ttl + 2304));
@@ -22,7 +23,14 @@ void CheckFadeFinishFlag_ttlsub01()
 
 INCLUDE_ASM("asm/nonmatchings/hoya/title/ttlsub01", Calculation_ttlsub01);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/title/ttlsub01", Draw2dObjectTitle);
+void Draw2dObjectTitle(int a)
+{
+    int t = ttl;
+
+    STRUCT_OFFSET(t, 0x30, int) = 0;
+    STRUCT_OFFSET(t, 0x34, int) = 0;
+    hyDrawSMSprite(t + 0x2C, a);
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/title/ttlsub01", InitTitle);
 
