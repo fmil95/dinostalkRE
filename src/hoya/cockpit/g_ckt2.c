@@ -14,7 +14,25 @@ INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_ckt2", gsCOCKPIT_takiEffOptInit);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_ckt2", gsCOCKPIT_takiEffInit);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_ckt2", FreeDataSearchOpt);
+OptS* FreeDataSearchOpt(char* a)
+{
+    int i;
+    OptS* p = (OptS*)(a + 0x1F0);
+
+    for (i = 0; i < 5; i++, p++)
+    {
+        int f = STRUCT_OFFSET(p, 0x0, int);
+
+        if ((f & 1) == 0)
+        {
+            STRUCT_OFFSET(p, 0x0, int) = f | 1;
+
+            return p;
+        }
+    }
+
+    return 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_ckt2", OrderChangeOpt);
 
