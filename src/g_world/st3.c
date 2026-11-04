@@ -65,7 +65,13 @@ void gsWorldSt3_InitSplash()
     gsWorldSt3_SplashCnt = 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_world/st3", gsWorldSt3_EntrySplash);
+void gsWorldSt3_EntrySplash(int a)
+{
+    int n = gsWorldSt3_SplashCnt;
+
+    gsWorldSt3_SplashOdv[n] = a;
+    gsWorldSt3_SplashCnt = n + 1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st3", gsWorldSt3_IwaWater);
 
