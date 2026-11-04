@@ -116,7 +116,18 @@ int cdvGetSearchNum()
     return (0x14 - ((search_num + search_que) - search_prg));
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvDelSearchData);
+int cdvDelSearchData()
+{
+    if (search_num == 0)
+    {
+        return -1;
+    }
+
+    search_num--;
+    search_ptr = (search_ptr + 1) % 20;
+
+    return 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvDelSearchDataSet);
 
