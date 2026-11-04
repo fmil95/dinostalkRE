@@ -51,7 +51,12 @@ int ProcEnd_memcsub0(int a)
     return a;
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub0", ProcEnd2_memcsub0);
+int ProcEnd2_memcsub0(int a)
+{
+    GotoNextStage_memcsub0();
+
+    return a;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub0", InitMemcFsize);
 
