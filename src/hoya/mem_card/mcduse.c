@@ -9,6 +9,14 @@ extern int chk_flg;
 extern int chk_fmt;
 extern int chk_free;
 extern int chk_type;
+extern int chk_port;
+extern int chk_slot;
+extern int re_flg;
+extern int maxque;
+extern char* queaddr;
+extern void mcdFlushQue();
+extern long pause;
+extern long pause_cnt;
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/mcduse", mcdFlushQue);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/mcduse", mcdInit);
@@ -128,7 +136,15 @@ INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/mcduse", mcdRenameSet);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/mcduse", mcdSlotMaxSet);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/mcduse", mcdPauseExe);
+int mcdPauseExe()
+{
+    if (pause != 0 && pause_cnt > 0)
+    {
+        pause_cnt--;
+        pause = pause_cnt;
+    }
+    return pause;
+}
 
 void mcdErrMess2Console(void) {
 }
