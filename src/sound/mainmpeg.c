@@ -164,7 +164,67 @@ int isAudioOK()
 
 INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", initAll);
 
-INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", termAll);
+void termAll()
+{
+    readBufDelete(&readBuf);
+    voBufDelete(&voBuf);
+
+    if (videoDecTh)
+    {
+        TerminateThread(videoDecTh);
+        DeleteThread(videoDecTh);
+        videoDecTh = 0;
+    }
+
+    if (defaultTh)
+    {
+        TerminateThread(defaultTh);
+        DeleteThread(defaultTh);
+        defaultTh = 0;
+    }
+
+    if (userTh)
+    {
+        TerminateThread(userTh);
+        DeleteThread(userTh);
+        userTh = 0;
+    }
+
+    DisableDmac(2);
+    RemoveDmacHandler(2, videoDec.hid_endimage);
+
+    if (!dma_flg)
+    {
+        EnableDmac(2);
+    }
+
+    sceGsSyncVCallback(save_func);
+
+    videoDecDelete(&videoDec);
+
+    audioDecPause(&audioDec);
+    audioDecPause(&audioDec);
+    audioDecPause(&audioDec);
+    audioDecPause(&audioDec);
+    audioDecPause(&audioDec);
+    audioDecPause(&audioDec);
+    audioDecPause(&audioDec);
+    audioDecPause(&audioDec);
+    audioDecPause(&audioDec);
+    audioDecPause(&audioDec);
+    audioDecPause(&audioDec);
+    audioDecPause(&audioDec);
+    audioDecPause(&audioDec);
+    audioDecPause(&audioDec);
+    audioDecPause(&audioDec);
+    audioDecPause(&audioDec);
+
+    audioDecDelete(&audioDec);
+
+    dispDelete(&display);
+
+    strFileClose(&infile);
+}
 
 
 void defMain()
