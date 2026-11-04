@@ -47,7 +47,13 @@ void ene03moveElem024(char* a)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/ene03pro/ene03mv", ene03moveNewTurn00);
+void ene03moveNewTurn00(char* a)
+{
+    Enemy_AnmChg00(a, STRUCT_OFFSET(a, 0x84, int) + 0x6F, 8, 0);
+    STRUCT_OFFSET(a, 0x0, int) |= 0x40000000;
+    STRUCT_OFFSET(a, 0xC0, int) = 0;
+    STRUCT_OFFSET(a, 0x8C, int)++;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/ene03pro/ene03mv", ene03moveNewTurn01);
 
