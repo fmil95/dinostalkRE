@@ -20,7 +20,15 @@ INCLUDE_ASM("asm/nonmatchings/benjamin/g_ik_sub", _gsIK_ResetHeadInfoSub);
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/g_ik_sub", _gsIK_ResetTailInfoSub);
 
-INCLUDE_ASM("asm/nonmatchings/benjamin/g_ik_sub", _gsIK_ResetHitInfoSub);
+void _gsIK_ResetHitInfoSub(void* a)
+{
+    char* p = (char*)a + 0xD40;
+    int v = STRUCT_OFFSET(p, 0x0, int) & 0xFFF8007F;
+
+    STRUCT_OFFSET(p, 0x1C, int) = 0;
+    STRUCT_OFFSET(p, 0x18, int) = 0;
+    STRUCT_OFFSET(p, 0x0, int) = v;
+}
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/g_ik_sub", _gsIK_HeadHitSub);
 
