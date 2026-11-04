@@ -68,7 +68,7 @@ int ezSeInit();
 int SeRpcCom(int prm0, int prm1, int prm2);
 int ezSeL();
 int ezSe();
-int SeTest();
+void* SeTest(int prm0);
 int SeReadNow();
 int IOPDevReadNow();
 int IOPReadNow();

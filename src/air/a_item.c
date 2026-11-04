@@ -3,6 +3,13 @@
 extern void sceVu0AddVector();
 extern void gsItem_SizeRot_Return();
 
+typedef struct { char b[0x230]; } AnotherItemS;
+extern AnotherItemS Another_Item[];
+typedef struct { char b[0x210]; } FixItemS;
+extern FixItemS Fix_Item[];
+typedef struct { char b[0x220]; } ThrowWeaponS;
+extern ThrowWeaponS gsThrow_Weapon[];
+extern void gfShape_AttachObject2_item();
 INCLUDE_ASM("asm/nonmatchings/air/a_item", gsItemInit);
 
 INCLUDE_ASM("asm/nonmatchings/air/a_item", gsEventObjItemDataLoad);
@@ -68,7 +75,20 @@ INCLUDE_ASM("asm/nonmatchings/air/a_item", gsAllItemReset);
 
 INCLUDE_ASM("asm/nonmatchings/air/a_item", gsFixItemFreeInfosSearch);
 
-INCLUDE_ASM("asm/nonmatchings/air/a_item", gsAnotherItemFreeInfosSearch);
+AnotherItemS* gsAnotherItemFreeInfosSearch()
+{
+    int i;
+
+    for (i = 0; i < 48; i++)
+    {
+        if ((STRUCT_OFFSET(&Another_Item[i], 0x0, int) & 1) == 0)
+        {
+            return &Another_Item[i];
+        }
+    }
+
+    return 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/air/a_item", gsAnotherItemFreeInfosSearch2);
 
