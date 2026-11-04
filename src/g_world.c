@@ -119,7 +119,10 @@ INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldEntryBACK_COLOR);
 
 INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldEntryTransGV);
 
-INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldEntryGV_AREA);
+void gsWorldEntryGV_AREA(char* a, int b)
+{
+    STRUCT_OFFSET(a + STRUCT_OFFSET(a, 0xC3330, int) * 4, 0xC393C, int) = b;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldEntryODV_AREA);
 
