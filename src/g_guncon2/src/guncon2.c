@@ -1,8 +1,15 @@
 #include "common.h"
+typedef struct { char b[96]; } UsbGunBuff;
+extern UsbGunBuff usbgun[];
+typedef struct { char b[60]; } GunBuff;
+extern GunBuff gun_buff[];
 
 INCLUDE_ASM("asm/nonmatchings/g_guncon2/src/guncon2", GetUsbGunBuffer);
 
-INCLUDE_ASM("asm/nonmatchings/g_guncon2/src/guncon2", GetGunBuffer);
+GunBuff* GetGunBuffer(int i)
+{
+    return &gun_buff[i];
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_guncon2/src/guncon2", Guncon2_Init);
 
