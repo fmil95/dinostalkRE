@@ -205,6 +205,24 @@ INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldSt7_ObjSort_EXT2);
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldSt7_Frea);
 
+INCLUDE_RODATA("asm/nonmatchings/g_world/st7", D_00665A28);
+
+INCLUDE_RODATA("asm/nonmatchings/g_world/st7", D_00665A50);
+
+INCLUDE_RODATA("asm/nonmatchings/g_world/st7", D_00665A60);
+
+INCLUDE_RODATA("asm/nonmatchings/g_world/st7", D_00665A70);
+
+INCLUDE_RODATA("asm/nonmatchings/g_world/st7", D_00665A80);
+
+INCLUDE_RODATA("asm/nonmatchings/g_world/st7", D_00665AA0);
+
+INCLUDE_RODATA("asm/nonmatchings/g_world/st7", D_00665AD0);
+
+INCLUDE_RODATA("asm/nonmatchings/g_world/st7", D_00665AE0);
+
+INCLUDE_RODATA("asm/nonmatchings/g_world/st7", D_00665AF0);
+
 INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldSt7_Kanban);
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldSt7_CheckBossDied_CALNO);
@@ -223,3 +241,17 @@ void gsWorldSt7_InitBackSE()
 INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldSt7_PlayBackSE);
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldSt7_FarAdjust);
+INCLUDE_RODATA("asm/nonmatchings/g_world/st7", D_00665B18);
+
+INCLUDE_RODATA("asm/nonmatchings/g_world/st7", jtbl_00665B20);
+
+INCLUDE_RODATA("asm/nonmatchings/g_world/st7", jtbl_00665B50);
+
+INCLUDE_RODATA("asm/nonmatchings/g_world/st7", jtbl_00665B70);
+
+INCLUDE_RODATA("asm/nonmatchings/g_world/st7", jtbl_00665B90);
+
+INCLUDE_RODATA("asm/nonmatchings/g_world/st7", D_00665BB0);
+
+INCLUDE_RODATA("asm/nonmatchings/g_world/st7", D_00665BC0);
+

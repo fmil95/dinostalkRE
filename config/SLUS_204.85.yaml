@@ -579,7 +579,7 @@ segments:
       - [0x566750, .rodata, g_world/st3]
       - [0x566890, rodata, g_world/st4]
       - [0x566958, rodata, g_world/st5]
-      - [0x566a28, rodata, g_world/st7]
+      - [0x566a28, .rodata, g_world/st7]
       - [0x566bd0, rodata, g_world/st8]
       - [0x566c58, rodata, g_world/st7test]
       - [0x5675f0, rodata, g_world/st1]
