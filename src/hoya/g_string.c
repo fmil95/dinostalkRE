@@ -107,7 +107,12 @@ void AddMessageData2(int a, char* b)
     strAddSentence(*STRUCT_OFFSET(b + a * 16, 0xC, int*));
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/g_string", DrawMessageData);
+void DrawMessageData(int a, int b)
+{
+    int p = a * 12 + b;
+
+    strDrawSentence(STRUCT_OFFSET(p, 0x0, int), STRUCT_OFFSET(p, 0x4, int));
+}
 
 void DrawMessageData2(int a, MsgData* b, int c)
 {
