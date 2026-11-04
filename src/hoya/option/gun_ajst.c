@@ -144,7 +144,19 @@ int gun_adjust_W1_gun_ajst(int a, int b)
     return ret;
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/option/gun_ajst", gun_adjust_W2_gun_ajst);
+int gun_adjust_W2_gun_ajst(int a, int b)
+{
+    int ret;
+
+    ret = adjust_wide_gun_ajst(a);
+
+    if (ret != 0)
+    {
+        set_adjustY_gun_ajst(b, center_y_00674888);
+    }
+
+    return ret;
+}
 
 void gun_adjust_W3_gun_ajst()
 {
