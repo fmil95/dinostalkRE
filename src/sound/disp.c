@@ -182,7 +182,12 @@ u_int* setPRMODECONT(u_int* p, u_int ac)
     return setGIFad(p, SCE_GS_PRMODECONT, val);
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/disp", setCLAMP_1);
+u_int* setCLAMP_1(u_int* p, u_int wms, u_int wmt, u_int minu, u_int maxu, u_int minv, u_int maxv)
+{
+    u_long val = SCE_GS_SET_CLAMP_1(wms, wmt, minu, maxu, minv, maxv);
+
+    return setGIFad(p, SCE_GS_CLAMP_1, val);
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/disp", setCLAMP_2);
 
