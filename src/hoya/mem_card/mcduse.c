@@ -5,6 +5,7 @@ extern int err_num_func;
 extern int stepque;
 extern int writeque;
 
+extern int chk_flg;
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/mcduse", mcdFlushQue);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/mcduse", mcdInit);
@@ -42,7 +43,17 @@ INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/mcduse", mcdSetPause);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/mcduse", mcdStartChk);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/mcduse", mcdEndChk);
+int mcdEndChk()
+{
+    if (chk_flg == 0)
+    {
+        return -1;
+    }
+
+    chk_flg = 0;
+
+    return 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/mcduse", mcdGetChkType);
 
