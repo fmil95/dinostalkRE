@@ -2,6 +2,13 @@
 #include <eestruct.h>
 extern int flag;
 
+extern void gsEzIpuSetLoadImageTagsGeneral();
+extern int destMem;
+extern int bsSize;
+extern int bs;
+extern int frame_no;
+extern void sceGsResetPath();
+extern void sceIpuInit();
 void gsEzIpuChangeDraw(int a)
 {
     if (a)
@@ -89,7 +96,16 @@ INCLUDE_ASM("asm/nonmatchings/hoya/g_ezipu", gsReadEzIpuHeader);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/g_ezipu", gsEzIpuSet);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/g_ezipu", gsEzIpuInit);
+void gsEzIpuInit(int a)
+{
+    destMem = a;
+    bsSize = -1;
+    flag = 1;
+    bs = 0;
+    frame_no = 0;
+    sceGsResetPath();
+    sceIpuInit();
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/g_ezipu", gsEzIpuMain);
 
