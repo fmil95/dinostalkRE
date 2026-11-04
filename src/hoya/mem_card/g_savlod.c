@@ -17,6 +17,8 @@ extern MemcInfo D_005E6048[];
 extern MemcInfo D_005E6040[];
 extern MemcInfo D_005E6054[];
 extern int ico;
+typedef struct { u_char a[6]; short b; } McDirCreate;
+extern McDirCreate creteData;
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", CreateIconSys);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", InitMemcManager);
@@ -99,7 +101,16 @@ INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", GetMemcFIleList);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", GetMemcDir);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", ClearMemcDirCreateData);
+void ClearMemcDirCreateData()
+{
+    creteData.a[0] = 0;
+    creteData.a[1] = 0;
+    creteData.a[2] = 0;
+    creteData.a[3] = 0;
+    creteData.a[4] = 0;
+    creteData.a[5] = 0;
+    creteData.b = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", GetMemcDirCreateData);
 
