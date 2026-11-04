@@ -62,4 +62,14 @@ int GetResultStandardDinoBonus(u_int i)
     return r;
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/hyopen", GetResultStandardNoDamageBonus);
+int GetResultStandardNoDamageBonus(u_int i)
+{
+    int r = -1;
+
+    if (i < 3)
+    {
+        r = rsltTblStandardNoDamageBonus[i];
+    }
+
+    return r;
+}
