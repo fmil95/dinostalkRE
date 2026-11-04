@@ -615,7 +615,7 @@ segments:
       - [0x56a700, .rodata, g_enemy/ene01pro/ene01mv]
       - [0x56a820, .rodata, g_enemy/ene02pro/ene02mv]
       - [0x56a8e0, rodata, g_enemy/ene03pro/ene03mv]
-      - [0x56aaa8, rodata, air/a_event]
+      - [0x56aaa8, .rodata, air/a_event]
       - [0x56ab28, .rodata, air/a_item]
       - [0x56ab70, .rodata, air/a_evtthk]
       - [0x56ac30, rodata, air/a_itmthk]
