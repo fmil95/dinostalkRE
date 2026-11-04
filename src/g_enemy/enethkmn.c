@@ -38,10 +38,4 @@ INCLUDE_ASM("asm/nonmatchings/g_enemy/enethkmn", enemy_modchg05);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enethkmn", enemy_modchg08);
 
-void enemy_modchg09(void* a)
-{
-    if (STRUCT_OFFSET(a, 0x0, int) & 0x100)
-    {
-        STRUCT_OFFSET(a, 0x4, int) |= 0x40000000;
-    }
-}
+INCLUDE_ASM("asm/nonmatchings/g_enemy/enethkmn", enemy_modchg09);
