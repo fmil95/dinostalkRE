@@ -25,6 +25,9 @@ extern int gsPad_AGet();
 extern char D_0066A478[];
 extern int TEST_EntryTexture();
 extern int gsFONT_IdtexNo1;
+extern int FIO_GetFileSize();
+extern char* FIO_ReadFile();
+extern int TEST_LoadTexture();
 INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyGun1CheckScreenOut);
 
 void hySetBgCol(void) {
@@ -106,7 +109,14 @@ void hyLoadPigFont()
     gsFONT_IdtexNo1 = TEST_EntryTexture(FIO_ReadFile_Align(D_0066A478, 0x40), 1);
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyLoadPigFont2);
+char* hyLoadPigFont2(int a)
+{
+    int sz = FIO_GetFileSize(D_0066A478);
+    char* p = FIO_ReadFile(D_0066A478, a);
+
+    gsFONT_IdtexNo1 = TEST_EntryTexture(p, 1);
+    return p + (sz + 3) / 4 * 4;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyLoadPigMemory);
 
