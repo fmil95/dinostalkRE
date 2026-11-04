@@ -61,7 +61,70 @@ INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_cpblt", Send2dWeaponTex);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_cpblt", hyEntryObj4Blt);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_cpblt", gsCOCKPIT_InitBullet);
+void gsCOCKPIT_InitBullet(int type, int b, int c)
+{
+    switch (type)
+    {
+    case 0:
+        gsCOCKPIT_InitBulletMachine(b, c);
+        break;
+    case 1:
+    case 19:
+        gsCOCKPIT_InitBulletRifle(b, c);
+        break;
+    case 2:
+        gsCOCKPIT_InitBulletRifleSc(b, c);
+        break;
+    case 3:
+        gsCOCKPIT_InitBulletMissile(b, c);
+        break;
+    case 4:
+        gsCOCKPIT_InitBulletHandgun(b, c);
+        break;
+    case 5:
+        gsCOCKPIT_InitBulletMagnum(b, c);
+        break;
+    case 6:
+        gsCOCKPIT_InitBulletFire(b, c);
+        break;
+    case 7:
+        gsCOCKPIT_InitBulletHandGrenade(b, c);
+        break;
+    case 8:
+        gsCOCKPIT_InitBulletGutoring(b, c);
+        break;
+    case 9:
+        gsCOCKPIT_InitBulletMissilePod(b, c);
+        break;
+    case 10:
+        gsCOCKPIT_InitBulletGrenade(b, c);
+        break;
+    case 11:
+        gsCOCKPIT_InitBulletBowgun(b, c);
+        break;
+    case 12:
+        gsCOCKPIT_InitBulletPlasma(b, c);
+        break;
+    case 13:
+        gsCOCKPIT_InitBulletRocket(b, c);
+        break;
+    case 14:
+        gsCOCKPIT_InitBulletShotgun(b, c);
+        break;
+    case 15:
+        gsCOCKPIT_InitBulletSpark(b, c);
+        break;
+    case 16:
+        gsCOCKPIT_InitBulletFGrenade(b, c);
+        break;
+    case 17:
+        gsCOCKPIT_InitBulletLaser(b, c);
+        break;
+    case 18:
+        gsCOCKPIT_InitBulletMineThrower(b, c);
+        break;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_cpblt", gsCOCKPIT_InitBulletRifleSc);
 
