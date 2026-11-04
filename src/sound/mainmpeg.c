@@ -125,7 +125,13 @@ int cdvMpegGetFrameCount()
     return frame_cnt;
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", cdvMpegPlayEnd);
+void cdvMpegPlayEnd()
+{
+    if (writerest > 0x40000)
+    {
+        abort_flg = 1;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", PlayMpeg);
 
