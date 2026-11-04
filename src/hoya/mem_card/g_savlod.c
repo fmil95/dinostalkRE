@@ -146,7 +146,10 @@ void CloseIconSys()
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", OpenIconIco);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", WriteIconIco);
+void WriteIconIco(int a, int b)
+{
+    mcdWriteSet(a, b, ico, 0x1F470);
+}
 
 void CloseIconIco()
 {
