@@ -141,7 +141,10 @@ void gsWorldEntryBACK_COLOR(char* a, void* v)
     sceVu0CopyVector(a + n * 0x1B0 + 0xC19B0, v);
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldEntryTransGV);
+void gsWorldEntryTransGV(char* a, int i, void* v)
+{
+    sceVu0CopyVector(a + i * 16 + 0xC3540, v);
+}
 
 void gsWorldEntryGV_AREA(char* a, int b)
 {
