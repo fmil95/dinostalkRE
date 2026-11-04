@@ -200,7 +200,14 @@ void gsWorldEntryOBJ_SCORE(char* a, int b)
     STRUCT_OFFSET(a + STRUCT_OFFSET(a, 0x51400, int) * 4, 0x7E5EC, int) = b;
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldEntryBACK_COLA_OFF);
+void gsWorldEntryBACK_COLA_OFF(char* a)
+{
+    int n = STRUCT_OFFSET(a, 0xC1820, int) - 1;
+    char* p = a + n * 0x1B0;
+    int* q = (int*)(p + 0xC1870);
+
+    q[0x34] |= 8;
+}
 
 void gsWorldSetGV_FLAG(char* a, int i, int m)
 {
