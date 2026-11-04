@@ -34,7 +34,15 @@ void ene04moveElem020(char* a)
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/ene04pro/ene04mv", ene04moveElem021);
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/ene04pro/ene04mv", ene04moveElem030);
+void ene04moveElem030(char* a)
+{
+    Enemy_AnmChg00(a, STRUCT_OFFSET(a, 0x84, int) + 6, 8, 1);
+    if (rand() % 3 == 0)
+    {
+        Enemy_SeSet00(a, 0x17C);
+    }
+    STRUCT_OFFSET(a, 0x8C, int)++;
+}
 
 void ene04moveElem050(char* a)
 {
