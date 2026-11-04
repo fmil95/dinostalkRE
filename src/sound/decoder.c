@@ -277,7 +277,21 @@ void audioDecStart(AudioDec* ad)
     audioDecResume(ad);
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/decoder", audioDecReset);
+int audioDecReset(AudioDec* ad)
+{
+    audioDecPause(ad);
+
+    ad->state = AU_STATE_INIT;
+    ad->hdrCount = 0;
+    ad->put = 0;
+    ad->count = 0;
+    ad->totalBytes = 0;
+    ad->totalBytesSent = 0;
+    ad->iopLastPos = 0;
+    ad->iopPausePos = 0;
+
+    return 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/decoder", audioDecBeginPut);
 
