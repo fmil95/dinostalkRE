@@ -167,7 +167,13 @@ void eneptn03_ST7carno_head06(void* a)
     STRUCT_OFFSET(a, 0x62, short) = 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn03", eneptn03_ST7carno_wave);
+void eneptn03_ST7carno_wave(char* a)
+{
+    STRUCT_OFFSET(a, 0, int) |= 2;
+    STRUCT_OFFSET(a, 0x70, short) = 5;
+    STRUCT_OFFSET(a, 0x6E, short) = STRUCT_OFFSET(a, 0x5C, u_short);
+    ST7carno_wave_funcs[STRUCT_OFFSET(a, 0x62, short)](a);
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn03", eneptn03_ST7carno_wave00);
 
