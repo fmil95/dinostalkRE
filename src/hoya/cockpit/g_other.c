@@ -50,7 +50,17 @@ INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_other", gsTimerPauseTime);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_other", gsTimerPauseTimeEx);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_other", gsTimerPassDirecTime);
+void gsTimerPassDirecTime(int a)
+{
+    if (a)
+    {
+        gsCOCKPIT_TimerCnt.a |= 4;
+    }
+    else
+    {
+        gsCOCKPIT_TimerCnt.a &= ~4;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_other", gsTimerCntroler);
 
