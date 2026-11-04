@@ -1,4 +1,15 @@
 #include "common.h"
+#include "g_world.h"
+#include "g_parts.h"
+#include "g_world/st1.h"
+#include "g_world/st2.h"
+#include "g_world/st3.h"
+#include "g_world/st4.h"
+#include "g_world/st5.h"
+#include "g_world/st7.h"
+#include "g_world/st7test.h"
+#include "g_world/st8.h"
+#include "g_world/st9.h"
 
 extern int _bullet_effect_gnd_list;
 extern int _sw_dino_num;
@@ -9,24 +20,6 @@ extern void* GFTex_GetDb();
 extern u_short D_0069167E[];
 extern short _treasure_box_map[];
 extern int gsWorldStageNo;
-extern void gsWorldSt1_SpecialEffect();
-extern void gsWorldSt2_SpecialEffect();
-extern void gsWorldSt3_SpecialEffect();
-extern void gsWorldSt4_SpecialEffect();
-extern void gsWorldSt5_SpecialEffect();
-extern void gsWorldSt7_SpecialEffect();
-extern void gsWorldSt8_SpecialEffect();
-extern void gsWorldSt9_SpecialEffect();
-extern void gsWorldSt7Test_SpecialEffect();
-extern int gsWorldSt1_SpecialEffect2();
-extern int gsWorldSt2_SpecialEffect2();
-extern int gsWorldSt3_SpecialEffect2();
-extern int gsWorldSt4_SpecialEffect2();
-extern int gsWorldSt5_SpecialEffect2();
-extern int gsWorldSt7_SpecialEffect2();
-extern int gsWorldSt8_SpecialEffect2();
-extern int gsWorldSt9_SpecialEffect2();
-extern int gsWorldSt7Test_SpecialEffect2();
 extern long gsPixelTest;
 extern int gsStageNo;
 extern long D_002AE9D0[];
@@ -36,20 +29,6 @@ extern char gsWorldReactionList[];
 extern char gsWorldBreakList[];
 extern int gsWorldTimer;
 extern int gsWorldTimer2;
-extern void gpInitWorldManager();
-extern void gsWorldInitOBJ_TREASURE();
-extern void gsWorldBulletEffectGnd_INIT();
-extern void gsWorldInitReaction();
-extern void gsWorldInitBreakAction();
-extern int gsWorldInitSt1();
-extern int gsWorldInitSt2();
-extern int gsWorldInitSt3();
-extern int gsWorldInitSt4();
-extern int gsWorldInitSt5();
-extern int gsWorldInitSt7();
-extern int gsWorldInitSt8();
-extern int gsWorldInitSt9();
-extern int gsWorldInitSt7Test();
 void gsWorldRestoreMipmap()
 {
     STRUCT_OFFSET(GFTex_GetDb(), 0x2C, int) = 0xFFCC;

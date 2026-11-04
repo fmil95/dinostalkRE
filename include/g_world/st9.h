@@ -3,10 +3,10 @@
 #ifndef G_WORLD_ST9_H
 #define G_WORLD_ST9_H
 
-gsWorldInitSt9();
+int gsWorldInitSt9();
 gsWorldSt9_WorkInit();
-gsWorldSt9_SpecialEffect();
-gsWorldSt9_SpecialEffect2();
+void gsWorldSt9_SpecialEffect();
+int gsWorldSt9_SpecialEffect2();
 gsWorldSt9_TREX_Light();
 gsWorldSt9_LavaAnimation();
 gsSt9_SelectLavaPoint();

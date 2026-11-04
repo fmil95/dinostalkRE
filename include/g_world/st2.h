@@ -3,10 +3,10 @@
 #ifndef G_WORLD_ST2_H
 #define G_WORLD_ST2_H
 
-gsWorldInitSt2();
+int gsWorldInitSt2();
 gsWorldSt2EntryTex_GND();
-gsWorldSt2_SpecialEffect();
-gsWorldSt2_SpecialEffect2();
+void gsWorldSt2_SpecialEffect();
+int gsWorldSt2_SpecialEffect2();
 gsWorldSt2_Komorebi();
 _gsWorldSt2_Wind();
 gsWorldSt2_Wind();

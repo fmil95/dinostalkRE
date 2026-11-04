@@ -7,7 +7,7 @@ _gpGetBoundBox();
 gpGetBoundBox();
 gpGetNextMaterialBlock();
 gpGetNextGeometryBlock();
-gpInitWorldManager();
+void gpInitWorldManager();
 gpStepWorldManagerOverHead_GV();
 gpEntryWorldManagerOverHead_GV();
 gpStepWorldManagerOverHead_ODV();

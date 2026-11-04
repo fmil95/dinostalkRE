@@ -3,9 +3,9 @@
 #ifndef G_WORLD_ST8_H
 #define G_WORLD_ST8_H
 
-gsWorldInitSt8();
-gsWorldSt8_SpecialEffect();
-gsWorldSt8_SpecialEffect2();
+int gsWorldInitSt8();
+void gsWorldSt8_SpecialEffect();
+int gsWorldSt8_SpecialEffect2();
 gsWorldSt8_CirLight_GND();
 gsWorldSt8_InitCircleLight();
 gsWorldSt8_EntryCircleLight();

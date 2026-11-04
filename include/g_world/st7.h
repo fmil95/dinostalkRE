@@ -3,10 +3,10 @@
 #ifndef G_WORLD_ST7_H
 #define G_WORLD_ST7_H
 
-gsWorldInitSt7();
+int gsWorldInitSt7();
 gsWorldSt7EntryTex_GND();
-gsWorldSt7_SpecialEffect();
-gsWorldSt7_SpecialEffect2();
+void gsWorldSt7_SpecialEffect();
+int gsWorldSt7_SpecialEffect2();
 gsWorldSt7_ClearPointLight();
 gsWorldSt7_FlushPointLight();
 gsWorldSt7_InitJeepLight();

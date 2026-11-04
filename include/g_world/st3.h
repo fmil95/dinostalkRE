@@ -3,10 +3,10 @@
 #ifndef G_WORLD_ST3_H
 #define G_WORLD_ST3_H
 
-gsWorldInitSt3();
+int gsWorldInitSt3();
 gsWorldSt3EntryTex_GND();
-gsWorldSt3_SpecialEffect();
-gsWorldSt3_SpecialEffect2();
+void gsWorldSt3_SpecialEffect();
+int gsWorldSt3_SpecialEffect2();
 gsWorldSt3_BoatInit();
 gsWorldSt3_Boat();
 gsWorldSt3_BoatDirection();
