@@ -16,7 +16,13 @@ void GFTrack_MallocMemory(void* a, int b, int c)
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/track", GFTrack_Lifeless);
 
-INCLUDE_ASM("asm/nonmatchings/benjamin/track", GFTrack_SetTextureID);
+void GFTrack_SetTextureID(void* t, int id)
+{
+    if (id == -3 || GFTex_GetDb(id) != NULL)
+    {
+        STRUCT_OFFSET(t, 0x8, int) = id;
+    }
+}
 
 int GFTrack_GetTextureID(void* p)
 {
