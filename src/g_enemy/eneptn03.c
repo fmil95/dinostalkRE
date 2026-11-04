@@ -9,6 +9,8 @@ extern int ST7Carno_NowBreaking;
 extern void (*ST7carno_thkchg_funcs[])();
 extern void (*ST7carno_wait_funcs[])();
 extern void (*ST7carno_wave_funcs[])();
+extern void* memset();
+extern void sceVu0CopyVector();
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn03", eneptn03_ST2carno_main);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn03", eneptn03_ST2carno_manage);
@@ -455,7 +457,26 @@ INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn03", eneptn03_ST7carno_combi02_08);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn03", eneptn03_ST7carno_combi02_09);
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn03", eneptn03_ST7carno_combi02_10);
+void eneptn03_ST7carno_combi02_10(char* a)
+{
+    char* o = eneptn03_getothercarno(a);
+    int c;
+
+    if (o)
+    {
+        if (STRUCT_OFFSET(o, 0x62, short) < 0xB)
+        {
+            c = STRUCT_OFFSET(o, 0xC, int);
+            if (c == 0xB)
+            {
+                STRUCT_OFFSET(a, 0x70, short) = c;
+                STRUCT_OFFSET(a, 0, int) |= 0x1000000;
+                Enemy_ActChg00(a, 0xB);
+            }
+        }
+        STRUCT_OFFSET(a, 0x62, u_short)++;
+    }
+}
 
 void eneptn03_ST7carno_combi02_11(void* a)
 {
