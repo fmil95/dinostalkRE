@@ -304,7 +304,16 @@ INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeStopVoice);
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeDataOpen);
 
-INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeGetVbBlockSize);
+int SeGetVbBlockSize(char* a)
+{
+    int size;
+
+    fp = sceOpen(a, 1);
+    size = sceLseek(fp, 0, 2);
+    sceClose(fp);
+
+    return size;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeBankOpenTransfer);
 
