@@ -37,7 +37,17 @@ void mcdFlushQue()
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/mcduse", mcdInit);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/mcduse", mcdQuit);
+int mcdQuit()
+{
+    if (maxque <= 0)
+    {
+        return -1;
+    }
+    maxque = 0;
+    queaddr = 0;
+    mcdFlushQue();
+    return 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/mcduse", mcdCheckEoq);
 
