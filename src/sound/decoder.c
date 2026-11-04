@@ -293,7 +293,37 @@ int audioDecReset(AudioDec* ad)
     return 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/decoder", audioDecBeginPut);
+void audioDecBeginPut(AudioDec* ad, u_char** ptr0, int* len0, u_char** ptr1, int* len1)
+{
+    int len;
+
+    if (ad->state == AU_STATE_INIT)
+    {
+        *ptr0 = (u_char*)&ad->sshd + ad->hdrCount;
+        *len0 = AU_HDR_SIZE - ad->hdrCount;
+        *ptr1 = (u_char*)ad->data;
+        *len1 = ad->size;
+
+        return;
+    }
+
+    len = ad->size - ad->count;
+
+    if (ad->size - ad->put >= len)
+    {
+        *ptr0 = ad->data + ad->put;
+        *len0 = len;
+        *ptr1 = NULL;
+        *len1 = 0;
+    }
+    else
+    {
+        *ptr0 = ad->data + ad->put;
+        *len0 = ad->size - ad->put;
+        *ptr1 = ad->data;
+        *len1 = len - (ad->size - ad->put);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/decoder", audioDecEndPut);
 
