@@ -503,7 +503,10 @@ INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeStrmOpenWithSetParam);
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeStrmOpenTBL);
 
-INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeStrmPlay);
+int SeStrmPlay(int a)
+{
+    return ezSe(0x52f, a, 1);
+}
 
 int SeStrmStop(int a)
 {
