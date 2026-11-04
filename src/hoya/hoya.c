@@ -54,7 +54,10 @@ void hySetEntryNo(int a)
 
 INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyGetTexUv);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyGetTexId);
+int hyGetTexId(int i)
+{
+    return D_0052CFEC[i * 2];
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyLoadTexture);
 
