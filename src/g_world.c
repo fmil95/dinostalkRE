@@ -7,7 +7,10 @@ extern int gsWorldLineSwitchManager[];
 extern void sceVu0CopyVector();
 extern void* GFTex_GetDb();
 extern u_short D_0069167E[];
-INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldRestoreMipmap);
+void gsWorldRestoreMipmap()
+{
+    STRUCT_OFFSET(GFTex_GetDb(), 0x2C, int) = 0xFFCC;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldInitWorld);
 
