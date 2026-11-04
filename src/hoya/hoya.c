@@ -313,7 +313,17 @@ int hyGetTimeSync(int a, int b)
     return a;
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyGetTimeSecond);
+int hyGetTimeSecond(int t, int b)
+{
+    t = t / 60;
+
+    if (b == 0)
+    {
+        t = t % 60;
+    }
+
+    return t;
+}
 
 int hyGetTimeMinute(int t, int b)
 {
