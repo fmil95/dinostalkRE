@@ -15,6 +15,7 @@ extern int sceOpen();
 extern int sceLseek();
 extern int sceClose();
 extern SeEnt D_0064B564[];
+extern int u_dat[];
 int get_SE_MAX() 
 {
     return 1000;
@@ -275,7 +276,10 @@ INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeStrmOff);
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeSpuPortOff);
 
-INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeSetMasterVol);
+int SeSetMasterVol(int a)
+{
+    return ezSe(0x8360, a, 1);
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeSetSeVol);
 
