@@ -37,7 +37,16 @@ INCLUDE_ASM("asm/nonmatchings/hoya/name/namesub", ProcCursol);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/name/namesub", ProcPutChar);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/name/namesub", semiProcOpenDialog00);
+void semiProcOpenDialog00()
+{
+    int p = pGnn;
+    char* r = hySearchSMSpriteInfo(p + 0x29C, 0x17);
+
+    STRUCT_OFFSET(r, 0x20, int) = 0;
+    STRUCT_OFFSET(r, 0x1C, int) = 0;
+    STRUCT_OFFSET(STRUCT_OFFSET(r, 0x24, char*), 4, int) = 0x190;
+    STRUCT_OFFSET(p, 0, int)++;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/name/namesub", semiProcOpenDialog01);
 
