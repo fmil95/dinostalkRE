@@ -114,7 +114,69 @@ void viBufEndPut(ViBuf* f, int size)
     SignalSema(f->sema);
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/buf", viBufAddDMA);
+int viBufAddDMA(ViBuf* f)
+{
+    int i;
+    int index;
+    int id;
+    int last;
+    u_int d4chcr;
+    int isNewData = 0;
+    int consume;
+    int read_start;
+    int read_n;
+
+    WaitSema(f->sema);
+
+    if (!f->isActive)
+    {
+        return 0;
+    }
+
+    setD4_CHCR((DMA_ID_REFE << 28) | (0 << 8) | (1 << 2) | 1);
+    d4chcr = *D4_CHCR;
+
+    index = getFIFOindex(f, (void*)*D4_MADR);
+    consume = (index + f->n - f->dmaStart) % f->n;
+    f->dmaStart = (f->dmaStart + consume) % f->n;
+    f->dmaN -= consume;
+
+    read_start = (f->dmaStart + f->dmaN) % f->n;
+    read_n = f->readBytes / VIBUF_ELM_SIZE;
+    f->readBytes %= VIBUF_ELM_SIZE;
+
+    if (read_n > 0)
+    {
+        last = (f->dmaStart + f->dmaN - 1 + f->n) % f->n;
+        scTag2((QWORD*)(f->tag + last), (char*)f->data + VIBUF_ELM_SIZE * last, DMA_ID_REF, VIBUF_ELM_SIZE / 16);
+        isNewData = 1;
+    }
+
+    index = read_start;
+
+    for (i = 0; i < read_n; i++)
+    {
+        id = (i == read_n - 1) ? DMA_ID_REFE : DMA_ID_REF;
+        scTag2((QWORD*)(f->tag + index), (char*)f->data + VIBUF_ELM_SIZE * index, id, VIBUF_ELM_SIZE / 16);
+        index = (index + 1) % f->n;
+    }
+
+    f->dmaN += read_n;
+
+    if (f->dmaN)
+    {
+        if (isNewData)
+        {
+            d4chcr = (d4chcr & 0x0fffffff) | (DMA_ID_REF << 28);
+        }
+
+        setD4_CHCR(d4chcr | 0x100);
+    }
+
+    SignalSema(f->sema);
+
+    return 1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/buf", viBufStopDMA);
 
