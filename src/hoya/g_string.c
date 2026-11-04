@@ -110,7 +110,19 @@ int strAddSentence(int a)
 
 INCLUDE_ASM("asm/nonmatchings/hoya/g_string", strAddShortSentence1);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/g_string", strAddShortSentence2);
+int strAddShortSentence2(int a, int b, int c)
+{
+    StrManS* s = &strManager[a];
+
+    if (STRUCT_OFFSET(s, 0x62C, int) == 0)
+    {
+        return -1;
+    }
+
+    STRUCT_OFFSET(s, 0x604 + b * 4, int) = c;
+
+    return 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/g_string", strRemoveSentence1);
 
