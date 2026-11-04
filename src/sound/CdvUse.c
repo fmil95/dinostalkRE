@@ -52,7 +52,15 @@ unsigned short cdvGetWriteQue()
     return WriteQue;
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvGetWorkingQue);
+int cdvGetWorkingQue()
+{
+    if (StopFlg)
+    {
+        return 0x18;
+    }
+
+    return STRUCT_OFFSET(Cdv_Que, StepQue * 40, short);
+}
 
 unsigned short cdvGetError()
 {
