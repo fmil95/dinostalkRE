@@ -14,6 +14,7 @@ extern char rArmHitSubProcFlag[];
 extern char D_003E9610[];
 extern char _gsIK_RaptRArmHitPos[];
 
+extern int gsPartRapt[];
 INCLUDE_ASM("asm/nonmatchings/benjamin/ik_rapb", _gsIK_RaptInit);
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/ik_rapb", _gsIK_RaptUpdateData);
@@ -28,7 +29,11 @@ INCLUDE_ASM("asm/nonmatchings/benjamin/ik_rapb", _gsIK_RaptFootMoveR);
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/ik_rapb", _gsIK_RaptTailSwing);
 
-INCLUDE_ASM("asm/nonmatchings/benjamin/ik_rapb", _gsIK_RaptSetHit);
+void _gsIK_RaptSetHit(void* a, int i)
+{
+    STRUCT_OFFSET(a, 0xD58, int) |= gsPartRapt[i];
+    STRUCT_OFFSET(a, 0xD5C, int) |= gsPartRapt[i];
+}
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/ik_rapb", _gsIK_RaptHit);
 
