@@ -2,7 +2,17 @@
 #include <eestruct.h>
 extern int flag;
 
-INCLUDE_ASM("asm/nonmatchings/hoya/g_ezipu", gsEzIpuChangeDraw);
+void gsEzIpuChangeDraw(int a)
+{
+    if (a)
+    {
+        flag |= 4;
+    }
+    else
+    {
+        flag &= ~4;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/g_ezipu", gsEzIpuInitSpr);
 
