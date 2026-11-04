@@ -88,7 +88,25 @@ INCLUDE_ASM("asm/nonmatchings/hoya/g_string", strInitStringManager);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/g_string", strInitStringManager2);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/g_string", strAddSentence);
+int strAddSentence(int a)
+{
+    int i;
+    char* s = (char*)strManager;
+
+    for (i = 0; i < 64; i++)
+    {
+        if (STRUCT_OFFSET(s, 0x62C, int) == 0)
+        {
+            STRUCT_OFFSET(s, 0x62C, int) = a;
+
+            return i;
+        }
+
+        s += 0x630;
+    }
+
+    return -1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/g_string", strAddShortSentence1);
 
