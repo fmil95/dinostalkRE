@@ -2,7 +2,17 @@
 
 extern int nameManager[];
 extern int gsNextProg;
-INCLUDE_ASM("asm/nonmatchings/hoya/name/g_name", LetsGotoNameScene);
+void LetsGotoNameScene(int a)
+{
+    nameManager[2] = 0;
+
+    if (a != -1)
+    {
+        nameManager[0] = a;
+    }
+
+    gsNextProg = 0x10;
+}
 
 void LetsGotoNameEntryScene(int a)
 {
