@@ -7,6 +7,7 @@ extern int gsWorldLineSwitchManager[];
 extern void sceVu0CopyVector();
 extern void* GFTex_GetDb();
 extern u_short D_0069167E[];
+extern short _treasure_box_map[];
 void gsWorldRestoreMipmap()
 {
     STRUCT_OFFSET(GFTex_GetDb(), 0x2C, int) = 0xFFCC;
@@ -56,7 +57,17 @@ INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldCheckEntryReaction);
 
 INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldPlayReaction);
 
-INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldInitBreakAction);
+void gsWorldInitBreakAction(char* a)
+{
+    char* p = a + 0x5D0;
+    int i = 0x1F;
+
+    do
+    {
+        STRUCT_OFFSET(p, 0, int) = 0;
+        p -= 0x30;
+    } while (--i >= 0);
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldBreakAction_SHOCK);
 
