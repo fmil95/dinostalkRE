@@ -14,6 +14,8 @@ INCLUDE_ASM("asm/nonmatchings/hoya/playdemo/demosub0", gsInitDemo);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/playdemo/demosub0", gsDemoLoadPig);
 
+INCLUDE_RODATA("asm/nonmatchings/hoya/playdemo/demosub0", D_0066C820);
+
 INCLUDE_ASM("asm/nonmatchings/hoya/playdemo/demosub0", gsDemoInitSprite);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/playdemo/demosub0", gsPutDemoObjects);
