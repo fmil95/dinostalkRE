@@ -146,7 +146,20 @@ static void gfTex_Defrag()
     gfDatabaseHead->textureNum = i;
 }
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gftex", gfTex_SearchDb);
+static Sint32 gfTex_SearchDb(Uint64* guid)
+{
+    int i;
+
+    for (i = 0; i < gfDatabaseHead->textureMax; i++)
+    {
+        if ((gfDatabase[i].flag & 1) && gfDatabase[i].guid[0] == guid[0] && gfDatabase[i].guid[1] == guid[1])
+        {
+            return i;
+        }
+    }
+
+    return -1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gftex", GFTex_LoadImage);
 
