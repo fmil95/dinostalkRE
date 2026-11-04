@@ -570,7 +570,10 @@ int SeMePlay(int a)
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeMePlayB);
 
-INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeMeStop);
+int SeMeStop(int a)
+{
+    return SeMeStopB(D_0064B564[a].w[0]);
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeMeStopB);
 
