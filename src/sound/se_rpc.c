@@ -324,7 +324,10 @@ INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeStopSe);
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeStop);
 
-INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeStopVoice);
+int SeStopVoice(int a)
+{
+    return ezSe(0x8070, a, 1);
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeDataOpen);
 
