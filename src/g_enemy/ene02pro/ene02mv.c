@@ -1,4 +1,7 @@
 #include "common.h"
+#include "gunsuv_usa/libgf/gfanim.h"
+#include "g_enemy/enemain.h"
+#include <stdlib.h>
 
 extern void Enemy_AnmChg00();
 
@@ -9,7 +12,16 @@ void enedummymv_ene02mv(void) {
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/ene02pro/ene02mv", ene02move00);
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/ene02pro/ene02mv", ene02move01);
+void ene02move01(char* a)
+{
+    STRUCT_OFFSET(a, 0x200, int) = 0;
+    if (STRUCT_OFFSET(a, 0x8C, int) == 0)
+    {
+        Enemy_AnmChg00(a, 1, 8, 1);
+        STRUCT_OFFSET(a, 0x0, int) |= 0x20000;
+        STRUCT_OFFSET(a, 0x8C, int)++;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/ene02pro/ene02mv", ene02move02);
 
