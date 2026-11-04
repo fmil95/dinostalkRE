@@ -30,7 +30,10 @@ int CheckMemcCapacityDir(int a, int b)
     return D_005E6044[b + a].w[0] < 0x8F;
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", CheckMemcEntryNum);
+int CheckMemcEntryNum(int a, int b)
+{
+    return D_005E604C[b + a].w[0];
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", CheckMemcErrorFile);
 
