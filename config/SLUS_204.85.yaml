@@ -595,7 +595,7 @@ segments:
       - [0x567970, rodata, benjamin/g_shrink]
       - [0x567990, rodata, benjamin/g_staff]
       - [0x567b20, rodata, benjamin/g_footpoint]
-      - [0x568378, rodata, g_enemy/enemain]
+      - [0x568378, .rodata, g_enemy/enemain]
       - [0x568530, rodata, g_enemy/eneatc00]
       - [0x5685e0, rodata, g_enemy/eneptnmn]
       - [0x5686d0, rodata, g_enemy/eneptnsb]

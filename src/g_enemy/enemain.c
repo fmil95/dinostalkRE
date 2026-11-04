@@ -91,6 +91,8 @@ INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_RequestSet);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_AllReqest);
 
+INCLUDE_RODATA("asm/nonmatchings/g_enemy/enemain", D_00667378);
+
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_AllReqest_LvSet);
 
 u_short Enemy_HowManySet()
@@ -212,6 +214,12 @@ INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_ObstacleCheck01);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_CheckWall);
 
+INCLUDE_RODATA("asm/nonmatchings/g_enemy/enemain", D_006673C8);
+
+INCLUDE_RODATA("asm/nonmatchings/g_enemy/enemain", D_006673D0);
+
+INCLUDE_RODATA("asm/nonmatchings/g_enemy/enemain", D_006673D8);
+
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", enemy_dinohitchk);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", enemy_gndtouchch);
@@ -246,6 +254,8 @@ void Enemy_PmtDtLoad(int i)
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_PmtDataSet);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_PmtDataCopy);
+
+INCLUDE_RODATA("asm/nonmatchings/g_enemy/enemain", D_00667450);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_EveryStgDtLd);
 
@@ -322,6 +332,8 @@ INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_DelDethPrcMain);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_SetSmokeTrkr);
 
+INCLUDE_RODATA("asm/nonmatchings/g_enemy/enemain", D_006674E8);
+
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_ColAlphaInit);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_FlashingInit);
@@ -343,3 +355,7 @@ INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", enemy_plhitch);
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_PrtDetails);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", enemy_joke);
+INCLUDE_RODATA("asm/nonmatchings/g_enemy/enemain", D_00667510);
+
+INCLUDE_RODATA("asm/nonmatchings/g_enemy/enemain", D_00667520);
+
