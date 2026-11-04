@@ -10,7 +10,22 @@ INCLUDE_ASM("asm/nonmatchings/g_enemy/ene02pro/ene02mv", ene02move_main);
 void enedummymv_ene02mv(void) {
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/ene02pro/ene02mv", ene02move00);
+void ene02move00(char* a)
+{
+    STRUCT_OFFSET(a, 0x200, int) = 0;
+    if (STRUCT_OFFSET(a, 0x8C, int) == 0)
+    {
+        if (!(STRUCT_OFFSET(a, 0x0, int) & 0x20000))
+        {
+            Enemy_AnmChg00(a, 0, 8, 1);
+            STRUCT_OFFSET(a, 0x8C, int)++;
+        }
+        else
+        {
+            Enemy_ActChg00(a, 1);
+        }
+    }
+}
 
 void ene02move01(char* a)
 {
