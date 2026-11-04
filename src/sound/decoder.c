@@ -88,7 +88,16 @@ int videoDecInputCount(VideoDec* vd)
     return viBufCount(&vd->vibuf);
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/decoder", videoDecInputSpaceCount);
+int videoDecInputSpaceCount(VideoDec* vd)
+{
+    u_char* ptr0;
+    u_char* ptr1;
+    int len0, len1;
+
+    videoDecBeginPut(vd, &ptr0, &len0, &ptr1, &len1);
+
+    return len0 + len1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/decoder", videoDecFlush);
 
