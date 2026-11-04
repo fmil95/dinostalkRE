@@ -1,4 +1,5 @@
 #include "sound/decoder.h"
+#include "sound/disp.h"
 #include <eekernel.h>
 #include <sif.h>
 #include <sifdev.h>
@@ -187,7 +188,65 @@ void videoDecMain(VideoDec* vd)
     videoDecSetState(vd, VD_STATE_END);
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/decoder", decBs0);
+extern Display display;
+extern char D_00673DD0[];
+extern char D_00673DD8[];
+extern void dispSetTags(Display* d, u_int* tag, u_char* data, int type, int w, int h);
+
+int decBs0(VideoDec* vd)
+{
+    VoData* voData;
+    int status = 1;
+    sceMpeg* mp = &vd->mpeg;
+
+    while (!sceMpegIsEnd(mp))
+    {
+        if (videoDecGetState(vd) == VD_STATE_ABORT)
+        {
+            status = -1;
+            break;
+        }
+
+        while (!(voData = voBufGetData(&voBuf)))
+        {
+            RotateThreadReadyQueue(2);
+        }
+
+        sceMpegGetPicture(mp, (sceIpuRGB32*)voData, 0x118);
+
+        {
+            VoTag* t = voBuf.tag + voBuf.write;
+
+            t->dummy[0] = mp->frameCount;
+        }
+
+        if (mp->frameCount == 0)
+        {
+            int i;
+            int image_w;
+            int image_h;
+
+            image_w = mp->width;
+            image_h = mp->height;
+
+            for (i = 0; i < voBuf.size; i++)
+            {
+                dispSetTags(&display, voBuf.tag[i].v[0], voBuf.data[i].v, 0, image_w, image_h);
+                dispSetTags(&display, voBuf.tag[i].v[1], voBuf.data[i].v, 1, image_w, image_h);
+            }
+        }
+
+        voBufIncCount(&voBuf);
+
+        RotateThreadReadyQueue(2);
+    }
+
+    printf(D_00673DD0);
+    printf(D_00673DD8);
+
+    return status;
+}
+
 
 int mpegError(sceMpeg* mp, sceMpegCbDataError* cberror, void* anyData)
 {
