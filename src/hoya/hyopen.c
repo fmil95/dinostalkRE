@@ -8,6 +8,8 @@ extern void gsResultAllInit();
 extern int rsltTblStandardDinoBonus[];
 extern int rsltTblStandardNoDamageBonus[];
 extern int weaponRank[];
+extern int D_00535D74[][2];
+extern int rsltTblStandardTimeBonus[][2];
 INCLUDE_ASM("asm/nonmatchings/hoya/hyopen", hyWepRankGetWeaponRank);
 
 int hyWepRankGetWeaponNo(u_int i)
@@ -58,7 +60,23 @@ INCLUDE_ASM("asm/nonmatchings/hoya/hyopen", hyGetLimitTime);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/hyopen", GetResultRank);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/hyopen", GetResultStandardTimeBonus);
+int GetResultStandardTimeBonus(u_int a, int b)
+{
+    int r = -1;
+
+    if (a < 3)
+    {
+        if (b == 1 || b == 3 || b == 4)
+        {
+            r = D_00535D74[a][0];
+        }
+        else
+        {
+            r = rsltTblStandardTimeBonus[a][0];
+        }
+    }
+    return r;
+}
 
 int GetResultStandardDinoBonus(u_int i)
 {
