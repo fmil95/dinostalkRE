@@ -75,7 +75,31 @@ static GF_VRAM_CELL* gfVram_SearchCellByPos(Uint16 pos)
     return p;
 }
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfvalloc", gfVram_DefragCell);
+static void gfVram_DefragCell()
+{
+    GF_VRAM_CELL* p;
+
+    p = gfInfoHead_00674cd0->top_cell;
+
+    if (p == NULL)
+    {
+        return;
+    }
+
+    while (p->next != NULL)
+    {
+        if (p->pos + p->size == p->next->pos && p->used_flag == p->next->used_flag && p->reserved_flag == p->next->reserved_flag)
+        {
+            p->next->stat = 0;
+            p->size += p->next->size;
+            p->next = p->next->next;
+        }
+        else
+        {
+            p = p->next;
+        }
+    }
+}
 
 void GFVram_FreeAll()
 {
