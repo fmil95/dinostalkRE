@@ -113,7 +113,23 @@ int Gun1AdjustProcGunTeaching()
 
 INCLUDE_ASM("asm/nonmatchings/hoya/option/gun1_ajst", Gun1AdjustProcGunAdjustFirst);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/option/gun1_ajst", Gun1AdjustProcGunDelayTime);
+int Gun1AdjustProcGunDelayTime()
+{
+    if (++work0 == 16)
+    {
+        return 1;
+    }
+
+    if (hyGun1CheckScreenOut())
+    {
+        adj_x = adj_x + adj_rx1 - 0x100;
+        return 1;
+    }
+
+    adj_rx1 = gsGuncon1Manager[1];
+    adj_ry1 = gsGuncon1Manager[2];
+    return 0;
+}
 
 int Gun1AdjustProcGunSetDeleyTime()
 {
