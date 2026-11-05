@@ -1,7 +1,19 @@
 #include "common.h"
 #include "g_world/st7_demo.h"
+#include <libvu0.h>
 
-INCLUDE_ASM("asm/nonmatchings/g_world/st7_demo", gsWorldSt7_InitDemo);
+extern int _st7_demo_sw_manager[];
+extern int _st7_demo_sw_line[];
+extern float D_002F1E50[];
+extern int _st7_demo_timer;
+extern int _st7_demo_no;
+void gsWorldSt7_InitDemo()
+{
+    _st7_demo_sw_manager[1] = (int)_st7_demo_sw_line;
+    sceVu0CopyVector((float*)&_st7_demo_sw_manager[4], D_002F1E50);
+    _st7_demo_timer = 0;
+    _st7_demo_no = -1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st7_demo", gsWorldSt7_TriggerDemo);
 
