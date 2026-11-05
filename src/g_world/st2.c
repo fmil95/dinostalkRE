@@ -118,3 +118,9 @@ int gsWorldSt2_TexScroll(int wp, int tex, int pos, int shift, int size, int h)
 }
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st2", gsWorldSt2_SkyScale);
+INCLUDE_RODATA("asm/nonmatchings/g_world/st2", D_00665720);
+
+INCLUDE_RODATA("asm/nonmatchings/g_world/st2", D_00665730);
+
+INCLUDE_RODATA("asm/nonmatchings/g_world/st2", D_00665740);
+
