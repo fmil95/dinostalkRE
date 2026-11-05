@@ -1,6 +1,30 @@
 #include "common.h"
+#include "hoya/option/g_option.h"
 
-INCLUDE_ASM("asm/nonmatchings/hoya/option/g_option", LetsGotoOptionScene);
+extern int optManager[];
+extern char optManagerD[];
+extern int gsExtProgNext;
+extern int gsNextProg;
+void LetsGotoOptionScene(int n)
+{
+    int* om = optManager;
+
+    om[2] = (int)optManagerD;
+
+    if (n != -1)
+    {
+        *om = n;
+    }
+
+    if ((u_int)n < 8)
+    {
+        gsExtProgNext = 1;
+    }
+    else
+    {
+        gsNextProg = 10;
+    }
+}
 
 void ReleaseOptionScene(void) {
 }
