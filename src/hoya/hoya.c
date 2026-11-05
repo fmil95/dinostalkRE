@@ -168,7 +168,21 @@ void hyLoadPigResult(int n)
     gsRESULT_Idtex[4] = hyEntryTexture((int)(buf + resPigAddr[12] * 4), 1, resPigTuv[12]);
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyLoadPigFResult);
+void hyLoadPigFResult(int n)
+{
+    int i;
+    char* buf;
+
+    buf = (char*)FIO_ReadFile_Align(fResPigData[0], 0x40);
+
+    for (i = 0; i < 3; i++)
+    {
+        gsFRESULT_Idtex[i] = hyEntryTexture((int)(buf + fResPigAddr[i] * 4), 1, fResPigTuv[i]);
+    }
+
+    gsFRESULT_Idtex[3] = hyEntryTexture((int)(buf + fResPigAddr[n + 3] * 4), 1, fResPigTuv[n + 3]);
+    gsFRESULT_Idtex[4] = hyEntryTexture((int)(buf + fResPigAddr[8] * 4), 1, fResPigTuv[8]);
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyLoadPigOptionPart);
 
