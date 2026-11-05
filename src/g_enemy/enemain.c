@@ -24,6 +24,7 @@ extern int* bulthitsetbl_9[];
 extern short gsEnemy_Max;
 extern u_int dinoanmmaxno[];
 extern int pmtadr[][128];
+extern int* pmt_adrtbls[];
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_Main);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_PauseProc);
@@ -369,7 +370,16 @@ void Enemy_PmtDtLoad(int i)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_PmtDataSet);
+void Enemy_PmtDataSet(char* base, int n)
+{
+    u_int i;
+    int* t = pmt_adrtbls[n];
+
+    for (i = 0; i < dinoanmmaxno[n]; i++)
+    {
+        pmtadr[n][i] = (int)(base + t[i] * 4);
+    }
+}
 
 void Enemy_PmtDataCopy(int dst, int src)
 {
