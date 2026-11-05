@@ -24,6 +24,9 @@ extern BgmAlc3 D_006519A8[];
 extern int midi_current_port;
 extern BgmListEnt3 D_00651320[];
 extern int D_00651774[];
+typedef struct { int w[12]; } SeJobEnt;
+extern SeJobEnt D_00651A60[];
+extern int SeBankOpenTransfer();
 int get_SE_MAX() 
 {
     return 1000;
@@ -415,7 +418,13 @@ INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeVabOpen);
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeVabOpenB);
 
-INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeVabOpenN);
+int SeVabOpenN(int a, int b, int c)
+{
+    int r = SeBankOpenTransfer(0xFFFF, c, b, a, 1);
+
+    D_00651A60[TJobSt.unk0].w[0] = c;
+    return r;
+}
 
 void SeVabClose(int a)
 {
