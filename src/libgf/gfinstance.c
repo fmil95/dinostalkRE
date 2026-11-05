@@ -206,4 +206,14 @@ void GFInstance_SetSortKeyMax(Float32 max)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfinstance", GFInstance_SetSortKeyMin);
+void GFInstance_SetSortKeyMin(Float32 min)
+{
+    if (gf_sortKeyMax < min)
+    {
+        gf_sortKeyMin = gf_sortKeyMax;
+    }
+    else
+    {
+        gf_sortKeyMin = min;
+    }
+}
