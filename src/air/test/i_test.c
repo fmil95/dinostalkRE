@@ -44,4 +44,46 @@ INCLUDE_ASM("asm/nonmatchings/air/test/i_test", ISHOW_ItemSet);
 
 INCLUDE_ASM("asm/nonmatchings/air/test/i_test", ISHOW_InfosClear);
 
+INCLUDE_RODATA("asm/nonmatchings/air/test/i_test", D_00669DE8);
+
+INCLUDE_RODATA("asm/nonmatchings/air/test/i_test", D_00669DF8);
+
+INCLUDE_RODATA("asm/nonmatchings/air/test/i_test", D_00669E08);
+
+INCLUDE_RODATA("asm/nonmatchings/air/test/i_test", D_00669E18);
+
+INCLUDE_RODATA("asm/nonmatchings/air/test/i_test", D_00669E28);
+
+INCLUDE_RODATA("asm/nonmatchings/air/test/i_test", D_00669E38);
+
+INCLUDE_RODATA("asm/nonmatchings/air/test/i_test", D_00669E48);
+
+INCLUDE_RODATA("asm/nonmatchings/air/test/i_test", D_00669E58);
+
+INCLUDE_RODATA("asm/nonmatchings/air/test/i_test", D_00669E68);
+
+INCLUDE_RODATA("asm/nonmatchings/air/test/i_test", D_00669E78);
+
+INCLUDE_RODATA("asm/nonmatchings/air/test/i_test", D_00669E90);
+
+INCLUDE_RODATA("asm/nonmatchings/air/test/i_test", D_00669EA0);
+
+INCLUDE_RODATA("asm/nonmatchings/air/test/i_test", D_00669EB0);
+
+INCLUDE_RODATA("asm/nonmatchings/air/test/i_test", D_00669EC0);
+
+INCLUDE_RODATA("asm/nonmatchings/air/test/i_test", D_00669ED0);
+
+INCLUDE_RODATA("asm/nonmatchings/air/test/i_test", D_00669EE8);
+
+INCLUDE_RODATA("asm/nonmatchings/air/test/i_test", D_00669EF8);
+
+INCLUDE_RODATA("asm/nonmatchings/air/test/i_test", D_00669F10);
+
+INCLUDE_RODATA("asm/nonmatchings/air/test/i_test", D_00669F20);
+
+INCLUDE_RODATA("asm/nonmatchings/air/test/i_test", D_00669F30);
+
+INCLUDE_RODATA("asm/nonmatchings/air/test/i_test", D_00669F40);
+
 INCLUDE_ASM("asm/nonmatchings/air/test/i_test", gsIWNamePrint);

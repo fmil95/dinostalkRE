@@ -626,7 +626,7 @@ segments:
       - [0x56ad10, .rodata, air/insect/a_iscsub]
       - [0x56ad30, .rodata, air/insect/a_goki]
       - [0x56ad60, rodata, air/insect/a_tomb]
-      - [0x56ad80, rodata, air/test/i_test]
+      - [0x56ad80, .rodata, air/test/i_test]
       - [0x56b018, rodata, air/a_spbtl]
       - [0x56b058, rodata, sound/g_sound]
       - [0x56b0b8, rodata, hoya/bmp]
