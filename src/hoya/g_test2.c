@@ -203,7 +203,15 @@ void G_PAUSE_Exec()
     G_TTL_Exec();
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/g_test2", G_PAUSE_End);
+void G_PAUSE_End()
+{
+    gsSoundClose();
+    gScreen = gTest2Screen;
+    sceGsSyncPath(0, 0);
+    pfm_end();
+    GF_EndGraphicsFramework();
+    MEM_FreeAll();
+}
 
 void G_NAME_Init()
 {
