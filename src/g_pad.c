@@ -7,6 +7,7 @@ extern PadWork D_002F18A4[];
 extern int _us_key_exchange();
 extern int _us_get_port_g_pad();
 extern int _us_key_exchange2();
+extern u_char gPadShockData[4];
 INCLUDE_ASM("asm/nonmatchings/g_pad", gsPad_Init);
 
 INCLUDE_ASM("asm/nonmatchings/g_pad", gsPad_Reset);
@@ -102,7 +103,17 @@ int gsPad_GetStep(int i)
 
 INCLUDE_ASM("asm/nonmatchings/g_pad", gsPadAdjustFree);
 
-INCLUDE_ASM("asm/nonmatchings/g_pad", gsPadSetAct);
+int gsPadSetAct(int n, u_char a, u_char b)
+{
+    int r = -1;
+    if (n < 2)
+    {
+        gPadShockData[n * 2] = a;
+        r = 0;
+        gPadShockData[n * 2 + 1] = b;
+    }
+    return r;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_pad", gsPadAlignDataInit);
 
