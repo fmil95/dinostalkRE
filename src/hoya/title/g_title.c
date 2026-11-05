@@ -4,6 +4,8 @@
 #include "hoya/hoya.h"
 #include "g_parts.h"
 #include "gunsuv_usa/libgf/gfinstance.h"
+#include "sound/g_sound.h"
+#include "omake/omake.h"
 
 extern int oldProcNo;
 extern int gsNextProg;
@@ -12,6 +14,7 @@ extern int prgMan[];
 typedef struct { void (*init)(); void (*main)(); void (*end)(); } HyPrgInfo;
 extern HyPrgInfo gTtlPrgInfo[];
 extern char gNull_002c6740[];
+extern u_char gsClearRGBA[];
 void LetsGotoTitle(int a)
 {
     if (a != -1)
@@ -45,7 +48,53 @@ void LetsGotoOpening(int a)
     gsNextProg = 8;
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/title/g_title", gsStageInit_TITLE);
+int gsStageInit_TITLE(int p)
+{
+    char* n = gNull_002c6740;
+    int* pm = prgMan;
+    u_char* c;
+
+    STRUCT_OFFSET(n, 0xCC, int) = 0;
+    GFInstance_InitHead((GF_INSTANCE*)n);
+    hyLoadPigTitle();
+    gsSoundInitAll();
+    gsSoundReadSe(0x1D);
+    gsSoundReadWait();
+    c = gsClearRGBA;
+    c[1] = 0;
+    c[3] = 0x80;
+    c[2] = 0;
+    c[0] = 0;
+    pm[2] = 0;
+    gsOmakeInitManager();
+
+    switch (oldProcNo)
+    {
+    case 0xF:
+        pm[0] = 1;
+        pm[1] = 1;
+        break;
+    case 0x61:
+        pm[0] = 4;
+        pm[1] = 4;
+        break;
+    case 0x62:
+        pm[0] = 1;
+        pm[1] = 1;
+        break;
+    case 0x63:
+        pm[0] = 2;
+        pm[1] = 2;
+        break;
+    default:
+        prgMan[0] = 3;
+        prgMan[1] = 3;
+        break;
+    }
+
+    gTtlPrgInfo[prgMan[0]].init();
+    return p;
+}
 
 void gsStageExec_TITLE()
 {
