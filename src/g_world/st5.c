@@ -31,3 +31,15 @@ void gsWorldSt5_CheckBossDied()
         p += 0x2A50;
     } while (p < (int)gsEnemyInfos + 0x1A720);
 }
+INCLUDE_RODATA("asm/nonmatchings/g_world/st5", D_006659B0);
+
+INCLUDE_RODATA("asm/nonmatchings/g_world/st5", D_006659C0);
+
+INCLUDE_RODATA("asm/nonmatchings/g_world/st5", D_006659D0);
+
+INCLUDE_RODATA("asm/nonmatchings/g_world/st5", D_006659E0);
+
+INCLUDE_RODATA("asm/nonmatchings/g_world/st5", D_006659F8);
+
+INCLUDE_RODATA("asm/nonmatchings/g_world/st5", D_00665A10);
+
