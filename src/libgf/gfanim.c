@@ -2,7 +2,7 @@
 
 extern void gfAnim_Attach(GF_INST_OBJECT* obj, PmtHEADER* anim, Uint32 flag);
 
-extern sceVu0FVECTOR D_00655CB0;
+extern sceVu0FVECTOR D_00655CB0; // gfAnim_Sinf static s225 in STAB, data still in asm
 INCLUDE_ASM("asm/nonmatchings/libgf/gfanim", gfAnim_InterpolateQuaternion);
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfanim", gfAnim_VectorToMatrix);
