@@ -19,6 +19,7 @@ extern int gsOption[];
 extern int SeSetOutType();
 extern int gsEffectChangeBloodColor();
 extern void gsShockSetEnable();
+extern int OptDrawSprButtonGun1();
 void SetFadeParaOpt(int a, int b, int c)
 {
     hySetFadePara2(a, b, c, (pOptOption + 13200));
@@ -133,7 +134,21 @@ INCLUDE_ASM("asm/nonmatchings/hoya/option/optsub01", Draw2dObjectOptAjstGunGunco
 
 INCLUDE_ASM("asm/nonmatchings/hoya/option/optsub01", Draw2dObjectOptAjstGun);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/option/optsub01", Draw2dObjectOptKeyConfig);
+void Draw2dObjectOptKeyConfig(int p, int n)
+{
+    if (n == 0)
+    {
+        OptDrawSprButtonPad(p);
+    }
+    else if (n == 1)
+    {
+        OptDrawSprButtonGun(p);
+    }
+    else if (n == 2)
+    {
+        OptDrawSprButtonGun1(p);
+    }
+}
 
 void Draw2dObjectOptMenu(int a)
 {
