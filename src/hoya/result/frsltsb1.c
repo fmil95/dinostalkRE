@@ -1,8 +1,9 @@
 #include "common.h"
+#include "hoya/result/frsltsb1.h"
+#include "hoya/hoya.h"
 
 extern int pFR;
 extern int hyCheckFadeFinishFlag();
-extern void hySetFadePara2();
 extern void hySwitchFadeTimer();
 
 INCLUDE_RODATA("asm/nonmatchings/hoya/result/frsltsb1", D_0066BEB0);
@@ -66,7 +67,36 @@ INCLUDE_ASM("asm/nonmatchings/hoya/result/frsltsb1", Calculation_frsltsb1);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/result/frsltsb1", ProcFadeIn_frsltsb1);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/result/frsltsb1", ProcFadeOut_frsltsb1);
+int ProcFadeOut_frsltsb1(int step)
+{
+    int t = pFR;
+
+    switch (STRUCT_OFFSET(t, 0x8, int))
+    {
+    case 0:
+        STRUCT_OFFSET(t, 0x1FC0, int) = 0;
+        SetFadePara_frsltsb1(t + 0x1F90, t + 0x1FA0, STRUCT_OFFSET(t, 0x1FB0, int));
+        SwitchFadeTimer_frsltsb1(1);
+        STRUCT_OFFSET(pFR, 0x8, int)++;
+        break;
+    case 1:
+        SwitchFadeTimer_frsltsb1(1);
+        STRUCT_OFFSET(pFR, 0x8, int)++;
+        break;
+    case 2:
+        if (!CheckFadeFinishFlag_frsltsb1())
+        {
+            STRUCT_OFFSET(pFR, 0x8, int)++;
+        }
+        break;
+    case 3:
+        STRUCT_OFFSET(t, 0x8, int) = 0;
+        step++;
+        break;
+    }
+
+    return step;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/result/frsltsb1", ProcDrawFirstPlay);
 
