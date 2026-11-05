@@ -90,7 +90,35 @@ INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub1", Draw2dObject_memcsub1);
 void Calculation_memcsub1(void) {
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub1", ProcFade_memcsub1);
+int ProcFade_memcsub1(int step)
+{
+    int t = pmss_00674568;
+
+    switch (STRUCT_OFFSET(t, 4, int))
+    {
+    case 0:
+        STRUCT_OFFSET(t, 0x40, int) = 0;
+        SetFadeParaPause_memcsub1(t + 0x10, t + 0x20, STRUCT_OFFSET(t, 0x30, int));
+        SwitchFadeTimerPause_memcsub1(1);
+        STRUCT_OFFSET(pmss_00674568, 4, int)++;
+        break;
+    case 1:
+        STRUCT_OFFSET(t, 4, int) = 2;
+        break;
+    case 2:
+        if (!CheckFadeFinishFlagPause_memcsub1())
+        {
+            STRUCT_OFFSET(pmss_00674568, 4, int)++;
+        }
+        break;
+    case 3:
+        STRUCT_OFFSET(t, 4, int) = 0;
+        step++;
+        break;
+    }
+
+    return step;
+}
 
 void ProcMemcChecking_memcsub1()
 {
