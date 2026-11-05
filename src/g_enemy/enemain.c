@@ -502,7 +502,22 @@ INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_SetSeMain);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", ST9TREX_DmgHitCheck);
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_SchOkNgSetDel);
+void Enemy_SchOkNgSetDel(char* e)
+{
+    if (!(STRUCT_OFFSET(e, 4, int) & 0x80000080) && STRUCT_OFFSET(e, 0x5C, u_short) != 0)
+    {
+        if (STRUCT_OFFSET(e, 0x84, int) == 1 ||
+            ((STRUCT_OFFSET(e, 0x2A, short) == 5 || STRUCT_OFFSET(e, 0x2A, short) == 0x10) &&
+             STRUCT_OFFSET(e, 0x84, int) == 0x15 && STRUCT_OFFSET(e, 0x8C, int) < 2))
+        {
+            STRUCT_OFFSET(e, 0, int) |= 0x80;
+        }
+        else
+        {
+            STRUCT_OFFSET(e, 0, int) &= ~0x80;
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", enemy_deadshotmain);
 
