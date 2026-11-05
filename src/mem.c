@@ -91,7 +91,23 @@ int mem_CheckAlignment(u_int a)
 
 INCLUDE_ASM("asm/nonmatchings/mem", _mem_free);
 
-INCLUDE_ASM("asm/nonmatchings/mem", MEM_FreeAll);
+void MEM_FreeAll()
+{
+    u_int i;
+
+    for (i = 0; i < 2048; i++)
+    {
+        if (gAllocInfo[i].unk0 != 0)
+        {
+            _mem_free(gAllocInfo[i].unk0);
+        }
+    }
+
+    gAllocNum = 0;
+    gsHeapCur = gsHeapTop;
+    gsHeapBak = gsHeapTop;
+    gAllocSize = 0;
+}
 
 void MEM_Free(int a)
 {
