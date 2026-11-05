@@ -172,7 +172,25 @@ int GFParticle_GetTextureID(void* p)
 
 INCLUDE_ASM("asm/nonmatchings/particle", GFParticle_SetAttractRate);
 
-INCLUDE_ASM("asm/nonmatchings/particle", GFParticle_SetCollidePlane);
+void GFParticle_SetCollidePlane(char* p, float* v)
+{
+    asm volatile(
+        "lqc2 $vf4, 0x0(%1)\n"
+        "vmul.xyz $vf5, $vf4, $vf4\n"
+        "vaddy.x $vf5, $vf5, $vf5y\n"
+        "vaddz.x $vf5, $vf5, $vf5z\n"
+        "vsqrt Q, $vf5x\n"
+        "vwaitq\n"
+        "vaddq.x $vf5, $vf0, Q\n"
+        "vnop\n"
+        "vnop\n"
+        "vdiv Q, $vf0w, $vf5x\n"
+        "vsub.xyzw $vf6, $vf0, $vf0\n"
+        "vwaitq\n"
+        "vmulq.xyzw $vf6, $vf4, Q\n"
+        "sqc2 $vf6, 0x60(%0)\n"
+        : : "r"(p), "r"(v) : "memory");
+}
 
 INCLUDE_ASM("asm/nonmatchings/particle", GFParticle_SetTail);
 
