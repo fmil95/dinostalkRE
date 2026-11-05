@@ -143,6 +143,7 @@ G_OVERRIDES = {
     "se_rpc.c": "-G8",
     "g_savlod.c": "-G8",
     "mcduse.c": "-G8",
+    "g_pad.c": "-G8",
     "CdvUse.c": "-G8",
     "gfvalloc.c": "-G8",
     "g_world.c": "-G8",
