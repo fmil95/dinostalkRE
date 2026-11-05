@@ -180,7 +180,16 @@ INCLUDE_ASM("asm/nonmatchings/g_parts", gpArcTanHi);
 
 INCLUDE_ASM("asm/nonmatchings/g_parts", gpAddRotation);
 
-INCLUDE_ASM("asm/nonmatchings/g_parts", gpRotTransXYZ);
+void gpRotTransXYZ(float* v0, float* v1, float* rot)
+{
+    sceVu0FMATRIX m;
+
+    sceVu0UnitMatrix(m);
+    sceVu0RotMatrixX(m, m, rot[0]);
+    sceVu0RotMatrixY(m, m, rot[1]);
+    sceVu0RotMatrixZ(m, m, rot[2]);
+    sceVu0ApplyMatrix(v0, m, v1);
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_parts", gpRotTransZYX);
 
