@@ -2,7 +2,6 @@
 #include "particle.h"
 #include <libvu0.h>
 
-
 extern void* GFTex_GetDb();
 extern char gf_ParticleNormalSTWH[];
 extern void gf_ParticleInitAnimData();
@@ -94,7 +93,11 @@ void GFParticle_Lifeless(char* p)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/particle", GFParticle_SetStartRGBA);
+void GFParticle_SetStartRGBA(char* p, float* v)
+{
+    sceVu0CopyVector((float*)(p + 0x20), v);
+    sceVu0ClampVector((float*)(p + 0x20), (float*)(p + 0x20), 0.0f, 255.0f);
+}
 
 INCLUDE_ASM("asm/nonmatchings/particle", GFParticle_SetEndRGBA);
 
