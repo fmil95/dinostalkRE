@@ -1,4 +1,6 @@
 #include "common.h"
+#include "gunsuv_usa/libgf/gfvcache.h"
+#include "gunsuv_usa/libgf/gfvalloc.h"
 #include <string.h>
 #include "gunsuv_usa/libgf/gftex.h"
 #include "g_guncon2/g_guncon2.h"
@@ -43,12 +45,46 @@ extern char etcSpr_0085da70[];
 extern void the_titleEtcInitSpr();
 extern int cursorTexId_00674c2c;
 extern char pageSpr_0085d7b0[];
+extern Uint32 gs_textureDb[];
+extern Uint32 gs_alloc_info[];
+extern Uint32 gs_cache_info[];
+extern Uint32* theTexDb;
+extern void* pTheMovie;
 void the_texInit()
 {
     pTheBin = FIO_ReadFile_Align("cdrom0:\\DATA\\THEATER\\THEMAIN.BIN;1", 0x40);
 }
 
-INCLUDE_ASM("asm/nonmatchings/omake/g_theate", G_THEATE_Init);
+void G_THEATE_Init()
+{
+    sceVu0FVECTOR c;
+
+    memset(c, 0, 16);
+    c[3] = 128.0f;
+    theTexDb = gs_textureDb;
+    GF_InitGraphicsFramework();
+    gplInitPlane();
+    GFVram_SetInfoAddr(gs_alloc_info, 0x1000);
+    GFVram_AddFreeArea(0x1800, 0x4000, 0);
+    GFVram_AddFreeArea(0x1000, 0x800, 0x1B);
+    GFCache_SetInfoAddr(gs_cache_info, 0x1000, 0x5800, 0, 0);
+    GFVram_SetFrameBufferSize(0x200, 0xE0, 0);
+    GFVram_SetZBufferSize(0x200, 0xE0, 0);
+    GFVram_SetScreenBufferSize(0x200, 0x1C0, 0);
+    GFTex_InitDatabase(theTexDb, 0x1000);
+    GFTex_FlushVramCache();
+    GFTex_FlushVramCache_Preset();
+    pTheMovie = MEM_MallocAlign(0x400000, 0x40, "omake/g_theate.c", 0xA2);
+    gsGuncon2_Init();
+    gsSoundInitAll();
+    gsSoundReadSe(0x1D);
+    gsSoundReadWait();
+    gsEffectInitFade();
+    theStat.unk4 = 0;
+    theStat.unk0 = 0;
+    the_texInit();
+    gsEffectSetFadeNowColor((int)c);
+}
 
 void G_THEATE_End()
 {
