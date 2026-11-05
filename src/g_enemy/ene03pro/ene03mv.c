@@ -134,7 +134,18 @@ void ene03moveNewTurn00(char* a)
     STRUCT_OFFSET(a, 0x8C, int)++;
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/ene03pro/ene03mv", ene03moveNewTurn01);
+void ene03moveNewTurn01(char* a)
+{
+    if (GFAnim_ShapeFlagCheck((GF_INST_OBJECT*)(a + 0xBA0), 0) & 2)
+    {
+        float f = STRUCT_OFFSET(a, 0xDC, float);
+
+        Enemy_ActChg00(a, 0);
+        STRUCT_OFFSET(a, 0xDC, float) = f;
+        Enemy_AnmChg00(a, 0, 8, 1);
+        STRUCT_OFFSET(a, 0, int) &= ~0x40000000;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/ene03pro/ene03mv", ene03moveMeteoAtc00);
 
