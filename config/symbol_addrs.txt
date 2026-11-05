@@ -10699,3 +10699,4 @@ D_00666810                                       = 0x00666810; // force_migratio
 D_00666818                                       = 0x00666818; // force_migration:True align:8
 D_00666820                                       = 0x00666820; // force_migration:True align:8
 D_00666828                                       = 0x00666828; // force_migration:True align:8
+D_00666830                                       = 0x00666830; // force_migration:True align:8
