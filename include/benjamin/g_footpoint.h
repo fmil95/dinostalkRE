@@ -4,7 +4,7 @@
 #define BENJAMIN_G_FOOTPOINT_H
 
 gsFootPoint_Init();
-gsFootPoint_InitFootPoint();
+void gsFootPoint_InitFootPoint(int* f);
 void gsFootPoint_LoadTexture(int i);
 gsFootPoint_Eval();
 gsFootPoint_Draw();
