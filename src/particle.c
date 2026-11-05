@@ -1,4 +1,5 @@
 #include "common.h"
+#include "particle.h"
 
 extern void sceVu0CopyVector();
 extern void sceVu0CopyVectorXYZ();
@@ -50,7 +51,19 @@ int GFParticle_GetSize(void* p)
     return STRUCT_OFFSET(p, 0xEC, int);
 }
 
-INCLUDE_ASM("asm/nonmatchings/particle", GFParticle_Lifeless);
+void GFParticle_Lifeless(char* p)
+{
+    u_int i;
+    char* b = *(char**)(p + 0xF0);
+
+    if (b != 0)
+    {
+        for (i = 0; i < *(u_int*)(p + 0xEC); i++)
+        {
+            *(int*)(b + i * 0x70 + 0x58) = -1;
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/particle", GFParticle_SetStartRGBA);
 
