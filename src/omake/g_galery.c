@@ -174,7 +174,30 @@ void gal_initBgSpr(int tex)
 
 INCLUDE_ASM("asm/nonmatchings/omake/g_galery", gal_initCurSpr);
 
-INCLUDE_ASM("asm/nonmatchings/omake/g_galery", gal_initPageSpr);
+void gal_initPageSpr()
+{
+    char* spr;
+
+    spr = pageSpr_0085b7f0;
+    gplInitSprite(spr, cursorTexId_00674bd8);
+    gplInitSprite(spr + 0x160, cursorTexId_00674bd8);
+    STRUCT_OFFSET(spr, 0x8, short) = 0xD00;
+    STRUCT_OFFSET(spr, 0xA, short) = 0x0;
+    STRUCT_OFFSET(spr, 0x10, short) = 0xDB0;
+    STRUCT_OFFSET(spr, 0x12, short) = 0x160;
+    STRUCT_OFFSET(spr, 0xC, short) = -0x71D0;
+    STRUCT_OFFSET(spr, 0xE, short) = -0x7F68;
+    STRUCT_OFFSET(spr, 0x14, short) = -0x7110;
+    STRUCT_OFFSET(spr, 0x16, short) = -0x7EB0;
+    STRUCT_OFFSET(spr, 0x168, short) = 0xE00;
+    STRUCT_OFFSET(spr, 0x16A, short) = 0x0;
+    STRUCT_OFFSET(spr, 0x170, short) = 0xEB0;
+    STRUCT_OFFSET(spr, 0x172, short) = 0x160;
+    STRUCT_OFFSET(spr, 0x16C, short) = 0x7120;
+    STRUCT_OFFSET(spr, 0x16E, short) = -0x7F68;
+    STRUCT_OFFSET(spr, 0x174, short) = 0x71E0;
+    STRUCT_OFFSET(spr, 0x176, short) = -0x7EB0;
+}
 
 void gal_titleEtcInitSpr(int tex)
 {
