@@ -30,7 +30,22 @@ int SCELSEEK2(int fd, int off, int whence)
 
 INCLUDE_ASM("asm/nonmatchings/fileio", SCECLOSE2);
 
-INCLUDE_ASM("asm/nonmatchings/fileio", SCEREAD2);
+int SCEREAD2(int fd, void* buf, int n)
+{
+    int r;
+
+    do
+    {
+        r = sceRead(fd, buf, n);
+        if (r >= 0)
+        {
+            break;
+        }
+        sceGsSyncV(0);
+    } while (1);
+
+    return r;
+}
 
 INCLUDE_ASM("asm/nonmatchings/fileio", SCEOPEN2);
 
