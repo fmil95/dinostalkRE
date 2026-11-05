@@ -39,9 +39,9 @@ INCLUDE_ASM("asm/nonmatchings/test", TEST_MoveObject);
 INCLUDE_ASM("asm/nonmatchings/test", TEST_MoveCamera);
 
 extern char D_006732A8[];
-void TEST_create_instance(int prm0) 
+void* TEST_create_instance(int prm0) 
 {
-    MEM_MallocAlign(prm0 * 368, 64, &D_006732A8, 195);
+    return MEM_MallocAlign(prm0 * 368, 64, &D_006732A8, 195);
 }
 
 void TEST_destroy_instshape() 

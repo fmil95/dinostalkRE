@@ -10,6 +10,6 @@ TEST_SetObjMatrix();
 TEST_SetCameraMatrix();
 TEST_MoveObject();
 TEST_MoveCamera();
-void TEST_create_instance(int prm0);
+void* TEST_create_instance(int prm0);
 void TEST_destroy_instshape();
 #endif // TEST_H
