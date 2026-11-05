@@ -1,8 +1,9 @@
 #include "common.h"
+#include "fileio.h"
 extern int SCEOPEN2();
 extern void exit();
 
-extern void fio_ReadFile();
+extern void* fio_ReadFile();
 
 typedef struct { int a; int b; } CacheInfoS;
 extern CacheInfoS fio_CacheInfo[];
@@ -16,34 +17,34 @@ INCLUDE_ASM("asm/nonmatchings/fileio", SCEREAD2);
 
 INCLUDE_ASM("asm/nonmatchings/fileio", SCEOPEN2);
 
-void FIO_ReadFile(int a, int b)
+void* FIO_ReadFile(int a, int b)
 {
-    fio_ReadFile(a, 0, 0, b, 4, 1);
+    return fio_ReadFile(a, 0, 0, b, 4, 1);
 }
 
-void FIO_ReadFile_NoChk(int a, int b)
+void* FIO_ReadFile_NoChk(int a, int b)
 {
-    fio_ReadFile(a, 0, 0, b, 4, 0);
+    return fio_ReadFile(a, 0, 0, b, 4, 0);
 }
 
-void FIO_ReadFile_Align(int a, int b)
+void* FIO_ReadFile_Align(int a, int b)
 {
-    fio_ReadFile(a, 0, 0, 0, b, 1);
+    return fio_ReadFile(a, 0, 0, 0, b, 1);
 }
 
-void FIO_ReadFile_Align2(int a, int b, int c)
+void* FIO_ReadFile_Align2(int a, int b, int c)
 {
-    fio_ReadFile(a, 0, b, 0, c, 1);
+    return fio_ReadFile(a, 0, b, 0, c, 1);
 }
 
-void FIO_ReadFilePartly(int a, int b, int c)
+void* FIO_ReadFilePartly(int a, int b, int c)
 {
-    fio_ReadFile(a, b, c, 0, 4, 1);
+    return fio_ReadFile(a, b, c, 0, 4, 1);
 }
 
-void FIO_ReadFilePartly_Align(int a, int b, int c, int d)
+void* FIO_ReadFilePartly_Align(int a, int b, int c, int d)
 {
-    fio_ReadFile(a, b, c, 0, d, 1);
+    return fio_ReadFile(a, b, c, 0, d, 1);
 }
 
 INCLUDE_ASM("asm/nonmatchings/fileio", fio_ReadFile);
