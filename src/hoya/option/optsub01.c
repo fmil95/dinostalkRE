@@ -8,6 +8,13 @@ extern void OptDrawSprMenuLight();
 extern void OptDrawSprMenu();
 extern void OptDrawSprOther();
 
+extern char optOption[];
+extern int buttonGunArrowXyData[][3];
+extern float buttonGunArrowCalcXyData[][3];
+extern float buttonGunArrowCalcColData[][3];
+extern int buttonPadArrowXyData[][3];
+extern float buttonPadArrowCalcXyData[][3];
+extern float buttonPadArrowCalcColData[][3];
 void SetFadeParaOpt(int a, int b, int c)
 {
     hySetFadePara2(a, b, c, (pOptOption + 13200));
@@ -47,7 +54,31 @@ INCLUDE_ASM("asm/nonmatchings/hoya/option/optsub01", OptCalcSprButtonPad);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/option/optsub01", OptInitSprButtonGun);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/option/optsub01", OptDrawSprButtonGun);
+void OptDrawSprButtonGun(int a)
+{
+    char* o = optOption;
+    int i;
+    char* s = o + 0xD440;
+    float* c = (float*)(o + 0xD46C);
+
+    hySetEzSprite(o + 0xD250, a);
+
+    for (i = 0; i < 2; i++)
+    {
+        c[-7] = buttonGunArrowXyData[i][0] + buttonGunArrowCalcXyData[i][0];
+        *c = buttonGunArrowCalcColData[i + 1][0];
+        hySetEzSprite(s, a);
+        s += 0x1F0;
+        c = (float*)((char*)c + 0x1F0);
+    }
+
+    for (i = 0; i < 4; i++)
+    {
+        hySetEzSprite(o + 0xD820 + i * 0x1F0, a);
+    }
+
+    hySetEzSprite(o + 0xD060, a);
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/option/optsub01", OptCalcSprButtonGun);
 
