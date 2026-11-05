@@ -1,13 +1,13 @@
 #include "common.h"
 #include "benjamin/g_staff.h"
+#include <libvu0.h>
+#include "gunsuv_usa/libgf/gftex.h"
+#include "gunsuv_usa/libgf/libgf.h"
+#include "mem.h"
+#include "perfmon.h"
+#include "sound/g_sound.h"
 
 extern void sceGsSyncPath();
-extern void gsSoundClose();
-extern void gsSoundSeMain();
-extern void pfm_end();
-extern void GF_EndGraphicsFramework();
-extern void GFTex_ResetDatabase();
-extern void MEM_FreeAll();
 
 INCLUDE_RODATA("asm/nonmatchings/benjamin/g_staff", D_00666990);
 
@@ -62,7 +62,13 @@ INCLUDE_ASM("asm/nonmatchings/benjamin/g_staff", staffFontHitProc);
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/g_staff", staffFontCheckHit);
 
-INCLUDE_ASM("asm/nonmatchings/benjamin/g_staff", staffSetJump);
+void staffSetJump(char* s, float* a, float* b)
+{
+    sceVu0CopyVector((float*)(s + 0x100), a);
+    sceVu0CopyVector((float*)(s + 0x110), b);
+    sceVu0CopyVector((float*)(s + 0x120), (float*)(s + 0x30));
+    *(int*)(s + 0x17C) = (*(int*)(s + 0x17C) & ~0xFF) | 5;
+}
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/g_staff", staffSetChangeSize);
 INCLUDE_RODATA("asm/nonmatchings/benjamin/g_staff", D_00666A90);

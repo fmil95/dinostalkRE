@@ -6,7 +6,7 @@
 GFParticle_Update();
 void GFParticle_Kill(char* a);
 gf_CreateSingleParticle();
-GFParticle_MallocMemory();
+void GFParticle_MallocMemory(char* p, int buf, int n);
 void GFParticle_SetAnimTbl(void* p, int v);
 void GFParticle_SetAnimTexInfoTbl(void* p, int v);
 int GFParticle_GetSize(void* p);

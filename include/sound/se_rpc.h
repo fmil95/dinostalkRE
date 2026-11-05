@@ -89,7 +89,7 @@ int SeTransMain();
 int SeMain();
 int SeIopStatus();
 int SeGetPort();
-int SeGetVhName();
+char* SeGetVhName(int n);
 int SeSoundOff();
 int SeSePortOff();
 int SeMidiPortOff();

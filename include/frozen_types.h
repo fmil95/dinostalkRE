@@ -31,7 +31,8 @@ typedef struct Camera
     int unk4;
     char pad[236];
     float unkF4;
-    char pad2[170];
+    char pad2[168];
+    int unk1A0;
     int unk1A4;
     char pad3[136];
     int unk230;

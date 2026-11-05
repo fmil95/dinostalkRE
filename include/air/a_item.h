@@ -40,7 +40,7 @@ void gsClearFixItem();
 gsMakeAddFixItem();
 void gsAddFixItem();
 gsItemReset_ForMovie();
-gsInit_ThrowWeapon();
+void gsInit_ThrowWeapon();
 void gsClear_ThrowWeapon_Infos();
 int gsSearch_ThrowWeapon_FreeInfos();
 gsMake_ThrowWeapon();

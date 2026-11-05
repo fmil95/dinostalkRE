@@ -7,7 +7,7 @@ gsMovie_Init();
 void gsMovie_SetSkipKey(int a, int b);
 void gsMovie_Play(int a);
 gsMovie_Exec();
-gsMovie_End();
+int gsMovie_End();
 gsMovie_SetStartCol();
 gsMovie_SetEndCol();
 MpegFunc();
