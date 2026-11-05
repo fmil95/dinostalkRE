@@ -44,6 +44,9 @@ extern int fResPigData[];
 extern int fResPigAddr[];
 extern int fResPigTuv[];
 extern int gsFRESULT_Idtex[];
+extern int cptSetuGetNo[];
+extern int cptSetuPigAddr[];
+extern int gsCOCKPIT_IdtexItemText[];
 INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyGun1CheckScreenOut);
 
 void hySetBgCol(void) {
@@ -128,7 +131,22 @@ INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyTexAdd);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyLoadPigCptSight);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyLoadPigCptSetu);
+void hyLoadPigCptSetu(char* buf)
+{
+    int i;
+
+    for (i = 0; i < 39; i++)
+    {
+        if (cptSetuGetNo[i] != 0xFF)
+        {
+            gsCOCKPIT_IdtexItemText[i] = TEST_EntryTexture((unsigned int*)(buf + cptSetuPigAddr[cptSetuGetNo[i]] * 4), 0);
+        }
+        else
+        {
+            gsCOCKPIT_IdtexItemText[i] = 0;
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyLoadPig);
 
