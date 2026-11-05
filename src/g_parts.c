@@ -182,7 +182,17 @@ void gpSetMatrixZYX(sceVu0FVECTOR* m, float* rot, float* trans, float* scale)
     sceVu0TransMatrix(m, m, trans);
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_parts", gpStandardizeBoundBox);
+void gpStandardizeBoundBox(float* a, float* b)
+{
+    asm volatile(
+        "lqc2 $vf4, 0x0(%0)\n"
+        "lqc2 $vf5, 0x0(%1)\n"
+        "vmax.xyzw $vf6, $vf4, $vf5\n"
+        "vmini.xyzw $vf7, $vf4, $vf5\n"
+        "sqc2 $vf6, 0x0(%0)\n"
+        "sqc2 $vf7, 0x0(%1)\n"
+        : : "r"(a), "r"(b) : "memory");
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_parts", gpCompareBoundBox);
 
