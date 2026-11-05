@@ -12,6 +12,7 @@ extern void _gsWorldSt9_RockBreakTREX();
 extern int gsPause;
 extern char gsWorldManager[];
 extern char gsWorldBreakList[];
+extern char st9ClutBuf[];
 INCLUDE_ASM("asm/nonmatchings/g_world/st9", gsWorldInitSt9);
 
 void gsWorldSt9_WorkInit()
@@ -67,7 +68,17 @@ INCLUDE_ASM("asm/nonmatchings/g_world/st9", gsWorldSt9Demo_FogBackChange);
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st9", gsSt9Demo_ClutAnimation);
 
-INCLUDE_ASM("asm/nonmatchings/g_world/st9", ClutCopyBuf);
+void ClutCopyBuf(char* p, int n)
+{
+    int i;
+    int* s = (int*)(p + *(int*)(p + 0x40));
+    int* d = (int*)(st9ClutBuf + n * 0x400);
+
+    for (i = 0; i < 256; i++)
+    {
+        *d++ = *s++;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st9", gsCultAnimation);
 
