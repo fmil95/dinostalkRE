@@ -141,7 +141,18 @@ INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyLoadPigOptionPart);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyLoadPigOption2Part);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyLoadPigPause);
+void hyLoadPigPause()
+{
+    int i;
+    char* buf;
+
+    buf = (char*)FIO_ReadFile_Align(subPigData[0], 0x40);
+
+    for (i = 0; i < 12; i++)
+    {
+        gsPAUSE_Idtex[i] = hyEntryTexture((int)(buf + subPigAddr[i] * 4), 1, subPigTuv[i]);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyLoadPigPause2);
 
