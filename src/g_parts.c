@@ -105,7 +105,13 @@ INCLUDE_ASM("asm/nonmatchings/g_parts", gpJudgeCollisionTerms);
 
 INCLUDE_ASM("asm/nonmatchings/g_parts", gpJudgeCollisionTermsCHR);
 
-INCLUDE_ASM("asm/nonmatchings/g_parts", gpGetCollisionSphere);
+int gpGetCollisionSphere(int a0, int a1, int a2)
+{
+    GP_COLL_TMP tmp;
+
+    tmp = D_00673400;
+    return gpGetCollisionSphere2(a0, a1, a2, &tmp);
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_parts", gpGetCollisionSphere2);
 

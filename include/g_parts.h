@@ -3,6 +3,13 @@
 #ifndef G_PARTS_H
 #define G_PARTS_H
 
+typedef struct { // 0x8
+	/* 0x0 */ int unk0;
+	/* 0x4 */ int unk4;
+} GP_COLL_TMP;
+
+extern GP_COLL_TMP D_00673400;
+
 _gpGetBoundBox();
 gpGetBoundBox();
 gpGetNextMaterialBlock();
@@ -29,14 +36,14 @@ void gpModifyCollisionTriangle(char* a, char* b);
 void gpModifyCollisionTriangle2();
 gpJudgeCollisionTerms();
 gpJudgeCollisionTermsCHR();
-gpGetCollisionSphere();
-gpGetCollisionSphere2();
+int gpGetCollisionSphere(int a0, int a1, int a2);
+int gpGetCollisionSphere2();
 gpGetCollisionSphereGND();
 gpGetCollisionSphereOBJ();
 gpJudgeCollisionLine();
 gpJudgeCollisionLineGND();
-gpGetCollisionLine();
-gpGetCollisionLine2();
+int gpGetCollisionLine(int a0, int a1, int a2, int a3);
+int gpGetCollisionLine2();
 gpGetCollisionLineGND();
 gpGetCollisionLineOBJ();
 void gpSetMatrixXYZ();
@@ -76,8 +83,8 @@ _gpGetEyeComLine();
 gpGetEyeComLineOBJ();
 gpGetEyeComSquareOBJ();
 gpJudgeCollisionVertex();
-gpGetCollisionVertex();
-gpGetCollisionVertex2();
+int gpGetCollisionVertex(int a0, int a1, int a2);
+int gpGetCollisionVertex2();
 gpGetCollisionVertexGND();
 gpGetCollisionVertexOBJ();
 void* gpMakeWorldOdvGeomBound(char* a);
