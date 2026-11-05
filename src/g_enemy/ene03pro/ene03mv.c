@@ -294,7 +294,26 @@ void ene03moveElem202(char* a)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/ene03pro/ene03mv", ene03moveElem210);
+void ene03moveElem210(char* a)
+{
+    Enemy_AnmChg01(a, 0x63, 8, 0, 6);
+    STRUCT_OFFSET(a, 0, int) = (STRUCT_OFFSET(a, 0, int) | 0x40000100) & ~0x400;
+    STRUCT_OFFSET(a, 0xC4, float) = STRUCT_OFFSET(a, 0x244, float);
+    STRUCT_OFFSET(a, 0xC0, float) = 1.0f;
+    gsTrackStart(a);
+
+    if (STRUCT_OFFSET(a, 0x2A, short) == 7)
+    {
+        Enemy_SeSet00(a, 0x176);
+    }
+    else
+    {
+        Enemy_SeSet00(a, 0x18A);
+    }
+
+    Enemy_SeSet00(a, 0x1C9);
+    STRUCT_OFFSET(a, 0x8C, int)++;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/ene03pro/ene03mv", ene03moveElem211);
 
