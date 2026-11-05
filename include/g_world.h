@@ -56,7 +56,7 @@ void gsWorldEntryGV_AREA(char* a, int b);
 void gsWorldEntryODV_AREA(char* a, int b);
 void gsWorldEntryOBJ_ALPHA(char* a, long v);
 void gsWorldEntryGND_ALPHA(void* a, int b, long c);
-gsWorldEntryGND_COL();
+void gsWorldEntryGND_COL(char* a, int i, int r, int g, int b);
 void gsWorldEntryOBJ_REPLACE(char* a);
 void gsWorldEntryOBJ_COLA_OFF(char* a);
 void gsWorldEntryOBJ_SCORE(char* a, int b);

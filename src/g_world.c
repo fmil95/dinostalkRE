@@ -30,6 +30,7 @@ extern char gsWorldBreakList[];
 extern int gsWorldTimer;
 extern int gsWorldTimer2;
 typedef struct { int a; int b; } MovieEnt;
+typedef struct { char pad[0x300]; u_char col[1][4]; } GsWorldGndColS;
 void gsWorldRestoreMipmap()
 {
     STRUCT_OFFSET(GFTex_GetDb(), 0x2C, int) = 0xFFCC;
@@ -387,7 +388,15 @@ void gsWorldEntryGND_ALPHA(void* a, int b, long c)
     ((long*)((char*)a + 0x100))[b] = c;
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldEntryGND_COL);
+void gsWorldEntryGND_COL(char* a, int i, int r, int g, int b)
+{
+    GsWorldGndColS* w = (GsWorldGndColS*)a;
+
+    w->col[i][0] = r;
+    w->col[i][1] = g;
+    w->col[i][2] = b;
+    w->col[i][3] = 0x80;
+}
 
 void gsWorldEntryOBJ_REPLACE(char* a)
 {
