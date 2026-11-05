@@ -24,7 +24,16 @@ INCLUDE_ASM("asm/nonmatchings/g_world/st9_demo", gsWorldSt9_DemoManager);
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st9_demo", gsWorldSt9_Demo);
 
-INCLUDE_ASM("asm/nonmatchings/g_world/st9_demo", gsSt9Demo_EndChack);
+void gsSt9Demo_EndChack()
+{
+    if (!(_st9_demo_flag & 0x100))
+    {
+        if (--_st9_demo_count == 0)
+        {
+            _st9_demo_flag |= 0x100;
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st9_demo", gsSt9Demo_ChancelCheck);
 
