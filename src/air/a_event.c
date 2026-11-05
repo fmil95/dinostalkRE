@@ -87,7 +87,21 @@ int gsDinoIdSameCheck(int id)
 
 INCLUDE_ASM("asm/nonmatchings/air/a_event", gsSetEventItem);
 
-INCLUDE_ASM("asm/nonmatchings/air/a_event", gsItemIdSameCheck);
+int gsItemIdSameCheck(int id)
+{
+    int i;
+    char* e = Another_Item;
+
+    for (i = 0; i < 0x30; i++)
+    {
+        if (*(int*)(e + i * 0x230 + 8) == id)
+        {
+            return 1;
+        }
+    }
+
+    return 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/air/a_event", gsReadFixData);
 
