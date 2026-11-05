@@ -467,7 +467,16 @@ void ene03btatcsp00(char* a)
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/ene03pro/ene03mv", ene03btatcsp01);
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/ene03pro/ene03mv", ene03btatcsp02);
+void ene03btatcsp02(char* a)
+{
+    if (GFAnim_ShapeFlagCheck((GF_INST_OBJECT*)(a + 0xBA0), 0) & 2)
+    {
+        Enemy_AttackHitChk(a, STRUCT_OFFSET(a, 0x84, int) - 0x31);
+        STRUCT_OFFSET(a, 0, int) &= ~0x100;
+        Enemy_AnmChg00(a, 0x54, 8, 0);
+        STRUCT_OFFSET(a, 0x8C, int)++;
+    }
+}
 
 void ene03btatcsp03(char* a)
 {
