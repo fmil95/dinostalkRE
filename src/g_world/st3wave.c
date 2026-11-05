@@ -97,7 +97,16 @@ int _gsWaveHandler(int ch)
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st3wave", gsWaveAvoidSetStart);
 
-INCLUDE_ASM("asm/nonmatchings/g_world/st3wave", gsWaveAvoidSetEnd);
+void gsWaveAvoidSetEnd()
+{
+    isDeformEnd = 1;
+
+    if (isIntEnd == 1)
+    {
+        *(volatile u_long*)0x12001000 = 1;
+        *(volatile u_long*)0x12001000 = 1;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st3wave", _gsWaveCollisionWater);
 
