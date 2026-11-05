@@ -1,4 +1,5 @@
 #include "common.h"
+#include "fileio.h"
 #include "test.h"
 #include "hoya/hoya.h"
 #include "g_guncon2/g_guncon2.h"
@@ -7,20 +8,12 @@
 
 extern int texMng[];
 extern void hyDrawSMSpriteSub();
-extern int FIO_ReadFile_Align();
 extern void hyDestroySMSpriteInfoSub();
 
 extern int GFTex_Add();
 extern int D_0052CFEC[];
 extern int D_0052CFF0[];
-extern int gsPad_GetTrg();
-extern int gsPad_GetRTrg();
-extern int gsPad_Get();
-extern int TEST_EntryTexture();
 extern int gsFONT_IdtexNo1;
-extern int FIO_GetFileSize();
-extern char* FIO_ReadFile();
-extern int TEST_LoadTexture();
 extern int namePigData[];
 extern int namePigAddr[];
 extern int namePigTuv[];
