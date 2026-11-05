@@ -3,8 +3,6 @@
 #include "g_parts.h"
 #include "mem.h"
 
-extern void _gpClearWorldRecov();
-
 extern void _gpGetPodGeometryNum();
 extern int eval_time_00673fc8;
 extern int eval_end_flag_00673fc4;
@@ -415,11 +413,27 @@ INCLUDE_ASM("asm/nonmatchings/g_parts", _gpClipWorldShape);
 
 INCLUDE_ASM("asm/nonmatchings/g_parts", gpClipWorldShape);
 
-INCLUDE_ASM("asm/nonmatchings/g_parts", _gpClearWorldRecov);
-
-void gpClearWorldRecov()
+static void _gpClearWorldRecov(char* o)
 {
-    _gpClearWorldRecov();
+    if (*(int*)(o + 0xCC) == 1)
+    {
+        *(int*)(o + 0xD0) &= ~0x800;
+    }
+
+    if (*(char**)(o + 0xC8) != 0)
+    {
+        _gpClearWorldRecov(*(char**)(o + 0xC8));
+    }
+
+    if (*(char**)(o + 0xC4) != 0)
+    {
+        _gpClearWorldRecov(*(char**)(o + 0xC4));
+    }
+}
+
+void gpClearWorldRecov(char* o)
+{
+    _gpClearWorldRecov(o);
 }
 
 INCLUDE_ASM("asm/nonmatchings/g_parts", gpInstance_MakeRotMatrix);
