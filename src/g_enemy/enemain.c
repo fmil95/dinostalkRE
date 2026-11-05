@@ -20,6 +20,8 @@ typedef struct { char b[0x230]; } AnotherItemE;
 extern AnotherItemE Another_Item[];
 extern int* bulthitsetbl_9[];
 extern short gsEnemy_Max;
+extern u_int dinoanmmaxno[];
+extern int pmtadr[][128];
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_Main);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_PauseProc);
@@ -264,7 +266,15 @@ void Enemy_PmtDtLoad(int i)
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_PmtDataSet);
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_PmtDataCopy);
+void Enemy_PmtDataCopy(int dst, int src)
+{
+    u_int i;
+
+    for (i = 0; i < dinoanmmaxno[dst]; i++)
+    {
+        pmtadr[dst][i] = pmtadr[src][i];
+    }
+}
 
 INCLUDE_RODATA("asm/nonmatchings/g_enemy/enemain", D_00667450);
 
