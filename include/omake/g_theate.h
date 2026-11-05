@@ -17,6 +17,7 @@ extern THE_STAT theStat;
 void the_texInit();
 G_THEATE_Init();
 void G_THEATE_End();
-G_THEATE_Exec();
+void G_THEATE_Exec();
+void the_notice();
 
 #endif // OMAKE_G_THEATE_H
