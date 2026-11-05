@@ -1,5 +1,6 @@
 #include "common.h"
 #include "g_world/st7.h"
+#include "gunsuv_usa/libgf/gftex.h"
 
 extern int _st7_dino_light_num;
 extern int _st7_glow_num;
@@ -119,7 +120,20 @@ INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldSt7_EntryNeon_01);
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldSt7_Neon_01);
 
-INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldSt7_Neon_Scroll);
+int gsWorldSt7_Neon_Scroll(int pkt, int tex, int pos)
+{
+    GF_TEXDB* db = GFTex_GetDb(tex);
+    int* pig = (int*)db->pig;
+    int save[2];
+
+    save[0] = pig[0x48 / 4];
+    save[1] = pig[0x4C / 4];
+    pig[0x48 / 4] = save[0] + (0x80 - (pos & 0x7F)) * 128;
+    pkt = (int)GFTex_MakeTexturePacket((qword*)pkt, db, 1);
+    pig[0x48 / 4] = save[0];
+    pig[0x4C / 4] = save[1];
+    return pkt;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldSt7_TV_Storm);
 

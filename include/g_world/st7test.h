@@ -6,7 +6,7 @@
 int gsWorldInitSt7Test();
 void gsWorldSt7Test_SpecialEffect();
 int gsWorldSt7Test_SpecialEffect2();
-gsWorldSt7Test_Neon_00();
+int gsWorldSt7Test_Neon_00(int pkt, int tex, int pos);
 gsWorldSt7Test_Neon_01();
 gsWorldSt7Test_Neon_02();
 gsWorldSt7Test_Neon_10();

@@ -5,8 +5,8 @@
 
 LetsGotoFinalResultScene();
 void PermittoSendFrsltTex(int a);
-Send2FrsltTex();
-ReleaseFResultScene();
+qword* Send2FrsltTex(qword* pkt);
+void ReleaseFResultScene(void);
 FRsltItemSet();
 FRsltInfosClear();
 FRsltCreateObjectPacket();

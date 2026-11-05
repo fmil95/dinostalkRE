@@ -6,7 +6,7 @@
 void LetsGotoMemcScene(int a);
 void LetsGotoMemcScene4Continue(int a);
 void PermittoSendMcTex(u_int i);
-Send2McTex();
+qword* Send2McTex(qword* pkt);
 gsMEMC_Draw1();
 int gsMEMC_Draw2(int a);
 int gsStageInit_MEMC();
