@@ -16,6 +16,10 @@ GunBuff* GetGunBuffer(int i)
 
 INCLUDE_ASM("asm/nonmatchings/g_guncon2/src/guncon2", Guncon2_Init);
 
+INCLUDE_RODATA("asm/nonmatchings/g_guncon2/src/guncon2", D_0066D130);
+
+INCLUDE_RODATA("asm/nonmatchings/g_guncon2/src/guncon2", D_0066D150);
+
 INCLUDE_ASM("asm/nonmatchings/g_guncon2/src/guncon2", Guncon2_SetPort);
 
 INCLUDE_ASM("asm/nonmatchings/g_guncon2/src/guncon2", Guncon2_Job);

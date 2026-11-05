@@ -10852,3 +10852,6 @@ D_0066D040                                       = 0x0066D040; // force_migratio
 D_0066D060                                       = 0x0066D060; // force_migration:True align:8
 D_0066D070                                       = 0x0066D070; // align:8
 D_0066D088                                       = 0x0066D088; // align:8
+D_0066D168                                       = 0x0066D168; // force_migration:True align:8
+D_0066D130                                       = 0x0066D130; // align:8
+D_0066D150                                       = 0x0066D150; // align:8
