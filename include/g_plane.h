@@ -5,7 +5,7 @@
 
 void gplInitPlane();
 void gplInitSprite();
-gplSetSprite();
+void gplSetSprite();
 gplChangeClutSprite();
 gplInitPolyFt4();
 gplSetPolyFt4();
