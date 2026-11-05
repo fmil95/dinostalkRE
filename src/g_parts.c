@@ -1,4 +1,5 @@
 #include "common.h"
+#include <libvu0.h>
 #include "g_parts.h"
 #include "mem.h"
 
@@ -12,6 +13,8 @@ extern int gpGetPodGeometryNum();
 extern void _gpMakeWorldOdvGeomBound();
 extern void* memset();
 extern void sceVu0CopyMatrix();
+extern int _gpGetCollObjBox_HitShape;
+extern int gpCollBoxList[];
 INCLUDE_ASM("asm/nonmatchings/g_parts", _gpGetBoundBox);
 
 INCLUDE_ASM("asm/nonmatchings/g_parts", gpGetBoundBox);
@@ -187,7 +190,25 @@ INCLUDE_ASM("asm/nonmatchings/g_parts", gpGetMinVal);
 
 INCLUDE_ASM("asm/nonmatchings/g_parts", _gpGetCollisionObjectBox);
 
-INCLUDE_ASM("asm/nonmatchings/g_parts", gpGetCollisionObjectBox);
+int gpGetCollisionObjectBox(int obj, float* a, float* b, float r)
+{
+    sceVu0FVECTOR v;
+    int s;
+
+    sceVu0SubVector(v, b, a);
+    v[3] = 1.0f;
+
+    if (sceVu0InnerProduct(v, v) > 0.0f)
+    {
+        s = STRUCT_OFFSET(obj, 0x11C, int);
+        _gpGetCollObjBox_HitShape = -1;
+        gpCollBoxList[0] = 0;
+        _gpGetCollisionObjectBox(s, obj, a, b, r);
+        return _gpGetCollObjBox_HitShape;
+    }
+
+    return -1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_parts", _gpGetCollisionObjectBox2);
 
