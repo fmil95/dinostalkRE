@@ -41,7 +41,14 @@ void GFTrack_SetStartRGBA(void* t, sceVu0FVECTOR a, sceVu0FVECTOR b)
     STRUCT_OFFSET(t, 0xC, int) |= 0x2;
 }
 
-INCLUDE_ASM("asm/nonmatchings/benjamin/track", GFTrack_SetEndRGBA);
+void GFTrack_SetEndRGBA(void* t, sceVu0FVECTOR a, sceVu0FVECTOR b)
+{
+    sceVu0CopyVector((float*)((char*)t + 0x40), a);
+    sceVu0ClampVector((float*)((char*)t + 0x40), (float*)((char*)t + 0x40), 0.0f, 255.0f);
+    sceVu0CopyVector((float*)((char*)t + 0x50), b);
+    sceVu0ClampVector((float*)((char*)t + 0x50), (float*)((char*)t + 0x50), 0.0f, 255.0f);
+    STRUCT_OFFSET(t, 0xC, int) |= 0x2;
+}
 
 void GFTrack_SetStartST(void* t, sceVu0FVECTOR a, sceVu0FVECTOR b)
 {
