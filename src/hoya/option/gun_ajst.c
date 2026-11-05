@@ -22,6 +22,7 @@ extern int center_y_00674888;
 extern int adjust_wide_gun_ajst();
 extern void set_adjustY_gun_ajst();
 extern int D_00653B78[];
+extern char gsGuncon2Manager[];
 INCLUDE_ASM("asm/nonmatchings/hoya/option/gun_ajst", CheckGunScreenOut);
 
 int GetScreenOffSw()
@@ -88,7 +89,40 @@ void change_wide_mode_gun_ajst()
 
 INCLUDE_ASM("asm/nonmatchings/hoya/option/gun_ajst", change_normal_mode_gun_ajst);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/option/gun_ajst", change_monitor_gun_ajst);
+void change_monitor_gun_ajst(char* p)
+{
+    char* m;
+
+    if (!(STRUCT_OFFSET(p, 0x28, int) & 8))
+    {
+        return;
+    }
+
+    if (!(STRUCT_OFFSET(p, 0x2C, int) & 0x20))
+    {
+        return;
+    }
+
+    if (STRUCT_OFFSET(p, 0x1C, int) != -1)
+    {
+        return;
+    }
+
+    m = gsGuncon2Manager;
+
+    if (STRUCT_OFFSET(m, 0x20, int) != 0)
+    {
+        STRUCT_OFFSET(m, 0x20, int) = 0;
+    }
+    else
+    {
+        STRUCT_OFFSET(m, 0x20, int) = 1;
+        STRUCT_OFFSET(m, STRUCT_OFFSET(p, 0x0, int) * 16 + 0x28, int) = 0;
+        STRUCT_OFFSET(m, STRUCT_OFFSET(p, 0x0, int) * 16 + 0x2C, int) = 0;
+    }
+
+    Guncon2_TransCtrlData(STRUCT_OFFSET(p, 0x34, int), STRUCT_OFFSET(p, 0x0, int));
+}
 
 void gun_adjust0_gun_ajst()
 {
