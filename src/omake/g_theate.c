@@ -41,6 +41,8 @@ extern int anim_3_00674c08;
 extern int flgAnim_4;
 extern char etcSpr_0085da70[];
 extern void the_titleEtcInitSpr();
+extern int cursorTexId_00674c2c;
+extern char pageSpr_0085d7b0[];
 void the_texInit()
 {
     pTheBin = FIO_ReadFile_Align("cdrom0:\\DATA\\THEATER\\THEMAIN.BIN;1", 0x40);
@@ -172,7 +174,30 @@ INCLUDE_ASM("asm/nonmatchings/omake/g_theate", the_initCurSpr);
 
 INCLUDE_ASM("asm/nonmatchings/omake/g_theate", the_initPageSpr);
 
-INCLUDE_ASM("asm/nonmatchings/omake/g_theate", the_selectEtcInitSpr);
+void the_selectEtcInitSpr()
+{
+    char* spr;
+
+    spr = etcSpr_0085da70;
+    gplInitSprite(spr, cursorTexId_00674c2c);
+    gplInitSprite(spr + 0x160, cursorTexId_00674c2c);
+    STRUCT_OFFSET(spr, 0x8, short) = 0x0;
+    STRUCT_OFFSET(spr, 0xA, short) = 0x600;
+    STRUCT_OFFSET(spr, 0x10, short) = 0xA20;
+    STRUCT_OFFSET(spr, 0x12, short) = 0x6F0;
+    STRUCT_OFFSET(spr, 0xC, short) = -0x7B80;
+    STRUCT_OFFSET(spr, 0xE, short) = -0x7A00;
+    STRUCT_OFFSET(spr, 0x14, short) = -0x7160;
+    STRUCT_OFFSET(spr, 0x16, short) = -0x7988;
+    STRUCT_OFFSET(spr, 0x168, short) = 0x0;
+    STRUCT_OFFSET(spr, 0x16A, short) = 0x700;
+    STRUCT_OFFSET(spr, 0x170, short) = 0xA20;
+    STRUCT_OFFSET(spr, 0x172, short) = 0x7F0;
+    STRUCT_OFFSET(spr, 0x16C, short) = -0x7B80;
+    STRUCT_OFFSET(spr, 0x16E, short) = -0x7A00;
+    STRUCT_OFFSET(spr, 0x174, short) = -0x7160;
+    STRUCT_OFFSET(spr, 0x176, short) = -0x7988;
+}
 
 void the_titleEtcInitSpr(int tex)
 {
