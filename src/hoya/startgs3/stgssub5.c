@@ -6,6 +6,7 @@ extern int pStgs_006749a0;
 extern int hyCheckFadeFinishFlag();
 extern void hySwitchFadeTimer();
 
+extern char stgs_0084bad0[];
 void SetFadeParaFadeIn_stgssub5()
 {
     char* p = (char*)pStgs_006749a0;
@@ -56,7 +57,29 @@ void Calculation_stgssub5(void) {
 
 INCLUDE_ASM("asm/nonmatchings/hoya/startgs3/stgssub5", ProcFade_stgssub5);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/startgs3/stgssub5", InitStgsTaikenTyuui);
+void InitStgsTaikenTyuui()
+{
+    int* p;
+
+    pStgs_006749a0 = (int)stgs_0084bad0;
+    hyLoadPigStartgs3();
+    p = (int*)pStgs_006749a0;
+    p[0x30 / 4] = 30;
+    ((float*)p)[0x1C / 4] = 128.0f;
+    p[0] = 0;
+    p[1] = 0;
+    p[2] = 0;
+    p[0x368 / 4] = 0;
+    p[4] = 0;
+    p[5] = 0;
+    p[6] = 0;
+    p[8] = 0;
+    p[9] = 0;
+    p[10] = 0;
+    p[11] = 0;
+    p[0x200 / 4] = 0;
+    hyInitFadeMng2(p + 0x10);
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/startgs3/stgssub5", MainStgsTaikenTyuui);
 
