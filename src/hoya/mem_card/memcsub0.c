@@ -1,11 +1,11 @@
 #include "common.h"
 #include "hoya/mem_card/memcsub0.h"
+#include "hoya/hoya.h"
+#include "hoya/mem_card/g_savlod.h"
 
-extern void EndMemcManager();
 extern int prgMan[];
 extern int pmss_00673c64;
 extern int hyCheckFadeFinishFlag();
-extern void hySetFadePara2();
 extern void hySwitchFadeTimer();
 extern int gsNextProg;
 extern void LetsGotoStartgs3();
@@ -67,7 +67,35 @@ void GotoNextStage_memcsub0()
     EndMemcManager();
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub0", ProcFade_memcsub0);
+int ProcFade_memcsub0(int step)
+{
+    int t = pmss_00673c64;
+
+    switch (STRUCT_OFFSET(t, 4, int))
+    {
+    case 0:
+        STRUCT_OFFSET(t, 0x40, int) = 0;
+        SetFadePara_memcsub0(t + 0x10, t + 0x20, STRUCT_OFFSET(t, 0x30, int));
+        SwitchFadeTimer_memcsub0(1);
+        STRUCT_OFFSET(pmss_00673c64, 4, int)++;
+        break;
+    case 1:
+        STRUCT_OFFSET(t, 4, int) = 2;
+        break;
+    case 2:
+        if (!CheckFadeFinishFlag_memcsub0())
+        {
+            STRUCT_OFFSET(pmss_00673c64, 4, int)++;
+        }
+        break;
+    case 3:
+        STRUCT_OFFSET(t, 4, int) = 0;
+        step++;
+        break;
+    }
+
+    return step;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub0", ProcMemcConnectCheck);
 
