@@ -236,7 +236,24 @@ INCLUDE_ASM("asm/nonmatchings/g_parts", gpVector2RotXYZ);
 
 INCLUDE_ASM("asm/nonmatchings/g_parts", gpGetLength);
 
-INCLUDE_ASM("asm/nonmatchings/g_parts", gpVector2RotZYX_Hi);
+void gpVector2RotZYX_Hi(float* r, float* v)
+{
+    sceVu0FVECTOR t;
+    float y;
+    float rz;
+    float ry;
+
+    sceVu0CopyVector(t, v);
+    y = t[1];
+    t[3] = 1.0f;
+    t[1] = 0.0f;
+    rz = gpArcTanHi(y, gpGetLength(t));
+    ry = gpArcTanHi(t[2], t[0]);
+    r[0] = 0.0f;
+    r[1] = -ry;
+    r[2] = rz;
+    r[3] = 1.0f;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_parts", gpJudgeCircleOnLine);
 
