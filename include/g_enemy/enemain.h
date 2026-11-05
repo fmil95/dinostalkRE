@@ -67,7 +67,7 @@ Enemy_ShadowChk();
 int Enemy_AllDataLoad(int a, int b);
 int Enemy_DataLoadExceptPmt();
 void Enemy_PmtDtLoad(int i);
-void Enemy_PmtDataSet();
+void Enemy_PmtDataSet(char* base, int n);
 void Enemy_PmtDataCopy(int dst, int src);
 int Enemy_EveryStgDtLd();
 int Enemy_BossDtLd();

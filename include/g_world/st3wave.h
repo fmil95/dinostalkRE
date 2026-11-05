@@ -18,7 +18,7 @@ void gsWaveAvoidInit();
 void gsWaveAvoidEnd();
 int _gsWaveHandler(int ch);
 gsWaveAvoidSetStart();
-gsWaveAvoidSetEnd();
+void gsWaveAvoidSetEnd();
 gsWaveCollisionWater();
 void printVector(void);
 gsWaveMakeWave();

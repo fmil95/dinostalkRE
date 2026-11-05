@@ -1,9 +1,12 @@
 #include "common.h"
+#include <eekernel.h>
 
 extern int pfm_timerno;
 extern u_int pfm_mtime;
 extern int pfm_offset;
 extern u_int TIMER_GetTimer();
+extern int pfm_vbno;
+extern int pfm_vbtime[];
 INCLUDE_ASM("asm/nonmatchings/perfmon", pfm_barx);
 
 INCLUDE_ASM("asm/nonmatchings/perfmon", pfm_draw_num);
@@ -29,7 +32,15 @@ INCLUDE_ASM("asm/nonmatchings/perfmon", pfm_dmastart);
 
 INCLUDE_ASM("asm/nonmatchings/perfmon", pfm_dma1int);
 
-INCLUDE_ASM("asm/nonmatchings/perfmon", pfm_vbint);
+int pfm_vbint(int ch)
+{
+    DIntr();
+    pfm_vbtime[pfm_vbno] = pfm_gettimer();
+    pfm_vbno = (pfm_vbno + 1) & 7;
+    EIntr();
+    ExitHandler();
+    return 1;
+}
 
 void pfm_init(void) {
 }

@@ -28,7 +28,7 @@ int gsGetCollisionWorld();
 int gsGetCameraTilt();
 int gsGetCameraAmp();
 int gsCameraGetItem();
-int gsCameraEntryDamageEffect();
+int gsCameraEntryDamageEffect(Camera* c, int type, float* v, float f);
 int gsCameraDamageEffect();
 int gsCameraShock_ENTRY();
 int gsCameraShock_EXEC();

@@ -13,7 +13,7 @@ eneatc00_atcbscchk02();
 eneatc00_atcbscchk03();
 eneatc00_holdatchitchk();
 eneatc00_pshitchk();
-eneatc00_trexhowling();
+void eneatc00_trexhowling(char* e);
 eneatc00_crntocrnchk();
 
 #endif // G_ENEMY_ENEATC00_H

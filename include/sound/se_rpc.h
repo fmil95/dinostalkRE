@@ -150,7 +150,7 @@ int SeCSLBankOpenEE(int a, int b, int c, int d, int e);
 int SeCSLBankOpenBEE();
 int SeCSLBankOpen(int a);
 int SeCSLBankOpenB();
-int SeCSLBankOpenN();
+int SeCSLBankOpenN(int a, int b, int c);
 int SeCSLBankClose();
 int SeCSLBankCloseB();
 int SeCSLSqOpenEE();

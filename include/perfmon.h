@@ -9,9 +9,9 @@ int pfm_draw(int a);
 int pfm_gettimer();
 pfm_dmastart();
 pfm_dma1int();
-pfm_vbint();
+int pfm_vbint(int ch);
 void pfm_init();
 void pfm_end();
-pfm_start();
+void pfm_start(void);
 int pfm_set();
 #endif // PERFMON_H
