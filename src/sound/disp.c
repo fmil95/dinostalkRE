@@ -1,5 +1,7 @@
 #include "sound/buf.h"
 #include "sound/disp.h"
+#include <libgraph.h>
+#include <eekernel.h>
 #define D2_TADR ((volatile u_int*)0x1000A030)
 #define D2_QWC ((volatile u_int*)0x1000A020)
 #define D2_CHCR ((volatile u_int*)0x1000A000)
@@ -21,6 +23,8 @@ extern int user_width;
 extern int user_height;
 extern int isUp;
 extern int vo_send_addr;
+extern sceGsStoreImage storeimage;
+extern sceGsLoadImage loadimage;
 INCLUDE_ASM("asm/nonmatchings/sound/disp", initDisplay);
 
 void cdvMpegChgOffset(int ofx, int ofy)
@@ -63,7 +67,18 @@ INCLUDE_ASM("asm/nonmatchings/sound/disp", dispCreate);
 void dispDelete(void) {
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/disp", texsave);
+void texsave(char* p, u_long128* buf)
+{
+    int i;
+
+    for (i = 0; i < 4; i++)
+    {
+        sceGsSetDefStoreImage(&storeimage, STRUCT_OFFSET(p, 0x14, short), 12, 0, 0, i * 120, 768, 120);
+        FlushCache(0);
+        sceGsExecStoreImage(&storeimage, buf);
+        buf += 0x5A00;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/disp", texload);
 

@@ -60,7 +60,7 @@ void dispDelete();
 texsave();
 texload();
 dispSetTags();
-dispClear();
+void dispClear(void);
 void loadImage(u_int* tags);
 int vblankHandler(int val);
 int handler_endimage(int val);
