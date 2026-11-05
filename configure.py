@@ -188,6 +188,97 @@ def insert_hazard_nops(text: str) -> str:
     return "\n".join(out)
 
 
+#MARK: .lit4 constants
+# gas expands `li.s $fN, value` (low half non-zero) into a gp-relative lwc1 from
+# its own .lit4 pool. The original pool is one asm blob (asm/data/lit4.lit4.s)
+# shared with unmatched asm, so a C object can't contribute its own .lit4.
+# Instead, configure records which pool entries each C file's original text
+# loads (LIT4_MAP_PATH), and as-checked rewrites a pooled li.s into an lwc1 of
+# the entry with the same value, which is exactly what gas emitted.
+
+LIT4_MAP_PATH = "obj/lit4_map.json"
+GP_VALUE = 0x679170
+
+
+def build_lit4_map(symbols_path: Path, rom_path: Path, lit4_asm: Path) -> None:
+    """Record, per function, the .lit4 entries its original text loads, in order."""
+    import struct
+
+    labels: Dict[int, str] = {}
+    cur = None
+    for line in open(lit4_asm):
+        m = re.match(r"\s*dlabel (\S+)", line)
+        if m:
+            cur = m.group(1)
+            continue
+        m = re.match(r"\s*/\* [0-9A-F]+ ([0-9A-F]+) ", line)
+        if m and cur is not None:
+            labels[int(m.group(1), 16)] = cur
+            cur = None
+    if not labels:
+        return
+
+    rom = rom_path.read_bytes()
+    vram_minus_rom = 0xFF000
+    result: Dict[str, List[List[Union[int, str]]]] = {}
+    for line in open(symbols_path):
+        m = re.match(r"(\w+)\s*=\s*0x([0-9A-Fa-f]+);.*size:0x([0-9A-Fa-f]+)", line)
+        if not m:
+            continue
+        name, addr, size = m.group(1), int(m.group(2), 16), int(m.group(3), 16)
+        start = addr - vram_minus_rom
+        if not (0x100000 <= addr < 0x400000) or start + size > len(rom):
+            continue
+        seq: List[List[Union[int, str]]] = []
+        for off in range(start, start + size, 4):
+            insn, = struct.unpack_from("<I", rom, off)
+            if insn >> 26 == 0x31 and (insn >> 21) & 31 == 28:  # lwc1 $f, imm($gp)
+                imm = insn & 0xFFFF
+                lit = GP_VALUE + (imm - 0x10000 if imm & 0x8000 else imm)
+                if lit in labels:
+                    bits, = struct.unpack_from("<I", rom, lit - vram_minus_rom)
+                    seq.append([bits, labels[lit]])
+        if seq:
+            result[name] = seq
+
+    os.makedirs(os.path.dirname(LIT4_MAP_PATH), exist_ok=True)
+    with open(LIT4_MAP_PATH, "w") as f:
+        json.dump(result, f)
+
+
+def rewrite_lit4(text: str, obj_path: str) -> str:
+    import struct
+
+    try:
+        with open(LIT4_MAP_PATH) as f:
+            pool = json.load(f)
+    except (OSError, ValueError):
+        return text
+
+    out: List[str] = []
+    seq: List[List[Union[int, str]]] = []
+    k = 0
+    for line in text.split("\n"):
+        m = re.match(r"\s*\.ent\s+(\S+)", line)
+        if m:
+            seq = pool.get(m.group(1), [])
+            k = 0
+        m = re.match(r"^(\s*)li\.s\s+(\$f\d+)\s*,\s*(\S+)\s*$", line)
+        if m and seq:
+            try:
+                bits = struct.unpack("<I", struct.pack("<f", float(m.group(3))))[0]
+            except ValueError:
+                bits = None
+            if bits is not None and bits & 0xFFFF:
+                if k < len(seq) and seq[k][0] == bits:
+                    # a 4-byte .extern makes gas address it gp-relative
+                    line = (f"{m.group(1)}.extern\t{seq[k][1]},4\n"
+                            f"{m.group(1)}lwc1\t{m.group(2)},{seq[k][1]}")
+                k += 1
+        out.append(line)
+    return "\n".join(out)
+
+
 def as_checked(argv: List[str]) -> int:
     """argv: <as path> <as flags...> -o <out.o> <in.s>"""
     import subprocess
@@ -198,7 +289,7 @@ def as_checked(argv: List[str]) -> int:
     flags = [a for i, a in enumerate(args[:-1]) if a != "-o" and args[i - 1] != "-o"]
 
     with open(src) as f:
-        text = insert_hazard_nops(f.read())
+        text = insert_hazard_nops(rewrite_lit4(f.read(), out))
 
     tmp_s = f"{out}.pad.s"
     tmp_o = f"{out}.pad.o"
@@ -791,6 +882,7 @@ def main():
     split.main([YAML_FILE], modes="all", verbose=False)
 
     linker_entries = split.linker_writer.entries
+    build_lit4_map(Path("config/symbol_addrs.txt"), Path("disc") / BASENAME, Path("asm/data/lit4.lit4.s"))
 
     if do_objects:
         build_stuff(linker_entries, skip_checksum=True, objects_only=True, dual_objects=True)
