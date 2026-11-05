@@ -93,7 +93,24 @@ INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn03", eneptn03_ST5carno_escchk);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn03", eneptn03_ST5carno_movechk);
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn03", eneptn03_ST5carno_setgoalflag);
+void eneptn03_ST5carno_setgoalflag(char* e, int a, int b)
+{
+    int i;
+    int k;
+
+    for (i = 0; i < 4; i++)
+    {
+        for (k = 0; k < 3; k++)
+        {
+            if (st5_area_point[i][k].id == STRUCT_OFFSET(e, 0x2A, short))
+            {
+                st5_area_point[i][k].id = 0;
+            }
+        }
+    }
+
+    st5_area_point[a][b].id = STRUCT_OFFSET(e, 0x2A, short);
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn03", eneptn03_ST5carno_setneargoalflag);
 
