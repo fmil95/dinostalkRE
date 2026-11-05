@@ -80,7 +80,18 @@ void texsave(char* p, u_long128* buf)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/disp", texload);
+void texload(char* p, u_long128* buf)
+{
+    int i;
+
+    for (i = 0; i < 4; i++)
+    {
+        sceGsSetDefLoadImage(&loadimage, STRUCT_OFFSET(p, 0x14, short), 12, 0, 0, i * 120, 768, 120);
+        FlushCache(0);
+        sceGsExecLoadImage(&loadimage, buf);
+        buf += 0x5A00;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/disp", dispSetTags);
 
