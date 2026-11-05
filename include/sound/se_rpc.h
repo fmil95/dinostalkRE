@@ -114,7 +114,7 @@ int SeStopVoice();
 int SeGetVbBlockSize();
 int SeVabOpenEE(int a, int b, int c, int d, int e);
 int SeVabOpenBEE();
-int SeVabOpen();
+int SeVabOpen(int a);
 int SeVabOpenB();
 int SeVabOpenN(int a, int b, int c);
 void SeVabClose();

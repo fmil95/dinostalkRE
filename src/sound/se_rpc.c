@@ -414,7 +414,11 @@ int SeVabOpenEE(int a, int b, int c, int d, int e)
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeVabOpenBEE);
 
-INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeVabOpen);
+int SeVabOpen(int a)
+{
+    SeVabOpenB(a, D_0064B364[a][0]);
+    return 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeVabOpenB);
 

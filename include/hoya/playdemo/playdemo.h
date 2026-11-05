@@ -12,7 +12,7 @@ void gsPlayPadInit(int a, int b);
 gsPlayPadMain();
 gsPlayPadMain2();
 void gsPlayPadEnd();
-gsPlayPadFGetData();
+void gsPlayPadFGetData(int name);
 void gsPlayDemoPadSwitch(int on);
 int retGunActTaddr();
 int IsRecordHeaderExists();
