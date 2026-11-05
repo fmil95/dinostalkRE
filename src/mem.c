@@ -18,6 +18,7 @@ extern void MEM_MallocAlign();
 extern int cur_magic_0;
 extern void _mem_free();
 extern int printf();
+extern int mem_CheckViolation();
 void MEM_InitAllocation() 
 {
     unsigned int i;
@@ -117,7 +118,20 @@ int mem_GetMagicNumber()
     return cur_magic_0++;
 }
 
-INCLUDE_ASM("asm/nonmatchings/mem", MEM_CheckViolation);
+int MEM_CheckViolation()
+{
+    u_int i;
+
+    for (i = 0; i < 2048; i++)
+    {
+        if (mem_CheckViolation(&gAllocInfo[i]) < 0)
+        {
+            return -1;
+        }
+    }
+
+    return 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/mem", mem_CheckViolation);
 
