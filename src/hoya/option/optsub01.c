@@ -142,7 +142,14 @@ void Draw2dObjectOptMenu(int a)
     OptDrawSprOther(a);
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/option/optsub01", InitSpriteKeyConfig);
+void InitSpriteKeyConfig()
+{
+    char* o = optOption;
+
+    OptInitSprButtonPad(*(int*)(o + 0x18));
+    OptInitSprButtonGun(*(int*)(o + 0x1C));
+    OptInitSprButtonGun1(*(int*)(o + 0x20));
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/option/optsub01", InitSpriteOther);
 
