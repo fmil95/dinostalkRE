@@ -55,7 +55,7 @@ gsWorldSt7_ObjSort_EXT();
 gsWorldSt7_ObjSort_EXT2();
 gsWorldSt7_Frea();
 gsWorldSt7_Kanban();
-gsWorldSt7_CheckBossDied_CALNO();
+int gsWorldSt7_CheckBossDied_CALNO();
 gsWorldSt7_CheckBossDied_TREX();
 void gsWorldSt7_InitBackSE();
 gsWorldSt7_PlayBackSE();

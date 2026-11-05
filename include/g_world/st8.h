@@ -17,7 +17,7 @@ gsWorldSt8_KakiTrans();
 gsWorldSt8_CheckBossDied();
 void gsWorldSt8_Demo0_Init();
 void gsWorldSt8_Demo0_Request();
-gsWorldSt8_Demo0_CallEnd();
+void gsWorldSt8_Demo0_CallEnd();
 gsWorldSt8_Demo0_Exec();
 
 #endif // G_WORLD_ST8_H

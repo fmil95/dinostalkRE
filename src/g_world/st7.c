@@ -234,7 +234,29 @@ INCLUDE_RODATA("asm/nonmatchings/g_world/st7", D_00665AF0);
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldSt7_Kanban);
 
-INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldSt7_CheckBossDied_CALNO);
+int gsWorldSt7_CheckBossDied_CALNO()
+{
+    int p = (int)gsEnemyInfos;
+
+    do
+    {
+        int f = *(int*)p;
+
+        if (f & 1)
+        {
+            short t = *(short*)(p + 0x2A);
+
+            if ((t == 14 || t == 8) && (f & 0x20000000))
+            {
+                return 1;
+            }
+        }
+
+        p += 0x2A50;
+    } while (p < (int)gsEnemyInfos + 0x1A720);
+
+    return 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldSt7_CheckBossDied_TREX);
 
