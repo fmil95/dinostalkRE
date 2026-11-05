@@ -94,3 +94,5 @@ void gsWorldSt8_Demo0_CallEnd()
 }
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st8", gsWorldSt8_Demo0_Exec);
+INCLUDE_RODATA("asm/nonmatchings/g_world/st8", D_00665C30);
+
