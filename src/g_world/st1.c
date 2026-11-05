@@ -1,6 +1,9 @@
 #include "common.h"
 #include "g_world/st1.h"
+#include "sound/g_sound.h"
 
+extern int gsSt1DirectFlag;
+extern int _st1_bgm_volume;
 INCLUDE_ASM("asm/nonmatchings/g_world/st1", gsWorldInitSt1);
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st1", gsSt1WorkClear);
@@ -13,7 +16,19 @@ INCLUDE_ASM("asm/nonmatchings/g_world/st1", gsWorldSt1_SpecialEffect2);
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st1", gsSt1_TimerManagement);
 
-INCLUDE_ASM("asm/nonmatchings/g_world/st1", gsSt1_BgmFadeOut);
+int gsSt1_BgmFadeOut()
+{
+    if (gsSt1DirectFlag & 0x800)
+    {
+        gsSoundBgmVol(--_st1_bgm_volume);
+
+        if (_st1_bgm_volume == 0)
+        {
+            gsSt1DirectFlag &= ~0x800;
+            gsSoundBgmStop(1);
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st1", gsSt1_GndScroll);
 
