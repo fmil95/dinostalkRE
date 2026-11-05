@@ -1,4 +1,5 @@
 #include "common.h"
+#include <string.h>
 
 extern void hyLoadPigFont();
 extern void EndLetterAll();
@@ -15,6 +16,7 @@ extern int shortSentence[];
 extern void strDrawSentence();
 typedef struct { char b[0x630]; } StrManS;
 extern StrManS strManager[];
+extern void* GFTex_GetDb();
 void LoadLetterPig()
 {
     hyLoadPigFont();
@@ -67,7 +69,14 @@ INCLUDE_ASM("asm/nonmatchings/hoya/g_string", EntryFontOne);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/g_string", DrawFontAll);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/g_string", ClearPigPixelData);
+void ClearPigPixelData(u_char v, int tex)
+{
+    char* t = *(char**)((char*)GFTex_GetDb(tex) + 0x14);
+    u_int w = 1 << *(u_short*)(t + 0x20);
+    u_int h = 1 << *(u_short*)(t + 0x22);
+
+    memset(t + *(int*)(t + 0x48), v, (w * h) >> 1);
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/g_string", makeTexArea4Font);
 
