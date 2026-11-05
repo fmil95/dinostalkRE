@@ -533,7 +533,25 @@ void ene03moveElem281(char* a)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/ene03pro/ene03mv", ene03moveElem282);
+void ene03moveElem282(char* a)
+{
+    if (GFAnim_ShapeFlagCheck((GF_INST_OBJECT*)(a + 0xBA0), 0) & 2)
+    {
+        u_char k = (STRUCT_OFFSET(a, 0x84, int) - 0x28) / 3;
+
+        STRUCT_OFFSET(a, 0, int) = (STRUCT_OFFSET(a, 0, int) | 0x800) & ~0x40000000;
+        Enemy_ActChg00(a, k * 2);
+
+        if (k != 0)
+        {
+            Enemy_AnmChg00(a, (u_char)(k * 4 + 2), 8, 0);
+        }
+        else
+        {
+            Enemy_AnmChg00(a, 0, 8, 1);
+        }
+    }
+}
 
 void ene03btatcsp00(char* a)
 {
