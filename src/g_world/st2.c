@@ -1,5 +1,6 @@
 #include "common.h"
 #include "g_world/st2.h"
+#include "taiken/taiken.h"
 #include "air/a_spbtl.h"
 
 extern int _st2_rapt_flag;
@@ -9,6 +10,7 @@ extern int _st2_se_port_sawa;
 extern int _st2_se_sawa_vol;
 extern int _st2_shock_fall_flg;
 
+extern char gsEnemyInfos[];
 INCLUDE_ASM("asm/nonmatchings/g_world/st2", gsWorldInitSt2);
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st2", gsWorldSt2EntryTex_GND);
@@ -46,7 +48,25 @@ void gsWorldSt2_MotiveRapt()
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st2", gsWorldSt2_CheckRaptEnd);
 
-INCLUDE_ASM("asm/nonmatchings/g_world/st2", gsWorldSt2_CheckBossDied);
+void gsWorldSt2_CheckBossDied()
+{
+    int p = (int)gsEnemyInfos;
+
+    do
+    {
+        if (STRUCT_OFFSET(p, 0, int) & 1)
+        {
+            if (STRUCT_OFFSET(p, 0x2A, short) == 14 || STRUCT_OFFSET(p, 0x2A, short) == 8)
+            {
+                if (STRUCT_OFFSET(p, 0, int) & 0x20000000)
+                {
+                    gsTaikenCall_CLEAR();
+                }
+            }
+        }
+        p += 0x2A50;
+    } while (p < (int)gsEnemyInfos + 0x1A720);
+}
 
 void gsWorldSt2_InitBackSE()
 {
