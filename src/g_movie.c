@@ -48,7 +48,13 @@ void gsMovie_SetStartCol(u_short r, u_short g, u_short b, u_short a)
     startCol[3] = a;
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_movie", gsMovie_SetEndCol);
+void gsMovie_SetEndCol(u_short r, u_short g, u_short b, u_short a)
+{
+    endCol[0] = r;
+    endCol[1] = g;
+    endCol[2] = b;
+    endCol[3] = a;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_movie", MpegFunc);
 
