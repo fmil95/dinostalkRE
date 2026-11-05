@@ -5,9 +5,31 @@
 
 extern void* memset();
 extern float cam_trans_002af8b0[];
+extern char gsEnemyInfos[];
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptnsb", eneptn_samegoalchk);
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptnsb", eneptn_elseneatcchk);
+int eneptn_elseneatcchk(char* e)
+{
+    short i;
+
+    for (i = 0; i < 10; i++)
+    {
+        if (*(short*)(e + 0x28) != i)
+        {
+            int f = *(int*)(gsEnemyInfos + i * 0x2A50);
+
+            if (f & 1)
+            {
+                if (f & 0x100)
+                {
+                    return -1;
+                }
+            }
+        }
+    }
+
+    return 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptnsb", eneptn_glvectorset);
 
