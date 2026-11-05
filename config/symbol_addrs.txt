@@ -10720,3 +10720,4 @@ D_00666930                                       = 0x00666930; // force_migratio
 D_00666938                                       = 0x00666938; // force_migration:True align:8
 D_00666940                                       = 0x00666940; // force_migration:True align:8
 D_00666948                                       = 0x00666948; // force_migration:True align:8
+D_00666950                                       = 0x00666950; // force_migration:True align:8
