@@ -6,6 +6,8 @@
 #include "g_enemy/ene03pro/ene03joy.h"
 #include "g_enemy/enethkmn.h"
 #include "benjamin/g_track.h"
+#include "sound/g_sound.h"
+#include "g_enemy/eneatc00.h"
 
 extern void Enemy_SeSet00();
 extern void bigdino_vbrset();
@@ -463,7 +465,33 @@ void ene03moveElem270(char* a)
     STRUCT_OFFSET(a, 0xC0, int) = 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/ene03pro/ene03mv", ene03moveElem271);
+void ene03moveElem271(char* a)
+{
+    if (GFAnim_ShapeFlagCheck((GF_INST_OBJECT*)(a + 0xBA0), 0) & 2)
+    {
+        Enemy_AnmChg00(a, 0x6D, 0, 0);
+        STRUCT_OFFSET(a, 0, int) |= 0x100;
+
+        if (STRUCT_OFFSET(a, 0x2A, short) == 7)
+        {
+            gsSoundSeMePlay(0x178);
+        }
+        else
+        {
+            Enemy_SeSet00(a, 0x18B);
+        }
+
+        bigdino_vbrset(a, 0x32, 0x33, 0x34);
+
+        if (STRUCT_OFFSET(a, 0x2A, short) == 7 && STRUCT_OFFSET(a, 0x84, int) != 9)
+        {
+            eneatc00_trexhowling(a);
+        }
+
+        STRUCT_OFFSET(a, 0xC0, float) = 1.0f;
+        STRUCT_OFFSET(a, 0x8C, int)++;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/ene03pro/ene03mv", ene03moveElem272);
 
