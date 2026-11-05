@@ -1,10 +1,10 @@
 #include "common.h"
 #include "g_enemy/eneptnsb.h"
+#include <libvu0.h>
+#include "g_enemy/enemain.h"
 
 extern void* memset();
-extern void Enemy_MkUnitV00();
-extern void Enemy_OpVInPd00();
-extern int Enemy_OpVLRChk00();
+extern float cam_trans_002af8b0[];
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptnsb", eneptn_samegoalchk);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptnsb", eneptn_elseneatcchk);
@@ -69,7 +69,14 @@ INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptnsb", eneptn_ptrhichkfly);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptnsb", eneptn_ptrxroleset);
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptnsb", eneptn_plchkxroleset);
+void eneptn_plchkxroleset(char* e)
+{
+    sceVu0FVECTOR v;
+
+    sceVu0CopyVector(v, cam_trans_002af8b0);
+    v[1] -= *(float*)(e + 0xF0);
+    eneptn_ptrxroleset(e, v);
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptnsb", eneptn_eyelinech00);
 
