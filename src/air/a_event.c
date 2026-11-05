@@ -1,10 +1,29 @@
 #include "common.h"
 #include "air/a_event.h"
+#include "g_enemy/enemain.h"
 
 extern int* InitPlaceData[];
 typedef struct { int* p; char pad[0x400]; } EvtS;
 extern EvtS EventData[];
 extern int Evt_Count;
+INCLUDE_RODATA("asm/nonmatchings/air/a_event", D_00669940);
+
+INCLUDE_RODATA("asm/nonmatchings/air/a_event", D_00669968);
+
+INCLUDE_RODATA("asm/nonmatchings/air/a_event", D_00669990);
+
+INCLUDE_RODATA("asm/nonmatchings/air/a_event", D_006699B8);
+
+INCLUDE_RODATA("asm/nonmatchings/air/a_event", D_006699E0);
+
+INCLUDE_RODATA("asm/nonmatchings/air/a_event", D_00669A08);
+
+INCLUDE_RODATA("asm/nonmatchings/air/a_event", D_00669A30);
+
+INCLUDE_RODATA("asm/nonmatchings/air/a_event", D_00669A58);
+
+INCLUDE_RODATA("asm/nonmatchings/air/a_event", D_00669A80);
+
 INCLUDE_ASM("asm/nonmatchings/air/a_event", gsEventInit);
 
 INCLUDE_ASM("asm/nonmatchings/air/a_event", gsReadEventMatrix);
@@ -64,4 +83,26 @@ INCLUDE_ASM("asm/nonmatchings/air/a_event", gsGetFieldObjCross);
 
 INCLUDE_ASM("asm/nonmatchings/air/a_event", gsGetFieldCross);
 
-INCLUDE_ASM("asm/nonmatchings/air/a_event", gsEnemyPictureLoad);
+int gsEnemyPictureLoad(int stage, int p)
+{
+    Enemy_AllWorkInit();
+    p = Enemy_EveryStgDtLd(p, stage);
+
+    switch (stage)
+    {
+    case 0:
+    case 2:
+    case 3:
+    case 5:
+    case 6:
+    case 7:
+    case 8:
+        break;
+    case 1:
+    case 4:
+        p = Enemy_BossDtLd(p, 0);
+        break;
+    }
+
+    return p;
+}

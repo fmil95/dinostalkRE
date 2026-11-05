@@ -22,6 +22,5 @@ gsFixDinoCtrl();
 gsFixDinoSet();
 gsGetFieldObjCross();
 gsGetFieldCross();
-gsEnemyPictureLoad();
-
+int gsEnemyPictureLoad(int stage, int p);
 #endif // AIR_A_EVENT_H
