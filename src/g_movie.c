@@ -1,13 +1,16 @@
 #include "common.h"
-
 #include <libgraph.h>
 #include "g_movie.h"
 #include "sound/CdvUse.h"
+#include "g_pad.h"
+
 extern int waitingQue;
 extern int gsMovie_skipGunKey;
 extern void cdvMpegSkipReset();
 extern void cdvMpegSkipSet();
 
+extern sceGsDBuff gsMovieClearDb;
+extern int frame;
 INCLUDE_ASM("asm/nonmatchings/g_movie", gsMovie_Init);
 
 void gsMovie_SetSkipKey(int a, int b)
@@ -24,7 +27,16 @@ void gsMovie_Play(int a)
 
 INCLUDE_ASM("asm/nonmatchings/g_movie", gsMovie_Exec);
 
-INCLUDE_ASM("asm/nonmatchings/g_movie", gsMovie_End);
+int gsMovie_End()
+{
+    gsPad_Update();
+    sceGsSyncV(0);
+    sceGsSwapDBuff(&gsMovieClearDb, frame);
+    sceGsSwapDBuff(&gsMovieClearDb, ++frame);
+    frame++;
+    gsPad_Update();
+    return 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_movie", gsMovie_SetStartCol);
 
