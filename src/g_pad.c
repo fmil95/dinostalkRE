@@ -8,6 +8,7 @@ extern int _us_key_exchange();
 extern int _us_get_port_g_pad();
 extern int _us_key_exchange2();
 extern u_char gPadShockData[4];
+extern u_char gPadActAlign[6];
 INCLUDE_ASM("asm/nonmatchings/g_pad", gsPad_Init);
 
 INCLUDE_ASM("asm/nonmatchings/g_pad", gsPad_Reset);
@@ -115,7 +116,18 @@ int gsPadSetAct(int n, u_char a, u_char b)
     return r;
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_pad", gsPadAlignDataInit);
+void gsPadAlignDataInit()
+{
+    int i;
+
+    for (i = 0; i < 6; i++)
+    {
+        gPadActAlign[i] = 0xFF;
+    }
+
+    gPadActAlign[0] = 0;
+    gPadActAlign[1] = 1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_pad", gsPadDataInit);
 
