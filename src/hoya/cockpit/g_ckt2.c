@@ -99,7 +99,27 @@ ItemS* NextItemData()
     return 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_ckt2", OrderChange);
+void OrderChange()
+{
+    int i;
+
+    for (i = 0; i < 32; i++)
+    {
+        int* p = (int*)item[i].b;
+
+        if (p[0] & 1)
+        {
+            if (p[1] != 0)
+            {
+                p[1]--;
+            }
+            else
+            {
+                p[0] &= ~1;
+            }
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_ckt2", AddShowStockData);
 
