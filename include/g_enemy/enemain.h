@@ -45,7 +45,7 @@ Enemy_RgetByInpd();
 void Enemy_MakeV();
 void Enemy_MkUnitV00();
 Enemy_Op2Plen00();
-void Enemy_OpVInPd00();
+float Enemy_OpVInPd00(float* a, float* b, float* c);
 Enemy_Op3PInPd00();
 int Enemy_OpVLRChk00();
 Enemy_OpVLRChk01();

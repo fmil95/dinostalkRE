@@ -31,7 +31,30 @@ int eneptn_elseneatcchk(char* e)
     return 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptnsb", eneptn_glvectorset);
+void eneptn_glvectorset(char* e, int n)
+{
+    float* out = (float*)(e + n * 16 + 0x160);
+    float* b = (float*)(e + 0x270);
+    float* a = (float*)(e + n * 16 + 0x110);
+
+    asm volatile(
+        "lqc2 $vf4, 0x0(%0)\n"
+        "lqc2 $vf5, 0x0(%1)\n"
+        "vsub.xyzw $vf6, $vf4, $vf5\n"
+        "vmul.xz $vf7, $vf6, $vf6\n"
+        "vaddz.x $vf7, $vf7, $vf7z\n"
+        "vsqrt Q, $vf7x\n"
+        "vwaitq\n"
+        "vaddq.x $vf7, $vf0, Q\n"
+        "vnop\n"
+        "vnop\n"
+        "vdiv Q, $vf0w, $vf7x\n"
+        "vsub.xyzw $vf8, $vf0, $vf0\n"
+        "vwaitq\n"
+        "vmulq.xz $vf8, $vf6, Q\n"
+        "sqc2 $vf8, 0x0(%2)\n"
+        : : "r"(a), "r"(b), "r"(out) : "memory");
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptnsb", eneptn_objrveset00);
 

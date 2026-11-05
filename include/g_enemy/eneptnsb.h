@@ -5,7 +5,7 @@
 
 eneptn_samegoalchk();
 int eneptn_elseneatcchk(char* e);
-eneptn_glvectorset();
+void eneptn_glvectorset(char* e, int n);
 eneptn_objrveset00();
 eneptn_atcplposset();
 eneptn_glranddecide();
