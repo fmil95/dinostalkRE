@@ -1,9 +1,11 @@
 #include "common.h"
+#include "gunsuv_usa/libgf/gftex.h"
 
 extern int tex2dSendFlag_00674778;
 extern int tex2dSendFlag_00674778;
 extern int tex2dSendFlag_00674778;
 
+extern int fRsltPigTexId[1];
 INCLUDE_ASM("asm/nonmatchings/hoya/result/g_frslt", LetsGotoFinalResultScene);
 
 void PermittoSendFrsltTex(int a)
@@ -14,7 +16,23 @@ void PermittoSendFrsltTex(int a)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/result/g_frslt", Send2FrsltTex);
+qword* Send2FrsltTex(qword* pkt)
+{
+    int i;
+
+    for (i = 0; i < 32; i++)
+    {
+        int bit = 1 << i;
+
+        if (tex2dSendFlag_00674778 & bit)
+        {
+            tex2dSendFlag_00674778 &= ~bit;
+            pkt = GFTex_MakeTexturePacket(pkt, GFTex_GetDb(fRsltPigTexId[i]), 1);
+        }
+    }
+
+    return pkt;
+}
 
 void ReleaseFResultScene(void) {
 }
