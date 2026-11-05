@@ -148,7 +148,7 @@ int SeCSLMidiStopP();
 int SeCSLMidiStop();
 int SeCSLBankOpenEE();
 int SeCSLBankOpenBEE();
-int SeCSLBankOpen();
+int SeCSLBankOpen(int a);
 int SeCSLBankOpenB();
 int SeCSLBankOpenN();
 int SeCSLBankClose();

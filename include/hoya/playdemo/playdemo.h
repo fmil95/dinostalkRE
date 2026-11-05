@@ -4,7 +4,7 @@
 #define HOYA_PLAYDEMO_PLAYDEMO_H
 
 gsRecordPadInit();
-gsRecordPadMain();
+int gsRecordPadMain();
 gsRecordPadMain2();
 void gsRecordPadEnd();
 gsRecordPadFPutData();
@@ -13,7 +13,7 @@ gsPlayPadMain();
 gsPlayPadMain2();
 void gsPlayPadEnd();
 gsPlayPadFGetData();
-gsPlayDemoPadSwitch();
+void gsPlayDemoPadSwitch(int on);
 int retGunActTaddr();
 int IsRecordHeaderExists();
 void gsPlayDemoInit();

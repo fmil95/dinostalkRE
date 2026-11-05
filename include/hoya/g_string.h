@@ -44,7 +44,7 @@ void InitShortSentence(int i);
 void AddShortSentence(int i, int v);
 PutStr4Font();
 PutStr4Font2();
-hyPutLumpsOfStr();
+void hyPutLumpsOfStr(void* lumps);
 hyStrConvHex2Bcd();
 
 #endif // HOYA_G_STRING_H

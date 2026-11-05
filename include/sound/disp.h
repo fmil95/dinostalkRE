@@ -64,7 +64,7 @@ void dispClear(void);
 void loadImage(u_int* tags);
 int vblankHandler(int val);
 int handler_endimage(int val);
-startDisplay();
+void startDisplay(int waitEven);
 void endDisplay();
 void SetUserData(int* a, int* b, int* c, int* d);
 */

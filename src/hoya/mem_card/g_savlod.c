@@ -189,7 +189,10 @@ int CheckGameDataSum(int n)
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", CheckMemcStatus);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", FormatMemc);
+void FormatMemc(int a, int b)
+{
+    mcdFormatSet((int)&D_005E6054[a + b], a, b);
+}
 
 void FormatMemc2(int a, int b, int c)
 {

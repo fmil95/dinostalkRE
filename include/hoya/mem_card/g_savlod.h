@@ -26,7 +26,7 @@ int CheckGameDataId(int slot);
 CheckSystemDataSum();
 int CheckGameDataSum(int n);
 CheckMemcStatus();
-FormatMemc();
+void FormatMemc(int a, int b);
 void FormatMemc2(int a, int b, int c);
 void GetMemcFIleList(int a, int b);
 void GetMemcDir(int a, int b);
