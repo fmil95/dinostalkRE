@@ -24,6 +24,8 @@ INCLUDE_RODATA("asm/nonmatchings/air/a_event", D_00669A58);
 
 INCLUDE_RODATA("asm/nonmatchings/air/a_event", D_00669A80);
 
+extern char gsEnemyInfos[];
+extern char Another_Item[];
 INCLUDE_ASM("asm/nonmatchings/air/a_event", gsEventInit);
 
 INCLUDE_ASM("asm/nonmatchings/air/a_event", gsReadEventMatrix);
@@ -67,7 +69,21 @@ INCLUDE_ASM("asm/nonmatchings/air/a_event", gsGetTransRelative);
 
 INCLUDE_ASM("asm/nonmatchings/air/a_event", gsSetObject_Dino);
 
-INCLUDE_ASM("asm/nonmatchings/air/a_event", gsDinoIdSameCheck);
+int gsDinoIdSameCheck(int id)
+{
+    int i;
+    char* e = gsEnemyInfos;
+
+    for (i = 0; i < 10; i++)
+    {
+        if (*(int*)(e + i * 0x2A50 + 0x4C) == id)
+        {
+            return 1;
+        }
+    }
+
+    return 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/air/a_event", gsSetEventItem);
 

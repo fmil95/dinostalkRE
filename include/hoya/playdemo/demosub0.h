@@ -4,7 +4,7 @@
 #define HOYA_PLAYDEMO_DEMOSUB0_H
 
 gsInitDemo();
-gsDemoLoadPig();
+void gsDemoLoadPig();
 gsDemoInitSprite();
 gsPutDemoObjects();
 void gsDemoRecPlayPad();
