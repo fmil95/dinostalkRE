@@ -28,7 +28,7 @@ void GFParticle_SetLife(void* a, float x, float y);
 void GFParticle_SetCreateSpeed(void* a, float x, float y);
 void GFParticle_SetTextureID(char* a, int b);
 int GFParticle_GetTextureID(void* p);
-GFParticle_SetAttractRate();
+void GFParticle_SetAttractRate(char* p, float a, float b);
 void GFParticle_SetCollidePlane(char* p, float* v);
 GFParticle_SetTail();
 void GFParticle_SetCreateRange(char* a, void* b, void* c);

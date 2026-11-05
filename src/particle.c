@@ -206,7 +206,16 @@ int GFParticle_GetTextureID(void* p)
     return STRUCT_OFFSET(p, 0xA0, int);
 }
 
-INCLUDE_ASM("asm/nonmatchings/particle", GFParticle_SetAttractRate);
+void GFParticle_SetAttractRate(char* p, float a, float b)
+{
+    *(float*)(p + 0xE4) = b;
+    *(float*)(p + 0xE0) = a;
+
+    if (a == 0.0f)
+    {
+        *(float*)(p + 0xE0) = 1e-6f;
+    }
+}
 
 void GFParticle_SetCollidePlane(char* p, float* v)
 {
