@@ -4,7 +4,7 @@
 #define AIR_INSECT_A_ISCSUB_H
 
 gsGetPurPosRot();
-gsIscRotToVector();
+void gsIscRotToVector(float* v, float* rot);
 gsIscGetPurPosRot();
 gsInsectBreakVeSet();
 

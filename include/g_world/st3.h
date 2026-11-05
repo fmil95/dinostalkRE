@@ -29,7 +29,7 @@ gsWorldSt3_Koiwa();
 gsWorldSt3_SkyScale();
 gsWorldSt3_HikariFade();
 gsWorldBulletEffectGnd_ST3();
-gsWorldSt3_InitDinoCollWater();
+void gsWorldSt3_InitDinoCollWater();
 gsWorldSt3_DinoCollWater();
 void gsWorldSt3_initBossDied();
 void gsWorldSt3_EntryBossDied();

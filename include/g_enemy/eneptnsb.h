@@ -4,7 +4,7 @@
 #define G_ENEMY_ENEPTNSB_H
 
 eneptn_samegoalchk();
-eneptn_elseneatcchk();
+int eneptn_elseneatcchk(char* e);
 eneptn_glvectorset();
 eneptn_objrveset00();
 eneptn_atcplposset();

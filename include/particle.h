@@ -39,7 +39,7 @@ GFParticle_Draw();
 void GFParticle_Eval(void);
 GFParticle_MakeInstance();
 void GFParticle_OffInstance(void* a);
-GFParticle_Vu0RandomInit();
+void GFParticle_Vu0RandomInit();
 void GFParticle_SetExecFunction(void* p, int v);
 void GFParticle_SetMulVelocity(void* p, float v);
 #endif // PARTICLE_H
