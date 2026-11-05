@@ -174,7 +174,21 @@ INCLUDE_ASM("asm/nonmatchings/omake/g_galery", gal_initCurSpr);
 
 INCLUDE_ASM("asm/nonmatchings/omake/g_galery", gal_initPageSpr);
 
-INCLUDE_ASM("asm/nonmatchings/omake/g_galery", gal_titleEtcInitSpr);
+void gal_titleEtcInitSpr(int tex)
+{
+    char* spr;
+
+    spr = etcSpr_0085bc10;
+    gplInitSprite(spr, tex);
+    STRUCT_OFFSET(spr, 0x8, short) = 0x0;
+    STRUCT_OFFSET(spr, 0xA, short) = 0x0;
+    STRUCT_OFFSET(spr, 0x10, short) = 0x2000;
+    STRUCT_OFFSET(spr, 0x12, short) = 0x200;
+    STRUCT_OFFSET(spr, 0xC, short) = 0x7000;
+    STRUCT_OFFSET(spr, 0xE, short) = -0x7B80;
+    STRUCT_OFFSET(spr, 0x14, short) = -0x7000;
+    STRUCT_OFFSET(spr, 0x16, short) = -0x7A80;
+}
 
 INCLUDE_ASM("asm/nonmatchings/omake/g_galery", gal_selectEtcInitSpr);
 
