@@ -13,7 +13,25 @@ INCLUDE_ASM("asm/nonmatchings/particle", gf_MyRandRange);
 
 INCLUDE_ASM("asm/nonmatchings/particle", gf_MyRandRangeV);
 
-INCLUDE_ASM("asm/nonmatchings/particle", gf_GetDistance);
+static float gf_GetDistance(float* a, float* b)
+{
+    float ret;
+
+    asm volatile(
+        ".set noreorder\n"
+        "lqc2 $vf4, 0x0(%1)\n"
+        "vabs.w $vf4, $vf0\n"
+        "lqc2 $vf5, 0x0(%2)\n"
+        "vmul.xyzw $vf5, $vf4, $vf5\n"
+        "vaddy.x $vf5, $vf5, $vf5y\n"
+        "vaddz.x $vf5, $vf5, $vf5z\n"
+        "vaddw.x $vf5, $vf5, $vf5w\n"
+        "qmfc2.ni %0, $vf5\n"
+        ".set reorder\n"
+        : "=r"(ret) : "r"(a), "r"(b));
+
+    return ret;
+}
 
 INCLUDE_ASM("asm/nonmatchings/particle", GFParticle_Update);
 
