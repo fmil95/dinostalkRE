@@ -3,15 +3,14 @@
 #include "g_enemy/enemain.h"
 #include "gunsuv_usa/libgf/gfanim.h"
 #include "g_enemy/ene04pro/ene04mv.h"
+#include "g_shock.h"
+#include "air/a_item.h"
+#include "benjamin/g_shrink.h"
+#include "g_enemy/ene04pro/ene04joy.h"
+#include "g_enemy/enethkmn.h"
 
-extern int Enemy_DelDethPrcMain();
-extern void gsDeleteEnemySetItemObj();
-extern void gsDinoSetDeadShrinkY();
-extern void ene04Bjoy_plmain();
-extern void enemy_thkmain();
 extern int D_002F18B4[2];
 extern void (*ene04Bmovestbl2[])();
-extern void ene04joy_plmain();
 extern void (*ene04movestbl2[])();
 void ene04move_main(char* a)
 {
@@ -121,7 +120,13 @@ void ene04moveElem070(char* a)
     STRUCT_OFFSET(a, 0x8C, int)++;
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/ene04pro/ene04mv", ene04moveElem090);
+void ene04moveElem090(char* a)
+{
+    Enemy_AnmChg00(a, 0x2E, 8, 0);
+    STRUCT_OFFSET(a, 0, int) |= 0x40000000;
+    STRUCT_OFFSET(a, 0xC0, float) = 1.0f;
+    STRUCT_OFFSET(a, 0x8C, int)++;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/ene04pro/ene04mv", ene04moveElem091);
 
