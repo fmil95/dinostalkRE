@@ -70,6 +70,9 @@ static void InitSystem();
 static void InitSif();
 static void SetDefaultGsEnv();
 
+typedef struct { char b[12]; } OmakeMap;
+extern OmakeMap _omake_map[];
+extern int _omake_y;
 int main()
 {
     sceCdCLOCK rtc;
@@ -245,7 +248,17 @@ void _gsMuteki_END()
 
 }
 
-INCLUDE_ASM("asm/nonmatchings/main", _gsOmakePower_INIT);
+void _gsOmakePower_INIT()
+{
+    int i;
+
+    _omake_y = 0;
+
+    for (i = 0; i < 20; i++)
+    {
+        _omake_map[i].b[8] = ' ';
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/main", _gsOmakePower_EXEC);
 
