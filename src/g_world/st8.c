@@ -1,10 +1,16 @@
 #include "common.h"
 #include "g_world/st8.h"
+#include "g_camera.h"
 
 extern int _st8_demo0_req;
 extern int _st8_demo0_step;
 extern int _st8_demo0_timer;
 
+extern int _st8_demo0_timer2;
+extern int _st8_demo0_se_step;
+extern int _st8_demo0_vct_step;
+typedef struct { int a[16]; } St8CirGrp;
+extern St8CirGrp _st8_cir_grp[];
 INCLUDE_ASM("asm/nonmatchings/g_world/st8", gsWorldInitSt8);
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st8", gsWorldSt8_SpecialEffect);
@@ -36,7 +42,18 @@ void gsWorldSt8_Demo0_Init()
     _st8_demo0_timer = 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_world/st8", gsWorldSt8_Demo0_Request);
+void gsWorldSt8_Demo0_Request()
+{
+    if (!(gsCamera.unk4 & 0x200))
+    {
+        _st8_demo0_step = 0;
+        _st8_demo0_timer = 0;
+        _st8_demo0_timer2 = 0;
+        _st8_demo0_se_step = 0;
+        _st8_demo0_req = 1;
+        _st8_demo0_vct_step = 0;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st8", _st8_demo0_GetTriPos);
 
