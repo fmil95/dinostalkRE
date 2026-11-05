@@ -5,7 +5,16 @@
 
 #include "gunsuv_usa/libgf/gfpack.h"
 
+typedef struct { // 0x14
+	/* 0x00 */ int unk0;
+	/* 0x04 */ int unk4;
+	/* 0x08 */ int unk8;
+	/* 0x0c */ int unkC;
+	/* 0x10 */ int unk10;
+} STAGE_PACK;
+
 extern GF_PACKET gsObjPack;
+extern STAGE_PACK _stage_pack_list[];
 
 void G_TEST_Init();
 G_TEST_Exec();
