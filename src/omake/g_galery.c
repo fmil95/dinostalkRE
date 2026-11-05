@@ -1,4 +1,9 @@
 #include "common.h"
+#include "gunsuv_usa/libgf/gftex.h"
+#include "g_guncon2/g_guncon2.h"
+#include "g_pad.h"
+#include <libgraph.h>
+#include <eekernel.h>
 #include "sound/g_sound.h"
 #include "omake/g_galery.h"
 #include "g_effect.h"
@@ -20,6 +25,17 @@ extern int TEST_EntryTexture();
 extern void gal_setFadeIn();
 extern void gal_setFadeOut();
 extern void gal_initBgSpr();
+extern int rtrg_00674bf8;
+extern int pad_00674bec;
+extern int gpad_00674bf4;
+extern int grtrg_00674bfc;
+extern int gsNextProg;
+extern int galPrevStep;
+extern sceGsDBuff gDb;
+extern void gal_title();
+extern void gal_select();
+extern void gal_disp();
+extern void gal_zoom();
 void gal_texInit()
 {
     pGalBin = FIO_ReadFile_Align("cdrom0:\\DATA\\GALLERY\\GALMAIN.BIN;1", 0x40);
@@ -38,7 +54,75 @@ void G_GALERY_End()
     MEM_FreeAll();
 }
 
-INCLUDE_ASM("asm/nonmatchings/omake/g_galery", G_GALERY_Exec);
+void G_GALERY_Exec()
+{
+    int step;
+
+    gsGuncon2_Exec();
+
+    if (gsGuncon2_CheckConnect() == 0)
+    {
+        trg_00674be8 = gsPad_GetTrg(0);
+        rtrg_00674bf8 = gsPad_GetRTrg(0);
+        pad_00674bec = gsPad_Get(0);
+        gpad_00674bf4 = 0;
+        gtrg_00674bf0 = 0;
+        grtrg_00674bfc = 0;
+    }
+    else
+    {
+        trg_00674be8 = 0;
+        rtrg_00674bf8 = 0;
+        pad_00674bec = 0;
+        gpad_00674bf4 = gsGuncon2_Get();
+        gtrg_00674bf0 = gsGuncon2_GetTrg();
+        grtrg_00674bfc = gsGuncon2_GetRTrg();
+    }
+
+    gsEffectFadeManagement(frame & 1);
+
+    step = galStat.unk4;
+
+    switch (step)
+    {
+    case 0:
+        galStat.unk4 = 1;
+    case 1:
+        gal_notice();
+        break;
+    case 2:
+        gal_title();
+        break;
+    case 3:
+        gal_select();
+        break;
+    case 4:
+        gal_disp();
+        break;
+    case 5:
+        gal_zoom();
+        break;
+    case 6:
+        gsNextProg = 0xF;
+        break;
+    }
+
+    if (step != galStat.unk4 || galStat.unk0 != 0)
+    {
+        galStat.unkC = 0;
+        GFTex_ResetDatabase();
+        galStat.unk0 = 0;
+        galPrevStep = step;
+    }
+
+    gplDrawPlane((frame + 1) & 1);
+    GFTex_SetFrameCnt(frame);
+    sceGsSetHalfOffset((frame & 1) ? &gDb.draw1 : &gDb.draw0, 0x800, 0x800, sceGsSyncV(0) == 0);
+    FlushCache(0);
+    sceGsSwapDBuff(&gDb, frame);
+    frame++;
+    MEM_CheckViolation();
+}
 
 INCLUDE_ASM("asm/nonmatchings/omake/g_galery", gal_setFadeIn);
 

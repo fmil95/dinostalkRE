@@ -17,6 +17,7 @@ extern GAL_STAT galStat;
 void gal_texInit();
 G_GALERY_Init();
 void G_GALERY_End();
-G_GALERY_Exec();
+void G_GALERY_Exec();
+void gal_notice();
 
 #endif // OMAKE_G_GALERY_H

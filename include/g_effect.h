@@ -40,7 +40,7 @@ void gsEffectInitFade();
 gsEffectFade();
 void gsEffectSetFade();
 void gsEffectSetFadeNowColor(int a);
-gsEffectFadeManagement();
+void gsEffectFadeManagement(int a);
 int gsEffectGetFadeCnt();
 gsEffectChangeBloodColor();
 void gsEffectSetWind(int a);
