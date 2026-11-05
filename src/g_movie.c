@@ -11,6 +11,8 @@ extern void cdvMpegSkipSet();
 
 extern sceGsDBuff gsMovieClearDb;
 extern int frame;
+extern float startCol[];
+extern float endCol[];
 INCLUDE_ASM("asm/nonmatchings/g_movie", gsMovie_Init);
 
 void gsMovie_SetSkipKey(int a, int b)
@@ -38,7 +40,13 @@ int gsMovie_End()
     return 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_movie", gsMovie_SetStartCol);
+void gsMovie_SetStartCol(u_short r, u_short g, u_short b, u_short a)
+{
+    startCol[0] = r;
+    startCol[1] = g;
+    startCol[2] = b;
+    startCol[3] = a;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_movie", gsMovie_SetEndCol);
 
