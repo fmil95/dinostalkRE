@@ -15,6 +15,7 @@ extern void* memset();
 extern void sceVu0CopyMatrix();
 extern int _gpGetCollObjBox_HitShape;
 extern int gpCollBoxList[];
+typedef struct { char pad[0x7B710]; u_int cnt[200]; int anim[1][8]; } GpWorldAnimS;
 INCLUDE_ASM("asm/nonmatchings/g_parts", _gpGetBoundBox);
 
 INCLUDE_ASM("asm/nonmatchings/g_parts", gpGetBoundBox);
@@ -76,7 +77,20 @@ INCLUDE_ASM("asm/nonmatchings/g_parts", gpAttachWorldDispOBJ);
 
 INCLUDE_ASM("asm/nonmatchings/g_parts", gpEntryWorldManagerBACK);
 
-INCLUDE_ASM("asm/nonmatchings/g_parts", gpEntryWorldObjAnim);
+int gpEntryWorldObjAnim(char* w, int i, int v)
+{
+    GpWorldAnimS* p = (GpWorldAnimS*)w;
+    u_int c = p->cnt[i];
+
+    if (c < 8)
+    {
+        p->anim[i][c] = v;
+        p->cnt[i] = c + 1;
+        return 0;
+    }
+
+    return -1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_parts", gpEntryWorldManagerGND_LOOP);
 
