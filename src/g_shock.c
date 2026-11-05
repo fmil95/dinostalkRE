@@ -5,6 +5,7 @@
 extern int gsShockIsOn;
 
 extern char gsShockInfo[];
+extern int gShockData[];
 void gsShockInit()
 {
     gsShockReset();
@@ -21,7 +22,15 @@ INCLUDE_ASM("asm/nonmatchings/g_shock", gsShockSetSeqVel);
 
 INCLUDE_ASM("asm/nonmatchings/g_shock", gsShockSetSeq);
 
-INCLUDE_ASM("asm/nonmatchings/g_shock", gsShockSetSeqNo);
+int gsShockSetSeqNo(int a, int n)
+{
+    if (n >= 0x6B)
+    {
+        return -1;
+    }
+
+    return gsShockSetSeqVel(a, gShockData[n], 1.0f);
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_shock", gsShockSetSeqNoVel);
 
