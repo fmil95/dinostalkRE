@@ -140,7 +140,17 @@ void the_setFadeIn(int t)
     gsEffectSetFade(a, t);
 }
 
-INCLUDE_ASM("asm/nonmatchings/omake/g_theate", the_setFadeOut);
+void the_setFadeOut(int t)
+{
+    sceVu0FVECTOR a;
+    sceVu0FVECTOR b;
+
+    memset(a, 0, 16);
+    memset(b, 0, 16);
+    b[3] = 128.0f;
+    gsEffectSetFadeNowColor((int)a);
+    gsEffectSetFade(b, t);
+}
 
 INCLUDE_ASM("asm/nonmatchings/omake/g_theate", the_initBgSpr);
 
