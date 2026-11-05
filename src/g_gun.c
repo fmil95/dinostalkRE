@@ -24,6 +24,7 @@ extern void sceVu0CopyVector();
 extern int gsWorldCheckOBJ_TREASURE();
 extern char D_003C5D20[];
 extern char gsWorldBreakList[];
+extern char gsEnemyInfos[];
 INCLUDE_ASM("asm/nonmatchings/g_gun", gsInitGunManager);
 
 INCLUDE_ASM("asm/nonmatchings/g_gun", gsInitGunManager_START_GAME);
@@ -276,7 +277,19 @@ void gsGunCrash_FLUSH_CH(int a, int b)
     gsGunCrash_FLUSH_CH_ENE(b);
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_gun", gsGunCrash_FLUSH_CH_ENE);
+void gsGunCrash_FLUSH_CH_ENE(int* p)
+{
+    int i;
+    char* e = gsEnemyInfos;
+
+    for (i = 0; i < 10; i++)
+    {
+        if (*(int*)(e + i * 0x2A50 + 0x2950) == *p)
+        {
+            *(int*)(e + i * 0x2A50 + 0x2950) = 0;
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_gun", gsInitGunBulletModel);
 
