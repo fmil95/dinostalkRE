@@ -54,7 +54,18 @@ INCLUDE_ASM("asm/nonmatchings/hoya/result/rsltsub1", RsltDrawSprRank);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/result/rsltsub1", RsltInitSprNumber);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/result/rsltsub1", RsltDrawSprNumber);
+void RsltDrawSprNumber(int p)
+{
+    char* r = rsltrslt;
+    char* s = r + 0xA00;
+    int i;
+
+    for (i = 9; i >= 0; i--)
+    {
+        hySetEzSprite(s, p);
+        s += 0x1F0;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/result/rsltsub1", RsltInitSprYN);
 
