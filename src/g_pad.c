@@ -104,7 +104,18 @@ int gsPad_AGet(int a)
     return _us_key_exchange2(_us_key_exchange(k));
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_pad", gsPad_AGetTrg);
+int gsPad_AGetTrg(int a)
+{
+    int p = _us_get_port_g_pad(a);
+    int k = 0;
+
+    if (!(gsPadData[p].w[5] & 0xF000))
+    {
+        k = gsPadData[p].w[11];
+    }
+
+    return _us_key_exchange2(_us_key_exchange(k));
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_pad", gsPad_AGetRTrg);
 
