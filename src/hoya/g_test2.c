@@ -1,4 +1,5 @@
 #include "common.h"
+#include "gunsuv_usa/libgf/gfscene.h"
 #include "gunsuv_usa/libgf/libgf.h"
 #include "mem.h"
 #include "timer.h"
@@ -28,6 +29,8 @@ extern int frame;
 extern int gsStageNo;
 extern int gsPause;
 extern sceGsDBuff gDb;
+extern GF_SCREEN gTest2Screen;
+extern GF_SCREEN gScreen;
 INCLUDE_ASM("asm/nonmatchings/hoya/g_test2", hySetVram);
 
 INCLUDE_RODATA("asm/nonmatchings/hoya/g_test2", D_0066A140);
@@ -216,7 +219,15 @@ void G_MEMC_Exec()
     G_TTL_Exec();
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/g_test2", G_MEMC_End);
+void G_MEMC_End()
+{
+    gScreen = gTest2Screen;
+    gsSoundClose();
+    sceGsSyncPath(0, 0);
+    pfm_end();
+    GF_EndGraphicsFramework();
+    MEM_FreeAll();
+}
 
 void G_MODESEL_Init()
 {
