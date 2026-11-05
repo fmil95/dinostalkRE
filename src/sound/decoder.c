@@ -25,6 +25,7 @@ extern char _0_buf[];
 static void iopGetArea(int* pd0, int* d0, int* pd1, int* d1, AudioDec* ad, int pos);
 static int sendToIOP2area(int pd0, int d0, int pd1, int d1, u_char* ps0, int s0, u_char* ps1, int s1);
 static int sendToIOP(int dst, u_char* src, int size);
+static int cpy2area(u_char* pd0, int d0, u_char* pd1, int d1, u_char* ps0, int s0, u_char* ps1, int s1);
 void pushMasterVolume();
 void popMasterVolume();
 static void changeMasterVolume(u_int val);
@@ -128,7 +129,6 @@ int videoDecInputSpaceCount(VideoDec* vd)
 
 struct SeqEnd { u_char b[4]; };
 extern struct SeqEnd D_00673DC8[];
-extern int cpy2area();
 
 int videoDecFlush(VideoDec* vd)
 {
@@ -284,7 +284,36 @@ int mpegTS(sceMpeg* mp, sceMpegCbDataTimeStamp* cbts, void* anyData)
     return 1;
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/decoder", cpy2area);
+static int cpy2area(u_char* pd0, int d0, u_char* pd1, int d1, u_char* ps0, int s0, u_char* ps1, int s1)
+{
+    if (d0 + d1 < s0 + s1)
+    {
+        return 0;
+    }
+
+    if (s0 >= d0)
+    {
+        memcpy(pd0, ps0, d0);
+        memcpy(pd1, ps0 + d0, s0 - d0);
+        memcpy(pd1 + s0 - d0, ps1, s1);
+    }
+    else
+    {
+        memcpy(pd0, ps0, s0);
+
+        if (s1 >= d0 - s0)
+        {
+            memcpy(pd0 + s0, ps1, d0 - s0);
+            memcpy(pd1, ps1 + d0 - s0, s1 - (d0 - s0));
+        }
+        else
+        {
+            memcpy(pd0 + s0, ps1, s1);
+        }
+    }
+
+    return s0 + s1;
+}
 
 void cdvMpegChgVolume(int v)
 {
