@@ -3,12 +3,11 @@
 #include "g_enemy/enemain.h"
 #include "gunsuv_usa/libgf/gfanim.h"
 #include "g_enemy/ene03pro/ene03mv.h"
+#include "g_enemy/ene03pro/ene03joy.h"
+#include "g_enemy/enethkmn.h"
 
-extern void Enemy_ActChg00();
 extern void Enemy_SeSet00();
 extern void bigdino_vbrset();
-extern void ene03joy_plmain();
-extern void enemy_thkmain();
 extern int D_002F18B4[2];
 extern void (*ene03movestbl2[])();
 void ene03move_main(char* a)
@@ -257,7 +256,15 @@ INCLUDE_ASM("asm/nonmatchings/g_enemy/ene03pro/ene03mv", ene03moveElem210);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/ene03pro/ene03mv", ene03moveElem211);
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/ene03pro/ene03mv", ene03moveElem220);
+void ene03moveElem220(char* a)
+{
+    Enemy_AnmChg00(a, 0x6F, 8, 0);
+    STRUCT_OFFSET(a, 0, int) = (STRUCT_OFFSET(a, 0, int) | 0x40000000) & ~0x400;
+    STRUCT_OFFSET(a, 0xC4, float) = STRUCT_OFFSET(a, 0x244, float);
+    STRUCT_OFFSET(a, 0xC0, int) = 0;
+    Enemy_SeSet00(a, 0x1D7);
+    STRUCT_OFFSET(a, 0x8C, int)++;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/ene03pro/ene03mv", ene03moveElem221);
 
