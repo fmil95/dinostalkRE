@@ -15,6 +15,10 @@ extern float buttonGunArrowCalcColData[][3];
 extern int buttonPadArrowXyData[][3];
 extern float buttonPadArrowCalcXyData[][3];
 extern float buttonPadArrowCalcColData[][3];
+extern int gsOption[];
+extern int SeSetOutType();
+extern int gsEffectChangeBloodColor();
+extern void gsShockSetEnable();
 void SetFadeParaOpt(int a, int b, int c)
 {
     hySetFadePara2(a, b, c, (pOptOption + 13200));
@@ -173,4 +177,17 @@ INCLUDE_ASM("asm/nonmatchings/hoya/option/optsub01", MainOpt);
 void EndOpt(void) {
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/option/optsub01", enableOption);
+void enableOption()
+{
+    if (gsOption[4] == 1)
+    {
+        SeSetOutType(0);
+    }
+    else
+    {
+        SeSetOutType(1);
+    }
+
+    gsEffectChangeBloodColor(gsOption[5] == 0);
+    gsShockSetEnable(gsOption[6]);
+}
