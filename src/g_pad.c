@@ -1,6 +1,7 @@
 #include "common.h"
-
 #include <libpad.h>
+#include "g_guncon1/g_guncon1.h"
+
 typedef struct { int w[22]; } PadWork;
 extern PadWork D_002F18A4[];
 
@@ -13,6 +14,7 @@ extern PadWork D_002F18E0[];
 extern int _us_key_tbl[];
 extern PadWork gsPadData[];
 extern int gsOption[];
+extern int gsOmakeManager[];
 INCLUDE_ASM("asm/nonmatchings/g_pad", gsPad_Init);
 
 INCLUDE_ASM("asm/nonmatchings/g_pad", gsPad_Reset);
@@ -82,7 +84,26 @@ int _us_get_port_g_pad(int a)
     return a;
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_pad", _us_key_exchange2);
+int _us_key_exchange2(int k)
+{
+    if (!(gsOmakeManager[0] & 1) && gsGuncon1_CheckPort() > 0)
+    {
+        int t = gsGuncon1_GetTrg();
+
+        if (t & 8)
+        {
+            t = (t & ~8) | 0x20;
+        }
+        if (t & 0x40)
+        {
+            t &= ~0x40;
+        }
+
+        k |= t;
+    }
+
+    return k;
+}
 
 int gsPad_GetNgc1(int a)
 {
