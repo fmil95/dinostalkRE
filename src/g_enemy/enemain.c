@@ -199,7 +199,30 @@ void Enemy_MakeV()
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_MkUnitV00);
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_Op2Plen00);
+float Enemy_Op2Plen00(float* a, float* b, short flat)
+{
+    float ret;
+
+    asm volatile(
+        ".set noreorder\n"
+        "lqc2 $vf4, 0x0(%1)\n"
+        "lqc2 $vf5, 0x0(%2)\n"
+        "bne $0, %3, 1f\n"
+        "vsub.xyzw $vf6, $vf4, $vf5\n"
+        "vmuly.y $vf6, $vf6, $vf0y\n"
+        "1:\n"
+        "vmul.xyz $vf7, $vf6, $vf6\n"
+        "vaddy.x $vf7, $vf7, $vf7y\n"
+        "vaddz.x $vf7, $vf7, $vf7z\n"
+        "vsqrt Q, $vf7x\n"
+        "vwaitq\n"
+        "vaddq.x $vf7, $vf0, Q\n"
+        "qmfc2.ni %0, $vf7\n"
+        ".set reorder\n"
+        : "=r"(ret) : "r"(a), "r"(b), "r"(flat));
+
+    return ret;
+}
 
 float Enemy_OpVInPd00(float* a, float* b, float* c)
 {
