@@ -638,7 +638,7 @@ segments:
       - [0x56b700, .rodata, hoya/cockpit/g_cpgswc]
       - [0x56b810, .rodata, hoya/cockpit/g_cprdr]
       - [0x56b8c0, .rodata, hoya/cockpit/g_cprlod]
-      - [0x56b8d8, rodata, hoya/cockpit/g_cpscor]
+      - [0x56b8d8, .rodata, hoya/cockpit/g_cpscor]
       - [0x56b8f0, .rodata, hoya/cockpit/g_cpsight]
       - [0x56b9b0, .rodata, hoya/cockpit/g_efdmg]
       - [0x56bb30, rodata, hoya/cockpit/g_other]
