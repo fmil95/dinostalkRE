@@ -18,7 +18,7 @@ int hyGetTexId(int i);
 int hyLoadTexture(int a, int b, int c);
 int hyEntryTexture(int a, int b, int c);
 hyTexAdd();
-hyLoadPigCptSight();
+void hyLoadPigCptSight(char* buf);
 void hyLoadPigCptSetu(char* buf);
 hyLoadPig();
 void hyLoadPigTitle();
