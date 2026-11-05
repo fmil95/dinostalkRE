@@ -8,7 +8,7 @@
 
 GFTrack_Update();
 void GFTrack_MallocMemory(void* a, int b, int c);
-void GFTrack_Lifeless();
+void GFTrack_Lifeless(int* t);
 void GFTrack_SetTextureID(void* t, int id);
 int GFTrack_GetTextureID(void* p);
 void GFTrack_SetStartRGBA(void* t, sceVu0FVECTOR a, sceVu0FVECTOR b);

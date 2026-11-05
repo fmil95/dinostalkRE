@@ -14,7 +14,7 @@ Enemy_MkObjDt();
 Enemy_ObjDtSet();
 void Enemy_SeSet00(int a, int b);
 Enemy_Prt();
-Enemy_SarchEmptyWk();
+int Enemy_SarchEmptyWk();
 Enemy_RequestSet();
 Enemy_AllReqest();
 Enemy_AllReqest_LvSet();

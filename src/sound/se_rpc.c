@@ -403,7 +403,11 @@ int SeGetVbBlockSize(char* a)
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeBankOpenTransfer);
 
-INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeVabOpenEE);
+int SeVabOpenEE(int a, int b, int c, int d, int e)
+{
+    SeVabOpenBEE(a, D_0064B364[a][0], b, c, d, e);
+    return 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeVabOpenBEE);
 
