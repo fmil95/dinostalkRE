@@ -1,19 +1,19 @@
 #include "common.h"
 #include "benjamin/flare.h"
+#include <libvu0.h>
 
-extern void sceVu0CopyVector();
 
 extern void* GFTex_GetDb();
 INCLUDE_ASM("asm/nonmatchings/benjamin/flare", GFFlare_Update);
 
-void GFFlare_SetStartPos(void* a)
+void GFFlare_SetStartPos(char* f, float* v)
 {
-    sceVu0CopyVector((char*)a + 0x110);
+    sceVu0CopyVector((float*)(f + 0x110), v);
 }
 
-void GFFlare_SetEndPos(void* a)
+void GFFlare_SetEndPos(char* f, float* v)
 {
-    sceVu0CopyVector((char*)a + 0x120);
+    sceVu0CopyVector((float*)(f + 0x120), v);
 }
 
 void GFFlare_SetColorRate(void* p, float v)

@@ -4,8 +4,8 @@
 #define BENJAMIN_FLARE_H
 
 GFFlare_Update();
-void GFFlare_SetStartPos(void* a);
-void GFFlare_SetEndPos(void* a);
+void GFFlare_SetStartPos(char* f, float* v);
+void GFFlare_SetEndPos(char* f, float* v);
 void GFFlare_SetColorRate(void* p, float v);
 void GFFlare_SetTextureID(char* a, int b);
 void GFFlare_SetPosScale(void* p, float v);
