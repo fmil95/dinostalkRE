@@ -43,7 +43,11 @@ void GFFlare_SetSibling(void* p, int v)
     STRUCT_OFFSET(p, 0x2C, int) = v;
 }
 
-INCLUDE_ASM("asm/nonmatchings/benjamin/flare", GFFlare_SetRGBA);
+void GFFlare_SetRGBA(char* p, float* v)
+{
+    sceVu0CopyVector((float*)(p + 0), v);
+    sceVu0ClampVector((float*)(p + 0), (float*)(p + 0), 0.0f, 255.0f);
+}
 
 void GFFlare_SetSTWH(char* f, float* v)
 {

@@ -11,7 +11,7 @@ void GFFlare_SetTextureID(char* a, int b);
 void GFFlare_SetPosScale(void* p, float v);
 void GFFlare_SetSize(void* p, float v);
 void GFFlare_SetSibling(void* p, int v);
-GFFlare_SetRGBA();
+void GFFlare_SetRGBA(char* p, float* v);
 void GFFlare_SetSTWH(char* f, float* v);
 GFFlare_MakeInstance();
 
