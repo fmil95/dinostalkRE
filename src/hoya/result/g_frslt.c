@@ -6,6 +6,8 @@
 #include "g_effect.h"
 #include "perfmon.h"
 #include "gunsuv_usa/libgf/gfinstance.h"
+#include "gunsuv_usa/libgf/gfmodel.h"
+#include "gunsuv_usa/libgf/gfobject.h"
 
 extern int tex2dSendFlag_00674778;
 extern int tex2dSendFlag_00674778;
@@ -21,6 +23,11 @@ extern char gScene[];
 extern char gScreen[];
 extern float cam_rot_002af8a0[];
 extern float cam_trans_002af8b0[];
+extern char gsItemObj[];
+extern Uint32* adr_itempod[];
+extern int vu1work_00673ca0;
+extern GF_MICRO gMicroShare;
+extern GF_LIGHT gLight;
 INCLUDE_ASM("asm/nonmatchings/hoya/result/g_frslt", LetsGotoFinalResultScene);
 
 void PermittoSendFrsltTex(int a)
@@ -56,7 +63,15 @@ INCLUDE_ASM("asm/nonmatchings/hoya/result/g_frslt", FRsltItemSet);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/result/g_frslt", FRsltInfosClear);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/result/g_frslt", FRsltCreateObjectPacket);
+qword* FRsltCreateObjectPacket(qword* pkt, int i)
+{
+    char* m = gsItemObj + i * 0x1C0;
+
+    pkt = GFModel_MakePreset((GF_MODEL*)m, pkt, adr_itempod[i], vu1work_00673ca0);
+    GFObject_Init((GF_INST_OBJECT*)(m + 0x30));
+    GFObject_AttachModel((GF_INST_OBJECT*)(m + 0x30), &gMicroShare, &gLight, 0, 0, (GF_MODEL*)m);
+    return pkt;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/result/g_frslt", FRsltItemObjectSet);
 
