@@ -1,4 +1,5 @@
 #include "common.h"
+#include "test.h"
 
 extern void sceVu0AddVector();
 extern void gsItem_SizeRot_Return();
@@ -191,7 +192,17 @@ void gsAddFixItem()
 
 INCLUDE_ASM("asm/nonmatchings/air/a_item", gsItemReset_ForMovie);
 
-INCLUDE_ASM("asm/nonmatchings/air/a_item", gsInit_ThrowWeapon);
+void gsInit_ThrowWeapon()
+{
+    int i;
+    ThrowWeaponS* p = gsThrow_Weapon;
+
+    for (i = 0; i < 16; i++)
+    {
+        gsClear_ThrowWeapon_Infos(i, 0);
+        *(void**)(p[i].b + 0x54) = TEST_create_instance(10);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/air/a_item", gsClear_ThrowWeapon_Infos);
 
