@@ -7,7 +7,15 @@ extern int D_00653B10[];
 extern int D_00653B0C[];
 
 extern int _gc1_key_tbl[];
-INCLUDE_ASM("asm/nonmatchings/g_guncon1/g_guncon1", gsGuncon1_InitAll);
+void gsGuncon1_InitAll()
+{
+    gsGuncon1_Init();
+    gsGuncon1Manager[8] = 4;
+    gsGuncon1Manager[11] = 0x80;
+    gsGuncon1Manager[9] = 0;
+    gsGuncon1Manager[10] = 0;
+    gsGuncon1Manager[12] = 0x3D;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_guncon1/g_guncon1", gsGuncon1_Init);
 
