@@ -1,7 +1,7 @@
 #include "common.h"
 #include "g_enemy/eneptn03.h"
-
-extern void Enemy_ActChg00();
+#include "g_enemy/eneptnsb.h"
+#include "g_enemy/enemain.h"
 
 extern char gsEnemyInfos[];
 extern void (*ST7carno_breakobj_funcs[])();
@@ -25,6 +25,10 @@ extern void (*ST5carno_ptnfuncs[])();
 extern void (*ST7trex_ptnfuncs[])();
 extern void (*ST9trex_ptnfuncs[])();
 extern void (*ST7carno_step_funcs[])();
+extern float cam_trans_002af8b0[];
+extern float* gsDinoInfos[];
+typedef struct { int id; int pad[7]; } St5AreaPoint;
+extern St5AreaPoint st5_area_point[][3];
 void eneptn03_ST2carno_main(char* a)
 {
     ST2carno_ptnfuncs[STRUCT_OFFSET(a, 0xC, int)](a);
@@ -363,7 +367,20 @@ void eneptn03_ST7carno_step04(void* a)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn03", eneptn03_ST7carno_step05);
+void eneptn03_ST7carno_step05(char* a)
+{
+    float* d;
+
+    sceVu0CopyVector(a + 0x110, cam_trans_002af8b0);
+    eneptn_glvectorset(a, 0);
+    STRUCT_OFFSET(a, 0xF4, int) |= 1;
+    d = gsDinoInfos[STRUCT_OFFSET(a, 0x2A, short)];
+    STRUCT_OFFSET(a, 0x1E8, float) = d[0x6C / 4];
+    STRUCT_OFFSET(a, 0x1D8, float) = d[0x74 / 4];
+    STRUCT_OFFSET(a, 0x1B8, float) = STRUCT_OFFSET(a, 0x1E8, float);
+    Enemy_ActChg00(a, 4);
+    STRUCT_OFFSET(a, 0x62, short)++;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/eneptn03", eneptn03_ST7carno_step06);
 
