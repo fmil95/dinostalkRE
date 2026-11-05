@@ -69,7 +69,35 @@ void GotoNextStage_memcsub4()
     EndMemcManager();
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub4", ProcFadeIn_memcsub4);
+int ProcFadeIn_memcsub4(int step)
+{
+    int t = pmss_006746a4;
+
+    switch (STRUCT_OFFSET(t, 4, int))
+    {
+    case 0:
+        STRUCT_OFFSET(t, 0x40, int) = 0;
+        SetFadePara_memcsub4(t + 0x10, t + 0x20, STRUCT_OFFSET(t, 0x30, int));
+        SwitchFadeTimer_memcsub4(1);
+        STRUCT_OFFSET(pmss_006746a4, 4, int)++;
+        break;
+    case 1:
+        STRUCT_OFFSET(t, 4, int) = 2;
+        break;
+    case 2:
+        if (!CheckFadeFinishFlag_memcsub4())
+        {
+            STRUCT_OFFSET(pmss_006746a4, 4, int)++;
+        }
+        break;
+    case 3:
+        STRUCT_OFFSET(t, 4, int) = 0;
+        step++;
+        break;
+    }
+
+    return step;
+}
 
 void ProcMemcChecking_memcsub4()
 {
