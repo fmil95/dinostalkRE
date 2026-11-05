@@ -19,7 +19,7 @@ gsSt9Demo_Cancel();
 void gsWorldSt9Demo_LavaRise();
 void gsWorldSt9Demo_FogBackChange();
 gsSt9Demo_ClutAnimation();
-ClutCopyBuf();
+void ClutCopyBuf(char* p, int n);
 gsCultAnimation();
 void gsSt9_RockCrossTREX();
 gsWorldSt9_IwaBreak();

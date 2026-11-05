@@ -5,10 +5,10 @@
 
 void gsShockInit();
 gsShockManagement();
-gsShockSetSeqVel();
+int gsShockSetSeqVel(int a, int b, float v);
 void gsShockSetSeq();
 int gsShockSetSeqNo(int, int);
-gsShockSetSeqNoVel();
+int gsShockSetSeqNoVel(int a, int n, float v);
 void gsShockSetEnable(int v);
 void gsShockReset();
 #endif // G_SHOCK_H

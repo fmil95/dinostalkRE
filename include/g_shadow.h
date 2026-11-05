@@ -4,7 +4,7 @@
 #define G_SHADOW_H
 
 gpShadow_Init();
-gpShadow_InitShadow();
+void gpShadow_InitShadow(int* s);
 void gpShadow_SetSortKey(float x);
 gpShadow_MakePreset();
 void gpShadow_Eval();

@@ -25,13 +25,21 @@ extern int _st7_fire_light_step;
 extern int rand();
 extern char gsEnemyInfos[];
 extern void _gsWorldSt7_TrexHeadColl();
+extern int gsWorldTimer;
+extern int gsWorldTexIdx[];
 INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldInitSt7);
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldSt7EntryTex_GND);
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldSt7_SpecialEffect);
 
-INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldSt7_SpecialEffect2);
+int gsWorldSt7_SpecialEffect2(int a)
+{
+    int idx = gsWorldTexIdx[0];
+
+    a = gsWorldSt7_Neon_Scroll(a, idx + 0x3F, ((u_int)-gsWorldTimer >> 1) & 0x7FFC);
+    return gsWorldSt7_TV_Storm(a, idx + 0x1B, gsWorldTimer);
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st7", gsWorldSt7_ClearPointLight);
 

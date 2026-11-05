@@ -3,7 +3,7 @@
 #ifndef G_WORLD_ST7_DEMO_H
 #define G_WORLD_ST7_DEMO_H
 
-gsWorldSt7_InitDemo();
+void gsWorldSt7_InitDemo();
 gsWorldSt7_TriggerDemo();
 gsWorldSt7_Demo();
 gsWorldSt7_Demo_0();
