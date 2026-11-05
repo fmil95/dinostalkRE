@@ -664,7 +664,7 @@ segments:
       - [0x56d460, .rodata, hoya/name/namesub]
       - [0x56d640, .rodata, hoya/modesel/gsModeselect]
       - [0x56d820, .rodata, hoya/playdemo/demosub0]
-      - [0x56db20, rodata, hoya/playdemo/playdemo]
+      - [0x56db20, .rodata, hoya/playdemo/playdemo]
       - [0x56db40, rodata, sound/se_rpc]
       - [0x56dba0, .rodata, sound/CdvUse]
       - [0x56dc90, rodata, sound/mainmpeg]
