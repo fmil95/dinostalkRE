@@ -229,7 +229,19 @@ int _saeDrawPrim_LDIMG(char* p)
     return STRUCT_OFFSET(p, 0x8, int);
 }
 
-INCLUDE_ASM("asm/nonmatchings/aelib", _saeDrawPrim_SPRT2);
+SaePrim* _saeDrawPrim_SPRT2(SaePrim* p)
+{
+    u_long* q = (u_long*)aePresetSprite();
+
+    q[1] = SCE_GS_SET_RGBAQ(STRUCT_OFFSET(p, 0x1, u_char), STRUCT_OFFSET(p, 0x2, u_char), STRUCT_OFFSET(p, 0x3, u_char), STRUCT_OFFSET(p, 0x24, u_char), 1);
+    q[2] = STRUCT_OFFSET(p, 0x8, u_long);
+    q[4] = SCE_GS_SET_XYZ(STRUCT_OFFSET(p, 0x18, u_short), STRUCT_OFFSET(p, 0x1A, u_short), STRUCT_OFFSET(p, 0x10, u_int));
+    q[3] = SCE_GS_SET_UV(STRUCT_OFFSET(p, 0x14, u_short), STRUCT_OFFSET(p, 0x16, u_short));
+    q[6] = SCE_GS_SET_XYZ(STRUCT_OFFSET(p, 0x20, u_short), STRUCT_OFFSET(p, 0x22, u_short), STRUCT_OFFSET(p, 0x10, u_int));
+    q[5] = SCE_GS_SET_UV(STRUCT_OFFSET(p, 0x1C, u_short), STRUCT_OFFSET(p, 0x1E, u_short));
+    aeKickPrim();
+    return p->next4;
+}
 
 INCLUDE_ASM("asm/nonmatchings/aelib", _saeDrawPrim_SPRT3);
 
