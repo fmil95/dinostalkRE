@@ -156,7 +156,17 @@ void gpSetMatrixXYZ(sceVu0FVECTOR* m, float* rot, float* trans, float* scale)
     sceVu0TransMatrix(m, m, trans);
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_parts", gpSetMatrixZYX);
+void gpSetMatrixZYX(sceVu0FVECTOR* m, float* rot, float* trans, float* scale)
+{
+    sceVu0UnitMatrix(m);
+    sceVu0ScaleVector(m[0], m[0], scale[0]);
+    sceVu0ScaleVector(m[1], m[1], scale[1]);
+    sceVu0ScaleVector(m[2], m[2], scale[2]);
+    sceVu0RotMatrixZ(m, m, rot[2]);
+    sceVu0RotMatrixY(m, m, rot[1]);
+    sceVu0RotMatrixX(m, m, rot[0]);
+    sceVu0TransMatrix(m, m, trans);
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_parts", gpStandardizeBoundBox);
 
