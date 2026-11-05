@@ -5,6 +5,6 @@
 
 InitLogo();
 MainLogo();
-EndLogo();
+void EndLogo(void);
 
 #endif // HOYA_TITLE_TTLSUB03_H

@@ -6,6 +6,6 @@
 InitFResult();
 InitFresultResult00();
 MainFResult();
-EndFResult();
+void EndFResult(void);
 
 #endif // HOYA_RESULT_FRSLTSB1_H

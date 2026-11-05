@@ -1,8 +1,9 @@
 #include "common.h"
+#include "hoya/title/ttlsub01.h"
+#include "hoya/hoya.h"
 
 extern int ttl;
 extern int hyCheckFadeFinishFlag();
-extern void hySetFadePara2();
 extern void hySwitchFadeTimer();
 
 extern void hyDrawSMSprite();
@@ -36,7 +37,35 @@ INCLUDE_ASM("asm/nonmatchings/hoya/title/ttlsub01", InitTitle);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/title/ttlsub01", InitTtlTtl00);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/title/ttlsub01", ProcFade_ttlsub01);
+int ProcFade_ttlsub01(int step)
+{
+    int t = ttl;
+
+    switch (STRUCT_OFFSET(t, 4, int))
+    {
+    case 0:
+        STRUCT_OFFSET(t, 0x900, int) = 0;
+        SetFadePara_ttlsub01(t + 0x8D0, t + 0x8E0, STRUCT_OFFSET(t, 0x8F0, int));
+        SwitchFadeTimer_ttlsub01(1);
+        STRUCT_OFFSET(ttl, 4, int)++;
+        break;
+    case 1:
+        STRUCT_OFFSET(t, 4, int) = 2;
+        break;
+    case 2:
+        if (!CheckFadeFinishFlag_ttlsub01())
+        {
+            STRUCT_OFFSET(ttl, 4, int)++;
+        }
+        break;
+    case 3:
+        STRUCT_OFFSET(t, 4, int) = 0;
+        step++;
+        break;
+    }
+
+    return step;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/title/ttlsub01", ProcFade2);
 
