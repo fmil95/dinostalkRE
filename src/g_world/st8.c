@@ -31,7 +31,13 @@ void gsWorldSt8_InitCircleLight()
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_world/st8", gsWorldSt8_EntryCircleLight);
+void gsWorldSt8_EntryCircleLight(int i, int v)
+{
+    St8CirGrp* g = &_st8_cir_grp[i];
+
+    ((int*)_st8_cir_grp)[i * 16 + g->a[0] + 1] = v;
+    g->a[0]++;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st8", gsWorldSt8_CircleLight);
 

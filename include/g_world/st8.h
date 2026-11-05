@@ -8,7 +8,7 @@ void gsWorldSt8_SpecialEffect();
 int gsWorldSt8_SpecialEffect2();
 gsWorldSt8_CirLight_GND();
 void gsWorldSt8_InitCircleLight();
-gsWorldSt8_EntryCircleLight();
+void gsWorldSt8_EntryCircleLight(int i, int v);
 gsWorldSt8_CircleLight();
 gsWorldSt8_StoneLine();
 gsWorldSt8_SetBackCOLA();
