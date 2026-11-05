@@ -92,3 +92,5 @@ void gsStageExec_MEMC()
         pm[1] = pm[0];
     }
 }
+INCLUDE_RODATA("asm/nonmatchings/hoya/mem_card/g_memc", D_0066ABC0);
+
