@@ -64,7 +64,35 @@ INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub3", Draw2dObject_memcsub3);
 void Calculation_memcsub3(void) {
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub3", ProcFadeIn_memcsub3);
+int ProcFadeIn_memcsub3(int step)
+{
+    int t = pmss_0067463c;
+
+    switch (STRUCT_OFFSET(t, 4, int))
+    {
+    case 0:
+        STRUCT_OFFSET(t, 0x40, int) = 0;
+        SetFadePara_memcsub3(t + 0x10, t + 0x20, STRUCT_OFFSET(t, 0x30, int));
+        SwitchFadeTimer_memcsub3(1);
+        STRUCT_OFFSET(pmss_0067463c, 4, int)++;
+        break;
+    case 1:
+        STRUCT_OFFSET(t, 4, int) = 2;
+        break;
+    case 2:
+        if (!CheckFadeFinishFlag_memcsub3())
+        {
+            STRUCT_OFFSET(pmss_0067463c, 4, int)++;
+        }
+        break;
+    case 3:
+        STRUCT_OFFSET(t, 4, int) = 0;
+        step++;
+        break;
+    }
+
+    return step;
+}
 
 void ProcMemcChecking_memcsub3()
 {
