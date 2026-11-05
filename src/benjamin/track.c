@@ -1,6 +1,6 @@
 #include "common.h"
 #include <libvu0.h>
-extern void GFTrack_Lifeless();
+#include "benjamin/track.h"
 
 extern void* GFTex_GetDb();
 extern void* gf_default_track_drawfunc[];
@@ -32,7 +32,14 @@ int GFTrack_GetTextureID(void* p)
     return STRUCT_OFFSET(p, 0x8, int);
 }
 
-INCLUDE_ASM("asm/nonmatchings/benjamin/track", GFTrack_SetStartRGBA);
+void GFTrack_SetStartRGBA(void* t, sceVu0FVECTOR a, sceVu0FVECTOR b)
+{
+    sceVu0CopyVector((float*)((char*)t + 0x20), a);
+    sceVu0ClampVector((float*)((char*)t + 0x20), (float*)((char*)t + 0x20), 0.0f, 255.0f);
+    sceVu0CopyVector((float*)((char*)t + 0x30), b);
+    sceVu0ClampVector((float*)((char*)t + 0x30), (float*)((char*)t + 0x30), 0.0f, 255.0f);
+    STRUCT_OFFSET(t, 0xC, int) |= 0x2;
+}
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/track", GFTrack_SetEndRGBA);
 
