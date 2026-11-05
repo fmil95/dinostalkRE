@@ -1,14 +1,10 @@
 #include "common.h"
+#include "hoya/mem_card/g_savlod.h"
+#include "hoya/mem_card/mcduse.h"
 
-extern void mcdCloseSet();
-extern void mcdQuit();
-extern void mcdGetQueCondition();
 extern int mcdResult;
 extern char saveDataBox[];
-extern void mcdReadSet();
 extern char icon[];
-extern void mcdWriteSet();
-extern void mcdFormatSet();
 
 typedef struct { int w[544]; } MemcInfo;
 extern MemcInfo D_005E6044[];
@@ -81,9 +77,9 @@ void GetSystemData2Box(void) {
 void GetGameData2Box(void) {
 }
 
-void GetQueCondition()
+int GetQueCondition()
 {
-    mcdGetQueCondition();
+    return mcdGetQueCondition();
 }
 
 int GetResultValue(int a, int b)
@@ -214,9 +210,9 @@ void ReadSaveData(int a, int b)
     mcdReadSet(a, b, saveDataBox, 0x2e14);
 }
 
-void CloseSaveData()
+void CloseSaveData(int a, int b)
 {
-    mcdCloseSet();
+    mcdCloseSet(a, b);
 }
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", OpenIconSys);
@@ -226,9 +222,9 @@ void WriteIconSys(int a, int b)
     mcdWriteSet(a, b, icon, 0x3c4);
 }
 
-void CloseIconSys()
+void CloseIconSys(int a, int b)
 {
-    mcdCloseSet();
+    mcdCloseSet(a, b);
 }
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", OpenIconIco);
@@ -238,9 +234,9 @@ void WriteIconIco(int a, int b)
     mcdWriteSet(a, b, ico, 0x1F470);
 }
 
-void CloseIconIco()
+void CloseIconIco(int a, int b)
 {
-    mcdCloseSet();
+    mcdCloseSet(a, b);
 }
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", LoadSaveData);
