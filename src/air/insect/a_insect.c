@@ -31,7 +31,20 @@ INCLUDE_ASM("asm/nonmatchings/air/insect/a_insect", gsObjSet_Insect);
 
 INCLUDE_ASM("asm/nonmatchings/air/insect/a_insect", gsMake_AllIscObj);
 
-INCLUDE_ASM("asm/nonmatchings/air/insect/a_insect", gsInitInsect);
+int gsInitInsect(int a, int b, int c)
+{
+    gsIscInfosAllClear();
+
+    if (c)
+    {
+        gsIscPictureLoad();
+        gsIscAnimLoad();
+        a = gsMake_AllIscObj(a, b);
+        gsInit_IscSe();
+    }
+
+    return a;
+}
 
 INCLUDE_ASM("asm/nonmatchings/air/insect/a_insect", gsManagementInsect);
 
