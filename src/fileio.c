@@ -1,5 +1,7 @@
 #include "common.h"
 #include "fileio.h"
+#include <sifdev.h>
+#include <libgraph.h>
 extern int SCEOPEN2();
 extern void exit();
 
@@ -9,7 +11,22 @@ typedef struct { int a; int b; } CacheInfoS;
 extern CacheInfoS fio_CacheInfo[];
 extern int SCELSEEK2();
 extern int SCECLOSE2();
-INCLUDE_ASM("asm/nonmatchings/fileio", SCELSEEK2);
+int SCELSEEK2(int fd, int off, int whence)
+{
+    int r;
+
+    do
+    {
+        r = sceLseek(fd, off, whence);
+        if (r >= 0)
+        {
+            break;
+        }
+        sceGsSyncV(0);
+    } while (1);
+
+    return r;
+}
 
 INCLUDE_ASM("asm/nonmatchings/fileio", SCECLOSE2);
 
