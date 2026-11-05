@@ -11,6 +11,13 @@ extern int pRsltRslt;
 extern int hyCheckFadeFinishFlag();
 extern void hySwitchFadeTimer();
 
+extern void RsltInitSprOther_rsltsub1();
+extern void RsltInitSprDino();
+extern void RsltInitSprRank();
+extern void RsltInitSprBonus();
+extern void RsltInitSprStageNo();
+extern void RsltInitSprNumber();
+extern void RsltInitSprYN();
 INCLUDE_ASM("asm/nonmatchings/hoya/result/rsltsub1", MakeAllNumberTex_rsltsub1);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/result/rsltsub1", RsltInitSprOther_rsltsub1);
@@ -116,7 +123,20 @@ void Return2Game()
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/result/rsltsub1", InitResultResult00);
+void InitResultResult00()
+{
+    int* r = (int*)pRsltRslt;
+    int n;
+
+    RsltInitSprOther_rsltsub1();
+    RsltInitSprDino(100);
+    RsltInitSprRank(-1);
+    RsltInitSprBonus();
+    n = hyGetStageNumber(r[2]);
+    RsltInitSprStageNo(n + (hyGetStageNumber(r[2]) < 3));
+    RsltInitSprNumber();
+    RsltInitSprYN();
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/result/rsltsub1", InitResult);
 
