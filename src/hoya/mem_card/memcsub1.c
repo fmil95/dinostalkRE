@@ -4,14 +4,19 @@
 #include "hoya/mem_card/g_memc.h"
 #include "hoya/hoya.h"
 #include "hoya/mem_card/g_savlod.h"
+#include "hoya/hyopen.h"
 
 extern int pmss_00674568;
 extern int hyCheckFadeFinishFlag();
 extern void hySwitchFadeTimer();
-extern int GotoNextStage_memcsub1();
+extern void GotoNextStage_memcsub1();
 
 extern int CheckMemcType();
 extern char mcCheck_005eec38[];
+extern int gsResult[];
+extern int gsNextProg;
+extern int prgMan[];
+extern int plGameData[];
 int McConnectCheck_memcsub1(int a)
 {
     int r = a;
@@ -48,7 +53,20 @@ INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub1", SaveDrawSprOther);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub1", SaveCalcSprOther);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub1", GotoNextStage_memcsub1);
+void GotoNextStage_memcsub1()
+{
+    if (gsResult[0] < 8)
+    {
+        gsNextProg = hyGetStageNumber(gsResult[0]) + 1;
+        EndMemcManager();
+    }
+    else
+    {
+        prgMan[0] = 4;
+    }
+
+    plGameData[0x1D8 / 4]++;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub1", makeAllFileListTex_memcsub1);
 
