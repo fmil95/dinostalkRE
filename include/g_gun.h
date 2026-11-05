@@ -35,7 +35,7 @@ gsGunAdjustBulletLine_BOWGUN2();
 gsGunAdjustBulletLine_BOWGUN3();
 void gsGunBulletCheckEnd_BOWGUN();
 gsGunAdjustBulletLine_MINE();
-gsGunBulletCheckEnd_MINE();
+void gsGunBulletCheckEnd_MINE();
 gsGunAdjustBulletLine_GAIZAR();
 gsGunAdjustBulletLine_GAIZAR2();
 gsGunAdjustBulletLine_FLAME();

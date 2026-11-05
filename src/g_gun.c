@@ -122,7 +122,37 @@ void gsGunBulletCheckEnd_BOWGUN()
 
 INCLUDE_ASM("asm/nonmatchings/g_gun", gsGunAdjustBulletLine_MINE);
 
-INCLUDE_ASM("asm/nonmatchings/g_gun", gsGunBulletCheckEnd_MINE);
+void gsGunBulletCheckEnd_MINE()
+{
+    char* b;
+    int i;
+
+    b = D_003C5D20;
+
+    for (i = 0; i < 32; i++, b += 0x100)
+    {
+        if (STRUCT_OFFSET(b, 0xC, int) > 0 && STRUCT_OFFSET(b, 0x4, int) == 0x12 && STRUCT_OFFSET(b, 0x8, int) == 1)
+        {
+            if (STRUCT_OFFSET(b, 0x68, u_long*) == NULL)
+            {
+                if (STRUCT_OFFSET(b, 0x70, int) != 0)
+                {
+                    if (gsWorldCheckODV_OBJ_BREAK(gsWorldBreakList, STRUCT_OFFSET(b, 0x70, int)) >= 0)
+                    {
+                        STRUCT_OFFSET(b, 0x70, int) = 0;
+                        STRUCT_OFFSET(b, 0x8, int) = 2;
+                    }
+                }
+            }
+            else if ((*STRUCT_OFFSET(b, 0x68, u_long*) & 0x10000000800001) != 0x10000000000001)
+            {
+                STRUCT_OFFSET(b, 0x6C, int) = 0;
+                STRUCT_OFFSET(b, 0x68, u_long*) = NULL;
+                STRUCT_OFFSET(b, 0x8, int) = 2;
+            }
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_gun", gsGunAdjustBulletLine_GAIZAR);
 
