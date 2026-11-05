@@ -304,7 +304,11 @@ INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", SaveIconSys);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", SaveIconIco);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", ClearSystemData);
+void ClearSystemData()
+{
+    memset(saveDataBox, 0, 0x1910);
+    *(int*)(saveDataBox + 0x2DF0) = 0;
+}
 
 void ClearGameData(int n)
 {
