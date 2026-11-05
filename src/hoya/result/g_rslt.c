@@ -1,12 +1,19 @@
 #include "common.h"
 #include "hoya/result/g_rslt.h"
 #include "gunsuv_usa/libgf/gftex.h"
+#include "hoya/hoya.h"
+#include "g_parts.h"
+#include "gunsuv_usa/libgf/gfinstance.h"
 
 extern int tex2dSendFlag_00674788;
 extern int tex2dSendFlag_00674788;
 extern int tex2dSendFlag_00674788;
 
 extern int rsltPigTexId[1];
+typedef struct { void (*init)(); void (*main)(); void (*end)(); } HyPrgInfo;
+extern HyPrgInfo gRsltPrgInfo[];
+extern int prgMan[];
+extern char gNull_002c6740[];
 INCLUDE_ASM("asm/nonmatchings/hoya/result/g_rslt", LetsGotoResultScene);
 
 void PermittoSendRsltTex(int a)
@@ -44,4 +51,26 @@ int gsRESULT_Draw2(int a)
 
 INCLUDE_ASM("asm/nonmatchings/hoya/result/g_rslt", gsStageInit_RESULT);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/result/g_rslt", gsStageExec_RESULT);
+void gsStageExec_RESULT()
+{
+    int* pm;
+
+    KeyStateUpdate(0);
+    GunStateUpdate();
+    GFInstance_Start();
+    gpInstance_Eval(gNull_002c6740);
+    GFInstance_End();
+
+    pm = prgMan;
+
+    if (pm[0] == pm[1])
+    {
+        gRsltPrgInfo[pm[1]].main();
+    }
+    else
+    {
+        gRsltPrgInfo[pm[1]].end();
+        gRsltPrgInfo[pm[0]].init();
+        pm[1] = pm[0];
+    }
+}
