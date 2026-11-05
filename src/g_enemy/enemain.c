@@ -3,6 +3,8 @@
 #include "sound/g_sound.h"
 #include "benjamin/g_shrink.h"
 #include "air/a_spbtl.h"
+#include "g_shadow.h"
+#include "test.h"
 
 extern int _VlcnCnt;
 extern void sceVu0SubVector();
@@ -27,6 +29,10 @@ extern int pmtadr[][128];
 extern int* pmt_adrtbls[];
 extern char gsEnemySeInfo00[];
 extern char gsEnemySeInfo01[];
+extern void* memset();
+extern void sceVu0CopyVector();
+extern int shadow_podadr[];
+extern int gsFootPointTexIndex[];
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_Main);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_PauseProc);
@@ -415,7 +421,20 @@ void Enemy_AllPsInfInt()
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_PsInfInt);
+void Enemy_PsInfInt(int* p)
+{
+    float v[4];
+
+    memset(v, 0, 16);
+    v[3] = 1.0f;
+    p[0] = 0;
+    p[1] = 0;
+    p[2] = 0;
+    p[3] = 0;
+    sceVu0CopyVector(p + 4, v);
+    sceVu0CopyVector(p + 8, v);
+    sceVu0CopyVector(p + 12, v);
+}
 
 int Enemy_SarchEmptyPsInf()
 {

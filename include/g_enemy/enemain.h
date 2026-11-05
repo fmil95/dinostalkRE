@@ -4,7 +4,7 @@
 #define G_ENEMY_ENEMAIN_H
 
 Enemy_Main();
-void Enemy_PauseProc();
+void Enemy_PauseProc(int on);
 void Enemy_AnmStpOrStt(char* a, int on);
 void Enemy_AllWorkInit();
 void Enemy_AllWkIntReLd();
@@ -72,10 +72,10 @@ void Enemy_PmtDataCopy(int dst, int src);
 int Enemy_EveryStgDtLd();
 int Enemy_BossDtLd();
 Enemy_NeedPrtInfSet();
-Enemy_ShdFtpSet();
+int Enemy_ShdFtpSet(int a, char* base, int i, int j, int k);
 Enemy_PoisonMain();
 void Enemy_AllPsInfInt();
-void Enemy_PsInfInt();
+void Enemy_PsInfInt(int* p);
 int Enemy_SarchEmptyPsInf();
 enemy_poisonmv();
 Enemy_PoisonShoot();
@@ -87,7 +87,7 @@ Enemy_SeWkInit();
 void Enemy_SeReq(char* e, int v, int which);
 Enemy_SetSeMain();
 ST9TREX_DmgHitCheck();
-Enemy_SchOkNgSetDel();
+void Enemy_SchOkNgSetDel(char* e);
 enemy_deadshotmain();
 Enemy_MaxEneNoChg();
 void enemy_blthitseset(char* e, int b);
