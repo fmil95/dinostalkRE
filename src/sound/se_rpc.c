@@ -630,7 +630,12 @@ int SeCSLBankOpen(int a)
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeCSLBankOpenB);
 
-INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeCSLBankOpenN);
+int SeCSLBankOpenN(int a, int b, int c)
+{
+    SeCSLMidiStop(-1);
+    SeBankOpenTransfer(0xFFFF, c, b, a, 1);
+    return 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeCSLBankClose);
 
