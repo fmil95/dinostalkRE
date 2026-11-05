@@ -11,7 +11,24 @@ INCLUDE_ASM("asm/nonmatchings/benjamin/kinematics", IK_Matrix2Euler);
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/kinematics", IK_OpenPmtAnimation);
 
-INCLUDE_ASM("asm/nonmatchings/benjamin/kinematics", ik_VectorSquareDistance);
+static float ik_VectorSquareDistance(float* a, float* b)
+{
+    float ret;
+
+    asm volatile(
+        ".set noreorder\n"
+        "lqc2 $vf4, 0x0(%1)\n"
+        "lqc2 $vf5, 0x0(%2)\n"
+        "vsub.xyzw $vf6, $vf4, $vf5\n"
+        "vmul.xyz $vf5, $vf6, $vf6\n"
+        "vaddy.x $vf5, $vf5, $vf5y\n"
+        "vaddz.x $vf5, $vf5, $vf5z\n"
+        "qmfc2.ni %0, $vf5\n"
+        ".set reorder\n"
+        : "=r"(ret) : "r"(a), "r"(b));
+
+    return ret;
+}
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/kinematics", ik_ApplyMatrix);
 
