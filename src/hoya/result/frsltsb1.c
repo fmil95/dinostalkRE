@@ -65,7 +65,35 @@ INCLUDE_ASM("asm/nonmatchings/hoya/result/frsltsb1", Draw2dObjectFResult);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/result/frsltsb1", Calculation_frsltsb1);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/result/frsltsb1", ProcFadeIn_frsltsb1);
+int ProcFadeIn_frsltsb1(int step)
+{
+    int t = pFR;
+
+    switch (STRUCT_OFFSET(t, 8, int))
+    {
+    case 0:
+        STRUCT_OFFSET(t, 0x1FC0, int) = 0;
+        SetFadePara_frsltsb1(t + 0x1F90, t + 0x1FA0, STRUCT_OFFSET(t, 0x1FB0, int));
+        SwitchFadeTimer_frsltsb1(1);
+        STRUCT_OFFSET(pFR, 8, int)++;
+        break;
+    case 1:
+        STRUCT_OFFSET(t, 8, int) = 2;
+        break;
+    case 2:
+        if (!CheckFadeFinishFlag_frsltsb1())
+        {
+            STRUCT_OFFSET(pFR, 8, int)++;
+        }
+        break;
+    case 3:
+        STRUCT_OFFSET(t, 8, int) = 0;
+        step++;
+        break;
+    }
+
+    return step;
+}
 
 int ProcFadeOut_frsltsb1(int step)
 {
