@@ -1,6 +1,7 @@
 #include "common.h"
 #include "g_effect.h"
 #include "g_plane.h"
+#include "particle.h"
 extern char gParticleM[];
 extern char gParticleMS[];
 extern void GFMicro_MakePacket();
@@ -36,7 +37,11 @@ extern void GFParticle_SetDirection();
 extern char gsEffectFadeTile[];
 INCLUDE_ASM("asm/nonmatchings/g_effect", gs_effectResetEffectSrc);
 
-INCLUDE_ASM("asm/nonmatchings/g_effect", gsEffectRemove);
+void gsEffectRemove(char* p)
+{
+    GFParticle_SetCreateSpeed(p + 0x110, 0.0f, 0.0f);
+    *(int*)(p + 0x268) = -1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_effect", gsEffectRemoveForce);
 
