@@ -18,7 +18,7 @@ gsWorldBulletEffectGnd_ST2();
 void gsWorldSt2_InitRapt();
 void gsWorldSt2_MotiveRapt();
 gsWorldSt2_CheckRaptEnd();
-gsWorldSt2_CheckBossDied();
+void gsWorldSt2_CheckBossDied();
 void gsWorldSt2_InitBackSE();
 gsWorldSt2_PlayBackSE();
 gsWorldSt2_TexScroll();
