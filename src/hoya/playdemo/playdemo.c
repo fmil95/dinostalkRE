@@ -48,7 +48,17 @@ void gsPlayPadEnd()
 
 INCLUDE_ASM("asm/nonmatchings/hoya/playdemo/playdemo", gsPlayPadFGetData);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/playdemo/playdemo", gsPlayDemoPadSwitch);
+void gsPlayDemoPadSwitch(int on)
+{
+    if (on)
+    {
+        playDemo[2] |= 1;
+    }
+    else
+    {
+        playDemo[2] &= ~1;
+    }
+}
 
 int retGunActTaddr()
 {
