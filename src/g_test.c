@@ -9,6 +9,7 @@ extern int _time_over_cnt;
 extern int _time_over_step;
 #include <libgraph.h>
 #include "g_effect.h"
+#include "g_test.h"
 extern int _dbgCS_p;
 extern int _dbgCS_siz;
 extern int _dbgCS_sum0;
