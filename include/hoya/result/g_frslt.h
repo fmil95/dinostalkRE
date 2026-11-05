@@ -9,7 +9,7 @@ qword* Send2FrsltTex(qword* pkt);
 void ReleaseFResultScene(void);
 FRsltItemSet();
 FRsltInfosClear();
-FRsltCreateObjectPacket();
+qword* FRsltCreateObjectPacket(qword* pkt, int i);
 FRsltItemObjectSet();
 FRsltMakeItemInfo();
 FRsltItemSetItems();

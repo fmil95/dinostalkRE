@@ -6,6 +6,8 @@
 #include "g_effect.h"
 #include "perfmon.h"
 #include "gunsuv_usa/libgf/gfinstance.h"
+#include "gunsuv_usa/libgf/gfmodel.h"
+#include "gunsuv_usa/libgf/gfobject.h"
 
 extern int pauseManager[];
 extern int gsExtProgNext;
@@ -19,6 +21,11 @@ extern char gScene[];
 extern char gScreen[];
 extern float cam_rot_002af8a0[];
 extern float cam_trans_002af8b0[];
+extern char _hoya_itemobj[];
+extern Uint32* _hoya_adr_itempod[];
+extern int vu1work_00673cc4;
+extern GF_MICRO gMicroShare;
+extern GF_LIGHT gLight;
 void LetsGotoPauseScene(int n)
 {
     int* pm = pauseManager;
@@ -42,7 +49,15 @@ INCLUDE_ASM("asm/nonmatchings/hoya/pause/g_pause", PauseItemSet);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/pause/g_pause", PauseInfosClear);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/pause/g_pause", PauseCreateObjectPacket);
+qword* PauseCreateObjectPacket(qword* pkt, int i)
+{
+    char* m = _hoya_itemobj + i * 0x1C0;
+
+    pkt = GFModel_MakePreset((GF_MODEL*)m, pkt, _hoya_adr_itempod[i], vu1work_00673cc4);
+    GFObject_Init((GF_INST_OBJECT*)(m + 0x30));
+    GFObject_AttachModel((GF_INST_OBJECT*)(m + 0x30), &gMicroShare, &gLight, 0, 0, (GF_MODEL*)m);
+    return pkt;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/pause/g_pause", PauseItemObjectSet);
 

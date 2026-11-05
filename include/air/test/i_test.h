@@ -8,7 +8,7 @@ I_SHOW_Exec();
 void I_SHOW_End();
 ISHOW_PictureLoad();
 ISHOW_CreateItem();
-ISHOW_CreateObjectPacket();
+qword* ISHOW_CreateObjectPacket(qword* pkt, int i);
 ISHOW_ItemObjectSet();
 ISHOW_JoyCheck();
 ISHOW_ItemSet();

@@ -6,7 +6,7 @@
 void LetsGotoPauseScene(int n);
 PauseItemSet();
 PauseInfosClear();
-PauseCreateObjectPacket();
+qword* PauseCreateObjectPacket(qword* pkt, int i);
 PauseItemObjectSet();
 PauseMakeItemInfo();
 PauseItemSetItems();
