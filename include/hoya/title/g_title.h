@@ -8,7 +8,7 @@ void LetsGotoStart(int a);
 void LetsGotoDaisakusen(void);
 void LetsGotoOpening(int a);
 int gsStageInit_TITLE();
-gsStageExec_TITLE();
+void gsStageExec_TITLE();
 void gsStageEnd_TITLE();
 int gsTITLE_Draw1(int a);
 int gsTITLE_Draw2(int p);

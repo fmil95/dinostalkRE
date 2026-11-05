@@ -9,6 +9,6 @@ qword* Send2RsltTex(qword* pkt);
 gsRESULT_Draw1();
 int gsRESULT_Draw2(int a);
 int gsStageInit_RESULT();
-gsStageExec_RESULT();
+void gsStageExec_RESULT();
 
 #endif // HOYA_RESULT_G_RSLT_H

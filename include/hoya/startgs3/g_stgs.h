@@ -5,7 +5,7 @@
 
 void LetsGotoStartgs3(int a);
 int gsStageInit_STARTGS3();
-gsStageExec_STARTGS3();
+void gsStageExec_STARTGS3();
 void gsStageEnd_STARTGS3(void);
 void InitStgsWait();
 void MainStgsWait();

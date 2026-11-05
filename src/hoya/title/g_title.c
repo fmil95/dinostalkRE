@@ -1,11 +1,17 @@
 #include "common.h"
 #include "hoya/g_ezipu.h"
 #include "hoya/title/ttlsub01.h"
+#include "hoya/hoya.h"
+#include "g_parts.h"
+#include "gunsuv_usa/libgf/gfinstance.h"
 
 extern int oldProcNo;
 extern int gsNextProg;
 
 extern int prgMan[];
+typedef struct { void (*init)(); void (*main)(); void (*end)(); } HyPrgInfo;
+extern HyPrgInfo gTtlPrgInfo[];
+extern char gNull_002c6740[];
 void LetsGotoTitle(int a)
 {
     if (a != -1)
@@ -41,7 +47,29 @@ void LetsGotoOpening(int a)
 
 INCLUDE_ASM("asm/nonmatchings/hoya/title/g_title", gsStageInit_TITLE);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/title/g_title", gsStageExec_TITLE);
+void gsStageExec_TITLE()
+{
+    int* pm;
+
+    KeyStateUpdate(0);
+    GunStateUpdate();
+    GFInstance_Start();
+    gpInstance_Eval(gNull_002c6740);
+    GFInstance_End();
+
+    pm = prgMan;
+
+    if (pm[0] == pm[1])
+    {
+        gTtlPrgInfo[pm[1]].main();
+    }
+    else
+    {
+        gTtlPrgInfo[pm[1]].end();
+        gTtlPrgInfo[pm[0]].init();
+        pm[1] = pm[0];
+    }
+}
 
 void gsStageEnd_TITLE(void) {
 }

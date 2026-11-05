@@ -10,6 +10,6 @@ qword* Send2McTex(qword* pkt);
 gsMEMC_Draw1();
 int gsMEMC_Draw2(int a);
 int gsStageInit_MEMC();
-gsStageExec_MEMC();
+void gsStageExec_MEMC();
 
 #endif // HOYA_MEM_CARD_G_MEMC_H
