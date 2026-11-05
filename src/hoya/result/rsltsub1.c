@@ -42,7 +42,18 @@ void RsltDrawSprStageNo(int p)
 
 INCLUDE_ASM("asm/nonmatchings/hoya/result/rsltsub1", RsltInitSprBonus);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/result/rsltsub1", RsltDrawSprBonus);
+void RsltDrawSprBonus(int p)
+{
+    char* r = rsltrslt;
+    char* s = r + 0x2330;
+    int i;
+
+    for (i = 2; i >= 0; i--)
+    {
+        hySetEzSprite(s, p);
+        s += 0x1F0;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/result/rsltsub1", RsltInitSprDino);
 
