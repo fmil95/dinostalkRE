@@ -592,7 +592,36 @@ int pcmCallback(sceMpeg* mp, sceMpegCbDataStr* str, void* data)
     return (ret > 0) ? 1 : 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/mainmpeg", copy2area);
+static int copy2area(u_char* pd0, int d0, u_char* pd1, int d1, u_char* ps0, int s0, u_char* ps1, int s1)
+{
+    if (d0 + d1 < s0 + s1)
+    {
+        return 0;
+    }
+
+    if (s0 >= d0)
+    {
+        memcpy(pd0, ps0, d0);
+        memcpy(pd1, ps0 + d0, s0 - d0);
+        memcpy(pd1 + s0 - d0, ps1, s1);
+    }
+    else
+    {
+        memcpy(pd0, ps0, s0);
+
+        if (s1 >= d0 - s0)
+        {
+            memcpy(pd0 + s0, ps1, d0 - s0);
+            memcpy(pd1, ps1 + d0 - s0, s1 - (d0 - s0));
+        }
+        else
+        {
+            memcpy(pd0 + s0, ps1, s1);
+        }
+    }
+
+    return s0 + s1;
+}
 
 void readBufCreate(ReadBuf* b)
 {
