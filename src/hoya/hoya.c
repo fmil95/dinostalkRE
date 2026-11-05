@@ -1,4 +1,5 @@
 #include "common.h"
+#include "test.h"
 #include "hoya/hoya.h"
 #include "g_guncon2/g_guncon2.h"
 #include "g_pad.h"
@@ -32,6 +33,16 @@ extern int subPigData[];
 extern int subPigAddr[];
 extern int subPigTuv[];
 extern int gsPAUSE_Idtex[];
+extern int memcPigData[];
+extern int memcPigAddr[];
+extern int gsMEMC_Idtex[];
+extern int stgsPigData[];
+extern int stgsPigAddr[];
+extern int gsSTGS_Idtex[];
+extern int cntPigData[];
+extern int cntPigAddr[];
+extern int cntPigTuv[];
+extern int gsCONTINUE_Idtex[];
 INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyGun1CheckScreenOut);
 
 void hySetBgCol(void) {
@@ -201,7 +212,18 @@ char* hyLoadPigFont2(int a)
     return p + (sz + 3) / 4 * 4;
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyLoadPigMemory);
+void hyLoadPigMemory()
+{
+    int i;
+    char* buf;
+
+    buf = (char*)FIO_ReadFile_Align(memcPigData[0], 0x40);
+
+    for (i = 0; i < 4; i++)
+    {
+        gsMEMC_Idtex[i] = TEST_EntryTexture((unsigned int*)(buf + memcPigAddr[i] * 4), 1);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyLoadPigStartgs3);
 
