@@ -171,3 +171,5 @@ u_int FIOCache_GetCheckSum(u_int* p, u_int size)
 
     return sum;
 }
+INCLUDE_RODATA("asm/nonmatchings/fileio", D_006646F0);
+
