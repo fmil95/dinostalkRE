@@ -255,7 +255,47 @@ float Enemy_OpVInPd00(float* a, float* b, float* c)
     return ret;
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_Op3PInPd00);
+float Enemy_Op3PInPd00(float* a, float* b, float* c)
+{
+    float ret;
+
+    asm volatile(
+        ".set noreorder\n"
+        "lqc2 $vf4, 0x0(%1)\n"
+        "lqc2 $vf5, 0x0(%2)\n"
+        "lqc2 $vf6, 0x0(%3)\n"
+        "vsub.xyzw $vf7, $vf5, $vf4\n"
+        "vmul.xz $vf8, $vf7, $vf7\n"
+        "vaddz.x $vf8, $vf8, $vf8z\n"
+        "vsqrt Q, $vf8x\n"
+        "vwaitq\n"
+        "vaddq.x $vf8, $vf0, Q\n"
+        "vnop\n"
+        "vnop\n"
+        "vdiv Q, $vf0w, $vf8x\n"
+        "vsub.xyzw $vf9, $vf0, $vf0\n"
+        "vwaitq\n"
+        "vmulq.xz $vf9, $vf7, Q\n"
+        "vsub.xyzw $vf7, $vf6, $vf4\n"
+        "vmul.xz $vf8, $vf7, $vf7\n"
+        "vaddz.x $vf8, $vf8, $vf8z\n"
+        "vsqrt Q, $vf8x\n"
+        "vwaitq\n"
+        "vaddq.x $vf8, $vf0, Q\n"
+        "vnop\n"
+        "vnop\n"
+        "vdiv Q, $vf0w, $vf8x\n"
+        "vsub.xyzw $vf10, $vf0, $vf0\n"
+        "vwaitq\n"
+        "vmulq.xz $vf10, $vf7, Q\n"
+        "vmul.xz $vf11, $vf9, $vf10\n"
+        "vaddz.x $vf11, $vf11, $vf11z\n"
+        "qmfc2.ni %0, $vf11\n"
+        ".set reorder\n"
+        : "=r"(ret) : "r"(a), "r"(b), "r"(c));
+
+    return ret;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_OpVLRChk00);
 
