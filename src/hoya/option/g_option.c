@@ -57,7 +57,37 @@ int gsOPTION_Draw2(int a)
 
 INCLUDE_ASM("asm/nonmatchings/hoya/option/g_option", gsStageInit_OPTION);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/option/g_option", gsStageExec_OPTION);
+void gsStageExec_OPTION()
+{
+    int* pm;
+
+    gsCameraCalcRotMatrix(gsCamRotMatrix, cam_rot_002af8a0);
+    gsSetCameraMatrix(gScene, gsCamRotMatrix, cam_trans_002af8b0);
+    KeyStateUpdate(0);
+    GunStateUpdate();
+    pfm_set(0x800000);
+    gpClipShape(gScene, gScreen);
+    GFInstance_Start();
+    gpInstance_Eval(gNull_002c6740);
+    GFInstance_End();
+    gpClearWorldRecov(gScene);
+    pfm_set(0x8000);
+
+    pm = prgMan;
+
+    if (pm[0] == pm[1])
+    {
+        gOptPrgInfo[pm[1]].main();
+    }
+    else
+    {
+        gOptPrgInfo[pm[1]].end();
+        gOptPrgInfo[pm[0]].init();
+        pm[1] = pm[0];
+    }
+
+    pfm_set(0x80);
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/option/g_option", gsStageInit_OPTION_STAGE);
 
