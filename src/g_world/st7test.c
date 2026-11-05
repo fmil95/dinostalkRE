@@ -28,3 +28,7 @@ INCLUDE_ASM("asm/nonmatchings/g_world/st7test", gsWorldSt7Test_Neon_01);
 INCLUDE_ASM("asm/nonmatchings/g_world/st7test", gsWorldSt7Test_Neon_02);
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st7test", gsWorldSt7Test_Neon_10);
+INCLUDE_RODATA("asm/nonmatchings/g_world/st7test", D_006665D0);
+
+INCLUDE_RODATA("asm/nonmatchings/g_world/st7test", D_006665E0);
+
