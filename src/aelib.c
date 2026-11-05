@@ -20,6 +20,10 @@ extern SaePrim* _saeDrawPrim_PLYG3();
 extern SaePrim* _saeDrawPrim_PRTSFT();
 extern SaePrim* _saeDrawPrim_PRTLN();
 extern SaePrim* _saeDrawPrim_TILE();
+extern int _aeMfifo;
+extern u_int D_00691424[];
+extern int _aeGifCh;
+extern void _aeKickSourceChannel();
 INCLUDE_ASM("asm/nonmatchings/aelib", aeInit);
 
 INCLUDE_ASM("asm/nonmatchings/aelib", aeStartMfifo);
@@ -56,7 +60,17 @@ INCLUDE_ASM("asm/nonmatchings/aelib", _aeKickSourceChannel);
 
 INCLUDE_ASM("asm/nonmatchings/aelib", aeKickPrim);
 
-INCLUDE_ASM("asm/nonmatchings/aelib", aeKickEndTag);
+void aeKickEndTag()
+{
+    if (_aeMfifo)
+    {
+        _aeKickSourceChannel(D_00691424[0] & 0x3FF0, 1);
+        return;
+    }
+
+    sceGsSyncPath(0, 0);
+    sceDmaSend(_aeGifCh, (D_00691424[0] & 0x0FFFFFFF) | 0x80000000);
+}
 
 INCLUDE_ASM("asm/nonmatchings/aelib", aeLoadImage);
 
