@@ -87,7 +87,36 @@ int ProcFadeIn_pausesub(int step)
     return step;
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/pause/pausesub", ProcFadeOut_pausesub);
+int ProcFadeOut_pausesub(int step)
+{
+    int t = pPpp;
+
+    switch (STRUCT_OFFSET(t, 0x4, int))
+    {
+    case 0:
+        STRUCT_OFFSET(t, 0x90, int) = 0;
+        SetFadeParaPause_pausesub(t + 0x60, t + 0x70, STRUCT_OFFSET(t, 0x80, int));
+        SwitchFadeTimerPause_pausesub(1);
+        STRUCT_OFFSET(pPpp, 0x4, int)++;
+        break;
+    case 1:
+        SwitchFadeTimerPause_pausesub(1);
+        STRUCT_OFFSET(pPpp, 0x4, int)++;
+        break;
+    case 2:
+        if (!CheckFadeFinishFlagPause_pausesub())
+        {
+            STRUCT_OFFSET(pPpp, 0x4, int)++;
+        }
+        break;
+    case 3:
+        STRUCT_OFFSET(t, 0x4, int) = 0;
+        step++;
+        break;
+    }
+
+    return step;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/pause/pausesub", ProcLMenu);
 
