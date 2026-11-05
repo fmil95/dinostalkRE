@@ -53,7 +53,7 @@ int gsGunGetExtArmsTypeNo();
 void gsGunPutTreasure(int a, void* b);
 gsGunCrashObject();
 void gsGunCrash_FLUSH_CH(int a, int b);
-void gsGunCrash_FLUSH_CH_ENE();
+void gsGunCrash_FLUSH_CH_ENE(int* p);
 gsInitGunBulletModel();
 gsInitGunBullet();
 gsSetBulletModel();

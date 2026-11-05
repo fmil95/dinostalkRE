@@ -471,7 +471,13 @@ INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldCrashOBJ2);
 
 INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldCrashOBJ_GUN);
 
-INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldCrashOBJ_SET_CH);
+void gsWorldCrashOBJ_SET_CH(char* w, char* o, int bit)
+{
+    int m = 1 << bit;
+
+    *(int*)(w + 0xC43A4 + *(int*)(o + 0xA0) * 4) |= m;
+    (*(int**)(o + 0xB0))[2] |= m;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldInitMovieManager);
 

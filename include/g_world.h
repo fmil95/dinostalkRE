@@ -76,7 +76,7 @@ void gsWorldCrashOBJ_FLUSH();
 gsWorldCrashOBJ();
 gsWorldCrashOBJ2();
 gsWorldCrashOBJ_GUN();
-gsWorldCrashOBJ_SET_CH();
+void gsWorldCrashOBJ_SET_CH(char* w, char* o, int bit);
 gsWorldInitMovieManager();
 gsWorldPlayMovie();
 gsWorldCheckMovieSwitch();
