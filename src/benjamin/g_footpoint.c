@@ -79,3 +79,99 @@ void gsFootPoint_Remove()
     gsFootPointBefore = 0;
     GFInstance_Remove(gsFootPointInst);
 }
+INCLUDE_RODATA("asm/nonmatchings/benjamin/g_footpoint", D_00666B30);
+
+INCLUDE_RODATA("asm/nonmatchings/benjamin/g_footpoint", D_00666B60);
+
+INCLUDE_RODATA("asm/nonmatchings/benjamin/g_footpoint", D_00666B90);
+
+INCLUDE_RODATA("asm/nonmatchings/benjamin/g_footpoint", D_00666BC0);
+
+INCLUDE_RODATA("asm/nonmatchings/benjamin/g_footpoint", D_00666BF0);
+
+INCLUDE_RODATA("asm/nonmatchings/benjamin/g_footpoint", D_00666C20);
+
+INCLUDE_RODATA("asm/nonmatchings/benjamin/g_footpoint", D_00666C50);
+
+INCLUDE_RODATA("asm/nonmatchings/benjamin/g_footpoint", D_00666C80);
+
+INCLUDE_RODATA("asm/nonmatchings/benjamin/g_footpoint", D_00666CB0);
+
+INCLUDE_RODATA("asm/nonmatchings/benjamin/g_footpoint", D_00666CE0);
+
+INCLUDE_RODATA("asm/nonmatchings/benjamin/g_footpoint", D_00666D10);
+
+INCLUDE_RODATA("asm/nonmatchings/benjamin/g_footpoint", D_00666D40);
+
+INCLUDE_RODATA("asm/nonmatchings/benjamin/g_footpoint", D_00666D70);
+
+INCLUDE_RODATA("asm/nonmatchings/benjamin/g_footpoint", D_00666DA0);
+
+INCLUDE_RODATA("asm/nonmatchings/benjamin/g_footpoint", D_00666DD0);
+
+INCLUDE_RODATA("asm/nonmatchings/benjamin/g_footpoint", D_00666E00);
+
+INCLUDE_RODATA("asm/nonmatchings/benjamin/g_footpoint", D_00666E30);
+
+INCLUDE_RODATA("asm/nonmatchings/benjamin/g_footpoint", D_00666E60);
+
+INCLUDE_RODATA("asm/nonmatchings/benjamin/g_footpoint", D_00666E90);
+
+INCLUDE_RODATA("asm/nonmatchings/benjamin/g_footpoint", D_00666EC0);
+
+INCLUDE_RODATA("asm/nonmatchings/benjamin/g_footpoint", D_00666EF0);
+
+INCLUDE_RODATA("asm/nonmatchings/benjamin/g_footpoint", D_00666F20);
+
+INCLUDE_RODATA("asm/nonmatchings/benjamin/g_footpoint", D_00666F50);
+
+INCLUDE_RODATA("asm/nonmatchings/benjamin/g_footpoint", D_00666F80);
+
+INCLUDE_RODATA("asm/nonmatchings/benjamin/g_footpoint", D_00666FB0);
+
+INCLUDE_RODATA("asm/nonmatchings/benjamin/g_footpoint", D_00666FE0);
+
+INCLUDE_RODATA("asm/nonmatchings/benjamin/g_footpoint", D_00667008);
+
+INCLUDE_RODATA("asm/nonmatchings/benjamin/g_footpoint", D_00667030);
+
+INCLUDE_RODATA("asm/nonmatchings/benjamin/g_footpoint", D_00667058);
+
+INCLUDE_RODATA("asm/nonmatchings/benjamin/g_footpoint", D_00667080);
+
+INCLUDE_RODATA("asm/nonmatchings/benjamin/g_footpoint", D_006670A8);
+
+INCLUDE_RODATA("asm/nonmatchings/benjamin/g_footpoint", D_006670D0);
+
+INCLUDE_RODATA("asm/nonmatchings/benjamin/g_footpoint", D_006670F8);
+
+INCLUDE_RODATA("asm/nonmatchings/benjamin/g_footpoint", D_00667120);
+
+INCLUDE_RODATA("asm/nonmatchings/benjamin/g_footpoint", D_00667148);
+
+INCLUDE_RODATA("asm/nonmatchings/benjamin/g_footpoint", D_00667170);
+
+INCLUDE_RODATA("asm/nonmatchings/benjamin/g_footpoint", D_00667198);
+
+INCLUDE_RODATA("asm/nonmatchings/benjamin/g_footpoint", D_006671C0);
+
+INCLUDE_RODATA("asm/nonmatchings/benjamin/g_footpoint", D_006671E8);
+
+INCLUDE_RODATA("asm/nonmatchings/benjamin/g_footpoint", D_00667210);
+
+INCLUDE_RODATA("asm/nonmatchings/benjamin/g_footpoint", D_00667238);
+
+INCLUDE_RODATA("asm/nonmatchings/benjamin/g_footpoint", D_00667260);
+
+INCLUDE_RODATA("asm/nonmatchings/benjamin/g_footpoint", D_00667288);
+
+INCLUDE_RODATA("asm/nonmatchings/benjamin/g_footpoint", D_006672B0);
+
+INCLUDE_RODATA("asm/nonmatchings/benjamin/g_footpoint", D_006672D8);
+
+INCLUDE_RODATA("asm/nonmatchings/benjamin/g_footpoint", D_00667300);
+
+INCLUDE_RODATA("asm/nonmatchings/benjamin/g_footpoint", D_00667328);
+
+INCLUDE_RODATA("asm/nonmatchings/benjamin/g_footpoint", D_00667350);
+
