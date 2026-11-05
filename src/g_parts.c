@@ -213,7 +213,24 @@ void gpRotTransZXY(float* v0, float* v1, float* rot)
     sceVu0ApplyMatrix(v0, m, v1);
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_parts", gpVector2RotZYX);
+void gpVector2RotZYX(float* r, float* v)
+{
+    sceVu0FVECTOR t;
+    float y;
+    float rz;
+    float ry;
+
+    sceVu0CopyVector(t, v);
+    y = t[1];
+    t[3] = 1.0f;
+    t[1] = 0.0f;
+    rz = gpArcTan(y, gpGetLength(t));
+    ry = gpArcTan(t[2], t[0]);
+    r[0] = 0.0f;
+    r[1] = -ry;
+    r[2] = rz;
+    r[3] = 1.0f;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_parts", gpVector2RotXYZ);
 
