@@ -2,7 +2,6 @@
 #include "benjamin/flare.h"
 #include <libvu0.h>
 
-
 extern void* GFTex_GetDb();
 INCLUDE_ASM("asm/nonmatchings/benjamin/flare", GFFlare_Update);
 
@@ -46,7 +45,11 @@ void GFFlare_SetSibling(void* p, int v)
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/flare", GFFlare_SetRGBA);
 
-INCLUDE_ASM("asm/nonmatchings/benjamin/flare", GFFlare_SetSTWH);
+void GFFlare_SetSTWH(char* f, float* v)
+{
+    sceVu0CopyVector((float*)(f + 0x10), v);
+    sceVu0ClampVector((float*)(f + 0x10), (float*)(f + 0x10), 0.0f, 1.0f);
+}
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/flare", GFFlare_Draw);
 
