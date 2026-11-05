@@ -172,7 +172,30 @@ void the_initBgSpr(int tex)
 
 INCLUDE_ASM("asm/nonmatchings/omake/g_theate", the_initCurSpr);
 
-INCLUDE_ASM("asm/nonmatchings/omake/g_theate", the_initPageSpr);
+void the_initPageSpr()
+{
+    char* spr;
+
+    spr = pageSpr_0085d7b0;
+    gplInitSprite(spr, cursorTexId_00674c2c);
+    gplInitSprite(spr + 0x160, cursorTexId_00674c2c);
+    STRUCT_OFFSET(spr, 0x8, short) = 0xB00;
+    STRUCT_OFFSET(spr, 0xA, short) = 0x0;
+    STRUCT_OFFSET(spr, 0x10, short) = 0xBF0;
+    STRUCT_OFFSET(spr, 0x12, short) = 0x160;
+    STRUCT_OFFSET(spr, 0xC, short) = -0x71A0;
+    STRUCT_OFFSET(spr, 0xE, short) = -0x7F78;
+    STRUCT_OFFSET(spr, 0x14, short) = -0x70A0;
+    STRUCT_OFFSET(spr, 0x16, short) = -0x7EC0;
+    STRUCT_OFFSET(spr, 0x168, short) = 0xC00;
+    STRUCT_OFFSET(spr, 0x16A, short) = 0x0;
+    STRUCT_OFFSET(spr, 0x170, short) = 0xCF0;
+    STRUCT_OFFSET(spr, 0x172, short) = 0x160;
+    STRUCT_OFFSET(spr, 0x16C, short) = 0x70E0;
+    STRUCT_OFFSET(spr, 0x16E, short) = -0x7F78;
+    STRUCT_OFFSET(spr, 0x174, short) = 0x71E0;
+    STRUCT_OFFSET(spr, 0x176, short) = -0x7EC0;
+}
 
 void the_selectEtcInitSpr()
 {
