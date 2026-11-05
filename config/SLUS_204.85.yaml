@@ -620,7 +620,7 @@ segments:
       - [0x56a940, .rodata, air/a_event]
       - [0x56ab28, .rodata, air/a_item]
       - [0x56ab70, .rodata, air/a_evtthk]
-      - [0x56ac30, rodata, air/a_itmthk]
+      - [0x56ac30, .rodata, air/a_itmthk]
       - [0x56ac80, rodata, air/a_rdcscn]
       - [0x56aca8, rodata, air/insect/a_insect]
       - [0x56ad10, rodata, air/insect/a_iscsub]
