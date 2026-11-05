@@ -9,6 +9,6 @@ gsArcsinf();
 gsArctanfNC();
 gsArctanf();
 gsArctan2f();
-gsSqrtf();
+float gsSqrtf(float x);
 
 #endif // GS_MATH_H

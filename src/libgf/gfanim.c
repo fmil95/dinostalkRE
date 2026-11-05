@@ -104,7 +104,28 @@ INCLUDE_ASM("asm/nonmatchings/libgf/gfanim", gfAnim_MatToQuat);
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfanim", gfAnim_QuaternionToMatrix);
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfanim", gfAnim_NormalizeQuaternion);
+static void gfAnim_NormalizeQuaternion(Float32 *v0, Float32 *v1)
+{
+    asm volatile(
+        ".set noreorder\n"
+        "lqc2 $vf4, 0x0(%1)\n"
+        "vmul.xyzw $vf5, $vf4, $vf4\n"
+        "vaddy.x $vf5, $vf5, $vf5y\n"
+        "vaddz.x $vf5, $vf5, $vf5z\n"
+        "vaddw.x $vf5, $vf5, $vf5w\n"
+        "vsqrt Q, $vf5x\n"
+        "vwaitq\n"
+        "vaddq.x $vf5, $vf0, Q\n"
+        "vnop\n"
+        "vnop\n"
+        "vdiv Q, $vf0w, $vf5x\n"
+        "vsub.xyzw $vf6, $vf0, $vf0\n"
+        "vwaitq\n"
+        "vmulq.xyzw $vf6, $vf4, Q\n"
+        "sqc2 $vf6, 0x0(%0)\n"
+        ".set reorder\n"
+        : : "r"(v0), "r"(v1) : "memory");
+}
 
 static void gfAnim_InterpolateVector(float* v0, float* v1, float* v2, Float32 t, Sint32 is_rot)
 {
