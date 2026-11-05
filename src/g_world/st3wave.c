@@ -1,5 +1,7 @@
 #include "common.h"
 #include "g_world/st3wave.h"
+#include <libgraph.h>
+#include <eekernel.h>
 
 extern float waveRndVec;
 extern float waveScrollX;
@@ -15,6 +17,7 @@ extern char gf_default_instwave_evalfunc[];
 extern void GFInstance_InitHead();
 extern void* GFTex_GetDb();
 extern int refTexAddr;
+extern int gsIntHID;
 INCLUDE_ASM("asm/nonmatchings/g_world/st3wave", gsWaveScrollX);
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st3wave", gsWaveScrollZ);
@@ -50,7 +53,15 @@ void gsSetRefTex()
     refTexAddr = (int)(db[4] & 0x3FFF) >> 5;
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_world/st3wave", gsWaveAvoidInit);
+void gsWaveAvoidInit()
+{
+    u_long imr = sceGsGetIMR();
+
+    gsIntHID = AddIntcHandler(INTC_GS, _gsWaveHandler, 0);
+    imr &= ~0x100;
+    EnableIntc(INTC_GS);
+    sceGsPutIMR(imr);
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st3wave", gsWaveAvoidEnd);
 
