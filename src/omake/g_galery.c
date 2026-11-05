@@ -154,7 +154,21 @@ void gal_setFadeOut(int t)
     gsEffectSetFade(b, t);
 }
 
-INCLUDE_ASM("asm/nonmatchings/omake/g_galery", gal_initBgSpr);
+void gal_initBgSpr(int tex)
+{
+    char* spr;
+
+    spr = bgSpr_0085a610;
+    gplInitSprite(spr, tex);
+    STRUCT_OFFSET(spr, 0x8, short) = 0;
+    STRUCT_OFFSET(spr, 0xA, short) = 0;
+    STRUCT_OFFSET(spr, 0x10, short) = 0x1FF0;
+    STRUCT_OFFSET(spr, 0x12, short) = 0x1BF0;
+    STRUCT_OFFSET(spr, 0xC, short) = 0x7000;
+    STRUCT_OFFSET(spr, 0xE, short) = 0x7900;
+    STRUCT_OFFSET(spr, 0x14, short) = -0x7010;
+    STRUCT_OFFSET(spr, 0x16, short) = -0x7908;
+}
 
 INCLUDE_ASM("asm/nonmatchings/omake/g_galery", gal_initCurSpr);
 
