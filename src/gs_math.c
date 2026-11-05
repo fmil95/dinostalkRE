@@ -13,7 +13,24 @@ INCLUDE_ASM("asm/nonmatchings/gs_math", gsArctanf);
 
 INCLUDE_ASM("asm/nonmatchings/gs_math", gsArctan2f);
 
-INCLUDE_ASM("asm/nonmatchings/gs_math", gsSqrtf);
+float gsSqrtf(float x)
+{
+    float ret;
+
+    asm volatile(
+        ".set noreorder\n"
+        "mfc1 $8, %1\n"
+        "qmtc2.ni $8, $vf5\n"
+        "vsqrt Q, $vf5x\n"
+        "vwaitq\n"
+        "vaddq.x $vf5, $vf0, Q\n"
+        "qmfc2.ni $2, $vf5\n"
+        "mtc1 $2, %0\n"
+        ".set reorder\n"
+        : "=f"(ret) : "f"(x) : "$2", "$8");
+
+    return ret;
+}
 INCLUDE_RODATA("asm/nonmatchings/gs_math", D_00664750);
 
 INCLUDE_RODATA("asm/nonmatchings/gs_math", D_00664770);
