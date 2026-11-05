@@ -260,6 +260,44 @@ void _gsOmakePower_INIT()
     }
 }
 
+INCLUDE_RODATA("asm/nonmatchings/main", D_00663C20);
+
+INCLUDE_RODATA("asm/nonmatchings/main", D_00663C38);
+
+INCLUDE_RODATA("asm/nonmatchings/main", D_00663C50);
+
+INCLUDE_RODATA("asm/nonmatchings/main", D_00663C68);
+
+INCLUDE_RODATA("asm/nonmatchings/main", D_00663C80);
+
+INCLUDE_RODATA("asm/nonmatchings/main", D_00663C98);
+
+INCLUDE_RODATA("asm/nonmatchings/main", D_00663CB0);
+
+INCLUDE_RODATA("asm/nonmatchings/main", D_00663CC8);
+
+INCLUDE_RODATA("asm/nonmatchings/main", D_00663CE0);
+
+INCLUDE_RODATA("asm/nonmatchings/main", D_00663CF8);
+
+INCLUDE_RODATA("asm/nonmatchings/main", D_00663D10);
+
+INCLUDE_RODATA("asm/nonmatchings/main", D_00663D28);
+
+INCLUDE_RODATA("asm/nonmatchings/main", D_00663D40);
+
+INCLUDE_RODATA("asm/nonmatchings/main", D_00663D58);
+
+INCLUDE_RODATA("asm/nonmatchings/main", D_00663D70);
+
+INCLUDE_RODATA("asm/nonmatchings/main", D_00663D88);
+
+INCLUDE_RODATA("asm/nonmatchings/main", D_00663DA0);
+
+INCLUDE_RODATA("asm/nonmatchings/main", D_00663DB8);
+
+INCLUDE_RODATA("asm/nonmatchings/main", D_00663DD0);
+
 INCLUDE_ASM("asm/nonmatchings/main", _gsOmakePower_EXEC);
 
 void _gsOmakePower_END() 
