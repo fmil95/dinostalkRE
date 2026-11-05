@@ -29,3 +29,11 @@ INCLUDE_ASM("asm/nonmatchings/g_world/st4", gsWorldSt4_AirWingrotation);
 INCLUDE_ASM("asm/nonmatchings/g_world/st4", gsWorldSt4_Ss_PointSet);
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st4", gsWorldSt4_SandStorm);
+INCLUDE_RODATA("asm/nonmatchings/g_world/st4", D_00665900);
+
+INCLUDE_RODATA("asm/nonmatchings/g_world/st4", D_00665918);
+
+INCLUDE_RODATA("asm/nonmatchings/g_world/st4", D_00665930);
+
+INCLUDE_RODATA("asm/nonmatchings/g_world/st4", D_00665948);
+
