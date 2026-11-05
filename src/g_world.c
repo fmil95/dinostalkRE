@@ -29,6 +29,7 @@ extern char gsWorldReactionList[];
 extern char gsWorldBreakList[];
 extern int gsWorldTimer;
 extern int gsWorldTimer2;
+typedef struct { int a; int b; } MovieEnt;
 void gsWorldRestoreMipmap()
 {
     STRUCT_OFFSET(GFTex_GetDb(), 0x2C, int) = 0xFFCC;
@@ -492,7 +493,28 @@ void gsWorldCrashOBJ_SET_CH(char* w, char* o, int bit)
     (*(int**)(o + 0xB0))[2] |= m;
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldInitMovieManager);
+void gsWorldInitMovieManager(int* m, int a, int b, int c, int d, int e)
+{
+    int i;
+    MovieEnt* p;
+
+    m[0] = 0;
+    m[1] = a;
+    m[2] = b;
+    m[3] = c;
+    m[4] = d;
+    m[5] = -1;
+
+    p = (MovieEnt*)(m + 6);
+    for (i = 15; i >= 0; i--)
+    {
+        p[i].a = 0;
+    }
+
+    m[0x98 / 4] = e;
+    m[0xA4 / 4] = -1;
+    m[0x9C / 4] = 0xFF;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldPlayMovie);
 
