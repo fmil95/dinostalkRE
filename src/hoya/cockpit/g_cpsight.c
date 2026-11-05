@@ -219,7 +219,15 @@ void gsCOCKPIT_InitSights(int type, int b)
 
 INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_cpsight", gsCOCKPIT_InitSightFirst);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_cpsight", gsCOCKPIT_PutSightMachine);
+void gsCOCKPIT_PutSightMachine(int p)
+{
+    char* s = gsCOCKPIT_Sights;
+    char* d = s + 0x30;
+
+    STRUCT_OFFSET(d, 4, int) = STRUCT_OFFSET(s, 4, int) >> 4;
+    STRUCT_OFFSET(d, 8, int) = STRUCT_OFFSET(s, 8, int) >> 3;
+    hyDrawSMSprite(d, p);
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_cpsight", gsCOCKPIT_PutSightRifle);
 
