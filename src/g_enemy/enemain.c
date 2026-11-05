@@ -1,6 +1,8 @@
 #include "common.h"
 #include "g_enemy/enemain.h"
 #include "sound/g_sound.h"
+#include "benjamin/g_shrink.h"
+#include "air/a_spbtl.h"
 
 extern int _VlcnCnt;
 extern void sceVu0SubVector();
@@ -333,7 +335,18 @@ INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", enemy_objtouchch);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", enemy_v0grdchk);
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", gsEnemyDelete);
+int gsEnemyDelete(char* e)
+{
+    if (*(int*)e & 0x800000)
+    {
+        if (gsDinoIsShrinking(e) < 0)
+        {
+            GFInstance_Remove(e + 0xBA0);
+            Enemy_WorkInit(e);
+            gsSt3BossReqCheck();
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_ShadowChk);
 
