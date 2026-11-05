@@ -18,6 +18,7 @@ extern void RsltInitSprBonus();
 extern void RsltInitSprStageNo();
 extern void RsltInitSprNumber();
 extern void RsltInitSprYN();
+extern char rsltrslt[];
 INCLUDE_ASM("asm/nonmatchings/hoya/result/rsltsub1", MakeAllNumberTex_rsltsub1);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/result/rsltsub1", RsltInitSprOther_rsltsub1);
@@ -26,7 +27,18 @@ INCLUDE_ASM("asm/nonmatchings/hoya/result/rsltsub1", RsltDrawSprOther_rsltsub1);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/result/rsltsub1", RsltInitSprStageNo);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/result/rsltsub1", RsltDrawSprStageNo);
+void RsltDrawSprStageNo(int p)
+{
+    char* r = rsltrslt;
+    char* s = r + 0x1D60;
+    int i;
+
+    for (i = 2; i >= 0; i--)
+    {
+        hySetEzSprite(s, p);
+        s += 0x1F0;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/result/rsltsub1", RsltInitSprBonus);
 
