@@ -48,7 +48,31 @@ INCLUDE_ASM("asm/nonmatchings/hoya/option/optsub01", OptCalcSprMenuLight);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/option/optsub01", OptInitSprButtonPad);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/option/optsub01", OptDrawSprButtonPad);
+void OptDrawSprButtonPad(int a)
+{
+    char* o = optOption;
+    int i;
+    char* s = o + 0xC2D0;
+    float* c = (float*)(o + 0xC2FC);
+
+    hySetEzSprite(o + 0xC0E0, a);
+
+    for (i = 0; i < 2; i++)
+    {
+        c[-7] = buttonPadArrowXyData[i][0] + buttonPadArrowCalcXyData[i][0];
+        *c = buttonPadArrowCalcColData[i + 1][0];
+        hySetEzSprite(s, a);
+        s += 0x1F0;
+        c = (float*)((char*)c + 0x1F0);
+    }
+
+    for (i = 0; i < 5; i++)
+    {
+        hySetEzSprite(o + 0xC6B0 + i * 0x1F0, a);
+    }
+
+    hySetEzSprite(o + 0xBEF0, a);
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/option/optsub01", OptCalcSprButtonPad);
 
