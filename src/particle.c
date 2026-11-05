@@ -1,10 +1,7 @@
 #include "common.h"
 #include "particle.h"
+#include <libvu0.h>
 
-extern void sceVu0CopyVector();
-extern void sceVu0CopyVectorXYZ();
-extern void sceVu0UnitMatrix();
-extern void sceVu0RotMatrix();
 
 extern void* GFTex_GetDb();
 extern char gf_ParticleNormalSTWH[];
@@ -125,9 +122,9 @@ void GFParticle_InitPosition(void* a, int b)
     STRUCT_OFFSET(a, 0xE8, int) = (STRUCT_OFFSET(a, 0xE8, int) & -9);
 }
 
-void GFParticle_SetPosition()
+void GFParticle_SetPosition(float* p, float* v)
 {
-    sceVu0CopyVector();
+    sceVu0CopyVector(p, v);
 }
 
 void GFParticle_SetPositionFunction(char* a, int f)
@@ -143,9 +140,9 @@ void GFParticle_SetPositionFunction(char* a, int f)
     }
 }
 
-void GFParticle_SetGravity(void* a)
+void GFParticle_SetGravity(char* a, float* v)
 {
-    sceVu0CopyVectorXYZ((char*)a + 0x50);
+    sceVu0CopyVectorXYZ((float*)(a + 0x50), v);
 }
 
 INCLUDE_ASM("asm/nonmatchings/particle", GFParticle_SetSize);
@@ -214,9 +211,9 @@ void GFParticle_SetCreateRange(char* a, void* b, void* c)
     sceVu0CopyVector(a + 0x80, c);
 }
 
-void GFParticle_SetAttractPos(void* a)
+void GFParticle_SetAttractPos(char* a, float* v)
 {
-    sceVu0CopyVectorXYZ((char*)a + 0x90);
+    sceVu0CopyVectorXYZ((float*)(a + 0x90), v);
 }
 
 void GFParticle_SetAlphaType(void* p, int v)
@@ -224,10 +221,10 @@ void GFParticle_SetAlphaType(void* p, int v)
     STRUCT_OFFSET(p, 0x140, int) = v;
 }
 
-void GFParticle_SetDirection(int a, int b)
+void GFParticle_SetDirection(char* a, float* rot)
 {
-    sceVu0UnitMatrix((char*)a + 0x100, b);
-    sceVu0RotMatrix((char*)a + 0x100, (char*)a + 0x100, b);
+    sceVu0UnitMatrix((sceVu0FVECTOR*)(a + 0x100));
+    sceVu0RotMatrix((sceVu0FVECTOR*)(a + 0x100), (sceVu0FVECTOR*)(a + 0x100), rot);
 }
 
 INCLUDE_ASM("asm/nonmatchings/particle", GFParticle_Draw);
