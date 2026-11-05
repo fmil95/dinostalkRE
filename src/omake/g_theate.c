@@ -1,4 +1,5 @@
 #include "common.h"
+#include "fileio.h"
 #include "gunsuv_usa/libgf/gfvcache.h"
 #include "gunsuv_usa/libgf/gfvalloc.h"
 #include <string.h>
@@ -15,9 +16,7 @@
 #include "mem.h"
 
 extern int pTheBin;
-extern int FIO_ReadFile_Align();
 extern void* memset();
-extern void gsEffectSetFadeNowColor();
 extern int titleTexId_00674c1c;
 extern int noticeTexId_00674c18;
 extern int frame;
