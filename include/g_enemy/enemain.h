@@ -42,7 +42,7 @@ enemy_hitbkset02();
 Enemy_ObjNeedCheck();
 Enemy_ObjSort();
 Enemy_RgetByInpd();
-void Enemy_MakeV();
+void Enemy_MakeV(float* a, float* b, float* c);
 void Enemy_MkUnitV00();
 float Enemy_Op2Plen00(float* a, float* b, short flat);
 float Enemy_OpVInPd00(float* a, float* b, float* c);

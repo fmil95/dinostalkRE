@@ -228,9 +228,9 @@ INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_ObjSort);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_RgetByInpd);
 
-void Enemy_MakeV()
+void Enemy_MakeV(float* a, float* b, float* c)
 {
-    sceVu0SubVector();
+    sceVu0SubVector(a, b, c);
 }
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_MkUnitV00);
