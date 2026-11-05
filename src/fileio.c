@@ -28,7 +28,22 @@ int SCELSEEK2(int fd, int off, int whence)
     return r;
 }
 
-INCLUDE_ASM("asm/nonmatchings/fileio", SCECLOSE2);
+int SCECLOSE2(int fd)
+{
+    int r;
+
+    do
+    {
+        r = sceClose(fd);
+        if (r == 0)
+        {
+            break;
+        }
+        sceGsSyncV(0);
+    } while (1);
+
+    return r;
+}
 
 int SCEREAD2(int fd, void* buf, int n)
 {
