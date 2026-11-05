@@ -8,7 +8,7 @@ int cdvClose();
 cdvFlush();
 int cdvQueStop(long n);
 int cdvQueStart();
-int cdvIsEoq();
+int cdvIsEoq(int n);
 unsigned short cdvGetWriteQue();
 int cdvGetWorkingQue();
 unsigned short cdvGetError();

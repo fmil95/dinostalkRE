@@ -68,7 +68,7 @@ int Enemy_AllDataLoad(int a, int b);
 int Enemy_DataLoadExceptPmt();
 void Enemy_PmtDtLoad(int i);
 void Enemy_PmtDataSet();
-Enemy_PmtDataCopy();
+void Enemy_PmtDataCopy(int dst, int src);
 int Enemy_EveryStgDtLd();
 int Enemy_BossDtLd();
 Enemy_NeedPrtInfSet();

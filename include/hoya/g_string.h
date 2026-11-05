@@ -13,7 +13,7 @@ GetUV2();
 void ChangeDrawFlag(int i, int on);
 EntryFontOne();
 DrawFontAll();
-ClearPigPixelData();
+void ClearPigPixelData(u_char v, int tex);
 makeTexArea4Font();
 makeHyTexArea4Font();
 GetFontAdr();

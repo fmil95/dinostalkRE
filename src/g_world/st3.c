@@ -1,6 +1,7 @@
 #include "common.h"
 #include "g_world/st3.h"
 #include "gunsuv_usa/libgf/gftex.h"
+#include "taiken/taiken.h"
 
 extern int gsWorldSt3_KoiwaCnt;
 extern int gsWorldSt3_SplashCnt;
@@ -20,6 +21,8 @@ extern int gsWorldSt3_KoiwaOdv[];
 extern int gsWorldSt3_SplashOdv[];
 extern int gsWorldTimer;
 extern int _st3_tex_idx;
+extern int SpBattleCount;
+extern int D_003C0A94[];
 INCLUDE_ASM("asm/nonmatchings/g_world/st3", gsWorldInitSt3);
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st3", gsWorldSt3EntryTex_GND);
@@ -148,7 +151,23 @@ void gsWorldSt3_EntryBossDied()
     _st3_boss_died_flag = (_st3_boss_died_flag | 0x1);
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_world/st3", gsWorldSt3_CheckBossDied);
+void gsWorldSt3_CheckBossDied()
+{
+    if (_st3_boss_died_flag)
+    {
+        if (SpBattleCount <= 0)
+        {
+            gsTaikenCall_CLEAR();
+            _st3_boss_died_wait--;
+        }
+
+        if (_st3_boss_died_wait < 0)
+        {
+            _st3_boss_died_wait = -1;
+            D_003C0A94[0] = 2;
+        }
+    }
+}
 
 void gsWorldSt3_InitBackSE()
 {

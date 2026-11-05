@@ -33,7 +33,7 @@ gsWorldSt3_InitDinoCollWater();
 gsWorldSt3_DinoCollWater();
 void gsWorldSt3_initBossDied();
 void gsWorldSt3_EntryBossDied();
-gsWorldSt3_CheckBossDied();
+void gsWorldSt3_CheckBossDied();
 void gsWorldSt3_InitBackSE();
 gsWorldSt3_PlayBackSE();
 int gsWorldSt3_TexScroll();
