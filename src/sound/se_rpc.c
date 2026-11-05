@@ -605,7 +605,10 @@ int SeCSLMidiStopP(int a)
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeCSLMidiStop);
 
-INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeCSLBankOpenEE);
+int SeCSLBankOpenEE(int a, int b, int c, int d, int e)
+{
+    return SeCSLBankOpenBEE(a, D_0064B364[D_00651320[a].w[0]][0], b, c, d, e);
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeCSLBankOpenBEE);
 
