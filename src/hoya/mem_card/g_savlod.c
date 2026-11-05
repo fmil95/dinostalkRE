@@ -339,7 +339,10 @@ INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", SetDefaultPlayerSystemDat
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", SetDefaultPlayerGameData);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", SetPlyerSystemData2SaveDataBox);
+void SetPlyerSystemData2SaveDataBox()
+{
+    *(SavSysData*)saveDataBox = plSysData;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", SetPlyerSystemDataFromSaveDataBox);
 
