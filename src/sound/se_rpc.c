@@ -258,7 +258,14 @@ int SeJobQueInc()
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeTjobStart);
+int SeTjobStart()
+{
+    if (D_00651A5C[D_0065263C[0]].w[0] != 0)
+    {
+        dbp = 0;
+        pt_count = 0;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeTjobTrans);
 
