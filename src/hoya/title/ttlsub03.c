@@ -55,7 +55,36 @@ int ProcFadeIn_ttlsub03(int step)
     return step;
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/title/ttlsub03", ProcFadeOut_ttlsub03);
+int ProcFadeOut_ttlsub03(int step)
+{
+    int t = logo;
+
+    switch (STRUCT_OFFSET(t, 0x4, int))
+    {
+    case 0:
+        STRUCT_OFFSET(t, 0x40, int) = 0;
+        SetFadePara_ttlsub03(t + 0x10, t + 0x20, STRUCT_OFFSET(t, 0x30, int));
+        SwitchFadeTimer_ttlsub03(1);
+        STRUCT_OFFSET(logo, 0x4, int)++;
+        break;
+    case 1:
+        SwitchFadeTimer_ttlsub03(1);
+        STRUCT_OFFSET(logo, 0x4, int)++;
+        break;
+    case 2:
+        if (!CheckFadeFinishFlag_ttlsub03())
+        {
+            STRUCT_OFFSET(logo, 0x4, int)++;
+        }
+        break;
+    case 3:
+        STRUCT_OFFSET(t, 0x4, int) = 0;
+        step++;
+        break;
+    }
+
+    return step;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/title/ttlsub03", MainLogo);
 
