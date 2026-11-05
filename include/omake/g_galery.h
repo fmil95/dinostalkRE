@@ -15,7 +15,7 @@ typedef struct { // 0x18
 extern GAL_STAT galStat;
 
 void gal_texInit();
-G_GALERY_Init();
+void G_GALERY_Init();
 void G_GALERY_End();
 void G_GALERY_Exec();
 void gal_notice();

@@ -15,7 +15,7 @@ typedef struct { // 0x18
 extern THE_STAT theStat;
 
 void the_texInit();
-G_THEATE_Init();
+void G_THEATE_Init();
 void G_THEATE_End();
 void G_THEATE_Exec();
 void the_notice();

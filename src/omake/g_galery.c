@@ -1,4 +1,6 @@
 #include "common.h"
+#include "gunsuv_usa/libgf/gfvcache.h"
+#include "gunsuv_usa/libgf/gfvalloc.h"
 #include <string.h>
 #include "gunsuv_usa/libgf/gftex.h"
 #include "g_guncon2/g_guncon2.h"
@@ -44,12 +46,46 @@ extern char etcSpr_0085bc10[];
 extern void gal_titleEtcInitSpr();
 extern int cursorTexId_00674bd8;
 extern char pageSpr_0085b7f0[];
+extern Uint32 gs_textureDb[];
+extern Uint32 gs_alloc_info[];
+extern Uint32 gs_cache_info[];
+extern Uint32* galTexDb;
+extern void* pGalPigBin;
 void gal_texInit()
 {
     pGalBin = FIO_ReadFile_Align("cdrom0:\\DATA\\GALLERY\\GALMAIN.BIN;1", 0x40);
 }
 
-INCLUDE_ASM("asm/nonmatchings/omake/g_galery", G_GALERY_Init);
+void G_GALERY_Init()
+{
+    sceVu0FVECTOR c;
+
+    memset(c, 0, 16);
+    c[3] = 128.0f;
+    galTexDb = gs_textureDb;
+    GF_InitGraphicsFramework();
+    gplInitPlane();
+    GFVram_SetInfoAddr(gs_alloc_info, 0x1000);
+    GFVram_AddFreeArea(0x1800, 0x4000, 0);
+    GFVram_AddFreeArea(0x1000, 0x800, 0x1B);
+    GFCache_SetInfoAddr(gs_cache_info, 0x1000, 0x5800, 0, 0);
+    GFVram_SetFrameBufferSize(0x200, 0xE0, 0);
+    GFVram_SetZBufferSize(0x200, 0xE0, 0);
+    GFVram_SetScreenBufferSize(0x200, 0x1C0, 0);
+    GFTex_InitDatabase(galTexDb, 0x1000);
+    GFTex_FlushVramCache();
+    GFTex_FlushVramCache_Preset();
+    pGalPigBin = MEM_MallocAlign(0x400000, 0x40, "omake/g_galery.c", 0xBA);
+    gsGuncon2_Init();
+    gsSoundInitAll();
+    gsSoundReadSe(0x1D);
+    gsSoundReadWait();
+    gsEffectInitFade();
+    galStat.unk4 = 0;
+    galStat.unk0 = 0;
+    gal_texInit();
+    gsEffectSetFadeNowColor((int)c);
+}
 
 void G_GALERY_End()
 {
