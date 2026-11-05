@@ -19,6 +19,7 @@ extern void (*enemy_movestbl[])();
 typedef struct { char b[0x230]; } AnotherItemE;
 extern AnotherItemE Another_Item[];
 extern int* bulthitsetbl_9[];
+extern short gsEnemy_Max;
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_Main);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_PauseProc);
@@ -82,7 +83,20 @@ void Enemy_SeSet00(int a, int b)
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_Prt);
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_SarchEmptyWk);
+int Enemy_SarchEmptyWk()
+{
+    int i;
+
+    for (i = 0; i < gsEnemy_Max; i++)
+    {
+        if (!(*(int*)gsEnemyInfos[i].b & 1))
+        {
+            return i;
+        }
+    }
+
+    return -1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_RequestSet);
 
