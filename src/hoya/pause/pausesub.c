@@ -1,13 +1,13 @@
 #include "common.h"
+#include "hoya/pause/pausesub.h"
+#include "hoya/hoya.h"
 
 extern int pPpp;
 extern int hyCheckFadeFinishFlag();
-extern void hySetFadePara2();
 extern void hySwitchFadeTimer();
-extern void gsPAUSE_PutVitalityLife();
-extern void gsPAUSE_PutVitalityHead();
-extern void gsPAUSE_PutVitalityUnder();
 
+typedef struct { int* str; int n; } ExpEnt;
+extern ExpEnt* ExpAll[];
 INCLUDE_ASM("asm/nonmatchings/hoya/pause/pausesub", gsPAUSE_InitVitality);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/pause/pausesub", gsPAUSE_PutVitalityUnder);
@@ -23,7 +23,14 @@ void gsPAUSE_PutVitality(int a)
     gsPAUSE_PutVitalityUnder(a);
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/pause/pausesub", GetExplain);
+void GetExplain(int* a, int* b, int i, int j)
+{
+    if (i >= 0 && j >= 0)
+    {
+        *a = *ExpAll[i][j].str;
+        *b = ExpAll[i][j].n;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/pause/pausesub", InitExplain);
 
