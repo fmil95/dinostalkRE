@@ -43,6 +43,14 @@ extern int cntPigData[];
 extern int cntPigAddr[];
 extern int cntPigTuv[];
 extern int gsCONTINUE_Idtex[];
+extern int resPigData[];
+extern int resPigAddr[];
+extern int resPigTuv[];
+extern int gsRESULT_Idtex[];
+extern int fResPigData[];
+extern int fResPigAddr[];
+extern int fResPigTuv[];
+extern int gsFRESULT_Idtex[];
 INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyGun1CheckScreenOut);
 
 void hySetBgCol(void) {
@@ -144,7 +152,21 @@ void hyLoadPigTitle()
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyLoadPigResult);
+void hyLoadPigResult(int n)
+{
+    int i;
+    char* buf;
+
+    buf = (char*)FIO_ReadFile_Align(resPigData[0], 0x40);
+
+    for (i = 0; i < 3; i++)
+    {
+        gsRESULT_Idtex[i] = hyEntryTexture((int)(buf + resPigAddr[i] * 4), 1, resPigTuv[i]);
+    }
+
+    gsRESULT_Idtex[3] = hyEntryTexture((int)(buf + resPigAddr[n + 3] * 4), 1, resPigTuv[n + 3]);
+    gsRESULT_Idtex[4] = hyEntryTexture((int)(buf + resPigAddr[12] * 4), 1, resPigTuv[12]);
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyLoadPigFResult);
 
