@@ -10,6 +10,7 @@ extern int _us_key_exchange2();
 extern u_char gPadShockData[4];
 extern u_char gPadActAlign[6];
 extern PadWork D_002F18E0[];
+extern int _us_key_tbl[];
 INCLUDE_ASM("asm/nonmatchings/g_pad", gsPad_Init);
 
 INCLUDE_ASM("asm/nonmatchings/g_pad", gsPad_Reset);
@@ -28,7 +29,24 @@ INCLUDE_ASM("asm/nonmatchings/g_pad", gsPad_Update);
 
 INCLUDE_ASM("asm/nonmatchings/g_pad", gsPad_Update2);
 
-INCLUDE_ASM("asm/nonmatchings/g_pad", _us_key_exchange);
+int _us_key_exchange(int k)
+{
+    int i;
+    int bit = 0x10;
+    int r = 0;
+
+    for (i = 0; i < 4; i++)
+    {
+        if (k & bit)
+        {
+            r |= _us_key_tbl[i];
+        }
+        bit <<= 1;
+    }
+
+    k &= ~0xF0;
+    return k | r;
+}
 
 int _us_get_port_g_pad(int a)
 {
