@@ -17,7 +17,19 @@ void GFTrack_MallocMemory(void* a, int b, int c)
     GFTrack_Lifeless(a);
 }
 
-INCLUDE_ASM("asm/nonmatchings/benjamin/track", GFTrack_Lifeless);
+void GFTrack_Lifeless(int* t)
+{
+    u_int i;
+    char* p = (char*)t[0];
+
+    if (p != 0)
+    {
+        for (i = 0; i < (u_int)t[1]; i++)
+        {
+            *(float*)(p + i * 0x60 + 0xC) = -1.0f;
+        }
+    }
+}
 
 void GFTrack_SetTextureID(void* t, int id)
 {
