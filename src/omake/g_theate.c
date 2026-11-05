@@ -1,4 +1,5 @@
 #include "common.h"
+#include <string.h>
 #include "gunsuv_usa/libgf/gftex.h"
 #include "g_guncon2/g_guncon2.h"
 #include "g_pad.h"
@@ -127,7 +128,17 @@ void G_THEATE_Exec()
     MEM_CheckViolation();
 }
 
-INCLUDE_ASM("asm/nonmatchings/omake/g_theate", the_setFadeIn);
+void the_setFadeIn(int t)
+{
+    sceVu0FVECTOR a;
+    sceVu0FVECTOR b;
+
+    memset(a, 0, 16);
+    memset(b, 0, 16);
+    b[3] = 128.0f;
+    gsEffectSetFadeNowColor((int)b);
+    gsEffectSetFade(a, t);
+}
 
 INCLUDE_ASM("asm/nonmatchings/omake/g_theate", the_setFadeOut);
 
