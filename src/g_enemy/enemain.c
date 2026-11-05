@@ -407,7 +407,15 @@ INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_BossDtLd);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_NeedPrtInfSet);
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_ShdFtpSet);
+int Enemy_ShdFtpSet(int a, char* base, int i, int j, int k)
+{
+    int r;
+
+    shadow_podadr[k] = (int)(base + i * 4);
+    r = gpShadow_MakePreset(a, base + i * 4, k);
+    gsFootPointTexIndex[k] = TEST_EntryTexture((u_int*)(base + j * 4), 1);
+    return r;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_PoisonMain);
 
