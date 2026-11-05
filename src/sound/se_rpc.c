@@ -28,6 +28,11 @@ typedef struct { int w[12]; } SeJobEnt;
 extern SeJobEnt D_00651A60[];
 extern int SeBankOpenTransfer();
 extern char sss[];
+extern int me_list_dat[];
+extern SeJobEnt D_00651A5C[];
+extern int D_0065263C[];
+extern int dbp;
+extern int pt_count;
 int get_SE_MAX() 
 {
     return 1000;
@@ -699,7 +704,10 @@ int SeStrmPlaySt()
     return 3;
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeStrmPortSt);
+int SeStrmPortSt(int n)
+{
+    return ((1 << n) & D_00651774[0]) > 0;
+}
 
 int SeStrmPlayNo(int a)
 {
