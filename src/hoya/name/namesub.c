@@ -1,14 +1,13 @@
 #include "common.h"
 #include "hoya/name/namesub.h"
+#include "gunsuv_usa/libgf/gftex.h"
+#include "gunsuv_usa/libgf/libgf.h"
+#include "hoya/hoya.h"
 
 extern int pGnn;
 extern int hyCheckFadeFinishFlag();
-extern void GFTex_ResetDatabase();
-extern void GF_EndGraphicsFramework();
-extern void hySetFadePara2();
 extern void hySwitchFadeTimer();
 
-extern char* hySearchSMSpriteInfo();
 void SetFadeParaPause_namesub(int a, int b, int c)
 {
     hySetFadePara2(a, b, c, (pGnn + 192));
@@ -66,7 +65,35 @@ void semiProcSetStorngBar()
     STRUCT_OFFSET(STRUCT_OFFSET(hySearchSMSpriteInfo(pGnn + 0x29C, 0xB), 0x24, char*), 4, int) = 0x12C;
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/name/namesub", ProcFadeIn_namesub);
+int ProcFadeIn_namesub(int step)
+{
+    int t = pGnn;
+
+    switch (STRUCT_OFFSET(t, 4, int))
+    {
+    case 0:
+        STRUCT_OFFSET(t, 0xC0, int) = 0;
+        SetFadeParaPause_namesub(t + 0x90, t + 0xA0, STRUCT_OFFSET(t, 0xB0, int));
+        SwitchFadeTimerPause_namesub(1);
+        STRUCT_OFFSET(pGnn, 4, int)++;
+        break;
+    case 1:
+        STRUCT_OFFSET(t, 4, int) = 2;
+        break;
+    case 2:
+        if (!CheckFadeFinishFlagPause_namesub())
+        {
+            STRUCT_OFFSET(pGnn, 4, int)++;
+        }
+        break;
+    case 3:
+        STRUCT_OFFSET(t, 4, int) = 0;
+        step++;
+        break;
+    }
+
+    return step;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/name/namesub", ProcFadeOut_namesub);
 
