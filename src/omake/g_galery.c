@@ -36,6 +36,11 @@ extern void gal_title();
 extern void gal_select();
 extern void gal_disp();
 extern void gal_zoom();
+extern int etcTexId_00674bcc;
+extern int anim_5;
+extern int flgAnim_6;
+extern char etcSpr_0085bc10[];
+extern void gal_titleEtcInitSpr();
 void gal_texInit()
 {
     pGalBin = FIO_ReadFile_Align("cdrom0:\\DATA\\GALLERY\\GALMAIN.BIN;1", 0x40);
@@ -206,7 +211,85 @@ void gal_notice()
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/omake/g_galery", gal_title);
+void gal_title()
+{
+    char* spr;
+
+    switch (galStat.unkC)
+    {
+    case 0:
+        titleTexId_00674bc8 = TEST_EntryTexture((unsigned int*)(pGalBin + 0x20100), 1);
+        etcTexId_00674bcc = TEST_EntryTexture((unsigned int*)(pGalBin + 0xE4F80), 1);
+        anim_5 = 0;
+        flgAnim_6 = 0;
+        gal_setFadeIn(0x1E);
+        gal_initBgSpr(titleTexId_00674bc8);
+        gal_titleEtcInitSpr(etcTexId_00674bcc);
+        galStat.unkC = 1;
+    case 1:
+        gplSetSprite(bgSpr_0085a610, frame & 1);
+
+        if (gsEffectGetFadeCnt() > 0)
+        {
+            return;
+        }
+
+        galStat.unkC = 2;
+        break;
+    case 3:
+        gplSetSprite(bgSpr_0085a610, frame & 1);
+
+        if (gsEffectGetFadeCnt() > 0)
+        {
+            return;
+        }
+
+        galStat.unk4 = galStat.unk8;
+        galStat.unk10 = 0;
+        galStat.unk14 = 0;
+        break;
+    case 2:
+        if ((trg_00674be8 & 0x40) || (gtrg_00674bf0 & 0x20))
+        {
+            galStat.unk8 = 6;
+            galStat.unkC = 3;
+            gal_setFadeOut(0x1E);
+            gsSoundSeMePlay(0x2F0);
+        }
+        else if ((trg_00674be8 & 0x9BF) || (gtrg_00674bf0 & 0x90B))
+        {
+            galStat.unk8 = 3;
+            galStat.unkC = 3;
+            gal_setFadeOut(0x1E);
+            gsSoundSeMePlay(0x2EF);
+        }
+
+        if (flgAnim_6 != 0)
+        {
+            if (++anim_5 > 0x40)
+            {
+                anim_5 = 0x40;
+                flgAnim_6 = 0;
+            }
+        }
+        else
+        {
+            if (--anim_5 < 0)
+            {
+                anim_5 = 0;
+                flgAnim_6 = 1;
+            }
+        }
+
+        spr = etcSpr_0085bc10;
+        STRUCT_OFFSET(spr, 0x18, u_char) = anim_5 * 2;
+        gplSetSprite(spr, frame & 1);
+        gplSetSprite(bgSpr_0085a610, frame & 1);
+        return;
+    case 4:
+        break;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/omake/g_galery", gal_select);
 
