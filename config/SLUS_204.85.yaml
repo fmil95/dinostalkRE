@@ -588,7 +588,7 @@ segments:
       - [0x5675f0, .rodata, g_world/st1]
       - [0x567770, .rodata, g_world/st9]
       - [0x5677e0, rodata, g_world/st9_demo]
-      - [0x567810, rodata, benjamin/ik_rapb]
+      - [0x567810, .rodata, benjamin/ik_rapb]
       - [0x567818, rodata, benjamin/ik_comp]
       - [0x567820, rodata, benjamin/ik_trkr]
       - [0x567828, rodata, benjamin/ik_trex]
