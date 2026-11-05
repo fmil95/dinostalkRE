@@ -5,9 +5,9 @@
 
 gsSinfNC();
 gsSinf();
-gsArcsinf();
+float gsArcsinf(float x);
 gsArctanfNC();
-gsArctanf();
+float gsArctanf(float x);
 gsArctan2f();
 float gsSqrtf(float x);
 

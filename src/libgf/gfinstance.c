@@ -7,6 +7,8 @@ extern Sint32 eval_end_flag_00674cb0;
 extern Sint32 eval_time_00674cb4;
 static void gfInstance_Eval2(GF_INSTANCE* inst);
 extern Uint32 gf_drawpolynum;
+extern Float32 gf_sortKeyMax;
+extern Float32 gf_sortKeyMin;
 INCLUDE_ASM("asm/nonmatchings/libgf/gfinstance", gfInstance_MakeRotMatrix);
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfinstance", gfInstance_Eval2);
@@ -192,6 +194,16 @@ void GFInstance_SetFunc(GF_INSTANCE* inst, gf_inst_evalfunc* eval, gf_inst_drawf
     GFInstance_SetDrawFunc(inst, draw);
 }
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfinstance", GFInstance_SetSortKeyMax);
+void GFInstance_SetSortKeyMax(Float32 max)
+{
+    if (max < gf_sortKeyMin)
+    {
+        gf_sortKeyMax = gf_sortKeyMin;
+    }
+    else
+    {
+        gf_sortKeyMax = max;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfinstance", GFInstance_SetSortKeyMin);
