@@ -23,6 +23,7 @@ extern char sysVer[];
 extern char D_005E6000[];
 extern char* irx_path_0[];
 extern int sceSifLoadModule();
+extern char gameVer[];
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", CreateIconSys);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", InitMemcManager);
@@ -108,7 +109,24 @@ int CheckSystemDataVersion()
     return r;
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", CheckGameDataVersion);
+int CheckGameDataVersion(int slot)
+{
+    int i;
+    int ret;
+
+    ret = 0;
+
+    for (i = 0; i < 16; i++)
+    {
+        if (saveDataBox[slot * 0x29C + 0x1910 + i] != gameVer[i])
+        {
+            ret = 1;
+            break;
+        }
+    }
+
+    return ret;
+}
 
 int CheckSystemDataId()
 {
