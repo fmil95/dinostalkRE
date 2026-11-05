@@ -9,6 +9,7 @@ extern int _us_get_port_g_pad();
 extern int _us_key_exchange2();
 extern u_char gPadShockData[4];
 extern u_char gPadActAlign[6];
+extern PadWork D_002F18E0[];
 INCLUDE_ASM("asm/nonmatchings/g_pad", gsPad_Init);
 
 INCLUDE_ASM("asm/nonmatchings/g_pad", gsPad_Reset);
@@ -131,7 +132,28 @@ void gsPadAlignDataInit()
 
 INCLUDE_ASM("asm/nonmatchings/g_pad", gsPadDataInit);
 
-INCLUDE_ASM("asm/nonmatchings/g_pad", gsPadGetAnalog2Digital);
+int gsPadGetAnalog2Digital(int n)
+{
+    u_char* p = (u_char*)&D_002F18E0[n];
+    u_char x = p[0xA];
+    u_char y = p[0xB];
+    int r = (x < 0x20) << 15;
+
+    if (x >= 0xE0)
+    {
+        r |= 0x2000;
+    }
+    if (y < 0x20)
+    {
+        r |= 0x1000;
+    }
+    if (y >= 0xE0)
+    {
+        r |= 0x4000;
+    }
+
+    return r;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_pad", gsPadSetTrgRepeat);
 
