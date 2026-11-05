@@ -272,7 +272,17 @@ void ene04BmoveElem140(char* a)
     STRUCT_OFFSET(a, 0x8C, int)++;
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/ene04pro/ene04mv", ene04BmoveElem141);
+void ene04BmoveElem141(char* a)
+{
+    if (GFAnim_ShapeFlagCheck((GF_INST_OBJECT*)(a + 0xBA0), 0) & 2)
+    {
+        STRUCT_OFFSET(a, 0x1C0, float) = STRUCT_OFFSET(a, 0x1E0, float);
+        STRUCT_OFFSET(a, 0x1C4, float) = STRUCT_OFFSET(a, 0x1E4, float);
+        STRUCT_OFFSET(a, 0x1C8, float) = STRUCT_OFFSET(a, 0x1E8, float);
+        Enemy_AnmChg00(a, STRUCT_OFFSET(a, 0x84, int) * 6 - 0x66, 8, 1);
+        STRUCT_OFFSET(a, 0x8C, int)++;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/ene04pro/ene04mv", ene04BmoveElem142);
 
