@@ -212,7 +212,22 @@ void hyLoadPigPause()
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyLoadPigPause2);
+char* hyLoadPigPause2(char* buf)
+{
+    int i;
+    int size;
+    char* p;
+
+    size = FIO_GetFileSize((char*)subPigData[0]);
+    p = FIO_ReadFile(subPigData[0], (int)buf);
+
+    for (i = 0; i < 12; i++)
+    {
+        gsPAUSE_Idtex[i] = hyEntryTexture((int)(p + subPigAddr[i] * 4), 1, subPigTuv[i]);
+    }
+
+    return p + (size + 3) / 4 * 4;
+}
 
 void hyLoadPigContinue()
 {
