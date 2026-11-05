@@ -95,7 +95,36 @@ int ProcFadeIn_namesub(int step)
     return step;
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/name/namesub", ProcFadeOut_namesub);
+int ProcFadeOut_namesub(int step)
+{
+    int t = pGnn;
+
+    switch (STRUCT_OFFSET(t, 0x4, int))
+    {
+    case 0:
+        STRUCT_OFFSET(t, 0xC0, int) = 0;
+        SetFadeParaPause_namesub(t + 0x90, t + 0xA0, STRUCT_OFFSET(t, 0xB0, int));
+        SwitchFadeTimerPause_namesub(1);
+        STRUCT_OFFSET(pGnn, 0x4, int)++;
+        break;
+    case 1:
+        SwitchFadeTimerPause_namesub(1);
+        STRUCT_OFFSET(pGnn, 0x4, int)++;
+        break;
+    case 2:
+        if (!CheckFadeFinishFlagPause_namesub())
+        {
+            STRUCT_OFFSET(pGnn, 0x4, int)++;
+        }
+        break;
+    case 3:
+        STRUCT_OFFSET(t, 0x4, int) = 0;
+        step++;
+        break;
+    }
+
+    return step;
+}
 
 INCLUDE_RODATA("asm/nonmatchings/hoya/name/namesub", D_0066C478);
 
