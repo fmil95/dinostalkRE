@@ -8,7 +8,7 @@ void hySetBgCol(void);
 hyInitEzSprite();
 hySetEzSprite();
 int MakeTextureAreaOnMemory();
-int hyCreateTexture(int a, int b, int c, int d, int e);
+int hyCreateTexture();
 int hyCreateTexture2(int a, int b, int c, int d, int e);
 void hyInitTextureManager();
 int hyGetEntryNo();
