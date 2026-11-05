@@ -19,7 +19,12 @@ void GFAnim_HotAttach(GF_INST_OBJECT* obj, PmtHEADER* anim)
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfanim", gfAnim_Attach);
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfanim", GFAnim_ScaleMatrix);
+void GFAnim_ScaleMatrix(float *out_mat[4], float *in_mat[4], float *scale)
+{
+    sceVu0ScaleVector((float*)out_mat, (float*)in_mat, scale[0]);
+    sceVu0ScaleVector((float*)out_mat + 4, (float*)in_mat + 4, scale[1]);
+    sceVu0ScaleVector((float*)out_mat + 8, (float*)in_mat + 8, scale[2]);
+}
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfanim", gfAnim_CalcMyMatrix);
 
