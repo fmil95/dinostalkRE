@@ -21,7 +21,7 @@ eneptn_glarvchsub00();
 eneptn_glarvch01();
 void eneptn_glinprdch00(char* a, int b);
 short eneptn_glrlch00(char* a, int b);
-eneptn_glvectorchk();
+float eneptn_glvectorchk(char* e, int n);
 eneptn_chkcliff00();
 eneptn_chkjpwall00();
 eneptn_ptrhichkfly();
