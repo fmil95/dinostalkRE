@@ -343,7 +343,10 @@ INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", SetPlyerSystemData2SaveDa
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", SetPlyerSystemDataFromSaveDataBox);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", SetPlyerGameData2SaveDataBox);
+void SetPlyerGameData2SaveDataBox(int n)
+{
+    ((SavGameData*)D_005E2728)[n] = plGameData;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", SetPlyerGameDataFromSaveDataBox);
 
