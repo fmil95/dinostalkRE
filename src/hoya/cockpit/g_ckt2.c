@@ -1,4 +1,5 @@
 #include "common.h"
+#include "gunsuv_usa/libgf/gftex.h"
 
 extern char gDammyScene[];
 extern char gDammyScene[];
@@ -8,6 +9,9 @@ extern void GFScene_SetScreen();
 typedef struct { char b[0x1C0]; } ItemS;
 extern ItemS item[];
 typedef struct { char b[0x1E0]; } OptS;
+extern int nowPigNo;
+extern int gsCOCKPIT_IdtexItemText[];
+extern int gsCOCKPIT_IdtexItemTextForward;
 INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_ckt2", gsCOCKPIT_InitCocpit2);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_ckt2", gsCOCKPIT_takiEffOptInit);
@@ -157,7 +161,15 @@ INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_ckt2", InitItemTextTex);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_ckt2", PermittoSend2dItemTextTex);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_ckt2", SendItemTextTex);
+qword* SendItemTextTex(qword* p)
+{
+    if (&gsCOCKPIT_IdtexItemText[nowPigNo] != 0)
+    {
+        return GFTex_MakeTexturePacket(p, GFTex_GetDb(gsCOCKPIT_IdtexItemTextForward), 1);
+    }
+
+    return p;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_ckt2", gsCOCKPIT_TakionGetInit);
 
