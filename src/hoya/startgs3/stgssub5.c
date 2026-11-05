@@ -20,7 +20,19 @@ void SetFadeParaFadeIn_stgssub5()
     STRUCT_OFFSET(p, 0x2C, int) = 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/startgs3/stgssub5", SetFadeParaFadeOut_stgssub5);
+void SetFadeParaFadeOut_stgssub5()
+{
+    char* p = (char*)pStgs_006749a0;
+
+    STRUCT_OFFSET(p, 0x10, int) = 0;
+    STRUCT_OFFSET(p, 0x14, int) = 0;
+    STRUCT_OFFSET(p, 0x18, int) = 0;
+    STRUCT_OFFSET(p, 0x1C, int) = 0;
+    STRUCT_OFFSET(p, 0x20, int) = 0;
+    STRUCT_OFFSET(p, 0x24, int) = 0;
+    STRUCT_OFFSET(p, 0x28, int) = 0;
+    STRUCT_OFFSET(p, 0x2C, float) = 128.0f;
+}
 
 void SetFadePara_stgssub5(int a, int b, int c)
 {
