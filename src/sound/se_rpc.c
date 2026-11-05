@@ -23,6 +23,7 @@ extern BgmListEnt3 D_00651328[];
 extern BgmAlc3 D_006519A8[];
 extern int midi_current_port;
 extern BgmListEnt3 D_00651320[];
+extern int D_00651774[];
 int get_SE_MAX() 
 {
     return 1000;
@@ -643,7 +644,28 @@ int SeStrmRevOff(int a)
     return ezSe(0x8470, a, 1);
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeStrmPlaySt);
+int SeStrmPlaySt()
+{
+    int s = D_00651774[0];
+
+    if (s == 0)
+    {
+        return -1;
+    }
+    if (s == 1)
+    {
+        return 0;
+    }
+    if (s == 2)
+    {
+        return 1;
+    }
+    if (s == 3)
+    {
+        return 2;
+    }
+    return 3;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeStrmPortSt);
 
