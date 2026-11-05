@@ -1,11 +1,24 @@
 #include "common.h"
+#include "hoya/startgs3/stgssub3.h"
+#include "hoya/hoya.h"
 
 extern int pStgs_00674978;
 extern int hyCheckFadeFinishFlag();
-extern void hySetFadePara2();
 extern void hySwitchFadeTimer();
 
-INCLUDE_ASM("asm/nonmatchings/hoya/startgs3/stgssub3", SetFadeParaFadeIn_stgssub3);
+void SetFadeParaFadeIn_stgssub3()
+{
+    char* p = (char*)pStgs_00674978;
+
+    STRUCT_OFFSET(p, 0x10, int) = 0;
+    STRUCT_OFFSET(p, 0x14, int) = 0;
+    STRUCT_OFFSET(p, 0x18, int) = 0;
+    STRUCT_OFFSET(p, 0x1C, float) = 128.0f;
+    STRUCT_OFFSET(p, 0x20, int) = 0;
+    STRUCT_OFFSET(p, 0x24, int) = 0;
+    STRUCT_OFFSET(p, 0x28, int) = 0;
+    STRUCT_OFFSET(p, 0x2C, int) = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/startgs3/stgssub3", SetFadeParaFadeOut_stgssub3);
 

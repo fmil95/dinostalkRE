@@ -5,6 +5,5 @@
 
 InitStgsKeikoku();
 MainStgsKeikoku();
-EndStgsKeikoku();
-
+void EndStgsKeikoku(void);
 #endif // HOYA_STARTGS3_STGSSUB3_H
