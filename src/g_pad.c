@@ -11,6 +11,7 @@ extern u_char gPadShockData[4];
 extern u_char gPadActAlign[6];
 extern PadWork D_002F18E0[];
 extern int _us_key_tbl[];
+extern PadWork gsPadData[];
 INCLUDE_ASM("asm/nonmatchings/g_pad", gsPad_Init);
 
 INCLUDE_ASM("asm/nonmatchings/g_pad", gsPad_Reset);
@@ -90,7 +91,18 @@ int gsPad_GetRTrg(int a)
     return _us_key_exchange2(_us_key_exchange(D_002F18A4[p].w[6]));
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_pad", gsPad_AGet);
+int gsPad_AGet(int a)
+{
+    int p = _us_get_port_g_pad(a);
+    int k = 0;
+
+    if (!(gsPadData[p].w[5] & 0xF000))
+    {
+        k = gsPadData[p].w[10];
+    }
+
+    return _us_key_exchange2(_us_key_exchange(k));
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_pad", gsPad_AGetTrg);
 

@@ -15,7 +15,7 @@ void gsWaveSetWaveSize(float v);
 gsWaveGetHeight();
 void gsSetRefTex();
 void gsWaveAvoidInit();
-gsWaveAvoidEnd();
+void gsWaveAvoidEnd();
 int _gsWaveHandler(int ch);
 gsWaveAvoidSetStart();
 gsWaveAvoidSetEnd();

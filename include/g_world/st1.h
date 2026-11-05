@@ -9,7 +9,7 @@ gsSt1SwingInit();
 void gsWorldSt1_SpecialEffect();
 int gsWorldSt1_SpecialEffect2();
 gsSt1_TimerManagement();
-gsSt1_BgmFadeOut();
+int gsSt1_BgmFadeOut();
 gsSt1_GndScroll();
 gsSt1_PreInTheArea2();
 gsSt1_PreInTheArea3();

@@ -75,7 +75,7 @@ int gpGetCollisionObjectBox2(int obj, float* a, float* b, float r);
 gpGetNearObjectBox();
 gpClipShape();
 gpClipWorldShape();
-void gpClearWorldRecov();
+void gpClearWorldRecov(char* o);
 gpInstance_MakeRotMatrix();
 void gpInstance_Eval(int a);
 gpGetEyeComLine();

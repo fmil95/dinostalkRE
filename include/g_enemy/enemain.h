@@ -62,7 +62,7 @@ enemy_dinohitchk();
 enemy_gndtouchch();
 enemy_objtouchch();
 enemy_v0grdchk();
-gsEnemyDelete();
+int gsEnemyDelete(char* e);
 Enemy_ShadowChk();
 int Enemy_AllDataLoad(int a, int b);
 int Enemy_DataLoadExceptPmt();
