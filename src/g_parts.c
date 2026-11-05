@@ -125,7 +125,13 @@ INCLUDE_ASM("asm/nonmatchings/g_parts", gpJudgeCollisionLine);
 
 INCLUDE_ASM("asm/nonmatchings/g_parts", gpJudgeCollisionLineGND);
 
-INCLUDE_ASM("asm/nonmatchings/g_parts", gpGetCollisionLine);
+int gpGetCollisionLine(int a0, int a1, int a2, int a3)
+{
+    GP_COLL_TMP tmp;
+
+    tmp = D_00673400;
+    return gpGetCollisionLine2(a0, a1, a2, a3, &tmp);
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_parts", gpGetCollisionLine2);
 
