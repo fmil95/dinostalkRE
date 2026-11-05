@@ -1,11 +1,34 @@
 #include "common.h"
 #include "gs_math.h"
 
+// Inline copy so callers earlier in this file get it expanded, as in the original.
+extern __inline__ float gsSqrtf(float x)
+{
+    float ret;
+
+    asm volatile(
+        ".set noreorder\n"
+        "mfc1 $8, %1\n"
+        "qmtc2.ni $8, $vf5\n"
+        "vsqrt Q, $vf5x\n"
+        "vwaitq\n"
+        "vaddq.x $vf5, $vf0, Q\n"
+        "qmfc2.ni $2, $vf5\n"
+        "mtc1 $2, %0\n"
+        ".set reorder\n"
+        : "=f"(ret) : "f"(x) : "$2", "$8");
+
+    return ret;
+}
+
 INCLUDE_ASM("asm/nonmatchings/gs_math", gsSinfNC);
 
 INCLUDE_ASM("asm/nonmatchings/gs_math", gsSinf);
 
-INCLUDE_ASM("asm/nonmatchings/gs_math", gsArcsinf);
+float gsArcsinf(float x)
+{
+    return gsArctanf(x / gsSqrtf(1.0f - x * x));
+}
 
 INCLUDE_ASM("asm/nonmatchings/gs_math", gsArctanfNC);
 
