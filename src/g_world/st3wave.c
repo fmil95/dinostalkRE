@@ -63,7 +63,19 @@ void gsWaveAvoidInit()
     sceGsPutIMR(imr);
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_world/st3wave", gsWaveAvoidEnd);
+void gsWaveAvoidEnd()
+{
+    sceGsPutIMR(sceGsGetIMR() | 0x100);
+    DisableIntc(INTC_GS);
+
+    if (gsIntHID != -1)
+    {
+        RemoveIntcHandler(INTC_GS, gsIntHID);
+    }
+
+    *(volatile u_long*)0x12001000 = 1;
+    *(volatile u_long*)0x12001000 = 1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st3wave", _gsWaveHandler);
 
