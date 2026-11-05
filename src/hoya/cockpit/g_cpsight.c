@@ -229,7 +229,15 @@ INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_cpsight", gsCOCKPIT_PutSightHandgun
 
 INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_cpsight", gsCOCKPIT_PutSightMagnum);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_cpsight", gsCOCKPIT_PutSightFire);
+void gsCOCKPIT_PutSightFire(int p)
+{
+    char* s = gsCOCKPIT_Sights;
+    char* d = s + 0x140;
+
+    STRUCT_OFFSET(d, 4, int) = STRUCT_OFFSET(s, 4, int) >> 4;
+    STRUCT_OFFSET(d, 8, int) = STRUCT_OFFSET(s, 8, int) >> 3;
+    hyDrawSMSprite(d, p);
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/cockpit/g_cpsight", gsCOCKPIT_PutSightHandGrenade);
 
