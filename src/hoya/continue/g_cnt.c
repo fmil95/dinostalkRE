@@ -5,12 +5,15 @@
 #include "g_parts.h"
 #include "g_effect.h"
 #include "gunsuv_usa/libgf/gfinstance.h"
+#include "sound/g_sound.h"
+#include "hoya/g_string.h"
 
 extern int prgMan[];
 typedef struct { void (*init)(); void (*main)(); void (*end)(); } HyPrgInfo;
-extern HyPrgInfo gCntPrgInfo[];
+extern HyPrgInfo gCntPrgInfo[4];
 extern char gNull_002c6740[];
 extern int frame;
+extern u_char gsClearRGBA[];
 void LetsGotoContinueScene(void) {
 }
 
@@ -29,7 +32,31 @@ void* gsCONTINUE_Draw2(void* p)
     return p;
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/continue/g_cnt", gsStageInit_CONTINUE);
+int gsStageInit_CONTINUE(int p)
+{
+    char* n;
+    u_char* c;
+
+    LetsGotoContinueScene();
+    n = gNull_002c6740;
+    STRUCT_OFFSET(n, 0xCC, int) = 0;
+    GFInstance_InitHead((GF_INSTANCE*)n);
+    hyLoadPigContinue();
+    strInitStringManager();
+    c = gsClearRGBA;
+    c[1] = 0;
+    c[3] = 0x80;
+    c[2] = 0;
+    c[0] = 0;
+    gsSoundInitAll();
+    gsSoundReadSe(0x1D);
+    gsSoundReadWait();
+    prgMan[2] = 0;
+    prgMan[0] = 1;
+    prgMan[1] = 1;
+    gCntPrgInfo[1].init();
+    return p;
+}
 
 void gsStageExec_CONTINUE()
 {

@@ -6,7 +6,7 @@
 void LetsGotoContinueScene(void);
 int gsCONTINUE_Draw1(int a);
 void* gsCONTINUE_Draw2(void* p);
-int gsStageInit_CONTINUE();
+int gsStageInit_CONTINUE(int p);
 void gsStageExec_CONTINUE();
 
 #endif // HOYA_CONTINUE_G_CNT_H

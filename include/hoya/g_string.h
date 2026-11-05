@@ -20,7 +20,7 @@ GetFontAdr();
 PutChar4Font();
 PutChar4Font2();
 void EndLetterAll();
-strInitStringManager();
+void strInitStringManager();
 strInitStringManager2();
 int strAddSentence(int a);
 strAddShortSentence1();
