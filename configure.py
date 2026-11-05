@@ -64,6 +64,130 @@ def has_broken_hi16(data: bytes) -> bool:
     return False
 
 
+#MARK: FPU hazard nops
+# The game was assembled by a gas that, unlike tools/cc/ee/bin/as in R5900
+# mode, inserted coprocessor hazard nops (the -mcpu=r4000 behaviour, which we
+# can't use because it rejects EE-only opcodes). Rules taken from the binary:
+#  - mtc1/dmtc1/ctc1 followed by an instruction that reads the written FPR: 1 nop
+#  - mfc1/dmfc1/cfc1 followed by an instruction that reads the written GPR: 1 nop
+#  - c.<cond>.s/d immediately followed by bc1t/bc1f(l): 1 nop
+#  - every div.s is preceded by 2 nops
+# Like gas, hazards are only checked between gcc's reorder-mode instructions and
+# the next instruction (including the first one of a `.set noreorder` block),
+# and are not tracked across labels or out of noreorder blocks.
+
+_HZ_STORE_OPS = {"sb", "sh", "sw", "sd", "sq", "swc1", "sdc1", "swl", "swr", "sdl", "sdr",
+                 "usw", "ush", "usd", "s.s", "s.d"}
+_HZ_ALL_READ_PREFIXES = ("b", "j", "mult", "div", "mt", "teq", "tne", "tlt", "tge")
+
+
+def _hz_parse(line: str):
+    s = line.split("#", 1)[0].strip()
+    if not s or s.startswith(".") or s.endswith(":"):
+        return None
+    parts = s.split(None, 1)
+    op = parts[0]
+    ops = [o.strip() for o in parts[1].split(",")] if len(parts) > 1 else []
+    return op, ops
+
+
+def _hz_regs(text: str) -> List[str]:
+    return re.findall(r"\$(f\d+|[a-z]+\d*|\d+)", text)
+
+
+def _hz_reads(op: str, ops: List[str]) -> List[str]:
+    """Registers an instruction reads (approximation of gas' insn_uses_reg)."""
+    if not ops:
+        return []
+    if re.match(r"[a-z]+\.[sdlw]$", op) and op not in _HZ_STORE_OPS:
+        # FPU arithmetic/convert/move: fd, fs[, ft]
+        return _hz_regs(",".join(ops[1:]))
+    if op in _HZ_STORE_OPS or op.startswith(_HZ_ALL_READ_PREFIXES) or op.startswith("c."):
+        return _hz_regs(",".join(ops))
+    if op in ("mfc1", "dmfc1", "cfc1"):
+        return _hz_regs(",".join(ops[1:]))
+    # first operand is the destination; a memory operand's base register is read
+    return _hz_regs(",".join(ops[1:]))
+
+
+def _hz_li_s_uses_mtc1(value: str) -> bool:
+    """li.s expands to lui+mtc1 (or mtc1 $0) unless the low half is non-zero."""
+    import struct
+    try:
+        bits = struct.unpack("<I", struct.pack("<f", float(value)))[0]
+    except ValueError:
+        return False
+    return (bits & 0xFFFF) == 0
+
+
+def insert_hazard_nops(text: str) -> str:
+    out: List[str] = []
+    pending = None  # (kind, reg)
+    noreorder = False
+    for line in text.split("\n"):
+        st = line.strip()
+        if st.startswith(".set"):
+            if "noreorder" in st:
+                noreorder = True
+            elif re.match(r"\.set\s+reorder", st):
+                noreorder = False
+                pending = None
+            out.append(line)
+            continue
+        if st.endswith(":") or st.startswith(".include") or st.startswith("#APP"):
+            pending = None
+            out.append(line)
+            continue
+        ins = _hz_parse(line)
+        if ins is None:
+            out.append(line)
+            continue
+        op, ops = ins
+
+        need = 0
+        if pending is not None:
+            kind, reg = pending
+            if kind == "cond":
+                if op.startswith("bc1"):
+                    need = 1
+            elif reg in _hz_reads(op, ops):
+                need = 1
+        if op == "div.s" and not noreorder:
+            need = 2
+        if need:
+            # count nops already directly before this instruction
+            have = 0
+            for prev in reversed(out):
+                p = _hz_parse(prev)
+                if p is None:
+                    if prev.strip().startswith(".set"):
+                        continue
+                    break
+                if p[0] != "nop":
+                    break
+                have += 1
+            nops = ["\tnop"] * max(0, need - have)
+            if nops:
+                # insert before a `.set noreorder` that opens this instruction's block
+                i = len(out)
+                while i > 0 and out[i - 1].strip().startswith(".set"):
+                    i -= 1
+                out[i:i] = nops
+
+        pending = None
+        if not noreorder:
+            if op in ("mtc1", "dmtc1", "ctc1") and len(ops) == 2:
+                pending = ("reg", _hz_regs(ops[1])[0] if _hz_regs(ops[1]) else None)
+            elif op in ("mfc1", "dmfc1", "cfc1") and ops:
+                pending = ("reg", _hz_regs(ops[0])[0] if _hz_regs(ops[0]) else None)
+            elif op.startswith("c.") and op.count(".") == 2:
+                pending = ("cond", None)
+            elif op == "li.s" and len(ops) == 2 and _hz_li_s_uses_mtc1(ops[1]):
+                pending = ("reg", _hz_regs(ops[0])[0])
+        out.append(line)
+    return "\n".join(out)
+
+
 def as_checked(argv: List[str]) -> int:
     """argv: <as path> <as flags...> -o <out.o> <in.s>"""
     import subprocess
@@ -74,7 +198,7 @@ def as_checked(argv: List[str]) -> int:
     flags = [a for i, a in enumerate(args[:-1]) if a != "-o" and args[i - 1] != "-o"]
 
     with open(src) as f:
-        text = f.read()
+        text = insert_hazard_nops(f.read())
 
     tmp_s = f"{out}.pad.s"
     tmp_o = f"{out}.pad.o"
