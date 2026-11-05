@@ -241,7 +241,13 @@ INCLUDE_ASM("asm/nonmatchings/g_parts", gpGetEyeComSquareOBJ);
 
 INCLUDE_ASM("asm/nonmatchings/g_parts", gpJudgeCollisionVertex);
 
-INCLUDE_ASM("asm/nonmatchings/g_parts", gpGetCollisionVertex);
+int gpGetCollisionVertex(int a0, int a1, int a2)
+{
+    GP_COLL_TMP tmp;
+
+    tmp = D_00673400;
+    return gpGetCollisionVertex2(a0, a1, a2, &tmp);
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_parts", gpGetCollisionVertex2);
 
