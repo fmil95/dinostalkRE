@@ -784,7 +784,10 @@ int SeMeStopB(int a)
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeMeOpenN);
 
-INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeMeOpenB);
+int SeMeOpenB(int a, int b)
+{
+    return SeMeOpenN(me_list_dat[a], a, b);
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeMeOpen);
 
