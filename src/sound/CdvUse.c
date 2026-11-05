@@ -96,7 +96,25 @@ int cdvClose()
 
 INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvFlush);
 
-INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvQueStop);
+int cdvQueStop(long n)
+{
+    if (StopFlg > 0)
+    {
+        return -1;
+    }
+
+    if (n != 0)
+    {
+        StopCnt = n;
+        StopFlg = 2;
+    }
+    else
+    {
+        StopFlg = 1;
+    }
+
+    return 0;
+}
 
 int cdvQueStart()
 {
