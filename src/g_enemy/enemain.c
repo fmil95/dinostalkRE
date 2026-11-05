@@ -35,7 +35,32 @@ extern int shadow_podadr[];
 extern int gsFootPointTexIndex[];
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_Main);
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_PauseProc);
+void Enemy_PauseProc(int on)
+{
+    int p = (int)gsEnemyInfos;
+
+    do
+    {
+        int f = *(int*)p;
+
+        if (f & 1)
+        {
+            if (!(f & 4))
+            {
+                if (!(on & 1))
+                {
+                    Enemy_AnmStpOrStt((char*)p, 1);
+                }
+                else
+                {
+                    Enemy_AnmStpOrStt((char*)p, 0);
+                }
+            }
+        }
+
+        p += 0x2A50;
+    } while (p < (int)gsEnemyInfos + 0x1A720);
+}
 
 void Enemy_AnmStpOrStt(char* a, int on)
 {
