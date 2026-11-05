@@ -1,9 +1,12 @@
 #include "common.h"
 #include "taiken/taiken.h"
+#include "g_camera.h"
 
 extern int _clear_bit;
 extern int _clear_bit;
 
+extern int _clear_cnt;
+extern void _clear_put_font();
 INCLUDE_ASM("asm/nonmatchings/taiken/taiken", gsTaiken_Init);
 
 INCLUDE_ASM("asm/nonmatchings/taiken/taiken", gsTaiken_Exec);
@@ -34,7 +37,21 @@ INCLUDE_ASM("asm/nonmatchings/taiken/taiken", gsTaikenInit_READY_GO);
 
 INCLUDE_ASM("asm/nonmatchings/taiken/taiken", gsTaikenExec_READY_GO);
 
-INCLUDE_ASM("asm/nonmatchings/taiken/taiken", gsTaikenExec_CLEAR);
+void gsTaikenExec_CLEAR()
+{
+    if (!(gsCamera.unk4 & 0x200) && _clear_bit)
+    {
+        if (!(_clear_bit & 2))
+        {
+            _clear_put_font();
+        }
+
+        if (++_clear_cnt > 1000)
+        {
+            _clear_cnt = 1000;
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/taiken/taiken", gsTaikenCall_CLEAR);
 
