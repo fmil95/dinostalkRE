@@ -1,15 +1,16 @@
 #include "common.h"
 #include "hoya/result/rsltsub1.h"
+#include "hoya/hyopen.h"
+#include "hoya/g_string.h"
+#include "hoya/hoya.h"
+#include "hoya/score/g_scman.h"
 
-extern void EndLetterAll();
 extern int gsNextProg;
 extern void LetsGotoMemcScene();
 extern int pRsltRslt;
 extern int hyCheckFadeFinishFlag();
-extern void hySetFadePara2();
 extern void hySwitchFadeTimer();
 
-extern void addScore2();
 INCLUDE_ASM("asm/nonmatchings/hoya/result/rsltsub1", MakeAllNumberTex_rsltsub1);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/result/rsltsub1", RsltInitSprOther_rsltsub1);
@@ -101,7 +102,19 @@ void GotoNextScene()
     LetsGotoMemcScene(gsNextProg);
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/result/rsltsub1", Return2Game);
+void Return2Game()
+{
+    int n = ((int*)pRsltRslt)[2];
+
+    if (n < 8)
+    {
+        gsNextProg = hyGetStageNumber(n) + 1;
+    }
+    else
+    {
+        gsNextProg = 17;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/result/rsltsub1", InitResultResult00);
 
