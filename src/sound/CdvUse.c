@@ -192,7 +192,24 @@ int cdvNameCheckSet()
     return WriteQue;
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvWaitWorkingSet);
+int cdvWaitWorkingSet(long v)
+{
+    u_short w;
+    u_short m;
+    char* q;
+
+    if (cdvIsEoq(1))
+    {
+        return -1;
+    }
+    w = WriteQue;
+    m = MaxQue;
+    q = (char*)(w * 40 + Cdv_Que);
+    *(short*)q = 10;
+    *(long*)(q + 8) = v;
+    WriteQue = (w + 1) % (m + 1);
+    return WriteQue;
+}
 
 int cdvDiscReadySet()
 {
