@@ -11,7 +11,21 @@ extern int playDemo[];
 extern void MEM_Free();
 INCLUDE_ASM("asm/nonmatchings/hoya/playdemo/playdemo", gsRecordPadInit);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/playdemo/playdemo", gsRecordPadMain);
+int gsRecordPadMain()
+{
+    int* pd = playDemo;
+
+    if (pd[0] < 0xE0F)
+    {
+        if (pd[2] & 1)
+        {
+            pd[0]++;
+        }
+        return 0;
+    }
+
+    return 1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/playdemo/playdemo", gsRecordPadMain2);
 
