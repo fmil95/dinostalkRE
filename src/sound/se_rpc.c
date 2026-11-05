@@ -27,6 +27,7 @@ extern int D_00651774[];
 typedef struct { int w[12]; } SeJobEnt;
 extern SeJobEnt D_00651A60[];
 extern int SeBankOpenTransfer();
+extern char sss[];
 int get_SE_MAX() 
 {
     return 1000;
@@ -291,7 +292,13 @@ int SeGetPort(int a)
     return *(u_char*)p;
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeGetVhName);
+char* SeGetVhName(int n)
+{
+    sss[7] = n / 100 + '0';
+    sss[8] = n % 100 + n / 10 + '0';
+    sss[9] = n % 10 + '0';
+    return sss;
+}
 
 int SeSoundOff()
 {
