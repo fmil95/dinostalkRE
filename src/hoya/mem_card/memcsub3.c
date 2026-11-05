@@ -1,16 +1,19 @@
 #include "common.h"
 #include "hoya/mem_card/memcsub3.h"
+#include "hoya/g_string.h"
+#include "hoya/mem_card/g_memc.h"
+#include "hoya/hoya.h"
+#include "hoya/mem_card/g_savlod.h"
 
-extern void EndMemcManager();
 extern int pmss_0067463c;
 extern int hyCheckFadeFinishFlag();
-extern void hySetFadePara2();
 extern void hySwitchFadeTimer();
 
 extern int CheckMemcType();
 extern int memcManager;
 extern int gsNextProg;
 extern void LetsGotoTitle();
+extern char mcCheck_005ef8b0[];
 int McConnectCheck_memcsub3(int a)
 {
     int r = a;
@@ -63,7 +66,14 @@ void Calculation_memcsub3(void) {
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub3", ProcFadeIn_memcsub3);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub3", ProcMemcChecking_memcsub3);
+void ProcMemcChecking_memcsub3()
+{
+    int* p = (int*)pmss_0067463c;
+
+    p[0x204 / 4] = (p[0x204 / 4] & ~6) | 1;
+    hyPutLumpsOfStr(mcCheck_005ef8b0);
+    PermittoSendMcTex(0);
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/memcsub3", ProcSlotCheck_memcsub3);
 
