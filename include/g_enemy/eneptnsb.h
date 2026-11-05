@@ -26,7 +26,7 @@ eneptn_chkcliff00();
 eneptn_chkjpwall00();
 eneptn_ptrhichkfly();
 eneptn_ptrxroleset();
-eneptn_plchkxroleset();
+void eneptn_plchkxroleset(char* e);
 eneptn_eyelinech00();
 eneptn_eyelinech01();
 hitobject_chk00();

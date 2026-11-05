@@ -1,7 +1,17 @@
 #include "gunsuv_usa/libgf/libgf.h"
 #include "gunsuv_usa/libgf/gffog.h"
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gffog", GFFog_Init);
+GF_FOG* GFFog_Init(GF_FOG *fog)
+{
+    fog->min = 0.0f;
+    fog->max = 256.0f;
+    fog->near = 1.0f;
+    fog->far = fog->min;
+    fog->fogA[0] = fog->fogA[1] = fog->fogA[2] = fog->fogA[3] = fog->min;
+    fog->fogB[0] = fog->fogB[1] = fog->fogB[2] = fog->fogB[3] = fog->min;
+    fog->packet = NULL;
+    return fog;
+}
 
 qword* GFFog_MakePacket(GF_FOG* fog, qword* packbuf)
 {
