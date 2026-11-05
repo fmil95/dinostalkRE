@@ -32,7 +32,15 @@ int gsShockSetSeqNo(int a, int n)
     return gsShockSetSeqVel(a, gShockData[n], 1.0f);
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_shock", gsShockSetSeqNoVel);
+int gsShockSetSeqNoVel(int a, int n, float v)
+{
+    if (n >= 0x6B)
+    {
+        return -1;
+    }
+
+    return gsShockSetSeqVel(a, gShockData[n], v);
+}
 
 void gsShockSetEnable(int v)
 {
