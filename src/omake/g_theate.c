@@ -35,6 +35,11 @@ extern sceGsDBuff gDb;
 extern void the_title();
 extern void the_select();
 extern void the_disp();
+extern int etcTexId_00674c20;
+extern int anim_3_00674c08;
+extern int flgAnim_4;
+extern char etcSpr_0085da70[];
+extern void the_titleEtcInitSpr();
 void the_texInit()
 {
     pTheBin = FIO_ReadFile_Align("cdrom0:\\DATA\\THEATER\\THEMAIN.BIN;1", 0x40);
@@ -198,7 +203,85 @@ void the_notice()
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/omake/g_theate", the_title);
+void the_title()
+{
+    char* spr;
+
+    switch (theStat.unkC)
+    {
+    case 0:
+        titleTexId_00674c1c = TEST_EntryTexture((unsigned int*)(pTheBin + 0x20100), 1);
+        etcTexId_00674c20 = TEST_EntryTexture((unsigned int*)(pTheBin + 0xE4F80), 1);
+        anim_3_00674c08 = 0;
+        flgAnim_4 = 0;
+        the_setFadeIn(0x1E);
+        the_initBgSpr(titleTexId_00674c1c);
+        the_titleEtcInitSpr(etcTexId_00674c20);
+        theStat.unkC = 1;
+    case 1:
+        gplSetSprite(bgSpr_0085c1b0, frame & 1);
+
+        if (gsEffectGetFadeCnt() > 0)
+        {
+            return;
+        }
+
+        theStat.unkC = 2;
+        break;
+    case 3:
+        gplSetSprite(bgSpr_0085c1b0, frame & 1);
+
+        if (gsEffectGetFadeCnt() > 0)
+        {
+            return;
+        }
+
+        theStat.unk4 = theStat.unk8;
+        theStat.unk10 = 0;
+        theStat.unk14 = 0;
+        break;
+    case 2:
+        if ((trg_00674c34 & 0x40) || (gtrg_00674c3c & 0x20))
+        {
+            theStat.unk8 = 6;
+            theStat.unkC = 3;
+            the_setFadeOut(0x1E);
+            gsSoundSeMePlay(0x2F0);
+        }
+        else if ((trg_00674c34 & 0x9BF) || (gtrg_00674c3c & 0x90B))
+        {
+            theStat.unk8 = 3;
+            theStat.unkC = 3;
+            the_setFadeOut(0x1E);
+            gsSoundSeMePlay(0x2EF);
+        }
+
+        if (flgAnim_4 != 0)
+        {
+            if (++anim_3_00674c08 > 0x40)
+            {
+                anim_3_00674c08 = 0x40;
+                flgAnim_4 = 0;
+            }
+        }
+        else
+        {
+            if (--anim_3_00674c08 < 0)
+            {
+                anim_3_00674c08 = 0;
+                flgAnim_4 = 1;
+            }
+        }
+
+        spr = etcSpr_0085da70;
+        STRUCT_OFFSET(spr, 0x18, u_char) = anim_3_00674c08 * 2;
+        gplSetSprite(spr, frame & 1);
+        gplSetSprite(bgSpr_0085c1b0, frame & 1);
+        return;
+    case 4:
+        break;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/omake/g_theate", the_select);
 
