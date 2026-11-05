@@ -7,7 +7,7 @@ DecideRippleSpace();
 calcGameOver();
 calcContinue();
 InitContinue();
-Draw2dObject2Cnt();
+void* Draw2dObject2Cnt(void* p);
 Draw2dObjectCnt();
 MainContinue();
 void EndContinue();

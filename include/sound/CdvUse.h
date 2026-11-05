@@ -6,7 +6,7 @@
 cdvInit();
 int cdvClose();
 cdvFlush();
-cdvQueStop();
+int cdvQueStop(long n);
 int cdvQueStart();
 int cdvIsEoq();
 unsigned short cdvGetWriteQue();

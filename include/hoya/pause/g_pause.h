@@ -3,7 +3,7 @@
 #ifndef HOYA_PAUSE_G_PAUSE_H
 #define HOYA_PAUSE_G_PAUSE_H
 
-LetsGotoPauseScene();
+void LetsGotoPauseScene(int n);
 PauseItemSet();
 PauseInfosClear();
 PauseCreateObjectPacket();

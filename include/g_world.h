@@ -16,7 +16,7 @@ gsWorldBuildWorld();
 gsWorldMoveBackObj();
 void gsWorldCallSpecialEffect();
 int gsWorldCallSpecialEffect2(int r);
-gsWorldDamageObject();
+int gsWorldDamageObject(int* p, int d);
 void gsWorldInitReaction(char* a);
 gsWorldEntryReaction();
 int gsWorldCheckEntryReaction(char* a, char* b);

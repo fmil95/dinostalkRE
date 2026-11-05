@@ -182,7 +182,19 @@ int gsWorldCallSpecialEffect2(int r)
     return r;
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldDamageObject);
+int gsWorldDamageObject(int* p, int d)
+{
+    if (p != 0 && p[1] > 0)
+    {
+        p[1] -= d;
+        if (p[1] <= 0)
+        {
+            p[1] = 0;
+            return 1;
+        }
+    }
+    return 0;
+}
 
 void gsWorldInitReaction(char* a)
 {

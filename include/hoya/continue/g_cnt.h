@@ -3,9 +3,9 @@
 #ifndef HOYA_CONTINUE_G_CNT_H
 #define HOYA_CONTINUE_G_CNT_H
 
-LetsGotoContinueScene();
+void LetsGotoContinueScene(void);
 int gsCONTINUE_Draw1(int a);
-gsCONTINUE_Draw2();
+void* gsCONTINUE_Draw2(void* p);
 int gsStageInit_CONTINUE();
 gsStageExec_CONTINUE();
 

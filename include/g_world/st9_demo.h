@@ -6,7 +6,7 @@
 void gsWorldST9_DemoInit();
 void gsWorldSt9_DemoManager();
 gsWorldSt9_Demo();
-gsSt9Demo_EndChack();
+void gsSt9Demo_EndChack();
 gsSt9Demo_ChancelCheck();
 gsSt9Demo_CameraWorkManagement();
 gsSt9DemoCW_GetVector();
