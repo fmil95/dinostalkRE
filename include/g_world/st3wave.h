@@ -17,7 +17,7 @@ void gsSetRefTex();
 void gsWaveAvoidInit();
 void gsWaveAvoidEnd();
 int _gsWaveHandler(int ch);
-gsWaveAvoidSetStart();
+void gsWaveAvoidSetStart();
 void gsWaveAvoidSetEnd();
 gsWaveCollisionWater();
 void printVector(void);

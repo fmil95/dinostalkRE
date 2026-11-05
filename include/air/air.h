@@ -3,7 +3,7 @@
 #ifndef AIR_AIR_H
 #define AIR_AIR_H
 
-gsGetFixFarZ();
+float gsGetFixFarZ(int st);
 gsWorldTexAnimation();
 
 #endif // AIR_AIR_H
