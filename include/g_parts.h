@@ -47,7 +47,7 @@ int gpGetCollisionLine2();
 gpGetCollisionLineGND();
 gpGetCollisionLineOBJ();
 void gpSetMatrixXYZ();
-gpSetMatrixZYX();
+void gpSetMatrixZYX();
 gpStandardizeBoundBox();
 gpCompareBoundBox();
 gpFloat2Int();
