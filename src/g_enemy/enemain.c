@@ -25,6 +25,8 @@ extern short gsEnemy_Max;
 extern u_int dinoanmmaxno[];
 extern int pmtadr[][128];
 extern int* pmt_adrtbls[];
+extern char gsEnemySeInfo00[];
+extern char gsEnemySeInfo01[];
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_Main);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_PauseProc);
@@ -448,7 +450,26 @@ INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_GrdSeEffSet);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_SeWkInit);
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_SeReq);
+void Enemy_SeReq(char* e, int v, int which)
+{
+    char* s;
+
+    if (which == 0)
+    {
+        s = gsEnemySeInfo00 + STRUCT_OFFSET(e, 0x28, short) * 32;
+    }
+    else
+    {
+        s = gsEnemySeInfo01 + STRUCT_OFFSET(e, 0x28, short) * 32;
+    }
+
+    STRUCT_OFFSET(s, 0, int) = STRUCT_OFFSET(e, 0, int);
+    STRUCT_OFFSET(s, 0xA, short) = STRUCT_OFFSET(e, 0x2A, u_short);
+    STRUCT_OFFSET(s, 8, short) = v;
+    STRUCT_OFFSET(s, 4, int) = STRUCT_OFFSET(e, 4, int);
+    STRUCT_OFFSET(s, 0xC, float) = STRUCT_OFFSET(e, 0xE8, float);
+    sceVu0CopyVector(s + 0x10, e + 0x270);
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_SetSeMain);
 
