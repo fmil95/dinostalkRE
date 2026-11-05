@@ -1,4 +1,8 @@
 #include "common.h"
+#include "g_world.h"
+#include "air/a_item.h"
+#include "g_gun.h"
+#include "g_shock.h"
 
 extern int gsGunExtraId;
 extern void gsSoundEeSE_STOP();
@@ -13,15 +17,13 @@ extern char D_003C1148[];
 extern char D_003C246C[];
 extern char gsGunInfo[];
 extern int gShockData[];
-extern void gsShockSetSeq();
 extern char gsWorldManager[];
-extern void gsWorldCrashOBJ_FLUSH();
-extern void gsGunCrash_FLUSH_CH_ENE();
 extern int gsArmsTypeTbl[];
 extern int D_003C245C[];
 extern void sceVu0CopyVector();
-extern void gsSetItemFromBreakObject();
 extern int gsWorldCheckOBJ_TREASURE();
+extern char D_003C5D20[];
+extern char gsWorldBreakList[];
 INCLUDE_ASM("asm/nonmatchings/g_gun", gsInitGunManager);
 
 INCLUDE_ASM("asm/nonmatchings/g_gun", gsInitGunManager_START_GAME);
@@ -106,7 +108,37 @@ INCLUDE_ASM("asm/nonmatchings/g_gun", gsGunAdjustBulletLine_SPARK2);
 
 INCLUDE_ASM("asm/nonmatchings/g_gun", gsGunAdjustBulletLine_SPARK3);
 
-INCLUDE_ASM("asm/nonmatchings/g_gun", gsGunBulletCheckEnd_SPARK);
+void gsGunBulletCheckEnd_SPARK()
+{
+    char* b;
+    int i;
+
+    b = D_003C5D20;
+
+    for (i = 0; i < 32; i++, b += 0x100)
+    {
+        if (STRUCT_OFFSET(b, 0xC, int) > 0 && STRUCT_OFFSET(b, 0x4, int) == 15 && STRUCT_OFFSET(b, 0x8, int) > 0)
+        {
+            if (STRUCT_OFFSET(b, 0x68, int*) == NULL)
+            {
+                if (STRUCT_OFFSET(b, 0x70, int) != 0)
+                {
+                    if (gsWorldCheckODV_OBJ_BREAK(gsWorldBreakList, STRUCT_OFFSET(b, 0x70, int)) >= 0)
+                    {
+                        STRUCT_OFFSET(b, 0x70, int) = 0;
+                        STRUCT_OFFSET(b, 0xC, int) = 0;
+                    }
+                }
+            }
+            else if (!(*STRUCT_OFFSET(b, 0x68, int*) & 1))
+            {
+                STRUCT_OFFSET(b, 0x6C, int) = 0;
+                STRUCT_OFFSET(b, 0x68, int*) = NULL;
+                STRUCT_OFFSET(b, 0xC, int) = 0;
+            }
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_gun", gsGunCheckReload);
 
