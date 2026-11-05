@@ -27,7 +27,9 @@ typedef struct Unknown3 {
 
 typedef struct Camera 
 {
-    char pad[244];
+    char pad0[4];
+    int unk4;
+    char pad[236];
     float unkF4;
     char pad2[170];
     int unk1A4;

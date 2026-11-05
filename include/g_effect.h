@@ -3,7 +3,7 @@
 #ifndef G_EFFECT_H
 #define G_EFFECT_H
 
-gsEffectRemove();
+void gsEffectRemove(char* p);
 gsEffectRemoveForce();
 gsEffectAddOne();
 gsEffectAddWithVector();

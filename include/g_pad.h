@@ -21,5 +21,5 @@ int gsPad_GetTrg2(int i);
 int gsPad_GetRTrg2(int i);
 int gsPad_GetState(int i);
 int gsPad_GetStep(int i);
-int gsPadSetAct();
+int gsPadSetAct(int n, u_char a, u_char b);
 #endif // G_PAD_H

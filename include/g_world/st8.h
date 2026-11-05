@@ -7,7 +7,7 @@ int gsWorldInitSt8();
 void gsWorldSt8_SpecialEffect();
 int gsWorldSt8_SpecialEffect2();
 gsWorldSt8_CirLight_GND();
-gsWorldSt8_InitCircleLight();
+void gsWorldSt8_InitCircleLight();
 gsWorldSt8_EntryCircleLight();
 gsWorldSt8_CircleLight();
 gsWorldSt8_StoneLine();
@@ -16,7 +16,7 @@ gsWorldSt8_ObjSort_Half();
 gsWorldSt8_KakiTrans();
 gsWorldSt8_CheckBossDied();
 void gsWorldSt8_Demo0_Init();
-gsWorldSt8_Demo0_Request();
+void gsWorldSt8_Demo0_Request();
 gsWorldSt8_Demo0_CallEnd();
 gsWorldSt8_Demo0_Exec();
 

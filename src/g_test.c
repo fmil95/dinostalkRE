@@ -222,7 +222,13 @@ void gsExtProg_ENTRY_WORK(int a, int b, int c)
     gsExtProgRpFunc = c;
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_test", gsExtProg_RECOV_WORK);
+void gsExtProg_RECOV_WORK()
+{
+    if (gsExtProgWorkP == 0)
+    {
+        gsExtProgWorkP = (int)MEM_MallocAlign(0x200000, 0x40, D_00664870, 0x5CF);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_test", gsExtProg_EXEC);
 

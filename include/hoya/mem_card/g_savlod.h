@@ -52,7 +52,7 @@ LoadSaveData();
 SaveSaveData();
 SaveIconSys();
 SaveIconIco();
-ClearSystemData();
+void ClearSystemData();
 void ClearGameData(int n);
 SetDefaultSystemData();
 SetDefaultGameData();
