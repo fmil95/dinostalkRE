@@ -12,6 +12,7 @@ extern u_char gPadActAlign[6];
 extern PadWork D_002F18E0[];
 extern int _us_key_tbl[];
 extern PadWork gsPadData[];
+extern int gsOption[];
 INCLUDE_ASM("asm/nonmatchings/g_pad", gsPad_Init);
 
 INCLUDE_ASM("asm/nonmatchings/g_pad", gsPad_Reset);
@@ -24,7 +25,34 @@ int gsPad_End()
     return 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_pad", _gsPad_changeByOpton);
+int _gsPad_changeByOpton(int k)
+{
+    int r = k;
+
+    if (gsOption[0] == 1 || gsOption[0] == 3)
+    {
+        r = k & 0xFFFF5FFC;
+
+        if (k & 2)
+        {
+            r |= 0x2000;
+        }
+        if (k & 1)
+        {
+            r |= 0x8000;
+        }
+        if (k & 0x2000)
+        {
+            r |= 2;
+        }
+        if (k & 0x8000)
+        {
+            r |= 1;
+        }
+    }
+
+    return r;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_pad", gsPad_Update);
 
