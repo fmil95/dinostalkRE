@@ -205,7 +205,14 @@ void GetMemcFIleList(int a, int b)
     strPos = (strPos + 1) % 32;
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", GetMemcDir);
+void GetMemcDir(int a, int b)
+{
+    str[strPos][0] = D_00673C20[0];
+    sprintf(str[strPos], D_00673C30, dirName);
+    mcdCardInfoSet((int)((char*)&memcMng[a + b] + 0x854), a, b, 0, 0, 0);
+    mcdGetDirSet((char*)&memcMng[a + b] + 0x84C, a, b, str[strPos], 0, 1, (char*)&memcMng[a + b] + 0x800);
+    strPos = (strPos + 1) % 32;
+}
 
 void ClearMemcDirCreateData()
 {
