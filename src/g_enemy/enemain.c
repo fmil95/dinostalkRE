@@ -1,27 +1,24 @@
 #include "common.h"
+#include "g_enemy/enemain.h"
+#include "sound/g_sound.h"
 
 extern int _VlcnCnt;
 extern void sceVu0SubVector();
-extern void gsSoundPlaySE_WORLD();
 extern void sceVu0AddVector();
 extern void gsEffectAddWithPri();
-extern void Enemy_PsInfInt();
 
-extern int Enemy_DataLoadExceptPmt();
 extern void Enemy_PmtDtLoad();
 typedef struct { char b[0x40]; } PoisonInfoS;
 extern PoisonInfoS gsPoisonInfos[];
 extern int gspmt_files[];
 extern int FIO_ReadFile_Align();
-extern void Enemy_PmtDataSet();
 typedef struct { char b[0x2A50]; } EnemyInfoS;
 extern EnemyInfoS gsEnemyInfos[];
 extern void GFInstance_Remove();
-extern void Enemy_AllPsInfInt();
-extern void Enemy_WorkInit();
 extern void (*enemy_movestbl[])();
 typedef struct { char b[0x230]; } AnotherItemE;
 extern AnotherItemE Another_Item[];
+extern int* bulthitsetbl_9[];
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_Main);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_PauseProc);
@@ -324,7 +321,12 @@ INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", enemy_deadshotmain);
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_MaxEneNoChg);
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", enemy_blthitseset);
+void enemy_blthitseset(char* e, int b)
+{
+    short t = *(short*)(e + 0x2A);
+
+    Enemy_SeSet00((int)e, (t == 6) ? 0x3B2 : bulthitsetbl_9[t][b]);
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/enemain", Enemy_DelDethPrcInit);
 
