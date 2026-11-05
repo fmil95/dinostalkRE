@@ -15,6 +15,15 @@ extern int delay_time;
 
 extern int subAdjustMode;
 extern int check_no_00674808;
+extern int adj_x;
+extern int adj_y;
+extern int adj_h;
+extern int adj_v;
+extern int adj_rx1;
+extern int adj_ry1;
+extern int adj_rx2;
+extern int adj_ry2;
+extern int gsGuncon1Manager[];
 int Gun1AjstGetViewScene()
 {
     return trans;
@@ -73,7 +82,24 @@ void AdjustInit_gun1_ajst()
 
 INCLUDE_ASM("asm/nonmatchings/hoya/option/gun1_ajst", Gun1AdjustMain);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/option/gun1_ajst", Gun1AdjustProcInit);
+void Gun1AdjustProcInit()
+{
+    gsGuncon1Manager[11] = 0x80;
+    gsGuncon1Manager[9] = 0;
+    gsGuncon1Manager[10] = 0;
+    gsGuncon1Manager[12] = 0x3D;
+    work0 = 8;
+    adj_x = 0;
+    adj_y = 0;
+    adj_h = 0;
+    adj_v = 0;
+    adj_rx1 = 0;
+    adj_ry1 = 0;
+    adj_rx2 = 0;
+    adj_ry2 = 0;
+    delay_time = 0;
+    trans = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/option/gun1_ajst", Gun1AdjustProcGunTeaching);
 
