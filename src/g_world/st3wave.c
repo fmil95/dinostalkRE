@@ -1,4 +1,5 @@
 #include "common.h"
+#include "g_world/st3wave.h"
 
 extern float waveRndVec;
 extern float waveScrollX;
@@ -12,6 +13,8 @@ extern void sceVu0CopyVector();
 extern char gf_default_instwave_drawfunc[];
 extern char gf_default_instwave_evalfunc[];
 extern void GFInstance_InitHead();
+extern void* GFTex_GetDb();
+extern int refTexAddr;
 INCLUDE_ASM("asm/nonmatchings/g_world/st3wave", gsWaveScrollX);
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st3wave", gsWaveScrollZ);
@@ -39,7 +42,13 @@ void gsWaveSetWaveSize(float v)
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st3wave", gsWaveGetHeight);
 
-INCLUDE_ASM("asm/nonmatchings/g_world/st3wave", gsSetRefTex);
+void gsSetRefTex()
+{
+    u_long* db = GFTex_GetDb();
+
+    db[8] = 5;
+    refTexAddr = (int)(db[4] & 0x3FFF) >> 5;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st3wave", gsWaveAvoidInit);
 
