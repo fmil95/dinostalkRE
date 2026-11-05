@@ -1,4 +1,11 @@
 #include "common.h"
+#include "g_plane.h"
+#include "mem.h"
+#include "g_guncon2/g_guncon2.h"
+#include "taiken/taiken.h"
+#include "benjamin/g_ik.h"
+#include "perfmon.h"
+#include "fileio.h"
 
 extern int gsExtProgWorkP;
 extern int gsExtProgRpFile;
@@ -13,8 +20,6 @@ extern int _time_over_step;
 extern int _dbgCS_p;
 extern int _dbgCS_siz;
 extern int _dbgCS_sum0;
-extern int FIOCache_GetCheckSum();
-extern void gsEffectSetFadeNowColor();
 
 extern int gsNextProg;
 extern int gsCurProg;

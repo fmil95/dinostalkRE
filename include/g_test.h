@@ -12,15 +12,15 @@ G_TEST_Exec();
 G_TEST_End();
 void gsExtProg_INIT();
 void gsExtProg_ENTRY_WORK(int a, int b, int c);
-gsExtProg_RECOV_WORK();
+void gsExtProg_RECOV_WORK();
 gsExtProg_EXEC();
 gsExtProg_TIME_OVER();
 int gsStageExit_AfterMovie();
 void gsPC_Start(void);
 void gsPC_Disp(void);
 void gsPC_Stop(void);
-gsLoading_Init();
-gsLoading_Exec();
+void gsLoading_Init();
+void gsLoading_Exec();
 void gsClearHiddenFrame(int a);
 void _dbgCS_OverWrite();
 #endif // G_TEST_H
