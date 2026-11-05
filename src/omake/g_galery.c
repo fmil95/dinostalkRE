@@ -42,6 +42,8 @@ extern int anim_5;
 extern int flgAnim_6;
 extern char etcSpr_0085bc10[];
 extern void gal_titleEtcInitSpr();
+extern int cursorTexId_00674bd8;
+extern char pageSpr_0085b7f0[];
 void gal_texInit()
 {
     pGalBin = FIO_ReadFile_Align("cdrom0:\\DATA\\GALLERY\\GALMAIN.BIN;1", 0x40);
@@ -190,7 +192,30 @@ void gal_titleEtcInitSpr(int tex)
     STRUCT_OFFSET(spr, 0x16, short) = -0x7A80;
 }
 
-INCLUDE_ASM("asm/nonmatchings/omake/g_galery", gal_selectEtcInitSpr);
+void gal_selectEtcInitSpr()
+{
+    char* spr;
+
+    spr = etcSpr_0085bc10;
+    gplInitSprite(spr, cursorTexId_00674bd8);
+    gplInitSprite(spr + 0x160, cursorTexId_00674bd8);
+    STRUCT_OFFSET(spr, 0x8, short) = 0x0;
+    STRUCT_OFFSET(spr, 0xA, short) = 0x600;
+    STRUCT_OFFSET(spr, 0x10, short) = 0xA20;
+    STRUCT_OFFSET(spr, 0x12, short) = 0x6F0;
+    STRUCT_OFFSET(spr, 0xC, short) = -0x7B80;
+    STRUCT_OFFSET(spr, 0xE, short) = -0x7A00;
+    STRUCT_OFFSET(spr, 0x14, short) = -0x7160;
+    STRUCT_OFFSET(spr, 0x16, short) = -0x7988;
+    STRUCT_OFFSET(spr, 0x168, short) = 0x0;
+    STRUCT_OFFSET(spr, 0x16A, short) = 0x700;
+    STRUCT_OFFSET(spr, 0x170, short) = 0xA20;
+    STRUCT_OFFSET(spr, 0x172, short) = 0x7F0;
+    STRUCT_OFFSET(spr, 0x16C, short) = -0x7B80;
+    STRUCT_OFFSET(spr, 0x16E, short) = -0x7A00;
+    STRUCT_OFFSET(spr, 0x174, short) = -0x7160;
+    STRUCT_OFFSET(spr, 0x176, short) = -0x7988;
+}
 
 INCLUDE_ASM("asm/nonmatchings/omake/g_galery", gal_initZoomArrowSpr);
 
