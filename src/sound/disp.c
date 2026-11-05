@@ -11,7 +11,7 @@
 
 extern VoBuf voBuf;
 extern int isFrameEnd;
-extern int isCountVblank;
+extern volatile int isCountVblank;
 extern int frd;
 extern int s_ctxt;
 extern int s_frm_ofx;
@@ -25,6 +25,7 @@ extern int isUp;
 extern int vo_send_addr;
 extern sceGsStoreImage storeimage;
 extern sceGsLoadImage loadimage;
+extern volatile int vblankCount;
 INCLUDE_ASM("asm/nonmatchings/sound/disp", initDisplay);
 
 void cdvMpegChgOffset(int ofx, int ofy)
@@ -341,7 +342,15 @@ int handler_endimage(int val)
     return -1;
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/disp", startDisplay);
+void startDisplay(int waitEven)
+{
+    while (sceGsSyncV(0) == waitEven)
+        ;
+
+    frd = 0;
+    isCountVblank = 1;
+    vblankCount = 0;
+}
 
 void endDisplay()
 {
