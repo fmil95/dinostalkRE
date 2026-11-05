@@ -232,7 +232,24 @@ void gpVector2RotZYX(float* r, float* v)
     r[3] = 1.0f;
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_parts", gpVector2RotXYZ);
+void gpVector2RotXYZ(float* r, float* v)
+{
+    sceVu0FVECTOR t;
+    float y;
+    float rz;
+    float ry;
+
+    sceVu0CopyVector(t, v);
+    y = t[1];
+    t[3] = 1.0f;
+    t[1] = 0.0f;
+    rz = gpArcTan(y, gpGetLength(t));
+    ry = gpArcTan(t[2], t[0]);
+    r[0] = rz;
+    r[1] = -ry;
+    r[2] = 0.0f;
+    r[3] = 1.0f;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_parts", gpGetLength);
 

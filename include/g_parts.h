@@ -58,7 +58,7 @@ void gpRotTransXYZ(float* v0, float* v1, float* rot);
 void gpRotTransZYX(float* v0, float* v1, float* rot);
 void gpRotTransZXY(float* v0, float* v1, float* rot);
 void gpVector2RotZYX(float* r, float* v);
-gpVector2RotXYZ();
+void gpVector2RotXYZ(float* r, float* v);
 float gpGetLength(float* v);
 void gpVector2RotZYX_Hi(float* r, float* v);
 gpJudgeCircleOnLine();
