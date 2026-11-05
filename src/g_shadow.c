@@ -8,9 +8,34 @@ extern float D_002AF960[];
 extern char gpShadowLightVector[];
 extern void sceVu0Normalize();
 
+extern int* gpShadowBefore;
+extern int* gpShadowBegin;
 INCLUDE_ASM("asm/nonmatchings/g_shadow", gpShadow_Init);
 
-INCLUDE_ASM("asm/nonmatchings/g_shadow", gpShadow_InitShadow);
+void gpShadow_InitShadow(int* s)
+{
+    int* b = gpShadowBefore;
+
+    s[7] = 0;
+    ((float*)s)[2] = 4.0f;
+    s[0] = 0;
+    s[3] = 0;
+    s[4] = 0;
+    s[6] = 0;
+    s[5] = 0;
+    s[1] = 0;
+
+    if (b)
+    {
+        b[7] = (int)s;
+    }
+    else
+    {
+        gpShadowBegin = s;
+    }
+
+    gpShadowBefore = s;
+}
 
 void gpShadow_SetSortKey(float x)
 {
