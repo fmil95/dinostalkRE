@@ -30,3 +30,13 @@ INCLUDE_ASM("asm/nonmatchings/g_world/brk", gsWorldBreak_14);
 INCLUDE_ASM("asm/nonmatchings/g_world/brk", gsWorldBreak_15);
 
 INCLUDE_ASM("asm/nonmatchings/g_world/brk", gsWorldBreak_16);
+INCLUDE_RODATA("asm/nonmatchings/g_world/brk", D_00665650);
+
+INCLUDE_RODATA("asm/nonmatchings/g_world/brk", D_00665668);
+
+INCLUDE_RODATA("asm/nonmatchings/g_world/brk", D_00665678);
+
+INCLUDE_RODATA("asm/nonmatchings/g_world/brk", D_00665688);
+
+INCLUDE_RODATA("asm/nonmatchings/g_world/brk", D_00665698);
+
