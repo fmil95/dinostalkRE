@@ -344,7 +344,10 @@ void SetPlyerSystemData2SaveDataBox()
     *(SavSysData*)saveDataBox = plSysData;
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", SetPlyerSystemDataFromSaveDataBox);
+void SetPlyerSystemDataFromSaveDataBox()
+{
+    plSysData = *(SavSysData*)saveDataBox;
+}
 
 void SetPlyerGameData2SaveDataBox(int n)
 {
