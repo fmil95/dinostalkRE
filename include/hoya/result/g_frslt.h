@@ -16,6 +16,6 @@ FRsltItemSetItems();
 gsFRESULT_Draw1();
 int gsFRESULT_Draw2(int a);
 int gsStageInit_FRESULT();
-gsStageExec_FRESULT();
+void gsStageExec_FRESULT();
 
 #endif // HOYA_RESULT_G_FRSLT_H

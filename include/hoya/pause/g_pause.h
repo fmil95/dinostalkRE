@@ -13,7 +13,7 @@ PauseItemSetItems();
 int gsPAUSE_Draw1(int a);
 int gsPAUSE_Draw2(int a);
 int gsStageInit_PAUSE();
-gsStageExec_PAUSE();
+void gsStageExec_PAUSE();
 gsStageInit_PAUSE_STAGE();
 gsStageExec_PAUSE_STAGE();
 

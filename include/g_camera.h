@@ -7,7 +7,7 @@
 #include "frozen_types.h"
 
 int gsSetCameraMatrix();
-int gsCameraCalcRotMatrix();
+void gsCameraCalcRotMatrix();
 int gsCameraCalcRotMatrix_COMPEL();
 int gsMoveCamera();
 int gsInitCamera();
