@@ -1,7 +1,27 @@
 #include "common.h"
 #include "hoya/pause/g_pause.h"
 
-INCLUDE_ASM("asm/nonmatchings/hoya/pause/g_pause", LetsGotoPauseScene);
+extern int pauseManager[];
+extern int gsExtProgNext;
+extern int gsNextProg;
+void LetsGotoPauseScene(int n)
+{
+    int* pm = pauseManager;
+
+    if (n != -1)
+    {
+        *pm = n;
+    }
+
+    if ((u_int)n < 8)
+    {
+        gsExtProgNext = 0;
+    }
+    else
+    {
+        gsNextProg = 13;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/pause/g_pause", PauseItemSet);
 
