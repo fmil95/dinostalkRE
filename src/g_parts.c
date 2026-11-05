@@ -194,7 +194,24 @@ void gpStandardizeBoundBox(float* a, float* b)
         : : "r"(a), "r"(b) : "memory");
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_parts", gpCompareBoundBox);
+int gpCompareBoundBox(float* a, float* b, float* c, float* d)
+{
+    int w[4];
+
+    asm volatile(
+        "lqc2 $vf4, 0x0(%0)\n"
+        "lqc2 $vf5, 0x0(%1)\n"
+        "lqc2 $vf6, 0x0(%2)\n"
+        "lqc2 $vf7, 0x0(%3)\n"
+        "vsub.xyzw $vf4, $vf4, $vf7\n"
+        "vsub.xyzw $vf5, $vf5, $vf6\n"
+        "vmul.xyzw $vf4, $vf4, $vf5\n"
+        "vftoi12.xyzw $vf4, $vf4\n"
+        "sqc2 $vf4, 0x0(%4)\n"
+        : : "r"(a), "r"(b), "r"(c), "r"(d), "r"(w) : "memory");
+
+    return (u_int)~((w[0] | w[1]) | w[2]) >> 31;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_parts", gpFloat2Int);
 
