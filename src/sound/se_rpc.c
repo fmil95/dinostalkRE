@@ -1,13 +1,10 @@
 #include "sound/se_rpc.h"
 
 extern int D_0065176C[];
-extern int SeTransNow();
 extern int D_0065175C[];
 extern int D_00651760[];
 extern char PortGroup[];
-extern int ezSeL();
 
-extern int SeCSLMidiPortSt();
 typedef struct { int w[6]; } SeEnt;
 extern SeEnt D_0064B56C[];
 extern int fp;
@@ -25,7 +22,7 @@ typedef struct { int w[7]; } BgmAlc3;
 extern BgmListEnt3 D_00651328[];
 extern BgmAlc3 D_006519A8[];
 extern int midi_current_port;
-extern int SeCSLMidiXFadeB();
+extern BgmListEnt3 D_00651320[];
 int get_SE_MAX() 
 {
     return 1000;
@@ -598,7 +595,10 @@ INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeCSLBankOpenEE);
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeCSLBankOpenBEE);
 
-INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeCSLBankOpen);
+int SeCSLBankOpen(int a)
+{
+    return SeCSLBankOpenB(a, D_0064B364[D_00651320[a].w[0]][0]);
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/se_rpc", SeCSLBankOpenB);
 
