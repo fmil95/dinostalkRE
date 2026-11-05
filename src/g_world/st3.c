@@ -23,6 +23,8 @@ extern int gsWorldTimer;
 extern int _st3_tex_idx;
 extern int SpBattleCount;
 extern int D_003C0A94[];
+typedef struct { int a; int b; int pad[2]; float v1[4]; float v2[4]; } St3DCollMngr;
+extern St3DCollMngr _st3_d_coll_mngr[];
 INCLUDE_ASM("asm/nonmatchings/g_world/st3", gsWorldInitSt3);
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st3", gsWorldSt3EntryTex_GND);
@@ -108,7 +110,20 @@ INCLUDE_ASM("asm/nonmatchings/g_world/st3", gsWorldSt3_HikariFade);
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st3", gsWorldBulletEffectGnd_ST3);
 
-INCLUDE_ASM("asm/nonmatchings/g_world/st3", gsWorldSt3_InitDinoCollWater);
+void gsWorldSt3_InitDinoCollWater()
+{
+    int i;
+
+    for (i = 0; i < 10; i++)
+    {
+        _st3_d_coll_mngr[i].a = 0;
+        _st3_d_coll_mngr[i].b = 0;
+        _st3_d_coll_mngr[i].v2[0] = _st3_d_coll_mngr[i].v2[1] = _st3_d_coll_mngr[i].v2[2] = 0.0f;
+        _st3_d_coll_mngr[i].v1[0] = _st3_d_coll_mngr[i].v1[1] = _st3_d_coll_mngr[i].v1[2] = 0.0f;
+        _st3_d_coll_mngr[i].v2[3] = 1.0f;
+        _st3_d_coll_mngr[i].v1[3] = 1.0f;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st3", _gsWorldSt3_DinoCollWater);
 
