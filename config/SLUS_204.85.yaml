@@ -562,7 +562,7 @@ segments:
       - [0x5659d8, .rodata, g_stage3]
       - [0x565a48, .rodata, g_stage4]
       - [0x565a60, .rodata, g_stage7]
-      - [0x565ad0, rodata, g_stage1]
+      - [0x565ad0, .rodata, g_stage1]
       - [0x565b60, rodata, g_stage9]
       - [0x565ba8, rodata, g_effect]
       - [0x565c00, .rodata, g_parts]
