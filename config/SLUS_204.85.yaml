@@ -559,7 +559,7 @@ segments:
       - [0x565870, .rodata, g_test]
       - [0x565930, .rodata, g_meminit]
       - [0x565948, .rodata, g_stage2]
-      - [0x5659d8, rodata, g_stage3]
+      - [0x5659d8, .rodata, g_stage3]
       - [0x565a48, rodata, g_stage4]
       - [0x565a60, rodata, g_stage7]
       - [0x565ad0, rodata, g_stage1]
