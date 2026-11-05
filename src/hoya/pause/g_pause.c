@@ -1,9 +1,24 @@
 #include "common.h"
 #include "hoya/pause/g_pause.h"
+#include "hoya/hoya.h"
+#include "g_parts.h"
+#include "g_camera.h"
+#include "g_effect.h"
+#include "perfmon.h"
+#include "gunsuv_usa/libgf/gfinstance.h"
 
 extern int pauseManager[];
 extern int gsExtProgNext;
 extern int gsNextProg;
+typedef struct { void (*init)(); void (*main)(); void (*end)(); } HyPrgInfo;
+extern HyPrgInfo gPausePrgInfo[];
+extern int prgMan[];
+extern char gNull_002c6740[];
+extern char gsCamRotMatrix[];
+extern char gScene[];
+extern char gScreen[];
+extern float cam_rot_002af8a0[];
+extern float cam_trans_002af8b0[];
 void LetsGotoPauseScene(int n)
 {
     int* pm = pauseManager;
@@ -49,7 +64,44 @@ INCLUDE_ASM("asm/nonmatchings/hoya/pause/g_pause", gsStageInit_PAUSE);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/pause/g_pause", gsMoveCamera2);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/pause/g_pause", gsStageExec_PAUSE);
+void gsStageExec_PAUSE()
+{
+    int* pm;
+
+    gsCameraCalcRotMatrix(gsCamRotMatrix, cam_rot_002af8a0);
+    gsSetCameraMatrix(gScene, gsCamRotMatrix, cam_trans_002af8b0);
+    PauseItemSetItems();
+    KeyStateUpdate(0);
+    GunStateUpdate();
+    pfm_set(0x800000);
+    gpClipShape(gScene, gScreen);
+
+    pm = prgMan;
+
+    if (pm[2] & 1)
+    {
+        gsManagementEffect(&gsCamera, gScene + 0x100);
+    }
+
+    GFInstance_Start();
+    gpInstance_Eval(gNull_002c6740);
+    GFInstance_End();
+    gpClearWorldRecov(gScene);
+    pfm_set(0x8000);
+
+    if (pm[0] == pm[1])
+    {
+        gPausePrgInfo[pm[1]].main();
+    }
+    else
+    {
+        gPausePrgInfo[pm[1]].end();
+        gPausePrgInfo[pm[0]].init();
+        pm[1] = pm[0];
+    }
+
+    pfm_set(0x80);
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/pause/g_pause", gsStageInit_PAUSE_STAGE);
 
