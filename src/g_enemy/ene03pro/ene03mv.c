@@ -147,7 +147,16 @@ void ene03moveNewTurn01(char* a)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/ene03pro/ene03mv", ene03moveMeteoAtc00);
+void ene03moveMeteoAtc00(char* a)
+{
+    Enemy_AnmChg00(a, 0x32, 8, 0);
+    STRUCT_OFFSET(a, 0xC0, int) = 0;
+    STRUCT_OFFSET(a, 0, int) |= 0x40000000;
+    STRUCT_OFFSET(a, 0xC4, float) = 54.0f;
+    STRUCT_OFFSET(a, 0xC8, int) = 0;
+    bigdino_vbrset(a, 0x38, 0x39, 0x3A);
+    STRUCT_OFFSET(a, 0x8C, int)++;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/ene03pro/ene03mv", ene03moveMeteoAtc01);
 
