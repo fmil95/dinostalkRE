@@ -62,34 +62,34 @@ void G_TTL_Init()
     switch (gsStageNo)
     {
     case 10:
-        gsObjPack.unk4 = gsStageInit_TITLE(gsObjPack.unk4);
+        gsObjPack.cur = gsStageInit_TITLE(gsObjPack.cur);
         break;
     case 11:
-        gsObjPack.unk4 = gsStageInit_RESULT(gsObjPack.unk4);
+        gsObjPack.cur = gsStageInit_RESULT(gsObjPack.cur);
         break;
     case 12:
-        gsObjPack.unk4 = gsStageInit_FRESULT(gsObjPack.unk4);
+        gsObjPack.cur = gsStageInit_FRESULT(gsObjPack.cur);
         break;
     case 13:
-        gsObjPack.unk4 = gsStageInit_OPTION(gsObjPack.unk4);
+        gsObjPack.cur = gsStageInit_OPTION(gsObjPack.cur);
         break;
     case 14:
-        gsObjPack.unk4 = gsStageInit_CONTINUE(gsObjPack.unk4);
+        gsObjPack.cur = gsStageInit_CONTINUE(gsObjPack.cur);
         break;
     case 15:
-        gsObjPack.unk4 = gsStageInit_PAUSE(gsObjPack.unk4);
+        gsObjPack.cur = gsStageInit_PAUSE(gsObjPack.cur);
         break;
     case 16:
-        gsObjPack.unk4 = gsStageInit_NAME(gsObjPack.unk4);
+        gsObjPack.cur = gsStageInit_NAME(gsObjPack.cur);
         break;
     case 17:
-        gsObjPack.unk4 = gsStageInit_MEMC(gsObjPack.unk4);
+        gsObjPack.cur = gsStageInit_MEMC(gsObjPack.cur);
         break;
     case 18:
-        gsObjPack.unk4 = gsStageInit_STARTGS3(gsObjPack.unk4);
+        gsObjPack.cur = gsStageInit_STARTGS3(gsObjPack.cur);
         break;
     case 27:
-        gsObjPack.unk4 = gsStageInit_ModeSelect(gsObjPack.unk4);
+        gsObjPack.cur = gsStageInit_ModeSelect(gsObjPack.cur);
         break;
     }
 
