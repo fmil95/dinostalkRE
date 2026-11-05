@@ -225,7 +225,18 @@ void hyLoadPigMemory()
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyLoadPigStartgs3);
+void hyLoadPigStartgs3()
+{
+    int i;
+    char* buf;
+
+    buf = (char*)FIO_ReadFile_Align(stgsPigData[0], 0x40);
+
+    for (i = 0; i < 3; i++)
+    {
+        gsSTGS_Idtex[i] = TEST_EntryTexture((unsigned int*)(buf + stgsPigAddr[i] * 4), 1);
+    }
+}
 
 INCLUDE_RODATA("asm/nonmatchings/hoya/hoya", D_0066A498);
 
