@@ -32,6 +32,10 @@ extern char dirName[];
 extern char D_00673C20[];
 extern char D_00673C28[];
 extern char D_00673C30[];
+typedef struct { int w[0x29C / 4]; } SavGameData;
+typedef struct { int w[0x1910 / 4]; } SavSysData;
+extern SavGameData plGameData;
+extern SavSysData plSysData;
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", CreateIconSys);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", InitMemcManager);
@@ -343,7 +347,10 @@ INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", SetPlyerGameData2SaveData
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", SetPlyerGameDataFromSaveDataBox);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", SetPlyerData2SaveDataBox);
+void SetPlyerData2SaveDataBox(int n)
+{
+    ((SavGameData*)D_005E2728)[n] = plGameData;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", SetPlyerDataFromSaveDataBox);
 
