@@ -57,7 +57,35 @@ INCLUDE_ASM("asm/nonmatchings/hoya/pause/pausesub", Draw2dObjectPause);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/pause/pausesub", Calculation_pausesub);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/pause/pausesub", ProcFadeIn_pausesub);
+int ProcFadeIn_pausesub(int step)
+{
+    int t = pPpp;
+
+    switch (STRUCT_OFFSET(t, 4, int))
+    {
+    case 0:
+        STRUCT_OFFSET(t, 0x90, int) = 0;
+        SetFadeParaPause_pausesub(t + 0x60, t + 0x70, STRUCT_OFFSET(t, 0x80, int));
+        SwitchFadeTimerPause_pausesub(1);
+        STRUCT_OFFSET(pPpp, 4, int)++;
+        break;
+    case 1:
+        STRUCT_OFFSET(t, 4, int) = 2;
+        break;
+    case 2:
+        if (!CheckFadeFinishFlagPause_pausesub())
+        {
+            STRUCT_OFFSET(pPpp, 4, int)++;
+        }
+        break;
+    case 3:
+        STRUCT_OFFSET(t, 4, int) = 0;
+        step++;
+        break;
+    }
+
+    return step;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/pause/pausesub", ProcFadeOut_pausesub);
 
