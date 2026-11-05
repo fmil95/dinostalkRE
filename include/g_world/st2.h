@@ -17,7 +17,7 @@ gsWorldSt2_dokubana();
 gsWorldBulletEffectGnd_ST2();
 void gsWorldSt2_InitRapt();
 void gsWorldSt2_MotiveRapt();
-gsWorldSt2_CheckRaptEnd();
+void gsWorldSt2_CheckRaptEnd();
 void gsWorldSt2_CheckBossDied();
 void gsWorldSt2_InitBackSE();
 gsWorldSt2_PlayBackSE();

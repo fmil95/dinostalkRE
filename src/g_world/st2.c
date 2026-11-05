@@ -12,6 +12,8 @@ extern int _st2_se_sawa_vol;
 extern int _st2_shock_fall_flg;
 
 extern char gsEnemyInfos[];
+extern int D_002AEB44[];
+extern int D_003C0A94[];
 INCLUDE_ASM("asm/nonmatchings/g_world/st2", gsWorldInitSt2);
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st2", gsWorldSt2EntryTex_GND);
@@ -47,7 +49,24 @@ void gsWorldSt2_MotiveRapt()
     gsSt2_BattleInit_RAPT();
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_world/st2", gsWorldSt2_CheckRaptEnd);
+void gsWorldSt2_CheckRaptEnd()
+{
+    if (_st2_rapt_flag & 1)
+    {
+        if (gsSt2_DieCheck_RAPT() <= 0)
+        {
+            if (D_002AEB44[0] & 1)
+            {
+                D_003C0A94[0] = 2;
+            }
+            else
+            {
+                D_003C0A94[0] = 4;
+            }
+            _st2_rapt_flag = 0;
+        }
+    }
+}
 
 void gsWorldSt2_CheckBossDied()
 {

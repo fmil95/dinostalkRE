@@ -26,7 +26,7 @@ gpEntryWorldManagerGND();
 gpEntryWorldManagerOBJ();
 gpAttachWorldDispOBJ();
 gpEntryWorldManagerBACK();
-gpEntryWorldObjAnim();
+int gpEntryWorldObjAnim(char* w, int i, int v);
 gpEntryWorldManagerGND_LOOP();
 void gpSetCollisionSkipGV(void* a, int b);
 void gpSetCollisionSkipODV(void* a, int b);

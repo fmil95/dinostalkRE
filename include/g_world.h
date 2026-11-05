@@ -13,7 +13,7 @@ gsWorldResetOdvAreaLink();
 gsWorldStepFrameObj();
 gsWorldPutOdvObject();
 gsWorldBuildWorld();
-gsWorldMoveBackObj();
+void gsWorldMoveBackObj(char* w, float* v);
 void gsWorldCallSpecialEffect();
 int gsWorldCallSpecialEffect2(int r);
 int gsWorldDamageObject(int* p, int d);

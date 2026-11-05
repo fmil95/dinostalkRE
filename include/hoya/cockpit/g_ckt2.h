@@ -15,7 +15,7 @@ gsCOCKPIT_TakionGetEffect();
 gsCOCKPIT_InitData();
 FreeDataSearch();
 NextItemData();
-OrderChange();
+void OrderChange();
 AddShowStockData();
 gsCOCKPIT_ReqItemText();
 gsCOCKPIT_PutItemText();
