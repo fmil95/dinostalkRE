@@ -402,7 +402,24 @@ void cdvDiscNameChange(char* a)
     defbuf[9] = 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvDiscNameChangeSet);
+int cdvDiscNameChangeSet(char* a)
+{
+    u_short w;
+    u_short m;
+    char* q;
+
+    if (cdvIsEoq(1))
+    {
+        return -1;
+    }
+    w = WriteQue;
+    m = MaxQue;
+    q = (char*)(w * 40 + Cdv_Que);
+    *(short*)q = 0x17;
+    *(char**)(q + 0x20) = a;
+    WriteQue = (w + 1) % (m + 1);
+    return WriteQue;
+}
 
 INCLUDE_ASM("asm/nonmatchings/sound/CdvUse", cdvFReadIOPSet);
 
