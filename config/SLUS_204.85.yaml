@@ -622,7 +622,7 @@ segments:
       - [0x56ab70, .rodata, air/a_evtthk]
       - [0x56ac30, .rodata, air/a_itmthk]
       - [0x56ac80, .rodata, air/a_rdcscn]
-      - [0x56aca8, rodata, air/insect/a_insect]
+      - [0x56aca8, .rodata, air/insect/a_insect]
       - [0x56ad10, rodata, air/insect/a_iscsub]
       - [0x56ad30, rodata, air/insect/a_goki]
       - [0x56ad60, rodata, air/insect/a_tomb]
