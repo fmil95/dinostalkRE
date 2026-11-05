@@ -97,7 +97,38 @@ INCLUDE_ASM("asm/nonmatchings/g_shadow", gpShadow_InitPacket);
 
 INCLUDE_ASM("asm/nonmatchings/g_shadow", gpShadow_CalcParam);
 
-INCLUDE_ASM("asm/nonmatchings/g_shadow", gpShadow_CheckClip);
+static int gpShadow_CheckClip(float* v, float* m)
+{
+    int ret;
+
+    asm volatile(
+        ".set noreorder\n"
+        "lqc2 $vf4, 0x0(%2)\n"
+        "lqc2 $vf5, 0x10(%2)\n"
+        "lqc2 $vf6, 0x20(%2)\n"
+        "lqc2 $vf7, 0x30(%2)\n"
+        "lqc2 $vf8, 0x0(%1)\n"
+        "ctc2.ni $0, $vi18\n"
+        "vmulax.xyzw ACC, $vf4, $vf8x\n"
+        "vmadday.xyzw ACC, $vf5, $vf8y\n"
+        "vmaddaz.xyzw ACC, $vf6, $vf8z\n"
+        "vmaddw.xyzw $vf9, $vf7, $vf0w\n"
+        "vclipw.xyz $vf9, $vf9w\n"
+        "vnop\n"
+        "vnop\n"
+        "vnop\n"
+        "cfc2.ni %0, $vi18\n"
+        "nop\n"
+        "andi %0, %0, 0x3F\n"
+        "beqz %0, 1f\n"
+        "nop\n"
+        "addi %0, $0, 0x1\n"
+        "1:\n"
+        ".set reorder\n"
+        : "=r"(ret) : "r"(v), "r"(m));
+
+    return ret;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_shadow", gpShadow_DrawParam);
 
