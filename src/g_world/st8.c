@@ -19,7 +19,15 @@ INCLUDE_ASM("asm/nonmatchings/g_world/st8", gsWorldSt8_SpecialEffect2);
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st8", gsWorldSt8_CirLight_GND);
 
-INCLUDE_ASM("asm/nonmatchings/g_world/st8", gsWorldSt8_InitCircleLight);
+void gsWorldSt8_InitCircleLight()
+{
+    int i;
+
+    for (i = 2; i >= 0; i--)
+    {
+        _st8_cir_grp[i].a[0] = 0;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st8", gsWorldSt8_EntryCircleLight);
 
