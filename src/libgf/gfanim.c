@@ -2,6 +2,7 @@
 
 extern void gfAnim_Attach(GF_INST_OBJECT* obj, PmtHEADER* anim, Uint32 flag);
 
+extern sceVu0FVECTOR D_00655CB0;
 INCLUDE_ASM("asm/nonmatchings/libgf/gfanim", gfAnim_InterpolateQuaternion);
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfanim", gfAnim_VectorToMatrix);
@@ -188,6 +189,32 @@ static void gfAnim_InterpolateQuat(Float32* v0, Float32* v1, Float32* v2, Float3
         : : "r"(v0), "r"(v1), "r"(v2), "f"(sin_0), "f"(sin_1) : "$8", "$9", "memory");
 }
 
-INCLUDE_ASM("asm/nonmatchings/libgf/gfanim", gfAnim_Sinf);
+static Float32 gfAnim_Sinf(Float32 ratio)
+{
+    Float32 x2;
+    sceVu0FVECTOR x329;
+
+    x2 = ratio * ratio;
+    x329[0] = ratio * x2;
+    x329[1] = x329[0] * x2;
+    x329[2] = x329[1] * x2;
+    x329[3] = x329[2] * x2;
+
+    asm volatile(
+        ".set noreorder\n"
+        "lqc2 $vf4, 0x0(%1)\n"
+        "lqc2 $vf5, 0x0(%2)\n"
+        "vmul.xyzw $vf5, $vf4, $vf5\n"
+        "vaddy.x $vf5, $vf5, $vf5y\n"
+        "vaddz.x $vf5, $vf5, $vf5z\n"
+        "vaddw.x $vf5, $vf5, $vf5w\n"
+        "qmfc2.ni $2, $vf5\n"
+        "mtc1 $2, %0\n"
+        "nop\n"
+        ".set reorder\n"
+        : "=f"(x2) : "r"(x329), "r"(D_00655CB0) : "$2");
+
+    return x2 + ratio;
+}
 
 INCLUDE_ASM("asm/nonmatchings/libgf/gfanim", gfAnim_Arccosf);
