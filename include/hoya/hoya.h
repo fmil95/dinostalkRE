@@ -4,7 +4,7 @@
 #define HOYA_HOYA_H
 
 void hyGun1CheckScreenOut();
-hySetBgCol();
+void hySetBgCol(void);
 hyInitEzSprite();
 hySetEzSprite();
 int MakeTextureAreaOnMemory();
@@ -21,15 +21,15 @@ hyTexAdd();
 hyLoadPigCptSight();
 hyLoadPigCptSetu();
 hyLoadPig();
-hyLoadPigTitle();
+void hyLoadPigTitle();
 hyLoadPigResult();
 hyLoadPigFResult();
 hyLoadPigOptionPart();
 hyLoadPigOption2Part();
-hyLoadPigPause();
+void hyLoadPigPause();
 hyLoadPigPause2();
 hyLoadPigContinue();
-hyLoadPigName();
+void hyLoadPigName();
 void hyLoadPigFont();
 char* hyLoadPigFont2(int a);
 hyLoadPigMemory();
@@ -57,7 +57,7 @@ hyEntryObj();
 hyEntryObj2();
 PutBmpFrame();
 PutBmpZ();
-hyDumpVector();
+void hyDumpVector(void);
 int hyCheckReed(int a);
 hyHex2Bcd();
 sceVu0RotCameraMatrix();

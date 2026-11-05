@@ -1,31 +1,37 @@
 #include "common.h"
+#include "hoya/hoya.h"
+#include "g_guncon2/g_guncon2.h"
+#include "g_pad.h"
+#include "g_plane.h"
 
 extern int texMng[];
-extern void hySetFadePara();
 extern void hyDrawSMSpriteSub();
-extern int gsGuncon2_CheckConnect();
 extern int FIO_ReadFile_Align();
 extern void hyDestroySMSpriteInfoSub();
-extern void gplInitSprite2();
 
-extern int gsGuncon2_GetTrg();
-extern int gsGuncon2_GetRTrg();
-extern int gsGuncon2_Get();
-extern int MakeTextureAreaOnMemory();
 extern int GFTex_Add();
 extern int D_0052CFEC[];
 extern int D_0052CFF0[];
 extern int gsPad_GetTrg();
-extern int gsPad_AGetTrg();
 extern int gsPad_GetRTrg();
-extern int gsPad_AGetRTrg();
 extern int gsPad_Get();
-extern int gsPad_AGet();
 extern int TEST_EntryTexture();
 extern int gsFONT_IdtexNo1;
 extern int FIO_GetFileSize();
 extern char* FIO_ReadFile();
 extern int TEST_LoadTexture();
+extern int namePigData[];
+extern int namePigAddr[];
+extern int namePigTuv[];
+extern int gsNAME_Idtex[];
+extern int ttlPigData[];
+extern int ttlPigAddr[];
+extern int ttlPigTuv[];
+extern int gsTITLE_Idtex[];
+extern int subPigData[];
+extern int subPigAddr[];
+extern int subPigTuv[];
+extern int gsPAUSE_Idtex[];
 INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyGun1CheckScreenOut);
 
 void hySetBgCol(void) {
@@ -130,7 +136,18 @@ INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyLoadPigPause2);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyLoadPigContinue);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/hoya", hyLoadPigName);
+void hyLoadPigName()
+{
+    int i;
+    char* buf;
+
+    buf = (char*)FIO_ReadFile_Align(namePigData[0], 0x40);
+
+    for (i = 0; i < 4; i++)
+    {
+        gsNAME_Idtex[i] = hyEntryTexture((int)(buf + namePigAddr[i] * 4), 1, namePigTuv[i]);
+    }
+}
 
 INCLUDE_RODATA("asm/nonmatchings/hoya/hoya", D_0066A338);
 
