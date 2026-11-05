@@ -325,7 +325,24 @@ float gpGetMaxVal(float a, float b)
     return ret;
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_parts", gpGetMinVal);
+float gpGetMinVal(float a, float b)
+{
+    float ret;
+
+    asm volatile(
+        ".set noreorder\n"
+        "mfc1 $2, %1\n"
+        "mfc1 $3, %2\n"
+        "qmtc2.ni $2, $vf4\n"
+        "qmtc2.ni $3, $vf5\n"
+        "vmini.x $vf6, $vf4, $vf5\n"
+        "qmfc2.ni $2, $vf6\n"
+        "mtc1 $2, %0\n"
+        ".set reorder\n"
+        : "=f"(ret) : "f"(a), "f"(b) : "$2", "$3");
+
+    return ret;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_parts", _gpGetCollisionObjectBox);
 
