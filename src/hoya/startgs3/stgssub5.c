@@ -55,7 +55,35 @@ INCLUDE_ASM("asm/nonmatchings/hoya/startgs3/stgssub5", Draw2dObject_stgssub5);
 void Calculation_stgssub5(void) {
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/startgs3/stgssub5", ProcFade_stgssub5);
+int ProcFade_stgssub5(int step)
+{
+    int t = pStgs_006749a0;
+
+    switch (STRUCT_OFFSET(t, 4, int))
+    {
+    case 0:
+        STRUCT_OFFSET(t, 0x40, int) = 0;
+        SetFadePara_stgssub5(t + 0x10, t + 0x20, STRUCT_OFFSET(t, 0x30, int));
+        SwitchFadeTimer_stgssub5(1);
+        STRUCT_OFFSET(pStgs_006749a0, 4, int)++;
+        break;
+    case 1:
+        STRUCT_OFFSET(t, 4, int) = 2;
+        break;
+    case 2:
+        if (!CheckFadeFinishFlag_stgssub5())
+        {
+            STRUCT_OFFSET(pStgs_006749a0, 4, int)++;
+        }
+        break;
+    case 3:
+        STRUCT_OFFSET(t, 4, int) = 0;
+        step++;
+        break;
+    }
+
+    return step;
+}
 
 void InitStgsTaikenTyuui()
 {
