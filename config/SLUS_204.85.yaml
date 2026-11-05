@@ -567,7 +567,7 @@ segments:
       - [0x565ba8, .rodata, g_effect]
       - [0x565c00, .rodata, g_parts]
       - [0x565c50, .rodata, g_shadow]
-      - [0x565c90, rodata, g_cshadow]
+      - [0x565c90, .rodata, g_cshadow]
       - [0x565ca0, .rodata, g_bulletmark]
       - [0x565cd0, .rodata, g_pad]
       - [0x565d10, .rodata, g_camera]
