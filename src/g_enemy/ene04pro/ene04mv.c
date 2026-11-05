@@ -130,7 +130,13 @@ void ene04moveElem090(char* a)
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/ene04pro/ene04mv", ene04moveElem091);
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/ene04pro/ene04mv", ene04moveElem0f0);
+void ene04moveElem0f0(char* a)
+{
+    Enemy_AnmChg00(a, 0xC, 8, 0);
+    STRUCT_OFFSET(a, 0, int) |= 0x40000000;
+    gsShockSetSeqNo(0, 0x6A);
+    STRUCT_OFFSET(a, 0x8C, int)++;
+}
 
 void ene04moveElem0f1(char* a)
 {
