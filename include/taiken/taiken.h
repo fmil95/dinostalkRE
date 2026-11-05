@@ -13,6 +13,6 @@ gsTaiken_Exec_KEYWORD();
 gsTaikenInit_READY_GO();
 gsTaikenExec_READY_GO();
 void gsTaikenExec_CLEAR();
-gsTaikenCall_CLEAR();
+void gsTaikenCall_CLEAR();
 void gsTaikenCall_CLEAR_ON_OFF();
 #endif // TAIKEN_TAIKEN_H

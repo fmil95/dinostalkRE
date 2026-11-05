@@ -1,6 +1,7 @@
 #include "common.h"
 #include "taiken/taiken.h"
 #include "g_camera.h"
+#include "hoya/cockpit/g_other.h"
 
 extern int _clear_bit;
 extern int _clear_bit;
@@ -53,7 +54,20 @@ void gsTaikenExec_CLEAR()
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/taiken/taiken", gsTaikenCall_CLEAR);
+void gsTaikenCall_CLEAR()
+{
+    if (!(gsCamera.unk4 & 0x200))
+    {
+        if (!_clear_bit)
+        {
+            gsTimerPauseTimeEx(1);
+        }
+
+        gsCamera.unk1A0 = 10000;
+        gsCamera.unk4 |= 0x8000;
+        _clear_bit = 1;
+    }
+}
 
 void gsTaikenCall_CLEAR_ON_OFF()
 {
