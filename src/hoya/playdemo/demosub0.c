@@ -1,5 +1,8 @@
 #include "common.h"
 #include "hoya/playdemo/demosub0.h"
+#include "fileio.h"
+#include "hoya/hoya.h"
+#include "g_enemy/enemain.h"
 
 extern int _step_2;
 extern int _step_2;
@@ -10,12 +13,16 @@ extern int gsPlayDemoFlag;
 
 extern int gsPause;
 extern int gsVRMode;
-extern void Enemy_PauseProc();
+extern int tdemo_00[];
+extern int gsDemoTexture;
 INCLUDE_ASM("asm/nonmatchings/hoya/playdemo/demosub0", gsInitDemo);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/playdemo/demosub0", gsDemoLoadPig);
+void gsDemoLoadPig()
+{
+    char* buf = FIO_ReadFile_Align((int)"cdrom0:\\DATA\\DEMO\\GSADV.BIN;1", 0x40);
 
-INCLUDE_RODATA("asm/nonmatchings/hoya/playdemo/demosub0", D_0066C820);
+    gsDemoTexture = hyEntryTexture((int)buf, 1, (int)tdemo_00);
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/playdemo/demosub0", gsDemoInitSprite);
 
