@@ -101,7 +101,15 @@ void Gun1AdjustProcInit()
     trans = 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/option/gun1_ajst", Gun1AdjustProcGunTeaching);
+int Gun1AdjustProcGunTeaching()
+{
+    if (!hyGun1CheckScreenOut())
+    {
+        work0--;
+    }
+
+    return work0 == 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/option/gun1_ajst", Gun1AdjustProcGunAdjustFirst);
 

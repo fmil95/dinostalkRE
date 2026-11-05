@@ -3,7 +3,7 @@
 #ifndef HOYA_HOYA_H
 #define HOYA_HOYA_H
 
-void hyGun1CheckScreenOut();
+int hyGun1CheckScreenOut();
 void hySetBgCol(void);
 hyInitEzSprite();
 hySetEzSprite();
