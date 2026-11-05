@@ -9,7 +9,13 @@ extern char _gsIK_TrkrTailHitPos[];
 extern char _gsIK_TrkrInterpolateTail[];
 extern int _gsIK_TailHitSub();
 
-INCLUDE_ASM("asm/nonmatchings/benjamin/ik_trkr", _gsIK_TrkrInit);
+extern void _gsIK_InitDataHead();
+extern int _gsIK_TrkrGroundData;
+void _gsIK_TrkrInit(char* e)
+{
+    _gsIK_InitDataHead(e + 0xD40);
+    *(int**)(e + 0xD60) = &_gsIK_TrkrGroundData;
+}
 
 void _gsIK_TrkrUpdateData(int a, int b)
 {
