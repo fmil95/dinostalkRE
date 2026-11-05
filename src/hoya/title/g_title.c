@@ -1,8 +1,11 @@
 #include "common.h"
+#include "hoya/g_ezipu.h"
+#include "hoya/title/ttlsub01.h"
 
 extern int oldProcNo;
 extern int gsNextProg;
 
+extern int prgMan[];
 void LetsGotoTitle(int a)
 {
     if (a != -1)
@@ -48,4 +51,12 @@ int gsTITLE_Draw1(int a)
     return a;
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/title/g_title", gsTITLE_Draw2);
+int gsTITLE_Draw2(int p)
+{
+    if (prgMan[0] == 1)
+    {
+        p = Draw2dObject2(gsEzIpuDraw(p, 0, 0, 0x200, 0x200));
+    }
+
+    return p;
+}

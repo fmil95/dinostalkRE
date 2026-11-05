@@ -6,7 +6,7 @@
 InitTitle();
 InitTtlTtl00();
 MainTitle();
-Draw2dObject2();
+int Draw2dObject2(int p);
 EndTitle();
 
 #endif // HOYA_TITLE_TTLSUB01_H
