@@ -1,13 +1,24 @@
 #include "common.h"
 #include "benjamin/g_shrink.h"
+#include "particle.h"
 
+extern void* pEffectInfoS;
+extern void* pEffectInfoM;
+extern void* pEffectInfoL;
+extern void* staffInitOneTypeEffect();
 INCLUDE_ASM("asm/nonmatchings/benjamin/g_shrink", gsDinoSetDeadShrinkY);
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/g_shrink", gsDinoSetDeadShrinkXZ);
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/g_shrink", gsDinoIsShrinking);
 
-INCLUDE_ASM("asm/nonmatchings/benjamin/g_shrink", staffInitParticle);
+void staffInitParticle()
+{
+    GFParticle_Vu0RandomInit();
+    pEffectInfoS = staffInitOneTypeEffect(pEffectInfoS, 0x20, 50);
+    pEffectInfoM = staffInitOneTypeEffect(pEffectInfoM, 0x20, 500);
+    pEffectInfoL = staffInitOneTypeEffect(pEffectInfoL, 5, 2000);
+}
 
 INCLUDE_ASM("asm/nonmatchings/benjamin/g_shrink", staffInitOneTypeEffect);
 
