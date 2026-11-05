@@ -21,7 +21,7 @@ gsWorldSt2_CheckRaptEnd();
 void gsWorldSt2_CheckBossDied();
 void gsWorldSt2_InitBackSE();
 gsWorldSt2_PlayBackSE();
-gsWorldSt2_TexScroll();
+int gsWorldSt2_TexScroll(int wp, int tex, int pos, int shift, int size, int h);
 gsWorldSt2_SkyScale();
 
 #endif // G_WORLD_ST2_H

@@ -1,5 +1,6 @@
 #include "common.h"
 #include "g_world/st3.h"
+#include "gunsuv_usa/libgf/gftex.h"
 
 extern int gsWorldSt3_KoiwaCnt;
 extern int gsWorldSt3_SplashCnt;
@@ -157,7 +158,23 @@ void gsWorldSt3_InitBackSE()
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st3", gsWorldSt3_PlayBackSE);
 
-INCLUDE_ASM("asm/nonmatchings/g_world/st3", gsWorldSt3_TexScroll);
+int gsWorldSt3_TexScroll(int wp, int tex, int pos, int shift, int size, int h)
+{
+    GF_TEXDB* db;
+    Uint32* pig;
+    int ret;
+    Uint32 save[2];
+
+    db = GFTex_GetDb(tex);
+    pig = db->pig;
+    save[0] = pig[0x48 / 4];
+    save[1] = pig[0x4C / 4];
+    pig[0x48 / 4] = save[0] + (size >> shift) * (h - (pos & (h - 1)));
+    ret = (int)GFTex_MakeTexturePacket((qword*)wp, db, 1);
+    pig[0x48 / 4] = save[0];
+    pig[0x4C / 4] = save[1];
+    return ret;
+}
 
 void gsWorldSt3_Demo0_Init()
 {
