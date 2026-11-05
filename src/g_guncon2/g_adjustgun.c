@@ -46,3 +46,7 @@ void set_bg_color(int r, int g, int b)
     STRUCT_OFFSET(p, 0x1F1, u_char) = g;
     STRUCT_OFFSET(p, 0x1F2, u_char) = b;
 }
+INCLUDE_RODATA("asm/nonmatchings/g_guncon2/g_adjustgun", D_0066D070);
+
+INCLUDE_RODATA("asm/nonmatchings/g_guncon2/g_adjustgun", D_0066D088);
+
