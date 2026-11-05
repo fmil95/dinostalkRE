@@ -82,7 +82,20 @@ INCLUDE_ASM("asm/nonmatchings/air/insect/a_goki", gsEyesAreaCheck_GOKI);
 
 INCLUDE_ASM("asm/nonmatchings/air/insect/a_goki", gsInsectCling_GOKI);
 
-INCLUDE_ASM("asm/nonmatchings/air/insect/a_goki", gsInsectClingCheck_GOKI);
+int gsInsectClingCheck_GOKI()
+{
+    int i;
+
+    for (i = 0; i < 10; i++)
+    {
+        if (*(int*)&gsIscInfos[i] & 0x80000)
+        {
+            return 1;
+        }
+    }
+
+    return 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/air/insect/a_goki", gsInsectPlEyesRolCheck_GOKI);
 
