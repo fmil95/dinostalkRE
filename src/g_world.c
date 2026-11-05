@@ -108,7 +108,20 @@ INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldPutOdvObject);
 
 INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldBuildWorld);
 
-INCLUDE_ASM("asm/nonmatchings/g_world", gsWorldMoveBackObj);
+void gsWorldMoveBackObj(char* w, float* v)
+{
+    u_int i;
+    u_int n = *(u_int*)(w + 0xC1820);
+
+    for (i = 0; i < n; i++)
+    {
+        float* o = *(float**)(w + 0xC198C + i * 0x1B0);
+
+        o[12] = v[0];
+        o[13] = v[1];
+        o[14] = v[2];
+    }
+}
 
 INCLUDE_RODATA("asm/nonmatchings/g_world", D_00665018);
 
