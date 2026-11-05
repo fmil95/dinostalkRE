@@ -105,7 +105,11 @@ void GFParticle_SetEndRGBA(char* p, float* v)
     sceVu0ClampVector((float*)(p + 0x30), (float*)(p + 0x30), 0.0f, 255.0f);
 }
 
-INCLUDE_ASM("asm/nonmatchings/particle", GFParticle_SetRGBAVar);
+void GFParticle_SetRGBAVar(char* p, float* v)
+{
+    sceVu0CopyVector((float*)(p + 0x40), v);
+    sceVu0ClampVector((float*)(p + 0x40), (float*)(p + 0x40), 0.0f, 255.0f);
+}
 
 void GFParticle_SetStatus(void* p, int v)
 {
