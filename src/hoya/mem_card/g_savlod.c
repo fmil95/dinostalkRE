@@ -1,4 +1,5 @@
 #include "common.h"
+#include <stdio.h>
 #include "hoya/mem_card/g_savlod.h"
 #include "hoya/mem_card/mcduse.h"
 
@@ -24,6 +25,13 @@ extern char D_005E6000[];
 extern char* irx_path_0[];
 extern int sceSifLoadModule();
 extern char gameVer[];
+extern MemcInfo memcMng[];
+extern char str[][256];
+extern int strPos;
+extern char dirName[];
+extern char D_00673C20[];
+extern char D_00673C28[];
+extern char D_00673C30[];
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", CreateIconSys);
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", InitMemcManager);
@@ -188,7 +196,14 @@ void FormatMemc2(int a, int b, int c)
     mcdFormatSet(c, a, b);
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", GetMemcFIleList);
+void GetMemcFIleList(int a, int b)
+{
+    str[strPos][0] = D_00673C20[0];
+    sprintf(str[strPos], D_00673C28, dirName);
+    mcdCardInfoSet((int)((char*)&memcMng[a + b] + 0x854), a, b, 0, 0, 0);
+    mcdGetDirSet((char*)&memcMng[a + b] + 0x84C, a, b, str[strPos], 0, 0x20, &memcMng[a + b]);
+    strPos = (strPos + 1) % 32;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", GetMemcDir);
 
