@@ -4,7 +4,7 @@
 
 extern void* GFTex_GetDb();
 extern char gf_ParticleNormalSTWH[];
-extern void gf_ParticleInitAnimData();
+static void gf_ParticleInitAnimData(char* p);
 INCLUDE_ASM("asm/nonmatchings/particle", gf_MyRand);
 
 INCLUDE_ASM("asm/nonmatchings/particle", gf_MyRandRange);
@@ -48,7 +48,21 @@ INCLUDE_ASM("asm/nonmatchings/particle", gf_UpdateAllParticle);
 
 INCLUDE_ASM("asm/nonmatchings/particle", gf_CreateSingleParticle);
 
-INCLUDE_ASM("asm/nonmatchings/particle", gf_ParticleInitAnimData);
+static void gf_ParticleInitAnimData(char* p)
+{
+    u_int i;
+    char* b = *(char**)(p + 0xF0);
+
+    *(int*)(p + 0xFC) = 0;
+
+    if (b != 0)
+    {
+        for (i = 0; i < *(u_int*)(p + 0xEC); i++)
+        {
+            *(int*)(b + i * 0x70 + 0x50) = 0;
+        }
+    }
+}
 
 void GFParticle_MallocMemory(char* p, int buf, int n)
 {
