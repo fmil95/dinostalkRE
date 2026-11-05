@@ -5,6 +5,7 @@
 #include "g_enemy/ene03pro/ene03mv.h"
 #include "g_enemy/ene03pro/ene03joy.h"
 #include "g_enemy/enethkmn.h"
+#include "benjamin/g_track.h"
 
 extern void Enemy_SeSet00();
 extern void bigdino_vbrset();
@@ -210,7 +211,28 @@ void ene03moveElem103(char* a)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_enemy/ene03pro/ene03mv", ene03moveElem141);
+void ene03moveElem141(char* a)
+{
+    if (GFAnim_ShapeFlagCheck((GF_INST_OBJECT*)(a + 0xBA0), 0) & 2)
+    {
+        STRUCT_OFFSET(a, 0x1C0, float) = STRUCT_OFFSET(a, 0x1E0, float);
+        STRUCT_OFFSET(a, 0x1C4, float) = STRUCT_OFFSET(a, 0x1E4, float);
+        STRUCT_OFFSET(a, 0x1C8, float) = STRUCT_OFFSET(a, 0x1E8, float);
+
+        if (STRUCT_OFFSET(a, 0x2A, short) == 7)
+        {
+            Enemy_SeSet00(a, 0xE8);
+        }
+        else
+        {
+            Enemy_SeSet00(a, 0xFC);
+        }
+
+        Enemy_GrdSeEffSet(a, 2);
+        Enemy_AnmChg00(a, 0x18, 0x10, 0);
+        STRUCT_OFFSET(a, 0x8C, int)++;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_enemy/ene03pro/ene03mv", ene03moveElem142);
 

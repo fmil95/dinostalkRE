@@ -84,7 +84,7 @@ enemy_psgrdhitchk();
 enemy_psobjhitchk();
 Enemy_GrdSeEffSet();
 Enemy_SeWkInit();
-Enemy_SeReq();
+void Enemy_SeReq(char* e, int v, int which);
 Enemy_SetSeMain();
 ST9TREX_DmgHitCheck();
 Enemy_SchOkNgSetDel();
