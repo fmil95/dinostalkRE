@@ -3,6 +3,13 @@
 #ifndef G_TEST_H
 #define G_TEST_H
 
+typedef struct { // 0x8
+	/* 0x0 */ int unk0;
+	/* 0x4 */ int unk4;
+} GS_OBJ_PACK;
+
+extern GS_OBJ_PACK gsObjPack;
+
 void G_TEST_Init();
 G_TEST_Exec();
 G_TEST_End();

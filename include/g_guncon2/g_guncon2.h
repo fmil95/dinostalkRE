@@ -3,8 +3,8 @@
 #ifndef G_GUNCON2_G_GUNCON2_H
 #define G_GUNCON2_G_GUNCON2_H
 
-gsGuncon2_Init();
-gsGuncon2_Exec();
+void gsGuncon2_Init();
+void gsGuncon2_Exec();
 int gsGuncon2_CheckConnect();
 int gsGuncon2_GetActivePort();
 int gsGuncon2_Get();

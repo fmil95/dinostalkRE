@@ -9,7 +9,7 @@ void PermittoSendMcTex(u_int i);
 Send2McTex();
 gsMEMC_Draw1();
 int gsMEMC_Draw2(int a);
-gsStageInit_MEMC();
+int gsStageInit_MEMC();
 gsStageExec_MEMC();
 
 #endif // HOYA_MEM_CARD_G_MEMC_H

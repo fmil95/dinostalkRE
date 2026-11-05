@@ -10,7 +10,7 @@ int pfm_gettimer();
 pfm_dmastart();
 pfm_dma1int();
 pfm_vbint();
-pfm_init();
+void pfm_init();
 void pfm_end();
 pfm_start();
 int pfm_set();

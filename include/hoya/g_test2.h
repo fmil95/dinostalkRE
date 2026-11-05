@@ -3,7 +3,7 @@
 #ifndef HOYA_G_TEST2_H
 #define HOYA_G_TEST2_H
 
-hySetVram();
+void hySetVram();
 void G_TTL_Init();
 void G_TTL_Exec();
 void G_TTL_End();

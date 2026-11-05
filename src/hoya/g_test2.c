@@ -1,20 +1,105 @@
 #include "common.h"
+#include "gunsuv_usa/libgf/libgf.h"
+#include "mem.h"
+#include "timer.h"
+#include "g_plane.h"
+#include "g_test.h"
+#include <libgraph.h>
+#include <eekernel.h>
+#include "hoya/g_test2.h"
+#include "g_guncon2/g_guncon2.h"
+#include "hoya/continue/g_cnt.h"
+#include "hoya/mem_card/g_memc.h"
+#include "hoya/modesel/gsModeselect.h"
+#include "hoya/name/g_name.h"
+#include "hoya/option/g_option.h"
+#include "hoya/pause/g_pause.h"
+#include "hoya/result/g_frslt.h"
+#include "hoya/result/g_rslt.h"
+#include "hoya/startgs3/g_stgs.h"
+#include "hoya/title/g_title.h"
+#include "perfmon.h"
+#include "sound/g_sound.h"
 
-extern void G_TTL_Exec();
-extern void G_TTL_Init();
-extern void sceGsSyncPath();
-extern void GF_EndGraphicsFramework();
-extern void MEM_FreeAll();
-extern void gsSoundClose();
-extern void pfm_end();
 extern int stgsOldProcNo;
-extern void gsStageEnd_TITLE();
 
+extern int gsFrame;
+extern int frame;
+extern int gsStageNo;
+extern int gsPause;
+extern sceGsDBuff gDb;
 INCLUDE_ASM("asm/nonmatchings/hoya/g_test2", hySetVram);
 
 INCLUDE_RODATA("asm/nonmatchings/hoya/g_test2", D_0066A140);
 
-INCLUDE_ASM("asm/nonmatchings/hoya/g_test2", G_TTL_Init);
+void G_TTL_Init()
+{
+    gsFrame = frame;
+    pfm_init(1);
+    GF_InitGraphicsFramework();
+    gplInitPlane();
+
+    switch (gsStageNo)
+    {
+    case 0xD:
+        hySetVram(1);
+        break;
+    case 0xF:
+        hySetVram(2);
+        break;
+    default:
+        hySetVram(0);
+        break;
+    }
+
+    gsGuncon2_Init();
+
+    while (TIMER_GetTimer(0) < 0x9E);
+
+    gsGuncon2_Exec();
+    gsPause = 0;
+
+    switch (gsStageNo)
+    {
+    case 10:
+        gsObjPack.unk4 = gsStageInit_TITLE(gsObjPack.unk4);
+        break;
+    case 11:
+        gsObjPack.unk4 = gsStageInit_RESULT(gsObjPack.unk4);
+        break;
+    case 12:
+        gsObjPack.unk4 = gsStageInit_FRESULT(gsObjPack.unk4);
+        break;
+    case 13:
+        gsObjPack.unk4 = gsStageInit_OPTION(gsObjPack.unk4);
+        break;
+    case 14:
+        gsObjPack.unk4 = gsStageInit_CONTINUE(gsObjPack.unk4);
+        break;
+    case 15:
+        gsObjPack.unk4 = gsStageInit_PAUSE(gsObjPack.unk4);
+        break;
+    case 16:
+        gsObjPack.unk4 = gsStageInit_NAME(gsObjPack.unk4);
+        break;
+    case 17:
+        gsObjPack.unk4 = gsStageInit_MEMC(gsObjPack.unk4);
+        break;
+    case 18:
+        gsObjPack.unk4 = gsStageInit_STARTGS3(gsObjPack.unk4);
+        break;
+    case 27:
+        gsObjPack.unk4 = gsStageInit_ModeSelect(gsObjPack.unk4);
+        break;
+    }
+
+    sceGsSyncV(0);
+    FlushCache(0);
+    sceGsSwapDBuff(&gDb, 0);
+    FlushCache(0);
+    sceGsSwapDBuff(&gDb, 1);
+    MEM_CheckViolation();
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/g_test2", G_TTL_Exec);
 

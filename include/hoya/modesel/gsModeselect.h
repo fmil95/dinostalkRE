@@ -3,7 +3,7 @@
 #ifndef HOYA_MODESEL_GSMODESELECT_H
 #define HOYA_MODESEL_GSMODESELECT_H
 
-gsStageInit_ModeSelect();
+int gsStageInit_ModeSelect();
 _gsMSLoadPigModeSelect();
 gsStageExec_ModeSelect();
 _gsMSDrawAllPrimitive();

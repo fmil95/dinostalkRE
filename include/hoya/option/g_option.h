@@ -7,7 +7,7 @@ LetsGotoOptionScene();
 ReleaseOptionScene();
 int gsOPTION_Draw1(int a);
 int gsOPTION_Draw2(int a);
-gsStageInit_OPTION();
+int gsStageInit_OPTION();
 gsStageExec_OPTION();
 gsStageInit_OPTION_STAGE();
 gsStageExec_OPTION_STAGE();
