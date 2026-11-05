@@ -144,7 +144,24 @@ int CheckSystemDataId()
     return r;
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", CheckGameDataId);
+int CheckGameDataId(int slot)
+{
+    int i;
+    int ret;
+
+    ret = 0;
+
+    for (i = 0; i < 16; i++)
+    {
+        if (saveDataBox[slot * 0x29C + 0x1920 + i] != id[i])
+        {
+            ret = 1;
+            break;
+        }
+    }
+
+    return ret;
+}
 
 INCLUDE_ASM("asm/nonmatchings/hoya/mem_card/g_savlod", CheckSystemDataSum);
 
