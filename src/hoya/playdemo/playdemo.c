@@ -2,6 +2,7 @@
 #include "hoya/playdemo/playdemo.h"
 #include "g_test.h"
 #include "omake/omake.h"
+#include "fileio.h"
 
 extern int D_0064B34C[];
 extern int D_0064B354[];
@@ -60,7 +61,13 @@ void gsPlayPadEnd()
     playDemo[0] = 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/hoya/playdemo/playdemo", gsPlayPadFGetData);
+void gsPlayPadFGetData(int name)
+{
+    char* buf = FIO_ReadFile_Align(name, 0x40);
+
+    playDemo[3] = (int)buf;
+    playDemo[4] = (int)(buf + 0x10);
+}
 
 void gsPlayDemoPadSwitch(int on)
 {
