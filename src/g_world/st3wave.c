@@ -18,6 +18,8 @@ extern void GFInstance_InitHead();
 extern void* GFTex_GetDb();
 extern int refTexAddr;
 extern int gsIntHID;
+extern volatile int isIntEnd;
+extern volatile int isDeformEnd;
 INCLUDE_ASM("asm/nonmatchings/g_world/st3wave", gsWaveScrollX);
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st3wave", gsWaveScrollZ);
@@ -77,7 +79,21 @@ void gsWaveAvoidEnd()
     *(volatile u_long*)0x12001000 = 1;
 }
 
-INCLUDE_ASM("asm/nonmatchings/g_world/st3wave", _gsWaveHandler);
+int _gsWaveHandler(int ch)
+{
+    DIntr();
+    isIntEnd = 1;
+
+    if (isDeformEnd == 1)
+    {
+        *(volatile u_long*)0x12001000 = 1;
+        *(volatile u_long*)0x12001000 = 1;
+    }
+
+    EIntr();
+    ExitHandler();
+    return 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st3wave", gsWaveAvoidSetStart);
 
