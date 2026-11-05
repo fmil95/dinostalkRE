@@ -4,9 +4,17 @@
 extern short _st4_hane_flag;
 extern short _st4_hane_count;
 extern int rand();
+extern int gsPause;
 INCLUDE_ASM("asm/nonmatchings/g_world/st4", gsWorldInitSt4);
 
-INCLUDE_ASM("asm/nonmatchings/g_world/st4", gsWorldSt4_SpecialEffect);
+void gsWorldSt4_SpecialEffect()
+{
+    if (!(gsPause & 1))
+    {
+        gsWorldSt4_AirWingrotation();
+        gsWorldSt4_SandStorm();
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/g_world/st4", gsWorldSt4_SpecialEffect2);
 
