@@ -7,6 +7,8 @@ extern void sceVu0UnitMatrix();
 extern void sceVu0RotMatrix();
 
 extern void* GFTex_GetDb();
+extern char gf_ParticleNormalSTWH[];
+extern void gf_ParticleInitAnimData();
 INCLUDE_ASM("asm/nonmatchings/particle", gf_MyRand);
 
 INCLUDE_ASM("asm/nonmatchings/particle", gf_MyRandRange);
@@ -52,7 +54,19 @@ INCLUDE_ASM("asm/nonmatchings/particle", gf_CreateSingleParticle);
 
 INCLUDE_ASM("asm/nonmatchings/particle", gf_ParticleInitAnimData);
 
-INCLUDE_ASM("asm/nonmatchings/particle", GFParticle_MallocMemory);
+void GFParticle_MallocMemory(char* p, int buf, int n)
+{
+    *(int*)(p + 0xF0) = buf;
+    *(int*)(p + 0xEC) = n;
+    *(char**)(p + 0xF8) = gf_ParticleNormalSTWH;
+    *(float*)(p + 0x144) = 1.0f;
+    *(int*)(p + 0xF4) = 0;
+    *(int*)(p + 0xE8) = 0;
+    *(int*)(p + 0x140) = 0;
+    sceVu0UnitMatrix(p + 0x100);
+    gf_ParticleInitAnimData(p);
+    GFParticle_Lifeless(p);
+}
 
 void GFParticle_SetAnimTbl(void* p, int v)
 {
